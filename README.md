@@ -33,7 +33,7 @@ Root Strategist (ERC-4337 smart account)
 1. **Clone and install**
 
    ```bash
-   git clone https://github.com/YOUR_ORG/agentic-crypto-swarm-prototype.git
+   git clone https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype.git
    cd agentic-crypto-swarm-prototype
    ```
 
