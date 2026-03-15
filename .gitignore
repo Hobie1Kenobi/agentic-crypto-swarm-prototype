@@ -41,6 +41,8 @@ cache/
 htmlcov/
 *.db
 *.sqlite3
+swarm_state.db
+swarm_checkpoints.db
 
 # Logs
 *.log

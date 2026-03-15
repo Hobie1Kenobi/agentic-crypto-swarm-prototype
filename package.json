@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "create-accounts": "cd packages/wallet && npm run create-accounts",
-    "test-userop": "cd packages/wallet && npm run test-userop"
+    "test-userop": "cd packages/wallet && npm run test-userop",
+    "swarm": "cd packages/agents && python main.py"
   }
 }

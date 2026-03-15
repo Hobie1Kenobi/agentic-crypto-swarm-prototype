@@ -71,8 +71,9 @@ Root Strategist (ERC-4337 smart account)
 # Deploy contracts
 forge script script/Deploy.s.sol --rpc-url $RPC_URL --broadcast
 
-# Run swarm simulation (10 synthetic user queries)
-python -m packages.agents.main --goal "maximize sustainable revenue via AI service"
+# Run swarm (requires LLM_API_KEY in .env)
+npm run swarm
+# Or: cd packages/agents && python main.py --goal "maximize sustainable revenue via AI service" --max-steps 5
 ```
 
 ## How to Monitor / Claim Profits
