@@ -43,6 +43,7 @@ htmlcov/
 *.sqlite3
 swarm_state.db
 swarm_checkpoints.db
+simulation_log.txt
 
 # Logs
 *.log

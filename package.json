@@ -5,6 +5,7 @@
   "scripts": {
     "create-accounts": "cd packages/wallet && npm run create-accounts",
     "test-userop": "cd packages/wallet && npm run test-userop",
-    "swarm": "cd packages/agents && python main.py"
+    "swarm": "cd packages/agents && python main.py",
+    "simulation": "cd packages/agents && python simulation_run.py"
   }
 }

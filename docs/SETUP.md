@@ -2,16 +2,24 @@
 
 ## Prerequisites
 
-- **Foundry**: Install from https://getfoundry.sh (Windows: `curl -L https://foundry.paradigm.xyz | bash` then `foundryup`)
+- **Ollama** (local LLM): Install from https://ollama.com. Use `tinyllama` for minimal RAM; `phi3:mini` or `qwen3:8b` if you have more (better quality).
+- **Foundry** (Windows): Run `.\scripts\install-foundry.ps1` (downloads precompiled binaries). Or use WSL + `curl -L https://foundry.paradigm.xyz | bash` then `foundryup`.
 - **Node.js** 18+
 - **Python** 3.12+
 
 ## Install Dependencies
 
+```powershell
+.\scripts\ensure-ollama-model.ps1
+.\scripts\install-foundry.ps1
+```
+
+Then (after Foundry is on PATH):
+
 ```bash
 forge install OpenZeppelin/openzeppelin-contracts
 cd packages/wallet && npm install
-cd ../agents && pip install -r requirements.txt
+cd packages/agents && pip install -r requirements.txt
 ```
 
 ## Create Agent Wallets
@@ -22,7 +30,7 @@ Secrets are saved to `.env` and `.gitignore` is updated to exclude them.
 npm run create-accounts
 ```
 
-Requires `ALCHEMY_API_KEY` in `.env` for reliable RPC (or uses public Base Sepolia RPC).
+Uses public Base Sepolia RPC if `ALCHEMY_API_KEY` is not set. No LLM API key needed (Ollama local).
 
 ## Deploy Contracts
 

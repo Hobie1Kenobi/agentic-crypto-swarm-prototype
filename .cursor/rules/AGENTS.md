@@ -8,7 +8,7 @@ Hierarchical multi-agent system for autonomous testnet revenue via on-chain valu
 - **Agent orchestration**: Python 3.12, LangGraph, web3.py
 - **Wallet layer**: ERC-4337 via permissionless.js (Pimlico) or ZeroDev
 - **Deployment**: viem (TS scripts) + Foundry
-- **LLM**: Groq or OpenAI
+- **LLM**: Ollama (local; default model tinyllama, or phi3:mini / qwen3:8b)
 
 ## Code Conventions
 - No raw private keys in code; use env vars
