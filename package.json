@@ -1,0 +1,9 @@
+{
+  "name": "agentic-crypto-swarm-prototype",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "create-accounts": "cd packages/wallet && npm run create-accounts",
+    "test-userop": "cd packages/wallet && npm run test-userop"
+  }
+}

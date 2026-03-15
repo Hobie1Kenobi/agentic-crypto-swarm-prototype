@@ -7,7 +7,8 @@
     "test-userop": "tsx scripts/test-userop.ts"
   },
   "dependencies": {
-    "permissionless": "^0.2.0",
+    "dotenv": "^16.0.0",
+    "permissionless": "^0.3.0",
     "viem": "^2.0.0"
   },
   "devDependencies": {

@@ -10,6 +10,7 @@ env/
 .env
 .env.local
 .env.*.local
+.env.secrets
 
 # Build outputs
 out/

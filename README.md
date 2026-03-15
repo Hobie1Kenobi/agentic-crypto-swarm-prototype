@@ -49,12 +49,18 @@ Root Strategist (ERC-4337 smart account)
 3. **Install dependencies**
 
    ```bash
-   forge install
+   forge install OpenZeppelin/openzeppelin-contracts
    cd packages/wallet && npm install
    cd ../agents && pip install -r requirements.txt
    ```
 
-4. **Claim testnet ETH**
+4. **Create agent wallets** (saves secrets to `.env`, updates `.gitignore`)
+
+   ```bash
+   npm run create-accounts
+   ```
+
+5. **Claim testnet ETH**
 
    - [Alchemy Faucet](https://basefaucet.com/)
    - [Coinbase CDP Faucet](https://portal.cdp.coinbase.com/products/faucet)
