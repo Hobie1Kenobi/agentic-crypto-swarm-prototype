@@ -1,0 +1,17 @@
+{
+  "name": "@swarm/wallet",
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "create-accounts": "tsx scripts/create-accounts.ts",
+    "test-userop": "tsx scripts/test-userop.ts"
+  },
+  "dependencies": {
+    "permissionless": "^0.2.0",
+    "viem": "^2.0.0"
+  },
+  "devDependencies": {
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
