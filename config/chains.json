@@ -1,0 +1,86 @@
+{
+  "chains": {
+    "anvil": {
+      "chainId": 31337,
+      "name": "Anvil",
+      "rpcUrl": "http://127.0.0.1:8545",
+      "explorerUrl": "",
+      "nativeSymbol": "ETH",
+      "isTestnet": true,
+      "isLocal": true,
+      "rpcEnvVars": ["RPC_URL"],
+      "comment": "Local Foundry Anvil; no faucet"
+    },
+    "celo-sepolia": {
+      "chainId": 11142220,
+      "name": "Celo Sepolia",
+      "rpcUrl": "https://forno.celo-sepolia.celo-testnet.org",
+      "explorerUrl": "https://celo-sepolia.blockscout.com",
+      "nativeSymbol": "CELO",
+      "isTestnet": true,
+      "isLocal": false,
+      "rpcEnvVars": ["CELO_SEPOLIA_RPC_URL", "RPC_URL", "CELO_RPC_URL"],
+      "faucetUrl": "https://faucet.celo.org/celo-sepolia",
+      "comment": "Default public testnet"
+    },
+    "celo-mainnet": {
+      "chainId": 42220,
+      "name": "Celo Mainnet",
+      "rpcUrl": "https://rpc.ankr.com/celo",
+      "explorerUrl": "https://explorer.celo.org",
+      "nativeSymbol": "CELO",
+      "isTestnet": false,
+      "isLocal": false,
+      "rpcEnvVars": ["CELO_MAINNET_RPC_URL", "RPC_URL", "CELO_RPC_URL"],
+      "comment": "Production"
+    },
+    "base-sepolia": {
+      "chainId": 84532,
+      "name": "Base Sepolia",
+      "rpcUrl": "https://sepolia.base.org",
+      "explorerUrl": "https://sepolia.basescan.org",
+      "nativeSymbol": "ETH",
+      "isTestnet": true,
+      "isLocal": false,
+      "rpcEnvVars": ["RPC_URL", "ALCHEMY_API_KEY"],
+      "alchemyTemplate": "https://base-sepolia.g.alchemy.com/v2/{key}",
+      "faucetUrl": "https://basefaucet.com",
+      "comment": "Legacy optional; Pimlico 84532"
+    },
+    "polygon-amoy": {
+      "chainId": 80002,
+      "name": "Polygon Amoy",
+      "rpcUrl": "https://rpc.ankr.com/polygon_amoy",
+      "explorerUrl": "https://amoy.polygonscan.com",
+      "nativeSymbol": "MATIC",
+      "isTestnet": true,
+      "isLocal": false,
+      "rpcEnvVars": ["POLYGON_AMOY_RPC_URL", "RPC_URL", "POLYGON_RPC_URL"],
+      "comment": "Optional x402/public API path"
+    },
+    "polygon-mainnet": {
+      "chainId": 137,
+      "name": "Polygon",
+      "rpcUrl": "https://rpc.ankr.com/polygon",
+      "explorerUrl": "https://polygonscan.com",
+      "nativeSymbol": "MATIC",
+      "isTestnet": false,
+      "isLocal": false,
+      "rpcEnvVars": ["POLYGON_RPC_URL", "RPC_URL"],
+      "comment": "Optional x402/public API path"
+    },
+    "gnosis": {
+      "chainId": 100,
+      "name": "Gnosis",
+      "rpcUrl": "https://rpc.ankr.com/gnosis",
+      "explorerUrl": "https://gnosisscan.io",
+      "nativeSymbol": "xDAI",
+      "isTestnet": false,
+      "isLocal": false,
+      "rpcEnvVars": ["PUBLIC_OLAS_RPC_URL", "RPC_URL"],
+      "comment": "Olas live external request chain (non-Base option)."
+    }
+  },
+  "defaultChain": "celo-sepolia",
+  "defaultLocalChain": "anvil"
+}

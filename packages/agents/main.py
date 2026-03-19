@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -10,7 +11,25 @@ for _ in range(5):
     if (root / "foundry.toml").exists() or (root / ".env.example").exists():
         break
     root = root.parent
-load_dotenv(root / ".env")
+load_dotenv(root / ".env", override=True)
+
+def _should_load_env_local() -> bool:
+    """
+    Safety: only load `.env.local` for local Anvil runs.
+    This prevents accidental key overrides during Celo execution.
+    """
+    chain_id = os.getenv("CHAIN_ID", "").strip()
+    rpc = os.getenv("RPC_URL", "").strip().lower()
+    if os.getenv("USE_ENV_LOCAL", "").strip().lower() in {"1", "true", "yes", "on"}:
+        return True
+    if chain_id == "31337":
+        return True
+    if rpc.startswith("http://127.0.0.1") or rpc.startswith("http://localhost") or "localhost" in rpc:
+        return True
+    return False
+
+if _should_load_env_local() and (root / ".env.local").exists():
+    load_dotenv(root / ".env.local", override=True)
 
 from swarm.graph import get_compiled_graph
 

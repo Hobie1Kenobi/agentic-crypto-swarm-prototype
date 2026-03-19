@@ -1,0 +1,74 @@
+{
+  "audit_date_note": "Counts are derived only from repository artifacts (JSON/MD) with Celo Sepolia Blockscout links or non-null tx_hash on chain_id 11142220. No explorer API calls were made in this audit.",
+  "chains_included": [
+    {
+      "chain": "Celo Sepolia",
+      "chain_id": 11142220,
+      "explorer": "https://celo-sepolia.blockscout.com"
+    }
+  ],
+  "chains_excluded_with_reason": [
+    {
+      "chain": "Local Anvil",
+      "chain_id": 31337,
+      "reason": "local_task_market_report.json, simulation_report.json — not public-chain traffic"
+    },
+    {
+      "chain": "Gnosis (Olas / mechx)",
+      "reason": "olas_live_attempt_report.json and public_adapter_run_report.json show external_tx_hash null; no confirmed on-chain tx hash in repo artifacts"
+    }
+  ],
+  "excluded_non_onchain": [
+    "communication_trace events where tx_hash is null",
+    "mocked_external_replay external_request_id values (not EVM transactions)",
+    "Duplicate tx_hash entries within the same report (counted once)"
+  ],
+  "unique_public_tx_count": 29,
+  "unique_tx_hashes": [
+    "04974f2ea03c758b8ada0298d408a10bc5a17b46668856c2efb7600db13e21e3",
+    "16e3f58052364a1307ee2fbdff01e655fe5c661563065ce73c86cb23ca256592",
+    "1b8f4a4e7e1fef045468f98b7a5ad5e3e562e3aaa24e3e090655f844f3330c9c",
+    "1fcc3573afe1e5c8e64366ff8cf5f489340eae8894245b90ec056e0ecdf725ad",
+    "243d3f456a4f07541042251be4b628e3ddfa1bbe0e3a120d2980b9d79e3d6556",
+    "25a93f120f7081779e327b58d69df4fc5ee6088f0e58469e0f094191e4a8faea",
+    "2c740b11299fc572f38a0caa17aaa3c84504c7fa0382da65ad7d5e94f9e48c5c",
+    "4726fddfa27da86749f036be78d276a7026eb2ea2d508c1d29c9684cba62fec7",
+    "48fd38dc607e8db954227fc662a25bc35ab828e369db6790ce55231f0316e753",
+    "4a072c63a3f20dccd568e6b94ca3e4a81e734752792a6e44dfca62084d7f539d",
+    "4ad8af1b537040fe996b4e1b8e780e4f77100854512d428eae2d8434ce2d6240",
+    "4e26daf7d782d77cd6e3d6c137648fbf9f4d7b4ba9e0615c9f53ade967ac67e5",
+    "57c8353a6f40f34b90a77a5f67f37fe03c9de0a51e4ee2d6ad81d0f9bccf8399",
+    "591280fae7e411fbd70e80e2c1b9017d8c5e4a0f6cc35fa3b529c441b0d3cea1",
+    "59fdd403fbde33756bd6a4307365fbfdee9a92148f1f46c3ab18ad7a2449227a",
+    "646e0099dc92fdf5b03fd3af5520981103147602db5f3841719cd14942d93d4e",
+    "6bd466507711df47a0f1ef737d9a07a020ba2c2d8efd94eb709b68f095102980",
+    "7a865c5ad8912988544069b8f9918e0aa0c9cd23bdb29a68ce0bc264080ceb04",
+    "7ebb15c262caad7c3f6f2cbcf5adbf67d1cafd2d271bf0f4acef411febb6640c",
+    "882cf86a8aed6e60064feb8b5ac2acec1572b710078cbe59bc999c55d7f641fc",
+    "a3d929ec693ca07d7dbcf9ae1d80c5e0093037db9c918286340d1dae2dc70333",
+    "b000b242b8bf29dc3174db9904237ebbeb85c550f7fe925681755c2e5ffe9ac0",
+    "b174b6236e0c8e607bb15578b7200aef1ac86522df5527cef134769a53e74dbb",
+    "c7aed05f7ab0a68f3960907807e54a71c1939fe1ed15e49a1fe578462efa100a",
+    "d0f432db80458e58f7e1ffd83a4be47e7204e2df45ebca778f431681027880ae",
+    "e3378d4462f0d50d45cb9a961ee87964e9f570d7884499f9ce18c1abb4bd0f0c",
+    "e718eeb394b97850f84842e72c68cdf97c04b80cabdf28b278d54394e74ccff6",
+    "f517180ae63a3279c761ec3df6514882e90bcf80a35829daea8507928f0de0e4",
+    "5abd07d292808feea04c82740c3266043d52ffbadd16cb3d803103b43ded45a3"
+  ],
+  "by_source_file": {
+    "celo_sepolia_task_market_report.json": 8,
+    "dual_mode_run_report.json": 8,
+    "celo_sepolia_run_report.json": 8,
+    "celo_sepolia_run_report.md": 2,
+    "private_celo_validation_report.md": 3
+  },
+  "fourteen_day_moving_average": {
+    "status": "not_directly_computable_from_repo_only",
+    "reason": "Artifacts record tx hashes and some run_id/unix timestamps for orchestration, but do not store each transaction's block timestamp. A proper 14-day MA requires Blockscout (or RPC) lookups per hash.",
+    "conservative_proxy_if_all_txs_were_in_last_14_days": {
+      "unique_txs": 29,
+      "daily_average": 2.0714285714285716,
+      "rounded_for_grant_disclosure": 2
+    }
+  }
+}

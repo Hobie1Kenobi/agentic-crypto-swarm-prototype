@@ -1,0 +1,144 @@
+{
+  "ok": true,
+  "boundaries": {
+    "external": "mocked_external_replay",
+    "external_mode": "mocked_external_replay (live attempt blocked)",
+    "internal": "contract_level_execution (real)"
+  },
+  "chains": {
+    "private": {
+      "chain_name": "celo-sepolia",
+      "chain_id": 11142220,
+      "explorer_url": "https://celo-sepolia.blockscout.com"
+    },
+    "public_olas": {
+      "chain_config": "gnosis",
+      "chain_id": 100,
+      "explorer_url": "https://gnosisscan.io"
+    }
+  },
+  "correlation": {
+    "external_request_id": "mock-1773898505",
+    "external_tx_hash": null,
+    "internal_task_id": 8,
+    "internal_tx_hashes": [
+      {
+        "name": "createTask",
+        "role": "ROOT_STRATEGIST",
+        "tx_hash": "882cf86a8aed6e60064feb8b5ac2acec1572b710078cbe59bc999c55d7f641fc"
+      },
+      {
+        "name": "acceptTask",
+        "role": "DEPLOYER",
+        "tx_hash": "48fd38dc607e8db954227fc662a25bc35ab828e369db6790ce55231f0316e753"
+      },
+      {
+        "name": "submitResult",
+        "role": "DEPLOYER",
+        "tx_hash": "4a072c63a3f20dccd568e6b94ca3e4a81e734752792a6e44dfca62084d7f539d"
+      },
+      {
+        "name": "submitTaskScore",
+        "role": "FINANCE_DISTRIBUTOR",
+        "tx_hash": "7a865c5ad8912988544069b8f9918e0aa0c9cd23bdb29a68ce0bc264080ceb04"
+      },
+      {
+        "name": "finalizeTask",
+        "role": "FINANCE_DISTRIBUTOR",
+        "tx_hash": "5abd07d292808feea04c82740c3266043d52ffbadd16cb3d803103b43ded45a3"
+      },
+      {
+        "name": "withdraw",
+        "role": "ROOT_STRATEGIST",
+        "tx_hash": "f517180ae63a3279c761ec3df6514882e90bcf80a35829daea8507928f0de0e4"
+      },
+      {
+        "name": "withdraw",
+        "role": "DEPLOYER",
+        "tx_hash": "4726fddfa27da86749f036be78d276a7026eb2ea2d508c1d29c9684cba62fec7"
+      },
+      {
+        "name": "withdraw",
+        "role": "FINANCE_DISTRIBUTOR",
+        "tx_hash": "6bd466507711df47a0f1ef737d9a07a020ba2c2d8efd94eb709b68f095102980"
+      }
+    ]
+  },
+  "settlement": {
+    "by_category": {
+      "protocol_fee": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 1000000000000000,
+        "actual_pending_wei": 1000000000000000,
+        "note": "Combined entitlement at same address; actual equals expected (settlement_matches_expected=true)."
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000,
+        "actual_pending_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xAa0d73B8dFc2C1AaAa8de6e6b26A9D7281A8236b",
+        "expected_wei": 760000000000000,
+        "actual_pending_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000,
+        "actual_pending_wei": 3240000000000000,
+        "note": "Combined entitlement at same address; actual equals expected (settlement_matches_expected=true)."
+      }
+    },
+    "by_address": {
+      "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC": {
+        "total_expected_wei": 4240000000000000,
+        "total_actual_pending_wei": 4240000000000000,
+        "categories": [
+          {
+            "category": "protocol_fee",
+            "expected_wei": 1000000000000000
+          },
+          {
+            "category": "requester_refund",
+            "expected_wei": 3240000000000000
+          }
+        ]
+      },
+      "0xCF3572136265A5ED34D412200E63017e39223592": {
+        "total_expected_wei": 5000000000000000,
+        "total_actual_pending_wei": 5000000000000000,
+        "categories": [
+          {
+            "category": "finance_fee",
+            "expected_wei": 5000000000000000
+          }
+        ]
+      },
+      "0xAa0d73B8dFc2C1AaAa8de6e6b26A9D7281A8236b": {
+        "total_expected_wei": 760000000000000,
+        "total_actual_pending_wei": 760000000000000,
+        "categories": [
+          {
+            "category": "worker_payout",
+            "expected_wei": 760000000000000
+          }
+        ]
+      }
+    },
+    "settlement_matches_expected": true
+  },
+  "external_evidence": {
+    "mech_tool": "openai-gpt-4o-2024-05-13",
+    "olas_chain_config": "gnosis",
+    "error": "mechx failed (exit 1): Running command with agent_mode=False\n\nError: Private key file `ethereum_private_key.txt` does not exist!\nSpecify a valid key file with --key option."
+  },
+  "remaining_blocker": {
+    "type": "rpc_or_wallet_issue",
+    "detail": "mechx failed (exit 1): Running command with agent_mode=False\n\nError: Private key file `ethereum_private_key.txt` does not exist!\nSpecify a valid key file with --key option."
+  },
+  "evidence_pointers": {
+    "public_adapter_run_report_json": "public_adapter_run_report.json",
+    "communication_trace_json": "communication_trace.json",
+    "private_task_market_report_json": "celo_sepolia_task_market_report.json"
+  }
+}

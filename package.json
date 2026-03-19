@@ -6,6 +6,27 @@
     "create-accounts": "cd packages/wallet && npm run create-accounts",
     "test-userop": "cd packages/wallet && npm run test-userop",
     "swarm": "cd packages/agents && python main.py",
-    "simulation": "cd packages/agents && python simulation_run.py"
+    "orchestrate": "cd packages/agents && python main.py",
+    "simulation": "cd packages/agents && python simulation_run.py",
+    "fetch-addresses": "powershell -ExecutionPolicy Bypass -File scripts/fetch-and-save-addresses.ps1",
+    "testnet:celo": "powershell -ExecutionPolicy Bypass -File scripts/run-celo-sepolia-e2e.ps1",
+    "harness:local": "powershell -ExecutionPolicy Bypass -File scripts/local-harness.ps1",
+    "harness:local:reset": "powershell -ExecutionPolicy Bypass -File scripts/local-harness.ps1 -Reset",
+    "simulation:local": "powershell -ExecutionPolicy Bypass -File scripts/run-local-simulation.ps1",
+    "orchestrate:local": "powershell -ExecutionPolicy Bypass -File scripts/run-local-orchestration.ps1",
+    "api:402": "cd packages/agents && python -m uvicorn api_402:create_app --factory --host 127.0.0.1 --port 8042",
+    "miner": "cd packages/agents && python miner_service.py",
+    "validator": "cd packages/agents && python validator_bot.py",
+    "adapter:public": "cd packages/agents && python public_adapter_demo.py",
+    "adapter:hybrid": "cd packages/agents && python public_adapter_demo.py --hybrid",
+    "olas:install": "powershell -ExecutionPolicy Bypass -File scripts/install-olas-mech-client.ps1",
+    "report:dual": "python scripts/generate-dual-mode-report.py --root .",
+    "deploy:dao": "powershell -ExecutionPolicy Bypass -File scripts/deploy-dao.ps1",
+    "mode:private": "powershell -ExecutionPolicy Bypass -File scripts/switch-market-mode.ps1 -Mode private_celo",
+    "mode:public": "powershell -ExecutionPolicy Bypass -File scripts/switch-market-mode.ps1 -Mode public_olas",
+    "mode:hybrid": "powershell -ExecutionPolicy Bypass -File scripts/switch-market-mode.ps1 -Mode hybrid",
+    "test": "forge test && (cd packages/agents && python -m pytest tests/ -v --tb=short)",
+    "test:contracts": "forge test",
+    "test:agents": "cd packages/agents && python -m pytest tests/ -v --tb=short"
   }
 }

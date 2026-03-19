@@ -1,0 +1,49 @@
+{
+  "ok": true,
+  "ts": 1773898468,
+  "private_chain": {
+    "name": "celo-sepolia"
+  },
+  "public_olas_chain": {
+    "chain_config": "gnosis",
+    "requirement": "gnosis"
+  },
+  "checks": {
+    "OLAS_ENABLED": {
+      "ok": true,
+      "value": "1"
+    },
+    "OLAS_CHAIN_CONFIG": {
+      "ok": true,
+      "value": "gnosis"
+    },
+    "OLAS_EOA_PRIVATE_KEY": {
+      "ok": true,
+      "value_present": true
+    },
+    "OLAS_PRIORITY_MECH_ADDRESS": {
+      "ok": true,
+      "value_present": true,
+      "value": "0xc05e7412439bd7e91730a6880e18d5d5873f632c"
+    },
+    "OLAS_TOOL": {
+      "ok": true,
+      "value": "openai-gpt-4o-2024-05-13"
+    },
+    "MECHX_EXECUTABLE": {
+      "ok": true,
+      "path": "C:\\Users\\hobie\\Swarm-Economy\\.venv-olas\\Scripts\\mechx.exe"
+    },
+    "EOA_FUNDED_GNOSIS": {
+      "ok": true,
+      "balance_wei": 10000000000000000,
+      "funded": true,
+      "rpc": "https://rpc.gnosischain.com",
+      "address": "0x7cC75Cb478bA5bEC29F7332cd1D2aBBcdB11073D"
+    }
+  },
+  "missing": [],
+  "blockers": [],
+  "remediation": [],
+  "eoa_funding_address": "0x7cC75Cb478bA5bEC29F7332cd1D2aBBcdB11073D"
+}

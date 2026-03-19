@@ -1,0 +1,9 @@
+{
+  "prompt": "What is one ethical use of AI?",
+  "tool": "openai-gpt-4o-2024-05-13",
+  "request_id": "external-olas-example-001",
+  "tx_hash": null,
+  "result": null,
+  "chain_config": "gnosis"
+}
+

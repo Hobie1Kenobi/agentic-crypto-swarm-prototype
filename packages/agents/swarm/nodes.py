@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import subprocess
 from pathlib import Path
 
 from langchain_core.messages import HumanMessage, SystemMessage
@@ -97,20 +98,110 @@ def deployer_node(state: SwarmState) -> SwarmState:
     }
 
 
+def task_market_demo_node(state: SwarmState) -> SwarmState:
+    if state.get("marketplace_done"):
+        return {"marketplace_summary": state.get("marketplace_summary") or "Marketplace demo already completed", "marketplace_done": True}
+
+    try:
+        from task_market_demo import run_task_market_demo
+
+        demo = run_task_market_demo()
+        tx_hashes = [e.get("tx_hash") for e in demo.get("tx_hashes", []) if e.get("tx_hash")]
+        ok = bool(demo.get("ok"))
+        summary = demo.get("error") or (f"Task marketplace demo txs: {len(tx_hashes)}" if ok else "Task marketplace demo failed")
+        return {
+            "marketplace_summary": summary,
+            "marketplace_done": ok,
+            "marketplace_tx_hashes": tx_hashes,
+            "tx_hashes": tx_hashes,
+        }
+    except Exception as e:
+        return {"marketplace_summary": f"Task marketplace demo error: {e}", "marketplace_done": False}
+
+
+def public_adapter_node(state: SwarmState) -> SwarmState:
+    if state.get("public_adapter_done"):
+        return {
+            "public_adapter_summary": state.get("public_adapter_summary") or "Public adapter already completed",
+            "public_adapter_done": True,
+        }
+
+    try:
+        from services.public_market_adapter import run_public_adapter_demo
+
+        prompt = os.getenv("PUBLIC_ADAPTER_PROMPT", "What is one ethical use of AI?").strip()
+        force_hybrid = os.getenv("MARKET_MODE", "").strip().lower() == "hybrid"
+        out = run_public_adapter_demo(prompt, force_hybrid=force_hybrid)
+        resp = out.get("public_response") or {}
+        tx_hashes = resp.get("tx_hashes") or []
+
+        ok = bool(resp.get("ok"))
+        summary = f"Public adapter ok={ok} boundary={resp.get('boundary')}"
+        return {
+            "public_adapter_summary": summary,
+            "public_adapter_done": ok,
+            "public_adapter_external_request_id": resp.get("external_request_id"),
+            "public_adapter_internal_task_id": resp.get("internal_task_id"),
+            "public_adapter_tx_hashes": tx_hashes,
+            "tx_hashes": tx_hashes,
+        }
+    except Exception as e:
+        return {"public_adapter_summary": f"Public adapter error: {e}", "public_adapter_done": False}
+
+def simulation_node(state: SwarmState) -> SwarmState:
+    root = Path(__file__).resolve().parents[2]
+    for _ in range(5):
+        if (root / "foundry.toml").exists() or (root / ".env.example").exists():
+            break
+        root = root.parent
+    log_path = root / "simulation_log.txt"
+    try:
+        proc = subprocess.run(
+            [os.environ.get("PYTHON", "python"), "simulation_run.py"],
+            cwd=root / "packages" / "agents",
+            env=os.environ.copy(),
+            capture_output=True,
+            text=True,
+            timeout=600,
+        )
+        summary_lines = []
+        tx_hashes = list(state.get("tx_hashes", []))
+        if log_path.exists():
+            text = log_path.read_text(encoding="utf-8")
+            for line in text.splitlines():
+                if "tx:" in line:
+                    part = line.split("tx:")[-1].strip().split()
+                    if part:
+                        h = part[0]
+                        if h.startswith("0x"):
+                            tx_hashes.append(h)
+                        elif len(h) == 64 and all(c in "0123456789abcdef" for c in h.lower()):
+                            tx_hashes.append("0x" + h)
+                if "Total paid:" in line or "Tx hashes:" in line or "Distribution tx:" in line:
+                    summary_lines.append(line.strip())
+        summary = "; ".join(summary_lines) if summary_lines else (proc.stdout or "")[:500]
+        return {"simulation_summary": summary, "tx_hashes": tx_hashes}
+    except subprocess.TimeoutExpired:
+        return {"simulation_summary": "Simulation timed out (600s)"}
+    except Exception as e:
+        return {"simulation_summary": f"Simulation error: {e}"}
+
+
+def _get_rpc() -> str:
+    from config.chains import get_rpc as _cfg_rpc
+    return _cfg_rpc()
+
+
 def finance_distributor_node(state: SwarmState) -> SwarmState:
     try:
         from web3 import Web3
 
-        rpc = os.getenv("RPC_URL") or (
-            f"https://base-sepolia.g.alchemy.com/v2/{os.getenv('ALCHEMY_API_KEY', '')}"
-        )
-        if not rpc or "your_" in rpc:
-            rpc = "https://sepolia.base.org"
-        w3 = Web3(Web3.HTTPProvider(rpc))
+        w3 = Web3(Web3.HTTPProvider(_get_rpc()))
         addr = os.getenv("FINANCE_DISTRIBUTOR_ADDRESS") or os.getenv("TREASURY_ADDRESS")
         if addr:
             bal = w3.eth.get_balance(addr)
-            threshold = int(0.05 * 1e18)
+            threshold_eth = float(os.getenv("SIMULATION_PROFIT_THRESHOLD_ETH", "0.05"))
+            threshold = int(threshold_eth * 1e18)
             done = bal >= threshold
             return {
                 "treasury_balance_wei": bal,

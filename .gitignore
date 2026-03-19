@@ -6,8 +6,10 @@ __pycache__/
 .Python
 venv/
 .venv/
+.venv-olas/
 env/
 .env
+.env.bak
 .env.local
 .env.*.local
 .env.secrets
@@ -44,6 +46,8 @@ htmlcov/
 swarm_state.db
 swarm_checkpoints.db
 simulation_log.txt
+simulation_report.json
+simulation_report.md
 
 # Logs
 *.log

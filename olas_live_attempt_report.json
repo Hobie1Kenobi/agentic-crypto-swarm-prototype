@@ -1,0 +1,30 @@
+{
+  "ts": 1773898717,
+  "ok": false,
+  "boundary": "mocked_external_replay",
+  "prompt": "Ping: hybrid demo live Olas attempt.",
+  "env": {
+    "OLAS_ENABLED": "1",
+    "OLAS_CHAIN_CONFIG": "gnosis",
+    "OLAS_PRIORITY_MECH_ADDRESS": "0xc05e7412439bd7e91730a6880e18d5d5873f632c",
+    "OLAS_TOOL": "openai-gpt-4o-2024-08-06",
+    "OLAS_EOA_PRIVATE_KEY": "***set***",
+    "OLAS_MECHX_PATH": null,
+    "MARKET_MODE": "private_celo"
+  },
+  "result": {
+    "ok": false,
+    "boundary": "mocked_external_replay",
+    "request_id": null,
+    "tx_hash": null,
+    "mech_address": "0xc05e7412439bd7e91730a6880e18d5d5873f632c",
+    "tool": "openai-gpt-4o-2024-08-06",
+    "response": null,
+    "error": "mechx failed (exit 1): Running command with agent_mode=False\n\nSending marketplace request...\nINFO: Uploading metadata to IPFS...\nINFO: Uploaded 1 metadata hash(es) to IPFS\nINFO: Submitting marketplace request transaction...\nwarning: Network activity has been very low for the past 10 blocks (current block: 45224724). Tipping with min_allowed_tip=1000000000.\n\n[2026-03-19 00:38:49,133][WARNING] Network activity has been very low for the past 10 blocks (current block: 45224724). Tipping with min_allowed_tip=1000000000.\nError: Unexpected error: {'code': -32000, 'message': 'INTERNAL_ERROR: insufficient funds'}\n\nIf this persists, please report it as an issue.",
+    "raw": null
+  },
+  "blocker": {
+    "type": "rpc_or_wallet_issue",
+    "detail": "mechx failed (exit 1): Running command with agent_mode=False\n\nSending marketplace request...\nINFO: Uploading metadata to IPFS...\nINFO: Uploaded 1 metadata hash(es) to IPFS\nINFO: Submitting marketplace request transaction...\nwarning: Network activity has been very low for the past 10 blocks (current block: 45224724). Tipping with min_allowed_tip=1000000000.\n\n[2026-03-19 00:38:49,133][WARNING] Network activity has been very low for the past 10 blocks (current block: 45224724). Tipping with min_allowed_tip=1000000000.\nError: Unexpected error: {'code': -32000, 'message': 'INTERNAL_ERROR: insufficient funds'}\n\nIf this persists, please report it as an issue."
+  }
+}

@@ -1,0 +1,124 @@
+{
+  "ok": true,
+  "chain_id": 11142220,
+  "rpc": "https://forno.celo-sepolia.celo-testnet.org",
+  "explorer_url": "https://celo-sepolia.blockscout.com",
+  "native_symbol": "CELO",
+  "compute_marketplace_address": "0x29d63396ea251254226870826ead0471f8d462f5",
+  "roles": {
+    "requester": {
+      "role": "ROOT_STRATEGIST",
+      "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC"
+    },
+    "worker": {
+      "role": "DEPLOYER",
+      "address": "0xAa0d73B8dFc2C1AaAa8de6e6b26A9D7281A8236b"
+    },
+    "validator": {
+      "role": "DEPLOYER",
+      "address": "0xAa0d73B8dFc2C1AaAa8de6e6b26A9D7281A8236b"
+    },
+    "finance_distributor": {
+      "role": "FINANCE_DISTRIBUTOR",
+      "address": "0x84B25C4d64b807D52dd9e2B00ad81264B9171420"
+    },
+    "owner": {
+      "role": "OWNER"
+    }
+  },
+  "task": {
+    "task_id": 6,
+    "task_metadata": "task-market-demo",
+    "query": "What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "escrow_wei": 5000000000000000,
+    "result_metadata": "Response generated.",
+    "validator_score": 19,
+    "min_validators": 1,
+    "min_average_score": 0,
+    "deadline_at": 1773863377
+  },
+  "tx_hashes": [
+    {
+      "name": "registerAsMiner",
+      "role": "DEPLOYER",
+      "tx_hash": null,
+      "error": "('0xb4fa3fb3', '0xb4fa3fb3')"
+    },
+    {
+      "name": "setValidatorAllowlist",
+      "role": "OWNER",
+      "tx_hash": "243d3f456a4f07541042251be4b628e3ddfa1bbe0e3a120d2980b9d79e3d6556",
+      "link": "https://celo-sepolia.blockscout.com/tx/243d3f456a4f07541042251be4b628e3ddfa1bbe0e3a120d2980b9d79e3d6556"
+    },
+    {
+      "name": "createTask",
+      "role": "ROOT_STRATEGIST",
+      "tx_hash": "7ebb15c262caad7c3f6f2cbcf5adbf67d1cafd2d271bf0f4acef411febb6640c",
+      "link": "https://celo-sepolia.blockscout.com/tx/7ebb15c262caad7c3f6f2cbcf5adbf67d1cafd2d271bf0f4acef411febb6640c"
+    },
+    {
+      "name": "acceptTask",
+      "role": "DEPLOYER",
+      "tx_hash": "591280fae7e411fbd70e80e2c1b9017d8c5e4a0f6cc35fa3b529c441b0d3cea1",
+      "link": "https://celo-sepolia.blockscout.com/tx/591280fae7e411fbd70e80e2c1b9017d8c5e4a0f6cc35fa3b529c441b0d3cea1"
+    },
+    {
+      "name": "submitResult",
+      "role": "DEPLOYER",
+      "tx_hash": "4ad8af1b537040fe996b4e1b8e780e4f77100854512d428eae2d8434ce2d6240",
+      "link": "https://celo-sepolia.blockscout.com/tx/4ad8af1b537040fe996b4e1b8e780e4f77100854512d428eae2d8434ce2d6240"
+    },
+    {
+      "name": "submitTaskScore",
+      "role": "DEPLOYER",
+      "tx_hash": "2c740b11299fc572f38a0caa17aaa3c84504c7fa0382da65ad7d5e94f9e48c5c",
+      "link": "https://celo-sepolia.blockscout.com/tx/2c740b11299fc572f38a0caa17aaa3c84504c7fa0382da65ad7d5e94f9e48c5c"
+    },
+    {
+      "name": "finalizeTask",
+      "role": "DEPLOYER",
+      "tx_hash": "a3d929ec693ca07d7dbcf9ae1d80c5e0093037db9c918286340d1dae2dc70333",
+      "link": "https://celo-sepolia.blockscout.com/tx/a3d929ec693ca07d7dbcf9ae1d80c5e0093037db9c918286340d1dae2dc70333"
+    },
+    {
+      "name": "withdraw",
+      "role": "ROOT_STRATEGIST",
+      "who": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+      "tx_hash": "b000b242b8bf29dc3174db9904237ebbeb85c550f7fe925681755c2e5ffe9ac0",
+      "link": "https://celo-sepolia.blockscout.com/tx/b000b242b8bf29dc3174db9904237ebbeb85c550f7fe925681755c2e5ffe9ac0"
+    },
+    {
+      "name": "withdraw",
+      "role": "DEPLOYER",
+      "who": "0xAa0d73B8dFc2C1AaAa8de6e6b26A9D7281A8236b",
+      "tx_hash": "e3378d4462f0d50d45cb9a961ee87964e9f570d7884499f9ce18c1abb4bd0f0c",
+      "link": "https://celo-sepolia.blockscout.com/tx/e3378d4462f0d50d45cb9a961ee87964e9f570d7884499f9ce18c1abb4bd0f0c"
+    }
+  ],
+  "balances": {
+    "pre": {
+      "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC": 2882299047500000000,
+      "0xAa0d73B8dFc2C1AaAa8de6e6b26A9D7281A8236b": 6016279784000000000,
+      "0x54a3aB9682f3e908C11AccB456f8b544415B053d": 3003600000000000000
+    },
+    "post": {
+      "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC": 2862936682500000000,
+      "0xAa0d73B8dFc2C1AaAa8de6e6b26A9D7281A8236b": 5992869824000000000,
+      "0x54a3aB9682f3e908C11AccB456f8b544415B053d": 3003600000000000000
+    }
+  },
+  "dry_run": false,
+  "contracts": {
+    "treasury": "0x54a3aB9682f3e908C11AccB456f8b544415B053d",
+    "finance_distributor": "0x54a3aB9682f3e908C11AccB456f8b544415B053d"
+  },
+  "withdraw_skipped": [
+    {
+      "who": "0x54a3aB9682f3e908C11AccB456f8b544415B053d",
+      "role": "FINANCE_DISTRIBUTOR",
+      "signer": "0x84B25C4d64b807D52dd9e2B00ad81264B9171420",
+      "reason": "signer_address_mismatch"
+    }
+  ]
+}

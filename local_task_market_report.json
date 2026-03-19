@@ -1,0 +1,172 @@
+{
+  "ok": true,
+  "chain_id": 31337,
+  "rpc": "http://127.0.0.1:8545",
+  "explorer_url": "",
+  "native_symbol": "ETH",
+  "compute_marketplace_address": "0xad3a921a649d23d5d41722f3fd455f40d333292f",
+  "roles": {
+    "requester": {
+      "role": "ROOT_STRATEGIST",
+      "address": "0xbDa6060D3f3A49bf2778968FA09c8915c7AB64c5"
+    },
+    "worker": {
+      "role": "IP_GENERATOR",
+      "address": "0xBB14C637BB54D02FFa008B4b2d4E4FD03d5aC0DC"
+    },
+    "validator": {
+      "role": "DEPLOYER",
+      "address": "0x0932B8D499e5a93E3892A744996227ba627d1a1d"
+    },
+    "finance_distributor": {
+      "role": "FINANCE_DISTRIBUTOR",
+      "address": "0x2156f405b1b06D1516116d4Bf4ea869ef8311bC1"
+    },
+    "owner": {
+      "role": "OWNER"
+    }
+  },
+  "task": {
+    "worker_registered": true,
+    "validator_allowlisted": true,
+    "task_id": 3,
+    "task_status": {
+      "value": 4,
+      "name": "Finalized"
+    },
+    "escrow_wei": 10000000000000000,
+    "escrow_eth": 0.01,
+    "validator_approvals": 1,
+    "average_score": 19,
+    "min_average_score": 0,
+    "worker_payout_expected_wei": 760000000000000,
+    "worker_payout_actual_wei": 760000000000000,
+    "protocol_fee_wei": 1000000000000000,
+    "protocol_fee_actual_wei": 1000000000000000,
+    "finance_fee_wei": 5000000000000000,
+    "finance_fee_actual_wei": 5000000000000000,
+    "requester_refund_expected_wei": 3240000000000000,
+    "requester_refund_actual_wei": 3240000000000000,
+    "pending_withdrawals_created": {
+      "0x0932B8D499e5a93E3892A744996227ba627d1a1d": 1000000000000000,
+      "0x2156f405b1b06D1516116d4Bf4ea869ef8311bC1": 5000000000000000,
+      "0xBB14C637BB54D02FFa008B4b2d4E4FD03d5aC0DC": 760000000000000,
+      "0xbDa6060D3f3A49bf2778968FA09c8915c7AB64c5": 3240000000000000
+    },
+    "settlement_matches_expected": true
+  },
+  "warnings": [
+    "registerAsMiner: already registered (skipped).",
+    "setValidatorAllowlist: already allowlisted (skipped)."
+  ],
+  "errors": [],
+  "tx_hashes": [
+    {
+      "name": "createTask",
+      "role": "ROOT_STRATEGIST",
+      "tx_hash": "3125e7ab802aa31f9590f4b196d2536b61cd7672f3562f3a9a7804c3078ce4bf",
+      "link": "3125e7ab802aa31f9590f4b196d2536b61cd7672f3562f3a9a7804c3078ce4bf"
+    },
+    {
+      "name": "acceptTask",
+      "role": "IP_GENERATOR",
+      "tx_hash": "4175a166ed4e7d37162ec2825912d22d4074facd5baa952ea686d89db877c33b",
+      "link": "4175a166ed4e7d37162ec2825912d22d4074facd5baa952ea686d89db877c33b"
+    },
+    {
+      "name": "submitResult",
+      "role": "IP_GENERATOR",
+      "tx_hash": "df2a63e9f2f0956b45b897edeab743575387b4ea05422459f84005dc7105c663",
+      "link": "df2a63e9f2f0956b45b897edeab743575387b4ea05422459f84005dc7105c663"
+    },
+    {
+      "name": "submitTaskScore",
+      "role": "DEPLOYER",
+      "tx_hash": "1248284bbfa2f9539ce5ea426fe524fe1395535a76e01d6ec0211ec6302b5499",
+      "link": "1248284bbfa2f9539ce5ea426fe524fe1395535a76e01d6ec0211ec6302b5499"
+    },
+    {
+      "name": "finalizeTask",
+      "role": "DEPLOYER",
+      "tx_hash": "eeefb5498ecc4572d242d42314287e3f4f3c2280f338d8d2e0cfdf176ad073bb",
+      "link": "eeefb5498ecc4572d242d42314287e3f4f3c2280f338d8d2e0cfdf176ad073bb"
+    },
+    {
+      "name": "withdraw",
+      "role": "ROOT_STRATEGIST",
+      "who": "0xbDa6060D3f3A49bf2778968FA09c8915c7AB64c5",
+      "tx_hash": "6321a34a88cc20c5a4e5e82f5f5101305f55afb12673af9981ff20ff395fc17a",
+      "link": "6321a34a88cc20c5a4e5e82f5f5101305f55afb12673af9981ff20ff395fc17a"
+    },
+    {
+      "name": "withdraw",
+      "role": "IP_GENERATOR",
+      "who": "0xBB14C637BB54D02FFa008B4b2d4E4FD03d5aC0DC",
+      "tx_hash": "8ec4a96fe6bebd621424213290c568a35c12871d0528f5b6eff329de9808a3fa",
+      "link": "8ec4a96fe6bebd621424213290c568a35c12871d0528f5b6eff329de9808a3fa"
+    },
+    {
+      "name": "withdraw",
+      "role": "OWNER",
+      "who": "0x0932B8D499e5a93E3892A744996227ba627d1a1d",
+      "tx_hash": "fadadad2ea6e98a4ed50ba3e8e7b8dcae6a7481692e389d91bd53cb4ecba1ede",
+      "link": "fadadad2ea6e98a4ed50ba3e8e7b8dcae6a7481692e389d91bd53cb4ecba1ede"
+    },
+    {
+      "name": "withdraw",
+      "role": "FINANCE_DISTRIBUTOR",
+      "who": "0x2156f405b1b06D1516116d4Bf4ea869ef8311bC1",
+      "tx_hash": "a7ee54a56a8177d620081912e62bbb7ccac183e1628cd1775a2a1fdb0bbb48e8",
+      "link": "a7ee54a56a8177d620081912e62bbb7ccac183e1628cd1775a2a1fdb0bbb48e8"
+    }
+  ],
+  "balances": {
+    "pre": {
+      "0xbDa6060D3f3A49bf2778968FA09c8915c7AB64c5": 79981292631790501054,
+      "0xBB14C637BB54D02FFa008B4b2d4E4FD03d5aC0DC": 50000959902995519224,
+      "0x0932B8D499e5a93E3892A744996227ba627d1a1d": 49999511021972088176,
+      "0x2156f405b1b06D1516116d4Bf4ea869ef8311bC1": 20008933574199468594
+    },
+    "post": {
+      "0xbDa6060D3f3A49bf2778968FA09c8915c7AB64c5": 79974228217788065742,
+      "0xBB14C637BB54D02FFa008B4b2d4E4FD03d5aC0DC": 50001519208993913672,
+      "0x0932B8D499e5a93E3892A744996227ba627d1a1d": 50000190266969522136,
+      "0x2156f405b1b06D1516116d4Bf4ea869ef8311bC1": 20013901127199209018
+    }
+  },
+  "dry_run": false,
+  "contracts": {
+    "treasury": "0x0932B8D499e5a93E3892A744996227ba627d1a1d",
+    "finance_distributor": "0x2156f405b1b06D1516116d4Bf4ea869ef8311bC1"
+  },
+  "withdrawals": {
+    "0xbDa6060D3f3A49bf2778968FA09c8915c7AB64c5": {
+      "pending_before_wei": 3240000000000000,
+      "tx_hash": "6321a34a88cc20c5a4e5e82f5f5101305f55afb12673af9981ff20ff395fc17a",
+      "error": null,
+      "skipped": null,
+      "pending_after_wei": 0
+    },
+    "0xBB14C637BB54D02FFa008B4b2d4E4FD03d5aC0DC": {
+      "pending_before_wei": 760000000000000,
+      "tx_hash": "8ec4a96fe6bebd621424213290c568a35c12871d0528f5b6eff329de9808a3fa",
+      "error": null,
+      "skipped": null,
+      "pending_after_wei": 0
+    },
+    "0x0932B8D499e5a93E3892A744996227ba627d1a1d": {
+      "pending_before_wei": 1000000000000000,
+      "tx_hash": "fadadad2ea6e98a4ed50ba3e8e7b8dcae6a7481692e389d91bd53cb4ecba1ede",
+      "error": null,
+      "skipped": null,
+      "pending_after_wei": 0
+    },
+    "0x2156f405b1b06D1516116d4Bf4ea869ef8311bC1": {
+      "pending_before_wei": 5000000000000000,
+      "tx_hash": "a7ee54a56a8177d620081912e62bbb7ccac183e1628cd1775a2a1fdb0bbb48e8",
+      "error": null,
+      "skipped": null,
+      "pending_after_wei": 0
+    }
+  }
+}

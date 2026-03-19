@@ -1,0 +1,17 @@
+# Dual Mode Run Report
+
+- ok: `True`
+- external_request_id: `mock-1773892612`
+- internal_task_id: `5`
+- public_boundary: `hybrid:public_intake->private_onchain_settlement`
+- private_report: `celo_sepolia_task_market_report.json`
+
+## Tx hashes
+
+- public: `25a93f120f7081779e327b58d69df4fc5ee6088f0e58469e0f094191e4a8faea, 646e0099dc92fdf5b03fd3af5520981103147602db5f3841719cd14942d93d4e, 1b8f4a4e7e1fef045468f98b7a5ad5e3e562e3aaa24e3e090655f844f3330c9c, 59fdd403fbde33756bd6a4307365fbfdee9a92148f1f46c3ab18ad7a2449227a, c7aed05f7ab0a68f3960907807e54a71c1939fe1ed15e49a1fe578462efa100a, d0f432db80458e58f7e1ffd83a4be47e7204e2df45ebca778f431681027880ae, 4e26daf7d782d77cd6e3d6c137648fbf9f4d7b4ba9e0615c9f53ade967ac67e5, b174b6236e0c8e607bb15578b7200aef1ac86522df5527cef134769a53e74dbb`
+- private: `25a93f120f7081779e327b58d69df4fc5ee6088f0e58469e0f094191e4a8faea, 646e0099dc92fdf5b03fd3af5520981103147602db5f3841719cd14942d93d4e, 1b8f4a4e7e1fef045468f98b7a5ad5e3e562e3aaa24e3e090655f844f3330c9c, 59fdd403fbde33756bd6a4307365fbfdee9a92148f1f46c3ab18ad7a2449227a, c7aed05f7ab0a68f3960907807e54a71c1939fe1ed15e49a1fe578462efa100a, d0f432db80458e58f7e1ffd83a4be47e7204e2df45ebca778f431681027880ae, 4e26daf7d782d77cd6e3d6c137648fbf9f4d7b4ba9e0615c9f53ade967ac67e5, b174b6236e0c8e607bb15578b7200aef1ac86522df5527cef134769a53e74dbb`
+
+## Real vs simulated
+
+- See `communication_trace.md` for step-by-step boundary markers.
+- See `docs/PUBLIC-ADAPTER.md` for exact meaning of boundaries.

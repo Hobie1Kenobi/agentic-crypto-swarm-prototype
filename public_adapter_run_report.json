@@ -1,0 +1,95 @@
+{
+  "ok": true,
+  "run_id": "1773898505",
+  "market_mode": "hybrid",
+  "chains": {
+    "private": {
+      "chain_name": "celo-sepolia",
+      "chain_id": 11142220,
+      "explorer_url": "https://celo-sepolia.blockscout.com"
+    },
+    "public_olas": {
+      "chain_config": "gnosis",
+      "chain_id": 100,
+      "explorer_url": "https://gnosisscan.io"
+    }
+  },
+  "olas": {
+    "ok": false,
+    "request_id": null,
+    "tx_hash": null,
+    "result": null,
+    "boundary": "mocked_external_replay",
+    "error": "mechx failed (exit 1): Running command with agent_mode=False\n\nError: Private key file `ethereum_private_key.txt` does not exist!\nSpecify a valid key file with --key option.",
+    "chain_config": "gnosis",
+    "tool": "openai-gpt-4o-2024-05-13"
+  },
+  "normalized_task": {
+    "query": "What is one ethical use of AI?",
+    "task_metadata": "public_adapter:olas:openai-gpt-4o-2024-05-13",
+    "worker_metadata": "swarm-worker-1",
+    "external_source": "olas",
+    "external_request_id": "mock-1773898505",
+    "external_tool": "openai-gpt-4o-2024-05-13",
+    "external_chain": "gnosis"
+  },
+  "private_market_report": {
+    "ok": false,
+    "chain_id": 11142220,
+    "rpc": "https://forno.celo-sepolia.celo-testnet.org",
+    "explorer_url": "https://celo-sepolia.blockscout.com",
+    "native_symbol": "CELO",
+    "compute_marketplace_address": "0x159074bc4b8811df1ef16526766de57fb59db7db",
+    "roles": {
+      "requester": {
+        "role": "ROOT_STRATEGIST",
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC"
+      },
+      "worker": {
+        "role": "DEPLOYER",
+        "address": "0xAa0d73B8dFc2C1AaAa8de6e6b26A9D7281A8236b"
+      },
+      "validator": {
+        "role": "FINANCE_DISTRIBUTOR",
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592"
+      },
+      "finance_distributor": {
+        "role": "FINANCE_DISTRIBUTOR",
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592"
+      },
+      "owner": {
+        "role": "OWNER"
+      },
+      "treasury": {
+        "role": "TREASURY",
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC"
+      }
+    },
+    "task": {},
+    "warnings": [],
+    "errors": [
+      {
+        "step": "roles",
+        "message": "Private demo requires five distinct addresses: requester, worker, validator, treasury, finance_distributor. Set TREASURY_PRIVATE_KEY and TREASURY_ADDRESS at deploy so treasury is distinct from the other four."
+      }
+    ],
+    "tx_hashes": [],
+    "balances": {},
+    "dry_run": false,
+    "contracts": {
+      "treasury": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+      "finance_distributor": "0xCF3572136265A5ED34D412200E63017e39223592"
+    },
+    "error": "Five distinct role addresses required."
+  },
+  "public_response": {
+    "ok": false,
+    "external_request_id": "mock-1773898505",
+    "internal_task_id": null,
+    "result_text": "No result.",
+    "tx_hashes": [],
+    "boundary": "hybrid:public_intake->private_onchain_settlement",
+    "notes": null
+  },
+  "boundary": "mocked_external_replay"
+}

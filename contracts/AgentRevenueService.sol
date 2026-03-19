@@ -42,11 +42,18 @@ contract AgentRevenueService is Ownable, ReentrancyGuard, Pausable {
 
         (bool okTreasury,) = treasury.call{value: protocolFee}("");
         if (!okTreasury) revert TransferFailed();
+        emit FeeDistributed(treasury, protocolFee);
 
         (bool okDist,) = financeDistributor.call{value: distributable}("");
         if (!okDist) revert TransferFailed();
+        emit FeeDistributed(financeDistributor, distributable);
 
         emit QueryFulfilled(queryHash, msg.sender, msg.value, resultMetadata);
+    }
+
+    function setTreasury(address _treasury) external onlyOwner {
+        if (_treasury == address(0)) revert InvalidAddress();
+        treasury = _treasury;
     }
 
     function setFinanceDistributor(address _financeDistributor) external onlyOwner {

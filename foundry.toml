@@ -4,10 +4,16 @@ out = "out"
 libs = ["lib"]
 script = "script"
 solc = "0.8.28"
-evm_version = "paris"
+evm_version = "cancun"
 optimizer = true
 optimizer_runs = 200
+via_ir = true
 
 [rpc_endpoints]
-base_sepolia = "https://base-sepolia.g.alchemy.com/v2/"
+anvil = "http://127.0.0.1:8545"
+celo_sepolia = "https://rpc.ankr.com/celo_sepolia"
+celo_mainnet = "https://rpc.ankr.com/celo"
+base_sepolia = "https://sepolia.base.org"
+polygon_amoy = "https://rpc.ankr.com/polygon_amoy"
+polygon_mainnet = "https://rpc.ankr.com/polygon"
 

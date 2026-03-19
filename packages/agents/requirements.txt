@@ -6,3 +6,11 @@ web3>=7.0.0
 eth-account>=0.10.0
 python-dotenv>=1.0.0
 pydantic>=2.0.0
+fastapi>=0.115.0
+uvicorn>=0.32.0
+pytest>=8.0.0
+
+# Public marketplace adapter (Olas / Mech)
+# NOTE: The official Olas `mech-client` currently pins dependencies (e.g. FastAPI) that conflict with this repo's
+# Python runtime dependencies (we use newer FastAPI/web3). To keep the core stack stable, we run `mechx`
+# from an isolated venv created by `scripts/install-olas-mech-client.ps1`.

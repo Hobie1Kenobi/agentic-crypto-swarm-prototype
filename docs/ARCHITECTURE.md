@@ -5,7 +5,7 @@
 ```
 ┌─────────────────────────────────────────────────────────────────────────────┐
 │                         HUMAN (one-time seed)                                 │
-│  • Testnet ETH via faucet                                                    │
+│  • Testnet CELO (Celo Sepolia) or local Anvil                               │
 │  • Goals via Constitution.sol                                                │
 │  • Beneficiary address for profit claims                                     │
 └─────────────────────────────────────────────────────────────────────────────┘
@@ -57,6 +57,10 @@
 3. Attach session key with daily limit
 4. Fund with 0.05 test ETH each
 
+**Agent execution: Signer vs AA mode**
+- **Signer mode (default)**: The swarm uses an `AgentExecutor` abstraction. The default implementation (`SimpleSignerAgentExecutor`) signs and sends transactions with the EOA keys from env (`ROOT_STRATEGIST_PRIVATE_KEY`, etc.). This is production-safe and works on Celo (and any chain) without a bundler.
+- **AA mode (optional)**: When a bundler is available (e.g. `BUNDLER_RPC_URL` or Pimlico on Base Sepolia), the wallet package can use `AAAgentExecutor` to send ERC-4337 UserOps from smart accounts. The Python stack currently defaults to signer mode so the swarm runs reliably; AA can be wired in later without a major refactor.
+
 ## 3. Revenue Contract Design
 
 **AgentRevenueService.sol** (already scaffolded):
@@ -66,6 +70,12 @@
 - OpenZeppelin Ownable, ReentrancyGuard, Pausable
 
 **Constitution.sol**: Hard-coded ethical rules.
+
+## 3.1 Payment layer (x402)
+
+- **Single source of truth**: `packages/agents/services/payment.py` defines `MIN_PAYMENT_WEI` (0.001 ether), `REVENUE_ABI` (fulfillQuery), `get_min_payment_wei()` (env `PAYMENT_WEI` override), and `verify_payment_tx(tx_hash, revenue_address, expected_metadata)` for on-chain verification.
+- **x402 API** (`api_402.py`): GET/POST `/query?q=...` returns **402 Payment Required** with payment details (contract, amount_wei, chain_id, result_metadata). Client sends `fulfillQuery(resultMetadata)` with min payment, then retries with header `X-Payment-Tx-Hash`; server verifies the tx and returns the LLM response. Response and headers include **native_symbol** (CELO/ETH) from chain config so clients see the correct token.
+- **Consumers**: Simulation, `pay_and_get_tx_hash`, and the x402 API all use the shared payment module so amounts and ABI stay in sync with the contract.
 
 ## 4. LangGraph Workflow
 
@@ -78,6 +88,14 @@
             ├─► deployer_node (deploy/upgrade RevenueService)
             │       └─► UserOp via Deployer smart account
             │
+            ├─► (mode switch) private marketplace OR public adapter
+            │
+            ├─► task_market_demo_node (private mode: Celo/Anvil onchain escrow settlement)
+            │       └─► writes marketplace reports + tx hashes
+            │
+            ├─► public_adapter_node (public/hybrid mode: Olas adapter intake, live or replay)
+            │       └─► writes public adapter reports + communication trace
+            │
             └─► finance_distributor_node
                     │
                     ├─► check_treasury_balance
@@ -88,6 +106,22 @@
 **State**: `TypedDict` with `goal`, `tasks`, `balances`, `tx_hashes`, `profit_so_far`.
 
 **Persistence**: SQLite for run state; on-chain events for verification.
+
+## 4.1 Dual-mode marketplace execution (Private vs Public vs Hybrid)
+
+The repo supports a `MARKET_MODE` switch:
+
+- **`private_celo`**: run our onchain task lifecycle on `ComputeMarketplace` (Celo Sepolia / Anvil).
+- **`public_olas`**: run the public adapter intake (Olas-compatible live attempts). In this repo, live external requests target **Gnosis** via `OLAS_CHAIN_CONFIG=gnosis` (Celo is not used for mechx calls). If live config/tooling is missing, the adapter falls back to explicit replay/mock boundaries.
+- **`hybrid`**: public adapter intake (live or replay on Gnosis/Olas) → normalize into internal task → execute private `ComputeMarketplace` settlement on **Celo** (`MARKET_MODE=hybrid` always settles on the private chain).
+
+Evidence artifacts:
+
+- **Public adapter**: `public_adapter_run_report.(md|json)`, `communication_trace.(md|json)`
+- **Private marketplace**: `celo_sepolia_task_market_report.(md|json)` or `local_task_market_report.(md|json)`
+- **Merged proof**: `dual_mode_run_report.(md|json)`
+
+Details: `docs/PUBLIC-ADAPTER.md`
 
 ## 5. End-to-End Simulation
 
@@ -108,7 +142,7 @@
 | Wallets     | permissionless.js, viem, Pimlico    |
 | Agents      | Python 3.12, LangGraph, web3.py     |
 | LLM         | Groq (fast) or OpenAI                |
-| RPC         | Alchemy Base Sepolia                 |
+| RPC         | Celo Sepolia / Celo mainnet (or Anvil local); Base optional |
 | Testing     | Anvil, Base Sepolia, pytest          |
 
 ## 7. Secrets Required (ask user once)

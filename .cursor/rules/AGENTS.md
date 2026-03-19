@@ -1,12 +1,12 @@
 # Agentic Crypto Swarm — Cursor Rules
 
 ## Project Overview
-Hierarchical multi-agent system for autonomous testnet revenue via on-chain value creation (no trading/speculation). Base Sepolia only (chain ID 84532).
+Hierarchical multi-agent system for autonomous testnet revenue via on-chain value creation (no trading/speculation). Celo-first: Celo Sepolia (11142220) testnet, Celo mainnet (42220) production; local Anvil (31337); Base Sepolia (84532) legacy/optional.
 
 ## Tech Stack
 - **Contracts**: Foundry, Solidity 0.8.28+, OpenZeppelin
 - **Agent orchestration**: Python 3.12, LangGraph, web3.py
-- **Wallet layer**: ERC-4337 via permissionless.js (Pimlico) or ZeroDev
+- **Wallet layer**: ERC-4337 via permissionless.js (Pimlico on Base; Celo may use signer or other bundler)
 - **Deployment**: viem (TS scripts) + Foundry
 - **LLM**: Ollama (local; default model tinyllama, or phi3:mini / qwen3:8b)
 
@@ -30,4 +30,4 @@ Hierarchical multi-agent system for autonomous testnet revenue via on-chain valu
 - Spending limits enforced on all agent wallets
 - Reentrancy guards on revenue contract
 - Events for verifiable audit trail
-- No mainnet deployment
+- Mainnet only after validation; default testnet Celo Sepolia

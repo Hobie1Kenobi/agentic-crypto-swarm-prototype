@@ -15,23 +15,34 @@ for _ in range(5):
     if (root / "foundry.toml").exists() or (root / ".env.example").exists():
         break
     root = root.parent
-load_dotenv(root / ".env")
+load_dotenv(root / ".env", override=True)
+
+def _should_load_env_local() -> bool:
+    chain_id = os.getenv("CHAIN_ID", "").strip()
+    rpc = os.getenv("RPC_URL", "").strip().lower()
+    if os.getenv("USE_ENV_LOCAL", "").strip().lower() in {"1", "true", "yes", "on"}:
+        return True
+    if chain_id == "31337":
+        return True
+    if rpc.startswith("http://127.0.0.1") or rpc.startswith("http://localhost") or "localhost" in rpc:
+        return True
+    return False
+
+if _should_load_env_local() and (root / ".env.local").exists():
+    load_dotenv(root / ".env.local", override=True)
 sys.path.insert(0, str(root / "packages" / "agents"))
+
+from config.chains import get_rpc as _get_rpc_config, get_chain_id as _get_chain_id_config
+from services.payment import get_min_payment_wei, REVENUE_ABI
 
 NUM_USERS = int(os.getenv("SIMULATION_NUM_USERS", "10"))
 PAYMENT_ETH = 0.001
-MIN_PAYMENT_WEI = int(0.001 * 1e18)
 PROFIT_THRESHOLD_ETH = float(os.getenv("SIMULATION_PROFIT_THRESHOLD_ETH", "0.005"))
 BENEFICIARY_SHARE_BPS = 6000
 
 
 def get_rpc():
-    rpc = os.getenv("RPC_URL") or (
-        f"https://base-sepolia.g.alchemy.com/v2/{os.getenv('ALCHEMY_API_KEY', '')}"
-    )
-    if not rpc or "your_" in rpc or not os.getenv("ALCHEMY_API_KEY"):
-        rpc = "https://sepolia.base.org"
-    return rpc
+    return _get_rpc_config()
 
 
 def generate_response_metadata(user_id: int) -> str:
@@ -48,7 +59,7 @@ def generate_response_metadata(user_id: int) -> str:
 
 def run_simulation():
     from web3 import Web3
-    from eth_account import Account
+    from services.agent_executor import get_default_executor
 
     rpc = get_rpc()
     revenue_addr = os.getenv("REVENUE_SERVICE_ADDRESS")
@@ -61,6 +72,8 @@ def run_simulation():
         print("RPC not connected; running in dry-run (log only).")
         revenue_addr = None
         payer_key = None
+    else:
+        executor = get_default_executor(w3)
 
     log_lines = []
     tx_hashes = []
@@ -68,7 +81,8 @@ def run_simulation():
     start = time.time()
 
     log_lines.append("=== Agentic Crypto Swarm — E2E Simulation ===")
-    log_lines.append(f"Chain: Base Sepolia (84532) | RPC: {rpc[:50]}...")
+    chain_id = _get_chain_id_config()
+    log_lines.append(f"Chain ID: {chain_id} | RPC: {rpc[:50]}...")
     log_lines.append(f"Users: {NUM_USERS} x {PAYMENT_ETH} ETH = {NUM_USERS * PAYMENT_ETH} ETH total payment")
     log_lines.append(f"Profit threshold: {PROFIT_THRESHOLD_ETH} ETH")
     log_lines.append("")
@@ -84,20 +98,32 @@ def run_simulation():
 
         if revenue_addr and payer_key:
             try:
-                acct = Account.from_key(payer_key)
+                chain_id = _get_chain_id_config()
+                from_addr = executor.get_sender_address("ROOT_STRATEGIST")
+                min_payment_wei = get_min_payment_wei()
                 contract = w3.eth.contract(
                     address=Web3.to_checksum_address(revenue_addr),
-                    abi=[{"inputs":[{"internalType":"string","name":"resultMetadata","type":"string"}],"name":"fulfillQuery","outputs":[],"stateMutability":"payable","type":"function"}],
+                    abi=REVENUE_ABI,
                 )
                 tx = contract.functions.fulfillQuery(metadata).build_transaction({
-                    "from": acct.address,
-                    "value": MIN_PAYMENT_WEI,
+                    "from": from_addr,
+                    "value": min_payment_wei,
                     "gas": 150_000,
-                    "chainId": 84532,
+                    "chainId": chain_id,
+                    "nonce": w3.eth.get_transaction_count(from_addr),
                 })
                 tx["gas"] = w3.eth.estimate_gas(tx)
-                signed = acct.sign_transaction(tx)
-                tx_hash = w3.eth.send_raw_transaction(signed.raw_transaction)
+                kw = {"gas_price": tx["gasPrice"]} if "gasPrice" in tx else {}
+                tx_hash = executor.send_transaction(
+                    "ROOT_STRATEGIST",
+                    to=tx["to"],
+                    value=tx["value"],
+                    data=tx["data"],
+                    gas=tx["gas"],
+                    nonce=tx["nonce"],
+                    chain_id=chain_id,
+                    **kw,
+                )
                 receipt = w3.eth.wait_for_transaction_receipt(tx_hash)
                 tx_hashes.append(receipt["transactionHash"].hex())
                 total_paid += PAYMENT_ETH
@@ -129,13 +155,24 @@ def run_simulation():
                 log_lines.append(f"Threshold met. Would send 60% to beneficiary: {to_beneficiary_wei/1e18:.6f} ETH, 40% reinvest: {to_reinvest_wei/1e18:.6f} ETH")
                 dist_key = os.getenv("FINANCE_DISTRIBUTOR_PRIVATE_KEY")
                 if dist_key and to_beneficiary_wei > 0:
-                    acc = Account.from_key(dist_key)
-                    tx = {"to": Web3.to_checksum_address(beneficiary), "value": to_beneficiary_wei, "gas": 21_000, "chainId": 84532}
+                    chain_id = _get_chain_id_config()
+                    from_addr = executor.get_sender_address("FINANCE_DISTRIBUTOR")
+                    tx = {"to": Web3.to_checksum_address(beneficiary), "value": to_beneficiary_wei, "gas": 21_000, "chainId": chain_id, "nonce": w3.eth.get_transaction_count(from_addr)}
                     tx["gas"] = w3.eth.estimate_gas(tx)
-                    signed = acc.sign_transaction(tx)
-                    h = w3.eth.send_raw_transaction(signed.raw_transaction)
+                    kw = {}
+                    if chain_id == 31337:
+                        kw["gas_price"] = w3.eth.gas_price
+                    h = executor.send_transaction(
+                        "FINANCE_DISTRIBUTOR",
+                        to=tx["to"],
+                        value=tx["value"],
+                        gas=tx["gas"],
+                        nonce=tx["nonce"],
+                        chain_id=chain_id,
+                        **kw,
+                    )
                     w3.eth.wait_for_transaction_receipt(h)
-                    log_lines.append(f"Distribution tx: {h.hex()}")
+                    log_lines.append(f"Distribution tx: {h}")
             else:
                 log_lines.append(f"Below threshold {PROFIT_THRESHOLD_ETH} ETH; no distribution.")
         except Exception as e:

@@ -1,0 +1,14 @@
+{
+  "chain_id": 11142220,
+  "rpc": "https://forno.celo-sepolia.celo-testnet.org",
+  "compute_marketplace_address": "0x159074bc4b8811df1ef16526766de57fb59db7db",
+  "treasury_address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+  "finance_distributor_address": "0xCF3572136265A5ED34D412200E63017e39223592",
+  "roles": {
+    "requester": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+    "worker": "0xAa0d73B8dFc2C1AaAa8de6e6b26A9D7281A8236b",
+    "validator": "0xCF3572136265A5ED34D412200E63017e39223592",
+    "finance_distributor": "0xCF3572136265A5ED34D412200E63017e39223592",
+    "treasury": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC"
+  }
+}

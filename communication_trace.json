@@ -1,0 +1,69 @@
+{
+  "run_id": "1773898505",
+  "market_mode": "hybrid",
+  "public_chain_id": 100,
+  "public_rpc_url": "https://rpc.gnosischain.com",
+  "private_chain_id": 11142220,
+  "private_rpc_url": "https://forno.celo-sepolia.celo-testnet.org",
+  "external_source": "olas",
+  "external_request_id": "mock-1773898505",
+  "external_tx_hash": null,
+  "internal_task_id": null,
+  "correlation": {
+    "olas": {
+      "request_id": "mock-1773898505",
+      "tx_hash": null
+    },
+    "private": {
+      "task_id": null,
+      "tx_hashes": [],
+      "compute_marketplace_address": "0x159074bc4b8811df1ef16526766de57fb59db7db",
+      "treasury_address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+      "finance_distributor_address": "0xCF3572136265A5ED34D412200E63017e39223592"
+    }
+  },
+  "events": [
+    {
+      "ts": 1773898510.841063,
+      "name": "olas_send_request",
+      "boundary": "mocked_external_replay",
+      "data": {
+        "ok": false,
+        "tx_hash": null,
+        "request_id": null,
+        "error": "mechx failed (exit 1): Running command with agent_mode=False\n\nError: Private key file `ethereum_private_key.txt` does not exist!\nSpecify a valid key file with --key option.",
+        "chain_config": "gnosis",
+        "tool": "openai-gpt-4o-2024-05-13"
+      }
+    },
+    {
+      "ts": 1773898510.841063,
+      "name": "public_intake_received",
+      "boundary": "mocked_external_replay",
+      "data": {
+        "prompt": "What is one ethical use of AI?"
+      }
+    },
+    {
+      "ts": 1773898510.841063,
+      "name": "normalized_internal_task",
+      "boundary": "contract_level_execution",
+      "data": {
+        "task_metadata": "public_adapter:olas:openai-gpt-4o-2024-05-13"
+      }
+    },
+    {
+      "ts": 1773898515.6998367,
+      "name": "private_marketplace_executed",
+      "boundary": "contract_level_execution",
+      "data": {
+        "ok": false,
+        "task_id": null
+      }
+    }
+  ],
+  "outcome": {
+    "ok": false,
+    "boundary": "hybrid:public_intake->private_onchain_settlement"
+  }
+}

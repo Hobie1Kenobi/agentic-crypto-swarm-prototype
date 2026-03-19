@@ -1,0 +1,13 @@
+{
+  "chain_id": 31337,
+  "rpc": "http://127.0.0.1:8545",
+  "compute_marketplace_address": "0xad3a921a649d23d5d41722f3fd455f40d333292f",
+  "treasury_address": "0x0932B8D499e5a93E3892A744996227ba627d1a1d",
+  "finance_distributor_address": "0x2156f405b1b06D1516116d4Bf4ea869ef8311bC1",
+  "roles": {
+    "requester": "0xbDa6060D3f3A49bf2778968FA09c8915c7AB64c5",
+    "worker": "0xBB14C637BB54D02FFa008B4b2d4E4FD03d5aC0DC",
+    "validator": "0x0932B8D499e5a93E3892A744996227ba627d1a1d",
+    "finance_distributor": "0x2156f405b1b06D1516116d4Bf4ea869ef8311bC1"
+  }
+}
