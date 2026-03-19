@@ -7,7 +7,16 @@ from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any, Literal
 
-TraceBoundary = Literal["real_external_integration", "contract_level_execution", "local_simulation", "mocked_external_replay"]
+TraceBoundary = Literal[
+    "real_external_integration",
+    "contract_level_execution",
+    "local_simulation",
+    "mocked_external_replay",
+    "real_xrpl_payment",
+    "mock_xrpl_payment",
+    "replayed_xrpl_payment",
+    "real_celo_settlement",
+]
 
 
 def _root() -> Path:
@@ -42,6 +51,9 @@ class CommunicationTrace:
     external_request_id: str | None = None
     external_tx_hash: str | None = None
     internal_task_id: int | None = None
+    payment_rail: str | None = None
+    payment_asset: str | None = None
+    xrpl_tx_hash: str | None = None
     correlation: dict[str, Any] = field(default_factory=dict)
     events: list[TraceEvent] = field(default_factory=list)
     outcome: dict[str, Any] = field(default_factory=dict)
@@ -79,6 +91,12 @@ class CommunicationTrace:
             lines.append(f"- External tx hash: `{self.external_tx_hash}`")
         if self.internal_task_id is not None:
             lines.append(f"- Internal task ID: `{self.internal_task_id}`")
+        if self.payment_rail:
+            lines.append(f"- Payment rail: `{self.payment_rail}`")
+        if self.payment_asset:
+            lines.append(f"- Payment asset: `{self.payment_asset}`")
+        if self.xrpl_tx_hash:
+            lines.append(f"- XRPL tx hash: `{self.xrpl_tx_hash}`")
         lines.append("")
         lines.append("## Events")
         lines.append("")
@@ -114,6 +132,31 @@ class CommunicationTrace:
                     for t in txs:
                         if isinstance(t, dict) and t.get("tx_hash"):
                             lines.append(f"- {t.get('name')}: `{t.get('tx_hash')}`")
+            if isinstance(self.correlation.get("xrpl_payment"), dict):
+                xp = self.correlation.get("xrpl_payment") or {}
+                if xp.get("tx_hash"):
+                    lines.append(f"- XRPL payment tx: `{xp.get('tx_hash')}`")
+                if xp.get("external_payment_id"):
+                    lines.append(f"- XRPL payment ID: `{xp.get('external_payment_id')}`")
+            lines.append("")
+
+        has_real_xrpl = any(e.boundary == "real_xrpl_payment" for e in self.events)
+        if has_real_xrpl and self.xrpl_tx_hash and self.outcome.get("ok"):
+            lines.append("## Live Proof (XRPL → Celo Multi-Rail)")
+            lines.append("")
+            lines.append("This run achieved **live XRPL payment** + **live Celo settlement**. See presentation-grade proof:")
+            lines.append("")
+            lines.append("- **Proof report:** [live_xrpl_to_celo_proof_report.md](live_xrpl_to_celo_proof_report.md)")
+            lines.append("- **Machine-readable:** [live_xrpl_to_celo_proof_report.json](live_xrpl_to_celo_proof_report.json)")
+            lines.append("")
+            xrpl_explorer = f"https://testnet.xrpl.org/transactions/{self.xrpl_tx_hash}"
+            lines.append(f"| Rail | Status | Tx / Task |")
+            lines.append(f"|------|--------|-----------|")
+            lines.append(f"| XRPL (machine payments) | ✅ Verified | [{self.xrpl_tx_hash[:8]}...]({xrpl_explorer}) |")
+            pr = self.correlation.get("private") or {}
+            tx_count = len(pr.get("tx_hashes") or [])
+            task_id = pr.get("task_id", self.internal_task_id)
+            lines.append(f"| Celo (private settlement) | ✅ Finalized | Task {task_id}, {tx_count} txs |")
             lines.append("")
 
         md_path.write_text("\n".join(lines), encoding="utf-8")

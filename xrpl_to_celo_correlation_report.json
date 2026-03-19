@@ -1,0 +1,26 @@
+{
+  "xrpl_payment": {
+    "ok": true,
+    "payment_rail": "xrpl",
+    "payment_asset": "XRP",
+    "external_payment_id": "replay-sample-1",
+    "xrpl_tx_hash": "replay_sample_tx_abc123",
+    "payer_address": "rSamplePayer123456789012345678901",
+    "receiver_address": "rN7n7otQDd6FczFgLdlqtyMVrn3e1DjxvV",
+    "amount": "1",
+    "verified": true,
+    "verification_boundary": "replayed_xrpl_payment",
+    "internal_task_id": null
+  },
+  "celo_settlement": {
+    "ok": false,
+    "internal_task_id": null,
+    "tx_hashes": [],
+    "compute_marketplace_address": "0x159074bc4b8811df1ef16526766de57fb59db7db"
+  },
+  "correlation": {
+    "xrpl_tx_hash": "replay_sample_tx_abc123",
+    "internal_task_id": null,
+    "celo_tx_count": 0
+  }
+}

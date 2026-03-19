@@ -42,6 +42,7 @@ function findProjectRoot(): string {
 config({ path: join(findProjectRoot(), ".env") });
 
 const AGENTS = ["ROOT_STRATEGIST", "IP_GENERATOR", "DEPLOYER", "FINANCE_DISTRIBUTOR"] as const;
+const TREASURY_EOA = "TREASURY";
 
 function getEnvPath(): string {
   const root = findProjectRoot();
@@ -110,13 +111,23 @@ async function main() {
     });
 
     updates[pkKey] = privateKey;
-    updates[addrKey] = account.address;
-    addresses.push(`${agent}: ${account.address}`);
+    const useEoaForDeploy = agent === "FINANCE_DISTRIBUTOR";
+    updates[addrKey] = useEoaForDeploy ? owner.address : account.address;
+    addresses.push(`${agent}: ${useEoaForDeploy ? owner.address + " (EOA, for deploy)" : account.address}`);
   }
+
+  const pkKey = `${TREASURY_EOA}_PRIVATE_KEY`;
+  const addrKey = `${TREASURY_EOA}_ADDRESS`;
+  const existingPk = process.env[pkKey] || loadExistingEnv(envPath)[pkKey];
+  const treasuryPk = (existingPk as Hex) || generatePrivateKey();
+  const treasuryAccount = privateKeyToAccount(treasuryPk as Hex);
+  updates[pkKey] = treasuryPk;
+  updates[addrKey] = treasuryAccount.address;
+  addresses.push(`${TREASURY_EOA}: ${treasuryAccount.address} (EOA)`);
 
   writeEnv(envPath, updates);
 
-  console.log("Created 4 agent smart accounts. Addresses:");
+  console.log("Created 5 agent accounts (4 smart + 1 treasury EOA). Addresses:");
   addresses.forEach((a) => console.log("  ", a));
   console.log("\nSecrets saved to", envPath);
   console.log(".gitignore excludes .env");

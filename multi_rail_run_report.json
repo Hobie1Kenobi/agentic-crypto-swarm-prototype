@@ -1,0 +1,328 @@
+{
+  "ok": true,
+  "run_id": "1773948374",
+  "market_mode": "hybrid",
+  "payment_rail_mode": "hybrid_public_request_xrpl_payment_private_celo_settlement",
+  "chains": {
+    "private": {
+      "chain_name": "celo-sepolia",
+      "chain_id": 11142220,
+      "explorer_url": "https://celo-sepolia.blockscout.com"
+    },
+    "public_olas": {
+      "chain_config": "gnosis",
+      "chain_id": 100,
+      "explorer_url": "https://gnosisscan.io"
+    }
+  },
+  "olas": {
+    "ok": false,
+    "request_id": null,
+    "tx_hash": null,
+    "result": null,
+    "boundary": "mocked_external_replay",
+    "error": "OLAS_ENABLED is not set (set OLAS_ENABLED=1 to attempt live).",
+    "chain_config": "gnosis",
+    "tool": "openai-gpt-4o-2024-05-13"
+  },
+  "normalized_task": {
+    "query": "What is one ethical use of AI?",
+    "task_metadata": "public_adapter:olas:unknown",
+    "worker_metadata": "swarm-worker-1",
+    "external_source": "olas",
+    "external_request_id": "mock-1773948374",
+    "external_tool": null,
+    "external_chain": null
+  },
+  "xrpl_payment": {
+    "payment_rail": "xrpl",
+    "payment_asset": "XRP",
+    "external_payment_id": "3943947D18BBD22006E9A1B1DE1E9C3B9FF55679358F898568464383F4F03FBB",
+    "tx_hash": "3943947D18BBD22006E9A1B1DE1E9C3B9FF55679358F898568464383F4F03FBB",
+    "payer_address": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+    "receiver_address": "rBTkGWdrqnJL8s7aHwnFJTnEVnV3nZ8b5",
+    "amount": "1",
+    "verified": true,
+    "verification_boundary": "real_xrpl_payment",
+    "internal_task_id": null,
+    "metadata": {
+      "memo": "What is one ethical use of AI?"
+    }
+  },
+  "payment_boundary": "real_xrpl_payment",
+  "private_market_report": {
+    "ok": true,
+    "chain_id": 11142220,
+    "rpc": "https://forno.celo-sepolia.celo-testnet.org",
+    "explorer_url": "https://celo-sepolia.blockscout.com",
+    "native_symbol": "CELO",
+    "compute_marketplace_address": "0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9",
+    "roles": {
+      "requester": {
+        "role": "ROOT_STRATEGIST",
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC"
+      },
+      "worker": {
+        "role": "IP_GENERATOR",
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2"
+      },
+      "validator": {
+        "role": "DEPLOYER",
+        "address": "0xAa0d73B8dFc2C1AaAa8de6e6b26A9D7281A8236b"
+      },
+      "finance_distributor": {
+        "role": "FINANCE_DISTRIBUTOR",
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592"
+      },
+      "owner": {
+        "role": "OWNER"
+      },
+      "treasury": {
+        "role": "TREASURY",
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6"
+      }
+    },
+    "task": {
+      "worker_registered": true,
+      "validator_allowlisted": true,
+      "task_id": 3,
+      "task_status": {
+        "value": 4,
+        "name": "Finalized"
+      },
+      "escrow_wei": 10000000000000000,
+      "escrow_eth": 0.01,
+      "validator_approvals": 1,
+      "average_score": 19,
+      "min_average_score": 0,
+      "worker_payout_expected_wei": 760000000000000,
+      "worker_payout_actual_wei": 760000000000000,
+      "protocol_fee_wei": 1000000000000000,
+      "protocol_fee_actual_wei": 1000000000000000,
+      "finance_fee_wei": 5000000000000000,
+      "finance_fee_actual_wei": 5000000000000000,
+      "requester_refund_expected_wei": 3240000000000000,
+      "requester_refund_actual_wei": 3240000000000000,
+      "pending_withdrawals_created": {
+        "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6": 1000000000000000,
+        "0xCF3572136265A5ED34D412200E63017e39223592": 5000000000000000,
+        "0xC3032259c26Ae78cd305a868De39A2373b94d0C2": 760000000000000,
+        "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC": 3240000000000000
+      },
+      "settlement": {
+        "by_category": {
+          "protocol_fee": {
+            "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+            "expected_wei": 1000000000000000,
+            "actual_pending_wei": 1000000000000000
+          },
+          "finance_fee": {
+            "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+            "expected_wei": 5000000000000000,
+            "actual_pending_wei": 5000000000000000
+          },
+          "worker_payout": {
+            "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+            "expected_wei": 760000000000000,
+            "actual_pending_wei": 760000000000000
+          },
+          "requester_refund": {
+            "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+            "expected_wei": 3240000000000000,
+            "actual_pending_wei": 3240000000000000
+          }
+        },
+        "by_address": {
+          "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6": {
+            "total_expected_wei": 1000000000000000,
+            "total_actual_pending_wei": 1000000000000000,
+            "categories": [
+              {
+                "category": "protocol_fee",
+                "expected_wei": 1000000000000000
+              }
+            ]
+          },
+          "0xCF3572136265A5ED34D412200E63017e39223592": {
+            "total_expected_wei": 5000000000000000,
+            "total_actual_pending_wei": 5000000000000000,
+            "categories": [
+              {
+                "category": "finance_fee",
+                "expected_wei": 5000000000000000
+              }
+            ]
+          },
+          "0xC3032259c26Ae78cd305a868De39A2373b94d0C2": {
+            "total_expected_wei": 760000000000000,
+            "total_actual_pending_wei": 760000000000000,
+            "categories": [
+              {
+                "category": "worker_payout",
+                "expected_wei": 760000000000000
+              }
+            ]
+          },
+          "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC": {
+            "total_expected_wei": 3240000000000000,
+            "total_actual_pending_wei": 3240000000000000,
+            "categories": [
+              {
+                "category": "requester_refund",
+                "expected_wei": 3240000000000000
+              }
+            ]
+          }
+        }
+      },
+      "settlement_matches_expected": true,
+      "task_metadata": "public_adapter:olas:unknown",
+      "query": "What is one ethical use of AI?",
+      "worker_metadata": "swarm-worker-1",
+      "result_metadata": "Response generated.",
+      "validator_score": 19,
+      "min_validators": 1,
+      "deadline_at": 1773951990
+    },
+    "warnings": [
+      "registerAsMiner: already registered (skipped).",
+      "setValidatorAllowlist: already allowlisted (skipped)."
+    ],
+    "errors": [],
+    "tx_hashes": [
+      {
+        "name": "createTask",
+        "role": "ROOT_STRATEGIST",
+        "tx_hash": "1aac5a558a509e65f310d3ff2bc04bc549b45deca05e5c378bdc0275e3428db0",
+        "link": "https://celo-sepolia.blockscout.com/tx/1aac5a558a509e65f310d3ff2bc04bc549b45deca05e5c378bdc0275e3428db0"
+      },
+      {
+        "name": "acceptTask",
+        "role": "IP_GENERATOR",
+        "tx_hash": "ff2afe36e8feb804ce67b270726973789e9f1e0cb2f01ba00b5410823d48fcfd",
+        "link": "https://celo-sepolia.blockscout.com/tx/ff2afe36e8feb804ce67b270726973789e9f1e0cb2f01ba00b5410823d48fcfd"
+      },
+      {
+        "name": "submitResult",
+        "role": "IP_GENERATOR",
+        "tx_hash": "12a33ca59a6bed458c774a7f54875f4ee57fab9c4efed04adc0ac30d68c0769a",
+        "link": "https://celo-sepolia.blockscout.com/tx/12a33ca59a6bed458c774a7f54875f4ee57fab9c4efed04adc0ac30d68c0769a"
+      },
+      {
+        "name": "submitTaskScore",
+        "role": "DEPLOYER",
+        "tx_hash": "ad04eeff34436488b22c81dc93cbd55f9328accfb24024118de88931d04b417d",
+        "link": "https://celo-sepolia.blockscout.com/tx/ad04eeff34436488b22c81dc93cbd55f9328accfb24024118de88931d04b417d"
+      },
+      {
+        "name": "finalizeTask",
+        "role": "DEPLOYER",
+        "tx_hash": "ed0c968b5b85ad494a6dc0b0c5a3e293a562a588005fb1e7a37315ce88847af5",
+        "link": "https://celo-sepolia.blockscout.com/tx/ed0c968b5b85ad494a6dc0b0c5a3e293a562a588005fb1e7a37315ce88847af5"
+      },
+      {
+        "name": "withdraw",
+        "role": "ROOT_STRATEGIST",
+        "signer_role": "ROOT_STRATEGIST",
+        "who": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "tx_hash": "6b69e4410451ab5f804106e41b12bb6802857d957171ac46e86554ca56543315",
+        "link": "https://celo-sepolia.blockscout.com/tx/6b69e4410451ab5f804106e41b12bb6802857d957171ac46e86554ca56543315"
+      },
+      {
+        "name": "withdraw",
+        "role": "IP_GENERATOR",
+        "signer_role": "IP_GENERATOR",
+        "who": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "tx_hash": "c044b78ad1eb0acb5da238670888842fbf5a6dc2720af1b8299ee8830fd3a81c",
+        "link": "https://celo-sepolia.blockscout.com/tx/c044b78ad1eb0acb5da238670888842fbf5a6dc2720af1b8299ee8830fd3a81c"
+      },
+      {
+        "name": "withdraw",
+        "role": "TREASURY",
+        "signer_role": "TREASURY",
+        "who": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "tx_hash": "eecd07a5aa560d4e73e2638ece6ae5a31d5a79cc7cd2b372caeb327731f8fdd3",
+        "link": "https://celo-sepolia.blockscout.com/tx/eecd07a5aa560d4e73e2638ece6ae5a31d5a79cc7cd2b372caeb327731f8fdd3"
+      },
+      {
+        "name": "withdraw",
+        "role": "FINANCE_DISTRIBUTOR",
+        "signer_role": "FINANCE_DISTRIBUTOR",
+        "who": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "tx_hash": "ee2c98084c8a0cbde4764c50bc942065d202c51e75ce2c611e14dca7d8b528d6",
+        "link": "https://celo-sepolia.blockscout.com/tx/ee2c98084c8a0cbde4764c50bc942065d202c51e75ce2c611e14dca7d8b528d6"
+      }
+    ],
+    "balances": {
+      "pre": {
+        "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC": 8402736662500000000,
+        "0xC3032259c26Ae78cd305a868De39A2373b94d0C2": 5955801750000000000,
+        "0xAa0d73B8dFc2C1AaAa8de6e6b26A9D7281A8236b": 5064456575491602343,
+        "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6": 3297889597500000000,
+        "0xCF3572136265A5ED34D412200E63017e39223592": 875087193500000000
+      },
+      "post": {
+        "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC": 8379987367500000000,
+        "0xC3032259c26Ae78cd305a868De39A2373b94d0C2": 5946025315000000000,
+        "0xAa0d73B8dFc2C1AaAa8de6e6b26A9D7281A8236b": 5049320405491602343,
+        "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6": 3297186130000000000,
+        "0xCF3572136265A5ED34D412200E63017e39223592": 878383726000000000
+      }
+    },
+    "dry_run": false,
+    "contracts": {
+      "treasury": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+      "finance_distributor": "0xCF3572136265A5ED34D412200E63017e39223592"
+    },
+    "withdrawals": {
+      "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC": {
+        "pending_before_wei": 3240000000000000,
+        "tx_hash": "6b69e4410451ab5f804106e41b12bb6802857d957171ac46e86554ca56543315",
+        "error": null,
+        "skipped": null,
+        "pending_after_wei": 0
+      },
+      "0xC3032259c26Ae78cd305a868De39A2373b94d0C2": {
+        "pending_before_wei": 760000000000000,
+        "tx_hash": "c044b78ad1eb0acb5da238670888842fbf5a6dc2720af1b8299ee8830fd3a81c",
+        "error": null,
+        "skipped": null,
+        "pending_after_wei": 0
+      },
+      "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6": {
+        "pending_before_wei": 1000000000000000,
+        "tx_hash": "eecd07a5aa560d4e73e2638ece6ae5a31d5a79cc7cd2b372caeb327731f8fdd3",
+        "error": null,
+        "skipped": null,
+        "pending_after_wei": 0
+      },
+      "0xCF3572136265A5ED34D412200E63017e39223592": {
+        "pending_before_wei": 5000000000000000,
+        "tx_hash": "ee2c98084c8a0cbde4764c50bc942065d202c51e75ce2c611e14dca7d8b528d6",
+        "error": null,
+        "skipped": null,
+        "pending_after_wei": 0
+      }
+    }
+  },
+  "public_response": {
+    "ok": true,
+    "external_request_id": "mock-1773948374",
+    "internal_task_id": 3,
+    "result_text": "Response generated.",
+    "tx_hashes": [
+      "1aac5a558a509e65f310d3ff2bc04bc549b45deca05e5c378bdc0275e3428db0",
+      "ff2afe36e8feb804ce67b270726973789e9f1e0cb2f01ba00b5410823d48fcfd",
+      "12a33ca59a6bed458c774a7f54875f4ee57fab9c4efed04adc0ac30d68c0769a",
+      "ad04eeff34436488b22c81dc93cbd55f9328accfb24024118de88931d04b417d",
+      "ed0c968b5b85ad494a6dc0b0c5a3e293a562a588005fb1e7a37315ce88847af5",
+      "6b69e4410451ab5f804106e41b12bb6802857d957171ac46e86554ca56543315",
+      "c044b78ad1eb0acb5da238670888842fbf5a6dc2720af1b8299ee8830fd3a81c",
+      "eecd07a5aa560d4e73e2638ece6ae5a31d5a79cc7cd2b372caeb327731f8fdd3",
+      "ee2c98084c8a0cbde4764c50bc942065d202c51e75ce2c611e14dca7d8b528d6"
+    ],
+    "boundary": "hybrid:public_intake->private_onchain_settlement",
+    "notes": null
+  },
+  "boundary": "mocked_external_replay"
+}

@@ -107,6 +107,18 @@
 
 **Persistence**: SQLite for run state; on-chain events for verification.
 
+## 4.0 Multi-Rail Agent Commerce
+
+| Rail | Role | Status |
+|------|------|--------|
+| **XRPL** | Machine-native payments (x402-style; XRP or RLUSD); payment receipt correlation | **Live-proven** on testnet |
+| **Celo** | Private task marketplace and settlement (escrow, worker payout, requester refund) | **Live-proven** on Celo Sepolia |
+| **Public adapters** | Olas / external demand intake | Mock/replay; live configurable |
+
+Payment rail modes: `direct_onchain_celo_payment`, `mock_payment`, `xrpl_x402_payment`, `hybrid_public_request_xrpl_payment_private_celo_settlement`. See `docs/XRPL_PAYMENTS.md`.
+
+**Proof artifacts:** `live_xrpl_to_celo_proof_report.(md|json)` — presentation-grade proof of live XRPL payment + Celo settlement with verifiable tx hashes.
+
 ## 4.1 Dual-mode marketplace execution (Private vs Public vs Hybrid)
 
 The repo supports a `MARKET_MODE` switch:
@@ -120,6 +132,7 @@ Evidence artifacts:
 - **Public adapter**: `public_adapter_run_report.(md|json)`, `communication_trace.(md|json)`
 - **Private marketplace**: `celo_sepolia_task_market_report.(md|json)` or `local_task_market_report.(md|json)`
 - **Merged proof**: `dual_mode_run_report.(md|json)`
+- **XRPL → Celo live proof**: `live_xrpl_to_celo_proof_report.(md|json)` — presentation-grade proof when XRPL payment + Celo settlement both run live
 
 Details: `docs/PUBLIC-ADAPTER.md`
 

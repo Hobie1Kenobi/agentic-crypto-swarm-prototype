@@ -1,0 +1,9 @@
+{
+  "tx_hash": "replay_sample_tx_abc123",
+  "external_payment_id": "replay-sample-1",
+  "payer_address": "rSamplePayer123456789012345678901",
+  "receiver_address": "rN7n7otQDd6FczFgLdlqtyMVrn3e1DjxvV",
+  "amount": "1",
+  "payment_asset": "XRP",
+  "verified": true
+}

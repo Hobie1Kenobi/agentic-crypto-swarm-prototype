@@ -132,12 +132,17 @@ For Celo mainnet launch: deployment, security, operations, secrets, monitoring, 
 
 - **x402 API:** `npm run api:402` — HTTP 402 pay-per-query; client pays to `AgentRevenueService`, retries with `X-Payment-Tx-Hash`, gets LLM response.
 - **Compute marketplace:** Deploy includes `ComputeMarketplace`. Run miner: `npm run miner` (POST /task); run validator: `npm run validator` (scores miners, submitScores). Fund the contract with CELO and call `distributeRewards()` to pay miners.
+- **Multi-rail agent commerce:** Celo (private settlement) + XRPL (machine payments) + Olas (public demand). See **[docs/XRPL_PAYMENTS.md](docs/XRPL_PAYMENTS.md)**.
+  - **XRPL** — Machine-native payments rail (XRP on testnet; live-proven)
+  - **Celo** — Private settlement rail (task lifecycle, escrow, withdrawals on Celo Sepolia)
+  - **Live proof:** [live_xrpl_to_celo_proof_report.md](live_xrpl_to_celo_proof_report.md) documents a successful end-to-end run with verifiable XRPL + Celo tx hashes.
 - **Public marketplace adapter (Olas / Mech):** See **[docs/PUBLIC-ADAPTER.md](docs/PUBLIC-ADAPTER.md)**. This repo supports a dual-chain operating model:
   - **Private settlement (Celo Sepolia):** `MARKET_MODE=private_celo`
   - **Live/public Olas attempts (Gnosis):** `MARKET_MODE=public_olas` (requires Gnosis config + `mechx`)
   - **Hybrid (Gnosis intake → Celo settlement):** `MARKET_MODE=hybrid`
+  - **XRPL payment rail:** `PAYMENT_RAIL_MODE=mock_payment` or `xrpl_x402_payment`; run `python scripts/run-multi-rail-demo.py --force-hybrid`
   - Replay-only hybrid is supported via `docs/examples/olas_request_replay_example.json`
-  - Reports: `olas_preflight_report.json`, `olas_env_checklist.md`, `olas_live_attempt_report.(md|json)`, `hybrid_gnosis_celo_report.(md|json)`
+  - Reports: `olas_preflight_report.json`, `olas_env_checklist.md`, `olas_live_attempt_report.(md|json)`, `hybrid_gnosis_celo_report.(md|json)`, `multi_rail_run_report.(md|json)`, `live_xrpl_to_celo_proof_report.(md|json)`, `communication_trace.(md|json)`
 - **DAO (optional/advanced):** After deploy, `npm run deploy:dao` deploys SwarmGovernanceToken, Timelock, Governor and transfers `AgentRevenueService` ownership to the Timelock. Recommended only after validating core flow; see [PRODUCTION-READINESS.md](docs/PRODUCTION-READINESS.md) and [COMPUTE_MARKETPLACES_AND_DAOS.md](docs/COMPUTE_MARKETPLACES_AND_DAOS.md).
 
 ## Deliverables

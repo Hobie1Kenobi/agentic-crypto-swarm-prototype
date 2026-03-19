@@ -10,6 +10,9 @@ fastapi>=0.115.0
 uvicorn>=0.32.0
 pytest>=8.0.0
 
+# XRPL payments (required for live XRPL mode and create-xrpl-wallets)
+xrpl-py>=4.0.0
+
 # Public marketplace adapter (Olas / Mech)
 # NOTE: The official Olas `mech-client` currently pins dependencies (e.g. FastAPI) that conflict with this repo's
 # Python runtime dependencies (we use newer FastAPI/web3). To keep the core stack stable, we run `mechx`
