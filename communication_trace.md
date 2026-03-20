@@ -1,34 +1,34 @@
 # Communication Trace
 
-- Run ID: `1773948374`
+- Run ID: `1773975735`
 - Market mode: `hybrid`
 - Public chain ID: `100`
 - Private chain ID: `11142220`
 - External source: `olas`
-- External request ID: `mock-1773948374`
-- Internal task ID: `3`
+- External request ID: `mock-1773975735`
+- Internal task ID: `27`
 - Payment rail: `xrpl`
 - Payment asset: `XRP`
-- XRPL tx hash: `3943947D18BBD22006E9A1B1DE1E9C3B9FF55679358F898568464383F4F03FBB`
+- XRPL tx hash: `618B4C73E848D8173E97A1012EBE93E1E79BF9053CB338B8A4BFB4B0905E6677`
 
 ## Events
 
-- `olas_send_request` (mocked_external_replay) @ `1773948374`
+- `olas_send_request` (mocked_external_replay) @ `1773975735`
   - **ok**: `False`
   - **tx_hash**: `None`
   - **request_id**: `None`
   - **error**: `OLAS_ENABLED is not set (set OLAS_ENABLED=1 to attempt live).`
   - **chain_config**: `gnosis`
   - **tool**: `openai-gpt-4o-2024-05-13`
-- `normalized_internal_task` (contract_level_execution) @ `1773948374`
+- `normalized_internal_task` (contract_level_execution) @ `1773975735`
   - **task_metadata**: `public_adapter:olas:unknown`
-- `xrpl_payment_received` (real_xrpl_payment) @ `1773948386`
-  - **external_payment_id**: `3943947D18BBD22006E9A1B1DE1E9C3B9FF55679358F898568464383F4F03FBB`
-  - **tx_hash**: `3943947D18BBD22006E9A1B1DE1E9C3B9FF55679358F898568464383F4F03FBB`
+- `xrpl_payment_received` (real_xrpl_payment) @ `1773975745`
+  - **external_payment_id**: `618B4C73E848D8173E97A1012EBE93E1E79BF9053CB338B8A4BFB4B0905E6677`
+  - **tx_hash**: `618B4C73E848D8173E97A1012EBE93E1E79BF9053CB338B8A4BFB4B0905E6677`
   - **verified**: `True`
-- `private_marketplace_executed` (real_celo_settlement) @ `1773948450`
+- `private_marketplace_executed` (real_celo_settlement) @ `1773975797`
   - **ok**: `True`
-  - **task_id**: `3`
+  - **task_id**: `27`
 
 ## Outcome
 
@@ -37,20 +37,20 @@
 
 ## Correlation
 
-- Olas request ID: `mock-1773948374`
-- Internal task ID: `3`
+- Olas request ID: `mock-1773975735`
+- Internal task ID: `27`
 - Internal tx count: `9`
-- createTask: `1aac5a558a509e65f310d3ff2bc04bc549b45deca05e5c378bdc0275e3428db0`
-- acceptTask: `ff2afe36e8feb804ce67b270726973789e9f1e0cb2f01ba00b5410823d48fcfd`
-- submitResult: `12a33ca59a6bed458c774a7f54875f4ee57fab9c4efed04adc0ac30d68c0769a`
-- submitTaskScore: `ad04eeff34436488b22c81dc93cbd55f9328accfb24024118de88931d04b417d`
-- finalizeTask: `ed0c968b5b85ad494a6dc0b0c5a3e293a562a588005fb1e7a37315ce88847af5`
-- withdraw: `6b69e4410451ab5f804106e41b12bb6802857d957171ac46e86554ca56543315`
-- withdraw: `c044b78ad1eb0acb5da238670888842fbf5a6dc2720af1b8299ee8830fd3a81c`
-- withdraw: `eecd07a5aa560d4e73e2638ece6ae5a31d5a79cc7cd2b372caeb327731f8fdd3`
-- withdraw: `ee2c98084c8a0cbde4764c50bc942065d202c51e75ce2c611e14dca7d8b528d6`
-- XRPL payment tx: `3943947D18BBD22006E9A1B1DE1E9C3B9FF55679358F898568464383F4F03FBB`
-- XRPL payment ID: `3943947D18BBD22006E9A1B1DE1E9C3B9FF55679358F898568464383F4F03FBB`
+- createTask: `385e9da45c62849dc0799c9145b0006396063a229873999ede0f1741960c0b6e`
+- acceptTask: `150c778891dea7deab1a22ec9e9b39fd66bbc14f373b6ffa7157c56ff4b4b63a`
+- submitResult: `d477d2215caf34febe6036594549696e811dbfebdc77a73a07648edf85323527`
+- submitTaskScore: `747014a0023cd4026acfeaa7bc01d994839c190acf77d0307194c6c5e1fc05f1`
+- finalizeTask: `cfb5a203aeb3fb7a55139c19515a47fe2c405a641251f83bb17d1e8e3269cd03`
+- withdraw: `e03f9c1e2a5d47f6625ed6efc98bdb57220ce41203bcd8666389639c2b45cdc3`
+- withdraw: `c4f41e4812b33429675edf4c7458ef99ce2942f78a515a773db68d758899561c`
+- withdraw: `a9049bf96f68358bea9fa27bc23a7515ab3fa8f4d39ee16904678d55f0939eb8`
+- withdraw: `20efd292aeef30cb5e01b69d86d2d0add0cfb75f8b20e40ac6bd7a5619b31518`
+- XRPL payment tx: `618B4C73E848D8173E97A1012EBE93E1E79BF9053CB338B8A4BFB4B0905E6677`
+- XRPL payment ID: `618B4C73E848D8173E97A1012EBE93E1E79BF9053CB338B8A4BFB4B0905E6677`
 
 ## Live Proof (XRPL → Celo Multi-Rail)
 
@@ -61,5 +61,5 @@ This run achieved **live XRPL payment** + **live Celo settlement**. See presenta
 
 | Rail | Status | Tx / Task |
 |------|--------|-----------|
-| XRPL (machine payments) | ✅ Verified | [3943947D...](https://testnet.xrpl.org/transactions/3943947D18BBD22006E9A1B1DE1E9C3B9FF55679358F898568464383F4F03FBB) |
-| Celo (private settlement) | ✅ Finalized | Task 3, 9 txs |
+| XRPL (machine payments) | ✅ Verified | [618B4C73...](https://testnet.xrpl.org/transactions/618B4C73E848D8173E97A1012EBE93E1E79BF9053CB338B8A4BFB4B0905E6677) |
+| Celo (private settlement) | ✅ Finalized | Task 27, 9 txs |

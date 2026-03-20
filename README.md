@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="assets/logo.png" alt="Agentic Swarm Marketplace" width="480">
+</p>
+
 # Agentic Crypto Swarm Prototype
 
 A hierarchical multi-agent system that autonomously earns testnet revenue through on-chain value creation — no trading, no speculation. **Celo-first:** Celo Sepolia (testnet), Celo mainnet (production); local Anvil for zero-faucet testing; optional Base/Polygon paths.

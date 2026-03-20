@@ -1,0 +1,58 @@
+{
+  "report_type": "continuous_multi_rail_6h",
+  "generated_at": "2026-03-20T03:03:17Z",
+  "duration_hours": 6,
+  "interval_minutes": 15,
+  "expected_cycles": 24,
+  "summary": {
+    "total_cycles_attempted": 24,
+    "total_cycles_completed": 24,
+    "total_cycles_failed": 0,
+    "total_xrpl_payments_verified": 24,
+    "total_celo_tasks_finalized": 24,
+    "total_xrpl_tx_count": 24,
+    "total_celo_tx_count": 216,
+    "total_xrp_paid": 24.0,
+    "total_protocol_fee_wei": 24000000000000000,
+    "total_finance_fee_wei": 120000000000000000,
+    "total_worker_payout_wei": 18240000000000000,
+    "total_refunds_wei": 77760000000000000,
+    "average_settlement_seconds": 67.02,
+    "failure_count_by_category": {},
+    "success_rate": 100.0
+  },
+  "top_failure_causes": {},
+  "strongest_evidence": [
+    {
+      "cycle": 19,
+      "xrpl_tx_hash": "8C95896E7FE3788F332B94B4C7540D782939D92E21530639D856B271F9BC2A35",
+      "internal_task_id": 23,
+      "celo_tx_count": 9
+    },
+    {
+      "cycle": 20,
+      "xrpl_tx_hash": "BFDD9830C0D4E1023F468C8E492F8067B211190C6D3739550FB45C32FD4445E0",
+      "internal_task_id": 24,
+      "celo_tx_count": 9
+    },
+    {
+      "cycle": 21,
+      "xrpl_tx_hash": "FF4ED7A20BB091ABFA29B06C280069312A9FAFBAB026B230D15D6F056685CACF",
+      "internal_task_id": 25,
+      "celo_tx_count": 9
+    },
+    {
+      "cycle": 22,
+      "xrpl_tx_hash": "42F34156B91A79F5090E882A9BA24402BB40AA6CE3FCA4DC1DD29A8302349452",
+      "internal_task_id": 26,
+      "celo_tx_count": 9
+    },
+    {
+      "cycle": 23,
+      "xrpl_tx_hash": "618B4C73E848D8173E97A1012EBE93E1E79BF9053CB338B8A4BFB4B0905E6677",
+      "internal_task_id": 27,
+      "celo_tx_count": 9
+    }
+  ],
+  "recommendation": "Consider 12h or 24h soak test if stability holds; or increase frequency to 10min if 15min shows no issues."
+}
