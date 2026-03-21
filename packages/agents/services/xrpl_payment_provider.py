@@ -62,8 +62,16 @@ class XRPLPaymentProvider(PaymentProvider):
     def quote_payment(self, task_request: dict[str, Any]) -> PaymentQuote | None:
         asset = _settlement_asset()
         receiver = _receiver_address() or "rN7n7otQDd6FczFgLdlqtyMVrn3e1DjxvV"
-        amount = "1"
-        if asset == "RLUSD":
+        try:
+            from services.pricing import pricing_catalog_lookup
+            catalog = pricing_catalog_lookup("task_execution", task_request)
+            if catalog and asset == "RLUSD":
+                amount = str(catalog.get("amount_rlusd", "1"))
+            elif catalog:
+                amount = str(catalog.get("amount_xrp", catalog.get("amount", "1")))
+            else:
+                amount = "1"
+        except ImportError:
             amount = "1"
         return PaymentQuote(
             amount=amount,

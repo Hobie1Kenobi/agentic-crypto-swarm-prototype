@@ -331,6 +331,11 @@ def run_multi_rail_hybrid_demo(
             tx_hash=receipt.tx_hash,
             verified=receipt.verified,
         )
+        if (os.getenv("CUSTOMER_BALANCE_ENABLED", "").strip().lower() in {"1", "true", "yes", "on"}) and receipt.verified:
+            from services.customer_balance import credit_from_xrpl_receipt as persist_credit
+            receipt_dict = _receipt_to_dict(receipt)
+            persist_credit(receipt_dict, customer_id=trace.external_request_id)
+            trace.add("customer_balance_credited", "contract_level_execution", customer_id=trace.external_request_id)
 
     out: dict[str, Any] = {
         "ok": True,
@@ -362,11 +367,35 @@ def run_multi_rail_hybrid_demo(
 
     if market_mode == "hybrid":
         from task_market_demo import run_task_market_demo
+        from services.pricing import get_task_escrow_wei
+        from services.customer_balance_stub import budget_enforcement_check, metering_record
+        from services.customer_balance import debit
+
+        customer_id = trace.external_request_id
+        escrow_wei = get_task_escrow_wei()
+        if os.getenv("CUSTOMER_BALANCE_ENABLED", "").strip().lower() in {"1", "true", "yes", "on"}:
+            if not budget_enforcement_check(customer_id, escrow_wei):
+                out["private_market_report"] = {"ok": False, "error": "Insufficient customer balance", "required_wei": escrow_wei}
+                out["public_response"] = format_hybrid_result(out["private_market_report"], trace.external_request_id).to_dict()
+                trace.outcome = {"ok": False, "boundary": "contract_level_execution", "error": "insufficient_balance"}
+                _write_json(_out_dir() / "multi_rail_run_report.json", out)
+                trace.write("communication_trace")
+                return out
+            if not debit(customer_id, escrow_wei, service="task_execution"):
+                out["private_market_report"] = {"ok": False, "error": "Failed to debit customer balance"}
+                out["public_response"] = format_hybrid_result(out["private_market_report"], trace.external_request_id).to_dict()
+                trace.outcome = {"ok": False, "boundary": "contract_level_execution", "error": "debit_failed"}
+                _write_json(_out_dir() / "multi_rail_run_report.json", out)
+                trace.write("communication_trace")
+                return out
 
         os.environ["COMPUTE_TASK_QUERY"] = normalized.query
         os.environ["COMPUTE_TASK_METADATA"] = normalized.task_metadata
         private_report = run_task_market_demo()
         out["private_market_report"] = private_report
+        if private_report.get("ok") and os.getenv("CUSTOMER_BALANCE_ENABLED", "").strip().lower() in {"1", "true", "yes", "on"}:
+            task_id = (private_report.get("task") or {}).get("task_id")
+            metering_record("task_execution", customer_id, escrow_wei, {"task_id": task_id, "escrow_wei": escrow_wei})
         trace.internal_task_id = (private_report.get("task") or {}).get("task_id")
         trace.correlation["private"] = {
             "task_id": trace.internal_task_id,
