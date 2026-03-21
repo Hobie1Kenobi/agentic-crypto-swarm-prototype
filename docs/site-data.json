@@ -1,0 +1,49 @@
+{
+  "project": {
+    "name": "Agentic Swarm Marketplace",
+    "tagline": "Multi-rail agent commerce: XRPL machine payments + Celo private settlement",
+    "repo": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
+    "chain": "Celo Sepolia (testnet)",
+    "chainId": 11142220
+  },
+  "metrics": {
+    "soak_6h": {
+      "cycles_attempted": 24,
+      "cycles_completed": 24,
+      "success_rate": 100,
+      "xrpl_payments": 24,
+      "celo_tasks": 24,
+      "celo_txs": 216,
+      "xrp_paid": 24.0,
+      "avg_settlement_sec": 67.02,
+      "label": "6-hour continuous soak test"
+    },
+    "live_proof": {
+      "status": "verified",
+      "xrpl_tx_hash": "D055E8F6CE7B77719463728CE4F98B20394656467191E8C70D669D8DCEEDC192",
+      "celo_task_id": 42,
+      "celo_tx_count": 9
+    }
+  },
+  "contracts": {
+    "compute_marketplace": "0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9",
+    "treasury": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+    "finance_distributor": "0xCF3572136265A5ED34D412200E63017e39223592",
+    "celo_explorer": "https://celo-sepolia.blockscout.com",
+    "xrpl_explorer": "https://testnet.xrpl.org"
+  },
+  "reports": {
+    "live_proof_md": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/live_xrpl_to_celo_proof_report.md",
+    "live_proof_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/live_xrpl_to_celo_proof_report.json",
+    "soak_6h_md": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_6h_report.md",
+    "soak_6h_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_6h_report.json",
+    "architecture": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/ARCHITECTURE.md",
+    "xrpl_payments": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/XRPL_PAYMENTS.md",
+    "production_readiness": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/PRODUCTION-READINESS.md"
+  },
+  "ecosystem": {
+    "celo": "https://celo.org",
+    "xrpl": "https://xrpl.org",
+    "olas": "https://olas.network"
+  }
+}

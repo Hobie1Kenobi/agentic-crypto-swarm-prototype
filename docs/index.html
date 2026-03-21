@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Agentic Swarm Marketplace — Multi-rail agent commerce: XRPL machine payments + Celo private settlement. Live testnet proof.">
+  <title>Agentic Swarm Marketplace</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0b0f;
+      --bg-card: #12151c;
+      --bg-card-hover: #161a23;
+      --border: #1e2530;
+      --text: #e8ecf4;
+      --text-muted: #8b95a8;
+      --accent-cyan: #00d4aa;
+      --accent-purple: #8b5cf6;
+      --accent-amber: #f59e0b;
+      --gradient-1: linear-gradient(135deg, #00d4aa 0%, #06b6d4 100%);
+      --gradient-2: linear-gradient(135deg, #8b5cf6 0%, #6366f1 100%);
+      --radius: 12px;
+      --radius-lg: 20px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(0,212,170,0.08), transparent),
+                  radial-gradient(ellipse 60% 40% at 90% 50%, rgba(139,92,246,0.06), transparent),
+                  radial-gradient(ellipse 50% 30% at 10% 80%, rgba(6,182,212,0.05), transparent);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+      background: rgba(10,11,15,0.9);
+      backdrop-filter: blur(12px);
+    }
+    .nav-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .nav-brand { font-weight: 700; font-size: 1.1rem; color: var(--text); text-decoration: none; }
+    .nav-links { display: flex; gap: 24px; align-items: center; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent-cyan); }
+    .hero {
+      padding: 80px 0 100px;
+      text-align: center;
+    }
+    .badge {
+      display: inline-block;
+      padding: 6px 14px;
+      background: rgba(0,212,170,0.15);
+      color: var(--accent-cyan);
+      border-radius: 999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(2.2rem, 5vw, 3.2rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      margin-bottom: 20px;
+      background: linear-gradient(135deg, #fff 0%, #a5b4fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 40px;
+    }
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: var(--radius);
+      font-weight: 600;
+      font-size: 0.95rem;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary {
+      background: var(--gradient-1);
+      color: #0a0b0f;
+    }
+    .btn-primary:hover { box-shadow: 0 8px 24px rgba(0,212,170,0.35); }
+    .btn-secondary {
+      background: var(--bg-card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--accent-cyan); box-shadow: 0 4px 16px rgba(0,212,170,0.15); }
+    section {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+    }
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 28px;
+      color: var(--text);
+    }
+    .section-sub { color: var(--text-muted); font-size: 1rem; margin-bottom: 40px; max-width: 640px; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .card:hover { border-color: rgba(0,212,170,0.3); background: var(--bg-card-hover); }
+    .card-icon { font-size: 2rem; margin-bottom: 16px; }
+    .card h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 10px; }
+    .card p { color: var(--text-muted); font-size: 0.95rem; }
+    .metrics-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 20px;
+    }
+    .metric {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 24px;
+      text-align: center;
+    }
+    .metric-value { font-family: 'JetBrains Mono', monospace; font-size: 1.75rem; font-weight: 600; color: var(--accent-cyan); }
+    .metric-label { font-size: 0.85rem; color: var(--text-muted); margin-top: 6px; }
+    .address-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 12px;
+    }
+    .address-label { font-weight: 500; min-width: 140px; color: var(--text-muted); }
+    .address-val { font-family: 'JetBrains Mono', font-size: 0.9rem; color: var(--text); word-break: break-all; }
+    .address-row a {
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-size: 0.85rem;
+      margin-left: auto;
+    }
+    .address-row a:hover { text-decoration: underline; }
+    .roadmap-list { list-style: none; }
+    .roadmap-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 20px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .roadmap-list li:last-child { border-bottom: none; }
+    .roadmap-badge { flex-shrink: 0; padding: 6px 12px; border-radius: 999px; font-size: 0.75rem; font-weight: 600; }
+    .roadmap-badge.done { background: rgba(0,212,170,0.2); color: var(--accent-cyan); }
+    .roadmap-badge.next { background: rgba(139,92,246,0.2); color: var(--accent-purple); }
+    .roadmap-badge.planned { background: rgba(139,149,168,0.2); color: var(--text-muted); }
+    .footer {
+      padding: 48px 0 32px;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-links { display: flex; flex-wrap: wrap; gap: 24px; justify-content: center; margin-bottom: 20px; }
+    .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
+    .footer-links a:hover { color: var(--accent-cyan); }
+    .footer-note { font-size: 0.85rem; color: var(--text-muted); }
+    @media (max-width: 640px) {
+      .hero { padding: 48px 0 64px; }
+      .nav-links { width: 100%; justify-content: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a href="#" class="nav-brand">Agentic Swarm Marketplace</a>
+      <div class="nav-links">
+        <a href="#architecture">Architecture</a>
+        <a href="#proof">Proof</a>
+        <a href="#contracts">Contracts</a>
+        <a href="#reports">Reports</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="container">
+      <span class="badge">Live on Celo Sepolia + XRPL Testnet</span>
+      <h1>Agentic Swarm Marketplace</h1>
+      <p>Multi-rail agent commerce: XRPL machine payments + Celo private settlement. Autonomous compute marketplace with verifiable on-chain proof.</p>
+      <div class="cta-row">
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
+        <a href="#proof" class="btn btn-secondary">View Proof Reports</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/live_xrpl_to_celo_proof_report.md" class="btn btn-secondary" target="_blank" rel="noopener">Live XRPL→Celo Proof</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="what">
+    <div class="container">
+      <h2 class="section-title">What It Is</h2>
+      <p class="section-sub">Agentic Swarm Marketplace is a hierarchical multi-agent system that autonomously earns revenue through on-chain value creation — no trading, no speculation. XRPL handles machine-native payments; Celo handles private task lifecycle and settlement; Olas adapters route public demand.</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-icon">⚡</div>
+          <h3>XRPL Rail</h3>
+          <p>Machine-native x402-style payments. XRP on testnet, live-proven with verifiable transaction hashes.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🔗</div>
+          <h3>Celo Settlement</h3>
+          <p>Private ComputeMarketplace on Celo Sepolia: task lifecycle, escrow, worker payout, requester refund.</p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🤖</div>
+          <h3>Olas Layer</h3>
+          <p>Public adapter intake for demand routing. Hybrid mode: public request → private onchain settlement.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="architecture">
+    <div class="container">
+      <h2 class="section-title">Architecture</h2>
+      <p class="section-sub">Three rails working together: XRPL for payments, Celo for settlement, Olas for demand.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>XRPL = Machine Payments</h3>
+          <p>Per-request x402-style payments. Payer → receiver on XRPL testnet. Payment receipt correlated to Celo task.</p>
+        </div>
+        <div class="card">
+          <h3>Celo = Private Settlement</h3>
+          <p>ComputeMarketplace, AgentRevenueService, task lifecycle. Escrow, validation, withdrawals on Celo Sepolia.</p>
+        </div>
+        <div class="card">
+          <h3>Olas = Demand Routing</h3>
+          <p>Public adapter normalizes external requests. Mock/replay for testing; live when configured.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="proof">
+    <div class="container">
+      <h2 class="section-title">Live Proof & Milestones</h2>
+      <p class="section-sub">Verifiable end-to-end flows on public testnets. All metrics from real runs with on-chain evidence.</p>
+      <div class="metrics-row">
+        <div class="metric"><span class="metric-value">24/24</span><span class="metric-label">Cycles completed</span></div>
+        <div class="metric"><span class="metric-value">100%</span><span class="metric-label">6h soak success</span></div>
+        <div class="metric"><span class="metric-value">24</span><span class="metric-label">XRPL payments</span></div>
+        <div class="metric"><span class="metric-value">216</span><span class="metric-label">Celo txs</span></div>
+        <div class="metric"><span class="metric-value">67s</span><span class="metric-label">Avg settlement</span></div>
+      </div>
+      <p style="margin-top: 24px; color: var(--text-muted); font-size: 0.95rem;">6-hour continuous soak test: 24 cycles, every 15 min. Zero failures.</p>
+      <div style="margin-top: 32px;">
+        <h3 style="font-size: 1.1rem; margin-bottom: 16px;">Live XRPL → Celo Proof</h3>
+        <div class="address-row">
+          <span class="address-label">XRPL Tx</span>
+          <span class="address-val">D055E8F6CE7B...DC192</span>
+          <a href="https://testnet.xrpl.org/transactions/D055E8F6CE7B77719463728CE4F98B20394656467191E8C70D669D8DCEEDC192" target="_blank" rel="noopener">View on XRPL</a>
+        </div>
+        <div class="address-row">
+          <span class="address-label">Celo Task ID</span>
+          <span class="address-val">42</span>
+          <a href="https://celo-sepolia.blockscout.com/address/0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9" target="_blank" rel="noopener">View Marketplace</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contracts">
+    <div class="container">
+      <h2 class="section-title">Contracts & Explorer Links</h2>
+      <p class="section-sub">Celo Sepolia (Chain ID 11142220). All addresses are public deployment artifacts.</p>
+      <div class="address-row">
+        <span class="address-label">ComputeMarketplace</span>
+        <span class="address-val">0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9</span>
+        <a href="https://celo-sepolia.blockscout.com/address/0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9" target="_blank" rel="noopener">Explorer</a>
+      </div>
+      <div class="address-row">
+        <span class="address-label">Treasury</span>
+        <span class="address-val">0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6</span>
+        <a href="https://celo-sepolia.blockscout.com/address/0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6" target="_blank" rel="noopener">Explorer</a>
+      </div>
+      <div class="address-row">
+        <span class="address-label">Finance Distributor</span>
+        <span class="address-val">0xCF3572136265A5ED34D412200E63017e39223592</span>
+        <a href="https://celo-sepolia.blockscout.com/address/0xCF3572136265A5ED34D412200E63017e39223592" target="_blank" rel="noopener">Explorer</a>
+      </div>
+      <p style="margin-top: 16px; font-size: 0.9rem; color: var(--text-muted);">Celo Sepolia: <a href="https://celo-sepolia.blockscout.com" target="_blank" rel="noopener" style="color: var(--accent-cyan);">Blockscout</a> · XRPL: <a href="https://testnet.xrpl.org" target="_blank" rel="noopener" style="color: var(--accent-cyan);">Testnet Explorer</a></p>
+    </div>
+  </section>
+
+  <section id="reports">
+    <div class="container">
+      <h2 class="section-title">Reports & Documentation</h2>
+      <p class="section-sub">Public-safe reports and architecture docs. Links open in the GitHub repo.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Live XRPL → Celo Proof</h3>
+          <p>Presentation-grade proof with verifiable XRPL + Celo tx hashes.</p>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/live_xrpl_to_celo_proof_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
+        </div>
+        <div class="card">
+          <h3>6-Hour Soak Test</h3>
+          <p>Continuous multi-rail run: 24/24 cycles, 216 Celo txs.</p>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_6h_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
+        </div>
+        <div class="card">
+          <h3>Architecture</h3>
+          <p>System overview, multi-rail design, LangGraph workflow.</p>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/ARCHITECTURE.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Doc</a>
+        </div>
+        <div class="card">
+          <h3>XRPL Payments</h3>
+          <p>Payment modes, wallet setup, integration guide.</p>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/XRPL_PAYMENTS.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Doc</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="ecosystem">
+    <div class="container">
+      <h2 class="section-title">Ecosystem Alignment</h2>
+      <p class="section-sub">Why Celo, XRPL, and multi-rail agent commerce matter.</p>
+      <div class="grid-2">
+        <div class="card">
+          <h3>Celo</h3>
+          <p>Mobile-first, low-fee L2. Ideal for agent-to-agent settlement and micropayments. Carbon-negative, EVM-compatible.</p>
+        </div>
+        <div class="card">
+          <h3>XRPL</h3>
+          <p>Machine-native payments. Fast finality. XRP and RLUSD support. Built for programmatic value transfer.</p>
+        </div>
+        <div class="card">
+          <h3>Multi-Rail Commerce</h3>
+          <p>Separation of payment rail and settlement rail. Flexibility for demand sources and settlement chains.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <div class="container">
+      <h2 class="section-title">Roadmap</h2>
+      <ul class="roadmap-list">
+        <li>
+          <span class="roadmap-badge done">Done</span>
+          <div><strong>XRPL live payments + Celo settlement</strong> — End-to-end hybrid flow on testnets</div>
+        </li>
+        <li>
+          <span class="roadmap-badge done">Done</span>
+          <div><strong>6-hour continuous soak test</strong> — 100% success, 24 cycles</div>
+        </li>
+        <li>
+          <span class="roadmap-badge next">Next</span>
+          <div><strong>Customer balance layer</strong> — Pre-funded balances for requesters</div>
+        </li>
+        <li>
+          <span class="roadmap-badge planned">Planned</span>
+          <div><strong>Pricing & metering</strong> — Configurable fees, RLUSD support</div>
+        </li>
+        <li>
+          <span class="roadmap-badge planned">Planned</span>
+          <div><strong>Live public Olas adapter</strong> — Gnosis/Base intake → Celo settlement</div>
+        </li>
+        <li>
+          <span class="roadmap-badge planned">Planned</span>
+          <div><strong>Mainnet readiness</strong> — Celo mainnet deployment, production ops</div>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/PRODUCTION-READINESS.md" target="_blank" rel="noopener">Production Readiness</a>
+        <a href="https://celo.org" target="_blank" rel="noopener">Celo</a>
+        <a href="https://xrpl.org" target="_blank" rel="noopener">XRPL</a>
+        <a href="https://olas.network" target="_blank" rel="noopener">Olas</a>
+      </div>
+      <p class="footer-note">Agentic Swarm Marketplace · Celo Sepolia + XRPL Testnet · No private keys or secrets published</p>
+    </div>
+  </footer>
+</body>
+</html>
