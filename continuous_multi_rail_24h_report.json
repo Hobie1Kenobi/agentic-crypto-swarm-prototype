@@ -1,0 +1,60 @@
+{
+  "report_type": "continuous_multi_rail_24h",
+  "generated_at": "2026-03-22T06:04:49Z",
+  "duration_hours": 24,
+  "interval_minutes": 15,
+  "expected_cycles": 96,
+  "olas_boundary": "mocked_external_replay",
+  "summary": {
+    "total_xrpl_txs": 96,
+    "total_celo_txs": 864,
+    "total_xrpl_tx_count": 96,
+    "total_celo_tx_count": 864,
+    "total_cycles_attempted": 96,
+    "total_cycles_completed": 96,
+    "total_cycles_failed": 0,
+    "success_rate": 100.0,
+    "average_cycle_duration_seconds": 68.61,
+    "average_settlement_seconds": 68.61,
+    "total_protocol_fee_wei": 96000000000000000,
+    "total_finance_fee_wei": 480000000000000000,
+    "total_worker_payout_wei": 72960000000000000,
+    "total_requester_refund_wei": 311040000000000000,
+    "total_refunds_wei": 311040000000000000,
+    "total_xrp_paid": 96.0,
+    "total_xrpl_payments_verified": 96,
+    "total_celo_tasks_finalized": 96,
+    "failure_count_by_category": {},
+    "worker_payout_by_address": {
+      "0xC3032259c26Ae78cd305a868De39A2373b94d0C2": 72960000000000000
+    }
+  },
+  "top_failure_causes": {},
+  "strongest_evidence": [
+    {
+      "cycle": 91,
+      "xrpl_tx_hash": "8F06FAD9034595FF0B0C7A7490A47A951FBA7724FA3D0A2E52968571403F6846",
+      "internal_task_id": 135
+    },
+    {
+      "cycle": 92,
+      "xrpl_tx_hash": "908AED18D2AB686DD5CB42C26FA4AD3BB3FC170CCB0E90DC5A00FABDFD3C6F87",
+      "internal_task_id": 136
+    },
+    {
+      "cycle": 93,
+      "xrpl_tx_hash": "9853C8AEB76C0E230C3E4B438CAF9708B382B861C4A6509A0572F8183F97DEE6",
+      "internal_task_id": 137
+    },
+    {
+      "cycle": 94,
+      "xrpl_tx_hash": "0268BA2980BF4DFE89576326316FA14249B1BDB71E3C8CB00B428B0DC41A1AAD",
+      "internal_task_id": 138
+    },
+    {
+      "cycle": 95,
+      "xrpl_tx_hash": "44BBB18EDD9E8F14C148BC6B5D76B615F196A2BBBF19FA103F9A323434F85A16",
+      "internal_task_id": 139
+    }
+  ]
+}

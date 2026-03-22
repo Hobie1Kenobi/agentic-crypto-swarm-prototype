@@ -18,6 +18,17 @@
       "avg_settlement_sec": 67.02,
       "label": "6-hour continuous soak test"
     },
+    "soak_24h": {
+      "cycles_attempted": 96,
+      "cycles_completed": 96,
+      "success_rate": 100,
+      "xrpl_payments": 96,
+      "celo_tasks": 96,
+      "celo_txs": 864,
+      "xrp_paid": 96.0,
+      "avg_settlement_sec": 68.61,
+      "label": "24-hour continuous soak test"
+    },
     "live_proof": {
       "status": "verified",
       "xrpl_tx_hash": "D055E8F6CE7B77719463728CE4F98B20394656467191E8C70D669D8DCEEDC192",
@@ -37,6 +48,8 @@
     "live_proof_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/live_xrpl_to_celo_proof_report.json",
     "soak_6h_md": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_6h_report.md",
     "soak_6h_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_6h_report.json",
+    "soak_24h_md": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_24h_report.md",
+    "soak_24h_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_24h_report.json",
     "architecture": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/ARCHITECTURE.md",
     "xrpl_payments": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/XRPL_PAYMENTS.md",
     "production_readiness": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/PRODUCTION-READINESS.md"

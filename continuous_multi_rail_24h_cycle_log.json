@@ -1,0 +1,4610 @@
+[
+  {
+    "cycle": 0,
+    "start_time": "2026-03-21T06:18:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "415F38AE39257D7EDC07ECC252B1D8E5B5D966E5D11D2F5684A239AE3DDF6B95",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 44,
+    "celo_tx_hashes": [
+      "c680a3cb45591c3277502e6579861fc039f214af44cf31bd16ccda3a96001980",
+      "f934b20562cadf17e56776407eaef00480e27c37298bff6c057383a5e4c9dbcd",
+      "41d6fbbba65ec40fc3c9773648dbeb0803a29a7cb58bb93e8d6f25b508ba671f",
+      "3915a9d2809f92d56747ebd98845b6785f74ee41f4068b0c9937e6b447e7e14d",
+      "5c4df9bf6cef59fdc74b190b9725b824d83636381948ef788fb1882b2a6b233f",
+      "b9e006612781aea7c2ccbcbaaa4729d3e81748507dc05904198148677fdaace8",
+      "6c773cf0282decbd234fcab94b17cec16ad269c2706909fb124f16d892c088ae",
+      "e764eccb751d31223ae5bc59244cfd4b474675293ada4b7f54a76951837ba732",
+      "b442b2fcbc4667e12db33627128631f357efbddce6df9cc0ac670de49f3b994e"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 67.45,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T06:19:51Z"
+  },
+  {
+    "cycle": 1,
+    "start_time": "2026-03-21T06:33:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "DF3300F0B87FADD5CF3D37E865371FC84B34646FA9EFDFCCE9C53BC9E174F063",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 45,
+    "celo_tx_hashes": [
+      "3aac70c652b466f278a00e1a556b8fe9cc987dcbca87c6ee4b93f505557c0632",
+      "c7a1586ac448617aaba60df149ed26801b3ba554950f19257be67b2ab9a2d03b",
+      "d6ddbaf2ee59e0de411b7a11a496bbea70759fa87345f1244dc98c4e970b256f",
+      "19bb50314c559d71cdba934bbf63a14a27af31fbe686705065f0da500f826647",
+      "c6a4faf6469a29f3f5ebe487a9fd504126c0bdefe6e2862065b8bcdabe0598a9",
+      "3b270c2005619e7d1089fc9079237d5df6aa4e17442d2c876f6116a7b69aa74e",
+      "1bdb8b08e6bb971eee8a55c4f1d3c55d6b935ad9cf0f0b757222165c5e2ef529",
+      "c5538e321428aafe7449f96f8b6db5dad9bac61ff77b052e2f5ed19189326e9a",
+      "3dabcea556d3c9a57544ceed0fdc469bcc810e0f37dec77d7073e38ed5a29e21"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 76.01,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T06:34:59Z"
+  },
+  {
+    "cycle": 2,
+    "start_time": "2026-03-21T06:48:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "29447C1849320FB2BE932B1449B60687E3791A0DB18B65BDE2B84A6ADEDC46A8",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 46,
+    "celo_tx_hashes": [
+      "88320403a663125f2df32885a770f48331b8b5172140102191315d4d9b8836c6",
+      "53bbb1ffe600785342aac48b1f465743bf9d57289caa3fa2b152e3e2e0ec2267",
+      "d2d709c5438358536d200922f84f31c9f1db18d363e30fee5f0b283e8e1f848a",
+      "8e30bf91b945cafe846582aa95c0f31b5c30fc1cf73be072a6867dad6dbbbf3f",
+      "2255022b1753236c7cfa12aa81d68d2db31d67370dcda86dd45912c5d9e0eee6",
+      "334b47f9ee6973481989515ded88ccdb49f7ec4a7883dc10e088acb41a5d733b",
+      "9a1e8a27f8e209899f72d26dffde4b9b0c3c25d45fb33ed92c23ce45f2de6066",
+      "dcbde07795ff14ee2d558e684cd5f38d224cf0a4dad1df2d98a8fe9c1d88c09d",
+      "96bd4f7a05155e0ad1b691c7a0a165f3654eb33f6080de05bc1a3c793f8e6890"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 68.57,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T06:49:52Z"
+  },
+  {
+    "cycle": 3,
+    "start_time": "2026-03-21T07:03:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "74B1EB8BCB7CA1F5E66F25D3F891A4CEA65006D47DACAF10AF8C644A54A448CA",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 47,
+    "celo_tx_hashes": [
+      "0f4735e22f69a9594b43a6e340662bd91fef43d36f92227c94bc2fbc17c13b10",
+      "455c800ffaaac2e8af65f90673b1d3ce5ebf3bd5c7f0c5d32ff38b93e864e452",
+      "2ea0f678fda5a7f2b7187136453f11cefb401fd8fe8b49df0a2c68bdf0c77603",
+      "3ef9f9a6b0a90a4f4121315cf579ee790c1d18b27385e9f311a979acf8fc296c",
+      "ca5a5a4c71f8c93696c0144c7af3d5ddd4c390a2b54d869aa2514b99419373d9",
+      "3b9c1e4c96a48c5ff136de092e1c1156f56d6a971f49f0ed3d981b78bb0dff50",
+      "4bf1e60e326d621e4475fe42be4aa00e491ce57c29522582ada2952fec6e5a26",
+      "06e7c45243cbef68480e957e2e1fd290ce237966aeabecabfa87be8f81f99bff",
+      "f71baa4ba28946157ce6953836bec6a0342648ba27ede202770698d0b9aae2b9"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 76.46,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T07:05:00Z"
+  },
+  {
+    "cycle": 4,
+    "start_time": "2026-03-21T07:18:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "5940ACEC67080480F44BD6B81F853ED47427CCB9C4035A743C379D7E6FAB097F",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 48,
+    "celo_tx_hashes": [
+      "3f536c09efbb10e6e36c7ed66e3eaa731193e80c83c90b045ced0ee660916c26",
+      "14078d2d73d46120fcdfa25b9196bffa3f58284178242d7f1328cee8f6a8dca5",
+      "4b57af85784d9873bc544998d7e59034bc94371a91a8526929c6fe2aed5d723a",
+      "e7dc8f00ee4c0f9508973ffb2f2e7dc26e342eda1de4661807891f981574cf0b",
+      "3f02d1a575eda366f3ac623e980bbb95c018eaa9e00b66a8aca2066cc3c44a5a",
+      "3e156c563728f93db7db4fa627eeb0f72efb1bd50b83d89d1dd0dfeebc67578a",
+      "230b3cdb229d325f8979e165da3c75724b6cfa1fb0ebfc0f8fd49b54c869d569",
+      "2d872bb794ba2609b6ac9453cb6c2c075cb45d87bbd59d8590f38b5b9140aa70",
+      "861d780647ccc7620e8e3744c2866a311a29dc7d027e27ed38f5d5b919f86b99"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 61.35,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T07:19:45Z"
+  },
+  {
+    "cycle": 5,
+    "start_time": "2026-03-21T07:33:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "C991365C76780F7E689BAFBE8001E21F61A5D3FBAC065175FD52CDEA9ACF222F",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 49,
+    "celo_tx_hashes": [
+      "d862b3b3bb37142c7bffeb5e34a1decab9bfbb8b2cdad15db18374a7c91a0b38",
+      "b3be5fb478ca0edbba56d38861b5fefe3354e6bb9261f5ac5f793ac44dcce840",
+      "d3e88a340bdee9e8177ed049dda475dd892e202b0c785de485b9564c59b93e99",
+      "d6ab21e4a379b47150ffff49d973fc5b29c14ab2852eeef3126f5f1cb1928ce3",
+      "76c308c9c1858c723f10658f0823687fba568767bcd006b55d7e15694b0c1b68",
+      "22a793b0b5f0beffc55fa69b2cc04c24dc69a4bd3c1a4f27acbb3a13fe3e33b1",
+      "6cefa34cbea836830a5e0653870da9478b4b041024280083707b130ac226cede",
+      "61a3e1a862edd3db4d3352bb55552eff3eca227f010ce1f580389ec61e85028e",
+      "2de1e866254bc272ab2d669d5528d0b0b156d12ea1da741233c78ca6269205e2"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 66.62,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T07:34:50Z"
+  },
+  {
+    "cycle": 6,
+    "start_time": "2026-03-21T07:48:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "823CB8F454F0F389008B7C311DCCA84C5E31D5237AC9DE1F2C7C1522082D3BB2",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 50,
+    "celo_tx_hashes": [
+      "02b48c8060941e95d0a071b54e84adeeb462a07dd577991464be54010131077a",
+      "48e4aa041f0b352d2231fa3219b062464f86ca71ce2aac54b814ad865c045f82",
+      "0e1c0dd14d774c31c987fbb4ea8df6490e9406b1812f9405228ec5192d4d5a57",
+      "af45569879f8f776890c75318a531d1556ac6f4ad12a8e590ac2c9cbffdf1899",
+      "2c34b67824b3de70d34a6c091f681433a4e95ea139a74e205f955b08e21746b3",
+      "3c3ef4096879fc415ed43114f9dd8d828687a3e3d96782d1aac1e8f348c7da69",
+      "e0d528dc920fdfaea1042b3f836513ee7b1f53a6848f335b2c153958ba37c003",
+      "93eb47df765ece64027d4fbdcaf9064645cde3c84e2b4f06394c8a0627182f2d",
+      "b553f90299010895196bae65568decc72d77b9ae79da9bd6c24e4b60e41d6f24"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 61.46,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T07:49:45Z"
+  },
+  {
+    "cycle": 7,
+    "start_time": "2026-03-21T08:03:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "40663C55A82537F45FA085776DC9799053B822A5B8021564C659576F30B60FEE",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 51,
+    "celo_tx_hashes": [
+      "32413c5606c33581982ae94a09c587b80295a7d379db5ab42ccaac60cc3cb1f0",
+      "e9073f4a85e2c8be35ea104599fdea5df7d1900e3fe067fc867c36e813eb335c",
+      "51b5ce72085bcc05709575fb0cb48cce4001cef5bb56019473dd0287152cca1b",
+      "a7b835f2e5557275262f450bfb0901558775f64cdd0de50131e028c1ab5a59e4",
+      "fb36bbd29333ba0bd149d3f2f9f7ba70808054855cea7d2bfa06169d12a25116",
+      "b3f000ba3c951e33d02120cf81689a4ff550267b7d77133a7584b50bfe56fe36",
+      "232493e9deac827b84c8bd08c98bbffae44cf44af6a0d1eeac6fe39cae3af258",
+      "95e1fde7e52aa38dd8414fecdffad0005b9ba3f30ff9632fd9096c4ed198ae62",
+      "cd95cbcae6a2565f9f07210ca0a21b95d3bb957e232c526d7abd5a34f447bd74"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 73.35,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T08:04:57Z"
+  },
+  {
+    "cycle": 8,
+    "start_time": "2026-03-21T08:18:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "2542C867FC6E3C8A9DFF1009E50C4913139C92ECEC67CD77FF414ABDF78F77B1",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 52,
+    "celo_tx_hashes": [
+      "4126c95f31b9665f86335445fa038db45287ac774681659ebb3de706b6d1f4c9",
+      "9a83a4d883fe89480d9bf283fbd38af6ae8e60b55cf25b772dfd1d360ed2b9a6",
+      "30374c6b64edbd50bae80b45fab46a8bef527c990004f82108f4934860d39595",
+      "b07557a4da7d505416a52b2b23fb14e7f5b97e50637feaf6fd7b2c8d52cbe4aa",
+      "8cd5d516847e1503e947e7a81e79b1688d52324c2f181bd39ac89f6a9a2270c4",
+      "e86cf61246b4545892721815b06a7297234e350369abfd83e56cbbc9b98f4eec",
+      "47e5f9ae3335d5153852599657d06dd40b7b79daf58e8b9b99d05a9002a6ee1b",
+      "f7697f4c67ef7fa3929a845237acb90b3a995b0cf0630c29d48c197970f142ab",
+      "18c7f9f622acfe722fa08bd8cad2fff3f2f6511263a00cc54e3a66c9930d615a"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 67.41,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T08:19:51Z"
+  },
+  {
+    "cycle": 9,
+    "start_time": "2026-03-21T08:33:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "36FA855B3B679354B5174239D4AED7AB7995F8FA372BECB75920901E3CE13220",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 53,
+    "celo_tx_hashes": [
+      "acfe5418b6718b4ce0421f0bba747973ad0d809280c505c15d9351064453e4ac",
+      "da2a63e9b7665976f468d7deabcb1f5a17ed053e71333a95889ffba08732038e",
+      "ce509c672de1ba314fa6e781511835d60c22941cfd8b703c8176185c5861981e",
+      "f2a98336496862619c096c5be41011f5f4a7ad306c9cd994dceafbe6ba13f36a",
+      "cab78d482955ac4ef3ee0d3be238776e5477b67addea541b3b8159031b465520",
+      "2c27a7ebf0d7bf491044241c9e84acbe62d4080440fe11b14140ad2b29760d37",
+      "d75c30fa0a0dfa39c36acf56e98ac3c82dbbcfdc5f5091bfb861e5a21759455a",
+      "0a14e15762505bd358493afc2b5601b24965b546c632a97b352c228fdf90d711",
+      "c4ccb0a4c8f8527b2ec5fe4d6ecef0c5097de8de8039158639b694dc17675bcd"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 67.57,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T08:34:51Z"
+  },
+  {
+    "cycle": 10,
+    "start_time": "2026-03-21T08:48:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "25AAD8DB4284FB0C64B61B2C2F5851EE9E43CB3B941FBD8D69BF51B7499D0CE6",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 54,
+    "celo_tx_hashes": [
+      "68b2d0f60d9facc1a33b49e1a80e82eec14035412d811c6b8d9f2bad9431bd47",
+      "06aaea6e1c38461f789b0bde4e3a0bf9c9e3707fd167fb73269d03bb9acc8696",
+      "4fd20285310b2ecb88bc6dfa2f7c44478fb1b2deca67f723255043f1dde1894c",
+      "4257b2a3c8af3b6db7b7ddd1ff44e2252fd18c8ff0a581b8bc84308b6e499596",
+      "103f4eaeec671b44c08ac71784f17c6eaf3487cbfb825bfd2a05014e411612f6",
+      "36536afa5cd9f8124c7183f899689da165070de641bf2b441e20444c9d07ec6c",
+      "cbfa1c6f40adebaf86d3dcacb518e2ebf3bc3adcc1cf2b110527079cbdfbf4c3",
+      "1e21b423a4117bafa0b2004b41ef88acdbf303d891fd20a4cc32e20d9d13e6eb",
+      "0c52c45b36ed579778c60417c2f36e45a7ebdde9f8653d2929f04f1fa002da1d"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 71.61,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T08:49:55Z"
+  },
+  {
+    "cycle": 11,
+    "start_time": "2026-03-21T09:03:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "B45B1A38BCC61EA27A643A02D9CFE32A716901EC34CC591012CB45FD8F2C904D",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 55,
+    "celo_tx_hashes": [
+      "281d185bfcf401924aaa461b864b14155c36d65ab1430b33be70d370e9b3b461",
+      "9e93ec014a5de6ff4de5b0bc31ff53dc57c44d8e643433b670507360e2e0e58b",
+      "4336a11eb07359247680eaf6d86def2aa15d49b441614d3f6dba2da05b8d1c86",
+      "6369b3402d6c0e7afdd53f4fe7572e5f11097514d5b791db1a180d988c07f860",
+      "4f81e85eaa6f9b664a8552a48a1ca6edc64386be0bb79b44f6ece363bd4e03c0",
+      "ebd50701134507884b60c21420c9b5d00744bb30b8a93024dfeccf9358a8bee5",
+      "37a981852acd942c2db544d21fdfaaebdd43c1f1bf3fbf454d8423535d415d46",
+      "6e23eb543b3d4819027f2a2e0b3f4546f746de1d6b4072f3168c214ba12d0071",
+      "2bfc91d9d553f0e08681986ee1fc01c13dedcd4f763955f14578f8390d52fd7e"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 69.51,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T09:04:53Z"
+  },
+  {
+    "cycle": 12,
+    "start_time": "2026-03-21T09:18:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "8F3DBF92FA6657619BF003B96714C261C7ECE792227276E1310BA13679A6BBE1",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 56,
+    "celo_tx_hashes": [
+      "37746e7973132a2dbfcaa60fb73b14ea54d29a4feb975e53eec97f6f3c57b745",
+      "f524a36be2df018f989cd2224f7bb780cac851f13e6ece8b35c49b77fbf433c7",
+      "78406900cd27965916f224300dadaa4c50ccea27f5b1aa22c3828f0d849d8e0b",
+      "d556f8b47eed0dbd987d4bf4bebe11af37ae32b565d71fab18a146ebd84afee8",
+      "b07e7ad704a83bb33a5402a544d58a9921694b81132b0a1d9e4091da8357dae3",
+      "6ef3dd47779ee4137a2b0454a6fb4b7a88ec2e416fb49bed0bd0fc68a8f05165",
+      "0c5e85db28d73720168bb727ca661e6fee6ddc3f7d7abb9a34c827904f9764d1",
+      "ce08fb1b778ff96ae06f6b75c249bdb356b0efcdd390369bd7e882ddbd8cee1a",
+      "29afcba76c5c24b9c3ace55b90956ab9ab0532965dcb6f6c78094ab3df487f60"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 71.59,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T09:19:55Z"
+  },
+  {
+    "cycle": 13,
+    "start_time": "2026-03-21T09:33:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "C7BB896946C4670E20CF4AE59EA87D65F9FBBD8B96529B917B423C2BF5E9C908",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 57,
+    "celo_tx_hashes": [
+      "f9b58fb8c77446dc6550dbb986f6d39acd4de2eaf3a6951c496a2801f51f8ff8",
+      "a3afdf4949096f16714d4bfa8d8061910cf583e5e634298544eb6f58fd6e9884",
+      "58336b449a0f2894ca11a137438e02be8da69a87db3b170a6e62cd991cfdd2cb",
+      "0e8166ce0f76359c459090d4c21d6c3b43126ed9ffb699e27d71b5b6ddd66b57",
+      "4bd3f37b7e7634645fce3bb34301b323c5ff3c9ec031d509f4f813365bab8118",
+      "bc4da997027aa2eb17de65044954d0ccb169671e8966d56189cb1298196f0c74",
+      "4604ceb10b2c94bda51010ea7f2f1748efe12317d9e21e0d35dc8f9bc02ab58b",
+      "269e43f318c5c7ead64fac2a72c30af11d24f9407f704fc823f15d0930bf6846",
+      "35a9032f6c7173a89d117793e10a052236c1508f82bf46f210b2f03472e9d88e"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 62.33,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T09:34:46Z"
+  },
+  {
+    "cycle": 14,
+    "start_time": "2026-03-21T09:48:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "222071BF855C26266D097A299B9742ADB3FF195AE0959EE50E0D5303015E231F",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 58,
+    "celo_tx_hashes": [
+      "3557446bd325857643d5de5184dc5ebdc155a4bce1990628a24ee4d8da038f1e",
+      "0ccc2a1e5760959c4fd0b341e3f690854f6ce750069ae89c5d47a438e9085996",
+      "b65d8e2493f0b16a4d41beb5afa36d0f3bf3dd8f4b90ef4cafb4a5bbbd60c686",
+      "28b565c4c222ccdd40aee3342df9c84d6c69fde9760f97366d22c7633fb9bae3",
+      "b7e35991882f1af7f838ac53ff230479df8b9b3f07492e4f4a63c174ebe56353",
+      "df4ad7c2ee7fbba4c54da0457779e639d60b0283d2c64d8a05f29a15abc25e77",
+      "a13ce122cf0f2ab91e903d785d7bd4d69c0625779b033c503336340fc4b1c323",
+      "48d879726662420e8ece1b5cfc52aa8f1e623de0c25ac2f96206c21e281ac26e",
+      "add92b85ae58925c199fda4b59ee996de849407ad71163a6d8562368cd8c9a7d"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 63.37,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T09:49:47Z"
+  },
+  {
+    "cycle": 15,
+    "start_time": "2026-03-21T10:03:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "8D528693B26CE3643C09695BF660829846D13E8172ABC271B6C67FC317BA2CE2",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 59,
+    "celo_tx_hashes": [
+      "2bc16a022e2a2867f7a1d1b7b6cf424469b702b47b7be6b22636143ace1e4d55",
+      "9a803bd295eef20ba2fd3cf4631142edb00541980f58e31ce489ecc27ba53009",
+      "0da2f6bd2792077d9278099b3a2ad02249741e36685509b647aec46f010dc0c8",
+      "d445a4fc801d16b5466263f36b6312928babe0e537c017de23801840bead4b09",
+      "44383fc20e075084d39f757d0831164e5525c43468c63525b3f9fe4476e46bf2",
+      "4c86b7c397e8b2da7301bfd45916ce66e783dc090f26bfeaa50e9fc152ac3d77",
+      "05d09c5c44b07a479fd1e94aa3dc274e1f2b8def0c8582795a97a34d6afde3d2",
+      "b3bb54fbdac7e4c9a65e198bc83c317c1d5b0b09db93b5ed34c3df41f8c9f87f",
+      "5edeb7b7a0c1e87a937671c751a1a201d53b154e6a3829c0ba63c821b33c5028"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 65.43,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T10:04:49Z"
+  },
+  {
+    "cycle": 16,
+    "start_time": "2026-03-21T10:18:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "FE2AA14C10E5EC667501BAA036B433C4AAD335E98E4E7EDB480DDCFC5DEE46EB",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 60,
+    "celo_tx_hashes": [
+      "d8caef38cb8ed2da06b85d4fccffc797d3f709de2d5f931dd59ee5d0c9933f32",
+      "226e99e2520081e380caa47713d493074c654ccecf9e706f355e15b700dd1d96",
+      "a68f16bc62a8fdf21de64d91ddf185a097ec23751fe22b14fe718051a5f6dd51",
+      "d9deeca6ed30e8288d35ae0b7de6ecbb5abb4d915760e0301b4b8bab5cfd6a70",
+      "79c9edba3112958111a34bc86cc4efaf31cd793602157439d92b2f85780b12d3",
+      "d47cc86c31c37d3b2c1845656b10ccb15a2bdcb120d47ecbc074dca6b58ca249",
+      "0d4200beb0a2aa79ba8f41f949782e5a364426d716822e93dc6676b8b05fa098",
+      "fcd47f37981f24ac7e21dbefefcda2f327590ff506a1089ca8b7ed2f10fec433",
+      "bbcd6b31287635c65ba928973c29736f26d374cc3f0226a852b4a483b959df48"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 61.44,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T10:19:45Z"
+  },
+  {
+    "cycle": 17,
+    "start_time": "2026-03-21T10:33:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "69629C7A3F989CC20E3C3C97160215850AF6C83A5DE3BD7BFABDBE68DF5FFFC0",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 61,
+    "celo_tx_hashes": [
+      "300487146ce8bd35d5938c92dc6faed7321238977cfefa32349b1dce4612d1b8",
+      "9a235792033338905ea51fa3f5767b29a6482df9f10332be27f93f1c4ca8aadd",
+      "82455806bd595a35c4170a8c53941530fbbffc2fe466aed83356bfac4d1ab753",
+      "e3931bf89cbb845f0c26d5835d22b477d65e846adcf5bf376a3848621b58754f",
+      "31c896f5c4b7523876f4397e3662ec106739ece1e696b8ab70796fb072d767b4",
+      "4d3613ff5d443df9226abc68e15b15398985b4ad6688546877869eb116cb7502",
+      "1647ae7dd0a118f3f5681e63602f54aa7b620d361ef13ab645f7940544103a93",
+      "1c9dbb4df595690291c4521c642ed0248542b44d598115625aa1e709059f0b29",
+      "9e916e2b5176af635a40bcce7b4ac925de6a9bb67ef800a7f2a44bade3eb6665"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 61.34,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T10:34:45Z"
+  },
+  {
+    "cycle": 18,
+    "start_time": "2026-03-21T10:48:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "7F2F4A0C16E767A8B7551146356C71914580DEC9609A777562707308960651B4",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 62,
+    "celo_tx_hashes": [
+      "a515b5f571e0b9407fb6f3da550ecf51ad9892fc4b54f918945a157f956d2ae2",
+      "a339e960dccd44baa770447447463b5c16523f1f7b40ce567dfa66520fc19b2e",
+      "b831c8fe88002db91a6c1e87641c53d11fbc73d66582a137b51b4d1eae67c4a5",
+      "b74939b8c7c997008b38870470a52fea37da0c7d95bbc0c1e6981767645331bd",
+      "7a5b1cc32f1ceecbf3ef1263e5bc0ead8aa2b1bd8d16d9f9f6d1abe8f919aa34",
+      "4878dbf5976ef4eae24286c27b13ac4ecd42d47df5fc7223fd61fcdac594673a",
+      "a7be095f0b51a3775fda6a4054e17bc88195022ab0bd2abce007cd3c66e004bc",
+      "a94a424a85e4ded9c9b1d68f958018e1735be23f32f0b4d2bc20d59e11de08bd",
+      "451fa83e126120b485c53e8d7328744aa31228bc7b1e8e7248f028c4bf6c83d8"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 67.54,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T10:49:51Z"
+  },
+  {
+    "cycle": 19,
+    "start_time": "2026-03-21T11:03:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "AFF9E651DAB95461495A4602F69C91FE36F96A515A82F4B3E1E8AF48D55CA266",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 63,
+    "celo_tx_hashes": [
+      "ac15910e5f7940646ac81c91e3bdd3be6a4fcc6c307b6d1442e359d6a8e122cd",
+      "7d449745227b1e73fd5e41fb37735f58b657ca692a2f4fdabb07fb63aa396ec2",
+      "582ab8f52dffd1944491b0578f18fb74d577b3d8f20871b15d8f5ab5a2d8260f",
+      "9a77da0a1f3015e8fd9b4bf66d241910aa62d50f89b5aafa0f29ae37e50831d9",
+      "458c92b1608b9edb1b2cc97031ddb9f7754d79f193b069892a112d288415cfcb",
+      "69a3b4a43d95ae6473c5daf090fe8a2a43a4db2c9cf0e56c193e43e92cc489e2",
+      "adb97720dc0a8cc43317e322379756d085a1388ce9eb3ae6a17051b675400c56",
+      "cd762b1f8175c02a9c025c99eed0a226cf6cf71c2309a80664a293030611accf",
+      "a9f5d1f3b8458692a79fe7802b9ceed296c096751a75cd4cb0067a080e58f99b"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 69.63,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T11:04:53Z"
+  },
+  {
+    "cycle": 20,
+    "start_time": "2026-03-21T11:18:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "46211236E7D6F521A6077E00CEEBBFC2C16CC8471809ED569137574A97F94530",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 64,
+    "celo_tx_hashes": [
+      "71d5129745694b99dad3dc061c3eba32d60d0480b7b70e13b63265003b6c5c75",
+      "1172b1edeb6fa4ded6e237c24c1fe8b1810b032f82c8a21cb2483b2850a49d44",
+      "ac42952073f09be832765970f4d283c622de3350e950119fa2c18dab2849e00e",
+      "cd646035c0a9f231ccb839048fd5fc17bb4b4b7efcc28b3851f0de8a03cc88a8",
+      "05c9e77521e1dd9080ad00dc6e9f73c14669549d976b4d048b9a0ccf762c1435",
+      "047cee7e0c6c7a79836e0ac3ba1661cc2c8a13e2d3bda5de175d227e707dce0c",
+      "248fdbb256ac956afadb68b333d12fef2a5c654a2a117de85a8d81af50f905a0",
+      "210852980fdef70bf4234818db4be8e78baab2c08b10726f4b7c0ff8148844d7",
+      "41191bdfc59751ccca03b606362e12c8d19eed8a64ac310648feecf5a88b8cc1"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 62.52,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T11:19:46Z"
+  },
+  {
+    "cycle": 21,
+    "start_time": "2026-03-21T11:33:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "57AD3D0F2E6333F3331465C725025C16F7B6142013B1B0F4F3B57134B4F5172F",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 65,
+    "celo_tx_hashes": [
+      "3228e2e3550c3bcb27aa0f26d3e815d444b02b28ca8d658aae634fa69f862682",
+      "91fc1d7a4cd9f99024d245c4e4176f0137f8c5f8dceb1197ab43090a34bd0781",
+      "be5fa342ce5147cff85575e8fddd4caebad7c3c45ccfec6bda5ae6e917cde641",
+      "0bf4ba013becafcc0216816415e5a355193ff0dc2da67d8de63e72ea75b34659",
+      "556955aa5946a1a253067228c3f113f754f53a63d515e4e6cd8bfcd8ff2d6c85",
+      "e04915ad80bfd75f2f9682612d629cdc26105245c80baac3e757bfa9b53b666c",
+      "29180f82e313e32a73c86b7a638a5f0adfacf002bf098bbae30da03103bb1c92",
+      "d27288bae9d94a35bd6638ab1648e4ad709022381dcccc73267923fab6fc17a0",
+      "e53aa70f56bb92c27430e4d5e13dc1d072a923b102078d79f339328b28b3148b"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 64.35,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T11:34:48Z"
+  },
+  {
+    "cycle": 22,
+    "start_time": "2026-03-21T11:48:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "8559E8D62E28CCF4CBC0CBA401EBA026620273108144B36689CB45EF81411107",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 66,
+    "celo_tx_hashes": [
+      "974f587b470d96d67b98a2b152d7ba19f557b20b543bb7d33478409c923707fe",
+      "f541fc31f3fd68cd0ed80bf1e9bf8a334a83d08096c03c5f188a74d743ebd4b4",
+      "3d1bb33c2d24f166bd23192e69e728e112ab57e74125d999cf644aa013271303",
+      "ede0efafae3e7265c9b271a3decaa025cfa3b1d55eb5a1b362e0a2baae792bb4",
+      "ce605698b5506269e3a6ca957e99729c55d065f686767dc0b7a7ed2b90c1ed2e",
+      "861ba0c7705d1736cad7f93d05b39597ac25bea6e0e27d92364d07a9cfaa338c",
+      "be9b02bad80d55e5de431f113485a3a3a66769da9df1f97d1fc7b99d181a13db",
+      "cba24f3d851381b8416606b23a78e309f20dd14952bc6a619baea7ad8493cc43",
+      "81c6a62df982948f86c7d9abff9cd4ac394e21898ea13f9decfa71a63f0d0fe2"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 69.37,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T11:49:53Z"
+  },
+  {
+    "cycle": 23,
+    "start_time": "2026-03-21T12:03:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "38669DD0C9C9241147E89BE49491BA33CF7CB1FFB6BBBF3CB9E4CFDD19D1FBC7",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 67,
+    "celo_tx_hashes": [
+      "b9116c2a4bd22d5e4984d0d6a91711960c790fcfd86f0a128719e2a9cf8aca98",
+      "b956af4a7177267c7062a3ac57f89a57c36f7c8d52af0208caec1f4a12df9d9f",
+      "e3b482a6a5c859851950c4219ba9684c15203e6fbdef304e9bb5ff2c4ade53ea",
+      "082a590c8f60003e457d8e639b799a4e947daca77e6c0a0938ba89ffb0f64e53",
+      "e6f1f72e151c2d13dd639057017478e8e9c44165b26885502e5bb1c319a1bfc0",
+      "2329f72f0c7f3dffcd5e29e744b1ec2451a64c0d7583409ad7887143258eb99f",
+      "b3eac90d9937cc3101bf0973e040b9f72ccf446607b99d9d15aa15c22a764e2c",
+      "5ecde085c88b9bc57a6ee192fa06d3b170ed9151e971b3e6b8b3e472d9542ed4",
+      "0e797b288f40cbe3832316d4a3678601c56bd8eb9910534fadfe429f985d8ca0"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 61.5,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T12:04:45Z"
+  },
+  {
+    "cycle": 24,
+    "start_time": "2026-03-21T12:18:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "1A449534C8F9D114E3FB6F8484444BBDE4C9C6492634A9A48A7398E03DA70FE1",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 68,
+    "celo_tx_hashes": [
+      "c46f4da4e96e0a5887277f24bf34a2913b6b00345f2283eff161065462caec72",
+      "df52a5713d4d25786ee71aea23b25b66dc114c8e91b620e1c4408c6f9c97ef5a",
+      "fb903a8ec51106b1efdd692741be689a70915628cc74c7331e8de7d39376b110",
+      "e9492a031380bb545529ff18067e4c5bb0e0e908334a4c2f8d2227082ec94a8c",
+      "6c7831c0379502e8d59b200f326c9d034ea0c4807c60f9c98d967d39eb4d7e4a",
+      "e0a6555b9af39c8a54d390ef191f81ef4c0f0edd19b188463f501a3283ee6f65",
+      "e5a7e995d4d5c47b1f0937f1444f4510263602e41f85b108427d768cd14ddf43",
+      "249259993e51aa9974a775ffd55c2c16d6af1ff6ff10c3987973b562c33bfe52",
+      "a88ff769b2f6e48cc7e99b8c04884ec1ca6510cf1a452cde89394eed79d73296"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 61.32,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T12:19:45Z"
+  },
+  {
+    "cycle": 25,
+    "start_time": "2026-03-21T12:33:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "B8D7A63F5EE67838B2F5EA78165BE1531E048DB8A53A92EC8279B148DD1BCAD8",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 69,
+    "celo_tx_hashes": [
+      "e4b89b558383a6929fe0e6a7316dc10be8f17123585081f7d3c912424b4e7a76",
+      "55a3b1424dca18925173f8c00b3b083dea1956fb7f918d762fddeb025d21f6ee",
+      "597acd1abc47523c1b57b0fa4c20ddbe7ef59d900b6b761810993107aaec5593",
+      "02ecfc31653895c22ecbd50076c868263347cbe4f50da58e37f9d52979c184f8",
+      "6145360432194b948e30b8e09ea0b2b781a5b8336d6414412d86ee781b469ecf",
+      "f0089f05e5592f7eb6e8a5f58787c93eb65dc7a06b9ab9ddf58ff13eb5b9e688",
+      "6c56c115be227e9c4321651ec04798aa502a2308f9391cb6884fd51e4077b814",
+      "0f580d41aec12b54023dbe33f6348c1937651b47c93303059f9a3976b4cae32c",
+      "c343c93cd086a892642733b9056aead19db4ee269eb507288defa9c52533b1c0"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 71.33,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T12:34:55Z"
+  },
+  {
+    "cycle": 26,
+    "start_time": "2026-03-21T12:48:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "206155839486E8CB59CE80EC152074C785CDB26E363C183ACC0BA60BCDB7DC5E",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 70,
+    "celo_tx_hashes": [
+      "2bf1dec9c2c74f13df3af8d4d2071e0234feca759db15d114a59487fa74dec7b",
+      "8476f2c0cfc91d770f2ec54cf18dec51144af85e0a6c801e0f2ab179d3816df0",
+      "70ec33f15d272da97d9ea8c0f77887fea1a382a86ed25dc6a34362ef7cc67632",
+      "9122a12bdacdd1749b8e06b97e05bfca84106096755f529785dd7c063cd054d3",
+      "f3fe7c70ac4c5cd342665a85ea9e62aae6277e983e57d861d9fab9b6da186574",
+      "51dd890e5de45c9937f018eae8f6203c68201d1eb437775fb81bcdabf996d120",
+      "47ff204e59f4e8c150f73b11325e8783a444923fd6529777d04b27034ece95f2",
+      "61181df0900cbd90160f8469c20a6deffcacaa209457e244b47c2f835b933512",
+      "95bf71fabe368aad85e70c280e67a197480cf74eb0432fa6d3d986f27a9103b8"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 61.35,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T12:49:45Z"
+  },
+  {
+    "cycle": 27,
+    "start_time": "2026-03-21T13:03:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "2CB7520997DD2DD86B4CAFA369444F0B0619112242DBF23219EB446D11E86A0B",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 71,
+    "celo_tx_hashes": [
+      "1e6337caf3a033e8ddb1f6e07fc70fb124ce591007b6714c12159fcd404a8361",
+      "9ed258db38b898d83615d72c21e371f6a49e70b65cdeadd08be227328ce2745e",
+      "a17e256ae1eb707eab710f1490ec4c60af36dd1153e376579ca255e6599ac7d1",
+      "490dcbffc20585559ab6d3580698c20f7a867d7155a9c38205c2de953b5ee0c9",
+      "67d98de3f8b619723eacdeaaa38956dd03c387f17ffdbbba260dc1c5ce150431",
+      "bbbe9f7d68d9a495e6a3781d182b82c8dfa51bfb01dee6faf357c7ff3d04ce26",
+      "d403b093ec155ecbca5f6c534824545f72210940d29ef6c79a4d13b91d3b2a76",
+      "c46353f2f86aa4ea7e0a20f9140775a045ccb79289e42147cb9045b993b8d49c",
+      "dcd911094c79e5de9758b596fd999c4bd811e26906c855517bd73bb8ab1d96dd"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 66.51,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T13:04:50Z"
+  },
+  {
+    "cycle": 28,
+    "start_time": "2026-03-21T13:18:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "472467DE7F8279AF70C7A9BDF9FC0595522E9C3AABB9B72DE1B4212B26FFA409",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 72,
+    "celo_tx_hashes": [
+      "233acb61eba554e2d571da3f64b3356887c5acd00579f34d5a84746c50eb4553",
+      "666e64a088f39261409e21cd4a55bcd4e12c8dc0adf1463f385cdcfa71e4b3ec",
+      "3bbcfe933c111ffd185ee6d28fbce03efec6f0d65f2aaf56e354de83c64759cd",
+      "7f8986ba360bd047b1abdc2e0bf786a549daa4fe4869b53c2fb984aa62519397",
+      "fd1fcc6be9f0b773f3780b922d5412924328045d7a7de8e1c59e72fae89889ba",
+      "3288f38f57fc6d10f31013ac537bef18a952a7e52582f35a9ae218494f393755",
+      "381dfb4110bca69761b240cb86f094d9f096da8b75502165e887b0d9cf0ac314",
+      "c74a225d6029903e694b855acd7ee17e0631f22f17a53d73c80e2bc2e2ebe21f",
+      "b1372f5b106643f4a8a33db842c3c5b5e6cae5ea196d8808a5e33e4de2e62e9e"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 65.49,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T13:19:49Z"
+  },
+  {
+    "cycle": 29,
+    "start_time": "2026-03-21T13:33:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "4ED5B7F8FA840E29EDCC275C9635000AE5E374D10EBFA8B556F88EB7AC8068E7",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 73,
+    "celo_tx_hashes": [
+      "e93f3fe7f434604addcd08ad1a1e587be9d98501384522d1673774551cd64528",
+      "b2982bc1a048906eb4173327e53593804e779fc9aba8d78eb0c3b4cffa5ff527",
+      "7ecf659193be7eb8199b9d89352bdb23ba330055e68e91bc1fc7b1f87aae07d5",
+      "1e869d0c71b3dd7ae9ba8f057828bb68be603dce5f13334a71bb6d66e545dd35",
+      "001ef3152f2ee9d936d227154071d3f9ff46921358acecfd10651bc60f403ed7",
+      "0b94f55bf78b274385d9bdf5f07622656bd0f404c1c9bbc9d2f60db4ceab37b1",
+      "c88d5e1a85119ce28168f2edfe21996f996d4fcc3a63125c135307a238259bc8",
+      "ddfe4a71592f3ec822918d1466d710e35f3673b2ba3d6bb93a4cad5f70773101",
+      "3cdc1119084be899ef9ec18cd158d807e68193bbf37d15df6b66a74a899b16ee"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 70.46,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T13:34:54Z"
+  },
+  {
+    "cycle": 30,
+    "start_time": "2026-03-21T13:48:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "D67AECDD6924526DB553FCB376DEDF5338601761F5E8F2C178703447EA9716AD",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 74,
+    "celo_tx_hashes": [
+      "39dad9aecaa2154362b30ca57c1d012f72961d7258b918ac24577190b9151bc9",
+      "e27e0b2bbddba5fae3e692ebb9a7d3687f895a1a36c5cdf3d35994fa834b15a1",
+      "4b7416ffbfebbae90eb841b760ed897ab3e7582f32090f295e3a8a0cddfbb7dc",
+      "1674c90e133b5aab2e33bd4a01536822154643a66059bf39f50d1f602852bd74",
+      "cc48bad93638493757b8cb4964759b4f0437bc4bc0a64e781c35d08c6ebdff3a",
+      "0268e0751fe0989ed1a7569d80866716a741b6aa4876093575b8018bbf839fa8",
+      "70a61f501ed3a6f72fbe667211e45e68225eecbf7f981c59b3bec00304a58e85",
+      "74b039db4dc9ea341a632434ed634fdd4135568b07d9354f11faab6e43a272ce",
+      "b61f577a01dec57afd5af591c53647890502eb6d20c5825eb26a1fcc033a6b7c"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 65.41,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T13:49:49Z"
+  },
+  {
+    "cycle": 31,
+    "start_time": "2026-03-21T14:03:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "2397EE26E06D15686153293BCE07B42DC1FC3015967AE8FB61A8DF429992EA98",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 75,
+    "celo_tx_hashes": [
+      "255cfeee0bf3754ed61872678080e1d013394f9aad48f35eacfadabded4c5556",
+      "b73abcabf3bfdb53e6fe34d51a9d9c165cf352dd3634126139dee2570789de74",
+      "9f3738d4405dff00dea1f0b753551c56b4a0fd1e50c51292553c2e80210a8bb4",
+      "e12db086d2368b3ac2898316b406185b45970ed7d8f138453b1b3c0883a9d914",
+      "2a066560c83ed762a307571c115745f01fa3dfd7063195095ff8da61145b8205",
+      "d959e903f7e35782a3764deb0487a27b2c01a9f527371f6a383c31231ad0cee7",
+      "617c9ce8de2221ff87df65461f17c6dc1eadb09016f55f62060a6f3eecdaade3",
+      "9de8177e330021ac7eeeb3160ac55c07d9d3fed4fdffac4ad0f4c64f63163e23",
+      "7b3748720209b3a8d77bd0333e69ad20b018537f3b31d0b50eb99ba33f65de71"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 67.27,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T14:04:51Z"
+  },
+  {
+    "cycle": 32,
+    "start_time": "2026-03-21T14:18:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "3F2B29826F1B3E7D9A726ED6206B442DDC75D12873085F6AF7EB44DCE532DCAE",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 76,
+    "celo_tx_hashes": [
+      "6df26a2cb96fe1a016d6ed6640f5ebd8dea5c09366145afb8a92074312adcbfb",
+      "fd594bf46ff9b31f11f4026d4e83052e5ce8ee26ba411673a8785ed25e4bbc02",
+      "b66bb8f63b7f05d973b6b4236269b0c3d18b1159368e10ba795e3c86f7cdc52f",
+      "88a06093008f42c7657cd25e52e2e14705a91429eb9bfa7f70576e90d5b6e816",
+      "b64ddc8fd67ae1daf29b5aef620c6ba749bed7d801f2320a219019baf0d5f921",
+      "02a3875b18e0ce53d981ae707059ab27252d363d270738ba5b8595678015b03d",
+      "96dde9f55fb534d5703995bbf5229ffb63e8e367a9a4063d968a0b442d569efa",
+      "e5c62b64a0362318d92e0ebbb4761c7584af14c5c540999ff554f9c318c4da29",
+      "723dddfabef0e59cee15b7683999c6d332d07367d22b4ae0757f00981c0ff495"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 80.59,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T14:20:04Z"
+  },
+  {
+    "cycle": 33,
+    "start_time": "2026-03-21T14:33:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "B5F3BA3028728E37E0E0F827AC27E064EEAA4D0439BF4D792067838EFBCE3731",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 77,
+    "celo_tx_hashes": [
+      "2cb41a466e9cbde50958f949b3bfceeddd1243cc53c2cdfeea394b2e6066b8e3",
+      "8d15abaf88980d1e224f4ea1693380cef80465843e59fa98873a13d1256f9a48",
+      "9536883827ac6b0be975f2c1e8e43e1bbd5f13e291a8c44f1d646b066435c10b",
+      "e25423afda7146ef9f152d5a09f24e6e5c9a1f8639b51204d6691aac349a6e4f",
+      "c5f4e0dc6fc5a5f261377410b7df90ae7f4b85dd26f93046e3d4801940d35da4",
+      "8af2e18dac1b2829a31c54c4da7e1159d2e76ccebbe6281ba0b11af09b4535b6",
+      "d1c1d8f4f27fed2002e7b7cdd6bbd27b82e9fa49e9f68e4be69b331db0dcc395",
+      "dd5b937fad64ce213e319806a3effd67414d83ad657777ce7eee0ba1fc93dd48",
+      "c7ad14c1530b4a34e983c5ed4cffd9c1f0aec74e6749617048f9419f2fa9f2fb"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 67.38,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T14:34:51Z"
+  },
+  {
+    "cycle": 34,
+    "start_time": "2026-03-21T14:48:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "582BBF8AB1CB32F50D2983CEA963B55F39C9565E023041B641DBD67E5F713399",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 78,
+    "celo_tx_hashes": [
+      "5d6f6dd16de1eb52e96bb5296b241ef5e0c1606b818844622ddeb14f4e07127d",
+      "08aaa7f4749c2cb668d51708c216558eb77667efee91f3ee22459ce702ba6eb7",
+      "e6985321623123965b27dffb8ab20f50ddb1699c6bfd01a7c389e2dc3ecf75d8",
+      "bf53d318c4b9708b9a74abad2a31a99d8945a1a5c5ae83f1e4425dcda12af23c",
+      "ed1dc3a226322d299d0cf3070197ad92f1f22be4e150b550907b8efb7dcf8d25",
+      "efcb2a6cee133795d3701e268a45b6d844a9977d1400d28d8638d3365db3cd92",
+      "4f6d5561608d3066c960809b1833e459cccce9c3fe044419146e99b9fa4c876e",
+      "981a0682a8d2f4479b85f3774dfd05f24458f0227f4366f89090c016c3d7e052",
+      "a9197aa18dd0577efb3b0b401f09d97831cc22a09cd5b7307ca1d10dc1cc3627"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 67.27,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T14:49:51Z"
+  },
+  {
+    "cycle": 35,
+    "start_time": "2026-03-21T15:03:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "DE2A6E7529686FD2C5F5BDA35658153B0B0F206704D2D90D192806AD22197D64",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 79,
+    "celo_tx_hashes": [
+      "7ee53f86d30c26e6b8f8ea1bd6b34d04cdde0b82eb9619856cf9d4f40cc10a86",
+      "2911440941188a243e02680e43f03efec9da895d20fed4d40ac31fb9262cf3d0",
+      "f87e0dcd16fd0438ee0f699e5465bf1ef3e34ce82646614d2b1de936777d07f7",
+      "69aabccfad057b500408ba9c0aba128e5c0a4fb6ee23f14da36dd02e032d9236",
+      "1d8be68caf7515d18baa1dbfa355eeb8c995be971c04c3822a3a255bbd97cf86",
+      "e196ed65649a5fecda80cbb33521aa24f175603e8399e9b182aa9a0de174d220",
+      "86fdd789fd6d939b21875086a12bb16df48c7317101c1b2feadf041486b5d074",
+      "1b221992cf4f9ec785334e576c910d579ef8b224b6d3f6c7207a73a0a5cfd206",
+      "e12b1cdd3f5a02b3b70af3d2972ccbe7deaa1773eb5efd047664aa575b33d938"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 63.32,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T15:04:47Z"
+  },
+  {
+    "cycle": 36,
+    "start_time": "2026-03-21T15:18:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "49F5A9BB71E377D45E1CE7B8136FCCB16832547D0B20C64D813782820B21D497",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 80,
+    "celo_tx_hashes": [
+      "e37848f3d609db7188a9844d7b84e6a98b4c24d495332250b5ab64740f6426be",
+      "8acc66873113ebf6778f0ba99a075ada274cdf54f4ef02a94a670801cd342096",
+      "f06899a256e860bc9d459921426cbfa71af7ce6ceae29686208e2373624b3372",
+      "3360303595d591d3e4914a0b9f124d337b78123efa13483a770a8daead9be0ff",
+      "80b1e96ef6290eed23c2bb7db894fd6fdf0f195e5e286aefd9a8f240572041fd",
+      "baa20b0011cd1903fa7a596a4e4535bb24de541b6ee6f2cc751e0334a02746b3",
+      "bf1ef58214fb9d620e4b10613fc0253ee4191e4a268ab4c05e8fc36761c996e3",
+      "548b4037c2f2ec5febfe9cf6dcb68f7a45b62c6abe9aa6347e5f3f9441b2fec4",
+      "673e63e58488ccece2a3ee514396874f5950cecae67b3750356c88598e097c0b"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 70.29,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T15:19:54Z"
+  },
+  {
+    "cycle": 37,
+    "start_time": "2026-03-21T15:33:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "BC030778D32AE311A3AE73625452F3093CBD1C044FFA04C590B182F4AFF2DB29",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 81,
+    "celo_tx_hashes": [
+      "51712ef18389f64c182b0d8f917e5cb7bef0e2ea13c408c2781523ee760f838d",
+      "b195a1a5127e83821390a34335ec30d8804c933433e6490976e597a8059f3f99",
+      "bc332e44b3ef5c548e10b06fdac3caef53d37d533fa07b8a5c03d72c67d88cd1",
+      "b59ac0eb581ad8389aadad59e015ae7940c0de3c70de7578456072e03a18eba5",
+      "dfca19f3181324312455081fa243a899463622a904963cd3a3f39a0e4090cca8",
+      "d3180c7f49e4571f4ecca0655c9535cba5b85bdb66ad3d67c7369811c0bd5983",
+      "8bbd5184ff4c68dda9293c4e09ba4920d35b001e5d06c9e89a071752a5161d51",
+      "2e74beed6705d475066f5afd7ab731ffd1bd04662050a04a5929e992e9fed8cd",
+      "b3712d9ce17fe55541cd6c3d88614a0f3461aae53011d827199f9f8723f80b9b"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 60.23,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T15:34:44Z"
+  },
+  {
+    "cycle": 38,
+    "start_time": "2026-03-21T15:48:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "8EC12E5A5320AEBCBCBAD4729E8EC210CB3C1C7C5EE7C8C1B7EF34A14D5D6855",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 82,
+    "celo_tx_hashes": [
+      "744a60e7585ed2c2a36ff6f33b07a608e8730df04dee9e72bd6be84dbdaaa934",
+      "94a6b78369720bfa7d6f41277ac41f55743238c6b8ca77bbed742f67ee2c0ded",
+      "31c6236190efcbd209630c85025ea51b6f0db0e335aecac45efb85f7a07bdb67",
+      "b129287f066fdeb59cbbae0aaad4add6670a1a3fec307371211e4b6ca029e4f2",
+      "46a6c43637ea18655871cc34004e652a664dda198cf915c16e521f19dd9ff73b",
+      "3a08d9f8fa43e8b5747834656aa71941a44571a638286fa8cb5c2aa2e2b552b4",
+      "04922c1d9c79c9fc641f380ce583c79d9a53e477d8af1754d35c1446914e3922",
+      "272d8a5369b50ad30b02ab2fc0351c9cdb8c6b1a2d2c11d7531f1c31b4a95d5a",
+      "b2aca809273d74854c3d9d0e6954767644c0382353a30ed65a9ad5125d453f58"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 75.82,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T15:49:59Z"
+  },
+  {
+    "cycle": 39,
+    "start_time": "2026-03-21T16:03:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "0F7CF797F0092733C5E63835CC38C1B68CD246A483900116FCB6512711928BCD",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 83,
+    "celo_tx_hashes": [
+      "0c743e06a7b96fe77e3fba9de1f588ed8bf2dbd4ed8474ede42ac03b91f2eb40",
+      "635a6b67cbf8a1455a887751a9a870e7ec55bab564f18234900a7591e6613982",
+      "f153da92f997041a9eb911ef47f752447308c73050931eab924e7faf8ca51705",
+      "1d87604ba566718677db79ac65b1581df72c8c71432795bf2e9fb9eef879f954",
+      "9ded0c171cde118162840f24bdc9763b585285bdb788bbf1f9c657eefb4f9906",
+      "4fc8a22322acc0b6ec412b5989d5bf993046ebe29a94c4738e0c82702c1c252b",
+      "c610b744667a639564ebeb18ba6878c3244384ab3f53e8c13562297dfe352e1d",
+      "9b51ae177192a39097c217c9eb74225a11eef288d5131d8f446bbceef8c67c2d",
+      "71fcd50f4b3bf58b329ae356ce33f2d37f85d67756cc5f690649a5e7d182a7b0"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 69.48,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T16:04:53Z"
+  },
+  {
+    "cycle": 40,
+    "start_time": "2026-03-21T16:18:43Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "1A70CAA23E819EB5751F25249CC280EC2850B33476B42F88254A59C4CC88326F",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 84,
+    "celo_tx_hashes": [
+      "a2349c55fb7ac118825f3ccd6b66b22096ea08171e83299692752a13b32e6b86",
+      "9489c3f600216b98117b0975cb4130de41d0a859f93be0f992e69543fa6c3dac",
+      "f823cd6d49a4ca53d7e50a73db164851ad543744e5c40cf7372f879d012230d1",
+      "e413b021dc067dfa4dda64f18d62be4165eb315caf4b36a38c4c023c40e11209",
+      "da058e14d6902d1908c53c42b22a7efb9d247be91820925f8ba5f5036b8d6184",
+      "156fb8646e75196adee140b334480c051f3803f1969e80b1d50321b7f3c882ce",
+      "582323b4c5b29efd0fe14c151de23310aad7da13901d3892a055fe111b722747",
+      "adfe5e5f3448b9ab92544d9ee3ef95c795f8b07c346524f328998d66c7374ace",
+      "7eae3fbcea334be66916194323f1b9ce99be8059375a7ac2a231dfaecd2aafda"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 66.54,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T16:19:50Z"
+  },
+  {
+    "cycle": 41,
+    "start_time": "2026-03-21T16:33:43Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "C29311F3898D623D0E05DFCE09155A96053BCBA963C9E8656E03FACD6E4B4221",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 85,
+    "celo_tx_hashes": [
+      "77271df9929399ebb21cd0c30afaab28d49004ae083a26743e6388d43941d504",
+      "1f1f0061c89c64ebfbf4dab5078817edf5f52641465b4d6c0cb29b926a14f3a5",
+      "0b8fb44391eaa19fbe89c9b218384c9aafa3d9910e2091417b6a3b976e428024",
+      "2b9fe1f5b2bbeb502bf5c0266ea0a5617c9d9988a54b56b485049fc816cba6a1",
+      "2a5bcf21077db4ebd75639671d3d9b88eb3eb6755e168924bf6e33cf58a848dc",
+      "1b94a9cb9756f286b2867f1059f0ae691e1066ca4ca426b50798167cc33ac342",
+      "64e72a2326708f5616b49e558c4c39bcacc73e438e6d5b135bae2fac36448992",
+      "0b3f7aa8654a09fc08d00c746e810c7996b0503fff8bd77f304260ee09b56461",
+      "db4feba8fb0b245e05bf5a78097f8b255cee28d40f01a582fec58d60cbe48f28"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 70.43,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T16:34:54Z"
+  },
+  {
+    "cycle": 42,
+    "start_time": "2026-03-21T16:48:43Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "DECAFCF9E6429D31B266B0891D7F895E974A59972EEA877448A3C5D88B9248A9",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 86,
+    "celo_tx_hashes": [
+      "e162f542142d0ea83419d417e35724015b4e128a95d54f498566a85c8b56a5ed",
+      "7de8b544dec9e32eedfcbb5a2d9ae8e9c5ebb3dd7c7161fcb87472ae394cd129",
+      "e6f7827f0009fbad837d926a5aeec8a1042acdf922a482834564f3e3eaa87563",
+      "053a203a6f8e6ba1cd2f4040c99496cadf7307d1898637ac821a376c78bb3d12",
+      "c546a9d3c4525db206a51b181403a91f2b34f8b5b6efec6fcc299d39d40ea632",
+      "b4e70b9f058b6c8f045145bd67d075d96baf8df667ed387a387ad6774ad071d3",
+      "ebf85cfb2ea8e7534eb044b5c2ae8d8041c5a605bc059cc76398c51e90d83ddd",
+      "e998138dbc7ebd9a48c804099d1e21f24ec063ec607fb5c35f32b6bff52a4ed8",
+      "4f5b7ee229fe0d2f7750d1778cdd28f9e4acd977159f65fc645676631f37e890"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 70.46,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T16:49:54Z"
+  },
+  {
+    "cycle": 43,
+    "start_time": "2026-03-21T17:03:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "F56834DB9A06A11EED363C13B4358D9BC3B20CE969CE706AD5CE66C2B475F7D7",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 87,
+    "celo_tx_hashes": [
+      "14d621039be4757e36232ecea73ca439662e73f30f95fa1c8cf4133991ea90fb",
+      "ab63ddb3515f4b969a942e47a511ac642110fd65d915be2405b9093ccbbae4a9",
+      "979a604fdeae0e1f0777c1f198dcbfe8b7b375b3bdb5972b6c1c03d6df22db78",
+      "8ab0fedc41884f083b51b5b4a4964e4ea60480d2238ec5558155f032cb826c52",
+      "98dca4cc7bef8270443f1077f107cdd398680a17928e01ec58c451846b991b6d",
+      "209291df0c1269d452ce1a2508e23b218f84bc793e72507a302108d0c6613e55",
+      "e81f1bd5ac12829d2e6b3a16b3203597555d420629d59e207338899862e16362",
+      "78c8871f2b9ec9e25b68f8d88783a0eca770eeb813a702913b3f19959c0aafd3",
+      "6aff002a24ab22241e9e41265568265336c9f1da465b7742c5b90b27ad20c13c"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 74.6,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T17:04:58Z"
+  },
+  {
+    "cycle": 44,
+    "start_time": "2026-03-21T17:18:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "A72429C7F3CF0984C35620E279B557A2E7BF065C9CF05184C9ACF9DDE929DE1A",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 88,
+    "celo_tx_hashes": [
+      "c9033084e822d38fa80fb10017ab777eab8502adf476408e9197556d9a8afb4c",
+      "8abde836e1f2f1ce389bda786ad90aa068c20b0d11f9729bb3f7ad3987d51499",
+      "f020cbe0ce061626d0fea32f26a661477e5b0885b8c11e5fd1c23c64c67dc8dc",
+      "3844001025e83ec9ee5f16ab31265e2b761ca2a1e63cb85d28160aabb6b3052d",
+      "d8f14fca637c842e32737e82ff7951d8a1053ad8347ed1353df8f4beacb4f145",
+      "7069ffc997b0e2a422c7d04add83c840363d6fd44db98a78d50c2d4eac31db78",
+      "e29560fab13ce0fd642a9e2f65687a3b532f000255dbfea9cf8c84d839b54dbe",
+      "6a5c73bd58159e2e0d77a9b2bc928fc867785536334453575d3b808856ed52cd",
+      "9415ccd88ab4c5e741ca0aa9dd6976642aa219e891b8477c86e84c75381e1cf2"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 77.56,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T17:20:01Z"
+  },
+  {
+    "cycle": 45,
+    "start_time": "2026-03-21T17:33:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "26D2A3BB511BEB12772DB5D70043CB7E9B8E913E6AB462D87A5A544B315644FC",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 89,
+    "celo_tx_hashes": [
+      "101af70fccab10f91209117c97ffa23e6a68fa82431f604bffb072c0ec11e6c4",
+      "0bdc47a9af9664473c26fa5e1e9a316ea518647c164cd5183742421970f5f3e5",
+      "989a9c1c7b92a16bfceebdbf1a8739fddee22dd79df5736762c8c8270cc648ad",
+      "82e1d99252595aa06c868ced5c4b285c9d7f5bba4b60970fe7e9a1294ff1fbf0",
+      "2eb07b18de1ce1a6fc31ed9de72e05307ec48e54cb92bddf5907bab0ff56411d",
+      "63b45023616ab51b792a3b40056ba200540945da60e80ecfa82a40b3b8c5ff44",
+      "88c3d624c22f895fbbc173c5af37af947d2bbad9d174864a42b4c7394a515b30",
+      "99635e33f8ec2ccc265c09c6fe257d4c45015c027d35c09ef3589fb40ccaad04",
+      "97e44780e816552794f73d30d489d72316b03d9d5c936062167c27acf40785e7"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 68.12,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T17:34:52Z"
+  },
+  {
+    "cycle": 46,
+    "start_time": "2026-03-21T17:48:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "E3829C8E3A0146AF3AA9B0C7089EC6D080BA40B4DC5F2AA37170DC212B041B27",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 90,
+    "celo_tx_hashes": [
+      "25a589e98c9c06aaecf790fb64d97f849508e85697186408ae5e97b0cd64d066",
+      "b4176672f22c12087833371cb91c59559813672bf6b211ceee5a83525b441111",
+      "b8b125d098f8acee528ba5f7687b3067a520738d0106138ed40b01878cd31420",
+      "5679676f7028bde9d6806df75e4a7aa208bc69378220430dfa20a0209b21c98b",
+      "8275abc603990a491a0bcbee6e36f15f1e05be7d11b8a6f353915e433e1320d4",
+      "0d010771cf35e46716de5ea65c0ab06fc9481371110ea5b738dba6cc83b16d48",
+      "a29630699104c43fb23a150f94385554170e4761693c40e75ac33cace24bfd43",
+      "5c2c81df9f00bcd71f3ac1e3b73b222a9547a3127561df18a67a94923c3b2ea4",
+      "9558447cd9cbfad69406c4eb32a6e00c7be2f01cb64e731c967240b0cd0d3a63"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 61.07,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T17:49:45Z"
+  },
+  {
+    "cycle": 47,
+    "start_time": "2026-03-21T18:03:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "2D5446D4AB90FBABE0BC6A71F2ED3ED2756FBD6EAB0EA4FD0D9A0D6DC6760100",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 91,
+    "celo_tx_hashes": [
+      "c260f430e00f690698f32b207c9e6f52c20a8524e7fb9973af16c83d649ca7c7",
+      "5dbf60cdfb41f3835a0250e25602ec4fc56708070b50113e3ea1da650ec1c92a",
+      "d3732584ad5c289892354e8b22607e67f88bf0ca533004eceb08b682da2c8e4e",
+      "f299469961d087f8a234ab107dcd7c3428e3082e6afa3a3fb1b265d588686f64",
+      "8f138f76db7b0c6828b239a3a0a95493d2830978b53df72cda6c4fbd1305d03a",
+      "8b9b18bf101ee62380cf70f5505672319c8537483d90e545122095f06ef0f413",
+      "7de6ba8b654714a2bb30980dd96701698b8884cb4b66befa85aa4bb67efafa88",
+      "81bd52d744d503d1c278d62669aaa8b8c3594030ebadc3bb79d9ff396e452597",
+      "abaf096ade7506c31730164497ef37a31bf7f93185db24faa99e1eb13ae67161"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 66.2,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T18:04:50Z"
+  },
+  {
+    "cycle": 48,
+    "start_time": "2026-03-21T18:18:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "209ECCD53409EE4AC22297CF28EFD548CBC58F01FBA510ACBC01BB71DB3C0EF0",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 92,
+    "celo_tx_hashes": [
+      "59a29a37262d84e4ade9a81e5bc59e22fb0039fb711ba980397d439943fcb8da",
+      "51170d0fd9e0b0c5ccf12b11e9bb65f4fd24c279d58f764a4fe4333aa2dc3144",
+      "903d29c3fe7fbaef147f0b556aa916a75919800fe27ac15691325dbab48a887f",
+      "da0a9b32f8eab6b69cb549c208465d86fd378c352002ebbfdbd828167ec12069",
+      "6e777573b80c6f02cb6c563bbbd45695555625af6d4b6505b8cb122818bb22ba",
+      "97ec6ec06b3e21bad52d24ac76aa26797efa8e2df040d1b835337c06e0dab13b",
+      "fcd03dbea01517b71a980f334f99825cdb4d9c665880f8c485b46cb790a19e7b",
+      "0a924c6121090a466d2c548b0a1bc1594be4056587b694d5acf288d8394cb731",
+      "af3db55623dcd88cb3748c8d604a74d1c7bd323646c99d5522e18c4c1cf3eb1b"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 75.46,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T18:19:59Z"
+  },
+  {
+    "cycle": 49,
+    "start_time": "2026-03-21T18:33:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "4E011665011D92C73D626B0E77AC30E65AC0BF30D7F004CEB1A3053B5936DF22",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 93,
+    "celo_tx_hashes": [
+      "38bcb8d37df3ed5f0f4092756a5c70e2eabc4ea0a078bf09164ece2ec127ec6e",
+      "a01047fffe4076d9545b9af66fc9d3775cdf844ab503bd230ce83f192ca4743e",
+      "3fe91195375f11151e0b417e17b80a45d7bd18690105e870434c0878f8a12ca8",
+      "15882819a73c2772613f06f873f7e337b3222e105337fd3655bdd7337f7595a4",
+      "22ce2f82b22a41d243fe40855cad0a1be28d14f55e9b7ab1f9e41dd9ed86b9bd",
+      "89856d393c488afb6a28fa31185f86a50b659b1ffddb030907300a13ba799a93",
+      "e47c6db41391712b6b1e84e6a2f393f8f2438224a44a91f46b75dd62b0ed48b6",
+      "39579c048edee5e86d7ea8c2bc454ac8d8dcfbe40350850337b3401eb4ac9919",
+      "169d62b4d25d117cccb03cdf984163ebeb5bc240ec00aa81670c9e759d26b8a3"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 74.49,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T18:34:58Z"
+  },
+  {
+    "cycle": 50,
+    "start_time": "2026-03-21T18:48:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "8A322E28D5CF245FCFAF07A813E0BB58B8272A1B42BD8E5DBD7DDC464A25EC01",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 94,
+    "celo_tx_hashes": [
+      "38797fe60cc11ce353ff38340faa107b503c5fc9a1015ee808e5dad9751fe2d1",
+      "5e741592d526347c0e990039e91b83737826ce823c9a0cd5ddf4cb1b67d249a1",
+      "366018aa99e9fcd1c1023fb7c374b8742b995b4c1c004577dbcfc090926147a8",
+      "2a28a4f3824f72294d68db9319fc83cc825fa1f3c5078f04151d7fab33e71110",
+      "ed4691fb22ad5a75f554f18c8b5c1f2c1de6770891e1c9c8279bf72efd60c49c",
+      "83b56901129fe1006d759c728bc36b8ee8b2e58a9799e155dd2c08568700a622",
+      "adcfacc00ebab9532e7e270e95843be1d0b367df9d819db80d928ea584338694",
+      "ec97e58eae7ad7c315cf7e1ddee6e2671647c9b65f1ae47342fbfa044a78857d",
+      "201a13332847774686217180a5755eeed88ab7a75f4d2627c2786f83ef3fbae9"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 69.12,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T18:49:53Z"
+  },
+  {
+    "cycle": 51,
+    "start_time": "2026-03-21T19:03:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "ADD7AB9EADEFB93E34A165A0C974F619E7A19E876F7596CB222EB25F33C3A80C",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 95,
+    "celo_tx_hashes": [
+      "e70053addee10ee29f78209ecf9ce64ca84eb44e32656080019252b4741b2e0e",
+      "de7007539c8b1a23c8fb841f10dbf663468f0d12851f4675af6dc806173e6f52",
+      "a26eafd9dc90067278ff98475d4d49aacd4dd1a92ef9d0a095b8031cdc5e698e",
+      "9dd96547164ee95457ad16b7c2e0a65f4a57c8a10babc7459b73b6342509d60d",
+      "21be4faf13d5071895fccb56d1c735bdf81e698116b2155eec27417744f76f2b",
+      "7d3fbab921252eba3b4c4dec0309b031d17fa03bdfa02863baaa641dc6bace3a",
+      "b53a62971732a358c66e66a4093e516bdac35cea6408b0d6dc7426da0bd8e832",
+      "157c2f44a35225f139ac8d526e7ae4ce9563e99b5bcecf1847b1d0934ab3c386",
+      "82d841f97ae90e37e542b98a6d7e9d6a1f3932ce1fc0a5c177bd81aa34964782"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 63.28,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T19:04:47Z"
+  },
+  {
+    "cycle": 52,
+    "start_time": "2026-03-21T19:18:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "C1A8F5C6BF177B00CB939105E67B21678F103893961F05032FC8091C1E76BA1C",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 96,
+    "celo_tx_hashes": [
+      "72ea731b78c5fd4612ba0abd87a1a192f1573d85510381ce98fdf00e939911c6",
+      "d78816c6c40f0689ea8bee6461a4376367229701b9d811ebc304fcfcc3ac5601",
+      "a3a72203db933c2f736b5f191b3bba3ff2d2da7ad08d0694dbcce922bb4859bd",
+      "84e591c4fdc9ead4b3b65f245f07a79720575e111fc0a8f8990b20416c7c9796",
+      "6b3d1a6131e087ee61ef89837bdd6c7dee8ad6692e2ecacf831cf87b9adc921c",
+      "1097e57b5a7625bed8b30604874c4018e8877192fe75e9ac08ea429d11a8fb71",
+      "a261f429c3213f0d7cba34b1408a208449471458209bf1d0200315ecf9054a86",
+      "b62a3699adf68cd7816ab96e7a8364ddbc070ca7979eaf8de4023d41625571fb",
+      "1cd79425f7f55c75d2eee05d5806589cd34ede9fd15907faf0d14eac612bedbd"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 71.26,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T19:19:55Z"
+  },
+  {
+    "cycle": 53,
+    "start_time": "2026-03-21T19:33:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "6E6E4EF2E976CDA46F3346170CBA97909F3CF36DBC268B40F71B186C08CF9163",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 97,
+    "celo_tx_hashes": [
+      "5dfcd52af70fbd9a584bc4383d43903cb8e0fce16fa860effff6627955fb2d14",
+      "ee3a740485a519f58a61ae7593d95af1a8ec0e97e5f0bb3e494a6c56f47a8b07",
+      "e0b3b180949f06b59a8df3a67c3fc79d2899d18235ec191f9d95a4ab837e20b4",
+      "de017f2aca602096741c38bac74990808548978465c2de3f999470bf2662ccad",
+      "7be79d72830e8609e0424ba7d4ed2f595f18f69d65a42e20b5e64c1f74a1ecd1",
+      "3d44d072ca9c0a6490299bd86781b6f9be92a1f48ffb20c975c4491859c91599",
+      "6586ff808fe8d83493c8dfda644112ab5d319a046532ecb2c118386349b5d4b8",
+      "a41378d074034279cc1598dc77daa8ba1bf9dde55cc864b75b9fff87309b929e",
+      "eb75252825d10739760f6aa57a802d4d294606c83c87c18b405e4f5aef5e9476"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 68.13,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T19:34:52Z"
+  },
+  {
+    "cycle": 54,
+    "start_time": "2026-03-21T19:48:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "E477805EEEDD9CEB58E06ECD63E2CEB573D89BD349FC867FE9C4F5441AA96F4A",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 98,
+    "celo_tx_hashes": [
+      "c23b5e2ff5a5f189a7dec5ebce131f47b96e595341e80e4fff12422067b8b2e5",
+      "67a1281d07e5394a762aff7d4f90c3cf0ac03495cf5c4381faa2bc0b80cc1d95",
+      "2278d30f4b587b56b130830fd5f946b939e3547e1cd0e3d95e468f2cd8dd4d66",
+      "3ccae8c8015272226d699d8a6fccd22d9fa451b1f22e17908461c3b713fcbe15",
+      "69620d4185f42e83b18eb3715a2cf55f9f8081faac4edb7364b2028b8a217d3c",
+      "384265cac846a015e7a91fe21a7fc72432952cba85778e40bd0e7a04026ffa13",
+      "5f89b4ac5a72fb607c9940bf8ab4355c897511d68d2028a9c2ced4c03a865a89",
+      "2c5f18faef8703421c7fdd8b342a332b74ff5bb94b916e915ac5f78f4d952dea",
+      "577a3d6cdd9bbcfbcde6902a4939e81e26857ccff795e5012211321daed9ee02"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 68.14,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T19:49:52Z"
+  },
+  {
+    "cycle": 55,
+    "start_time": "2026-03-21T20:03:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "4DE8EE700C6A59EEC134D9F5BBE044E80D93048A8B234CC08035280F43DEED72",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 99,
+    "celo_tx_hashes": [
+      "cf44755d5b1a2edb7cccc410505e4d753e4b54c4bc5dc7b0c95165241d487254",
+      "30642c2287191883c4f191db27eaa260095a51e16ee73eca1a1f9e80116ce920",
+      "b816b913416215f4e2b4558ce3d4a0e3cbe58ac194b4842ce353940ec019f2b2",
+      "b885344be2b7c516db488be33c7dd094a4d31b2dde78dcfb1ff2b97780510499",
+      "d72486de3ee90869753e087d91fce1afe1582bf74c08f4c79961347f5b6d62c1",
+      "8e5b0b565464d652ab21506905bee0869f8d6b6a1cb9fdc1d25ea4d69d4e65b3",
+      "0db1a782317b44d027b10fa43c52daf3e75b1f6a1f2feadbafa8b7b19e792207",
+      "be975c540f551de5f56afaf9238b4e72ab618e0d405a89963abbdfa231fa8ea5",
+      "4a6cb8310264ab56661853cbbcc4735dfbea00f4c9522dac74612319f5d63358"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 59.03,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T20:04:43Z"
+  },
+  {
+    "cycle": 56,
+    "start_time": "2026-03-21T20:18:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "25C44B1F45D1D7C6988E44A5B76D15B4F205EE9844062FC17AD7FE2FB6D60A6D",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 100,
+    "celo_tx_hashes": [
+      "236a7a2929e3f155a96a4cd20cf70f4b2f0301f928023188c606bec42956febc",
+      "46ce89592b5240d33d0b48e85b63e683bbb2c19a733e5b7243ab810949e4e5e2",
+      "0e73b877f6a9e17055e4e36b9d75f7e8938725d62cef5aacc3b8a37bf754bc68",
+      "5e41456295f5077bd9312726f92914575cb7187f2cbe0b225f10f828a754baa4",
+      "a3496d16ffb845541e21132481dbce784ac3bae133cad451718e72fea0277f6b",
+      "f6e114f2ec7ebebaecce51a82215df85d74658fc01c0bab3c3fe3a260116557b",
+      "3696469d50c416df801f68b5b18428fb288c2017024c799fcb74b711002ad848",
+      "efab0538246e314ff32d51740b55adf2d997ac6df386542e152d74261ad871fc",
+      "3818c7c747339f70d5c4f1ba390b7bebb7dedac1a7db43546987a406bd53edb5"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 65.07,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T20:19:49Z"
+  },
+  {
+    "cycle": 57,
+    "start_time": "2026-03-21T20:33:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "B9E4A053802B3DA5916EA2E83499B832F7076F46661D89EEE512F1A154D10DE9",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 101,
+    "celo_tx_hashes": [
+      "55503bbb8dd19604dd52100af966fc8450033ff4edf14ec678f5a47bd0dfe7c0",
+      "e77576c650c90a916044626df5ace2d8fae1d9f6e029228ee4153dfdc0c8a0be",
+      "44731685bea7ac6cc6e0789a9ff7dd140b4d8ee32b12a5a15dc1d15b24467da3",
+      "6ec817488b658ced84bb76954f5b195a84e6115b01b47dd10aa5a611debb8603",
+      "d3bac599722351bcc6b3c5b02465b978d9a34261ed3398ac7fbd5bd677657f81",
+      "75b1c806e25a76cd74e461e40cf71046752f39a1ce1237376bfa38d69af36b17",
+      "5cc907d601765c3045eff441a40bdc2e6706acf5ab563b2a0fc7991e198ca07b",
+      "e94696dae46118dcaaa7959542226f2943b04b3cf9584608636c2403d8228815",
+      "cd5becb467ffd823dd26873750ea6174f4fce2fe614cf1d321c70756cfb744cd"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 72.25,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T20:34:56Z"
+  },
+  {
+    "cycle": 58,
+    "start_time": "2026-03-21T20:48:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "63BF073206CDE74B2D1705DC6E9FA0E48C55D729B1C943CD97E80CB35E40ECD1",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 102,
+    "celo_tx_hashes": [
+      "64fd0ff69224405f2e9c517d7b2dbad76afda14929bdf0b810f202d11d729680",
+      "6eba2591fefdc70fb153a15a2b0e6bf2bfe8f710f4853501737445540b165882",
+      "6fca86b1e861822b07d3c39d8910b07feb1fc15189420752b1687976e854df20",
+      "a959d0eb12eed04b9ab1c14a55669f26a264c876419547366148068cc141715b",
+      "105b8d868f190c1da24e682c50d802bc9914c18ddad1265094f9b116fb5856f8",
+      "65621866fe3905fc486daa2ff1526cdf43ca7a716cfc836ba453dcf4b7c79417",
+      "41fbc8ad4bff00de66ebac52ea9c7f359afb08cbdbdcc7f93d5422119ad0ae5d",
+      "381c9faf7f9a73ec441d9d0ac4e6ad5c0424df75fcd1b3ae63f244a07e7b7a68",
+      "b8dd4baf47cb7d625d56438ce9ba60571b0bc014403f58d7f4d4aef4b7bcf336"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 69.06,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T20:49:53Z"
+  },
+  {
+    "cycle": 59,
+    "start_time": "2026-03-21T21:03:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "BBEBF2123AA8A7D316392AC79DE0B62D46CB00487B6FC9E8F47D78912A579175",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 103,
+    "celo_tx_hashes": [
+      "30b07e40b310d4a975ac761442c3d313954fe27933f1637c79473650f205805c",
+      "f8405c7b23eab5fef6332d069624f9dde89072fa0b2a6cd47e5675e57ee7281e",
+      "70d4d9a3b0e3f88d27042d365c0ee95d67c49d3e343bb797892b6d1580ee9b45",
+      "fa56c3e88fc0c48c23041d22abeab92b39dd59dfc3ad8bd1b2e8a0b839dd5469",
+      "59cfc5095fe366f3d6dc62a1392506ed9192af7875a37ff0a8993514947abd03",
+      "dc2ad9384be824b32aeb4582edfc355e2112b5ee1233ac10afc7e3299040efc8",
+      "e8ee8c13388e9920806fcb093bdba2bd542bc4ca0747aa3a8192671b9e2c0477",
+      "9ac068ac0131bc20db3a860d394bf11bb7be6ea6fe5422597fbc3f76ea505268",
+      "4469dbbe2ce8e32a97501a703e74365c6b1095cbc599e00f1585c892ae24d8d1"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 62.96,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T21:04:47Z"
+  },
+  {
+    "cycle": 60,
+    "start_time": "2026-03-21T21:18:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "F286E0BF70290DF06C70EEC91ECD870D42FB5645A83EABB27BF5C6CDDB2FC8BA",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 104,
+    "celo_tx_hashes": [
+      "2e519c3d9ae8cb2344a607169197c2e97c0a32cb071cc3fcaa5a7d6e4a45d8ba",
+      "095b1233f1e3058f761127378852321d5654c3ec988d08d3d901af852ead60a9",
+      "1445b053ae7bcc8a7c2c4e70fd1ea892d3b51a537fd2a9eedcc084a36cb52a3f",
+      "884dabb183ddf6d8700e9822e6d9ec39413aebcffcd396a6c2ed9733edccbb85",
+      "2d6ae744ce4912c017683da37147404aa2eb0bcb6ee216111e638d86f772e652",
+      "a4c4e64027e5a0cee46d3694c124eca82b851fee230febf00655d3fce56b2ff0",
+      "c83fba5d4a3471c0f3f4acd0b4c779c445ecc1a68bcb30a302cdad945d652cdf",
+      "7c5a811c7aff0000eec663392105b6b014337b7a6437002a3e9688bca3af540b",
+      "9b6089cce88c3b081e500fd1b5fbc6d9aa80b9aa2e7012833fd9e1dc660d1f1e"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 60.37,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T21:19:44Z"
+  },
+  {
+    "cycle": 61,
+    "start_time": "2026-03-21T21:33:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "724824E292581B62E75FA8F2F330AA124F1BEAD9ECE9E7224B7334FEE8B50350",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 105,
+    "celo_tx_hashes": [
+      "d9cdc62f43ea55865f27db6d2e4e510a4ed27574e4409e8cc1f66137e485cdd3",
+      "d42acff486a2a3ac07f699b06b3c86b6faa8d437afea0060119c835e3f177788",
+      "7b4ad823e0e1f780fe3060085deb8064fa9d4b1f350beed4e3c340be403cc643",
+      "9fbb9e4941e5085c88f2e093740cab3a38547bf7815a6cbd25ecd067465eae23",
+      "94c9b9308407a16d360f3137398d7b5e14b6d7c163d6735ebbef0281482c217e",
+      "b7228847a08fbe0f44d3fd4730208601aac178988dfbbddc18bf0648438637fa",
+      "f2e52ce9f0a9f7d52d3d8f0a4d7878d7b1fe6d065d8d47c19ca5cfe496d237de",
+      "451802cdc88d581c5242da24758255624308de7aad21f4cd433bea7a13294565",
+      "d34d4db28f5ad5c5cac804bddc3a8df352fe93e3a14c76d4e37a2259730db59a"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 73.21,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T21:34:57Z"
+  },
+  {
+    "cycle": 62,
+    "start_time": "2026-03-21T21:48:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "427C972DDCEABF17997733E4B8039AF8C23799AFCBD1EA42DC92FFE4107986DB",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 106,
+    "celo_tx_hashes": [
+      "69ae547835aec088dd0d74932bc814a4fbef27714f4d2a14b14b21ef7c483dcf",
+      "494467bb6be813169809bb3af3cb24b3ffadd4eb3739fedbcceb4d8764e06c08",
+      "f1acd3f9272ff9aec031a9a1a02fd12c932aa66c369e715f74fea5733ae4d6b1",
+      "0809394f5cdaf3d8a50dd93a9ba3b245e46abdd414297b435afdacfb10ce89a7",
+      "18ea5c84f233027714bcda18c99cb0d6356647b302c82653bd1b5d5686b4d3d8",
+      "f966a32693b292826085703b561e406220f8a0dbb02ecb62e0106282f5f71db1",
+      "f9834ea072e1247116d16e5c5c3b5f405bb5a8dc37cefa035f2e40597fd56896",
+      "a30c01da5b2e33ad0c9aaf678f81e929cb9d718019d9671263322ae547932c63",
+      "570f007ad85678c513f727ecfe7d1f004deaf76f335a04c59a97521d5b204371"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 69.96,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T21:49:54Z"
+  },
+  {
+    "cycle": 63,
+    "start_time": "2026-03-21T22:03:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "E3D5B973AE632914D4D7CF92C00695EBB1AF567F207511EC13EDF87065304E19",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 107,
+    "celo_tx_hashes": [
+      "647965696f0d3c2074a7300305b36cc4403a45d482bd0027c235e50420a4dcc3",
+      "4daacf5e3f3621d840e7bad5e6f0c728fdf70eea385371e029b2f61340226817",
+      "842a697506e760d6a362a2c1f9aecb57896710dcb8eac2f130c82fd2877349e0",
+      "173f579e5c5b498cc6c061d4c5dc258eed70d19d082dac6ea51ba76d8c342b80",
+      "63acea33be00e3199f1c20ee42585948c72fbf22f50c321fbc0f18326a5850d4",
+      "38fde1f159e10a2b3ea947fb768f4da8fdb0c6e1f89d043bf45987967ede1a7b",
+      "0bb548164c9570dbbdd2c139275100f0dafd93cb5ad735ff5c7ca3ee04ccc314",
+      "dae2c42443e905448063c44ce5c16087ba236030cf8c2ee69ade728fb8b75491",
+      "e6aec6b75e1f7de5c1314eb5142c09aa04659ed769b7813a15117e3e8e971a6a"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 71.23,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T22:04:55Z"
+  },
+  {
+    "cycle": 64,
+    "start_time": "2026-03-21T22:18:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "873766BAFF2699B111EB7CD98C79050F7E1E04E1FBAB4D8312831A507E00C40D",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 108,
+    "celo_tx_hashes": [
+      "ed952963b0566c0a33da0569fb3b61bb3a283b0d37f4d7a28ff73860c9323572",
+      "dc3ab814a003769fb06433b009774f088cf202f98492d9afbe78b55dfcbd7312",
+      "361f35bb733f668f2596b7cd32e36937027e09a2cab1f82bd7186796ab9ea780",
+      "ea496147bb0449452260e76c36192ad8279eca81cf3daa47f25062b62702b558",
+      "550dbf16931c1b70bce4b865bb9d300bbd5f7f6b427c516afcb69529d0e66316",
+      "3fc22947e847ac246871e530d0c5a0993f18fffcbaa8f6d8ddb99e6d16f287f1",
+      "3c851b6444a7d8ce3da3aa23c42ff38dae1562e25245114225335cbcc7854165",
+      "c791f2fb689574e7ec0b1da764baead3702cc8dc07081a11f7d51bda3844e795",
+      "1e6bbd87fd5e021b09c8504241a8659d3fe364247b99b8846d1fd06f8a6999ab"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 60.13,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T22:19:44Z"
+  },
+  {
+    "cycle": 65,
+    "start_time": "2026-03-21T22:33:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "CEE1BD577DA614A4A0C3B7A9255AF0C2910A74F3B17E2C0CDCFB2D2A2EA1FA22",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 109,
+    "celo_tx_hashes": [
+      "8485b89374ea0d0aa447977391fc9122ef3322f588390e398df4ea5879448324",
+      "1441fca4a3bad85e71cbed1fe12c7a07802cfead7447249ef7e1720c6e0c0c9a",
+      "ca8f8405bea17b526e98113e6de8973dc8d9406a0ddbac6c1fc45d30fd98a34c",
+      "6fb5d420ece9623cb0ed539027c7b87ab1351d71214d89c6fa6982e4cfc921dc",
+      "7a8a8f6faa0d01a3ae8a4b0f0402007bca89eb5d53f45cb649355e151bdcc1d6",
+      "e3f84fd00881af7a372e1d47747864622899ef4108802320807acaee594e296b",
+      "dfb5d7791eebac6c352dc838ee9159d9125af3922605fb22f1ecbfd853e80fe1",
+      "19024770041ca31ac30792b59b2bd4d25e8c39da0d9efa0ba8a7cc9b9e78e417",
+      "4e64bf494ddf196ad36f860e57d7dd9284cd3bfe7b7ba22b017201f906ad7191"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 66.08,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T22:34:50Z"
+  },
+  {
+    "cycle": 66,
+    "start_time": "2026-03-21T22:48:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "81AC3C6606A7FE11E98F9F69A670F10C40E2454A4C25439D4FADC9216D1392B6",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 110,
+    "celo_tx_hashes": [
+      "9225183d550247789043adbe8f481e5ff1cf2da484e4f34df97a535343559685",
+      "bf1e08542316d00a3334de89ba7752f7bfe0decd8f6baab3cd2c2f8ebe8a4ee6",
+      "bf3d46c3735741021e5ef132c5961624f58607cfbeeaa1b709fdd3a82f5d5660",
+      "79b2d7f84e81b7f049816430f9db305efe9d1497d16a115cf1d98bd6a6520526",
+      "e3bcaf0d3a7d5984e8fc3c3ef3b0386fe142bd57ce871b765d15e8f6ea445870",
+      "eb72b8b080671d6562f2e0d61b41c6861bc06cd2b4dcb6ba7328eac21278e68f",
+      "0e714c4aff195ecf4a228f32975a0569138b171671e913427331be598b930f9d",
+      "b1e53c9192e3e61688f637155779c0f76426c40ec4e43142e0e4ade6b8df698f",
+      "1de6ef7bb6e49af9e820fc033385c0a816fbdbafd568a4e5bcc9a1dd8ffe2700"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 74.38,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T22:49:58Z"
+  },
+  {
+    "cycle": 67,
+    "start_time": "2026-03-21T23:03:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "2774DB72C3613422DD0B1277C6022962D4103E46553C2921A087852C2B90F20A",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 111,
+    "celo_tx_hashes": [
+      "ac56e7f785f387d998cc2bb213aa0beb373eb21f50b882660266aa852002df08",
+      "fdb571c4c5d67b0733c8d282a3d7be6aa2add08e8a78a5fd54072844465935ea",
+      "4aa157c02ed4c0ee229eb4321d8b1b2ae3dd2f3971e0140ca44c79c43cb4fe5c",
+      "b6598fce438f2e0864f731061340101b3ae5cee3f69d69162eb59049f333590d",
+      "f321ae08b27aebfda57d4a03f735cfa776c3687e362cefd0d6b5760d24d249a7",
+      "a13dd8ef27d5f1b8caf20ddab47262bf73cd439e6766108515b3d5b2a2f8cd77",
+      "627dbc49f7bd901e680c5579feb1ed88d11f90762a843044965afdab8555b67f",
+      "c573a59a955660a9285d3f7bb924e208d4e147c09fef4dc65afd44a6d52b4671",
+      "63e35640aaa9f23f74cab6d218fc11b9ae45e494162dfc5dfacd17c7c0273e71"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 69.06,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T23:04:53Z"
+  },
+  {
+    "cycle": 68,
+    "start_time": "2026-03-21T23:18:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "999D3B0AE2FD2DA0FF7293276296524BBF8B1E2F4FF813E6DE24EF2B5801BC77",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 112,
+    "celo_tx_hashes": [
+      "de9fe221b26362671c8be15debe801cb3d3722a30e6756b46e77149e2132ad39",
+      "717d2f83880d15ae60bf0e6103d7792fa6c1316d4680f2956367df83764bc948",
+      "5fd3ae8c33979b551e817e29957e1f6b20a747b8d1f1c880cc808dbdfdb2cb14",
+      "0b1a82d1420707c921c6c29420d906a63486658a91a6cfc2081f781966f9be5d",
+      "09b93adf3c5bb0539a1224962758a4aa656fbddb052febecbeee88e2cac7c161",
+      "a18783170ae054982f8488c3ae2d1b3a15dd08c7e0887e8f0151ac57b43ceb76",
+      "35fbc268c901264b8586740db273bb4c6f22ca3f9cc2ffa63b26b21010270643",
+      "08f72636c64ce2957fa930ab094b139783fa5d67f5bb54974c22ce8513845bff",
+      "0757c88c5ca0e0e0bfcfb28de70d4706270cff5c98440dbeee62409a4fa3ceaa"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 74.28,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T23:19:58Z"
+  },
+  {
+    "cycle": 69,
+    "start_time": "2026-03-21T23:33:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "CE5E8798E83AB4E5B1189B8EF06255A05D27AF53C9598C83A7633A0B81C00E44",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 113,
+    "celo_tx_hashes": [
+      "67ff6fd4435ca61b864158e2f32a800b13cf519cd98b3fda79e4badb186ea9ff",
+      "6296cd07d0890a22f58e9405020d8eff6e65140e9038677fcc823ffc278d1452",
+      "a993e4788d576ab607b9b34520ba6f2f2360dcf60c3d9b88089947ad5e5a256b",
+      "4905c527f1d8304ec2c2a5063e33f7ebf586ddbd629935ceef614d3ddf4e5c5c",
+      "2302e9d0c68efdabd7eca3804ed849117b9b6939c66a0e9a9507b79e2e24b7cc",
+      "3cd9b53014e107abbb8450f51d49b55305e85ff398cb6ce7310b2f88095b659e",
+      "d5f51255bbd1d1117d20f5273a3d0c9e54567aadb7aef444e5e33c836d4305c6",
+      "1adf3a57d11265900d5a441a42acbacf85b722b03e32ab1278babf957b47bb4c",
+      "3a5032ac06e08c69c79e80e5d18d0b46413a55e926a5200177fbb6fe83992785"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 61.92,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T23:34:46Z"
+  },
+  {
+    "cycle": 70,
+    "start_time": "2026-03-21T23:48:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "632541E0242494BDBCE00172A45D461FEDE4A0B5B79B3FA772088CBA400DA2FB",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 114,
+    "celo_tx_hashes": [
+      "9249669723aac3723ffe406b0ac5ac4f3857f0cfc13962c9f15bb5bfe8849f05",
+      "046a3d6b86e453ccc2efde2b2c689880130dd213408ad3b786c73b1e08db5d6c",
+      "79e1597c1259ebfae33e644de33b6ac95f90b46d92ceed399dbcfef0e2e2fce4",
+      "871d1c2985e9783175cc6c71352b29ab34bbaaa97d3419fc0617ae867c2b5eb2",
+      "2cf8f7fe8426348badd015f898178822f56a27c0a19ea1696876380dc1d6d099",
+      "476da0af03401108f0dcabe82679047b2110f39a5ea267924996880a0a42978a",
+      "3b7ddf7d1d785f30a0a2a347364b95be0603afd4166af4259672ce06a4f4fb41",
+      "125726c88198436b5b9b3c663242fc889c0f053ed86e610f2329cf7c402d185f",
+      "6fea788487489c6f3f49ef8f5b89ca3c64e357450586d2e8283d0031607bfb5e"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 74.29,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-21T23:49:58Z"
+  },
+  {
+    "cycle": 71,
+    "start_time": "2026-03-22T00:03:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "38FB392E6343AA82EEBAEF4121A03F35C9E8164482224122E181B40ADB085A4A",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 115,
+    "celo_tx_hashes": [
+      "84f67a2b9f9bb62e6c82d685e08fdbc3cdec2f0b9c9d8b7d082ecc1001a71ca9",
+      "4108ddd860deb7a7d831352c685040a79644c36eb3aa2ca1a37cc37db9cd5478",
+      "d0c46780e8d55b6cac52b643f61cf5a623bbfe2c745bc8f349368f86ffc3d4cf",
+      "4c53a23a143850cfb129f117ecd9b8b8440bac05566c859af95ebdaf43cd5c54",
+      "667fb745967b45829eb5da07362e7e7da517e23a46a9390a0c81282580d148e7",
+      "a8d28d21f70704a3a22c6dcc94cef9a4a6ffc3b3f97ce91e88a9e1c2e1fb3074",
+      "c1cb87771243469c0f3a2db3fd34b7d297f102e7d7dd575c60838c2943f75d0d",
+      "ea7b004bcadbff974a15d5f3c6ab2ca322af668d314f8d6f0ac9d41a71bc77f5",
+      "f6683dcb0d2f11b96c324d7624049a60f854224979a50b2db56e44802d05b83c"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 71.32,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T00:04:55Z"
+  },
+  {
+    "cycle": 72,
+    "start_time": "2026-03-22T00:18:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "D47775D5369E00793C447D9FA1073A7798CEDE472427FF57C039249A3E0CBA67",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 116,
+    "celo_tx_hashes": [
+      "683f957a48425ea84ad2ce52e0b0b442842d95bc97e031f740b159161a1c1c74",
+      "9804cdd31f03fc86fdfd2d635b6663f8b7202fc61e316324a86faf49e82cc3a6",
+      "063eef0d74f92ba561fb12b30c2c1f822dfb05d5c1613eb01ef628e300a1ad37",
+      "31dde16f009030d3184deeb90606b751491cd235de0fe118952b9f266d0e62d0",
+      "96d7631b41513155f978ecf5b9882e918d7a60bfdf7290bf4725f07eeaa23ef9",
+      "f49c2937568de240c13457da9ce751567daeef0d3bd04f601660aa970e727db7",
+      "ab9f0eb16cd5efe8f90d5015685f9f471b76b268d604c57ee9dab4f763ea71b5",
+      "8db0025b4b86e753a6386c0cb6c2f78daef7f0c89b3cdfde25f3e3e690344c02",
+      "5ffba211de1dd5d7d62a61e3287e77608ff148740c6e2e60bceac8b577a484da"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 65.96,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T00:19:50Z"
+  },
+  {
+    "cycle": 73,
+    "start_time": "2026-03-22T00:33:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "C0C9D99B1E4F214C1759DA9CE157CCDC25F8CBA451B6B17D5569755E364660D5",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 117,
+    "celo_tx_hashes": [
+      "3cb344626e15aa89e0ea4159da26cbb06857f6a1b9b853c8ed9066be8808e6b0",
+      "31892b3b46982a1a416a6ea0a1fba26f90864410c070f9d9560cb4be3f69ded3",
+      "a398bbd1f910e5249db79758a121fe02dbf2b2ca2ac880ea87ad613a26a8d85c",
+      "07c990f36eb84079862994169ada08f0a6f6437c17e2af70d13a9afd2b894270",
+      "0dcbb2493548fed6672c3d47348a6d7c623c86a1e2e4939258c113f0c236a6ad",
+      "0032d68f59851152ee3237f8eb617e0c3bccb5e50c5ebd297c90f95d31d9feb4",
+      "441ce18052df4660221e0cf2d0365d286a93cf01490a8cbd11832f70f4666ec7",
+      "c284eec6f96333fe04a2509fc5cc767513580351722f163ae0034fbed1e31097",
+      "e744c330b29635f90d6683dc41cf5e9458835f5d4f10005f4210f893c44cd8ba"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 63.08,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T00:34:47Z"
+  },
+  {
+    "cycle": 74,
+    "start_time": "2026-03-22T00:48:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "3B793B4E60D02F9E567CA89FF025E3600A24460A65EBAE01B170146CAE863131",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 118,
+    "celo_tx_hashes": [
+      "3f61172e7cfea3a57635bfe26bccd3b472907a27f9e94fc96e985c66669a936a",
+      "220f2189762d332481579bf62a20cf01eb4f9fb7b4f84712cc1616e7f91f5428",
+      "8e2be235d86c7c9c261a044a6e7421863b75a037aaf5ff8a75dd5ef70a34cf5a",
+      "a7e7aaf5d1396e5e07b1a87dc5e52d1e95f58cfa9b6ed7136f5f748bccaf029d",
+      "bcbc1ba4ae0d57894f44b4a0f8916ad777cdbf0886e3d754268f53330b08513d",
+      "f4a2f6b1402ef1f9b4b255fe9a2b981c6b8641a0fc122e95dd482d15b54af2f4",
+      "edcd092c8ff9c25f461b2e8bf1769c768123b4dec73067ece8989f5d2c526bcd",
+      "9f74141d0d22df4f5a1d41a63f140d59d29ae7074b850078d91180e19572707a",
+      "7eada2e9882bc8bede97493a27ea99635d1ccc69ea9f90199cc1ecbf96ff25a0"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 70.18,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T00:49:54Z"
+  },
+  {
+    "cycle": 75,
+    "start_time": "2026-03-22T01:03:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "DB680161A7AE09D4DD75C9A7414D95F6B4486DC7B29E56B77BAFA4E412FA2B2E",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 119,
+    "celo_tx_hashes": [
+      "e8448362e9bb8a46d5732820604b4286552927d2d05ed972fdaec3f59f16e964",
+      "911c8b92c30bfabfae2e554c9120c47d37bb06167780ce5eca80abb71394a0a2",
+      "1544f1fe096c756fe0e9f2bcdcd87611db3fefb0a938c75f897e9a24de9e024d",
+      "f412eaa296439a062153eb626a0303a527838d5d46ba20bff7acb75aecbc458a",
+      "e71bee2f4ea8d9c47425782c962bc5c608c44d4e5873c712b331e1771f67862d",
+      "9bf01bc6e37d13f38b54c47a3f782a20daf440a624c02e7c243074fc176c40c5",
+      "b5162e752b6fa67e4413a1b59f6f80b6ca8db70f9739fda4bc2c992309606af7",
+      "3af835a843ade7f0f6f4c284a9d561990fb23c6d2bfd626d9ec8966e4c7341d2",
+      "cd462c974f366510176383a7ef39a6f428f30316d6ac79717141ade42f6d4968"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 72.28,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T01:04:56Z"
+  },
+  {
+    "cycle": 76,
+    "start_time": "2026-03-22T01:18:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "ADEFA42A99706CA88CCA4667DC25BA60B95DA241B633CBB837981C36DB0B3928",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 120,
+    "celo_tx_hashes": [
+      "2d9506974be21551917ac4aef37c98cafd91d4d2705dda423caf7bb8f3b43130",
+      "aecaac25f73abbb90a5a33269127a9054b85d4d10d13bc4e28b7e76800f13f6f",
+      "286838ed09d37a9500fd3ad745854c13f80cf4ecd0539876dd432c7d4cff36b4",
+      "bb8ee54b4f41c4c0ecb2fec3383194b1aa40bd009ebcd37f62604170f3b56f44",
+      "7078670458623864ed10e41e0620c5e67d2774a2688e1f6bb05c61c2a7c209c1",
+      "2638a101f020aebe963ce2d1d560e511fc674348f2d0460080f35eeba9f7c507",
+      "99602583a408f7ef787fb86f27428fa0825e62c001d5189081c97ec0bb6d53e1",
+      "2ff61901130507ac858072715c739672bd03138bf9797c6a76087f47ecf5813b",
+      "7f0f1600d1a9dfc9b7025b549bcd0b240636ab622c9df0eca350699f33f4925a"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 74.17,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T01:19:58Z"
+  },
+  {
+    "cycle": 77,
+    "start_time": "2026-03-22T01:33:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "EE7340F4ABC374149F086979CEF02F78172D7868FFC8748609207E2C138D39A0",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 121,
+    "celo_tx_hashes": [
+      "869952b780aa8bf3cb16eedfc2ef16cf8ccbf52e0c034d9229276847e5b60f86",
+      "e7dde07b143ff0ae7cd65932eceeb4244b6cb3ff5e2462d176e5edbb59692133",
+      "169232dfe6ab2c6e795c3976b73c7e93e451228d01816a9622b9dd8c2babcb27",
+      "b1ca47d593076e4eef253d8c20af1fc28d2ad054e8ce449ffdf3acb1df0ab0dd",
+      "ac2501c61df5857260ff4cf70db3d1ad461af139338ac78563eea334f9d2aa00",
+      "fb76b8e75dc6344ddf76140538b9a7e4b2a994d81f659a959fbbf75c4fffcccc",
+      "9f251e2301d05f51094c450f1e0a02e34495960b68e4f27bfaa382a9b72fd9cb",
+      "b5b7ea493c16c8e3c125a2070af6e594fec4730a9530dbc5b5a5b537c2e4ec39",
+      "8372d74fde2e39494dd6204d6c8f7077cd45e0eb9e9796177c8e07b9f7adb1f1"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 73.17,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T01:34:57Z"
+  },
+  {
+    "cycle": 78,
+    "start_time": "2026-03-22T01:48:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "0F9A966E92532E9D045E8D75039CBDD28A398911368C26C97B5CBE6E6916FF71",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 122,
+    "celo_tx_hashes": [
+      "75cd34979ebd88718cf379eea8a740b3245aa84005415125f825c7e7c88ebea4",
+      "d76b70ec1b6a9b4cdd5d4558058eb00e592760d70d48a8845fdd56bc8d406d8f",
+      "9d7ac3ae0c1d2f2721b6b1d4ec05382bdb2b96b585ebd1e300ec486b46e0e2cc",
+      "61edb0f6e7a0259e81ef6b437b688a21d102441ad8249d9b90d2971ea94d9886",
+      "6dd826d1faa2f7837e7b2c8b798adf76230b2dea9311d8a5a66a461b1f25d661",
+      "2e83d4c42ea21165b3841806374fdd238f6b59cfc5c62a181538ba6943f8627e",
+      "d457fc053807f6b847bf923776dd49726e3010e117ae33c9cf61e5a543f6715e",
+      "59d202715af764a5c714956f425d171dbdcf0cbcd0bef7d932ff43a57de2d02b",
+      "f0f33e2986683842a547f8ff49ef971acc489407b56b2900181bebd693256093"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 73.13,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T01:49:57Z"
+  },
+  {
+    "cycle": 79,
+    "start_time": "2026-03-22T02:03:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "B4808336BEC6C8E5580AD8C6BB8F62EEA77F7217FD9CBFBC2D785309A2C79BD4",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 123,
+    "celo_tx_hashes": [
+      "cd3bace9476fd1211d8c7a59b3ec016a0338b2ee6befd7d2373ee6ecffe500fe",
+      "1f7ca9e46ccb29787daf9a4744de189116762cf11be83d950082d0ad618a229f",
+      "c0205200feb546c43ba02c53769e73f79ef2d3d93776071f633ae41855fbcc38",
+      "ffec3861deb0b6742de72947c91aa0391b37465078c40a0a6cdb507d24fa10c2",
+      "24046589a2ccccdfd9c516b686120046277d1e556c44e36321f22dfb782eafd1",
+      "f0009d5243526de65a7c08ff47a82a0d734f66660c6505512f25b94faf7d6421",
+      "b43a5741c7876ca44bea5db0db4019ffe03a030c9da3d4d1c1c482719c1e7fa3",
+      "daa8562b40bb8716ad2b5dec02a1d6ea18d2b52c9120922937121c3ef08d4fec",
+      "b994f27139f64b44c095cc0734b36a54a5d38055ea244cb9f6d9349dcff8a278"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 73.28,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T02:04:57Z"
+  },
+  {
+    "cycle": 80,
+    "start_time": "2026-03-22T02:18:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "8B5AEB91092BEE910B39DB0F7B5883F6D5B9558400FF7124C1810582A9E14060",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 124,
+    "celo_tx_hashes": [
+      "e98aff5a19934ba2d9d2aea16528eb97ac87806870216e3698efee97667d4f10",
+      "deaae33a46dc20b09d1cddf22f080beccd1958a563381c148ee1e7c00a8d3954",
+      "0cd04ca3bac53403dd9a9a4952746788ce0761d9b9f9db39bc6a73ac3ba95349",
+      "6afcd7a9099e1dab1da51285326db5ffc870faf9677e1935325cf725d3956333",
+      "d294af532f6637af348e0310e3b630769e08a54a43bbd36430c51afe93242819",
+      "b6748e4a449a8a9238384c240604e03a826c3057a7028a34309c76b7e4d346aa",
+      "7ec50535c5ed702b4a8b964747e8dae5fa28701b8e00c71eee291d1a05ed69df",
+      "71b2f2b61d714cb938eeace295d7cefce542cfee36995c4b708ebd8273b91435",
+      "fd584c5b09f217e2cf87685bd1cb2774e5819b9621e2c95314a418cb2f781f73"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 73.93,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T02:19:58Z"
+  },
+  {
+    "cycle": 81,
+    "start_time": "2026-03-22T02:33:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "9BE490AB42640C8B6BE828A4070DF0678D6913890E2C3BB03AEF5E43FC9C2481",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 125,
+    "celo_tx_hashes": [
+      "6a9c764dd1689d818b8f36c917945f23674c818b1eec03da5521f13b4f26859a",
+      "39cc87aa53d82127a0065674efe0238e403d63b19adf7f50ceaf6872cf572fd6",
+      "d74556d4d30077993e06b102b49d50230d1712599293bbfe8a6bbf1dfbfbe43e",
+      "cb385ccc454b6fa4cbfceeaa16d648d5e193d0d5b455617d9556bad80cd7ba1e",
+      "2bd1637d84bc6c50c117e645311ad13ccce57ee6dbf94e0b40e4a94e46dd43a2",
+      "dd1ccd846610bdfc0becc56ecb2f0866270181d564eaa8c9ef848111cf481e92",
+      "7ddac345ea009defd4cfd78c3789ef69b2ae8709f0d1492f09ba2f5b45db1528",
+      "8b4b727e61afb242032689f7830ce6893bc0e03946822f016031c32994c54688",
+      "3563a62c2740d0b2c888506df70f743679aa2b69c5e0dcb22e2d690adf53d57c"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 71.91,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T02:34:56Z"
+  },
+  {
+    "cycle": 82,
+    "start_time": "2026-03-22T02:48:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "7D227ED45367C0AD1C288BFAF645A5393F1532BD23D48293BE9E703A24691587",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 126,
+    "celo_tx_hashes": [
+      "990aaa5f4802616ab4e3b55a00cad1276cce882fcefcae58a9b556e01e6b7334",
+      "4b19a2516408f64422d6e8eeb04e31d82e396744a96139739b6a7ad287e1fa4e",
+      "5ee29930836841ed0cd129fb1ac739bb9d92131e7fd37267b73aa58667429750",
+      "961f51f8148ad5362afeb7eee9c37236a6b1d882ec20abe8450ed1cedfc148be",
+      "cd5fb63260301bd7a4e5a93a7a303dcd932342ec64540c5e24a2958f445e0124",
+      "c46fe95741df857fbbf4811ca7b6992fc1f6dc01d0104361afcd0ff048824274",
+      "bc8514e0c24efbd5e4242c1703f592cb0846be9318dd56e7c2781f281c6f39be",
+      "6f717ae09a4a148a2bf5be24e6247189b0ad84a0afd267b4b82be4b5e0aa5c39",
+      "c2828fc0b01096793a6bfdc53b7a24579c1a3955a8eb3436b3afae308f5eee6a"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 63.9,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T02:49:48Z"
+  },
+  {
+    "cycle": 83,
+    "start_time": "2026-03-22T03:03:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "E9C60C7D20A442DC66D1BEEDF897E20DA71065A243270C10FDA0550965277796",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 127,
+    "celo_tx_hashes": [
+      "c2c985ac3c4499b38c47791d6f73c69a117d9a7ea1923455ad5fd1cfb8ae8acd",
+      "a2ca8d2d29261ed34c5ebaccb4fe2c5ee88ed43ac84c92204e6928de28e53972",
+      "ec766296b7f9e3f51856737a22e493ff9fa2fc56801e2535222dddd5694d5235",
+      "95cda7c05c4f09b18e98575b756ea25f1060380f9222fd91628ea44190ac7dcf",
+      "81c09a84f534ed5244d38d1a4db00fa8bd38a4d9bc531f99823dc4acff9bf032",
+      "80964fee4880256786181d22517f7115c93ba1bf05e40f26232b20744d04c704",
+      "f05881399df57bbf7767b102adf281037ea561aba641bea48fbf703788557947",
+      "9705ade0f8d77fc2bfb363d6cee1121ac49c716dbb9ed8d30b989b62d022e812",
+      "3514c05f5a1de961379e3ac1c52181b7065124d12684c24edc0bd52fa11e91d5"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 73.04,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T03:04:57Z"
+  },
+  {
+    "cycle": 84,
+    "start_time": "2026-03-22T03:18:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "F39C9D0D5EF7D8ED341375494F78DC537677D894D92FCC76C493F82B75FBFF17",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 128,
+    "celo_tx_hashes": [
+      "297970e6687c337db680b6b7e16246a22c134e21d6cadbdd6b6b81a9ae05141c",
+      "c309952107e7b2b33a980140a18dc2cb5926d81328c6b1a70f10aecf2dcfdc4c",
+      "93daaada36b86372fc426c3d36b814933da941ebc1f8a216e1b826fd2398f162",
+      "d875c3dbf6fa76d7eb33ba8e072892de55bc82959d4405f7db891d4c1c9be21d",
+      "51fb56e078477139cab8fba0e5101e7d8135c9484ce493070dad8e09c739069b",
+      "d1a800bb3775cbe304c51a21ed5e5342f747f6a7d3a1e54e6da89a741facf329",
+      "abb09044f0df001cc5409acea58b2ad8410b1db7b3247d9d006be14eaa4dbde2",
+      "4f2868899a06f2a6c8dd0196ecb3bfe1ba8d9b399a8d9ab26d8109e3a982e8b3",
+      "2e4fa2a1b40be8bdd9c4407cd70acfea50f4975e563c8703899ca63fce2e6b49"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 72.96,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T03:19:57Z"
+  },
+  {
+    "cycle": 85,
+    "start_time": "2026-03-22T03:33:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "5858838F1CBA0EC9BAC6B8F1B49D613BDCF83413E4DA976758AED03C9F244F8A",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 129,
+    "celo_tx_hashes": [
+      "921ff1c0a673cf52faafac5a4d14ef54a87a4813e29b3a01ee82cfc4975b0fa8",
+      "362d944c9150a2c2ce1e2a76cc2ee40be031ac996575e86ee9d2a347f6affada",
+      "fccc80a198bbac8fa9b14c62e1bb3c403c37a107913f4ff5e1cace92646fa601",
+      "04589de1a3a88720a62531ec75aa70e08143cf6bf6860d0cbc94b1630363c905",
+      "d472ad9c8866893223413357bd13bb1a154d1af6e20f9abaed60b02bc1f9e9ef",
+      "51d12cf4041418bbb9394f7bc264bfdbfd52085fcc485ddcb0fe9d7ee84e8b4e",
+      "bc3a1c2ff6c648c4daa976d00af2858cb43d5b55e764d6efb24f01d7e19e06c2",
+      "a0d8d636de27cc20a2e771086e4292b28c06d5417bcf2cf3b15858129c0a8386",
+      "66fd08073b5a16b1772176367faaec98efb444fde22b089d6790cc0e073192d7"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 68.91,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T03:34:53Z"
+  },
+  {
+    "cycle": 86,
+    "start_time": "2026-03-22T03:48:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "936BF2D34C70EEB9849BD9D2DCC447694FA4D57DFBB70F89D62B52B067E05FBB",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 130,
+    "celo_tx_hashes": [
+      "fa8afd1c9bac36894322df2cb403861aa9f1a8f2a8342b378741e7a8c70ee891",
+      "8a9998aa153a74a4501537ae37067ccf47d22c0d0eee9b8a038105e35e9dcb3d",
+      "069463a0c5a70984929501cbedfdfef56b3471827c8732ddf7f9c809df7bbf86",
+      "96f4e759bac035f840488f09b3ba471c5f4b42bf58d5db5b1a48b05be61df1f3",
+      "d12b8acd0bf1872e2d7682a8e41fe60ac8a5c722431c9beed747df62ba6337aa",
+      "d5d19325098ea88b38df2665b12865a88c93fc9f44622e14e8a3cb5e0af91744",
+      "269f92fb80eec9a9a77cdd075debb955bf17438ce1291dc0cac386653bd6395c",
+      "bd14e43d26f1c5401a5a7bcd396d731c617b2558bc9005ab479b24af5919bf15",
+      "17fc7da2a0b17804b7045401fe934d401830786bc29336896f8300370a8ace83"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 69.78,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T03:49:54Z"
+  },
+  {
+    "cycle": 87,
+    "start_time": "2026-03-22T04:03:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "E373098452501EBAE0254ADABF0962A590CEDA6109C8D94231D4A6EEB73AA194",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 131,
+    "celo_tx_hashes": [
+      "0ce4a57ecc552a788b3df20fd829dfed36ad3afc4fc17416ec699fbbed8cfafe",
+      "b920bddfd27ef128a0e3a97a15bf1d4463e18be04dafac0a7dae53ad82723eaa",
+      "899009935d2649402cf9cbf7be382a9cf0d867a235e1abb2e0acd30b6c7577d2",
+      "b8a7d78b436c70e79680052a63a808edc7d5bbe72479d53f33c5a300f9c4920c",
+      "e3d6cf9f23ccbb7fe39baaf6947d4572c9b354a24f62b9a11307a58727ed075c",
+      "6a1f36622e386abfb92d6749824b9fd45d3a1e093c48e950b04f11271abaeee9",
+      "83774a764b5525863902d8511efaaf0cb2dfb75669690c689dbfc55890355323",
+      "50dcf4b1ca481c1b858bcdfddb7b872386fbc3dec4e12faad9fc8dbf4db9d0eb",
+      "967401c6ded204d0b95c70217fd2d3d2010bdca6c62687abf80d26e54780244a"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 68.94,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T04:04:53Z"
+  },
+  {
+    "cycle": 88,
+    "start_time": "2026-03-22T04:18:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "F96413CAD4CF72AFD72CFE73270251C3D732A66B282C8F9BF75307316D379152",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 132,
+    "celo_tx_hashes": [
+      "517b73418189fa29163da29397a2753066787184c37c2d76e4bed3ba7cabdf1f",
+      "a34e3c9abfbac5d94a5844e71d860916e61ae237d27936d3a03d24d3d760cb44",
+      "a9477ee9e1d70d2f4e77d31e7a1bff69273c2f11bae2858a653e6a43086b974b",
+      "0b039342eda09019ce00a800fa61467ff87d2307edd408246a5745ce3307850e",
+      "23aae5464841d85d6dd24b785b41a49ddd940828b4f329db2390d4bdd1e4f6aa",
+      "ef02c9ec102bb86fd9fc2e6a7ef443cddbca8d4503003b05939840e1197bd66f",
+      "2b980461449635a41791441d87f9df5f47e2c5fc455df8790c94bfbd93f2cf9f",
+      "ade2786f4deb7b7d7d8f8356a5e5766991ce3c355d0c0461fb745ada6448abc4",
+      "8225a2bae23bf35dc767dced589cbdc0545ee9fa206a52af6426d7031b0dbf7e"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 71.82,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T04:19:56Z"
+  },
+  {
+    "cycle": 89,
+    "start_time": "2026-03-22T04:33:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "A57D7EDDC6131CAC0865D7BDFD043C1154FC28CB4538422FD4348291FB5F24FA",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 133,
+    "celo_tx_hashes": [
+      "1c15eb953940d7b88b034f762a3fa10501c76f4b656739b3c7fae5f4f6cd629b",
+      "7b435694723dbc7e5a95a2b97b0b8e0f0693fd63f8dfbd33c53df9cd585246ab",
+      "49bd37a6de1bec682e2ed70c8f9f8b868cc93061a3b60af015dc03c510ec4c40",
+      "d91d1ee009a02b4a745ea2800465851b2018a26b6048e223c5c2e9645f7ac50a",
+      "aebacfee439c4b99ca6bcf0b93acef3717924af0bf88c2efb59e6612dd2b4513",
+      "b783d4f210056e2893811ca2c385a6ce3d232332a9229bac4d5c93207cba1b26",
+      "e675056c76f4a264d94a2b972dc79e3b83ac8d86336a5225f4cb93cd6fed633c",
+      "81585734f4aff5442b67420c08711096e0c14b888fe472eae437f38e8a6b8bf9",
+      "acbc23f7ffee060a5f6b09c7001c7ab28f7bda42893b30f42ea71c63d2ce2837"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 75.13,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T04:34:59Z"
+  },
+  {
+    "cycle": 90,
+    "start_time": "2026-03-22T04:48:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "561F0830DB2DB0C3BE90AE3A380CCA44E8391AEC67109B8E96B23CEFBB2959DA",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 134,
+    "celo_tx_hashes": [
+      "27c77ea84e577b8a2ccb4c542543b2152bdfa8956b34719860412a5f81efcf13",
+      "26bd0842184b00df4b252441b61ca4c2e2cbfa16761f5a843fc74eeea993b6ef",
+      "bfc9829c70112ab1ee3e5a4f25c3e4f32588dd9c39bf699486c468a5515d6d4f",
+      "5427909ed496fbfbed937dff23d514046e8a07521e8a2a0f7bb3e68c464ff330",
+      "e6fce44621c4f1cab07e3794ffa6fc02ca5686e175b72c96f4c1b59d3f3c86a7",
+      "2aeb0b010a91144cb844fad857bf1ffefa55b1f66a0c3eb870d9f8a1bbbfa8bb",
+      "beff293ab0c59b453fd923f64a24eb5248ef8f15bd831addb5c00e1f4e14203c",
+      "d99833ea04e8164af5761acdefb44e7fac2ee875cb5046332970613b8059b4df",
+      "1507256640ab1ce5a08429a33a205c598dfaca2ea10ccefa8e198b3f782c4961"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 75.91,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T04:50:00Z"
+  },
+  {
+    "cycle": 91,
+    "start_time": "2026-03-22T05:03:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "8F06FAD9034595FF0B0C7A7490A47A951FBA7724FA3D0A2E52968571403F6846",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 135,
+    "celo_tx_hashes": [
+      "af8294220fda13bec05fb4e379426c2c279a2892cfcec67391aea994e197ad26",
+      "7615d7c12dec4a04e0bfd4c9c431c90507347c199360450019c35ffa5a90d696",
+      "c2b281c5d7c8db4154eb2fb69ddb3e78cee3990372aec7e3601c0651622603b6",
+      "5e12a2d3c73ca4cd6cd5bc5bc26fdb445b1fdde52100f5bdff6cb13e1153c5fd",
+      "b763cdbc5527c1bf46f8a2ff1bb8ebc0c2044e4594946f302202d66994701b39",
+      "c903dc63e86ebfbaa9418addab7be3fd8a1d0af0c0a908f6f000061d2bc4f71a",
+      "265de5564dcfb966bef7503e8d3ea95361d2cf69d54707026be735b01ed6e938",
+      "11fed8685e58be86574fcb6f05b88ae93617dad794275428138a9e8bdac8cbbe",
+      "94078bf134e9d132af10dbb444d0e39486ca7d7c59789ae40fe5a7631f79c2e5"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 74.84,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T05:04:59Z"
+  },
+  {
+    "cycle": 92,
+    "start_time": "2026-03-22T05:18:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "908AED18D2AB686DD5CB42C26FA4AD3BB3FC170CCB0E90DC5A00FABDFD3C6F87",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 136,
+    "celo_tx_hashes": [
+      "a6b0f6ecf221733bc84fcf686a2279e6dd1f01811872620bf4c595dae64c6711",
+      "b7546918c75d579cc20e328e8ad039ea660a3974584320dceaed162b1916405c",
+      "c6c568bf81e82f96b7c10712c5becf1962510fff513b3055c40805da7b2c9691",
+      "2828e5f413fb10600ae7fd0253f247416312257a48370cf9cd1f618c80729774",
+      "3b328bac5dc588b53baeecc73363e690988bcd63fd4e4b9e03b23647b7d961b0",
+      "e0855a794d68d6117e295f87b8d29af02b18c19401c3d31fe0a9a0662f24a4f3",
+      "e2e2f9dc495317cb24e9034789c8160c06fdd091b3156dcb3a27579df1956053",
+      "0fa955794b1990572e4820706958f5b4c35dfd3d84fd141f1aac5d371f9c7a55",
+      "135da44fac4fa781675912e03935e648e24d2b162c0c68fb70fec3bbe26781ff"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 64.99,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T05:19:49Z"
+  },
+  {
+    "cycle": 93,
+    "start_time": "2026-03-22T05:33:44Z",
+    "task_template": "Summarize in one sentence: What is one ethical use of AI?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "9853C8AEB76C0E230C3E4B438CAF9708B382B861C4A6509A0572F8183F97DEE6",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 137,
+    "celo_tx_hashes": [
+      "872fa0be493b73894f48fdd4a539f52e7e4be14779e16e850bb25d3103049936",
+      "08f21fe77896c49c10f88952ea96fd06ea5ee79a4ccf4f46b00e5bf2113ac938",
+      "1889414afb7af30a4c8920221747e0cacc2ea055006c07d25e5a47ce45ddb81a",
+      "789a4b29fbc1dbd41d15c60f847a28b38310402b2105bd478aee5b0b69c46181",
+      "7998aa752488fa7d371c0ca4640ba17d66022cc947a79253f5d32f847f9fa55a",
+      "fc810f7a1ae4d440c30997ea8a1f2485c83ca4b9a357f8264e4a72ac278193cc",
+      "0609d1100265f74f44328b63a37c4d6d97bc31348420603b157915aac3c52880",
+      "acd0b63c9fc30ae11b1b227f1daa5a6245cbd4a6a5fffc655592395976fba606",
+      "b49111979fe43e38447153c1d512ddc3d91fcc975ac0a3530e010381c808875d"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 70.75,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T05:34:55Z"
+  },
+  {
+    "cycle": 94,
+    "start_time": "2026-03-22T05:48:44Z",
+    "task_template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "worker_metadata": "swarm-worker-1",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "0268BA2980BF4DFE89576326316FA14249B1BDB71E3C8CB00B428B0DC41A1AAD",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 138,
+    "celo_tx_hashes": [
+      "17f58baff832261015d8da86dd69f788df8d1714ce95e0ee7ba7059b3fee6178",
+      "c7dcb19787f993bbc77cd9b0eb668dac9ac406b7b0845960c69080d0d80d58a6",
+      "4761fa9d465b63672757dd00222aafe177e0ee65112183d1b8fd86dcb3c8b088",
+      "2cd7e032d770ef520282caabae4ca7a6beacf241ac52f75adc0349a82ff1b10a",
+      "b87e36664f2ab4c773c10c5ef41e06f9ece423d2961bb07be16935e5de08a04a",
+      "22d32b2bc4438bf8d3dca6a9de81dac01ef1d38f4d3d8d6e6a9c561387a69852",
+      "6bc7c3974169b23a7cc5fffc0a03dc1ed735f0f605e887be9d8443b58a557825",
+      "696567ab497d11bc27dc718418b209280fb201ca9fb9c0a55f8c504e3ba10b85",
+      "e5f6d417d150ac24e6557647aedc008af8863dbc2afd37f0358b05b78c405304"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 68.84,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T05:49:53Z"
+  },
+  {
+    "cycle": 95,
+    "start_time": "2026-03-22T06:03:44Z",
+    "task_template": "Short answer: What is agentic commerce in one phrase?",
+    "worker_metadata": "swarm-worker-2",
+    "worker_payout_address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+    "payment_rail": "xrpl",
+    "olas_boundary": "mocked_external_replay",
+    "status": "completed",
+    "xrpl_tx_hash": "44BBB18EDD9E8F14C148BC6B5D76B615F196A2BBBF19FA103F9A323434F85A16",
+    "xrpl_amount": "1",
+    "xrpl_verification": "real_xrpl_payment",
+    "internal_task_id": 139,
+    "celo_tx_hashes": [
+      "b786a12f16d32d4b5bb9a251c77f82d1e102ec1f68975b3f634ee9e713b968ce",
+      "1b7b33768479e80e53c2f3e551a9a60c8563d758920d241d8bfb7b5f87bf9db3",
+      "8ecde3e5b1c32beee1cdbebf412ef9bc0d7a6c1f869c5b23467ed3f9421af5bd",
+      "0d5f7797b3f3b7bb422f74b4d90f6c8aca4b373c3f16ce327af0b89f264f4fda",
+      "5c0a9bc9240f630a20ab71eb43305cb2f11d6c4c4c204f25bf304e0ee964261b",
+      "f4ed77bca13fca9caec949a4bf2ca810108b53ed1ae6bf5284ed7f951a7385b3",
+      "730310d8f6c59bdb2ac0ebed69425513d9b7309ef1d8377df2814cda8f7d52bb",
+      "92dc0ceaf87c210240943938a77ba560f516de9dc06eedc0baaf9dca5669cb34",
+      "aabdcba6d35a433c3c17fa491cf3ae9a72f3f738ea578b64a204ba737e934700"
+    ],
+    "task_final_status": "Finalized",
+    "settlement": {
+      "protocol_fee": {
+        "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "expected_wei": 1000000000000000
+      },
+      "finance_fee": {
+        "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "expected_wei": 5000000000000000
+      },
+      "worker_payout": {
+        "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "expected_wei": 760000000000000
+      },
+      "requester_refund": {
+        "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "expected_wei": 3240000000000000
+      }
+    },
+    "elapsed_seconds": 64.82,
+    "errors": [],
+    "warnings": [],
+    "end_time": "2026-03-22T06:04:49Z"
+  }
+]

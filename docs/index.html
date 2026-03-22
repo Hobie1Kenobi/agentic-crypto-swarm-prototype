@@ -283,13 +283,14 @@
       <h2 class="section-title">Live Proof & Milestones</h2>
       <p class="section-sub">Verifiable end-to-end flows on public testnets. All metrics from real runs with on-chain evidence.</p>
       <div class="metrics-row">
-        <div class="metric"><span class="metric-value">24/24</span><span class="metric-label">Cycles completed</span></div>
-        <div class="metric"><span class="metric-value">100%</span><span class="metric-label">6h soak success</span></div>
-        <div class="metric"><span class="metric-value">24</span><span class="metric-label">XRPL payments</span></div>
-        <div class="metric"><span class="metric-value">216</span><span class="metric-label">Celo txs</span></div>
-        <div class="metric"><span class="metric-value">67s</span><span class="metric-label">Avg settlement</span></div>
+        <div class="metric"><span class="metric-value">96/96</span><span class="metric-label">24h cycles</span></div>
+        <div class="metric"><span class="metric-value">24/24</span><span class="metric-label">6h cycles</span></div>
+        <div class="metric"><span class="metric-value">100%</span><span class="metric-label">Success rate</span></div>
+        <div class="metric"><span class="metric-value">120</span><span class="metric-label">Total XRPL txs</span></div>
+        <div class="metric"><span class="metric-value">1080</span><span class="metric-label">Total Celo txs</span></div>
+        <div class="metric"><span class="metric-value">68s</span><span class="metric-label">Avg settlement</span></div>
       </div>
-      <p style="margin-top: 24px; color: var(--text-muted); font-size: 0.95rem;">6-hour continuous soak test: 24 cycles, every 15 min. Zero failures.</p>
+      <p style="margin-top: 24px; color: var(--text-muted); font-size: 0.95rem;">6h soak: 24 cycles · 24h soak: 96 cycles. Both 100% success, zero failures.</p>
       <div style="margin-top: 32px;">
         <h3 style="font-size: 1.1rem; margin-bottom: 16px;">Live XRPL → Celo Proof</h3>
         <div class="address-row">
@@ -341,8 +342,13 @@
         </div>
         <div class="card">
           <h3>6-Hour Soak Test</h3>
-          <p>Continuous multi-rail run: 24/24 cycles, 216 Celo txs.</p>
+          <p>24/24 cycles, 216 Celo txs. 100% success.</p>
           <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_6h_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
+        </div>
+        <div class="card">
+          <h3>24-Hour Soak Test</h3>
+          <p>96/96 cycles, 864 Celo txs. 100% success.</p>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_24h_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
         </div>
         <div class="card">
           <h3>Architecture</h3>
@@ -390,6 +396,10 @@
         <li>
           <span class="roadmap-badge done">Done</span>
           <div><strong>6-hour continuous soak test</strong> — 100% success, 24 cycles</div>
+        </li>
+        <li>
+          <span class="roadmap-badge done">Done</span>
+          <div><strong>24-hour continuous soak test</strong> — 100% success, 96 cycles</div>
         </li>
         <li>
           <span class="roadmap-badge done">Done</span>
