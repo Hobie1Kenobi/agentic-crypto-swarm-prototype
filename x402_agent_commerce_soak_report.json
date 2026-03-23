@@ -1,0 +1,14 @@
+{
+  "report_type": "x402_agent_commerce_soak",
+  "generated_at": "2026-03-22T21:52:22Z",
+  "duration_hours": 1,
+  "total_cycles": 39,
+  "buy_cycles": 26,
+  "buy_success": 26,
+  "buy_success_rate": 1.0,
+  "discovery_cycles": 13,
+  "discovery_success": 13,
+  "discovery_success_rate": 1.0,
+  "avg_latency_ms": 3510.1,
+  "errors": []
+}

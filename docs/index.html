@@ -212,6 +212,7 @@
       <div class="nav-links">
         <a href="#architecture">Architecture</a>
         <a href="#proof">Proof</a>
+        <a href="#x402-upgrade">x402 Upgrade</a>
         <a href="#contracts">Contracts</a>
         <a href="#reports">Reports</a>
         <a href="#roadmap">Roadmap</a>
@@ -331,11 +332,38 @@
     </div>
   </section>
 
+  <section id="x402-upgrade">
+    <div class="container">
+      <h2 class="section-title">x402 Agent Commerce Upgrade</h2>
+      <p class="section-sub">HTTP 402 micropayments, Celo-native settlement, marketplace discovery. Smart hybrid: faucet for testnet, LI.FI bridge for mainnet. Only Celo + XRPL wallets — no manual Base funding.</p>
+      <div class="metrics-row">
+        <div class="metric"><span class="metric-value">39</span><span class="metric-label">1h cycles</span></div>
+        <div class="metric"><span class="metric-value">26/26</span><span class="metric-label">Buy success</span></div>
+        <div class="metric"><span class="metric-value">13/13</span><span class="metric-label">Discovery</span></div>
+        <div class="metric"><span class="metric-value">100%</span><span class="metric-label">Success rate</span></div>
+        <div class="metric"><span class="metric-value">3.5s</span><span class="metric-label">Avg buy latency</span></div>
+        <div class="metric"><span class="metric-value">0</span><span class="metric-label">Errors</span></div>
+      </div>
+      <p style="margin-top: 24px; color: var(--text-muted); font-size: 0.95rem;">Celo wallet → api_402 (seller). Arcana, Agoragentic, Bazaar discovery ready.</p>
+      <div style="margin-top: 32px; display: flex; flex-wrap: wrap; gap: 16px;">
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/x402_agent_commerce_soak_report.md" target="_blank" rel="noopener" class="btn btn-primary">View 1h Soak Report</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/x402_agent_commerce_soak_report.json" target="_blank" rel="noopener" class="btn btn-secondary">View JSON Summary</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/x402_agent_commerce_soak_log.json" target="_blank" rel="noopener" class="btn btn-secondary">View Cycle Log</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/X402_MARKETPLACE_INTEGRATION.md" target="_blank" rel="noopener" class="btn btn-secondary">x402 Integration Doc</a>
+      </div>
+    </div>
+  </section>
+
   <section id="reports">
     <div class="container">
       <h2 class="section-title">Reports & Documentation</h2>
       <p class="section-sub">Public-safe reports and architecture docs. Links open in the GitHub repo.</p>
       <div class="grid-2">
+        <div class="card">
+          <h3>x402 1-Hour Soak Test</h3>
+          <p>26 buy cycles, 13 discovery cycles. 100% success. Celo-native agent commerce.</p>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/x402_agent_commerce_soak_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
+        </div>
         <div class="card">
           <h3>Live XRPL → Celo Proof</h3>
           <p>Presentation-grade proof with verifiable XRPL + Celo tx hashes.</p>
@@ -401,6 +429,10 @@
         <li>
           <span class="roadmap-badge done">Done</span>
           <div><strong>24-hour continuous soak test</strong> — 100% success, 96 cycles</div>
+        </li>
+        <li>
+          <span class="roadmap-badge done">Done</span>
+          <div><strong>x402 agent commerce upgrade</strong> — Celo-native buy/sell, 1h soak 100% success, Arcana/Agoragentic/Bazaar integration</div>
         </li>
         <li>
           <span class="roadmap-badge done">Done</span>
