@@ -216,16 +216,16 @@
       height: 4px;
       background: linear-gradient(90deg, #6366f1 0%, #22d3ee 40%, #00d4aa 70%, #94a3b8 100%);
     }
+    /* Solid heading — gradient text can render invisible in some browsers */
+    #t54-x402 .section-title { font-size: clamp(1.4rem, 4vw, 1.85rem); color: #f8fafc; }
     .t54-spotlight h3 {
-      font-size: 1.35rem;
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 12px;
       letter-spacing: -0.02em;
-      background: linear-gradient(135deg, #fff 0%, #a5b4fc 55%, #5eead4 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
+      color: #e2e8f0;
     }
+    #t54-x402 { scroll-margin-top: 96px; }
     .t54-spotlight .t54-lead { color: var(--text-muted); font-size: 1rem; margin-bottom: 20px; max-width: 720px; }
     .t54-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
     .t54-badge {
@@ -284,8 +284,8 @@
       <a href="#" class="nav-brand">Agentic Swarm Marketplace</a>
       <div class="nav-links">
         <a href="#architecture">Architecture</a>
-        <a href="#proof">Proof</a>
         <a href="#t54-x402">T54 x402</a>
+        <a href="#proof">Proof</a>
         <a href="#x402-upgrade">x402 Upgrade</a>
         <a href="#contracts">Contracts</a>
         <a href="#reports">Reports</a>
@@ -354,14 +354,14 @@
     </div>
   </section>
 
-  <section id="proof">
+  <section id="t54-x402">
     <div class="container">
-      <h2 class="section-title">Live Proof & Milestones</h2>
-      <p class="section-sub">Verifiable end-to-end flows on public testnets. All metrics from real runs with on-chain evidence.</p>
+      <h2 class="section-title">T54 x402 seller — XRPL mainnet</h2>
+      <p class="section-sub">Completed in-repo: multi-SKU HTTP <strong>402</strong> + <a href="https://www.x402.org/" target="_blank" rel="noopener" style="color: #a5b4fc;">x402</a> payment flow; <strong>XRP</strong> on <code style="color: var(--accent-cyan);">xrpl:0</code> via <a href="https://xrpl-facilitator-mainnet.t54.ai" target="_blank" rel="noopener" style="color: #86efac;">T54 facilitator</a>. Receive-only seller (<code>r...</code>) — no signing keys on the server.</p>
 
-      <div id="t54-x402" class="t54-spotlight">
-        <h3>T54 x402 seller — XRPL mainnet</h3>
-        <p class="t54-lead">Completed multi-SKU HTTP service: <strong>402 Payment Required</strong> + <a href="https://www.x402.org/" target="_blank" rel="noopener" style="color: #a5b4fc;">x402</a> terms, <strong>XRP</strong> settlement on <code style="color: var(--accent-cyan);">xrpl:0</code> via the <a href="https://xrpl-facilitator-mainnet.t54.ai" target="_blank" rel="noopener" style="color: #86efac;">T54 facilitator</a>. Seller process is receive-only (<code>r...</code>) — no hot wallet keys on the server. Structured JSON outputs per route; discovery merges your public base URL with each SKU path.</p>
+      <div class="t54-spotlight">
+        <h3>Service details</h3>
+        <p class="t54-lead">Structured JSON per route; discovery builds public <code>resource_url</code> values from <code>T54_SELLER_PUBLIC_BASE_URL</code> + each SKU path in <code>x402_providers.json</code>.</p>
         <div class="t54-badges">
           <span class="t54-badge x402">x402 v2</span>
           <span class="t54-badge xrpl">XRP</span>
@@ -396,6 +396,13 @@
           <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/packages/agents/config/x402_providers.json" target="_blank" rel="noopener" class="btn btn-secondary">x402_providers.json</a>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section id="proof">
+    <div class="container">
+      <h2 class="section-title">Live Proof & Milestones</h2>
+      <p class="section-sub">Verifiable end-to-end flows on public testnets. All metrics from real runs with on-chain evidence. <a href="#t54-x402" style="color: var(--accent-cyan);">T54 x402 seller section</a> is above.</p>
 
       <div class="metrics-row">
         <div class="metric"><span class="metric-value">96/96</span><span class="metric-label">24h cycles</span></div>
