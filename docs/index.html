@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Agentic Swarm Marketplace — Multi-rail agent commerce: XRPL machine payments + Celo private settlement. Live testnet proof.">
+  <meta name="description" content="Agentic Swarm Marketplace — Multi-rail agent commerce: T54 x402 on XRPL mainnet, XRPL testnet payments, Celo settlement. Live proof.">
   <title>Agentic Swarm Marketplace</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -199,9 +199,82 @@
     .footer-links a { color: var(--text-muted); text-decoration: none; font-size: 0.9rem; }
     .footer-links a:hover { color: var(--accent-cyan); }
     .footer-note { font-size: 0.85rem; color: var(--text-muted); }
+    .t54-spotlight {
+      position: relative;
+      border-radius: var(--radius-lg);
+      padding: 32px 32px 28px;
+      margin-bottom: 40px;
+      border: 1px solid rgba(99, 102, 241, 0.45);
+      background: linear-gradient(145deg, rgba(99, 102, 241, 0.14) 0%, rgba(0, 212, 170, 0.09) 45%, rgba(18, 21, 28, 0.95) 100%);
+      box-shadow: 0 0 0 1px rgba(0, 212, 170, 0.08), 0 24px 48px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+    }
+    .t54-spotlight::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, #6366f1 0%, #22d3ee 40%, #00d4aa 70%, #94a3b8 100%);
+    }
+    .t54-spotlight h3 {
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #fff 0%, #a5b4fc 55%, #5eead4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .t54-spotlight .t54-lead { color: var(--text-muted); font-size: 1rem; margin-bottom: 20px; max-width: 720px; }
+    .t54-badges { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 22px; }
+    .t54-badge {
+      display: inline-block;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .t54-badge.x402 { background: rgba(99, 102, 241, 0.25); color: #c4b5fd; border: 1px solid rgba(99, 102, 241, 0.35); }
+    .t54-badge.xrpl { background: rgba(35, 41, 47, 0.9); color: #e2e8f0; border: 1px solid #475569; }
+    .t54-badge.caip { background: rgba(0, 212, 170, 0.15); color: var(--accent-cyan); border: 1px solid rgba(0, 212, 170, 0.35); }
+    .t54-badge.fac { background: rgba(34, 197, 94, 0.15); color: #86efac; border: 1px solid rgba(34, 197, 94, 0.3); }
+    .t54-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+    .t54-mini {
+      background: rgba(10, 11, 15, 0.55);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px 18px;
+    }
+    .t54-mini h4 { font-size: 0.85rem; color: var(--accent-cyan); margin-bottom: 8px; font-weight: 600; }
+    .t54-mini p { font-size: 0.88rem; color: var(--text-muted); line-height: 1.5; }
+    .t54-skus {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      margin-bottom: 20px;
+    }
+    .t54-skus th, .t54-skus td {
+      padding: 10px 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .t54-skus th { color: var(--text-muted); font-weight: 600; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
+    .t54-skus td { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text); }
+    .t54-skus td.path { color: #a5b4fc; }
+    .t54-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
     @media (max-width: 640px) {
       .hero { padding: 48px 0 64px; }
       .nav-links { width: 100%; justify-content: flex-start; }
+      .t54-spotlight { padding: 24px 20px; }
     }
   </style>
 </head>
@@ -212,6 +285,7 @@
       <div class="nav-links">
         <a href="#architecture">Architecture</a>
         <a href="#proof">Proof</a>
+        <a href="#t54-x402">T54 x402</a>
         <a href="#x402-upgrade">x402 Upgrade</a>
         <a href="#contracts">Contracts</a>
         <a href="#reports">Reports</a>
@@ -228,6 +302,7 @@
       <p>Multi-rail agent commerce: XRPL machine payments + Celo private settlement. Autonomous compute marketplace with verifiable on-chain proof.</p>
       <div class="cta-row">
         <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
+        <a href="#t54-x402" class="btn btn-secondary">T54 x402 Seller</a>
         <a href="#proof" class="btn btn-secondary">View Proof Reports</a>
         <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/live_xrpl_to_celo_proof_report.md" class="btn btn-secondary" target="_blank" rel="noopener">Live XRPL→Celo Proof</a>
       </div>
@@ -283,6 +358,45 @@
     <div class="container">
       <h2 class="section-title">Live Proof & Milestones</h2>
       <p class="section-sub">Verifiable end-to-end flows on public testnets. All metrics from real runs with on-chain evidence.</p>
+
+      <div id="t54-x402" class="t54-spotlight">
+        <h3>T54 x402 seller — XRPL mainnet</h3>
+        <p class="t54-lead">Completed multi-SKU HTTP service: <strong>402 Payment Required</strong> + <a href="https://www.x402.org/" target="_blank" rel="noopener" style="color: #a5b4fc;">x402</a> terms, <strong>XRP</strong> settlement on <code style="color: var(--accent-cyan);">xrpl:0</code> via the <a href="https://xrpl-facilitator-mainnet.t54.ai" target="_blank" rel="noopener" style="color: #86efac;">T54 facilitator</a>. Seller process is receive-only (<code>r...</code>) — no hot wallet keys on the server. Structured JSON outputs per route; discovery merges your public base URL with each SKU path.</p>
+        <div class="t54-badges">
+          <span class="t54-badge x402">x402 v2</span>
+          <span class="t54-badge xrpl">XRP</span>
+          <span class="t54-badge caip">CAIP-2 xrpl:0</span>
+          <span class="t54-badge fac">T54 facilitator</span>
+        </div>
+        <div class="t54-grid">
+          <div class="t54-mini">
+            <h4>What it is</h4>
+            <p>FastAPI seller returning machine-readable 402 challenges; buyers pay in XRP; facilitator verifies and settles on-ledger.</p>
+          </div>
+          <div class="t54-mini">
+            <h4>What it ships</h4>
+            <p>Four paid GET routes (drops-priced), free <code>/health</code> with SKU catalog, config in-repo for paths and pricing.</p>
+          </div>
+        </div>
+        <table class="t54-skus" aria-label="T54 SKU routes">
+          <thead>
+            <tr><th>SKU</th><th>Path</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>hello</td><td class="path">/hello</td><td>Micropayment ping</td></tr>
+            <tr><td>structured-query</td><td class="path">/x402/v1/query</td><td>Constitution-safe short Q&amp;A</td></tr>
+            <tr><td>research-brief</td><td class="path">/x402/v1/research-brief</td><td>Multi-section research brief</td></tr>
+            <tr><td>constitution-audit</td><td class="path">/x402/v1/constitution-audit</td><td>Prompt / ethics heuristic review</td></tr>
+          </tbody>
+        </table>
+        <div class="t54-cta">
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype#completed-t54-x402-seller-on-xrpl" target="_blank" rel="noopener" class="btn btn-primary">README: T54 section</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/T54_SELLER.md" target="_blank" rel="noopener" class="btn btn-secondary">docs/T54_SELLER.md</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/packages/agents/config/t54_seller_skus.json" target="_blank" rel="noopener" class="btn btn-secondary">t54_seller_skus.json</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/packages/agents/config/x402_providers.json" target="_blank" rel="noopener" class="btn btn-secondary">x402_providers.json</a>
+        </div>
+      </div>
+
       <div class="metrics-row">
         <div class="metric"><span class="metric-value">96/96</span><span class="metric-label">24h cycles</span></div>
         <div class="metric"><span class="metric-value">24/24</span><span class="metric-label">6h cycles</span></div>
@@ -389,6 +503,11 @@
           <p>Payment modes, wallet setup, integration guide.</p>
           <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/XRPL_PAYMENTS.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Doc</a>
         </div>
+        <div class="card" style="border-color: rgba(99, 102, 241, 0.35); background: linear-gradient(145deg, rgba(99, 102, 241, 0.08), var(--bg-card));">
+          <h3>T54 x402 seller (XRPL)</h3>
+          <p>Runbook: ngrok, env vars, 24/7 startup, multi-SKU discovery.</p>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/T54_SELLER.md" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 16px; display: inline-flex;">View Doc</a>
+        </div>
       </div>
     </div>
   </section>
@@ -441,6 +560,10 @@
         <li>
           <span class="roadmap-badge done">Done</span>
           <div><strong>Pricing & metering</strong> — Configurable fees, RLUSD support, metering records</div>
+        </li>
+        <li>
+          <span class="roadmap-badge done">Done</span>
+          <div><strong>T54 x402 seller on XRPL mainnet</strong> — Multi-SKU HTTP 402, XRP via T54 facilitator, discovery-ready providers.json</div>
         </li>
         <li>
           <span class="roadmap-badge planned">Planned</span>

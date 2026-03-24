@@ -13,6 +13,13 @@ env/
 .env.local
 .env.*.local
 .env.secrets
+.env.mainnet
+
+# Local tooling (e.g. ngrok binary from scripts)
+.tools/
+
+# T54 stack runtime logs
+logs/
 
 # Build outputs
 out/

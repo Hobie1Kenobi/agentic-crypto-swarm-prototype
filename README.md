@@ -6,6 +6,55 @@
 
 A hierarchical multi-agent system that autonomously earns testnet revenue through on-chain value creation — no trading, no speculation. **Celo-first:** Celo Sepolia (testnet), Celo mainnet (production); local Anvil for zero-faucet testing; optional Base/Polygon paths.
 
+---
+
+<br>
+
+<div align="center">
+
+## Completed: T54 x402 seller on XRPL
+
+**Machine-paid APIs — HTTP 402 — XRP settlement via [T54 facilitator](https://xrpl-facilitator-mainnet.t54.ai) (`xrpl:0`)**
+
+[![x402](https://img.shields.io/badge/protocol-x402-6366f1?style=for-the-badge)](https://www.x402.org/)
+[![XRPL](https://img.shields.io/badge/settlement-XRP-23292F?style=for-the-badge)](https://xrpl.org/)
+[![CAIP-2](https://img.shields.io/badge/CAIP--2-xrpl%3A0-informational?style=for-the-badge)](https://github.com/ChainAgnostic/CAIPs)
+[![T54 facilitator](https://img.shields.io/badge/T54-facilitator-2ea043?style=for-the-badge)](https://xrpl-facilitator-mainnet.t54.ai)
+
+</div>
+
+| | |
+| :--- | :--- |
+| **What it is** | A **production-pattern T54 seller**: a FastAPI server that returns **402 Payment Required** with **x402 v2** terms for **XRPL mainnet**. Buyers complete payment in XRP; **[`xrpl-facilitator-mainnet.t54.ai`](https://xrpl-facilitator-mainnet.t54.ai)** verifies and settles. The seller holds **no signing keys** — only your **receive address** (`r...`). |
+| **What it does** | **Multi-SKU** paid `GET` routes with **Pydantic-validated JSON** and per-route **prices in drops** (see [`packages/agents/config/t54_seller_skus.json`](packages/agents/config/t54_seller_skus.json)): micropayment ping (`/hello`), short constitution-safe Q&A (`/x402/v1/query`), structured research brief (`/x402/v1/research-brief`), and heuristic prompt/ethics review (`/x402/v1/constitution-audit`). **`GET /health`** is free and lists SKUs. Discovery builds public **`resource_url`**s from **`T54_SELLER_PUBLIC_BASE_URL`** + each path ([`x402_providers.json`](packages/agents/config/x402_providers.json)). |
+| **Docs & ops** | **[docs/T54_SELLER.md](docs/T54_SELLER.md)** — env vars, ngrok, 24/7 startup. Mainnet + hybrid notes: **[docs/MAINNET_CELO_XRPL_T54.md](docs/MAINNET_CELO_XRPL_T54.md)**. Task review: **[docs/T54_GROK_TASK_REVIEW.md](docs/T54_GROK_TASK_REVIEW.md)**. |
+
+<details>
+<summary><b>Quick commands</b> (expand)</summary>
+
+| Goal | Command |
+|------|---------|
+| Run seller locally | `npm run t54:seller` |
+| Seller + ngrok + sync `.env` from tunnel | `npm run t54:stack:start` then `npm run t54:sync-ngrok-env` |
+| Reload discovery output | `npm run t54:reload-discovery` |
+| Buyer / marketplace cycle (test) | `npm run t54:cycle` |
+
+</details>
+
+### All paid / commerce surfaces in this repository
+
+| Surface | How to run | Rail / asset |
+|--------|------------|----------------|
+| **T54 XRPL x402 seller** | `npm run t54:seller` | XRP · `xrpl:0` · T54 facilitator |
+| **T54 stack** (seller + tunnel helper) | `npm run t54:stack:start` | Same (orchestration script) |
+| **Celo native x402 API** | `npm run api:402` | CELO · on-chain `fulfillQuery` |
+| **Base Sepolia x402 seller** (facilitator / Bazaar path) | `packages/agents/api_seller_x402.py` | USDC · facilitator |
+| **Compute marketplace** | `npm run miner` · `npm run validator` | Celo · escrow / scoring |
+| **Multi-rail hybrid demo** | `npm run demo:multi-rail` | Celo + XRPL composition |
+| **External x402 discovery** | `packages/agents/external_commerce/discovery.py` + [`x402_providers.json`](packages/agents/config/x402_providers.json) | Catalog of providers |
+
+---
+
 ## Architecture
 
 ```
@@ -134,6 +183,7 @@ For Celo mainnet launch: deployment, security, operations, secrets, monitoring, 
 
 ## Compute marketplaces and DAO
 
+- **T54 XRPL x402 seller (completed):** Multi-SKU HTTP seller, XRP settlement, discovery — see **[Completed: T54 x402 seller on XRPL](#completed-t54-x402-seller-on-xrpl)** at the top of this README.
 - **x402 API:** `npm run api:402` — HTTP 402 pay-per-query; client pays to `AgentRevenueService`, retries with `X-Payment-Tx-Hash`, gets LLM response.
 - **Compute marketplace:** Deploy includes `ComputeMarketplace`. Run miner: `npm run miner` (POST /task); run validator: `npm run validator` (scores miners, submitScores). Fund the contract with CELO and call `distributeRewards()` to pay miners.
 - **Multi-rail agent commerce:** Celo (private settlement) + XRPL (machine payments) + Olas (public demand). See **[docs/XRPL_PAYMENTS.md](docs/XRPL_PAYMENTS.md)**.

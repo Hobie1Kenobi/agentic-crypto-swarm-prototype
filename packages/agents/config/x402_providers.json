@@ -1,0 +1,197 @@
+[
+  {
+    "provider_id": "swarm-self",
+    "provider_name": "Our Swarm (Celo)",
+    "source_type": "config",
+    "discovery_source": "internal",
+    "protocol_type": "x402",
+    "network": "eip155:11142220",
+    "facilitator_url": null,
+    "resource_url": "http://127.0.0.1:8042/query",
+    "supported_assets": ["CELO"],
+    "pricing_model": "per_request",
+    "categories": ["query", "llm", "self"],
+    "payment_flow": "celo_native"
+  },
+  {
+    "provider_id": "swarm-seller-facilitator",
+    "provider_name": "Our Swarm (Base Sepolia facilitator / Bazaar path)",
+    "source_type": "config",
+    "discovery_source": "internal",
+    "protocol_type": "x402",
+    "network": "eip155:84532",
+    "facilitator_url": "https://x402.org/facilitator",
+    "resource_url": "http://127.0.0.1:8043/x402/v1/query",
+    "supported_assets": ["USDC"],
+    "pricing_model": "per_request",
+    "categories": ["query", "llm", "self", "seller"],
+    "payment_flow": "facilitator",
+    "metadata": {
+      "seller": true,
+      "api_seller_x402": true,
+      "settlement_chain": "base-sepolia",
+      "note": "Override URL with env X402_SELLER_PUBLIC_URL for ngrok/production"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-example",
+    "provider_name": "T54 XRPL — structured query (set T54_SELLER_PUBLIC_URL or T54_SELLER_PUBLIC_BASE_URL+t54_path)",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "",
+    "supported_assets": ["XRP"],
+    "pricing_model": "per_request",
+    "categories": ["t54", "xrpl", "llm"],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/x402/v1/query",
+      "sku_id": "structured-query",
+      "note": "npm run t54:seller. Use T54_SELLER_PUBLIC_BASE_URL=https://host and optional per-SKU rows below, or set T54_SELLER_PUBLIC_URL to full query URL."
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-research-brief",
+    "provider_name": "T54 XRPL — research brief (multi-section LLM)",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "",
+    "supported_assets": ["XRP"],
+    "pricing_model": "per_request",
+    "categories": ["t54", "xrpl", "research", "llm"],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/x402/v1/research-brief",
+      "sku_id": "research-brief"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-constitution-audit",
+    "provider_name": "T54 XRPL — constitution / ethics audit (prompt excerpt)",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "",
+    "supported_assets": ["XRP"],
+    "pricing_model": "per_request",
+    "categories": ["t54", "xrpl", "safety", "llm"],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/x402/v1/constitution-audit",
+      "sku_id": "constitution-audit-lite"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-hello",
+    "provider_name": "T54 XRPL — micropayment ping (/hello)",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "",
+    "supported_assets": ["XRP"],
+    "pricing_model": "per_request",
+    "categories": ["t54", "xrpl", "health"],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/hello",
+      "sku_id": "hello"
+    }
+  },
+  {
+    "provider_id": "x402-test-echo",
+    "provider_name": "x402 Test Echo (402payment-test; uses WWW-Authenticate v1 format)",
+    "source_type": "config",
+    "discovery_source": "default",
+    "protocol_type": "x402",
+    "network": "eip155:84532",
+    "facilitator_url": "https://x402.org/facilitator",
+    "resource_url": "https://402payment-test.com/api/x402",
+    "metadata": {"settlement_chain": "base", "facilitator": "x402.org"},
+    "supported_assets": ["USDC"],
+    "pricing_model": "per_request",
+    "categories": ["echo", "test"],
+    "payment_flow": "facilitator"
+  },
+  {
+    "provider_id": "arcana-x402",
+    "provider_name": "Arcana Price Oracle (Base Sepolia x402)",
+    "source_type": "config",
+    "discovery_source": "mintlify",
+    "protocol_type": "x402",
+    "network": "eip155:84532",
+    "facilitator_url": "https://x402.org/facilitator",
+    "resource_url": "https://api.arcana.markets/api/x402/oracle/price",
+    "supported_assets": ["USDC"],
+    "pricing_model": "per_request",
+    "categories": ["crypto", "oracle", "chain-scout", "news", "yield", "tokenomics", "nft", "perp"],
+    "payment_flow": "facilitator",
+    "metadata": {
+      "agents": ["Price Oracle"],
+      "price_usd": "0.01",
+      "request_method": "GET",
+      "request_params": ["symbol"],
+      "settlement_chain": "base",
+      "facilitator": "x402.org",
+      "celo_native": true
+    }
+  },
+  {
+    "provider_id": "agoragentic",
+    "provider_name": "Agoragentic (Base x402)",
+    "source_type": "config",
+    "discovery_source": "agoragentic",
+    "protocol_type": "x402",
+    "network": "eip155:8453",
+    "facilitator_url": "https://x402.org/facilitator",
+    "resource_url": "https://agoragentic.com/api/x402/listings",
+    "supported_assets": ["USDC"],
+    "pricing_model": "per_request",
+    "categories": ["vault", "agent-passport", "commerce", "a2a"],
+    "payment_flow": "none",
+    "metadata": {
+      "listings_endpoint": true,
+      "invoke_pattern": "https://agoragentic.com/api/x402/invoke/{listing_id}",
+      "settlement_chain": "base",
+      "celo_native": true
+    }
+  },
+  {
+    "provider_id": "x402-bazaar-discovery",
+    "provider_name": "x402 Bazaar Discovery",
+    "source_type": "config",
+    "discovery_source": "bazaar",
+    "protocol_type": "x402",
+    "network": "eip155:84532",
+    "facilitator_url": "https://x402.org/facilitator",
+    "resource_url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources",
+    "supported_assets": ["USDC"],
+    "pricing_model": "free",
+    "categories": ["discovery", "catalog"],
+    "payment_flow": "none",
+    "metadata": {"read_only": true, "list_endpoint": true}
+  },
+  {
+    "provider_id": "x402-discovery-api",
+    "provider_name": "x402 Service Discovery API (251+ services)",
+    "source_type": "config",
+    "discovery_source": "rplryan",
+    "protocol_type": "x402",
+    "network": "eip155:8453",
+    "facilitator_url": null,
+    "resource_url": "https://x402-discovery-api.onrender.com/discover",
+    "supported_assets": [],
+    "pricing_model": "free",
+    "categories": ["discovery", "search", "catalog"],
+    "payment_flow": "none",
+    "metadata": {"read_only": true, "indexed_services": 251}
+  }
+]
