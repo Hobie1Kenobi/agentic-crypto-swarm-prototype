@@ -15,8 +15,15 @@ This site is served from the `/docs` folder via GitHub Pages.
 ## What Gets Published
 
 - `docs/index.html` — Main project identity page
+- `docs/robots.txt` — Crawler rules (allows indexing; points to `sitemap.xml`)
+- `docs/sitemap.xml` — URL list for search engines (does not replace Search Console)
 - `docs/site-data.json` — Metrics, contracts, report links (for future JS use)
 - Other files in `docs/` (ARCHITECTURE.md, etc.) are accessible if linked
+
+### Search indexing (how it actually works)
+
+- **`robots.txt`** does not register your site with Google or “broadcast” it. It only tells crawlers which paths they are allowed to fetch. Blocking everything (`Disallow: /`) would *prevent* indexing; an **Allow** policy lets normal indexing proceed.
+- **Discovery** still depends on **links from other sites**, **sitemap** hints, **`meta` / Open Graph** on pages, and time. For measurable SEO, add the property in **[Google Search Console](https://search.google.com/search-console)** (and optionally Bing Webmaster Tools) and submit `sitemap.xml` there.
 
 ## What Is Not Published
 

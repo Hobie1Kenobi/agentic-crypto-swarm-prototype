@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/
+# GitHub Pages: served at site root when /docs is the Pages source.
+# This file does NOT "submit" your site to Google — it tells well-behaved crawlers
+# what they MAY fetch. Allowing / lets search engines index the public portal.
+
+User-agent: *
+Allow: /
+
+# Optional: hint where the URL list lives (Google, Bing, etc. may use it).
+Sitemap: https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/sitemap.xml
