@@ -17,6 +17,7 @@ This site is served from the `/docs` folder via GitHub Pages.
 - `docs/index.html` — Main project identity page
 - `docs/robots.txt` — Crawler rules (allows indexing; points to `sitemap.xml`)
 - `docs/sitemap.xml` — URL list for search engines (does not replace Search Console)
+- `docs/google*.html` — Google Search Console HTML file verification (one-time; keep if re-verifying)
 - `docs/site-data.json` — Metrics, contracts, report links (for future JS use)
 - Other files in `docs/` (ARCHITECTURE.md, etc.) are accessible if linked
 
