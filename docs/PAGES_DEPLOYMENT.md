@@ -18,6 +18,7 @@ This site is served from the `/docs` folder via GitHub Pages.
 - `docs/robots.txt` — Crawler rules (allows indexing; points to `sitemap.xml`)
 - `docs/sitemap.xml` — URL list for search engines (does not replace Search Console)
 - `docs/google*.html` — Google Search Console HTML file verification (one-time; keep if re-verifying)
+- `docs/og-banner.png` — 1200×630 Open Graph / Twitter large-card image (`og:image` / `twitter:image` in `index.html`)
 - `docs/site-data.json` — Metrics, contracts, report links (for future JS use)
 - Other files in `docs/` (ARCHITECTURE.md, etc.) are accessible if linked
 
@@ -35,6 +36,10 @@ Project Pages sites live **under the repo name**, not at the root of `github.io`
 - **Wrong (404):** `https://hobie1kenobi.github.io/sitemap.xml` — that path is not this project; Google will show **“Sitemap could not be read”** and **0** discovered URLs.
 
 Use the **same URL prefix** property as the site: `https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/`. If you already submitted the wrong URL, remove it in GSC and add the full URL above, then **Request validation** / wait for recrawl (often within a few days).
+
+#### GitHub repo “Social preview” (optional, separate from Pages)
+
+In the **repository** on GitHub: **Settings → General → Social preview** — upload a **1280×640** (or similar) image for **GitHub link previews** when the repo URL is shared. That is **not** the same as `og:image` on Pages; our `docs/og-banner.png` covers **GitHub Pages** and most social crawlers hitting the live site.
 
 ## What Is Not Published
 
