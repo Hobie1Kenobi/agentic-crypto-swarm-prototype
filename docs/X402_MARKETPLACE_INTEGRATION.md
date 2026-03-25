@@ -76,6 +76,58 @@ for p in providers:
         print(status, data, err)
 ```
 
+## Sell side (external marketplaces pay you)
+
+**Two layers:**
+
+| Layer | What | Who pays |
+|-------|------|----------|
+| **Celo native** | `api_402` — `fulfillQuery` + CELO | Buyers with Celo wallet (your 1h soak path) |
+| **Facilitator (Bazaar / Base)** | `api_seller_x402` — ExactEvm + USDC on Base Sepolia via x402.org facilitator | Anyone using standard x402 clients |
+
+Coinbase Bazaar indexes resources after the **facilitator verifies and settles** a payment to your URL. Celo-only `api_402` is not the same protocol path as facilitator USDC; use **`api_seller_x402`** for discovery on [Bazaar](https://docs.cdp.coinbase.com/x402/bazaar).
+
+```bash
+# Terminal A — seller (defaults: port 8043, pay_to = address of ROOT_STRATEGIST)
+cd packages/agents && set PYTHONPATH=. && python -m uvicorn api_seller_x402:create_app --host 127.0.0.1 --port 8043 --factory
+
+# Terminal B — smoke (unpaid → 402; paid → 200 after Base Sepolia USDC + X402_DRY_RUN=0)
+python scripts/run-x402-seller-smoke.py
+
+# One-liner (starts seller subprocess)
+python scripts/run-x402-seller-smoke.py --auto-start
+```
+
+**Env:** `X402_SELLER_PAY_TO` (optional; else derived from `ROOT_STRATEGIST_PRIVATE_KEY`), `X402_SELLER_PRICE` (default `$0.01`), `X402_SELLER_NETWORK` (default `eip155:84532`), `X402_SELLER_PORT` (default `8043`).
+
+**Public URL:** Expose `https://<your-host>/x402/v1/query` (ngrok, VPS, GitHub Codespaces port forward) so third parties and Bazaar can reach you. Set **`X402_SELLER_PUBLIC_URL`** to that full URL so `x402_providers.json` entry `swarm-seller-facilitator` resolves correctly in discovery.
+
+**Provider config:** `swarm-seller-facilitator` in `packages/agents/config/x402_providers.json` (default `http://127.0.0.1:8043/x402/v1/query`). Override with `X402_SELLER_PUBLIC_URL` or `X402_SELLER_PROBE_URL`.
+
+**CI probe (unpaid, expects 402 + PAYMENT-REQUIRED header or payment JSON):**
+
+```bash
+# Bash
+./scripts/probe-x402-seller.sh
+
+# Windows PowerShell
+.\scripts\probe-x402-seller.ps1
+
+# Or Python only
+python scripts/probe-x402-seller.py --url http://127.0.0.1:8043/x402/v1/query
+```
+
+**curl (no Python):**
+
+```bash
+curl -sS -o /dev/null -w "%{http_code}" -H "Accept: application/json" "http://127.0.0.1:8043/x402/v1/query?q=ci-probe"
+# expect 402
+```
+
+**Public HTTPS URL + remote discovery visibility:** `npm run probe:x402-listing` (or `python -u scripts/probe_x402_public_listing.py`) uses **`X402_SELLER_PUBLIC_URL`**, GETs **`/health`**, unpaid GET (expect **402**), a **dry-run** `X402Buyer` invoke, then checks whether your URL/host appears in responses from the same remote discovery endpoints as `external_commerce/discovery.py` (x402-discovery-api, CDP Bazaar, PayAI). Use **`--skip-remote`** to only test reachability. After ngrok restarts, run **`npm run sync:ngrok-all`** so `.env` has a current URL.
+
+**Agoragentic / Arcana as *buyers* of your listing:** Listing on Agoragentic is a **separate** vendor onboarding step on their site; our stack gives you a standards-compliant x402 endpoint they can point to once you are approved or listed.
+
 ## Smart Hybrid Settlement
 
 | Path | When | Action |

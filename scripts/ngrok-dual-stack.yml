@@ -1,0 +1,11 @@
+# One ngrok agent, two tunnels — single local API at http://127.0.0.1:4040
+# Must merge with your authtoken config (see start-dual-ngrok-stack.ps1 / npm run stack:dual-ngrok):
+#   ngrok start --all --config %LOCALAPPDATA%\ngrok\ngrok.yml --config scripts/ngrok-dual-stack.yml
+version: "3"
+tunnels:
+  t54_seller:
+    proto: http
+    addr: 8765
+  x402_seller:
+    proto: http
+    addr: 8043

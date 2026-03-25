@@ -1,32 +1,32 @@
 {
-  "version": 1,
+  "version": 2,
   "skus": [
     {
       "sku_id": "hello",
       "path": "/hello",
-      "price_drops": 500,
-      "description": "Micropayment ping — confirms x402 + facilitator path",
+      "price_drops": 1000,
+      "description": "XRPL mainnet micropayment ping — confirms HTTP 402 + T54 facilitator path",
       "handler": "hello"
     },
     {
       "sku_id": "structured-query",
       "path": "/x402/v1/query",
-      "price_drops": 1000,
-      "description": "Constitution-safe short LLM answer (GET ?q=)",
+      "price_drops": 2500,
+      "description": "Constitution-safe short LLM answer via GET ?q= (listing-friendly)",
       "handler": "structured_query"
     },
     {
       "sku_id": "research-brief",
       "path": "/x402/v1/research-brief",
-      "price_drops": 5000,
-      "description": "Structured multi-section research brief (GET ?topic=&context=)",
+      "price_drops": 12000,
+      "description": "Multi-section research brief (GET ?topic=&context=); optional URLs in context",
       "handler": "research_brief"
     },
     {
       "sku_id": "constitution-audit-lite",
       "path": "/x402/v1/constitution-audit",
-      "price_drops": 3000,
-      "description": "Heuristic constitution/ethics review of a prompt excerpt (GET ?prompt_snippet=)",
+      "price_drops": 8000,
+      "description": "Heuristic constitution / ethics review of a prompt excerpt (GET ?prompt_snippet=)",
       "handler": "constitution_audit_lite"
     }
   ]

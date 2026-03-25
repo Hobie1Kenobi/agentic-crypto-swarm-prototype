@@ -122,9 +122,16 @@ def _apply_env_overrides(raw: dict[str, Any]) -> dict[str, Any]:
         return out
     if pid == "swarm-seller-facilitator":
         url = _env("X402_SELLER_PUBLIC_URL") or _env("X402_SELLER_PROBE_URL")
-        if url:
+        net = _env("X402_SELLER_NETWORK")
+        fac = _env("X402_TEST_FACILITATOR_URL") or _env("X402_SELLER_FACILITATOR_URL")
+        if url or net or fac:
             out = dict(raw)
-            out["resource_url"] = url.strip()
+            if url:
+                out["resource_url"] = url.strip()
+            if net:
+                out["network"] = net
+            if fac:
+                out["facilitator_url"] = fac
             return out
     if pid == "t54-xrpl-example":
         url = (

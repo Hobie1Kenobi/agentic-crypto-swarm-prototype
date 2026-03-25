@@ -14,14 +14,14 @@ Paths and **price in drops** are defined in **`packages/agents/config/t54_seller
 
 Each SKU registers its own `require_payment` middleware (exact path match) and returns **JSON** validated against a Pydantic model (also exposed as `output_schema` on the 402 challenge).
 
-Default SKUs:
+Default SKUs (see `t54_seller_skus.json` — prices in **drops**, `version` bumps when the catalog changes):
 
-| Path | Purpose |
-|------|---------|
-| `GET /hello` | Micropayment ping |
-| `GET /x402/v1/query?q=` | Short constitution-safe LLM answer |
-| `GET /x402/v1/research-brief?topic=&context=` | Multi-section research brief (no live web unless buyer passes URLs in `context`) |
-| `GET /x402/v1/constitution-audit?prompt_snippet=` | Heuristic ethics / jailbreak-style review of a prompt excerpt |
+| Path | Drops (approx.) | Purpose |
+|------|-----------------|--------|
+| `GET /hello` | 1000 | Micropayment ping (x402 + facilitator) |
+| `GET /x402/v1/query?q=` | 2500 | Short constitution-safe LLM answer |
+| `GET /x402/v1/research-brief?topic=&context=` | 12000 | Multi-section research brief (optional URLs in `context`) |
+| `GET /x402/v1/constitution-audit?prompt_snippet=` | 8000 | Heuristic ethics / constitution-style review of a prompt excerpt |
 
 **Unpaid:** `GET /health` lists configured SKUs, paths, and prices.
 
@@ -70,6 +70,10 @@ npm run t54:reload-discovery
 ```
 
 `sync_t54_env_from_ngrok.py` reads `http://127.0.0.1:4040/api/tunnels` and sets **`T54_SELLER_PUBLIC_BASE_URL`** (scheme + host only; discovery appends each SKU path).
+
+**GitHub Pages:** After syncing env, run **`npm run docs:sync-endpoints`** to refresh **`docs/endpoints.json`** (also picks up **`X402_SELLER_PUBLIC_URL`**). Commit and push so [the public portal](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/) “Live endpoints” matches discovery.
+
+**T54 + Base x402 (Bazaar) on one ngrok agent:** with **`npm run t54:seller`** (8765) and **`npm run x402:seller`** (8043) both listening, run **`npm run stack:dual-ngrok`**. That merges your account authtoken config with `scripts/ngrok-dual-stack.yml`, starts two tunnels, and writes **`T54_SELLER_PUBLIC_BASE_URL`** and **`X402_SELLER_PUBLIC_URL`** to `.env` (and **`X402_SELLER_PUBLIC_URL`** to `.env.mainnet` when present). Use **`npm run sync:ngrok-all`** if ngrok is already running with both tunnels.
 
 Free tunnels get a **new hostname** whenever ngrok restarts — run **`npm run t54:sync-ngrok-env`** again after each restart.
 

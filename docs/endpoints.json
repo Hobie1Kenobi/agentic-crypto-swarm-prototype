@@ -1,0 +1,23 @@
+{
+  "schema_note": "Canonical public URLs for agents and buyers. Regenerate: python scripts/sync_endpoints_json.py",
+  "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+  "updated_at": "2026-03-25T15:46:39Z",
+  "endpoints": [
+    {
+      "id": "t54_public_origin",
+      "label": "T54 XRPL x402 seller (discovery origin)",
+      "description": "Discovery appends each SKU path from x402_providers.json.",
+      "url": "https://0387-159-118-65-248.ngrok-free.app",
+      "network": "xrpl:0",
+      "health_url": "https://0387-159-118-65-248.ngrok-free.app/health"
+    },
+    {
+      "id": "base_x402_query",
+      "label": "Base USDC x402 seller (facilitator / Bazaar)",
+      "description": "Full GET /x402/v1/query URL for Coinbase Bazaar / x402 clients.",
+      "url": "https://fe9f-159-118-65-248.ngrok-free.app/x402/v1/query",
+      "network": "eip155:8453",
+      "health_url": "https://fe9f-159-118-65-248.ngrok-free.app/health"
+    }
+  ]
+}

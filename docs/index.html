@@ -271,6 +271,26 @@
     .t54-skus td { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: var(--text); }
     .t54-skus td.path { color: #a5b4fc; }
     .t54-cta { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .ep-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px 22px;
+      margin-bottom: 16px;
+    }
+    .ep-card h4 { font-size: 1rem; margin-bottom: 8px; color: var(--text); }
+    .ep-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 12px; }
+    .ep-card .mono {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.8rem;
+      word-break: break-all;
+      color: #a5b4fc;
+      margin: 6px 0;
+    }
+    .ep-card a { color: var(--accent-cyan); }
+    .ep-badge { display: inline-block; font-size: 0.7rem; padding: 4px 10px; border-radius: 6px; background: rgba(139,92,246,0.2); color: #c4b5fd; margin-bottom: 8px; }
+    .ep-meta { font-size: 0.8rem; color: var(--text-muted); margin-top: 8px; }
+    .ep-warn { color: var(--accent-amber); font-size: 0.9rem; margin-top: 12px; }
     @media (max-width: 640px) {
       .hero { padding: 48px 0 64px; }
       .nav-links { width: 100%; justify-content: flex-start; }
@@ -284,6 +304,7 @@
       <a href="#" class="nav-brand">Agentic Swarm Marketplace</a>
       <div class="nav-links">
         <a href="#architecture">Architecture</a>
+        <a href="#live-endpoints">Live endpoints</a>
         <a href="#t54-x402">T54 x402</a>
         <a href="#proof">Proof</a>
         <a href="#x402-upgrade">x402 Upgrade</a>
@@ -302,6 +323,7 @@
       <p>Multi-rail agent commerce: XRPL machine payments + Celo private settlement. Autonomous compute marketplace with verifiable on-chain proof.</p>
       <div class="cta-row">
         <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
+        <a href="#live-endpoints" class="btn btn-secondary">Live endpoints</a>
         <a href="#t54-x402" class="btn btn-secondary">T54 x402 Seller</a>
         <a href="#proof" class="btn btn-secondary">View Proof Reports</a>
         <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/live_xrpl_to_celo_proof_report.md" class="btn btn-secondary" target="_blank" rel="noopener">Live XRPL→Celo Proof</a>
@@ -350,6 +372,16 @@
           <h3>Olas = Demand Routing</h3>
           <p>Public adapter normalizes external requests. Mock/replay for testing; live when configured.</p>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="live-endpoints">
+    <div class="container">
+      <h2 class="section-title">Live endpoints</h2>
+      <p class="section-sub">Single source of truth: <code style="color: #a5b4fc;">docs/endpoints.json</code> — regenerate from your machine with <code style="color: #a5b4fc;">python scripts/sync_endpoints_json.py</code> (reads <code>T54_SELLER_PUBLIC_BASE_URL</code> and <code>X402_SELLER_PUBLIC_URL</code> from <code>.env</code>), then commit and push so this page stays in sync with discovery.</p>
+      <div id="live-endpoints-root" class="t54-spotlight" style="margin-top: 24px;">
+        <p style="color: var(--text-muted);">Loading…</p>
       </div>
     </div>
   </section>
@@ -583,6 +615,59 @@
       </ul>
     </div>
   </section>
+
+  <script>
+  (function () {
+    var root = document.getElementById('live-endpoints-root');
+    if (!root) return;
+    var jsonUrl = new URL('endpoints.json', window.location.href).href;
+    function esc(s) {
+      if (!s) return '';
+      var d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+    function render(data) {
+      var html = '';
+      if (data.updated_at) {
+        html += '<p class="ep-meta">Updated (UTC): ' + esc(data.updated_at) + '</p>';
+      }
+      if (data.portal_url) {
+        html += '<p class="ep-meta">Portal: <a href="' + esc(data.portal_url) + '" target="_blank" rel="noopener">' + esc(data.portal_url) + '</a></p>';
+      }
+      var eps = data.endpoints || [];
+      var any = false;
+      eps.forEach(function (ep) {
+        var u = (ep.url || '').trim();
+        if (u) any = true;
+        html += '<div class="ep-card">';
+        if (ep.network) html += '<span class="ep-badge">' + esc(ep.network) + '</span>';
+        html += '<h4>' + esc(ep.label || ep.id || 'Endpoint') + '</h4>';
+        if (ep.description) html += '<p>' + esc(ep.description) + '</p>';
+        if (u) {
+          html += '<div class="mono"><a href="' + esc(u) + '" target="_blank" rel="noopener">' + esc(u) + '</a></div>';
+        } else {
+          html += '<p class="ep-warn">—</p>';
+        }
+        var h = (ep.health_url || '').trim();
+        if (h) {
+          html += '<div class="ep-meta">Health: <a href="' + esc(h) + '" target="_blank" rel="noopener">' + esc(h) + '</a></div>';
+        }
+        html += '</div>';
+      });
+      if (!any) {
+        html += '<p class="ep-warn">No public URLs in endpoints.json yet. Run <code style="color: #a5b4fc;">python scripts/sync_endpoints_json.py</code> with T54 and Base x402 seller URLs in your <code>.env</code>, commit <code>docs/endpoints.json</code>, and push.</p>';
+      }
+      root.innerHTML = html;
+    }
+    fetch(jsonUrl + '?v=' + Date.now(), { cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(render)
+      .catch(function () {
+        root.innerHTML = '<p class="ep-warn">Could not load endpoints.json. Open this page from GitHub Pages (same directory as endpoints.json) or run <code>python scripts/sync_endpoints_json.py</code> and ensure docs/endpoints.json exists.</p>';
+      });
+  })();
+  </script>
 
   <footer class="footer">
     <div class="container">

@@ -15,22 +15,22 @@
   },
   {
     "provider_id": "swarm-seller-facilitator",
-    "provider_name": "Our Swarm (Base Sepolia facilitator / Bazaar path)",
+    "provider_name": "Our Swarm (Base mainnet USDC — Coinbase Bazaar / x402 facilitator)",
     "source_type": "config",
     "discovery_source": "internal",
     "protocol_type": "x402",
-    "network": "eip155:84532",
+    "network": "eip155:8453",
     "facilitator_url": "https://x402.org/facilitator",
     "resource_url": "http://127.0.0.1:8043/x402/v1/query",
     "supported_assets": ["USDC"],
     "pricing_model": "per_request",
-    "categories": ["query", "llm", "self", "seller"],
+    "categories": ["query", "llm", "self", "seller", "bazaar"],
     "payment_flow": "facilitator",
     "metadata": {
       "seller": true,
       "api_seller_x402": true,
-      "settlement_chain": "base-sepolia",
-      "note": "Override URL with env X402_SELLER_PUBLIC_URL for ngrok/production"
+      "settlement_chain": "base-mainnet",
+      "note": "Set X402_SELLER_NETWORK=eip155:84532 in .env for Base Sepolia dev. Override resource_url with X402_SELLER_PUBLIC_URL for HTTPS."
     }
   },
   {

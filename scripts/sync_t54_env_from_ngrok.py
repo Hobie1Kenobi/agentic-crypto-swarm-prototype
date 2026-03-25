@@ -28,7 +28,15 @@ def main() -> int:
     if not tunnels:
         print("no tunnels in ngrok response", file=sys.stderr)
         return 1
-    base = (tunnels[0].get("public_url") or "").strip().rstrip("/")
+    picked = None
+    for t in tunnels:
+        addr = str((t.get("config") or {}).get("addr") or "").lower()
+        if ":8765" in addr or addr.endswith("8765"):
+            picked = t
+            break
+    if picked is None:
+        picked = tunnels[0]
+    base = (picked.get("public_url") or "").strip().rstrip("/")
     if not base.startswith("https://"):
         print("unexpected public_url", file=sys.stderr)
         return 1
