@@ -26,6 +26,16 @@ This site is served from the `/docs` folder via GitHub Pages.
 - **`robots.txt`** does not register your site with Google or “broadcast” it. It only tells crawlers which paths they are allowed to fetch. Blocking everything (`Disallow: /`) would *prevent* indexing; an **Allow** policy lets normal indexing proceed.
 - **Discovery** still depends on **links from other sites**, **sitemap** hints, **`meta` / Open Graph** on pages, and time. For measurable SEO, add the property in **[Google Search Console](https://search.google.com/search-console)** (and optionally Bing Webmaster Tools) and submit `sitemap.xml` there.
 
+#### Google Search Console — sitemap URL (must be full path)
+
+Project Pages sites live **under the repo name**, not at the root of `github.io`.
+
+- **Correct sitemap URL to submit:**  
+  `https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/sitemap.xml`
+- **Wrong (404):** `https://hobie1kenobi.github.io/sitemap.xml` — that path is not this project; Google will show **“Sitemap could not be read”** and **0** discovered URLs.
+
+Use the **same URL prefix** property as the site: `https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/`. If you already submitted the wrong URL, remove it in GSC and add the full URL above, then **Request validation** / wait for recrawl (often within a few days).
+
 ## What Is Not Published
 
 - `.env`, private keys, wallet seeds
