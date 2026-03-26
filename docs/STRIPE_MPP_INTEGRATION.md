@@ -1,0 +1,126 @@
+# Stripe Machine Payments Protocol (MPP) — Swarm-Economy wiring
+
+This document maps Stripe’s [Machine Payments Protocol (MPP)](https://docs.stripe.com/payments/machine/mpp) to this repo and explains how to run it **alongside** existing rails (x402, T54 XRPL, Celo-native) without changing their defaults. Quickstart: [MPP quickstart](https://docs.stripe.com/payments/machine/mpp/quickstart).
+
+## What MPP is
+
+- A client requests a paid resource; the server may respond with **HTTP 402** and a **payment challenge** (problem+json, e.g. `https://paymentauth.org/problems/payment-required`).
+- The client authorizes payment, retries with a **payment credential**, and receives the resource plus a **receipt**.
+- **Crypto path (Stripe):** Stripe creates a **PaymentIntent** with `payment_method_types: ['crypto']`, **deposit mode** on the **Tempo** network; funds settle on-chain and Stripe captures when appropriate.
+- **Fiat path:** Shared payment tokens (SPTs) via Stripe’s rails (not implemented in this repo’s Python helpers).
+
+**Preview API:** Stripe’s samples use API version `2026-03-04.preview` (set `STRIPE_API_VERSION` or `stripe.api_version` accordingly).
+
+## Official stack vs this repo
+
+| Layer | Stripe docs (typical) | This repo |
+|--------|------------------------|-----------|
+| HTTP 402 + `mppx` middleware | Node: `mppx/server`, `tempo.charge` | Not yet: add a **separate** Node service or future FastAPI route that matches Stripe’s challenge format |
+| PaymentIntent (crypto deposit) | Node `stripe` SDK | **Python:** `integrations.stripe_mpp.payment_intent.create_crypto_deposit_payment_intent` |
+| CLI buyer test | `npx mppx http://localhost:4242/paid` | Use against your MPP endpoint when you add one; independent of x402 T54 seller |
+
+Keeping the **Node `mppx` sample** as reference for byte-for-byte challenge behavior is recommended until a Python-native challenger is validated against Stripe’s tooling.
+
+## Dual-run safety (do not disturb x402 / soak / T54)
+
+- **Default:** `STRIPE_MPP_ENABLED=0` — no code paths load Stripe unless you opt in.
+- **Separate process / port:** Run any future MPP seller on a **different host/port** than `X402_SELLER_PORT` (e.g. 8043) or T54 seller, so long-running soak and dual-rail jobs stay unchanged.
+- **Dependencies:** `stripe` is **optional**; install only when exercising PaymentIntent creation (`pip install stripe`).
+
+## Prerequisites (Stripe Dashboard)
+
+Deposit-mode crypto PaymentIntents (Tempo addresses) only work after Stripe enables **Stablecoins and Crypto** for your account. If API calls return **unknown parameter** under `payment_method_options[crypto]` or **payment method type "crypto" is invalid**, finish Dashboard setup first:
+
+1. [Payment methods](https://dashboard.stripe.com/settings/payment_methods) — request **Stablecoins and Crypto** (may show as Pending until approved).
+2. [Deposit mode stablecoin payments](https://docs.stripe.com/payments/deposit-mode-stablecoin-payments) — notes access requirements and `machine-payments@stripe.com` where applicable.
+
+Check readiness without creating a deposit flow:
+
+```bash
+npm run stripe:mpp:preflight
+```
+
+## Environment variables
+
+See `.env.example` — summarized here:
+
+| Variable | Purpose |
+|----------|---------|
+| `STRIPE_MPP_ENABLED` | `1` to allow app code to treat MPP as configured (optional gate) |
+| `STRIPE_SECRET_KEY` | Stripe secret key (test or live) |
+| `STRIPE_PAYMENT_METHOD_CONFIGURATION` | Optional. For reference or future non-deposit flows. **Not used** by `create_crypto_deposit_payment_intent` / `stripe-mpp-deposit-intent.py` — Stripe’s deposit-address flow matches the official MPP samples (explicit `crypto` + deposit options, no `pmc_`). Use `npm run stripe:mpp:list-configurations` if you need to debug Dashboard IDs. |
+| `STRIPE_MPP_TESTNET` | `1` (default) for testnet-oriented docs/samples; mainnet Tempo USDC uses a different token address per Stripe docs |
+| `STRIPE_API_VERSION` | Default `2026-03-04.preview` |
+
+### Deposit mode + crypto payins (required for API)
+
+Stripe’s [MPP quickstart](https://docs.stripe.com/payments/machine/mpp/quickstart) calls out **crypto payins** separately from generic payment-method toggles. If you see **unknown parameter** under `payment_method_options[crypto][mode]` or **crypto is invalid**, enable **Stablecoins and Crypto** in the Dashboard and ensure **crypto payins** / deposit-mode access applies to your account ([Stripe help](https://support.stripe.com/questions/get-started-with-pay-with-crypto), [deposit mode](https://docs.stripe.com/payments/deposit-mode-stablecoin-payments)).
+
+**Amounts:** Stripe enforces a **minimum charge** (often **$0.50 USD** in our tests). This repo enforces a minimum of **$0.50** for `create_crypto_deposit_payment_intent`; the default script uses **$1.00** to align with MPP sample math.
+
+### Payment method configuration (`pmc_...`)
+
+- **Not used for Tempo deposit addresses** in this repo (Stripe rejects mixing `payment_method_configuration` with crypto **deposit** options; the official MPP sample uses explicit `payment_method_types: ['crypto']` only).
+- If you see **No such payment_method_configuration**, your `pmc_` ID is wrong or from another account/mode — run `npm run stripe:mpp:list-configurations` and fix or remove the env var.
+- If **GET** `/v1/payment_method_configurations/{pmc_...}` returns **400** with **`Platform parent configurations can only be managed via the dashboard`**, that ID is a **platform parent** config. Stripe blocks API retrieve/update for it; use a **non-parent** configuration that returns **200** on GET (Workbench will show 200 for those rows), or omit `pmc_` and use the explicit crypto deposit PaymentIntent path in this repo.
+
+### Dashboard shows Crypto on — why did the API disagree?
+
+Your **Payment method configuration** page can show **Crypto** as “Turned on” / **Enabled** for a given `pmc_...` and still see API errors. Common causes:
+
+1. **Test mode vs Live mode** — Stripe is two separate worlds. The **Test / Live toggle** in the Dashboard (top of the page) must match **`STRIPE_SECRET_KEY`**:
+   - `sk_test_...` → only sees **test** payment method configurations and test data.
+   - `sk_live_...` → only sees **live** configurations.
+   Each mode has its **own** `pmc_...` IDs. A config visible while **Test mode** is selected does **not** exist for `sk_live_...` (and vice versa). That explains **“No such payment_method_configuration”** when the ID is correct in the UI but the secret key is for the other mode.
+
+2. **Wallets “Crypto” vs deposit-mode API** — Dashboard can enable **Crypto** as a wallet/payment method for that configuration while the **PaymentIntent deposit** path (`payment_method_options[crypto][mode]=deposit`, preview API) still needs **crypto payins / deposit** entitlement on the account. See [crypto payins](https://support.stripe.com/questions/get-started-with-pay-with-crypto) and [deposit mode](https://docs.stripe.com/payments/deposit-mode-stablecoin-payments).
+
+**What to do:** Match Dashboard mode to your key (`sk_test_` vs `sk_live_`), then run `npm run stripe:mpp:list-configurations` — you should see the same `pmc_...` you see in the UI for that mode. Then run `npm run stripe:mpp:preflight` again.
+
+**If the Dashboard is Live and Crypto is on, but `list-configurations` still does not list your named config (`pmc_...`):** each secret key belongs to exactly one Stripe **account** (`acct_...`). Confirm the Dashboard session (account switcher / **Settings**) is the **same** account as the key in `.env`. If the API returns fewer `pmc_` rows than you see in the browser, you are almost always logged into a **different** Stripe account in the Dashboard than the one your `STRIPE_SECRET_KEY` is for.
+
+## Verify setup
+
+```bash
+npm run stripe:mpp:preflight
+npm run stripe:mpp:deposit-intent
+```
+
+`preflight` confirms the API key and whether `payment_method_types: ["crypto"]` is accepted (minimum $0.50 probe). `deposit-intent` creates a **deposit** PaymentIntent on Tempo (requires crypto + deposit / payins enabled).
+
+## Python API (deposit address)
+
+```python
+from integrations.stripe_mpp import (
+    StripeMppConfig,
+    create_crypto_deposit_payment_intent,
+)
+
+cfg = StripeMppConfig.from_env()
+if cfg.enabled and cfg.secret_key:
+    details = create_crypto_deposit_payment_intent(
+        amount_usd="1.00",
+        secret_key=cfg.secret_key,
+        api_version=cfg.api_version,
+        testnet=cfg.testnet,
+    )
+    print(details.payment_intent_id, details.pay_to_address)
+```
+
+`testnet` is accepted for future use (e.g. toggling token addresses in a Node `mppx` sidecar); the PaymentIntent payload uses Tempo network deposit options as in Stripe’s samples.
+
+## Operational notes
+
+- **US stablecoin acceptance:** Stripe’s docs require US business eligibility for stablecoin acceptance; plan compliance before production.
+- **Sandbox:** Testnet deposits may not auto-settle in sandbox; use Stripe’s test helpers as described in their docs.
+- **Caching pay-to addresses:** Production services should validate `Authorization` credentials against a **cache** of issued deposit addresses (Stripe’s Node sample uses `node-cache`; use Redis in production).
+
+## Marketplace bundle (sellable ZIP)
+
+`create_crypto_deposit_payment_intent` accepts optional string **`metadata`** (Stripe `PaymentIntent.metadata`) for product id and fulfillment tracking. See [MARKETPLACE_DASHBOARD_BUNDLE.md](./MARKETPLACE_DASHBOARD_BUNDLE.md) for packing scripts, `marketplace_api.py` (`MARKETPLACE_HTTP_ENABLED=1`), **`POST /webhooks/stripe`** (`STRIPE_WEBHOOK_SECRET`), **`GET /marketplace/success`** (buyer portal), and **`GET /v1/fulfillment/download/{token}`** (`MARKETPLACE_BUNDLE_ZIP_PATH`).
+
+## Next steps (not yet in repo)
+
+1. Small **Node** service (or FastAPI) that wraps `Mppx.create` + `tempo.charge` for strict compatibility with `mppx` CLI.
+2. **Buyer** path in `external_commerce` that performs HTTP 402 → pay → retry, analogous to `x402_buyer.py`.
+3. **Provider registry** entry type for `stripe_mpp` endpoints (separate from x402 discovery JSON).

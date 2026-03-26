@@ -1,7 +1,7 @@
 {
   "project": {
     "name": "Agentic Swarm Marketplace",
-    "tagline": "Multi-rail agent commerce: XRPL machine payments + Celo private settlement",
+    "tagline": "Multi-rail agent commerce: XRPL machine payments + Celo private settlement + Stripe MPP marketplace + x402 Strategy Dashboard bundle",
     "repo": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
     "chain": "Celo Sepolia (testnet)",
     "chainId": 11142220
@@ -54,7 +54,17 @@
     "soak_24h_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_24h_report.json",
     "architecture": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/ARCHITECTURE.md",
     "xrpl_payments": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/XRPL_PAYMENTS.md",
-    "production_readiness": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/PRODUCTION-READINESS.md"
+    "production_readiness": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/PRODUCTION-READINESS.md",
+    "stripe_mpp": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/STRIPE_MPP_INTEGRATION.md",
+    "marketplace_dashboard_bundle": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/MARKETPLACE_DASHBOARD_BUNDLE.md",
+    "x402_scout_catalog": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/X402_SCOUT_CATALOG_INTEGRATION.md"
+  },
+  "marketplace": {
+    "stripe_mpp_status": "integrated",
+    "operator_bundle_product_id": "x402_strategy_dashboard_bundle",
+    "operator_bundle_name": "x402 Strategy Dashboard (operator bundle)",
+    "pack_command": "npm run marketplace:pack",
+    "dashboard_snapshot_screenshot": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/x402-earning-strategy-dashboard-overview.png"
   },
   "ecosystem": {
     "celo": "https://celo.org",
