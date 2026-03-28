@@ -1,27 +1,79 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- 1. HOMEPAGE - Highest priority -->
   <url>
     <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/</loc>
-    <lastmod>2026-03-26</lastmod>
+    <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
+
+  <!-- 2. Core Data & Discovery Files -->
   <url>
     <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/endpoints.json</loc>
-    <lastmod>2026-03-26</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
   </url>
+
   <url>
     <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/discovery-keyword-scan.json</loc>
-    <lastmod>2026-03-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.75</priority>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.80</priority>
   </url>
+
+  <!-- 3. Key Documentation Pages (these are the highest-value SEO pages) -->
   <url>
     <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/discovery-keyword-scan.md</loc>
-    <lastmod>2026-03-24</lastmod>
-    <changefreq>weekly</changefreq>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/docs/ARCHITECTURE.md</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.78</priority>
+  </url>
+
+  <url>
+    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/docs/X402_MARKETPLACE_INTEGRATION.md</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.77</priority>
+  </url>
+
+  <url>
+    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/docs/T54_SELLER.md</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.76</priority>
+  </url>
+
+  <!-- 4. High-Value Soak & Proof Reports (great for long-tail SEO) -->
+  <url>
+    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/x402_agent_commerce_soak_report.md</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.72</priority>
   </url>
+
+  <url>
+    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/live_xrpl_to_celo_proof_report.md</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.70</priority>
+  </url>
+
+  <url>
+    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/continuous_multi_rail_24h_report.md</loc>
+    <lastmod>2026-03-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.68</priority>
+  </url>
+
 </urlset>
