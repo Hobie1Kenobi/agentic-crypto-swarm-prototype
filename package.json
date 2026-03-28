@@ -26,6 +26,7 @@
     "sync:ngrok-all": "python scripts/sync_t54_env_from_ngrok.py && python scripts/sync_x402_env_from_ngrok.py",
     "probe:x402-listing": "python -u scripts/probe_x402_public_listing.py",
     "docs:sync-endpoints": "python scripts/sync_endpoints_json.py",
+    "docs:pages-mirror": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/sync-github-pages-docs-mirrors.ps1",
     "ngrok:dual": "scripts\\ngrok.cmd start --all --config %LOCALAPPDATA%\\ngrok\\ngrok.yml --config scripts/ngrok-dual-stack.yml",
     "stack:dual-ngrok": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-dual-ngrok-stack.ps1",
     "stack:unified:start": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-unified-stack.ps1",
