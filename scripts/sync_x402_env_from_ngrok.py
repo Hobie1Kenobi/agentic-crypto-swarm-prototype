@@ -74,11 +74,21 @@ def main() -> int:
     if not tunnels:
         print("no tunnels in ngrok response", file=sys.stderr)
         return 1
-    tun = _tunnel_for_port(tunnels, args.port)
+    def _unified_tunnel(ts: list) -> dict | None:
+        for t in ts:
+            addr = str((t.get("config") or {}).get("addr") or "").lower()
+            name = str(t.get("name") or "").lower()
+            if name == "unified" or ":9080" in addr or addr.endswith("9080"):
+                return t
+        return None
+
+    tun = _unified_tunnel(tunnels)
+    if tun is None:
+        tun = _tunnel_for_port(tunnels, args.port)
     if not tun:
         print(
-            f"No ngrok tunnel found for localhost:{args.port}. "
-            f"Use dual config: npm run ngrok:dual (see scripts/ngrok-dual-stack.yml), "
+            f"No ngrok tunnel for unified :9080 or localhost:{args.port}. "
+            f"Use: npm run ngrok:dual (see scripts/ngrok-dual-stack.yml), "
             f"or ngrok http {args.port}",
             file=sys.stderr,
         )
@@ -89,6 +99,11 @@ def main() -> int:
         return 1
     path = args.path if str(args.path).startswith("/") else f"/{args.path}"
     full = f"{base}{path}"
+    if ":9080" in str((tun.get("config") or {}).get("addr") or "").lower() or str(
+        tun.get("name") or ""
+    ).lower() == "unified":
+        full = f"{base}/x402/v1/query"
+        _upsert_env(env_path, "MARKETPLACE_PUBLIC_BASE_URL", base)
     _upsert_env(env_path, "X402_SELLER_PUBLIC_URL", full)
     print(f"Wrote X402_SELLER_PUBLIC_URL to {env_path}")
     mainnet = root / ".env.mainnet"

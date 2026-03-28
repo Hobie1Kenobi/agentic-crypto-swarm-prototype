@@ -1,0 +1,139 @@
+{
+  "cycle": 9,
+  "start_time": "2026-03-22T18:13:03Z",
+  "end_time": "2026-03-22T18:14:11Z",
+  "status": "completed",
+  "task": {
+    "task_type": "short_answer",
+    "complexity": "low",
+    "template": "Short answer: What is agentic commerce in one phrase?",
+    "sla_seconds": 90,
+    "quoted_price_xrp": "0.8",
+    "quoted_price_usd": "0.012",
+    "max_budget": "0.0180",
+    "task_id": 180
+  },
+  "actors": {
+    "requester_id": "requester-1",
+    "requester_xrpl_funding_address": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+    "requester_celo_refund_address": "0x5551abbAF9Eb240BaC81aE49199f96f678D58f05",
+    "worker_id": "worker-3",
+    "worker_payout_address": "0xb132e9bDA7bd2c530fd16c03126e7f54367dbF65",
+    "validator_id": "validator-4",
+    "validator_address": "0xCF3572136265A5ED34D412200E63017e39223592"
+  },
+  "boundary": {
+    "payment_rail": "xrpl",
+    "public_intake": "mocked_external_replay",
+    "private_settlement": "live_celo"
+  },
+  "xrpl": {
+    "tx_hash": "583C1D919C324FC2393542307952C4DB994A5661A20EACEADB175C2C47AF4343",
+    "sender": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+    "receiver": "rBTkGWdrqnJL8s7aHwnFJTnEVnV3nZ8b5",
+    "destination_tag": 283484,
+    "memo_ref": "Short answer: What is agentic commerce in one phrase?",
+    "quote_id": "c2b78327d0cc4ab3",
+    "expected_amount_xrp": "0.8",
+    "amount_drops": "800000",
+    "delivered_amount": "800000",
+    "ledger_index": 15894709,
+    "validated": true,
+    "verification_status": "real_xrpl_payment",
+    "quoted_price_xrp": "0.8"
+  },
+  "correlation": {
+    "external_payment_ref": "8804770110b5b55e506c148bc7984e9fb91f7d607e0c20dbb24f7c2a2a52b88a",
+    "internal_task_id": 180
+  },
+  "celo": {
+    "network": "celo_sepolia",
+    "task_contract": "0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9",
+    "lifecycle": [
+      {
+        "step": "createTask",
+        "tx_hash": "ace69e681a723abd06e92e1cba9befaf64f04e6b04351a151dc3f05655c88778",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "acceptTask",
+        "tx_hash": "23bf2a3c91203af52a83599c5dee122592bfceffc7eee0502b6b3c873e32a9e1",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "submitResult",
+        "tx_hash": "ba26638309aa31b8be93b0560cdd52ce40a024556b9654fc8ff3a09659ea42a5",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "validateResult",
+        "tx_hash": "7a74545830f9d6792a5f05b1f60c6b14906f1758a36723faba62463927bf763e",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "finalizeTask",
+        "tx_hash": "d32b87c518c42e94c6cd861b3252475bd76bca70e4c1e51d320d372e8df1ea6b",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "refundRequester",
+        "tx_hash": "e2dc8dc775e6888563a464a26a9fe9ba31ac2710667530c5e2abdd2b1114227d",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "withdrawWorkerPayout",
+        "tx_hash": "f686637142b89a25d963747cd91ecfc06384af3633093cbcd89dff6e006d84e5",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "settleProtocolFee",
+        "tx_hash": "43a03b8bdcd4b22a88d140159acefca85d8966f6d12580260b0c533e2380353b",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "settleFinanceFee",
+        "tx_hash": "5b7cdcdf7cfda1ee508242f8a9816fdbc3d4455f6b7d4604e178843c15e12055",
+        "block_number": null,
+        "success": true
+      }
+    ],
+    "final_status": "Finalized",
+    "confirmations_used": 1
+  },
+  "settlement": {
+    "currency": "CELO",
+    "protocol_fee": {
+      "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+      "actual_wei": 800000000000000
+    },
+    "finance_fee": {
+      "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+      "actual_wei": 4000000000000000
+    },
+    "worker_payout": {
+      "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+      "actual_wei": 608000000000000
+    },
+    "requester_refund": {
+      "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+      "actual_wei": 2592000000000000
+    }
+  },
+  "quality": {
+    "result_score": 19,
+    "validator_decision": "accepted"
+  },
+  "elapsed": {
+    "total_seconds": 67.92
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "description": "Keywords matched case-insensitively against flattened discovery resource JSON (resource URL, accepts, schemas).",
+  "default_keywords": [
+    "airdrop",
+    "claim",
+    "reward",
+    "incentive",
+    "faucet",
+    "quest",
+    "points",
+    "season",
+    "testnet",
+    "farm",
+    "farming",
+    "allocation",
+    "eligible",
+    "snapshot",
+    "retro",
+    "merkle",
+    "vesting",
+    "token",
+    "bonus",
+    "whitelist",
+    "launchpad",
+    "genesis",
+    "distribution",
+    "governance",
+    "staking",
+    "participat",
+    "early",
+    "ecosystem"
+  ],
+  "sources": [
+    {
+      "id": "cdp",
+      "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources",
+      "label": "Coinbase CDP x402 discovery"
+    },
+    {
+      "id": "payai",
+      "url": "https://facilitator.payai.network/discovery/resources",
+      "label": "PayAI facilitator discovery"
+    }
+  ],
+  "defaults": {
+    "max_items_per_source": 600,
+    "page_size": 100,
+    "sleep_seconds": 0.2,
+    "timeout_seconds": 35
+  }
+}

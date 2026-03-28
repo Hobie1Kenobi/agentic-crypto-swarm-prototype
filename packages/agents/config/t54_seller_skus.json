@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 4,
   "skus": [
     {
       "sku_id": "hello",
@@ -28,6 +28,20 @@
       "price_drops": 8000,
       "description": "Heuristic constitution / ethics review of a prompt excerpt (GET ?prompt_snippet=)",
       "handler": "constitution_audit_lite"
+    },
+    {
+      "sku_id": "agent-commerce-data",
+      "path": "/x402/v1/agent-commerce-data",
+      "price_drops": 350000,
+      "description": "Verifiable swarm proof + x402 commerce bundle: run-summary, cycle/evidence excerpts, federation & discovery, providers, T54 payment attempts & invocations (GET ?depth=standard|full)",
+      "handler": "agent_commerce_data"
+    },
+    {
+      "sku_id": "airdrop-intelligence-report",
+      "path": "/x402/v1/airdrop-intelligence",
+      "price_drops": 22000,
+      "description": "Constitution-first airdrop/incentive screening: Farm Score 0–100, risk flags, no on-chain execution (GET ?topic=&context=)",
+      "handler": "airdrop_intelligence_report"
     }
   ]
 }

@@ -10,11 +10,11 @@ Runs every 15 minutes for 24 hours (96 cycles):
 Usage:
   python scripts/run-continuous-multi-rail-24h.py
 
-Produces:
-  - continuous_multi_rail_24h_report.json
-  - continuous_multi_rail_24h_report.md
-  - continuous_multi_rail_metrics_summary.md
-  - trace_archive_24h/cycle_NNNN_communication_trace.{json,md}
+Produces (under artifacts/):
+  - reports/continuous_multi_rail_24h_report.json
+  - reports/continuous_multi_rail_24h_report.md
+  - reports/continuous_multi_rail_metrics_summary.md
+  - traces/soak-24h/cycle_NNNN_communication_trace.{json,md}
 """
 from __future__ import annotations
 
@@ -39,14 +39,14 @@ from scripts.soak_test_runner import (
 DURATION_HOURS = 24
 TOTAL_CYCLES = (DURATION_HOURS * 60) // 15
 
-OUT_DIR = root
+OUT_DIR = root / "artifacts" / "reports"
 CYCLE_LOG_JSON = OUT_DIR / "continuous_multi_rail_24h_cycle_log.json"
 CYCLE_LOG_MD = OUT_DIR / "continuous_multi_rail_24h_cycle_log.md"
 REPORT_JSON = OUT_DIR / "continuous_multi_rail_24h_report.json"
 REPORT_MD = OUT_DIR / "continuous_multi_rail_24h_report.md"
 METRICS_MD = OUT_DIR / "continuous_multi_rail_metrics_summary.md"
 FAILURES_JSON = OUT_DIR / "continuous_multi_rail_24h_failures.json"
-TRACE_ARCHIVE_DIR = OUT_DIR / "trace_archive_24h"
+TRACE_ARCHIVE_DIR = root / "artifacts" / "traces" / "soak-24h"
 CHECKPOINT_6H = OUT_DIR / "continuous_multi_rail_24h_6h_checkpoint.md"
 CHECKPOINT_12H = OUT_DIR / "continuous_multi_rail_24h_12h_checkpoint.md"
 CHECKPOINT_18H = OUT_DIR / "continuous_multi_rail_24h_18h_checkpoint.md"
@@ -110,6 +110,8 @@ def write_checkpoint(summary: dict, path: Path, label: str) -> None:
 
 
 def main() -> int:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    TRACE_ARCHIVE_DIR.mkdir(parents=True, exist_ok=True)
     print(f"[{ts()}] Starting 24-hour continuous multi-rail soak test ({TOTAL_CYCLES} cycles, every 15 min)")
     print(f"[{ts()}] Olas intake: {OLAS_BOUNDARY} (mocked)")
     locked_config = snapshot_config()
@@ -198,7 +200,7 @@ def main() -> int:
         "- continuous_multi_rail_24h_report.json",
         "- continuous_multi_rail_24h_report.md",
         "- continuous_multi_rail_metrics_summary.md",
-        "- trace_archive_24h/cycle_NNNN_communication_trace.{json,md}",
+        "- artifacts/traces/soak-24h/cycle_NNNN_communication_trace.{json,md}",
         "",
     ]
     REPORT_MD.write_text("\n".join(md_lines), encoding="utf-8")

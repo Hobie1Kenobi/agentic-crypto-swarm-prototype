@@ -4,7 +4,7 @@ T54 XRPL x402 seller — FastAPI app: 402 + xrpl:0 terms; t54 facilitator verifi
 Multi-SKU: paths and prices come from config/t54_seller_skus.json (override with T54_SELLER_SKUS_JSON).
 Each SKU has its own require_payment middleware (per-path pricing).
 
-Env (see docs/T54_SELLER.md):
+Env (see documentation/x402-t54-base/T54_SELLER.md):
   XRPL_RECEIVER_ADDRESS or T54_LOCAL_MERCHANT_PAY_TO — receive XRP
   XRPL_FACILITATOR_URL — default https://xrpl-facilitator-mainnet.t54.ai
   T54_SELLER_NETWORK — xrpl:0 mainnet (default) or xrpl:1 testnet
@@ -31,12 +31,16 @@ def create_t54_seller_app() -> Any:
 
     from t54_seller_catalog import load_t54_seller_skus
     from t54_seller_handlers import (
+        run_agent_commerce_data,
+        run_airdrop_intelligence_report,
         run_constitution_audit_lite,
         run_hello,
         run_research_brief,
         run_structured_query,
     )
     from t54_seller_models import (
+        AgentCommerceDataResponse,
+        AirdropIntelligenceReportResponse,
         ConstitutionAuditLiteResponse,
         HelloResponse,
         ResearchBriefResponse,
@@ -59,6 +63,8 @@ def create_t54_seller_app() -> Any:
         "structured_query": StructuredQueryResponse,
         "research_brief": ResearchBriefResponse,
         "constitution_audit_lite": ConstitutionAuditLiteResponse,
+        "agent_commerce_data": AgentCommerceDataResponse,
+        "airdrop_intelligence_report": AirdropIntelligenceReportResponse,
     }
 
     app = FastAPI(title="T54 XRPL x402 Seller", version="1.1.0")
@@ -148,6 +154,35 @@ def create_t54_seller_app() -> Any:
         _route.__name__ = f"t54_route_{sku_id.replace('-', '_')}"
         return _route
 
+    def _mk_agent_data(sku_id: str) -> Any:
+        async def _route(
+            depth: str = Query(default="standard", max_length=16),
+        ) -> Any:
+            try:
+                return _dump(run_agent_commerce_data(depth))
+            except ValidationError as e:
+                return _err_val(e)
+            except Exception as exc:
+                return _err_exc(exc)
+
+        _route.__name__ = f"t54_route_{sku_id.replace('-', '_')}"
+        return _route
+
+    def _mk_airdrop(sku_id: str) -> Any:
+        async def _route(
+            topic: str = Query(default="Ethical airdrop and incentive screening", max_length=256),
+            context: str | None = Query(default=None, max_length=4000),
+        ) -> Any:
+            try:
+                return _dump(run_airdrop_intelligence_report(topic, context))
+            except ValidationError as e:
+                return _err_val(e)
+            except Exception as exc:
+                return _err_exc(exc)
+
+        _route.__name__ = f"t54_route_{sku_id.replace('-', '_')}"
+        return _route
+
     for sku in skus:
         hid = sku["handler"]
         p = sku["path"]
@@ -161,6 +196,10 @@ def create_t54_seller_app() -> Any:
             app.add_api_route(p, _mk_research(sid), methods=["GET"])
         elif hid == "constitution_audit_lite":
             app.add_api_route(p, _mk_constitution(sid), methods=["GET"])
+        elif hid == "agent_commerce_data":
+            app.add_api_route(p, _mk_agent_data(sid), methods=["GET"])
+        elif hid == "airdrop_intelligence_report":
+            app.add_api_route(p, _mk_airdrop(sid), methods=["GET"])
         else:
             raise RuntimeError(f"Unhandled handler {hid}")
 

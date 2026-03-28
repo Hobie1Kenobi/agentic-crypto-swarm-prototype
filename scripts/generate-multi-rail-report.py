@@ -19,11 +19,36 @@ def _read_json(p: Path) -> dict[str, Any] | None:
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+def _reports_dir(root: Path) -> Path:
+    d = root / "artifacts" / "reports"
+    d.mkdir(parents=True, exist_ok=True)
+    return d
+
+
+def _in_report(root: Path, name: str) -> Path:
+    ar = root / "artifacts" / "reports" / name
+    if ar.exists():
+        return ar
+    return root / name
+
+
+def _comm_trace_json(root: Path) -> Path:
+    p = root / "artifacts" / "communication" / "communication_trace.json"
+    if p.exists():
+        return p
+    return root / "communication_trace.json"
+
+
 def main() -> None:
     root = _root()
-    multi = _read_json(root / "multi_rail_run_report.json") or _read_json(root / "public_adapter_run_report.json") or {}
-    trace = _read_json(root / "communication_trace.json") or {}
-    private = _read_json(root / "celo_sepolia_task_market_report.json") or _read_json(root / "local_task_market_report.json") or {}
+    rep = _reports_dir(root)
+    multi = _read_json(_in_report(root, "multi_rail_run_report.json")) or _read_json(
+        _in_report(root, "public_adapter_run_report.json")
+    ) or {}
+    trace = _read_json(_comm_trace_json(root)) or {}
+    private = _read_json(_in_report(root, "celo_sepolia_task_market_report.json")) or _read_json(
+        _in_report(root, "local_task_market_report.json")
+    ) or {}
 
     xrpl_payment = multi.get("xrpl_payment") or {}
     payment_boundary = multi.get("payment_boundary", "none")
@@ -58,11 +83,11 @@ def main() -> None:
     if correlation["celo_settlement"].get("internal_task_id") is not None:
         xrpl_report["internal_task_id"] = correlation["celo_settlement"]["internal_task_id"]
 
-    xrpl_report_path = root / "xrpl_payment_report.json"
+    xrpl_report_path = rep / "xrpl_payment_report.json"
     xrpl_report_path.write_text(json.dumps(xrpl_report, indent=2), encoding="utf-8")
     print(f"Wrote {xrpl_report_path}")
 
-    corr_path = root / "xrpl_to_celo_correlation_report.json"
+    corr_path = rep / "xrpl_to_celo_correlation_report.json"
     corr_path.write_text(json.dumps(correlation, indent=2), encoding="utf-8")
     print(f"Wrote {corr_path}")
 
@@ -77,8 +102,8 @@ def main() -> None:
         f"- Verification boundary: `{xrpl_report['verification_boundary']}`",
         "",
     ]
-    (root / "xrpl_payment_report.md").write_text("\n".join(md_lines), encoding="utf-8")
-    print(f"Wrote {root / 'xrpl_payment_report.md'}")
+    (rep / "xrpl_payment_report.md").write_text("\n".join(md_lines), encoding="utf-8")
+    print(f"Wrote {rep / 'xrpl_payment_report.md'}")
 
     corr_md = [
         "# XRPL to Celo Correlation Report",
@@ -94,8 +119,8 @@ def main() -> None:
         f"- Tx count: `{len(correlation['celo_settlement'].get('tx_hashes') or [])}`",
         "",
     ]
-    (root / "xrpl_to_celo_correlation_report.md").write_text("\n".join(corr_md), encoding="utf-8")
-    print(f"Wrote {root / 'xrpl_to_celo_correlation_report.md'}")
+    (rep / "xrpl_to_celo_correlation_report.md").write_text("\n".join(corr_md), encoding="utf-8")
+    print(f"Wrote {rep / 'xrpl_to_celo_correlation_report.md'}")
 
 
 if __name__ == "__main__":

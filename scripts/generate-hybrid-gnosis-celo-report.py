@@ -15,6 +15,26 @@ def _read_json(p: Path) -> dict[str, Any] | None:
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+def _reports_dir(root: Path) -> Path:
+    d = root / "artifacts" / "reports"
+    d.mkdir(parents=True, exist_ok=True)
+    return d
+
+
+def _in_report(root: Path, name: str) -> Path:
+    ar = root / "artifacts" / "reports" / name
+    if ar.exists():
+        return ar
+    return root / name
+
+
+def _comm_trace_json(root: Path) -> Path:
+    p = root / "artifacts" / "communication" / "communication_trace.json"
+    if p.exists():
+        return p
+    return root / "communication_trace.json"
+
+
 def _fmt_wei(wei: int | None, symbol: str) -> str:
     if wei is None:
         return "n/a"
@@ -23,11 +43,14 @@ def _fmt_wei(wei: int | None, symbol: str) -> str:
 
 def main() -> None:
     root = _root()
-    public = _read_json(root / "public_adapter_run_report.json") or {}
-    trace = _read_json(root / "communication_trace.json") or {}
-    private = _read_json(root / "celo_sepolia_task_market_report.json") or _read_json(root / "local_task_market_report.json") or {}
-    preflight = _read_json(root / "olas_preflight_report.json")
-    live_attempt = _read_json(root / "olas_live_attempt_report.json")
+    rep = _reports_dir(root)
+    public = _read_json(_in_report(root, "public_adapter_run_report.json")) or {}
+    trace = _read_json(_comm_trace_json(root)) or {}
+    private = _read_json(_in_report(root, "celo_sepolia_task_market_report.json")) or _read_json(
+        _in_report(root, "local_task_market_report.json")
+    ) or {}
+    preflight = _read_json(_in_report(root, "olas_preflight_report.json"))
+    live_attempt = _read_json(_in_report(root, "olas_live_attempt_report.json"))
 
     symbol = (private.get("native_symbol") or "CELO").upper()
     private_ok = bool(private.get("ok"))
@@ -97,7 +120,7 @@ def main() -> None:
         },
     }
 
-    out_json = root / "hybrid_gnosis_celo_report.json"
+    out_json = rep / "hybrid_gnosis_celo_report.json"
     out_json.write_text(json.dumps(report, indent=2), encoding="utf-8")
 
     # Markdown.
@@ -143,7 +166,7 @@ def main() -> None:
     md.append("- public adapter run: `public_adapter_run_report.json`")
     md.append("- private settlement: `celo_sepolia_task_market_report.json`")
 
-    out_md = root / "hybrid_gnosis_celo_report.md"
+    out_md = rep / "hybrid_gnosis_celo_report.md"
     md_content = "\n".join(md).rstrip() + "\n"
     out_md.write_text(md_content, encoding="utf-8")
     print(f"Wrote {out_md}")

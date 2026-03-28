@@ -1,0 +1,32 @@
+{
+  "updated_at": "2026-03-25T17:24:57Z",
+  "schema_note": "Live GET-only snapshot; re-run: npm run commerce:snapshot",
+  "recommended_order_ref": "external_commerce_data/marketplace_priority.json",
+  "sources": [
+    {
+      "id": "coinbase_cdp",
+      "label": "Coinbase CDP x402 discovery",
+      "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources",
+      "http_status": 200,
+      "pagination_total": 13110,
+      "pagination_limit": 100,
+      "first_page_items": 100,
+      "error": null
+    },
+    {
+      "id": "payai",
+      "label": "PayAI facilitator discovery",
+      "url": "https://facilitator.payai.network/discovery/resources",
+      "http_status": 200,
+      "pagination_total": 6101,
+      "pagination_limit": 100,
+      "first_page_items": 100,
+      "error": null
+    }
+  ],
+  "sell_side_priority_summary": [
+    "coinbase_cdp_bazaar",
+    "payai_discovery",
+    "t54_xrpl_rail"
+  ]
+}

@@ -19,6 +19,20 @@ def _root() -> Path:
     return Path(__file__).resolve().parents[1]
 
 
+def _report_json(root: Path, name: str) -> Path:
+    ar = root / "artifacts" / "reports" / name
+    if ar.exists():
+        return ar
+    return root / name
+
+
+def _comm_trace_json(root: Path) -> Path:
+    p = root / "artifacts" / "communication" / "communication_trace.json"
+    if p.exists():
+        return p
+    return root / "communication_trace.json"
+
+
 def _add_code_block(doc: Document, text: str) -> None:
     p = doc.add_paragraph()
     run = p.add_run(text.rstrip() + "\n")
@@ -208,11 +222,23 @@ Each address -> withdraw()
     doc.add_paragraph("Next milestone: complete one successful real_external_integration request and regenerate hybrid live report.")
 
     _add_heading(doc, "Appendix: Artifact Index", level=2)
-    for p in sorted(root.glob("*report*.md")):
-        _add_bullet(doc, p.name)
-    for p in sorted(root.glob("*report*.json")):
-        _add_bullet(doc, p.name)
-    for name in ["communication_trace.md", "communication_trace.json", "olas_activation_checklist.md", "olas_funding_address.txt"]:
+    reports_dir = root / "artifacts" / "reports"
+    if reports_dir.is_dir():
+        for p in sorted(reports_dir.glob("*report*.md")):
+            _add_bullet(doc, str(p.relative_to(root)))
+        for p in sorted(reports_dir.glob("*report*.json")):
+            _add_bullet(doc, str(p.relative_to(root)))
+    else:
+        for p in sorted(root.glob("*report*.md")):
+            _add_bullet(doc, p.name)
+        for p in sorted(root.glob("*report*.json")):
+            _add_bullet(doc, p.name)
+    comm_dir = root / "artifacts" / "communication"
+    for name in ["communication_trace.md", "communication_trace.json"]:
+        cp = comm_dir / name if comm_dir.is_dir() else root / name
+        if cp.exists():
+            _add_bullet(doc, str(cp.relative_to(root)))
+    for name in ["olas_activation_checklist.md", "olas_funding_address.txt"]:
         if (root / name).exists():
             _add_bullet(doc, name)
 

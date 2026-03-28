@@ -2,13 +2,37 @@
 $ErrorActionPreference = "Stop"
 $root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
 $envPath = Join-Path $root ".env"
+if (Test-Path $envPath) {
+    Get-Content $envPath | ForEach-Object {
+        if ($_ -match '^([^#=]+)=(.*)$') {
+            $k = $matches[1].Trim()
+            $v = $matches[2].Trim()
+            [Environment]::SetEnvironmentVariable($k, $v, "Process")
+        }
+    }
+}
+
 $chainIds = @(11142220, 42220, 31337, 84532)
-$broadcastPath = $null
+$preferred = $null
+if ($env:CHAIN_ID -and $env:CHAIN_ID -match '^\d+$') {
+    $cid = [int]$env:CHAIN_ID
+    if ($chainIds -contains $cid) { $preferred = $cid }
+}
+$ordered = @()
+if ($preferred) { $ordered += $preferred }
 foreach ($cid in $chainIds) {
+    if ($ordered -notcontains $cid) { $ordered += $cid }
+}
+
+$broadcastPath = $null
+foreach ($cid in $ordered) {
     $p = Join-Path $root "broadcast\Deploy.s.sol\$cid"
     if (Test-Path $p) { $broadcastPath = $p; break }
 }
 if (-not $broadcastPath) { $broadcastPath = Join-Path $root "broadcast\Deploy.s.sol\11142220" }
+
+$picked = Split-Path -Leaf $broadcastPath
+Write-Host "Using broadcast artifacts: broadcast/Deploy.s.sol/$picked"
 
 $revenueAddr = $null
 $constitutionAddr = $null

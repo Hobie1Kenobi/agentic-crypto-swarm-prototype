@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "description": "Per-chain RPC resolution, signer role, contract allowlist, and gas/value caps. Edit allowed_contracts before enabling execution.",
+  "routes": {
+    "11142220": {
+      "rpc_env_vars": ["CELO_SEPOLIA_RPC_URL", "PRIVATE_RPC_URL", "RPC_URL"],
+      "signer_role": "AIRDROP_CLAIMANT",
+      "expected_signer_env": "AIRDROP_CLAIM_WALLET_ADDRESS",
+      "explorer_url": "https://celo-sepolia.blockscout.com",
+      "allowed_contracts": [],
+      "max_gas": 600000,
+      "max_value_wei": 0
+    },
+    "42220": {
+      "rpc_env_vars": ["CELO_MAINNET_RPC_URL", "CELO_RPC_URL", "RPC_URL"],
+      "signer_role": "AIRDROP_CLAIMANT",
+      "expected_signer_env": "AIRDROP_CLAIM_WALLET_ADDRESS",
+      "explorer_url": "https://explorer.celo.org",
+      "allowed_contracts": [],
+      "max_gas": 600000,
+      "max_value_wei": 0
+    },
+    "84532": {
+      "rpc_env_vars": ["RPC_URL", "ALCHEMY_API_KEY"],
+      "signer_role": "AIRDROP_CLAIMANT",
+      "expected_signer_env": "AIRDROP_CLAIM_WALLET_ADDRESS",
+      "explorer_url": "https://sepolia.basescan.org",
+      "allowed_contracts": [],
+      "max_gas": 600000,
+      "max_value_wei": 0
+    },
+    "8453": {
+      "rpc_env_vars": ["BASE_MAINNET_RPC_URL", "RPC_URL", "ALCHEMY_API_KEY"],
+      "signer_role": "AIRDROP_CLAIMANT",
+      "expected_signer_env": "AIRDROP_CLAIM_WALLET_ADDRESS",
+      "explorer_url": "https://basescan.org",
+      "allowed_contracts": [],
+      "max_gas": 800000,
+      "max_value_wei": 0
+    },
+    "1": {
+      "rpc_env_vars": ["ETHEREUM_MAINNET_RPC_URL", "ETH_MAINNET_RPC_URL", "RPC_URL"],
+      "signer_role": "AIRDROP_CLAIMANT",
+      "expected_signer_env": "AIRDROP_CLAIM_WALLET_ADDRESS",
+      "explorer_url": "https://etherscan.io",
+      "allowed_contracts": [],
+      "max_gas": 800000,
+      "max_value_wei": 0
+    },
+    "137": {
+      "rpc_env_vars": ["POLYGON_RPC_URL", "RPC_URL"],
+      "signer_role": "AIRDROP_CLAIMANT",
+      "expected_signer_env": "AIRDROP_CLAIM_WALLET_ADDRESS",
+      "explorer_url": "https://polygonscan.com",
+      "allowed_contracts": [],
+      "max_gas": 800000,
+      "max_value_wei": 0
+    },
+    "56": {
+      "rpc_env_vars": ["BSC_RPC_URL", "BNB_CHAIN_RPC_URL", "RPC_URL"],
+      "signer_role": "AIRDROP_CLAIMANT",
+      "expected_signer_env": "AIRDROP_CLAIM_WALLET_ADDRESS",
+      "explorer_url": "https://bscscan.com",
+      "allowed_contracts": [],
+      "max_gas": 800000,
+      "max_value_wei": 0
+    },
+    "100": {
+      "rpc_env_vars": ["GNOSIS_RPC_URL", "PUBLIC_OLAS_RPC_URL", "RPC_URL"],
+      "signer_role": "AIRDROP_CLAIMANT",
+      "expected_signer_env": "AIRDROP_CLAIM_WALLET_ADDRESS",
+      "explorer_url": "https://gnosisscan.io",
+      "allowed_contracts": [],
+      "max_gas": 800000,
+      "max_value_wei": 0
+    }
+  }
+}

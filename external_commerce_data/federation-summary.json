@@ -1,0 +1,47 @@
+{
+  "providers_discovered": 7,
+  "providers_invoked": 1,
+  "successful_paid_calls": 0,
+  "failed_calls": 1,
+  "invocations": [
+    {
+      "invocation_id": "6e9f3d0997bf40a8",
+      "provider_id": "x402-test-echo",
+      "resource_id": "https://402payment-test.com/api/x402",
+      "adapter_type": "direct_x402",
+      "task_id": null,
+      "request_summary": "q=test",
+      "price_requested": null,
+      "price_paid": null,
+      "asset": null,
+      "network": "eip155:84532",
+      "facilitator_used": "https://x402.org/facilitator",
+      "payment_status": "failed",
+      "response_status": 402,
+      "latency_ms": 518.3291435241699,
+      "result_summary": "{\"dry_run\": true, \"resource_url\": \"https://402payment-test.com/api/x402\", \"status\": 402, \"payment_required\": true}",
+      "error_type": null,
+      "retry_count": 0,
+      "created_at": "2026-03-22T16:09:49Z",
+      "completed_at": "2026-03-22T16:09:49Z"
+    }
+  ],
+  "relationships": {
+    "x402-test-echo": {
+      "provider_id": "x402-test-echo",
+      "first_seen_at": "2026-03-22T16:09:49Z",
+      "last_invoked_at": "2026-03-22T16:09:49Z",
+      "successful_calls": 0,
+      "failed_calls": 1,
+      "avg_latency_ms": 0.0,
+      "avg_cost": null,
+      "last_price_seen": null,
+      "quality_score": 0,
+      "trust_score": 0.4,
+      "preferred_for_task_types": [],
+      "cooldown_until": null,
+      "blacklist_reason": null,
+      "notes": ""
+    }
+  }
+}

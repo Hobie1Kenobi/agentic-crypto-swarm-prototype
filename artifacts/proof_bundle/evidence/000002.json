@@ -1,0 +1,139 @@
+{
+  "cycle": 2,
+  "start_time": "2026-03-22T16:28:03Z",
+  "end_time": "2026-03-22T16:29:07Z",
+  "status": "completed",
+  "task": {
+    "task_type": "summarization",
+    "complexity": "medium",
+    "template": "Summarize in one sentence: What is one ethical use of AI?",
+    "sla_seconds": 180,
+    "quoted_price_xrp": "1.0",
+    "quoted_price_usd": "0.015",
+    "max_budget": "0.0225",
+    "task_id": 166
+  },
+  "actors": {
+    "requester_id": "requester-3",
+    "requester_xrpl_funding_address": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+    "requester_celo_refund_address": "0xb132e9bDA7bd2c530fd16c03126e7f54367dbF65",
+    "worker_id": "worker-4",
+    "worker_payout_address": "0xCF3572136265A5ED34D412200E63017e39223592",
+    "validator_id": "validator-3",
+    "validator_address": "0xb132e9bDA7bd2c530fd16c03126e7f54367dbF65"
+  },
+  "boundary": {
+    "payment_rail": "xrpl",
+    "public_intake": "mocked_external_replay",
+    "private_settlement": "live_celo"
+  },
+  "xrpl": {
+    "tx_hash": "A4B76F12A868F0663804A7A7039A8BA88D98A21434A9B3DAB7A4FCDFA6E69878",
+    "sender": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+    "receiver": "rBTkGWdrqnJL8s7aHwnFJTnEVnV3nZ8b5",
+    "destination_tag": 983428,
+    "memo_ref": "Summarize in one sentence: What is one ethical use of AI?",
+    "quote_id": "cf537efd903140cc",
+    "expected_amount_xrp": "1.0",
+    "amount_drops": "1000000",
+    "delivered_amount": "1000000",
+    "ledger_index": 15892695,
+    "validated": true,
+    "verification_status": "real_xrpl_payment",
+    "quoted_price_xrp": "1.0"
+  },
+  "correlation": {
+    "external_payment_ref": "68870173c3e010e2f07457415d325be07e3279c954fc239afdb9764d144a8238",
+    "internal_task_id": 166
+  },
+  "celo": {
+    "network": "celo_sepolia",
+    "task_contract": "0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9",
+    "lifecycle": [
+      {
+        "step": "createTask",
+        "tx_hash": "cad900a2cf17545ee74f1e970f4a78d8f8abacc92f6b77658109c9266c1252f0",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "acceptTask",
+        "tx_hash": "e18be4806df60bd2468dc5c595769643b3b49c69eb703b6d7bd2bb41538d22f8",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "submitResult",
+        "tx_hash": "a110e04d932f9761a032a0412e71e508a3b08307177687c22c6b42ae00ecba73",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "validateResult",
+        "tx_hash": "9839184294956cfac8eb44f170a523a130d9abdd6afe7f09677d56592fb63143",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "finalizeTask",
+        "tx_hash": "923b1f1b2709a0a7a70370cf89e6a13ba154d5cc47766194000f6e8d0d47550e",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "refundRequester",
+        "tx_hash": "d542e193edd5113296e3c53fea1c4da76e9e6d5a4ca9244a2c78b8fb8a818069",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "withdrawWorkerPayout",
+        "tx_hash": "c4b3e43187c20e0cb49b8fdcc8f5363a455ffd6b91edbb6bee4abceebcf72c8c",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "settleProtocolFee",
+        "tx_hash": "338b7e5fa3c3704d2443e659a4b4ed800f17bd1e33b896131a0cf29ae943f3f0",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "settleFinanceFee",
+        "tx_hash": "aa0e6087d68e5b94847648afd7daa2b73b4d3048812961430eda7ff4ff579bbf",
+        "block_number": null,
+        "success": true
+      }
+    ],
+    "final_status": "Finalized",
+    "confirmations_used": 1
+  },
+  "settlement": {
+    "currency": "CELO",
+    "protocol_fee": {
+      "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+      "actual_wei": 1000000000000000
+    },
+    "finance_fee": {
+      "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+      "actual_wei": 5000000000000000
+    },
+    "worker_payout": {
+      "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+      "actual_wei": 760000000000000
+    },
+    "requester_refund": {
+      "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+      "actual_wei": 3240000000000000
+    }
+  },
+  "quality": {
+    "result_score": 19,
+    "validator_decision": "accepted"
+  },
+  "elapsed": {
+    "total_seconds": 63.86
+  },
+  "errors": [],
+  "warnings": []
+}

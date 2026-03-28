@@ -1,0 +1,25 @@
+# Example: nginx equivalent of scripts/reverse-proxy/Caddyfile
+# Adjust server_name / SSL; upstreams on 127.0.0.1
+
+upstream base_x402 { server 127.0.0.1:8043; }
+upstream t54_seller { server 127.0.0.1:8765; }
+upstream marketplace { server 127.0.0.1:8055; }
+
+server {
+    listen 9080;
+    server_name _;
+
+    location /webhooks/ { proxy_pass http://marketplace; proxy_http_version 1.1; proxy_set_header Host $host; proxy_set_header X-Forwarded-Proto $scheme; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; }
+    location /v1/ { proxy_pass http://marketplace; proxy_http_version 1.1; proxy_set_header Host $host; proxy_set_header X-Forwarded-Proto $scheme; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; }
+    location /marketplace/ { proxy_pass http://marketplace; proxy_http_version 1.1; proxy_set_header Host $host; proxy_set_header X-Forwarded-Proto $scheme; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; }
+    location = /openapi.json { proxy_pass http://marketplace; }
+    location /docs { proxy_pass http://marketplace; proxy_http_version 1.1; proxy_set_header Host $host; }
+    location /redoc { proxy_pass http://marketplace; proxy_http_version 1.1; proxy_set_header Host $host; }
+
+    location /x402/ { proxy_pass http://base_x402; proxy_http_version 1.1; proxy_set_header Host $host; proxy_set_header X-Forwarded-Proto $scheme; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; }
+
+    # Strip /t54 prefix for T54 backend
+    location /t54/ { rewrite ^/t54/(.*)$ /$1 break; proxy_pass http://t54_seller; proxy_http_version 1.1; proxy_set_header Host $host; proxy_set_header X-Forwarded-Proto $scheme; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; }
+
+    location / { proxy_pass http://base_x402; proxy_http_version 1.1; proxy_set_header Host $host; proxy_set_header X-Forwarded-Proto $scheme; proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; }
+}

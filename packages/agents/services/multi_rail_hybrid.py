@@ -7,7 +7,7 @@ from dataclasses import asdict
 from pathlib import Path
 from typing import Any
 
-from config.dual_chain import get_private_chain_config, get_public_olas_chain_config
+from config.dual_chain import get_private_chain_config, get_private_marketplace_address, get_public_olas_chain_config
 from config.market_mode import get_market_mode
 from config.rail_config import get_payment_rail_mode, get_xrpl_config
 from services.communication_trace import CommunicationTrace
@@ -34,7 +34,9 @@ def _out_dir() -> Path:
     if p:
         out = Path(p)
         return out if out.is_absolute() else (_root() / out)
-    return _root()
+    d = _root() / "artifacts" / "reports"
+    d.mkdir(parents=True, exist_ok=True)
+    return d
 
 
 def _write(path: Path, text: str) -> None:
@@ -234,6 +236,9 @@ def run_multi_rail_hybrid_demo(
     force_hybrid: bool = False,
     external_payload: dict[str, Any] | None = None,
     xrpl_replay_payload: dict[str, Any] | None = None,
+    requester_role: str | None = None,
+    worker_role: str | None = None,
+    validator_role: str | None = None,
 ) -> dict[str, Any]:
     mode = get_market_mode()
     market_mode = "hybrid" if force_hybrid else mode
@@ -331,6 +336,22 @@ def run_multi_rail_hybrid_demo(
             tx_hash=receipt.tx_hash,
             verified=receipt.verified,
         )
+        if payment_boundary == "payment_failed_pre_submit":
+            reason = (receipt.metadata or {}).get("mock_reason", "XRPL payment failed pre-submit")
+            fail_out = {
+                "ok": False,
+                "run_id": run_id,
+                "market_mode": market_mode,
+                "payment_rail_mode": get_payment_rail_mode(),
+                "xrpl_payment": _receipt_to_dict(receipt),
+                "payment_boundary": payment_boundary,
+                "private_market_report": {"ok": False, "error": reason, "payment_failed_pre_submit": True},
+                "public_response": format_hybrid_result({"ok": False, "error": reason}, trace.external_request_id).to_dict(),
+            }
+            trace.outcome = {"ok": False, "boundary": payment_boundary, "error": reason}
+            _write_json(_out_dir() / "multi_rail_run_report.json", fail_out)
+            trace.write("communication_trace")
+            return fail_out
         if (os.getenv("CUSTOMER_BALANCE_ENABLED", "").strip().lower() in {"1", "true", "yes", "on"}) and receipt.verified:
             from services.customer_balance import credit_from_xrpl_receipt as persist_credit
             receipt_dict = _receipt_to_dict(receipt)
@@ -391,11 +412,100 @@ def run_multi_rail_hybrid_demo(
 
         os.environ["COMPUTE_TASK_QUERY"] = normalized.query
         os.environ["COMPUTE_TASK_METADATA"] = normalized.task_metadata
+        if requester_role:
+            os.environ["TASK_REQUESTER_ROLE"] = requester_role
+        if worker_role:
+            os.environ["TASK_WORKER_ROLE"] = worker_role
+        if validator_role:
+            os.environ["TASK_VALIDATOR_ROLE"] = validator_role
+        reconciliation_enabled = os.getenv("RECONCILIATION_ENABLED", "").strip().lower() in {"1", "true", "yes", "on"}
+        xrpl_hash = (payment_receipt.tx_hash or payment_receipt.external_payment_id) if payment_receipt else None
+        if reconciliation_enabled and xrpl_hash and payment_boundary == "real_xrpl_payment":
+            try:
+                from services.reconciliation import is_settled, get_by_external_ref, record_payment_pending, record_settlement
+                if is_settled(xrpl_hash):
+                    existing = get_by_external_ref(xrpl_hash)
+                    if existing and existing.celo_task_id:
+                        private_report = {
+                            "ok": True,
+                            "task": {
+                                "task_id": existing.celo_task_id,
+                                "task_status": {"name": "Finalized"},
+                                "settlement": {},
+                                "settlement_matches_expected": True,
+                                "reconciled_from": "existing",
+                            },
+                            "tx_hashes": existing.celo_tx_hashes,
+                            "chain_id": private_cfg.chain_id,
+                            "explorer_url": private_cfg.explorer_url,
+                            "compute_marketplace_address": get_private_marketplace_address(),
+                            "contracts": {},
+                        }
+                        out["private_market_report"] = private_report
+                        trace.internal_task_id = existing.celo_task_id
+                        trace.correlation["private"] = {
+                            "task_id": trace.internal_task_id,
+                            "tx_hashes": existing.celo_tx_hashes,
+                            "compute_marketplace_address": private_report.get("compute_marketplace_address"),
+                            "treasury_address": None,
+                            "finance_distributor_address": None,
+                        }
+                        trace.correlation["xrpl_to_celo"] = {
+                            "xrpl_tx_hash": xrpl_hash,
+                            "internal_task_id": trace.internal_task_id,
+                            "celo_tx_count": len(existing.celo_tx_hashes),
+                        }
+                        trace.add("private_marketplace_executed", "reconciled_existing", ok=True, task_id=trace.internal_task_id)
+                        response = format_hybrid_result(private_report, trace.external_request_id)
+                        out["public_response"] = response.to_dict()
+                        trace.outcome = {"ok": True, "boundary": response.boundary}
+                        _write_json(_out_dir() / "multi_rail_run_report.json", out)
+                        _write_live_proof_report(_out_dir(), run_id, _receipt_to_dict(payment_receipt), out["private_market_report"])
+                        trace.write("communication_trace")
+                        return out
+                claimed = record_payment_pending(
+                    xrpl_hash,
+                    job_id=(payment_receipt.metadata or {}).get("job_id", xrpl_hash[:16]),
+                    quote_id=(payment_receipt.metadata or {}).get("quote_id", xrpl_hash[:16]),
+                    destination_tag=(payment_receipt.metadata or {}).get("destination_tag"),
+                    memo_ref=(payment_receipt.metadata or {}).get("memo_ref") or (payment_receipt.metadata or {}).get("memo"),
+                    delivered_amount=str(payment_receipt.amount),
+                )
+                if not claimed:
+                    out["private_market_report"] = {"ok": False, "error": "Duplicate payment reference; already claimed"}
+                    out["public_response"] = format_hybrid_result(out["private_market_report"], trace.external_request_id).to_dict()
+                    trace.outcome = {"ok": False, "boundary": "contract_level_execution", "error": "duplicate_payment_ref"}
+                    _write_json(_out_dir() / "multi_rail_run_report.json", out)
+                    trace.write("communication_trace")
+                    return out
+            except ImportError:
+                pass
         private_report = run_task_market_demo()
         out["private_market_report"] = private_report
-        if private_report.get("ok") and os.getenv("CUSTOMER_BALANCE_ENABLED", "").strip().lower() in {"1", "true", "yes", "on"}:
+        if reconciliation_enabled and xrpl_hash and private_report.get("ok"):
+            task = private_report.get("task") or {}
+            if task.get("task_id"):
+                try:
+                    from services.reconciliation import record_settlement
+                    record_settlement(
+                        xrpl_hash,
+                        task["task_id"],
+                        private_report.get("tx_hashes", []),
+                        payout_refund=task.get("settlement", {}).get("by_category"),
+                        disposition="settled",
+                    )
+                except ImportError:
+                    pass
+        balance_enabled = os.getenv("CUSTOMER_BALANCE_ENABLED", "").strip().lower() in {"1", "true", "yes", "on"}
+        if private_report.get("ok") and balance_enabled:
             task_id = (private_report.get("task") or {}).get("task_id")
             metering_record("task_execution", customer_id, escrow_wei, {"task_id": task_id, "escrow_wei": escrow_wei})
+        if balance_enabled:
+            try:
+                from services.customer_balance import get_customer_activity
+                out["customer_balance"] = get_customer_activity(customer_id)
+            except Exception:
+                pass
         trace.internal_task_id = (private_report.get("task") or {}).get("task_id")
         trace.correlation["private"] = {
             "task_id": trace.internal_task_id,

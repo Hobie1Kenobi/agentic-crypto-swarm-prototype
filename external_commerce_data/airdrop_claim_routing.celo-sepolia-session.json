@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "description": "Per-chain RPC resolution, signer role, contract allowlist, and gas/value caps. Edit allowed_contracts before enabling execution.",
+  "routes": {
+    "11142220": {
+      "rpc_env_vars": [
+        "CELO_SEPOLIA_RPC_URL",
+        "PRIVATE_RPC_URL",
+        "RPC_URL"
+      ],
+      "signer_role": "AIRDROP_CLAIMANT",
+      "expected_signer_env": "AIRDROP_CLAIM_WALLET_ADDRESS",
+      "explorer_url": "https://celo-sepolia.blockscout.com",
+      "allowed_contracts": [
+        "0xD19636ADa3Fc8Ae4cc638757C6BEa82250dcc685"
+      ],
+      "max_gas": 600000,
+      "max_value_wei": 0
+    }
+  }
+}

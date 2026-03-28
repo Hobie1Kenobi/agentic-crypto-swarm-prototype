@@ -1,0 +1,43 @@
+# Unified host → Base x402 (8043), T54 XRPL (8765), Marketplace (8055)
+# Docs: scripts/reverse-proxy/README.md
+# Run: npm run proxy:unified   OR   caddy run --config scripts/reverse-proxy/Caddyfile
+# Listen: 127.0.0.1:9080 — point ngrok at 9080 (scripts/ngrok-unified-stack.yml)
+
+:9080 {
+	encode zstd gzip
+
+	# Marketplace (Stripe webhooks, buyer API, portal)
+	handle /webhooks/* {
+		reverse_proxy 127.0.0.1:8055
+	}
+	handle /v1/* {
+		reverse_proxy 127.0.0.1:8055
+	}
+	handle /marketplace/* {
+		reverse_proxy 127.0.0.1:8055
+	}
+	handle /openapi.json {
+		reverse_proxy 127.0.0.1:8055
+	}
+	handle /docs* {
+		reverse_proxy 127.0.0.1:8055
+	}
+	handle /redoc* {
+		reverse_proxy 127.0.0.1:8055
+	}
+
+	# Base x402 Bazaar (same paths as direct :8043)
+	handle /x402/* {
+		reverse_proxy 127.0.0.1:8043
+	}
+
+	# T54 XRPL seller — prefix /t54 stripped (avoids /x402 clash with Base)
+	handle_path /t54/* {
+		reverse_proxy 127.0.0.1:8765
+	}
+
+	# Default: Base seller (e.g. /health on x402 app)
+	handle {
+		reverse_proxy 127.0.0.1:8043
+	}
+}

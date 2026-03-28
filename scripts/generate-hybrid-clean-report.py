@@ -11,6 +11,26 @@ def _read_json(p: Path) -> dict[str, Any] | None:
     return json.loads(p.read_text(encoding="utf-8"))
 
 
+def _reports_dir(root: Path) -> Path:
+    d = root / "artifacts" / "reports"
+    d.mkdir(parents=True, exist_ok=True)
+    return d
+
+
+def _in_report(root: Path, name: str) -> Path:
+    ar = root / "artifacts" / "reports" / name
+    if ar.exists():
+        return ar
+    return root / name
+
+
+def _comm_trace_json(root: Path) -> Path:
+    p = root / "artifacts" / "communication" / "communication_trace.json"
+    if p.exists():
+        return p
+    return root / "communication_trace.json"
+
+
 def _fmt_wei(wei: int | None, symbol: str) -> str:
     if wei is None:
         return "n/a"
@@ -29,10 +49,13 @@ def _role_for_addr(private_report: dict[str, Any] | None, addr: str) -> str:
 
 def main() -> None:
     root = Path(__file__).resolve().parents[1]
+    rep = _reports_dir(root)
 
-    public = _read_json(root / "public_adapter_run_report.json")
-    trace = _read_json(root / "communication_trace.json")
-    private = _read_json(root / "celo_sepolia_task_market_report.json") or _read_json(root / "local_task_market_report.json")
+    public = _read_json(_in_report(root, "public_adapter_run_report.json"))
+    trace = _read_json(_comm_trace_json(root))
+    private = _read_json(_in_report(root, "celo_sepolia_task_market_report.json")) or _read_json(
+        _in_report(root, "local_task_market_report.json")
+    )
 
     symbol = (private or {}).get("native_symbol") or "CELO"
     public_boundary = (public or {}).get("olas", {}).get("boundary") or (public or {}).get("boundary") or "unknown"
@@ -95,11 +118,14 @@ def main() -> None:
 
     if trace:
         lines.append("## Evidence pointers")
-        lines.append("- See `communication_trace.md` for step-by-step boundary markers.")
-        lines.append("- See `public_adapter_run_report.json` and `celo_sepolia_task_market_report.json` for raw data.")
+        lines.append("- See `artifacts/communication/communication_trace.md` for step-by-step boundary markers.")
+        lines.append(
+            "- See `artifacts/reports/public_adapter_run_report.json` and "
+            "`artifacts/reports/celo_sepolia_task_market_report.json` for raw data."
+        )
         lines.append("")
 
-    out = root / "hybrid_clean_report.md"
+    out = rep / "hybrid_clean_report.md"
     out.write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
     print(f"Wrote {out}")
 

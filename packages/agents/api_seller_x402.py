@@ -20,7 +20,7 @@ for _ in range(5):
     if (root / "foundry.toml").exists() or (root / ".env.example").exists():
         break
     root = root.parent
-load_dotenv(root / ".env", override=True)
+load_dotenv(root / ".env", override=False)
 if (root / ".env.local").exists():
     load_dotenv(root / ".env.local", override=True)
 
@@ -38,6 +38,16 @@ def _route_description() -> str:
     if n.endswith(":8453"):
         return "Agentic Swarm — ethical LLM query (x402 / Base mainnet USDC)"
     return "Agentic Swarm — ethical LLM query (x402 / USDC)"
+
+
+def _route_description_celo_data() -> str:
+    n = _env("X402_SELLER_NETWORK", "eip155:84532")
+    base = "Celo Sepolia + proof / soak / x402 commerce JSON bundle (public artifacts)"
+    if n.endswith(":84532"):
+        return f"Agentic Swarm — {base} (x402 / Base Sepolia USDC)"
+    if n.endswith(":8453"):
+        return f"Agentic Swarm — {base} (x402 / Base mainnet USDC)"
+    return f"Agentic Swarm — {base} (x402 / USDC)"
 
 
 def _pay_to_address() -> str:
@@ -74,6 +84,7 @@ def create_app():
     facilitator_url = _env("X402_TEST_FACILITATOR_URL", "https://x402.org/facilitator")
     network = _env("X402_SELLER_NETWORK", "eip155:84532")
     price = _env("X402_SELLER_PRICE", "$0.01")
+    data_price = _env("X402_SELLER_DATA_PRICE", "$0.05")
 
     try:
         from x402.extensions.bazaar import declare_discovery_extension
@@ -92,8 +103,29 @@ def create_app():
                 example={"query": "example", "response": "Short ethical answer."},
             ),
         )
+        extensions_celo = declare_discovery_extension(
+            input={"depth": "standard"},
+            input_schema={
+                "type": "object",
+                "properties": {
+                    "depth": {
+                        "type": "string",
+                        "description": "Payload size: standard (smaller) or full (more evidence rows)",
+                        "enum": ["standard", "full"],
+                    },
+                },
+            },
+            output=OutputConfig(
+                example={
+                    "sku_id": "agent-commerce-data",
+                    "celo_sepolia": {"task_market_report": {}},
+                    "proof_run": {},
+                },
+            ),
+        )
     except ImportError:
         extensions = None
+        extensions_celo = None
 
     routes: dict = {
         "GET /x402/v1/query": {
@@ -104,10 +136,21 @@ def create_app():
                 "network": network,
             },
             "description": _route_description(),
-        }
+        },
+        "GET /x402/v1/celo-agent-data": {
+            "accepts": {
+                "scheme": "exact",
+                "payTo": pay_to,
+                "price": data_price,
+                "network": network,
+            },
+            "description": _route_description_celo_data(),
+        },
     }
     if extensions:
         routes["GET /x402/v1/query"]["extensions"] = extensions
+    if extensions_celo:
+        routes["GET /x402/v1/celo-agent-data"]["extensions"] = extensions_celo
 
     fac = HTTPFacilitatorClient(FacilitatorConfig(url=facilitator_url))
     server = x402ResourceServer(fac)
@@ -131,6 +174,19 @@ def create_app():
         text = generate_response_for_query(q.strip())
         return {"query": q, "response": text, "seller": "agentic-swarm-x402"}
 
+    @app.get("/x402/v1/celo-agent-data")
+    async def paid_celo_agent_data(depth: str = "standard"):
+        from seller_public_data_bundle import build_public_data_bundle_dict
+
+        d = (depth or "standard").strip().lower()
+        if d not in ("standard", "full"):
+            d = "standard"
+        data = build_public_data_bundle_dict(d)
+        data["seller"] = "agentic-swarm-x402"
+        data["rail"] = "base_x402_usdc"
+        data["listing_id"] = "celo-agent-data"
+        return data
+
     @app.get("/health")
     async def health():
         return {
@@ -139,7 +195,12 @@ def create_app():
             "pay_to": pay_to,
             "network": network,
             "price": price,
+            "data_price": data_price,
             "facilitator": facilitator_url,
+            "routes": [
+                {"path": "/x402/v1/query", "price": price},
+                {"path": "/x402/v1/celo-agent-data", "price": data_price},
+            ],
         }
 
     from services.access_log_middleware import attach_access_log

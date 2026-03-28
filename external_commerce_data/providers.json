@@ -1,0 +1,74 @@
+{
+  "providers": [
+    {
+      "provider_id": "x402-test-echo",
+      "provider_name": "x402 Test Echo (402payment-test; uses WWW-Authenticate v1 format)",
+      "source_type": "config",
+      "resource_url": "https://402payment-test.com/api/x402",
+      "network": "eip155:84532",
+      "facilitator_url": "https://x402.org/facilitator",
+      "trust_score": 0.0,
+      "health_status": "unknown"
+    },
+    {
+      "provider_id": "swarm-self",
+      "provider_name": "Our Swarm (Celo)",
+      "source_type": "config",
+      "resource_url": "http://127.0.0.1:8042/query",
+      "network": "eip155:11142220",
+      "facilitator_url": null,
+      "trust_score": 0.0,
+      "health_status": "unknown"
+    },
+    {
+      "provider_id": "t54-xrpl-example",
+      "provider_name": "T54 XRPL (placeholder)",
+      "source_type": "config",
+      "resource_url": "",
+      "network": "xrpl:1",
+      "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+      "trust_score": 0.0,
+      "health_status": "unknown"
+    },
+    {
+      "provider_id": "arcana-x402",
+      "provider_name": "Arcana Price Oracle (Base Sepolia x402)",
+      "source_type": "config",
+      "resource_url": "https://api.arcana.markets/api/x402/oracle/price",
+      "network": "eip155:84532",
+      "facilitator_url": "https://x402.org/facilitator",
+      "trust_score": 0.0,
+      "health_status": "unknown"
+    },
+    {
+      "provider_id": "agoragentic",
+      "provider_name": "Agoragentic (Base x402)",
+      "source_type": "config",
+      "resource_url": "https://agoragentic.com/api/x402/listings",
+      "network": "eip155:8453",
+      "facilitator_url": "https://x402.org/facilitator",
+      "trust_score": 0.0,
+      "health_status": "unknown"
+    },
+    {
+      "provider_id": "x402-bazaar-discovery",
+      "provider_name": "x402 Bazaar Discovery",
+      "source_type": "config",
+      "resource_url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources",
+      "network": "eip155:84532",
+      "facilitator_url": "https://x402.org/facilitator",
+      "trust_score": 0.0,
+      "health_status": "unknown"
+    },
+    {
+      "provider_id": "x402-discovery-api",
+      "provider_name": "x402 Service Discovery API (251+ services)",
+      "source_type": "config",
+      "resource_url": "https://x402-discovery-api.onrender.com/discover",
+      "network": "eip155:8453",
+      "facilitator_url": null,
+      "trust_score": 0.0,
+      "health_status": "unknown"
+    }
+  ]
+}

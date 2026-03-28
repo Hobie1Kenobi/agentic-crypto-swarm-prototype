@@ -1,0 +1,19 @@
+[
+  {
+    "id": "requester-1",
+    "role_type": "requester",
+    "funding_address": "0x...",
+    "payout_address": "0x...",
+    "refund_address": "0x..."
+  },
+  {
+    "id": "worker-1",
+    "role_type": "worker",
+    "payout_address": "0x..."
+  },
+  {
+    "id": "validator-1",
+    "role_type": "validator",
+    "address": "0x..."
+  }
+]

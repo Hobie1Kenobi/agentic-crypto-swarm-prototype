@@ -1,0 +1,139 @@
+{
+  "cycle": 13,
+  "start_time": "2026-03-22T19:13:03Z",
+  "end_time": "2026-03-22T19:14:10Z",
+  "status": "completed",
+  "task": {
+    "task_type": "extraction",
+    "complexity": "medium",
+    "template": "Extract the main compliance risk from: sharing customer PII with a third-party AI vendor. One sentence.",
+    "sla_seconds": 200,
+    "quoted_price_xrp": "1.0",
+    "quoted_price_usd": "0.015",
+    "max_budget": "0.0225",
+    "task_id": 188
+  },
+  "actors": {
+    "requester_id": "requester-2",
+    "requester_xrpl_funding_address": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+    "requester_celo_refund_address": "0x8D341217Bd9B56CE5E930bd1335C23bc5A9Bc494",
+    "worker_id": "worker-3",
+    "worker_payout_address": "0xb132e9bDA7bd2c530fd16c03126e7f54367dbF65",
+    "validator_id": "validator-4",
+    "validator_address": "0xCF3572136265A5ED34D412200E63017e39223592"
+  },
+  "boundary": {
+    "payment_rail": "xrpl",
+    "public_intake": "mocked_external_replay",
+    "private_settlement": "live_celo"
+  },
+  "xrpl": {
+    "tx_hash": "C071102A8338D4DD0CBF3A2F2C19B24EC510227FE83140BC7B5DCED7AAD21C11",
+    "sender": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+    "receiver": "rBTkGWdrqnJL8s7aHwnFJTnEVnV3nZ8b5",
+    "destination_tag": 883056,
+    "memo_ref": "Extract the main compliance risk from: sharing customer PII with",
+    "quote_id": "c620f993accd451e",
+    "expected_amount_xrp": "1.0",
+    "amount_drops": "1000000",
+    "delivered_amount": "1000000",
+    "ledger_index": 15895868,
+    "validated": true,
+    "verification_status": "real_xrpl_payment",
+    "quoted_price_xrp": "1.0"
+  },
+  "correlation": {
+    "external_payment_ref": "cd1d7079023a44088513f29fade53dc232c22ef139aefebff35e66a1b2a24786",
+    "internal_task_id": 188
+  },
+  "celo": {
+    "network": "celo_sepolia",
+    "task_contract": "0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9",
+    "lifecycle": [
+      {
+        "step": "createTask",
+        "tx_hash": "e56bbcd7f5efe58191f41ef93ea330b912d1426b47f942fa8c16ea0d1b5b0526",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "acceptTask",
+        "tx_hash": "5c2539f78c5e972b3104d0714fa157fe8e856f243f2eaa54004c9759354a0ff6",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "submitResult",
+        "tx_hash": "becc7756de8af0b174bad123a06477537db2ffada146aeb86008efbd1fcb2d15",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "validateResult",
+        "tx_hash": "3e42f47a7005dc90c9091a8eb3c14994eba194780b472416b525af0327389429",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "finalizeTask",
+        "tx_hash": "7a14ed4a09964c98246b53ba3a4f7db799ea8ab5897b4c873d9e62f6038a8f5f",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "refundRequester",
+        "tx_hash": "a7a7e6c6b1b673f444e6b2174e3c50b4a40f244b946b4f046b85531344de2bdf",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "withdrawWorkerPayout",
+        "tx_hash": "3a65877d69357f97d9ecdbff5bc7dfa245805b87cfce13a3f4ecdab2efa2ea67",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "settleProtocolFee",
+        "tx_hash": "ed7c6a03584efee6aa2c340e24c1abba0111e2107c98b57be503f99db540e962",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "settleFinanceFee",
+        "tx_hash": "0977901f0af9260f14fdc9eba64e85f2a4546c92e02003ba5ecb9dbd847b2152",
+        "block_number": null,
+        "success": true
+      }
+    ],
+    "final_status": "Finalized",
+    "confirmations_used": 1
+  },
+  "settlement": {
+    "currency": "CELO",
+    "protocol_fee": {
+      "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+      "actual_wei": 1000000000000000
+    },
+    "finance_fee": {
+      "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+      "actual_wei": 5000000000000000
+    },
+    "worker_payout": {
+      "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+      "actual_wei": 760000000000000
+    },
+    "requester_refund": {
+      "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+      "actual_wei": 3240000000000000
+    }
+  },
+  "quality": {
+    "result_score": 19,
+    "validator_decision": "accepted"
+  },
+  "elapsed": {
+    "total_seconds": 67.61
+  },
+  "errors": [],
+  "warnings": []
+}

@@ -1,0 +1,122 @@
+{
+  "demo_type": "customer_balance_layer",
+  "timestamp": "2026-03-21T05:59:01Z",
+  "ok": true,
+  "balance_layer_ok": true,
+  "celo_settlement_ok": true,
+  "payment_mode": "live",
+  "customer_balance": {
+    "customer_id": "mock-1774072672",
+    "balance_wei": 0,
+    "credits": [
+      {
+        "amount_wei": 10000000000000000,
+        "asset": "XRP",
+        "source": "xrpl",
+        "external_ref": "498E60B41CF24DE329ECC3F16765AA884CA2FD33A7525CD4713B540FD5076571",
+        "created_at": 1774072684.1137972
+      }
+    ],
+    "debits": [
+      {
+        "amount_wei": 10000000000000000,
+        "service": "task_execution",
+        "task_id": null,
+        "created_at": 1774072686.932989
+      }
+    ],
+    "metering": []
+  },
+  "xrpl_payment": {
+    "payment_rail": "xrpl",
+    "payment_asset": "XRP",
+    "external_payment_id": "498E60B41CF24DE329ECC3F16765AA884CA2FD33A7525CD4713B540FD5076571",
+    "tx_hash": "498E60B41CF24DE329ECC3F16765AA884CA2FD33A7525CD4713B540FD5076571",
+    "payer_address": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+    "receiver_address": "rBTkGWdrqnJL8s7aHwnFJTnEVnV3nZ8b5",
+    "amount": "1",
+    "verified": true,
+    "verification_boundary": "real_xrpl_payment",
+    "internal_task_id": null,
+    "metadata": {
+      "memo": "What is one ethical use of AI?"
+    }
+  },
+  "private_market_report": {
+    "ok": true,
+    "task_id": 43,
+    "tx_hashes": [
+      {
+        "name": "createTask",
+        "role": "ROOT_STRATEGIST",
+        "tx_hash": "50d83aadfe2ee7a97f1a684b73206111e139f08ab349d851ac211c5b425b0675",
+        "link": "https://celo-sepolia.blockscout.com/tx/50d83aadfe2ee7a97f1a684b73206111e139f08ab349d851ac211c5b425b0675"
+      },
+      {
+        "name": "acceptTask",
+        "role": "IP_GENERATOR",
+        "tx_hash": "1a7aca661e259834b0b0d4349cab3077b819ed72a12294f3643cbd1311ea7c98",
+        "link": "https://celo-sepolia.blockscout.com/tx/1a7aca661e259834b0b0d4349cab3077b819ed72a12294f3643cbd1311ea7c98"
+      },
+      {
+        "name": "submitResult",
+        "role": "IP_GENERATOR",
+        "tx_hash": "9fdb8d1b308baf9da494ac18289852e1a62a918c5558926ce7fef5a295bebcf5",
+        "link": "https://celo-sepolia.blockscout.com/tx/9fdb8d1b308baf9da494ac18289852e1a62a918c5558926ce7fef5a295bebcf5"
+      },
+      {
+        "name": "submitTaskScore",
+        "role": "DEPLOYER",
+        "tx_hash": "f017e08f01c338153951f1aab11a14779b503c0129c791493b9489fd968e435b",
+        "link": "https://celo-sepolia.blockscout.com/tx/f017e08f01c338153951f1aab11a14779b503c0129c791493b9489fd968e435b"
+      },
+      {
+        "name": "finalizeTask",
+        "role": "DEPLOYER",
+        "tx_hash": "3d53a8751a51c4c69a0b45e3080d1a37dbba929765a1eb28da8dce1e290d7aa2",
+        "link": "https://celo-sepolia.blockscout.com/tx/3d53a8751a51c4c69a0b45e3080d1a37dbba929765a1eb28da8dce1e290d7aa2"
+      },
+      {
+        "name": "withdraw",
+        "role": "ROOT_STRATEGIST",
+        "signer_role": "ROOT_STRATEGIST",
+        "who": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+        "tx_hash": "0af0299cd6e6f126949dbed6f809efc9065edce332ae3396c39c9eb19c09e94b",
+        "link": "https://celo-sepolia.blockscout.com/tx/0af0299cd6e6f126949dbed6f809efc9065edce332ae3396c39c9eb19c09e94b"
+      },
+      {
+        "name": "withdraw",
+        "role": "IP_GENERATOR",
+        "signer_role": "IP_GENERATOR",
+        "who": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+        "tx_hash": "cc0577759a9e55c33901d40c709f912b99b4237ee9ecd7858bffce5c899d3cf9",
+        "link": "https://celo-sepolia.blockscout.com/tx/cc0577759a9e55c33901d40c709f912b99b4237ee9ecd7858bffce5c899d3cf9"
+      },
+      {
+        "name": "withdraw",
+        "role": "TREASURY",
+        "signer_role": "TREASURY",
+        "who": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+        "tx_hash": "1490c237af9d0d61c4e4f3b999219c8b1fb0e67ae8962c32831a8c93e4e674e8",
+        "link": "https://celo-sepolia.blockscout.com/tx/1490c237af9d0d61c4e4f3b999219c8b1fb0e67ae8962c32831a8c93e4e674e8"
+      },
+      {
+        "name": "withdraw",
+        "role": "FINANCE_DISTRIBUTOR",
+        "signer_role": "FINANCE_DISTRIBUTOR",
+        "who": "0xCF3572136265A5ED34D412200E63017e39223592",
+        "tx_hash": "ca4b815c5756ddf283bca358fa6140021ab7ad10febee9b25442aff61b410ab3",
+        "link": "https://celo-sepolia.blockscout.com/tx/ca4b815c5756ddf283bca358fa6140021ab7ad10febee9b25442aff61b410ab3"
+      }
+    ],
+    "compute_marketplace_address": "0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9"
+  },
+  "flow": [
+    "1. XRPL payment (mock/live) -> verified receipt",
+    "2. Credit customer balance (XRP/RLUSD -> wei)",
+    "3. Budget check (balance >= escrow)",
+    "4. Debit escrow",
+    "5. createTask on Celo Sepolia",
+    "6. Metering record"
+  ]
+}

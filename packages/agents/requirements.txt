@@ -4,6 +4,7 @@ langchain-core>=0.3.0
 langchain-ollama>=0.2.0
 web3>=7.0.0
 eth-account>=0.10.0
+eth-abi>=5.0.0
 python-dotenv>=1.0.0
 pydantic>=2.0.0
 fastapi>=0.115.0
@@ -12,6 +13,14 @@ pytest>=8.0.0
 
 # XRPL payments (required for live XRPL mode and create-xrpl-wallets)
 xrpl-py>=4.0.0
+
+# Base Sepolia x402 (for Arcana, Agoragentic, x402 Bazaar)
+x402[requests]>=2.5.0
+# Optional: self-hosted XRPL testnet facilitator (pip install xrpl-x402-facilitator redis)
+# xrpl-x402-facilitator  # uncomment for scripts/start-xrpl-facilitator-testnet.*
+# Optional: T54 XRPL x402 seller (npm run t54:seller) — pip install x402-xrpl  (see docs/T54_SELLER.md)
+# Stripe MPP — PaymentIntent crypto deposit (Tempo); optional until you use MPP scripts
+stripe>=11.0.0
 
 # Public marketplace adapter (Olas / Mech)
 # NOTE: The official Olas `mech-client` currently pins dependencies (e.g. FastAPI) that conflict with this repo's

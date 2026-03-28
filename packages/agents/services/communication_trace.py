@@ -15,6 +15,7 @@ TraceBoundary = Literal[
     "real_xrpl_payment",
     "mock_xrpl_payment",
     "replayed_xrpl_payment",
+    "payment_failed_pre_submit",
     "real_celo_settlement",
 ]
 
@@ -28,7 +29,7 @@ def _out_dir() -> Path:
     if p:
         out = Path(p)
         return out if out.is_absolute() else (_root() / out)
-    return _root()
+    return _root() / "artifacts" / "communication"
 
 
 @dataclass

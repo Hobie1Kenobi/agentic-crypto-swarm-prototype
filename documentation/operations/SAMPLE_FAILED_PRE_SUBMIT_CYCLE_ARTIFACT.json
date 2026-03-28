@@ -1,0 +1,60 @@
+{
+  "cycle": 1,
+  "start_time": "2025-03-15T12:15:00Z",
+  "end_time": "2025-03-15T12:15:02Z",
+  "status": "failed",
+  "task": {
+    "task_type": " summarization",
+    "complexity": "low",
+    "template": "Summarize in one sentence: What is one ethical use of AI?",
+    "sla_seconds": 180,
+    "quoted_price_xrp": "0.8",
+    "task_id": null
+  },
+  "actors": {
+    "requester_id": "requester-1",
+    "requester_xrpl_funding_address": "",
+    "requester_celo_refund_address": "0x5551abbAF9Eb240BaC81aE49199f96f678D58f05",
+    "worker_id": "worker-1",
+    "worker_payout_address": null,
+    "validator_id": "validator-1",
+    "validator_address": ""
+  },
+  "boundary": {
+    "payment_rail": "xrpl",
+    "public_intake": "mocked_external_replay",
+    "private_settlement": "live_celo"
+  },
+  "xrpl": {
+    "tx_hash": null,
+    "sender": null,
+    "receiver": "rBTkGWdrqnJL8s7aHwnFJTnEVnV3nZ8b5",
+    "destination_tag": null,
+    "memo_ref": null,
+    "quote_id": null,
+    "expected_amount_xrp": "0.8",
+    "amount_drops": null,
+    "delivered_amount": null,
+    "ledger_index": null,
+    "validated": false,
+    "verification_status": "payment_failed_pre_submit",
+    "mock_reason": "invalid_xrp_amount:0.8.5"
+  },
+  "correlation": {
+    "external_payment_ref": "xrpl:failed:0:0.8:",
+    "internal_task_id": null
+  },
+  "celo": null,
+  "settlement": {},
+  "quality": {
+    "result_score": null,
+    "validator_decision": "unknown"
+  },
+  "elapsed": {"total_seconds": 2.1},
+  "errors": [
+    "XRPL payment failed pre-submit: invalid_xrp_amount:0.8.5"
+  ],
+  "warnings": [
+    "XRPL boundary was payment_failed_pre_submit, not real_xrpl_payment"
+  ]
+}

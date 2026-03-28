@@ -196,3 +196,34 @@ def metering_record(service: str, customer_id: str, amount: int, metadata: dict[
         conn.rollback()
     finally:
         conn.close()
+
+
+def get_customer_activity(customer_id: str) -> dict[str, Any]:
+    conn = _connect()
+    try:
+        row = conn.execute("SELECT balance_wei FROM customer_balances WHERE customer_id = ?", (customer_id,)).fetchone()
+        balance = int(row[0]) if row else 0
+        credits = [
+            {"amount_wei": r[0], "asset": r[1], "source": r[2], "external_ref": r[3], "created_at": r[4]}
+            for r in conn.execute(
+                "SELECT amount_wei, asset, source, external_ref, created_at FROM balance_credits WHERE customer_id = ? ORDER BY created_at",
+                (customer_id,),
+            ).fetchall()
+        ]
+        debits = [
+            {"amount_wei": r[0], "service": r[1], "task_id": r[2], "created_at": r[3]}
+            for r in conn.execute(
+                "SELECT amount_wei, service, task_id, created_at FROM balance_debits WHERE customer_id = ? ORDER BY created_at",
+                (customer_id,),
+            ).fetchall()
+        ]
+        metering = [
+            {"service": r[0], "amount_wei": r[1], "metadata_json": r[2], "created_at": r[3]}
+            for r in conn.execute(
+                "SELECT service, amount_wei, metadata_json, created_at FROM metering WHERE customer_id = ? ORDER BY created_at",
+                (customer_id,),
+            ).fetchall()
+        ]
+        return {"customer_id": customer_id, "balance_wei": balance, "credits": credits, "debits": debits, "metering": metering}
+    finally:
+        conn.close()

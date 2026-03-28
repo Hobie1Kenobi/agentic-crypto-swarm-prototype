@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "description": "Scan public x402 discovery catalogs (CDP + PayAI), keep rows that look XRPL/XRP-settled. Optional extra keywords narrow results.",
+  "sources": [
+    {
+      "id": "cdp",
+      "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources",
+      "label": "Coinbase CDP x402 discovery"
+    },
+    {
+      "id": "payai",
+      "url": "https://facilitator.payai.network/discovery/resources",
+      "label": "PayAI facilitator discovery"
+    }
+  ],
+  "optional_keywords": [],
+  "defaults": {
+    "max_items_per_source": 600,
+    "page_size": 100,
+    "sleep_seconds": 0.2,
+    "timeout_seconds": 35
+  }
+}

@@ -51,7 +51,7 @@ INTERVAL_MINUTES = 15
 INTERVAL_SECONDS = INTERVAL_MINUTES * 60
 TOTAL_CYCLES = (DURATION_HOURS * 60) // INTERVAL_MINUTES
 
-OUT_DIR = root
+OUT_DIR = root / "artifacts" / "reports"
 CYCLE_LOG_JSON = OUT_DIR / "continuous_multi_rail_cycle_log.json"
 CYCLE_LOG_MD = OUT_DIR / "continuous_multi_rail_cycle_log.md"
 REPORT_JSON = OUT_DIR / "continuous_multi_rail_6h_report.json"
@@ -297,21 +297,22 @@ def _write_final_report(summary: dict, cycles: list[dict]) -> None:
         "",
         "## Artifacts",
         "",
-        "- continuous_multi_rail_cycle_log.json",
-        "- continuous_multi_rail_cycle_log.md",
-        "- continuous_multi_rail_6h_report.json",
-        "- continuous_multi_rail_6h_report.md",
-        "- continuous_multi_rail_failures.json",
-        "- continuous_multi_rail_2h_checkpoint.md",
-        "- continuous_multi_rail_4h_checkpoint.md",
-        "- communication_trace.json",
-        "- communication_trace.md",
+        "- artifacts/reports/continuous_multi_rail_cycle_log.json",
+        "- artifacts/reports/continuous_multi_rail_cycle_log.md",
+        "- artifacts/reports/continuous_multi_rail_6h_report.json",
+        "- artifacts/reports/continuous_multi_rail_6h_report.md",
+        "- artifacts/reports/continuous_multi_rail_failures.json",
+        "- artifacts/reports/continuous_multi_rail_2h_checkpoint.md",
+        "- artifacts/reports/continuous_multi_rail_4h_checkpoint.md",
+        "- artifacts/communication/communication_trace.json",
+        "- artifacts/communication/communication_trace.md",
         "",
     ]
     REPORT_MD.write_text("\n".join(lines), encoding="utf-8")
 
 
 def main() -> int:
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
     print(f"[{_ts()}] Starting 6-hour continuous multi-rail loop ({TOTAL_CYCLES} cycles, every {INTERVAL_MINUTES} min)")
     cycles = _load_cycle_log()
     failures = _load_failures()

@@ -23,7 +23,7 @@ def test_create_mock_xrpl_receipt(monkeypatch):
     receipt = create_mock_xrpl_receipt({"query": "x"})
     assert receipt.payment_rail == "xrpl"
     assert receipt.payment_asset == "RLUSD"
-    assert receipt.verified is True
+    assert receipt.verified is False
     assert receipt.verification_boundary == "mock_xrpl_payment"
     assert receipt.tx_hash is not None
     assert receipt.external_payment_id is not None
@@ -54,7 +54,7 @@ def test_get_xrpl_payment_receipt_mock(monkeypatch):
     receipt, boundary = get_xrpl_payment_receipt("mock", task_request={"query": "q"})
     assert receipt is not None
     assert boundary == "mock_xrpl_payment"
-    assert receipt.verified is True
+    assert receipt.verified is False
 
 
 def test_get_xrpl_payment_receipt_replay(monkeypatch):

@@ -24,7 +24,9 @@ def _out_dir() -> Path:
     if p:
         out = Path(p)
         return out if out.is_absolute() else (_root() / out)
-    return _root()
+    d = _root() / "artifacts" / "reports"
+    d.mkdir(parents=True, exist_ok=True)
+    return d
 
 
 def _write(path: Path, text: str) -> None:

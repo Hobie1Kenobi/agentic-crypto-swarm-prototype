@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "routes": {
+    "31337": {
+      "rpc_env_vars": [
+        "RPC_URL"
+      ],
+      "signer_role": "AIRDROP_CLAIMANT",
+      "allowed_contracts": [
+        "0x5FbDB2315678afecb367f032d93F642f64180aa3"
+      ],
+      "max_gas": 600000,
+      "max_value_wei": 0
+    }
+  }
+}

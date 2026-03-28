@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "constitution_summary": "Ethical AI only; no gambling or illegal content; sustainable compute framing.",
+  "task_families": [
+    {
+      "id": "short_qa",
+      "label": "Short Q&A",
+      "description": "Answer in one or two sentences from a natural-language question.",
+      "inputs": { "query": "string", "method": "GET|POST" },
+      "outputs": { "response": "string" },
+      "payment_rails": ["celo_native_x402", "facilitator_usdc_base"],
+      "implementation": "api_402 / api_seller_x402 / generate_response_for_query",
+      "mainnet_readiness": "production",
+      "marketplace_fit": ["bazaar", "generic_x402", "celo_api"]
+    },
+    {
+      "id": "summarization",
+      "label": "Summarization",
+      "description": "Summarize supplied text in one sentence.",
+      "inputs": { "text_or_prompt": "string" },
+      "outputs": { "summary": "string" },
+      "payment_rails": ["celo_compute_marketplace", "xrpl_celo_hybrid"],
+      "implementation": "task_templates + task_market_demo / multi_rail",
+      "mainnet_readiness": "production",
+      "marketplace_fit": ["internal_escrow", "realism_soak"]
+    },
+    {
+      "id": "classification",
+      "label": "Classification",
+      "description": "Constrained categorical answer (e.g. yes/no, risk tier).",
+      "inputs": { "prompt": "string" },
+      "outputs": { "label": "string" },
+      "payment_rails": ["celo_compute_marketplace", "facilitator_usdc_base"],
+      "implementation": "task_templates; LLM with explicit output format",
+      "mainnet_readiness": "production",
+      "marketplace_fit": ["internal_escrow", "generic_x402"]
+    },
+    {
+      "id": "extraction",
+      "label": "Light extraction",
+      "description": "Extract one fact or risk line from a short passage.",
+      "inputs": { "passage": "string" },
+      "outputs": { "extract": "string" },
+      "payment_rails": ["celo_compute_marketplace"],
+      "implementation": "task_templates",
+      "mainnet_readiness": "beta",
+      "marketplace_fit": ["internal_escrow"],
+      "notes": "Add JSON schema validation if buyer requires structured output."
+    },
+    {
+      "id": "miner_http",
+      "label": "HTTP miner worker",
+      "description": "POST /task accepts query; returns LLM response for validator scoring.",
+      "inputs": { "query": "string" },
+      "outputs": { "response": "string" },
+      "payment_rails": ["celo_compute_marketplace"],
+      "implementation": "miner_service.py",
+      "mainnet_readiness": "beta",
+      "marketplace_fit": ["bittensor_style_internal"],
+      "notes": "Default port 8043 conflicts with api_seller_x402; set COMPUTE_MINER_PORT."
+    },
+    {
+      "id": "price_oracle_external",
+      "label": "External price / oracle data",
+      "description": "Return live market data; not LLM-only.",
+      "inputs": { "symbol": "string", "endpoint": "url" },
+      "outputs": { "price": "object" },
+      "payment_rails": ["facilitator_usdc_base"],
+      "implementation": "not implemented as first-class; Arcana-style buyer calls only",
+      "mainnet_readiness": "planned",
+      "marketplace_fit": ["arcana"],
+      "notes": "Requires dedicated adapter + disclosure if LLM is used as fallback."
+    },
+    {
+      "id": "listing_specific",
+      "label": "Marketplace-specific listing",
+      "description": "Agoragentic or similar per-listing POST schema.",
+      "inputs": { "listing_id": "string", "body": "object" },
+      "outputs": { "result": "object" },
+      "payment_rails": ["facilitator_usdc_base"],
+      "implementation": "invoke_by_provider per listing",
+      "mainnet_readiness": "planned",
+      "marketplace_fit": ["agoragentic"],
+      "notes": "One tested integration per listing ID before advertising."
+    }
+  ]
+}

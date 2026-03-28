@@ -29,6 +29,10 @@ def _receiver_address() -> str:
     return _env("XRPL_RECEIVER_ADDRESS", "")
 
 
+def _allow_mock_fallback() -> bool:
+    return (_env("XRPL_ALLOW_MOCK_FALLBACK", "0") or "0").strip().lower() in {"1", "true", "yes", "on"}
+
+
 def _xrpl_rpc_url() -> str:
     return _env("XRPL_RPC_URL", "https://s.altnet.rippletest.net:51234")
 
@@ -116,7 +120,11 @@ class XRPLPaymentProvider(PaymentProvider):
 def create_mock_xrpl_receipt(
     task_request: dict[str, Any] | None = None,
     payment_id: str | None = None,
+    mock_reason: str | None = None,
 ) -> PaymentReceipt:
+    meta = {"task_request": task_request} if task_request else {}
+    if mock_reason:
+        meta["mock_reason"] = mock_reason
     return PaymentReceipt(
         payment_rail="xrpl",
         payment_asset=_settlement_asset(),
@@ -125,11 +133,47 @@ def create_mock_xrpl_receipt(
         payer_address="rMockPayer123456789012345678901234",
         receiver_address=_receiver_address() or "rN7n7otQDd6FczFgLdlqtyMVrn3e1DjxvV",
         amount="1",
-        verified=True,
+        verified=False,
         verification_boundary="mock_xrpl_payment",
         internal_task_id=None,
-        metadata={"task_request": task_request} if task_request else None,
+        metadata=meta,
     )
+
+
+def create_payment_failed_receipt(mock_reason: str) -> PaymentReceipt:
+    return PaymentReceipt(
+        payment_rail="xrpl",
+        payment_asset=_settlement_asset(),
+        external_payment_id=f"failed-{int(time.time())}",
+        tx_hash=None,
+        payer_address=None,
+        receiver_address=_receiver_address() or "rN7n7otQDd6FczFgLdlqtyMVrn3e1DjxvV",
+        amount="0",
+        verified=False,
+        verification_boundary="payment_failed_pre_submit",
+        internal_task_id=None,
+        metadata={"mock_reason": mock_reason},
+    )
+
+
+def _xrpl_address_valid(addr: str) -> bool:
+    return bool(addr and isinstance(addr, str) and len(addr) >= 25 and addr.startswith("r"))
+
+
+def _validate_pre_submit(sender: str, receiver: str, amount_str: str, is_native_xrp: bool) -> str | None:
+    if not _xrpl_address_valid(sender):
+        return "invalid_sender_address"
+    if not _xrpl_address_valid(receiver):
+        return "invalid_receiver_address"
+    if not is_native_xrp:
+        return None
+    try:
+        val = int(amount_str)
+        if val < 0 or amount_str != str(val):
+            return "invalid_amount_not_drops"
+    except (ValueError, TypeError):
+        return "invalid_amount_not_drops"
+    return None
 
 
 def create_replay_xrpl_receipt(replay_payload: dict[str, Any]) -> PaymentReceipt:
@@ -148,10 +192,45 @@ def create_replay_xrpl_receipt(replay_payload: dict[str, Any]) -> PaymentReceipt
     )
 
 
+def _delivered_amount_from_tx(tx_result: dict[str, Any], receiver: str) -> str:
+    meta = tx_result.get("meta") or {}
+    delivered = (
+        meta.get("delivered_amount")
+        or meta.get("DeliveredAmount")
+        or tx_result.get("delivered_amount")
+    )
+    if delivered is not None and delivered != "unavailable":
+        if isinstance(delivered, dict):
+            return str(delivered.get("value", delivered))
+        s = str(delivered)
+        if s and s != "0":
+            return s
+    tx_json = tx_result.get("tx_json") or tx_result
+    amount = tx_json.get("Amount") or tx_json.get("amount")
+    if amount is not None:
+        if isinstance(amount, dict):
+            return str(amount.get("value", amount))
+        s = str(amount)
+        if s:
+            return s
+    amount = tx_result.get("Amount") or tx_result.get("amount")
+    if amount is not None:
+        if isinstance(amount, dict):
+            return str(amount.get("value", amount))
+        s = str(amount)
+        if s:
+            return s
+    return ""
+
+
 def attempt_live_xrpl_payment(
     amount: str,
     receiver: str,
     memo: str,
+    *,
+    destination_tag: int | None = None,
+    memo_ref: str | None = None,
+    last_ledger_sequence: int | None = None,
 ) -> tuple[PaymentReceipt | None, str | None]:
     ok, blocker = _check_xrpl_live()
     if not ok:
@@ -163,19 +242,66 @@ def attempt_live_xrpl_payment(
         from xrpl.clients import JsonRpcClient
         from xrpl.wallet import Wallet
         from xrpl.models import Payment
+        from xrpl.models.transactions import Memo
         from xrpl.transaction import submit_and_wait
+        from xrpl.utils import xrp_to_drops
 
         client = JsonRpcClient(_xrpl_rpc_url())
         wallet = Wallet.from_seed(seed)
-        payment = Payment(
-            account=wallet.address,
-            amount=amount,
-            destination=receiver,
-        )
+
+        asset = _settlement_asset()
+        is_native_xrp = asset == "XRP"
+        amount_for_payment = amount
+        if is_native_xrp:
+            try:
+                xrp_val = float(amount)
+                amount_for_payment = xrp_to_drops(xrp_val)
+            except (ValueError, TypeError) as e:
+                return None, f"invalid_xrp_amount:{amount}"
+
+        err = _validate_pre_submit(wallet.address, receiver, amount_for_payment, is_native_xrp)
+        if err:
+            return None, err
+
+        memos = None
+        if memo_ref:
+            memo_data_hex = memo_ref.encode("utf-8").hex()
+            memo_format_hex = "text/plain".encode("utf-8").hex()
+            try:
+                memos = [Memo(memo_data=memo_data_hex, memo_format=memo_format_hex)]
+            except Exception:
+                memos = [Memo(memo_data=memo_ref[:32].encode("utf-8").hex(), memo_format=memo_format_hex)]
+
+        payment_kw: dict[str, Any] = {
+            "account": wallet.address,
+            "amount": amount_for_payment,
+            "destination": receiver,
+            "memos": memos,
+        }
+        if destination_tag is not None:
+            payment_kw["destination_tag"] = destination_tag
+        if last_ledger_sequence is not None:
+            payment_kw["last_ledger_sequence"] = last_ledger_sequence
+        payment = Payment(**payment_kw)
+
         response = submit_and_wait(payment, client, wallet)
         if not response.is_successful():
             return None, f"XRPL tx failed: {response.result}"
         tx_hash = response.result.get("hash")
+        tx_result = response.result
+        delivered = _delivered_amount_from_tx(tx_result, receiver)
+        if (not delivered or delivered == "0") and amount:
+            delivered = amount
+        meta: dict[str, Any] = {"memo": memo}
+        if destination_tag is not None:
+            meta["destination_tag"] = destination_tag
+        if memo_ref:
+            meta["memo_ref"] = memo_ref
+        meta["amount_drops"] = amount_for_payment
+        meta["delivered_amount"] = delivered or amount_for_payment
+        ledger = tx_result.get("ledger_index") or (tx_result.get("meta") or {}).get("ledger_index")
+        if ledger is not None:
+            meta["ledger_index"] = int(ledger) if isinstance(ledger, (int, float)) else ledger
         return PaymentReceipt(
             payment_rail="xrpl",
             payment_asset=_settlement_asset(),
@@ -183,16 +309,64 @@ def attempt_live_xrpl_payment(
             tx_hash=tx_hash,
             payer_address=wallet.address,
             receiver_address=receiver,
-            amount=amount,
+            amount=delivered or amount,
             verified=True,
             verification_boundary="real_xrpl_payment",
             internal_task_id=None,
-            metadata={"memo": memo},
+            metadata=meta,
         ), None
     except ImportError as e:
         return None, f"xrpl-py not installed: {e}"
     except Exception as e:
         return None, str(e)
+
+
+def _quote_driven_live_payment(task_request: dict[str, Any]) -> tuple[PaymentReceipt | None, str | None]:
+    try:
+        from services.xrpl_quote import create_quote, amount_within_tolerance
+    except ImportError:
+        return None, "xrpl_quote not available"
+    quote = create_quote(task_request)
+    receipt, err = attempt_live_xrpl_payment(
+        amount=quote.expected_amount,
+        receiver=quote.destination,
+        memo=quote.memo_ref,
+        destination_tag=quote.destination_tag,
+        memo_ref=quote.memo_ref,
+    )
+    if not receipt:
+        return None, err
+    if not amount_within_tolerance(
+        str(receipt.amount),
+        quote.expected_amount,
+        quote.amount_tolerance_pct,
+    ):
+        return None, f"delivered amount {receipt.amount} outside tolerance of {quote.expected_amount}"
+    meta = dict(receipt.metadata or {})
+    meta["job_id"] = quote.job_id
+    meta["quote_id"] = quote.quote_id
+    meta["destination_tag"] = quote.destination_tag
+    meta["memo_ref"] = quote.memo_ref
+    meta["expected_amount"] = quote.expected_amount
+    meta["quoted_price_xrp"] = quote.expected_amount
+    try:
+        from xrpl.utils import xrp_to_drops
+        meta["amount_drops"] = xrp_to_drops(float(quote.expected_amount))
+    except ImportError:
+        meta["amount_drops"] = str(int(float(quote.expected_amount) * 1_000_000))
+    return PaymentReceipt(
+        payment_rail=receipt.payment_rail,
+        payment_asset=receipt.payment_asset,
+        external_payment_id=receipt.external_payment_id,
+        tx_hash=receipt.tx_hash,
+        payer_address=receipt.payer_address,
+        receiver_address=receipt.receiver_address,
+        amount=receipt.amount,
+        verified=receipt.verified,
+        verification_boundary=receipt.verification_boundary,
+        internal_task_id=receipt.internal_task_id,
+        metadata=meta,
+    ), None
 
 
 def get_xrpl_payment_receipt(
@@ -201,17 +375,26 @@ def get_xrpl_payment_receipt(
     replay_payload: dict[str, Any] | None = None,
 ) -> tuple[PaymentReceipt, str]:
     mode = (mode or "mock").strip().lower()
+    task_request = task_request or {}
     if replay_payload and mode == "replay":
         return create_replay_xrpl_receipt(replay_payload), "replayed_xrpl_payment"
-    if mode == "live" and task_request:
-        quote = XRPLPaymentProvider().quote_payment(task_request or {})
-        if quote:
-            receipt, err = attempt_live_xrpl_payment(
-                amount=str(quote.amount),
-                receiver=quote.receiver,
-                memo=str(task_request.get("query", task_request.get("prompt", "agent-commerce")))[:256],
-            )
-            if receipt:
-                return receipt, "real_xrpl_payment"
-            return create_mock_xrpl_receipt(task_request), f"mock_xrpl_payment (live blocked: {err})"
+    if mode == "live":
+        use_quote = (_env("XRPL_QUOTE_DRIVEN", "0") or "").strip().lower() in {"1", "true", "yes", "on"}
+        receipt, err = None, None
+        if use_quote:
+            receipt, err = _quote_driven_live_payment(task_request)
+        else:
+            quote = XRPLPaymentProvider().quote_payment(task_request)
+            if quote:
+                receipt, err = attempt_live_xrpl_payment(
+                    amount=str(quote.amount),
+                    receiver=quote.receiver,
+                    memo=str(task_request.get("query", task_request.get("prompt", "agent-commerce")))[:256],
+                )
+        if receipt:
+            return receipt, "real_xrpl_payment"
+        reason = err or "unknown"
+        if _allow_mock_fallback():
+            return create_mock_xrpl_receipt(task_request, mock_reason=reason), f"mock_xrpl_payment ({reason})"
+        return create_payment_failed_receipt(reason), "payment_failed_pre_submit"
     return create_mock_xrpl_receipt(task_request), "mock_xrpl_payment"

@@ -11,7 +11,10 @@
     "supported_assets": ["CELO"],
     "pricing_model": "per_request",
     "categories": ["query", "llm", "self"],
-    "payment_flow": "celo_native"
+    "payment_flow": "celo_native",
+    "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/"
+    }
   },
   {
     "provider_id": "swarm-seller-facilitator",
@@ -27,10 +30,33 @@
     "categories": ["query", "llm", "self", "seller", "bazaar"],
     "payment_flow": "facilitator",
     "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
       "seller": true,
       "api_seller_x402": true,
       "settlement_chain": "base-mainnet",
       "note": "Set X402_SELLER_NETWORK=eip155:84532 in .env for Base Sepolia dev. Override resource_url with X402_SELLER_PUBLIC_URL for HTTPS."
+    }
+  },
+  {
+    "provider_id": "swarm-seller-celo-data",
+    "provider_name": "Our Swarm (Base USDC) — Celo Sepolia + proof / soak data bundle (Bazaar x402)",
+    "source_type": "config",
+    "discovery_source": "internal",
+    "protocol_type": "x402",
+    "network": "eip155:8453",
+    "facilitator_url": "https://x402.org/facilitator",
+    "resource_url": "http://127.0.0.1:8043/x402/v1/celo-agent-data",
+    "supported_assets": ["USDC"],
+    "pricing_model": "per_request",
+    "categories": ["query", "llm", "self", "seller", "bazaar", "data", "proof", "celo"],
+    "payment_flow": "facilitator",
+    "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "seller": true,
+      "api_seller_x402": true,
+      "sku_id": "agent-commerce-data",
+      "settlement_chain": "base-mainnet",
+      "note": "Premium JSON; ?depth=full for larger evidence. Set X402_SELLER_DATA_PUBLIC_URL or derive from X402_SELLER_PUBLIC_URL (/query -> /celo-agent-data). Price via X402_SELLER_DATA_PRICE on seller."
     }
   },
   {
@@ -47,6 +73,7 @@
     "categories": ["t54", "xrpl", "llm"],
     "payment_flow": "t54_xrpl",
     "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
       "t54_path": "/x402/v1/query",
       "sku_id": "structured-query",
       "note": "npm run t54:seller. Use T54_SELLER_PUBLIC_BASE_URL=https://host and optional per-SKU rows below, or set T54_SELLER_PUBLIC_URL to full query URL."
@@ -66,6 +93,7 @@
     "categories": ["t54", "xrpl", "research", "llm"],
     "payment_flow": "t54_xrpl",
     "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
       "t54_path": "/x402/v1/research-brief",
       "sku_id": "research-brief"
     }
@@ -84,6 +112,7 @@
     "categories": ["t54", "xrpl", "safety", "llm"],
     "payment_flow": "t54_xrpl",
     "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
       "t54_path": "/x402/v1/constitution-audit",
       "sku_id": "constitution-audit-lite"
     }
@@ -102,8 +131,49 @@
     "categories": ["t54", "xrpl", "health"],
     "payment_flow": "t54_xrpl",
     "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
       "t54_path": "/hello",
       "sku_id": "hello"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-agent-commerce-data",
+    "provider_name": "T54 XRPL — agent commerce data bundle (proof + federation + discovery)",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "",
+    "supported_assets": ["XRP"],
+    "pricing_model": "per_request",
+    "categories": ["t54", "xrpl", "data", "proof", "agents"],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "t54_path": "/x402/v1/agent-commerce-data",
+      "sku_id": "agent-commerce-data",
+      "note": "Premium JSON bundle; use ?depth=full for larger evidence payloads"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-airdrop-intelligence",
+    "provider_name": "T54 XRPL — airdrop intelligence report (constitution-first, no execution)",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "",
+    "supported_assets": ["XRP"],
+    "pricing_model": "per_request",
+    "categories": ["t54", "xrpl", "research", "airdrop"],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "t54_path": "/x402/v1/airdrop-intelligence",
+      "sku_id": "airdrop-intelligence-report",
+      "note": "LLM screening only; run scripts/run-airdrop-scout.py separately from sellers"
     }
   },
   {

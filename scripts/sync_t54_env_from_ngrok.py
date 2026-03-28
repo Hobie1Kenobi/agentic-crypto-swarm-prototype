@@ -28,18 +28,33 @@ def main() -> int:
     if not tunnels:
         print("no tunnels in ngrok response", file=sys.stderr)
         return 1
-    picked = None
-    for t in tunnels:
-        addr = str((t.get("config") or {}).get("addr") or "").lower()
-        if ":8765" in addr or addr.endswith("8765"):
-            picked = t
-            break
-    if picked is None:
-        picked = tunnels[0]
+
+    def _unified_tunnel(ts: list) -> dict | None:
+        for t in ts:
+            addr = str((t.get("config") or {}).get("addr") or "").lower()
+            name = str(t.get("name") or "").lower()
+            if name == "unified" or ":9080" in addr or addr.endswith("9080"):
+                return t
+        return None
+
+    picked = _unified_tunnel(tunnels)
+    use_t54_prefix = False
+    if picked is not None:
+        use_t54_prefix = True
+    else:
+        for t in tunnels:
+            addr = str((t.get("config") or {}).get("addr") or "").lower()
+            if ":8765" in addr or addr.endswith("8765"):
+                picked = t
+                break
+        if picked is None:
+            picked = tunnels[0]
     base = (picked.get("public_url") or "").strip().rstrip("/")
     if not base.startswith("https://"):
         print("unexpected public_url", file=sys.stderr)
         return 1
+    if use_t54_prefix:
+        base = f"{base}/t54"
     text = env_path.read_text(encoding="utf-8") if env_path.exists() else ""
     key = "T54_SELLER_PUBLIC_BASE_URL"
     line = f"{key}={base}"
@@ -50,7 +65,7 @@ def main() -> int:
         sep = "\n" if text and not text.endswith("\n") else ""
         new = text + sep + line + "\n"
     env_path.write_text(new, encoding="utf-8")
-    print(f"Wrote {key} to .env (origin only; paths added by discovery).")
+    print(f"Wrote {key} to .env (unified Caddy :9080 -> /t54 suffix, else direct :8765 origin).")
     print(base)
     return 0
 

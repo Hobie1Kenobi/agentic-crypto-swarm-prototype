@@ -1,6 +1,12 @@
-# One ngrok agent, two tunnels — single local API at http://127.0.0.1:4040
-# Must merge with your authtoken config (see start-dual-ngrok-stack.ps1 / npm run stack:dual-ngrok):
+# One ngrok agent — T54 + Base x402 + unified Caddy proxy (three tunnels).
+# Requires: npm run proxy:unified (Caddy on :9080) before starting ngrok, or the unified tunnel will error.
+# Merge with authtoken config (see start-dual-ngrok-stack.ps1 / npm run stack:dual-ngrok):
 #   ngrok start --all --config %LOCALAPPDATA%\ngrok\ngrok.yml --config scripts/ngrok-dual-stack.yml
+#
+# Public URLs (replace <host> with each tunnel’s ngrok hostname):
+#   Base x402:  https://<x402_seller host>/x402/v1/query
+#   T54:        https://<t54_seller host>/t54/x402/v1/query  (or /t54/hello)
+#   Stripe:     https://<unified host>/webhooks/stripe
 version: "3"
 tunnels:
   t54_seller:
@@ -9,3 +15,6 @@ tunnels:
   x402_seller:
     proto: http
     addr: 8043
+  unified:
+    proto: http
+    addr: 9080

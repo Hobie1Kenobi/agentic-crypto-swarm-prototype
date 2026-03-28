@@ -1,0 +1,9 @@
+{
+  "url": "https://x402-discovery-api.onrender.com/discover",
+  "limit_attempted": 100,
+  "http_status": 422,
+  "max_allowed_limit": 50,
+  "api_message": "Input should be less than or equal to 50",
+  "probed_at": "2026-03-26",
+  "note": "limit=100 rejected by API validator; use limit<=50 per request."
+}

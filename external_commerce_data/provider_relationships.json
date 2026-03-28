@@ -1,0 +1,36 @@
+{
+  "relationships": {
+    "x402-test-echo": {
+      "provider_id": "x402-test-echo",
+      "first_seen_at": "2026-03-22T16:09:49Z",
+      "last_invoked_at": "2026-03-22T16:09:49Z",
+      "successful_calls": 0,
+      "failed_calls": 1,
+      "avg_latency_ms": 0.0,
+      "avg_cost": null,
+      "last_price_seen": null,
+      "quality_score": 0.0,
+      "trust_score": 0.4,
+      "preferred_for_task_types": [],
+      "cooldown_until": null,
+      "blacklist_reason": null,
+      "notes": ""
+    },
+    "swarm-self": {
+      "provider_id": "swarm-self",
+      "first_seen_at": "2026-03-22T20:49:14Z",
+      "last_invoked_at": "2026-03-22T20:49:14Z",
+      "successful_calls": 0,
+      "failed_calls": 1,
+      "avg_latency_ms": 0.0,
+      "avg_cost": null,
+      "last_price_seen": null,
+      "quality_score": 0,
+      "trust_score": 0.4,
+      "preferred_for_task_types": [],
+      "cooldown_until": null,
+      "blacklist_reason": "HTTPConnectionPool(host='127.0.0.1', port=8042): Max retries exceeded with url: /query?q=test (Caused by NewConnectionError(\"HTTPConnection(host='127.0.0.1', port=8042): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it\"))",
+      "notes": ""
+    }
+  }
+}

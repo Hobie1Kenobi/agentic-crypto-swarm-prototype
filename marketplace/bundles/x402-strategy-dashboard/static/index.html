@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>x402 Catalog Viewer — Strategy Bundle</title>
+  <style>
+    :root {
+      --bg: #0a0b0f;
+      --card: #12151c;
+      --border: #1e2530;
+      --text: #e8ecf4;
+      --muted: #8b95a8;
+      --accent: #00d4aa;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: system-ui, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+    header {
+      padding: 1.5rem clamp(1rem, 4vw, 2rem);
+      border-bottom: 1px solid var(--border);
+    }
+    h1 { font-size: 1.25rem; margin: 0 0 0.25rem; }
+    .sub { color: var(--muted); font-size: 0.9rem; }
+    .stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+    .pill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+    .pill strong { color: var(--accent); }
+    main { padding: 1rem clamp(0.5rem, 2vw, 1.5rem) 3rem; overflow-x: auto; }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.6rem 0.5rem;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    th { color: var(--accent); font-weight: 600; white-space: nowrap; }
+    tr:hover td { background: rgba(0, 212, 170, 0.04); }
+    a { color: #38bdf8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    .price { color: #4ade80; font-variant-numeric: tabular-nums; }
+    .err { color: #f87171; padding: 1rem; }
+    .name { font-weight: 500; }
+    .desc { color: var(--muted); font-size: 0.8rem; margin-top: 0.2rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>x402 Strategy Dashboard — catalog snapshot</h1>
+    <p class="sub">Bundled viewer. Replace this file with your full multi-tab dashboard if desired.</p>
+    <div class="stats" id="stats"></div>
+  </header>
+  <main>
+    <p id="load-err" class="err" style="display:none"></p>
+    <table>
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Price (USD)</th>
+          <th>Trust</th>
+          <th>Latency</th>
+          <th>Link</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+  </main>
+  <script>
+    function esc(s) {
+      const d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+    async function run() {
+      const errEl = document.getElementById('load-err');
+      try {
+        const r = await fetch('data/catalog-slim.json', { cache: 'no-store' });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        const j = await r.json();
+        const providers = j.providers || [];
+        const stats = document.getElementById('stats');
+        stats.innerHTML = [
+          ['Snapshot', (j.source_catalog || 'embedded')],
+          ['Rows', String(providers.length)],
+          ['Schema', String(j.schema_version || '—')],
+        ].map(([k, v]) => '<span class="pill"><strong>' + esc(k) + '</strong> ' + esc(v) + '</span>').join('');
+        const tb = document.getElementById('rows');
+        for (const p of providers) {
+          const meta = p.metadata || {};
+          const price = meta.price_usd;
+          const lat = meta.avg_latency_ms;
+          const tr = document.createElement('tr');
+          tr.innerHTML =
+            '<td><div class="name">' + esc(p.provider_name || '') + '</div>' +
+            '<div class="desc">' + esc((p.categories || []).join(', ')) + ' · ' + esc(p.network || '') + '</div></td>' +
+            '<td class="price">' + esc(price !== undefined && price !== null ? String(price) : '—') + '</td>' +
+            '<td>' + esc(String(p.trust_score != null ? p.trust_score : '—')) + '</td>' +
+            '<td>' + esc(lat != null ? lat + ' ms' : '—') + '</td>' +
+            '<td><a href="' + esc(p.resource_url || '#') + '" target="_blank" rel="noopener">Open</a></td>';
+          tb.appendChild(tr);
+        }
+      } catch (e) {
+        errEl.style.display = 'block';
+        errEl.textContent = 'Could not load data/catalog-slim.json. Serve this folder over HTTP (python -m http.server), or check that the file exists in static/data/.';
+      }
+    }
+    run();
+  </script>
+</body>
+</html>

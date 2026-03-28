@@ -1004,6 +1004,8 @@ def run_task_market_demo() -> dict[str, Any]:
 
     # Report outputs.
     root = _root()
+    rep = root / "artifacts" / "reports"
+    rep.mkdir(parents=True, exist_ok=True)
     out_manifest = {
         "chain_id": chain_id,
         "rpc": rpc,
@@ -1091,16 +1093,19 @@ Score: {score}
 {errors_md}
 """
 
-    _write_text(root / "task_market_demo_report.md", md)
-    _write_json(root / "deployed_address_manifest.json", out_manifest)
+    _write_text(rep / "task_market_demo_report.md", md)
+    _write_json(rep / "deployed_address_manifest.json", out_manifest)
 
     if chain_id == 31337:
-        _write_text(root / "local_task_market_report.md", md)
-        _write_json(root / "local_task_market_report.json", result)
-        _write_json(root / "deployed_local_address_manifest.json", out_manifest)
+        _write_text(rep / "local_task_market_report.md", md)
+        _write_json(rep / "local_task_market_report.json", result)
+        _write_json(rep / "deployed_local_address_manifest.json", out_manifest)
     elif chain_id == 11142220:
-        _write_json(root / "celo_sepolia_task_market_report.json", result)
-        _write_text(root / "celo_sepolia_task_market_report.md", md)
+        _write_json(rep / "celo_sepolia_task_market_report.json", result)
+        _write_text(rep / "celo_sepolia_task_market_report.md", md)
+    elif chain_id == 42220:
+        _write_json(rep / "celo_mainnet_task_market_report.json", result)
+        _write_text(rep / "celo_mainnet_task_market_report.md", md)
 
     result["task"]["task_id"] = int(task_id)
     result["task"]["task_metadata"] = task_metadata

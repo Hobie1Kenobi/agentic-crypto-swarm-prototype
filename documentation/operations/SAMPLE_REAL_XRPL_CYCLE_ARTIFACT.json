@@ -1,0 +1,76 @@
+{
+  "cycle": 0,
+  "start_time": "2025-03-15T12:00:00Z",
+  "end_time": "2025-03-15T12:01:30Z",
+  "status": "completed",
+  "task": {
+    "task_type": "classification",
+    "complexity": "medium",
+    "template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "sla_seconds": 300,
+    "quoted_price_xrp": "0.8",
+    "quoted_price_usd": "0.40",
+    "max_budget": "0.50",
+    "task_id": "0x1234567890abcdef"
+  },
+  "actors": {
+    "requester_id": "requester-1",
+    "requester_xrpl_funding_address": "rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY",
+    "requester_celo_refund_address": "0x5551abbAF9Eb240BaC81aE49199f96f678D58f05",
+    "worker_id": "worker-1",
+    "worker_payout_address": "0x8D341217Bd9B56CE5E930bd1335C23bc5A9Bc494",
+    "validator_id": "validator-1",
+    "validator_address": "0xb132e9bDA7bd2c530fd16c03126e7f54367dbF65"
+  },
+  "boundary": {
+    "payment_rail": "xrpl",
+    "public_intake": "mocked_external_replay",
+    "private_settlement": "live_celo"
+  },
+  "xrpl": {
+    "tx_hash": "A1B2C3D4E5F6789012345678901234567890ABCDEF1234567890ABCDEF12",
+    "sender": "rPEPPER7kfTD9w2To4CQk6UCfuHM9c6GDY",
+    "receiver": "rBTkGWdrqnJL8s7aHwnFJTnEVnV3nZ8b5",
+    "destination_tag": 100042,
+    "memo_ref": "Classify: Is sustainable compute",
+    "quote_id": "a1b2c3d4e5f67890",
+    "expected_amount_xrp": "0.8",
+    "quoted_price_xrp": "0.8",
+    "amount_drops": "800000",
+    "delivered_amount": "800000",
+    "ledger_index": 45012345,
+    "validated": true,
+    "verification_status": "real_xrpl_payment"
+  },
+  "correlation": {
+    "external_payment_ref": "xrpl:A1B2C3D4E5F6789012345678901234567890ABCDEF1234567890ABCDEF12:100042:800000:a1b2c3d4e5f67890",
+    "internal_task_id": "0x1234567890abcdef"
+  },
+  "celo": {
+    "network": "celo_sepolia",
+    "task_contract": "0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9",
+    "lifecycle": [
+      {"step": "createTask", "tx_hash": "0xabc...", "block_number": 12345, "success": true},
+      {"step": "acceptTask", "tx_hash": "0xdef...", "block_number": 12346, "success": true},
+      {"step": "submitResult", "tx_hash": "0xghi...", "block_number": 12347, "success": true},
+      {"step": "validateResult", "tx_hash": "0xjkl...", "block_number": 12348, "success": true},
+      {"step": "finalizeTask", "tx_hash": "0xmno...", "block_number": 12349, "success": true}
+    ],
+    "final_status": "Finalized",
+    "confirmations_used": 1
+  },
+  "settlement": {
+    "currency": "CELO",
+    "protocol_fee": {"address": "0xD92...", "actual_wei": 2592000000000000},
+    "finance_fee": {"address": "0xCF3...", "actual_wei": 2592000000000000},
+    "worker_payout": {"address": "0x8D34...", "actual_wei": 15552000000000000},
+    "requester_refund": {"address": "0x5551...", "actual_wei": 2592000000000000}
+  },
+  "quality": {
+    "result_score": 1.0,
+    "validator_decision": "accepted"
+  },
+  "elapsed": {"total_seconds": 90.5},
+  "errors": [],
+  "warnings": []
+}

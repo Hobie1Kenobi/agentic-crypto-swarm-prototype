@@ -331,6 +331,28 @@
     .ep-warn { color: var(--accent-amber); font-size: 0.9rem; margin-top: 12px; }
     .hero-badges { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-bottom: 28px; }
     .hero-badges .badge { margin-bottom: 0; }
+    .aad-listing {
+      margin: 0 auto 32px;
+      max-width: 100%;
+      text-align: center;
+    }
+    .aad-listing a {
+      display: inline-block;
+      line-height: 0;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .aad-listing a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.4);
+    }
+    .aad-listing img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      vertical-align: bottom;
+    }
     .bundle-shot {
       margin: 28px 0;
       border-radius: var(--radius-lg);
@@ -396,6 +418,11 @@
       </div>
       <h1>Agentic Swarm Marketplace</h1>
       <p>Multi-rail agent commerce: XRPL machine payments + Celo private settlement. <strong style="color: #e2e8f0;">Stripe Machine Payments Protocol</strong> for the marketplace checkout, and a sellable <strong style="color: #e2e8f0;">x402 Strategy Dashboard</strong> operator bundle — alongside per-request x402 and T54.</p>
+      <div class="aad-listing">
+        <a href="https://aiagentsdirectory.com/agent/agentic-swarm-marketplace?utm_source=badge&amp;utm_medium=referral&amp;utm_campaign=free_listing&amp;utm_content=agentic-swarm-marketplace" target="_blank" rel="noopener noreferrer">
+          <img src="https://aiagentsdirectory.com/featured-badge.svg?v=2024" alt="Agentic Swarm Marketplace - Featured AI Agent on AI Agents Directory" width="200" height="50" loading="lazy" decoding="async" />
+        </a>
+      </div>
       <div class="cta-row">
         <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype" class="btn btn-primary" target="_blank" rel="noopener">View on GitHub</a>
         <a href="#operator-bundle" class="btn btn-secondary">Dashboard bundle</a>
@@ -403,7 +430,7 @@
         <a href="#live-endpoints" class="btn btn-secondary">Live endpoints</a>
         <a href="#t54-x402" class="btn btn-secondary">T54 x402 Seller</a>
         <a href="#proof" class="btn btn-secondary">View Proof Reports</a>
-        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/live_xrpl_to_celo_proof_report.md" class="btn btn-secondary" target="_blank" rel="noopener">Live XRPL→Celo Proof</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/live_xrpl_to_celo_proof_report.md" class="btn btn-secondary" target="_blank" rel="noopener">Live XRPL→Celo Proof</a>
       </div>
     </div>
   </header>
@@ -472,7 +499,7 @@
       <ul class="mpp-list">
         <li>Minimum charge aligns with Stripe rules (often <strong>$0.50 USD</strong>); marketplace bundle uses configurable list price.</li>
         <li>Requires Stripe Dashboard: <strong>Stablecoins and Crypto</strong> / crypto payins for deposit-mode PaymentIntents.</li>
-        <li>Full wiring: <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/STRIPE_MPP_INTEGRATION.md" target="_blank" rel="noopener" style="color: var(--accent-cyan);">docs/STRIPE_MPP_INTEGRATION.md</a> · <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/MARKETPLACE_DASHBOARD_BUNDLE.md" target="_blank" rel="noopener" style="color: var(--accent-cyan);">docs/MARKETPLACE_DASHBOARD_BUNDLE.md</a></li>
+        <li>Full wiring: <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/marketplace-stripe/STRIPE_MPP_INTEGRATION.md" target="_blank" rel="noopener" style="color: var(--accent-cyan);">documentation/marketplace-stripe/STRIPE_MPP_INTEGRATION.md</a> · <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/marketplace-stripe/MARKETPLACE_DASHBOARD_BUNDLE.md" target="_blank" rel="noopener" style="color: var(--accent-cyan);">MARKETPLACE_DASHBOARD_BUNDLE.md</a></li>
       </ul>
     </div>
   </section>
@@ -486,9 +513,9 @@
         <p class="bundle-caption"><strong style="color: #e2e8f0;">Overview</strong> — Multi-tab dashboard: global metrics, seven agent earning playbooks (buy–resell, DeFi intelligence, audit, compliance, compute broker, alerts, pipeline composer), and category breakdown. Headline numbers reflect the <strong style="color: #e2e8f0;">catalog analysis</strong> baked into each build; refresh data with <code style="color: #a5b4fc;">npm run catalog:scout-slim</code> before packing.</p>
       </div>
       <div class="t54-cta" style="margin-top: 8px;">
-        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/MARKETPLACE_DASHBOARD_BUNDLE.md" target="_blank" rel="noopener" class="btn btn-primary">Bundle + Stripe docs</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/marketplace-stripe/MARKETPLACE_DASHBOARD_BUNDLE.md" target="_blank" rel="noopener" class="btn btn-primary">Bundle + Stripe docs</a>
         <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/tree/master/marketplace/bundles/x402-strategy-dashboard" target="_blank" rel="noopener" class="btn btn-secondary">Source: marketplace/bundles/x402-strategy-dashboard</a>
-        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/X402_SCOUT_CATALOG_INTEGRATION.md" target="_blank" rel="noopener" class="btn btn-secondary">x402 Scout catalog</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/x402-t54-base/X402_SCOUT_CATALOG_INTEGRATION.md" target="_blank" rel="noopener" class="btn btn-secondary">x402 Scout catalog</a>
       </div>
     </div>
   </section>
@@ -543,7 +570,7 @@
         </table>
         <div class="t54-cta">
           <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype#completed-t54-x402-seller-on-xrpl" target="_blank" rel="noopener" class="btn btn-primary">README: T54 section</a>
-          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/T54_SELLER.md" target="_blank" rel="noopener" class="btn btn-secondary">docs/T54_SELLER.md</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/x402-t54-base/T54_SELLER.md" target="_blank" rel="noopener" class="btn btn-secondary">T54_SELLER.md</a>
           <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/packages/agents/config/t54_seller_skus.json" target="_blank" rel="noopener" class="btn btn-secondary">t54_seller_skus.json</a>
           <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/packages/agents/config/x402_providers.json" target="_blank" rel="noopener" class="btn btn-secondary">x402_providers.json</a>
         </div>
@@ -619,10 +646,10 @@
       </div>
       <p style="margin-top: 24px; color: var(--text-muted); font-size: 0.95rem;">Celo wallet → api_402 (seller). Arcana, Agoragentic, Bazaar discovery ready.</p>
       <div style="margin-top: 32px; display: flex; flex-wrap: wrap; gap: 16px;">
-        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/x402_agent_commerce_soak_report.md" target="_blank" rel="noopener" class="btn btn-primary">View 1h Soak Report</a>
-        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/x402_agent_commerce_soak_report.json" target="_blank" rel="noopener" class="btn btn-secondary">View JSON Summary</a>
-        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/x402_agent_commerce_soak_log.json" target="_blank" rel="noopener" class="btn btn-secondary">View Cycle Log</a>
-        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/X402_MARKETPLACE_INTEGRATION.md" target="_blank" rel="noopener" class="btn btn-secondary">x402 Integration Doc</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/x402_agent_commerce_soak_report.md" target="_blank" rel="noopener" class="btn btn-primary">View 1h Soak Report</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/x402_agent_commerce_soak_report.json" target="_blank" rel="noopener" class="btn btn-secondary">View JSON Summary</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/x402_agent_commerce_soak_log.json" target="_blank" rel="noopener" class="btn btn-secondary">View Cycle Log</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/x402-t54-base/X402_MARKETPLACE_INTEGRATION.md" target="_blank" rel="noopener" class="btn btn-secondary">x402 Integration Doc</a>
       </div>
     </div>
   </section>
@@ -635,47 +662,47 @@
         <div class="card">
           <h3>x402 1-Hour Soak Test</h3>
           <p>26 buy cycles, 13 discovery cycles. 100% success. Celo-native agent commerce.</p>
-          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/x402_agent_commerce_soak_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/x402_agent_commerce_soak_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
         </div>
         <div class="card">
           <h3>Live XRPL → Celo Proof</h3>
           <p>Presentation-grade proof with verifiable XRPL + Celo tx hashes.</p>
-          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/live_xrpl_to_celo_proof_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/live_xrpl_to_celo_proof_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
         </div>
         <div class="card">
           <h3>6-Hour Soak Test</h3>
           <p>24/24 cycles, 216 Celo txs. 100% success.</p>
-          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_6h_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/continuous_multi_rail_6h_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
         </div>
         <div class="card">
           <h3>24-Hour Soak Test</h3>
           <p>96/96 cycles, 864 Celo txs. 100% success.</p>
-          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_24h_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/continuous_multi_rail_24h_report.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Report</a>
         </div>
         <div class="card">
           <h3>Architecture</h3>
           <p>System overview, multi-rail design, LangGraph workflow.</p>
-          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/ARCHITECTURE.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Doc</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/architecture/ARCHITECTURE.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Doc</a>
         </div>
         <div class="card">
           <h3>XRPL Payments</h3>
           <p>Payment modes, wallet setup, integration guide.</p>
-          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/XRPL_PAYMENTS.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Doc</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/celo-xrpl/XRPL_PAYMENTS.md" target="_blank" rel="noopener" class="btn btn-secondary" style="margin-top: 16px; display: inline-flex;">View Doc</a>
         </div>
         <div class="card" style="border-color: rgba(16, 185, 129, 0.35); background: linear-gradient(145deg, rgba(16, 185, 129, 0.08), var(--bg-card));">
           <h3>Stripe MPP + marketplace</h3>
           <p>Machine Payments Protocol, PaymentIntents, Tempo deposit, webhook fulfillment.</p>
-          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/STRIPE_MPP_INTEGRATION.md" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 16px; display: inline-flex;">STRIPE_MPP_INTEGRATION.md</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/marketplace-stripe/STRIPE_MPP_INTEGRATION.md" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 16px; display: inline-flex;">STRIPE_MPP_INTEGRATION.md</a>
         </div>
         <div class="card" style="border-color: rgba(99, 102, 241, 0.35); background: linear-gradient(145deg, rgba(99, 102, 241, 0.1), var(--bg-card));">
           <h3>x402 Strategy Dashboard bundle</h3>
           <p>Operator ZIP: HTML viewer, catalog snapshot, pack workflow.</p>
-          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/MARKETPLACE_DASHBOARD_BUNDLE.md" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 16px; display: inline-flex;">MARKETPLACE_DASHBOARD_BUNDLE.md</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/marketplace-stripe/MARKETPLACE_DASHBOARD_BUNDLE.md" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 16px; display: inline-flex;">MARKETPLACE_DASHBOARD_BUNDLE.md</a>
         </div>
         <div class="card" style="border-color: rgba(99, 102, 241, 0.35); background: linear-gradient(145deg, rgba(99, 102, 241, 0.08), var(--bg-card));">
           <h3>T54 x402 seller (XRPL)</h3>
           <p>Runbook: ngrok, env vars, 24/7 startup, multi-SKU discovery.</p>
-          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/T54_SELLER.md" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 16px; display: inline-flex;">View Doc</a>
+          <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/x402-t54-base/T54_SELLER.md" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 16px; display: inline-flex;">View Doc</a>
         </div>
         <div class="card" style="border-color: rgba(245, 158, 11, 0.35); background: linear-gradient(145deg, rgba(245, 158, 11, 0.06), var(--bg-card));">
           <h3>x402 discovery keyword scan</h3>
@@ -683,7 +710,7 @@
           <div style="margin-top: 16px; display: flex; flex-wrap: wrap; gap: 10px;">
             <a href="discovery-keyword-scan.md" class="btn btn-secondary" style="display: inline-flex;">Read report</a>
             <a href="discovery-keyword-scan.json" class="btn btn-secondary" style="display: inline-flex;">JSON</a>
-            <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/AIRDROP_INTELLIGENCE_AGENT.md" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex;">Airdrop intelligence</a>
+            <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/discovery/AIRDROP_INTELLIGENCE_AGENT.md" target="_blank" rel="noopener" class="btn btn-secondary" style="display: inline-flex;">Airdrop intelligence</a>
           </div>
         </div>
       </div>
@@ -816,9 +843,9 @@
     <div class="container">
       <div class="footer-links">
         <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/PRODUCTION-READINESS.md" target="_blank" rel="noopener">Production Readiness</a>
-        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/STRIPE_MPP_INTEGRATION.md" target="_blank" rel="noopener">Stripe MPP</a>
-        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/MARKETPLACE_DASHBOARD_BUNDLE.md" target="_blank" rel="noopener">Dashboard bundle</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/operations/PRODUCTION-READINESS.md" target="_blank" rel="noopener">Production Readiness</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/marketplace-stripe/STRIPE_MPP_INTEGRATION.md" target="_blank" rel="noopener">Stripe MPP</a>
+        <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/marketplace-stripe/MARKETPLACE_DASHBOARD_BUNDLE.md" target="_blank" rel="noopener">Dashboard bundle</a>
         <a href="https://celo.org" target="_blank" rel="noopener">Celo</a>
         <a href="https://xrpl.org" target="_blank" rel="noopener">XRPL</a>
         <a href="https://olas.network" target="_blank" rel="noopener">Olas</a>

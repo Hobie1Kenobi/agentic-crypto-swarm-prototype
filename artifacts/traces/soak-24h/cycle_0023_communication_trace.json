@@ -1,0 +1,151 @@
+{
+  "run_id": "1774094623",
+  "market_mode": "hybrid",
+  "public_chain_id": 100,
+  "public_rpc_url": null,
+  "private_chain_id": 11142220,
+  "private_rpc_url": "https://forno.celo-sepolia.celo-testnet.org",
+  "external_source": "olas",
+  "external_request_id": "mock-1774094623",
+  "external_tx_hash": null,
+  "internal_task_id": 67,
+  "payment_rail": "xrpl",
+  "payment_asset": "XRP",
+  "xrpl_tx_hash": "38669DD0C9C9241147E89BE49491BA33CF7CB1FFB6BBBF3CB9E4CFDD19D1FBC7",
+  "correlation": {
+    "olas": {
+      "request_id": "mock-1774094623",
+      "tx_hash": null
+    },
+    "xrpl_payment": {
+      "external_payment_id": "38669DD0C9C9241147E89BE49491BA33CF7CB1FFB6BBBF3CB9E4CFDD19D1FBC7",
+      "tx_hash": "38669DD0C9C9241147E89BE49491BA33CF7CB1FFB6BBBF3CB9E4CFDD19D1FBC7",
+      "payer": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+      "receiver": "rBTkGWdrqnJL8s7aHwnFJTnEVnV3nZ8b5",
+      "amount": "1",
+      "verified": true,
+      "verification_boundary": "real_xrpl_payment"
+    },
+    "private": {
+      "task_id": 67,
+      "tx_hashes": [
+        {
+          "name": "createTask",
+          "role": "ROOT_STRATEGIST",
+          "tx_hash": "b9116c2a4bd22d5e4984d0d6a91711960c790fcfd86f0a128719e2a9cf8aca98",
+          "link": "https://celo-sepolia.blockscout.com/tx/b9116c2a4bd22d5e4984d0d6a91711960c790fcfd86f0a128719e2a9cf8aca98"
+        },
+        {
+          "name": "acceptTask",
+          "role": "IP_GENERATOR",
+          "tx_hash": "b956af4a7177267c7062a3ac57f89a57c36f7c8d52af0208caec1f4a12df9d9f",
+          "link": "https://celo-sepolia.blockscout.com/tx/b956af4a7177267c7062a3ac57f89a57c36f7c8d52af0208caec1f4a12df9d9f"
+        },
+        {
+          "name": "submitResult",
+          "role": "IP_GENERATOR",
+          "tx_hash": "e3b482a6a5c859851950c4219ba9684c15203e6fbdef304e9bb5ff2c4ade53ea",
+          "link": "https://celo-sepolia.blockscout.com/tx/e3b482a6a5c859851950c4219ba9684c15203e6fbdef304e9bb5ff2c4ade53ea"
+        },
+        {
+          "name": "submitTaskScore",
+          "role": "DEPLOYER",
+          "tx_hash": "082a590c8f60003e457d8e639b799a4e947daca77e6c0a0938ba89ffb0f64e53",
+          "link": "https://celo-sepolia.blockscout.com/tx/082a590c8f60003e457d8e639b799a4e947daca77e6c0a0938ba89ffb0f64e53"
+        },
+        {
+          "name": "finalizeTask",
+          "role": "DEPLOYER",
+          "tx_hash": "e6f1f72e151c2d13dd639057017478e8e9c44165b26885502e5bb1c319a1bfc0",
+          "link": "https://celo-sepolia.blockscout.com/tx/e6f1f72e151c2d13dd639057017478e8e9c44165b26885502e5bb1c319a1bfc0"
+        },
+        {
+          "name": "withdraw",
+          "role": "ROOT_STRATEGIST",
+          "signer_role": "ROOT_STRATEGIST",
+          "who": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+          "tx_hash": "2329f72f0c7f3dffcd5e29e744b1ec2451a64c0d7583409ad7887143258eb99f",
+          "link": "https://celo-sepolia.blockscout.com/tx/2329f72f0c7f3dffcd5e29e744b1ec2451a64c0d7583409ad7887143258eb99f"
+        },
+        {
+          "name": "withdraw",
+          "role": "IP_GENERATOR",
+          "signer_role": "IP_GENERATOR",
+          "who": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+          "tx_hash": "b3eac90d9937cc3101bf0973e040b9f72ccf446607b99d9d15aa15c22a764e2c",
+          "link": "https://celo-sepolia.blockscout.com/tx/b3eac90d9937cc3101bf0973e040b9f72ccf446607b99d9d15aa15c22a764e2c"
+        },
+        {
+          "name": "withdraw",
+          "role": "TREASURY",
+          "signer_role": "TREASURY",
+          "who": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+          "tx_hash": "5ecde085c88b9bc57a6ee192fa06d3b170ed9151e971b3e6b8b3e472d9542ed4",
+          "link": "https://celo-sepolia.blockscout.com/tx/5ecde085c88b9bc57a6ee192fa06d3b170ed9151e971b3e6b8b3e472d9542ed4"
+        },
+        {
+          "name": "withdraw",
+          "role": "FINANCE_DISTRIBUTOR",
+          "signer_role": "FINANCE_DISTRIBUTOR",
+          "who": "0xCF3572136265A5ED34D412200E63017e39223592",
+          "tx_hash": "0e797b288f40cbe3832316d4a3678601c56bd8eb9910534fadfe429f985d8ca0",
+          "link": "https://celo-sepolia.blockscout.com/tx/0e797b288f40cbe3832316d4a3678601c56bd8eb9910534fadfe429f985d8ca0"
+        }
+      ],
+      "compute_marketplace_address": "0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9",
+      "treasury_address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+      "finance_distributor_address": "0xCF3572136265A5ED34D412200E63017e39223592"
+    },
+    "xrpl_to_celo": {
+      "xrpl_tx_hash": "38669DD0C9C9241147E89BE49491BA33CF7CB1FFB6BBBF3CB9E4CFDD19D1FBC7",
+      "internal_task_id": 67,
+      "celo_tx_count": 9
+    }
+  },
+  "events": [
+    {
+      "ts": 1774094623.8905852,
+      "name": "olas_send_request",
+      "boundary": "mocked_external_replay",
+      "data": {
+        "ok": false,
+        "tx_hash": null,
+        "request_id": null,
+        "error": "OLAS_ENABLED is not set (set OLAS_ENABLED=1 to attempt live).",
+        "chain_config": "gnosis",
+        "tool": "openai-gpt-4o-2024-05-13"
+      }
+    },
+    {
+      "ts": 1774094623.8905852,
+      "name": "normalized_internal_task",
+      "boundary": "contract_level_execution",
+      "data": {
+        "task_metadata": "public_adapter:olas:unknown"
+      }
+    },
+    {
+      "ts": 1774094631.7383964,
+      "name": "xrpl_payment_received",
+      "boundary": "real_xrpl_payment",
+      "data": {
+        "external_payment_id": "38669DD0C9C9241147E89BE49491BA33CF7CB1FFB6BBBF3CB9E4CFDD19D1FBC7",
+        "tx_hash": "38669DD0C9C9241147E89BE49491BA33CF7CB1FFB6BBBF3CB9E4CFDD19D1FBC7",
+        "verified": true
+      }
+    },
+    {
+      "ts": 1774094685.3868892,
+      "name": "private_marketplace_executed",
+      "boundary": "real_celo_settlement",
+      "data": {
+        "ok": true,
+        "task_id": 67
+      }
+    }
+  ],
+  "outcome": {
+    "ok": true,
+    "boundary": "hybrid:public_intake->private_onchain_settlement"
+  }
+}

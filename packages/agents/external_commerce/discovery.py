@@ -133,6 +133,28 @@ def _apply_env_overrides(raw: dict[str, Any]) -> dict[str, Any]:
             if fac:
                 out["facilitator_url"] = fac
             return out
+    if pid == "swarm-seller-celo-data":
+        explicit = _env("X402_SELLER_DATA_PUBLIC_URL")
+        net = _env("X402_SELLER_NETWORK")
+        fac = _env("X402_TEST_FACILITATOR_URL") or _env("X402_SELLER_FACILITATOR_URL")
+        if explicit:
+            out = dict(raw)
+            out["resource_url"] = explicit.strip()
+            if net:
+                out["network"] = net
+            if fac:
+                out["facilitator_url"] = fac
+            return out
+        url = _env("X402_SELLER_PUBLIC_URL") or _env("X402_SELLER_PROBE_URL")
+        if url:
+            u = url.strip().replace("/x402/v1/query", "/x402/v1/celo-agent-data")
+            out = dict(raw)
+            out["resource_url"] = u
+            if net:
+                out["network"] = net
+            if fac:
+                out["facilitator_url"] = fac
+            return out
     if pid == "t54-xrpl-example":
         url = (
             _env("T54_X402_RESOURCE_URL")
@@ -145,6 +167,20 @@ def _apply_env_overrides(raw: dict[str, Any]) -> dict[str, Any]:
             out["resource_url"] = url.strip()
             return out
     return raw
+
+
+def _merge_portal_metadata(raw: dict[str, Any]) -> dict[str, Any]:
+    portal = (_env("PUBLIC_PORTAL_URL") or _env("SWARM_PORTAL_URL")).strip()
+    if not portal:
+        return raw
+    pid = str(raw.get("provider_id", "")).strip()
+    if not (pid.startswith("swarm-") or pid.startswith("t54-xrpl")):
+        return raw
+    out = dict(raw)
+    meta = dict(out.get("metadata") or {})
+    meta["portal_url"] = portal.rstrip("/") + "/"
+    out["metadata"] = meta
+    return out
 
 
 def _load_config_providers() -> list[dict[str, Any]]:
@@ -196,6 +232,7 @@ class Discovery:
         for raw in providers:
             if isinstance(raw, dict):
                 raw = _apply_env_overrides(raw)
+                raw = _merge_portal_metadata(raw)
                 p = _normalize_provider(raw)
                 self._registry.add(p)
                 result.append(p)
@@ -212,10 +249,37 @@ class Discovery:
                 result.append(p)
         return result
 
-    def discover_all(self, include_remote: bool = False) -> list[ExternalProvider]:
+    def discover_from_scout_catalog(self, merge: bool = True) -> list[ExternalProvider]:
+        from .x402scout_catalog import iter_scout_providers_for_registry
+
+        result = []
+        for raw in iter_scout_providers_for_registry():
+            if not isinstance(raw, dict) or not raw.get("resource_url"):
+                continue
+            p = _normalize_provider(raw)
+            if merge:
+                self._registry.add(p)
+            result.append(p)
+        return result
+
+    def discover_all(
+        self,
+        include_remote: bool = False,
+        include_scout_catalog: bool | None = None,
+    ) -> list[ExternalProvider]:
         discovered = self.discover_from_config()
-        if include_remote and _env("X402_DISCOVERY_ENABLED", "0").strip().lower() in {"1", "true", "yes"}:
+        if include_remote and _env("X402_DISCOVERY_ENABLED", "0").strip().lower() in {
+            "1",
+            "true",
+            "yes",
+        }:
             self.discover_from_remote(merge=True)
+        if include_scout_catalog is None:
+            include_scout_catalog = _env(
+                "X402_SCOUT_CATALOG_ENABLED", "0"
+            ).strip().lower() in {"1", "true", "yes"}
+        if include_scout_catalog:
+            self.discover_from_scout_catalog(merge=True)
         return list(self._registry.list_all()) if discovered else discovered
 
     def get_registry(self) -> ProviderRegistry:

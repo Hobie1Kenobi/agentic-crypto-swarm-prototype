@@ -1,0 +1,13 @@
+{
+  "total_attempts": 12,
+  "mainnet_attempts": 6,
+  "testnet_attempts": 6,
+  "local_dev_attempts": 2,
+  "real_settlements": 0,
+  "simulated_settlements": 0,
+  "blocked_no_testnet_facilitator": 4,
+  "failed_pre_submit": 1,
+  "failed_verify": 0,
+  "failed_settle": 0,
+  "local_dev_only": 7
+}

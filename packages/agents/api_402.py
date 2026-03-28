@@ -13,20 +13,8 @@ for _ in range(5):
     if (root / "foundry.toml").exists() or (root / ".env.example").exists():
         break
     root = root.parent
-load_dotenv(root / ".env", override=True)
-
-def _should_load_env_local() -> bool:
-    chain_id = os.getenv("CHAIN_ID", "").strip()
-    rpc = os.getenv("RPC_URL", "").strip().lower()
-    if os.getenv("USE_ENV_LOCAL", "").strip().lower() in {"1", "true", "yes", "on"}:
-        return True
-    if chain_id == "31337":
-        return True
-    if rpc.startswith("http://127.0.0.1") or rpc.startswith("http://localhost") or "localhost" in rpc:
-        return True
-    return False
-
-if _should_load_env_local() and (root / ".env.local").exists():
+load_dotenv(root / ".env", override=False)
+if (root / ".env.local").exists():
     load_dotenv(root / ".env.local", override=True)
 import sys
 sys.path.insert(0, str(root / "packages" / "agents"))
@@ -116,6 +104,9 @@ def create_app():
     async def health():
         return {"status": "ok", "revenue_contract": revenue_addr or "not set"}
 
+    from services.access_log_middleware import attach_access_log
+
+    attach_access_log(app, "api_402")
     return app
 
 

@@ -6,6 +6,8 @@
 
 A hierarchical multi-agent system that autonomously earns testnet revenue through on-chain value creation — no trading, no speculation. **Celo-first:** Celo Sepolia (testnet), Celo mainnet (production); local Anvil for zero-faucet testing; optional Base/Polygon paths.
 
+**Layout:** long-form manuals live under **`documentation/`** (see `documentation/README.md`). Generated soak reports, traces, proof bundles, and communication traces live under **`artifacts/`** (see `artifacts/README.md`). The **`docs/`** folder is reserved for **GitHub Pages** (`index.html`, `endpoints.json`, sitemap, discovery scans linked from the site).
+
 ---
 
 <br>
@@ -27,7 +29,7 @@ A hierarchical multi-agent system that autonomously earns testnet revenue throug
 | :--- | :--- |
 | **What it is** | A **production-pattern T54 seller**: a FastAPI server that returns **402 Payment Required** with **x402 v2** terms for **XRPL mainnet**. Buyers complete payment in XRP; **[`xrpl-facilitator-mainnet.t54.ai`](https://xrpl-facilitator-mainnet.t54.ai)** verifies and settles. The seller holds **no signing keys** — only your **receive address** (`r...`). |
 | **What it does** | **Multi-SKU** paid `GET` routes with **Pydantic-validated JSON** and per-route **prices in drops** (see [`packages/agents/config/t54_seller_skus.json`](packages/agents/config/t54_seller_skus.json)): micropayment ping (`/hello`), short constitution-safe Q&A (`/x402/v1/query`), structured research brief (`/x402/v1/research-brief`), and heuristic prompt/ethics review (`/x402/v1/constitution-audit`). **`GET /health`** is free and lists SKUs. Discovery builds public **`resource_url`**s from **`T54_SELLER_PUBLIC_BASE_URL`** + each path ([`x402_providers.json`](packages/agents/config/x402_providers.json)). |
-| **Docs & ops** | **[docs/T54_SELLER.md](docs/T54_SELLER.md)** — env vars, ngrok, 24/7 startup. Mainnet + hybrid notes: **[docs/MAINNET_CELO_XRPL_T54.md](docs/MAINNET_CELO_XRPL_T54.md)**. Task review: **[docs/T54_GROK_TASK_REVIEW.md](docs/T54_GROK_TASK_REVIEW.md)**. |
+| **Docs & ops** | **[documentation/x402-t54-base/T54_SELLER.md](documentation/x402-t54-base/T54_SELLER.md)** — env vars, ngrok, 24/7 startup. Mainnet + hybrid notes: **[documentation/celo-xrpl/MAINNET_CELO_XRPL_T54.md](documentation/celo-xrpl/MAINNET_CELO_XRPL_T54.md)**. Task review: **[documentation/x402-t54-base/T54_GROK_TASK_REVIEW.md](documentation/x402-t54-base/T54_GROK_TASK_REVIEW.md)**. |
 
 <details>
 <summary><b>Quick commands</b> (expand)</summary>
@@ -52,6 +54,8 @@ A hierarchical multi-agent system that autonomously earns testnet revenue throug
 | **Compute marketplace** | `npm run miner` · `npm run validator` | Celo · escrow / scoring |
 | **Multi-rail hybrid demo** | `npm run demo:multi-rail` | Celo + XRPL composition |
 | **External x402 discovery** | `packages/agents/external_commerce/discovery.py` + [`x402_providers.json`](packages/agents/config/x402_providers.json) | Catalog of providers |
+| **Sellable dashboard bundle (Stripe MPP)** | `npm run marketplace:pack` (writes `dist/...-latest.zip`) · `npm run marketplace:webhook-dev` · `npm run marketplace:order` · [documentation/marketplace-stripe/MARKETPLACE_DASHBOARD_BUNDLE.md](documentation/marketplace-stripe/MARKETPLACE_DASHBOARD_BUNDLE.md) | USD · Tempo crypto deposit (`npm run marketplace:serve`) |
+| **Unified reverse proxy (one HTTPS host)** | `npm run proxy:unified` → `:9080` · [scripts/reverse-proxy/README.md](scripts/reverse-proxy/README.md) · `npm run ngrok:dual` (three tunnels incl. unified) or `npm run ngrok:unified` | Routes `/x402/*`, `/t54/*`, `/webhooks/*` to Base, T54, marketplace |
 
 ---
 
@@ -123,7 +127,7 @@ Root Strategist (ERC-4337 smart account)
 
 **Full orchestration (one command):** strategist → IP-generator → deployer check → 10-user simulation → finance check (and loop until profit threshold or max steps).
 
-**Celo Sepolia public test:** Full flow (env → create wallets → deploy → fund → orchestrate → monitor) and troubleshooting: **[docs/CELO-SEPOLIA-TESTNET.md](docs/CELO-SEPOLIA-TESTNET.md)**. Short path: `npm run create-accounts` → fund deployer → `npm run testnet:celo` → fund ROOT_STRATEGIST_ADDRESS → `npm run orchestrate`. Check balances: `.\scripts\celo-sepolia-balances.ps1`.
+**Celo Sepolia public test:** Full flow (env → create wallets → deploy → fund → orchestrate → monitor) and troubleshooting: **[documentation/celo-xrpl/CELO-SEPOLIA-TESTNET.md](documentation/celo-xrpl/CELO-SEPOLIA-TESTNET.md)**. Short path: `npm run create-accounts` → fund deployer → `npm run testnet:celo` → fund ROOT_STRATEGIST_ADDRESS → `npm run orchestrate`. Check balances: `.\scripts\celo-sepolia-balances.ps1`.
 
 **Manual deploy then orchestrate:**
 ```bash
@@ -179,25 +183,25 @@ This starts Anvil, deploys the contracts, and runs the 10-user simulation using 
 
 ## Production readiness
 
-For Celo mainnet launch: deployment, security, operations, secrets, monitoring, wallets, upgrades, economic risk, abuse/spam, rate limits, accounting, and DAO recommendation are in **[docs/PRODUCTION-READINESS.md](docs/PRODUCTION-READINESS.md)**. v1 minimal launch: deploy without DAO; keep revenue contract owned by EOA or multisig.
+For Celo mainnet launch: deployment, security, operations, secrets, monitoring, wallets, upgrades, economic risk, abuse/spam, rate limits, accounting, and DAO recommendation are in **[documentation/operations/PRODUCTION-READINESS.md](documentation/operations/PRODUCTION-READINESS.md)**. v1 minimal launch: deploy without DAO; keep revenue contract owned by EOA or multisig.
 
 ## Compute marketplaces and DAO
 
 - **T54 XRPL x402 seller (completed):** Multi-SKU HTTP seller, XRP settlement, discovery — see **[Completed: T54 x402 seller on XRPL](#completed-t54-x402-seller-on-xrpl)** at the top of this README.
 - **x402 API:** `npm run api:402` — HTTP 402 pay-per-query; client pays to `AgentRevenueService`, retries with `X-Payment-Tx-Hash`, gets LLM response.
 - **Compute marketplace:** Deploy includes `ComputeMarketplace`. Run miner: `npm run miner` (POST /task); run validator: `npm run validator` (scores miners, submitScores). Fund the contract with CELO and call `distributeRewards()` to pay miners.
-- **Multi-rail agent commerce:** Celo (private settlement) + XRPL (machine payments) + Olas (public demand). See **[docs/XRPL_PAYMENTS.md](docs/XRPL_PAYMENTS.md)**.
+- **Multi-rail agent commerce:** Celo (private settlement) + XRPL (machine payments) + Olas (public demand). See **[documentation/celo-xrpl/XRPL_PAYMENTS.md](documentation/celo-xrpl/XRPL_PAYMENTS.md)**.
   - **XRPL** — Machine-native payments rail (XRP on testnet; live-proven)
   - **Celo** — Private settlement rail (task lifecycle, escrow, withdrawals on Celo Sepolia)
   - **Live proof:** [live_xrpl_to_celo_proof_report.md](live_xrpl_to_celo_proof_report.md) documents a successful end-to-end run with verifiable XRPL + Celo tx hashes.
-- **Public marketplace adapter (Olas / Mech):** See **[docs/PUBLIC-ADAPTER.md](docs/PUBLIC-ADAPTER.md)**. This repo supports a dual-chain operating model:
+- **Public marketplace adapter (Olas / Mech):** See **[documentation/operations/PUBLIC-ADAPTER.md](documentation/operations/PUBLIC-ADAPTER.md)**. This repo supports a dual-chain operating model:
   - **Private settlement (Celo Sepolia):** `MARKET_MODE=private_celo`
   - **Live/public Olas attempts (Gnosis):** `MARKET_MODE=public_olas` (requires Gnosis config + `mechx`)
   - **Hybrid (Gnosis intake → Celo settlement):** `MARKET_MODE=hybrid`
   - **XRPL payment rail:** `PAYMENT_RAIL_MODE=mock_payment` or `xrpl_x402_payment`; run `python scripts/run-multi-rail-demo.py --force-hybrid`
-  - Replay-only hybrid is supported via `docs/examples/olas_request_replay_example.json`
+  - Replay-only hybrid is supported via `documentation/examples/olas_request_replay_example.json`
   - Reports: `olas_preflight_report.json`, `olas_env_checklist.md`, `olas_live_attempt_report.(md|json)`, `hybrid_gnosis_celo_report.(md|json)`, `multi_rail_run_report.(md|json)`, `live_xrpl_to_celo_proof_report.(md|json)`, `communication_trace.(md|json)`
-- **DAO (optional/advanced):** After deploy, `npm run deploy:dao` deploys SwarmGovernanceToken, Timelock, Governor and transfers `AgentRevenueService` ownership to the Timelock. Recommended only after validating core flow; see [PRODUCTION-READINESS.md](docs/PRODUCTION-READINESS.md) and [COMPUTE_MARKETPLACES_AND_DAOS.md](docs/COMPUTE_MARKETPLACES_AND_DAOS.md).
+- **DAO (optional/advanced):** After deploy, `npm run deploy:dao` deploys SwarmGovernanceToken, Timelock, Governor and transfers `AgentRevenueService` ownership to the Timelock. Recommended only after validating core flow; see [PRODUCTION-READINESS.md](documentation/operations/PRODUCTION-READINESS.md) and [COMPUTE_MARKETPLACES_AND_DAOS.md](documentation/architecture/COMPUTE_MARKETPLACES_AND_DAOS.md).
 
 ## Deliverables
 

@@ -1,0 +1,135 @@
+{
+  "cycle": 18,
+  "start_time": "2026-03-22T20:28:02Z",
+  "end_time": "2026-03-22T20:29:08Z",
+  "status": "completed",
+  "task": {
+    "task_type": "classification",
+    "complexity": "low",
+    "template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "sla_seconds": 120,
+    "quoted_price_xrp": "0.8",
+    "quoted_price_usd": "0.012",
+    "max_budget": "0.0180",
+    "task_id": 198
+  },
+  "actors": {
+    "requester_id": "requester-1",
+    "requester_xrpl_funding_address": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+    "requester_celo_refund_address": "0x5551abbAF9Eb240BaC81aE49199f96f678D58f05",
+    "worker_id": "worker-4",
+    "worker_payout_address": "0xCF3572136265A5ED34D412200E63017e39223592",
+    "validator_id": "validator-3",
+    "validator_address": "0xb132e9bDA7bd2c530fd16c03126e7f54367dbF65"
+  },
+  "boundary": {
+    "payment_rail": "xrpl",
+    "public_intake": "mocked_external_replay",
+    "private_settlement": "live_celo"
+  },
+  "xrpl": {
+    "tx_hash": "241EE6F942E3D39072DF56F1A5F5FFCB7B07B349CEEB83184533009EF6AA5298",
+    "sender": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+    "receiver": "rBTkGWdrqnJL8s7aHwnFJTnEVnV3nZ8b5",
+    "destination_tag": 382806,
+    "memo_ref": "Classify: Is sustainable compute usage beneficial? Answer yes or",
+    "quote_id": "00b8733fc6794963",
+    "expected_amount_xrp": "0.8",
+    "amount_drops": "800000",
+    "delivered_amount": "800000",
+    "ledger_index": 15897325,
+    "validated": true,
+    "verification_status": "real_xrpl_payment",
+    "quoted_price_xrp": "0.8"
+  },
+  "correlation": {
+    "external_payment_ref": "87a26384be22a5f3c654a5606093a975191d7f9789fe16b8353e899e07d3285b",
+    "internal_task_id": 198
+  },
+  "celo": {
+    "network": "celo_sepolia",
+    "task_contract": "0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9",
+    "lifecycle": [
+      {
+        "step": "createTask",
+        "tx_hash": "485e33b38f1ae80ca4c10d6c1eb6be7f6e23a8fa973808bf9fab8ca54fe62238",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "acceptTask",
+        "tx_hash": "f20ba14ff5dedc3cea83cb24ea7860372cd8526e706cfeb571288f48493859c5",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "submitResult",
+        "tx_hash": "5ff088b3952a91901b26ba25479ea70570fd67ab8c92aa7bf09f18c425e3316b",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "validateResult",
+        "tx_hash": "28de542cb3621a51f4cd528550bfe21c260784922c350b2ec2b6e2be1bc4d8ad",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "finalizeTask",
+        "tx_hash": "974467b7e0da7c64385060e9cfa240a15b282f2b04039a39e754359324711c01",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "withdrawWorkerPayout",
+        "tx_hash": "404bf9038cbc73961c06199438dc6f1d3acf3438c83911f548f79839578fbe22",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "settleProtocolFee",
+        "tx_hash": "6de8bf71a2573f1ee71bbd192ea6219d58b7e499e07ced4e4dccf902c32ece8a",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "settleFinanceFee",
+        "tx_hash": "f89af76a70a43a645d80e9f43dadff344e50adefa30fe3bd0353e9c087c06762",
+        "block_number": null,
+        "success": true
+      }
+    ],
+    "final_status": "Finalized",
+    "confirmations_used": 1
+  },
+  "settlement": {
+    "currency": "CELO",
+    "protocol_fee": {
+      "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+      "actual_wei": 800000000000000
+    },
+    "finance_fee": {
+      "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+      "actual_wei": 4000000000000000
+    },
+    "worker_payout": {
+      "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+      "actual_wei": 608000000000000
+    },
+    "requester_refund": {
+      "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+      "actual_wei": 2592000000000000
+    }
+  },
+  "quality": {
+    "result_score": 19,
+    "validator_decision": "accepted"
+  },
+  "elapsed": {
+    "total_seconds": 65.74
+  },
+  "errors": [
+    "unknown"
+  ],
+  "warnings": []
+}

@@ -9,7 +9,10 @@ from typing import Any
 
 from langchain_core.messages import HumanMessage, SystemMessage
 
+from seller_public_data_bundle import build_public_data_bundle_dict
 from t54_seller_models import (
+    AgentCommerceDataResponse,
+    AirdropIntelligenceReportResponse,
     ConstitutionAuditLiteResponse,
     HelloResponse,
     ResearchBriefResponse,
@@ -78,20 +81,11 @@ def run_research_brief(topic: str, context: str | None) -> ResearchBriefResponse
         topic = "Ethical agent commerce on public testnets"
     if len(topic) > 256:
         topic = topic[:256]
-    ctx = (context or "").strip()[:2000]
+    ctx = (context or "").strip()[:2000] if context else ""
     llm = _llm()
-    prompt = f"""You produce a short research brief as JSON only (no markdown outside JSON).
-Topic: {topic}
-Optional context from buyer: {ctx or "(none)"}
-
-Return exactly this JSON shape:
-{{
-  "title": "string",
-  "sections": ["string", "string", "string"],
-  "sources": [{{"label": "string", "note": "string"}}]
-}}
-Use 3 sections: overview, key considerations, limitations. Sources: if no URLs in context, use labels like "general knowledge" with honest notes."""
-    resp = llm.invoke([SystemMessage(content=CONSTITUTION), HumanMessage(content=prompt)])
+    sys = CONSTITUTION + " Produce a short multi-section research brief."
+    human = f"Topic: {topic}\nOptional context from user:\n{ctx}\n\nReply with JSON only:\n{{\n  \"title\": \"...\",\n  \"sections\": [\"section1\", \"section2\", ...],\n  \"sources\": [{{\"label\": \"...\", \"note\": \"...\"}}]\n}}"
+    resp = llm.invoke([SystemMessage(content=sys), HumanMessage(content=human)])
     raw = (getattr(resp, "content", None) or str(resp)).strip()
     data = _extract_json_object(raw)
     sections = data.get("sections") or []
@@ -155,3 +149,16 @@ JSON shape:
 
 def run_hello(path: str) -> HelloResponse:
     return HelloResponse(path=path, message="paid")
+
+
+def run_airdrop_intelligence_report(topic: str, context: str | None) -> AirdropIntelligenceReportResponse:
+    from airdrop_scout.report import generate_airdrop_report
+
+    data = generate_airdrop_report(topic, context)
+    return AirdropIntelligenceReportResponse.model_validate(data)
+
+
+def run_agent_commerce_data(depth: str = "standard") -> AgentCommerceDataResponse:
+    data = build_public_data_bundle_dict(depth)
+    data["seller"] = "t54_xrpl"
+    return AgentCommerceDataResponse.model_validate(data)

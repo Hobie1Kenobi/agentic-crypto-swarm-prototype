@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "title": "Sell-side marketplace order (Agentic Crypto Swarm)",
+  "notes": [
+    "Indexed catalog size is a proxy for discovery surface area, not buyer transaction volume.",
+    "You sell only: optimize HTTPS seller URLs, facilitator compatibility, and listing metadata.",
+    "Base x402 (Bazaar) and T54 XRPL are separate rails; do not merge keys or ports."
+  ],
+  "sell_side_priority": [
+    {
+      "rank": 1,
+      "id": "coinbase_cdp_bazaar",
+      "label": "Coinbase x402 — CDP discovery & Bazaar",
+      "rail": "eip155:8453 Base mainnet USDC via x402.org (or supported) facilitator",
+      "code_paths": ["packages/agents/api_seller_x402.py", "packages/agents/config/x402_providers.json"],
+      "rationale": "Official CDP discovery indexes the largest public x402 resource set we measure; aligns with Base USDC seller and Coinbase agent tooling.",
+      "actions": [
+        "Keep X402_SELLER_PUBLIC_URL as stable HTTPS to /x402/v1/query (and /celo-agent-data if listed).",
+        "GET /health must show intended network (eip155:8453 for mainnet Bazaar).",
+        "Run npm run docs:sync-endpoints so docs/endpoints.json matches live URLs.",
+        "metadata.portal_url in x402_providers.json points buyers to the GitHub Pages portal."
+      ]
+    },
+    {
+      "rank": 2,
+      "id": "payai_discovery",
+      "label": "PayAI facilitator discovery",
+      "rail": "Facilitator at facilitator.payai.network; catalog overlaps x402 ecosystem",
+      "code_paths": ["packages/agents/external_commerce/discovery.py"],
+      "rationale": "Second-largest indexed discovery total in our snapshots; worth visibility if your resource is crawlable and facilitator-compatible.",
+      "actions": [
+        "Ensure your public seller URL appears in PayAI discovery when their indexer picks up paid traffic (same HTTPS resource discipline).",
+        "Re-run commerce:snapshot periodically to compare catalog totals vs CDP."
+      ]
+    },
+    {
+      "rank": 3,
+      "id": "t54_xrpl_rail",
+      "label": "T54 XRPL x402",
+      "rail": "xrpl:0 / T54 facilitator — not ranked against EVM catalog counts",
+      "code_paths": ["scripts/t54_seller_server.py", "packages/agents/t54_seller_app.py"],
+      "rationale": "Separate buyer pool (XRPL agents). Prioritize T54 docs, ngrok T54_SELLER_PUBLIC_BASE_URL, and portal_url metadata for trust.",
+      "actions": [
+        "Expose T54_SELLER_PUBLIC_BASE_URL + SKU paths; keep port 8765 stable for long runs.",
+        "List SKUs in t54_seller_skus.json / health; sync docs for external buyers."
+      ]
+    }
+  ],
+  "snapshot_script": "python scripts/run-marketplace-discovery-snapshot.py",
+  "npm_script": "npm run commerce:snapshot",
+  "buy_side_scout_catalog": {
+    "doc": "docs/X402_SCOUT_CATALOG_INTEGRATION.md",
+    "slim_artifact": "external_commerce_data/x402scout-providers-slim.json",
+    "build": "npm run catalog:scout-slim",
+    "full_fetch": "npm run catalog:x402scout",
+    "merge_registry": "Set X402_SCOUT_CATALOG_ENABLED=1 then npm run commerce:discover",
+    "note": "Additive; does not change seller ports. Default flags keep behavior identical to pre-integration."
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "report_type": "market_realism_soak",
+  "run_id": "1774195083",
+  "run_label": "realism_24cycles",
+  "generated_at": "2026-03-22T21:44:13Z",
+  "max_cycles": 24,
+  "summary": {
+    "total_xrpl_txs": 24,
+    "total_celo_txs": 215,
+    "total_xrpl_tx_count": 24,
+    "total_celo_tx_count": 215,
+    "total_cycles_attempted": 24,
+    "total_cycles_completed": 24,
+    "total_cycles_failed": 0,
+    "success_rate": 100.0,
+    "average_cycle_duration_seconds": 70.18,
+    "average_settlement_seconds": 70.18,
+    "total_protocol_fee_wei": 21200000000000000,
+    "total_finance_fee_wei": 106000000000000000,
+    "total_worker_payout_wei": 16112000000000000,
+    "total_requester_refund_wei": 68688000000000000,
+    "total_refunds_wei": 68688000000000000,
+    "total_xrp_paid": 21200000.0,
+    "total_xrpl_payments_verified": 24,
+    "real_xrpl_payment_count": 24,
+    "mock_xrpl_payment_count": 0,
+    "payment_failed_pre_submit_count": 0,
+    "total_celo_tasks_finalized": 24,
+    "failure_count_by_category": {},
+    "worker_payout_by_address": {
+      "0xC3032259c26Ae78cd305a868De39A2373b94d0C2": 16112000000000000
+    }
+  },
+  "config": {
+    "xrpl_quote_driven": "1",
+    "reconciliation_enabled": "1"
+  }
+}

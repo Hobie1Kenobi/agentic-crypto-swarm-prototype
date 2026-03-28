@@ -46,18 +46,18 @@
     "xrpl_explorer": "https://testnet.xrpl.org"
   },
   "reports": {
-    "live_proof_md": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/live_xrpl_to_celo_proof_report.md",
-    "live_proof_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/live_xrpl_to_celo_proof_report.json",
-    "soak_6h_md": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_6h_report.md",
-    "soak_6h_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_6h_report.json",
-    "soak_24h_md": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_24h_report.md",
-    "soak_24h_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/continuous_multi_rail_24h_report.json",
-    "architecture": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/ARCHITECTURE.md",
-    "xrpl_payments": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/XRPL_PAYMENTS.md",
-    "production_readiness": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/PRODUCTION-READINESS.md",
-    "stripe_mpp": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/STRIPE_MPP_INTEGRATION.md",
-    "marketplace_dashboard_bundle": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/MARKETPLACE_DASHBOARD_BUNDLE.md",
-    "x402_scout_catalog": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/docs/X402_SCOUT_CATALOG_INTEGRATION.md"
+    "live_proof_md": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/live_xrpl_to_celo_proof_report.md",
+    "live_proof_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/live_xrpl_to_celo_proof_report.json",
+    "soak_6h_md": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/continuous_multi_rail_6h_report.md",
+    "soak_6h_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/continuous_multi_rail_6h_report.json",
+    "soak_24h_md": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/continuous_multi_rail_24h_report.md",
+    "soak_24h_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/continuous_multi_rail_24h_report.json",
+    "architecture": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/architecture/ARCHITECTURE.md",
+    "xrpl_payments": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/celo-xrpl/XRPL_PAYMENTS.md",
+    "production_readiness": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/operations/PRODUCTION-READINESS.md",
+    "stripe_mpp": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/marketplace-stripe/STRIPE_MPP_INTEGRATION.md",
+    "marketplace_dashboard_bundle": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/marketplace-stripe/MARKETPLACE_DASHBOARD_BUNDLE.md",
+    "x402_scout_catalog": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/x402-t54-base/X402_SCOUT_CATALOG_INTEGRATION.md"
   },
   "marketplace": {
     "stripe_mpp_status": "integrated",

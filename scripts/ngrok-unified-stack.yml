@@ -1,0 +1,10 @@
+# Single tunnel → unified reverse proxy (Caddy on :9080)
+# Merge with your authtoken config, then:
+#   ngrok start unified --config %LOCALAPPDATA%\ngrok\ngrok.yml --config scripts/ngrok-unified-stack.yml
+#
+# Requires: npm run proxy:unified (or caddy) so :9080 is listening.
+version: "3"
+tunnels:
+  unified:
+    proto: http
+    addr: 9080

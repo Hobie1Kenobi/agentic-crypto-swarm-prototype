@@ -1,0 +1,139 @@
+{
+  "cycle": 20,
+  "start_time": "2026-03-22T20:58:02Z",
+  "end_time": "2026-03-22T20:59:03Z",
+  "status": "completed",
+  "task": {
+    "task_type": "classification",
+    "complexity": "low",
+    "template": "Classify: Is sustainable compute usage beneficial? Answer yes or no.",
+    "sla_seconds": 120,
+    "quoted_price_xrp": "0.8",
+    "quoted_price_usd": "0.012",
+    "max_budget": "0.0180",
+    "task_id": 202
+  },
+  "actors": {
+    "requester_id": "requester-3",
+    "requester_xrpl_funding_address": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+    "requester_celo_refund_address": "0xb132e9bDA7bd2c530fd16c03126e7f54367dbF65",
+    "worker_id": "worker-2",
+    "worker_payout_address": "0x8D341217Bd9B56CE5E930bd1335C23bc5A9Bc494",
+    "validator_id": "validator-3",
+    "validator_address": "0xb132e9bDA7bd2c530fd16c03126e7f54367dbF65"
+  },
+  "boundary": {
+    "payment_rail": "xrpl",
+    "public_intake": "mocked_external_replay",
+    "private_settlement": "live_celo"
+  },
+  "xrpl": {
+    "tx_hash": "316222AEDAEDC1771D492B606EB4E16529D0BD6DB7A84BCF3844B13624EB9EA0",
+    "sender": "rsyAXyxtBu2yexX7bWxuh3wZRvA98FXRzW",
+    "receiver": "rBTkGWdrqnJL8s7aHwnFJTnEVnV3nZ8b5",
+    "destination_tag": 182776,
+    "memo_ref": "Classify: Is sustainable compute usage beneficial? Answer yes or",
+    "quote_id": "13a2070765794b1f",
+    "expected_amount_xrp": "0.8",
+    "amount_drops": "800000",
+    "delivered_amount": "800000",
+    "ledger_index": 15897907,
+    "validated": true,
+    "verification_status": "real_xrpl_payment",
+    "quoted_price_xrp": "0.8"
+  },
+  "correlation": {
+    "external_payment_ref": "3f0117a4c70e241889d9e56448c14b758f44e4e4388765a967933db3bf6828d1",
+    "internal_task_id": 202
+  },
+  "celo": {
+    "network": "celo_sepolia",
+    "task_contract": "0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9",
+    "lifecycle": [
+      {
+        "step": "createTask",
+        "tx_hash": "20ce270647ab0a5ed02c38bec0588d94aaccdd22325e9f1ad0423e4cf7467a45",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "acceptTask",
+        "tx_hash": "232c03565a31a34d62f3c30c69a0e68af183e390059825320cca61b64bec1303",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "submitResult",
+        "tx_hash": "9932e11371e2322f3ce4f00815e0eda89185448905ec1516ec1acb08470dbf53",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "validateResult",
+        "tx_hash": "1d6b03d190766ba981a44f3375b50a9662a3f9e75f04aa30333db227eaa856a6",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "finalizeTask",
+        "tx_hash": "9d0ba9fb4fd4270c0a3ac11156e7be998da32f905e56601ed55e5ccbfb206d39",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "refundRequester",
+        "tx_hash": "01cb95cacff4d8088defb90a1750e1fd45e6d10958e063af9344120f7ac56901",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "withdrawWorkerPayout",
+        "tx_hash": "4d98ea41f8b29c5b0096baa71d5ae430012a58e585a4602e82253a89a85daffd",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "settleProtocolFee",
+        "tx_hash": "6e295a9006d5842ff5134cedd1717a5a8619d6735dca0d4226cae95115274a86",
+        "block_number": null,
+        "success": true
+      },
+      {
+        "step": "settleFinanceFee",
+        "tx_hash": "edf60094484681a3c227efcfe3186c2c21455eeab69ff60ab8e08a03a0721a6b",
+        "block_number": null,
+        "success": true
+      }
+    ],
+    "final_status": "Finalized",
+    "confirmations_used": 1
+  },
+  "settlement": {
+    "currency": "CELO",
+    "protocol_fee": {
+      "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+      "actual_wei": 800000000000000
+    },
+    "finance_fee": {
+      "address": "0xCF3572136265A5ED34D412200E63017e39223592",
+      "actual_wei": 4000000000000000
+    },
+    "worker_payout": {
+      "address": "0xC3032259c26Ae78cd305a868De39A2373b94d0C2",
+      "actual_wei": 608000000000000
+    },
+    "requester_refund": {
+      "address": "0x9E3A6f34B7cf6d9bDd621758ED7B0A81145388DC",
+      "actual_wei": 2592000000000000
+    }
+  },
+  "quality": {
+    "result_score": 19,
+    "validator_decision": "accepted"
+  },
+  "elapsed": {
+    "total_seconds": 60.38
+  },
+  "errors": [],
+  "warnings": []
+}

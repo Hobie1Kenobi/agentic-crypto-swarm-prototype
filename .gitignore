@@ -21,6 +21,10 @@ env/
 # T54 stack runtime logs
 logs/
 
+# Marketplace pending Stripe order payloads (may contain buyer refs)
+marketplace/orders/pending-*.json
+marketplace/orders/fulfilled-*.json
+
 # Build outputs
 out/
 cache/
@@ -59,6 +63,9 @@ simulation_report.md
 # Logs
 *.log
 logs/
+
+# Local copy of funding checklist (may list deposit addresses / ops notes)
+docs/airdrop_funding_checklist.local.md
 
 # OS
 .DS_Store

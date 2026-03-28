@@ -23,10 +23,23 @@ def _read_json(p: Path) -> dict[str, Any] | None:
         return None
 
 
+def _in_report(root: Path, name: str) -> Path:
+    ar = root / "artifacts" / "reports" / name
+    if ar.exists():
+        return ar
+    return root / name
+
+
+def _comm_trace_json(root: Path) -> Path:
+    p = root / "artifacts" / "communication" / "communication_trace.json"
+    if p.exists():
+        return p
+    return root / "communication_trace.json"
+
+
 def _pick_private_report(root: Path) -> tuple[str | None, dict[str, Any] | None]:
-    # Prefer Celo if present, else local.
-    celo = root / "celo_sepolia_task_market_report.json"
-    local = root / "local_task_market_report.json"
+    celo = _in_report(root, "celo_sepolia_task_market_report.json")
+    local = _in_report(root, "local_task_market_report.json")
     if celo.exists():
         return "celo_sepolia_task_market_report.json", _read_json(celo)
     if local.exists():
@@ -53,9 +66,11 @@ def main() -> None:
 
     root = Path(args.root).resolve()
     out_base = args.output
+    rep = root / "artifacts" / "reports"
+    rep.mkdir(parents=True, exist_ok=True)
 
-    public = _read_json(root / "public_adapter_run_report.json")
-    trace = _read_json(root / "communication_trace.json")
+    public = _read_json(_in_report(root, "public_adapter_run_report.json"))
+    trace = _read_json(_comm_trace_json(root))
     private_name, private = _pick_private_report(root)
 
     merged: dict[str, Any] = {
@@ -81,8 +96,8 @@ def main() -> None:
         },
     }
 
-    json_path = root / f"{out_base}.json"
-    md_path = root / f"{out_base}.md"
+    json_path = rep / f"{out_base}.json"
+    md_path = rep / f"{out_base}.md"
     json_path.write_text(json.dumps(merged, indent=2), encoding="utf-8")
 
     lines: list[str] = []
@@ -104,7 +119,7 @@ def main() -> None:
     lines.append("## Real vs simulated")
     lines.append("")
     lines.append("- See `communication_trace.md` for step-by-step boundary markers.")
-    lines.append("- See `docs/PUBLIC-ADAPTER.md` for exact meaning of boundaries.")
+    lines.append("- See `documentation/operations/PUBLIC-ADAPTER.md` for exact meaning of boundaries.")
     lines.append("")
 
     md_path.write_text("\n".join(lines), encoding="utf-8")

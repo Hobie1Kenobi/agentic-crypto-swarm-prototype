@@ -1,0 +1,14 @@
+{
+  "providers": [
+    {
+      "provider_id": "x402-test-echo",
+      "provider_name": "x402.org Test Echo",
+      "source_type": "config",
+      "resource_url": "https://x402.org/api/v1/echo",
+      "network": "eip155:84532",
+      "facilitator_url": "https://x402.org/facilitator",
+      "trust_score": 0.0,
+      "health_status": "unknown"
+    }
+  ]
+}

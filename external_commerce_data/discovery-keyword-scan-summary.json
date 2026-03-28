@@ -1,0 +1,1352 @@
+{
+  "updated_at": "2026-03-25T17:34:10Z",
+  "schema_note": "Weak signal: substring match on discovery listing JSON, not proof of an airdrop. Combine with scripts/run-airdrop-scout.py for LLM scoring.",
+  "config_path": "packages/agents/config/discovery_keyword_scan.json",
+  "keywords_used": [
+    "airdrop",
+    "claim",
+    "reward",
+    "incentive",
+    "faucet",
+    "quest",
+    "points",
+    "season",
+    "testnet",
+    "farm",
+    "farming",
+    "allocation",
+    "eligible",
+    "snapshot",
+    "retro",
+    "merkle",
+    "vesting",
+    "token",
+    "bonus",
+    "whitelist",
+    "launchpad",
+    "genesis",
+    "distribution",
+    "governance",
+    "staking",
+    "participat",
+    "early",
+    "ecosystem"
+  ],
+  "limits": {
+    "max_items_per_source": 600,
+    "page_size": 100,
+    "sleep_seconds": 0.2,
+    "timeout_seconds": 35.0
+  },
+  "sources": [
+    {
+      "id": "cdp",
+      "label": "Coinbase CDP x402 discovery",
+      "url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources",
+      "items_scanned": 600,
+      "hit_rows": 333,
+      "total_reported_first_page": null
+    },
+    {
+      "id": "payai",
+      "label": "PayAI facilitator discovery",
+      "url": "https://facilitator.payai.network/discovery/resources",
+      "items_scanned": 600,
+      "hit_rows": 74,
+      "total_reported_first_page": null
+    }
+  ],
+  "aggregate": {
+    "unique_resources_with_hits": 404,
+    "total_hit_events_before_dedupe": 407
+  },
+  "top_hits": [
+    {
+      "resource": "https://api.questflow.ai/x402/swarm/qrn:swarm:68ea4d16101cbfe6d82a12fe",
+      "matched_keywords": [
+        "early",
+        "quest",
+        "season",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.questflow.ai/x402/swarm/qrn:swarm:68ea4d16101cbfe6d82a12fe http 2026-02-17t23:15:15.931z 1 {\"asset\": \"0xf33cac2bb6b26e7615b1873c84e4174ae193a9aa\", \"description\": \"a coordinated multi-agent system that scan..."
+    },
+    {
+      "resource": "https://www.402bnb.fun/api/participate",
+      "matched_keywords": [
+        "claim",
+        "eligible",
+        "participat",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://www.402bnb.fun/api/participate http 2026-02-17t23:15:05.253z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"pay 10 usdc to participate in 402onbnb token sale (one payment per address..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/coinprice",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "snapshot",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/coinprice http post 2026-03-25t04:35:00.699z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"solana-coinprice\", \"iconurl\": \"https://x402factory.ai/x402facto..."
+    },
+    {
+      "resource": "https://api.questflow.ai/x402/swarm/qrn:swarm:688a23cbc6520a7b2678f77a",
+      "matched_keywords": [
+        "early",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.questflow.ai/x402/swarm/qrn:swarm:688a23cbc6520a7b2678f77a http 2026-02-17t23:15:51.023z 1 {\"asset\": \"0xf33cac2bb6b26e7615b1873c84e4174ae193a9aa\", \"description\": \"snipr is an autonomous swarm built to hunt..."
+    },
+    {
+      "resource": "https://api.questflow.ai/x402/swarm/qrn:swarm:68b9a4b04b4f3f371ab33f9a",
+      "matched_keywords": [
+        "early",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.questflow.ai/x402/swarm/qrn:swarm:68b9a4b04b4f3f371ab33f9a http 2026-02-17t23:15:36.764z 1 {\"asset\": \"0xf33cac2bb6b26e7615b1873c84e4174ae193a9aa\", \"description\": \"quesflow swarm v1 is an automated multi-ag..."
+    },
+    {
+      "resource": "https://api.questflow.ai/x402/swarm/qrn:swarm:68fba818f205a67a3e2d6eb4",
+      "matched_keywords": [
+        "airdrop",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.questflow.ai/x402/swarm/qrn:swarm:68fba818f205a67a3e2d6eb4 http 2026-02-17t23:15:19.261z 1 {\"asset\": \"0xf33cac2bb6b26e7615b1873c84e4174ae193a9aa\", \"description\": \"your crypto alpha intelligence hub - track..."
+    },
+    {
+      "resource": "https://www.luckymint.xyz/api/mint10x",
+      "matched_keywords": [
+        "bonus",
+        "reward",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://www.luckymint.xyz/api/mint10x http 2026-02-17t23:15:04.834z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"\\ud83c\\udfb0 luckymint: mint 10 reward tokens at once with chances for refu..."
+    },
+    {
+      "resource": "https://x402factory.ai/base/llm/gpt",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://x402factory.ai/base/llm/gpt http 2026-02-17t23:15:07.698z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"base gpt wrapper api using x402 payments. default direct call: model gpt-5-mi..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt http post 2026-03-05t12:34:01.962z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x402factoryfavoicon...."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/32X5W88Z9PATZH85T5",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/32x5w88z9patzh85t5 http post 2026-03-14t05:06:28.764z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/4TC64D7MFFRX5DNRZ9",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/4tc64d7mffrx5dnrz9 http post 2026-03-14t00:01:07.608z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/6BNTBUF2DASXXWCAD2",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/6bntbuf2dasxxwcad2 http post 2026-03-05t11:32:41.444z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/6JAF5PYRGEC8X9XYFC",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/6jaf5pyrgec8x9xyfc http post 2026-03-05t12:28:26.301z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/AW5793DBAYAHSEHJTU",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/aw5793dbayahsehjtu http post 2026-03-25t09:17:57.401z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/H32KZAUGYY5MPHEX62",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/h32kzaugyy5mphex62 http post 2026-03-05t16:17:50.605z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/HFNPTD5QQQAMHB6NCF",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/hfnptd5qqqamhb6ncf http post 2026-03-05t18:05:54.246z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/J38T6ZGANCNB8SLZJZ",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/j38t6zgancnb8slzjz http post 2026-03-05t18:04:06.574z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/KCBWQQHUC8D4GQB5DT",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/kcbwqqhuc8d4gqb5dt http post 2026-03-05t13:20:56.313z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/KR92MHBFNW9Z7MST4E",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/kr92mhbfnw9z7mst4e http post 2026-03-05t12:40:24.564z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/M4BAZ396XPH8QAHE3X",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/m4baz396xph8qahe3x http post 2026-03-14t00:32:00.217z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/NZGVSXRC6HMKB8FWDA",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/nzgvsxrc6hmkb8fwda http post 2026-03-14t04:57:05.996z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/T6G59ANZRFBKRHXTHG",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/t6g59anzrfbkrhxthg http post 2026-03-25t05:34:27.097z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/llm/gpt/YXPJPFB26CSY6VTN3N",
+      "matched_keywords": [
+        "points",
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/llm/gpt/yxpjpfb26csy6vtn3n http post 2026-03-05t18:15:44.458z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"llm-gpt\", \"iconurl\": \"https://x402factory.ai/x..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:6823042fd973977d61d66bfd",
+      "matched_keywords": [
+        "early",
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:6823042fd973977d61d66bfd http 2026-02-17t23:15:23.396z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"approval assistant, can only p..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68230489d973977d61d66e9d",
+      "matched_keywords": [
+        "ecosystem",
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68230489d973977d61d66e9d http 2026-02-17t23:15:34.207z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"\\n rootdata is a crypto asset ..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68245d50639b9d8f54d50eda",
+      "matched_keywords": [
+        "quest",
+        "reward"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68245d50639b9d8f54d50eda http 2026-02-17t23:15:17.986z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"questflow\\u2019s santa is grad..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68eca8dd7938a7458fbd26b6",
+      "matched_keywords": [
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68eca8dd7938a7458fbd26b6 http 2026-02-17t23:15:51.308z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"web3 trader provides real-time..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68ecc0ccd2f1fd7645d7e820",
+      "matched_keywords": [
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68ecc0ccd2f1fd7645d7e820 http 2026-02-17t23:15:47.699z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"web3 trader provides real-time..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68f5afdeb496db62cf747cf9",
+      "matched_keywords": [
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68f5afdeb496db62cf747cf9 http 2026-02-17t23:15:46.509z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"web3 trader provides real-time..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68f7332ab496db62cf748f05",
+      "matched_keywords": [
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68f7332ab496db62cf748f05 http 2026-02-17t23:15:20.304z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"web3 trader provides real-time..."
+    },
+    {
+      "resource": "https://api-staging.intra-tls2.dctx.link/x402/agent/qrn:agent:68230489d973977d61d66e9d",
+      "matched_keywords": [
+        "ecosystem",
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-staging.intra-tls2.dctx.link/x402/agent/qrn:agent:68230489d973977d61d66e9d http 2026-02-17t23:15:37.759z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"\\n rootdata is a crypto as..."
+    },
+    {
+      "resource": "https://api-staging.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68245d50639b9d8f54d50eda",
+      "matched_keywords": [
+        "quest",
+        "reward"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-staging.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68245d50639b9d8f54d50eda http 2026-02-17t23:15:45.755z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"questflow\\u2019s santa is ..."
+    },
+    {
+      "resource": "https://api.barvis.io/token/airdrop",
+      "matched_keywords": [
+        "airdrop",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.barvis.io/token/airdrop http 2026-02-17t23:15:11.797z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"\", \"extra\": {\"name\": \"usd coin\", \"version\": \"2\"}, \"maxamountrequired\": \"10000..."
+    },
+    {
+      "resource": "https://api.delx.ai/api/v1/x402/jwt-inspect",
+      "matched_keywords": [
+        "claim",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://api.delx.ai/api/v1/x402/jwt-inspect http post 2026-03-20t18:03:03.770z 2 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"name\": \"usd coin\", \"version\": \"2\"}, \"payto\": \"28heampfkeujsl7o7apik..."
+    },
+    {
+      "resource": "https://api.moltalyzer.xyz/api/polymarket/signal",
+      "matched_keywords": [
+        "quest",
+        "season"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://api.moltalyzer.xyz/api/polymarket/signal http get 2026-03-07t13:00:20.052z 2 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"extra\": {\"name\": \"usd coin\", \"version\": \"2\"}, \"payto\": \"0xf444abc53f5e1e73c..."
+    },
+    {
+      "resource": "https://api.questflow.ai/x402/agent/qrn:agent:687df7c0b234010b7d331c25",
+      "matched_keywords": [
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.questflow.ai/x402/agent/qrn:agent:687df7c0b234010b7d331c25 http 2026-02-17t23:15:35.192z 1 {\"asset\": \"0xf33cac2bb6b26e7615b1873c84e4174ae193a9aa\", \"description\": \"\\n oklink | welcome to oklink explorer api..."
+    },
+    {
+      "resource": "https://api.questflow.ai/x402/agent/qrn:agent:687df7d3b234010b7d331cc4",
+      "matched_keywords": [
+        "ecosystem",
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.questflow.ai/x402/agent/qrn:agent:687df7d3b234010b7d331cc4 http 2026-02-17t23:15:29.847z 1 {\"asset\": \"0xf33cac2bb6b26e7615b1873c84e4174ae193a9aa\", \"description\": \"\\n rootdata is a crypto asset data platfor..."
+    },
+    {
+      "resource": "https://api.questflow.ai/x402/agent/qrn:agent:687e2a4457b6ecbe004244af",
+      "matched_keywords": [
+        "genesis",
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.questflow.ai/x402/agent/qrn:agent:687e2a4457b6ecbe004244af http 2026-02-17t23:15:46.89z 1 {\"asset\": \"0xf33cac2bb6b26e7615b1873c84e4174ae193a9aa\", \"description\": \"virtuals agent is a professional ai project..."
+    },
+    {
+      "resource": "https://api.questflow.ai/x402/swarm/qrn:swarm:687e352657b6ecbe00424694",
+      "matched_keywords": [
+        "quest",
+        "reward"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.questflow.ai/x402/swarm/qrn:swarm:687e352657b6ecbe00424694 http 2026-02-17t23:15:17.268z 1 {\"asset\": \"0xf33cac2bb6b26e7615b1873c84e4174ae193a9aa\", \"description\": \"santa, innovated ai by questflow, is gradu..."
+    },
+    {
+      "resource": "https://api.questflow.ai/x402/swarm/qrn:swarm:687e3fac57b6ecbe00425788",
+      "matched_keywords": [
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.questflow.ai/x402/swarm/qrn:swarm:687e3fac57b6ecbe00425788 http 2026-02-17t23:15:11.578z 1 {\"asset\": \"0xf33cac2bb6b26e7615b1873c84e4174ae193a9aa\", \"description\": \"comprehensive cryptocurrency monitoring sy..."
+    },
+    {
+      "resource": "https://api.questflow.ai/x402/swarm/qrn:swarm:68c770291dad762112b4735a",
+      "matched_keywords": [
+        "early",
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.questflow.ai/x402/swarm/qrn:swarm:68c770291dad762112b4735a http 2026-02-17t23:15:11.469z 1 {\"asset\": \"0xf33cac2bb6b26e7615b1873c84e4174ae193a9aa\", \"description\": \"this swarm helps you spot \\u201cforgotten ..."
+    },
+    {
+      "resource": "https://api.questflow.ai/x402/swarm/qrn:swarm:68f2e9bf0ebd74a791201ae2",
+      "matched_keywords": [
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.questflow.ai/x402/swarm/qrn:swarm:68f2e9bf0ebd74a791201ae2 http 2026-02-17t23:15:33.326z 1 {\"asset\": \"0xf33cac2bb6b26e7615b1873c84e4174ae193a9aa\", \"description\": \"advanced crypto intelligence swarm that mo..."
+    },
+    {
+      "resource": "https://api.questflow.ai/x402/swarm/qrn:swarm:68f79934bd72982773eff3bf",
+      "matched_keywords": [
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api.questflow.ai/x402/swarm/qrn:swarm:68f79934bd72982773eff3bf http 2026-02-17t23:15:20.48z 1 {\"asset\": \"0xf33cac2bb6b26e7615b1873c84e4174ae193a9aa\", \"description\": \"send hot tokens to your email box | powered..."
+    },
+    {
+      "resource": "https://api.slamai.dev/chain/tokens/trending",
+      "matched_keywords": [
+        "snapshot",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://api.slamai.dev/chain/tokens/trending http get 2026-03-22t01:44:21.654z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"extra\": {\"name\": \"usd coin\", \"version\": \"2\"}, \"payto\": \"0xd85096faec1ac03075667..."
+    },
+    {
+      "resource": "https://arb.axryl.com/opportunities/json",
+      "matched_keywords": [
+        "quest",
+        "snapshot"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://arb.axryl.com/opportunities/json http 2026-02-17t23:15:18.551z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"json feed of arbitrage opportunities between polymarket and kalshi. char..."
+    },
+    {
+      "resource": "https://blocksearch.dev/api/insights/list",
+      "matched_keywords": [
+        "airdrop",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp",
+        "payai"
+      ],
+      "snippet": "https://blocksearch.dev/api/insights/list http 2026-02-17t23:15:34.073z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"description\": \"get list of insights about entities, chains, tokens, and more with co..."
+    },
+    {
+      "resource": "https://mesh.heurist.xyz/x402/agents/AIXBTProjectInfoAgent/search_projects",
+      "matched_keywords": [
+        "ecosystem",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://mesh.heurist.xyz/x402/agents/aixbtprojectinfoagent/search_projects http 2026-02-17t23:15:47.122z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"search for cryptocurrency projects wit..."
+    },
+    {
+      "resource": "https://mesh.heurist.xyz/x402/agents/EtherscanAgent/get_erc20_token_transfers",
+      "matched_keywords": [
+        "distribution",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://mesh.heurist.xyz/x402/agents/etherscanagent/get_erc20_token_transfers http 2026-02-17t23:15:47.184z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"get recent token transfer transacti..."
+    },
+    {
+      "resource": "https://mesh.heurist.xyz/x402/agents/EtherscanAgent/get_erc20_top_holders",
+      "matched_keywords": [
+        "distribution",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://mesh.heurist.xyz/x402/agents/etherscanagent/get_erc20_top_holders http 2026-02-17t23:15:46.251z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"get top 50 token holders data including..."
+    },
+    {
+      "resource": "https://mesh.heurist.xyz/x402/agents/EvmTokenInfoAgent/get_recent_large_trades",
+      "matched_keywords": [
+        "distribution",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://mesh.heurist.xyz/x402/agents/evmtokeninfoagent/get_recent_large_trades http 2026-02-17t23:15:23.356z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"get recent large trades for a spec..."
+    },
+    {
+      "resource": "https://mesh.heurist.xyz/x402/agents/GoplusAnalysisAgent/fetch_security_details",
+      "matched_keywords": [
+        "testnet",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://mesh.heurist.xyz/x402/agents/goplusanalysisagent/fetch_security_details http 2026-02-17t23:15:33.345z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"analyze the security of a blockch..."
+    },
+    {
+      "resource": "https://mesh.heurist.xyz/x402/agents/TrendingTokenAgent/get_trending_tokens",
+      "matched_keywords": [
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://mesh.heurist.xyz/x402/agents/trendingtokenagent/get_trending_tokens http 2026-02-17t23:15:47.075z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"get trending tokens that are most tal..."
+    },
+    {
+      "resource": "https://mesh.heurist.xyz/x402/agents/YahooFinanceAgent/indicator_snapshot",
+      "matched_keywords": [
+        "snapshot",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://mesh.heurist.xyz/x402/agents/yahoofinanceagent/indicator_snapshot http 2026-02-17t23:15:48.074z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"use this to compute technical indicator..."
+    },
+    {
+      "resource": "https://poim.io/api/x402/answer",
+      "matched_keywords": [
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://poim.io/api/x402/answer http 2026-02-17t23:15:45.807z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"submit answer to trivia question and mint poic tokens if correct. minimal payment..."
+    },
+    {
+      "resource": "https://proof-of-intelligence-mint-web.vercel.app/API/x402/answer",
+      "matched_keywords": [
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://proof-of-intelligence-mint-web.vercel.app/api/x402/answer http 2026-02-17t23:15:09.017z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"submit answer to trivia question and mint poic ..."
+    },
+    {
+      "resource": "https://proof-of-intelligence-mint-web.vercel.app/api/x402/answer",
+      "matched_keywords": [
+        "quest",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://proof-of-intelligence-mint-web.vercel.app/api/x402/answer http 2026-02-17t23:15:16.823z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"submit answer to trivia question and mint poic ..."
+    },
+    {
+      "resource": "https://x402.onchainexpat.com/api/x402-crypto/token-holders",
+      "matched_keywords": [
+        "distribution",
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402.onchainexpat.com/api/x402-crypto/token-holders http post 2026-03-10t12:13:38.071z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"extra\": {\"name\": \"usd coin\", \"version\": \"2\"}, \"payto\": \"0xd8ba6..."
+    },
+    {
+      "resource": "https://x402factory.ai/base/ata",
+      "matched_keywords": [
+        "points",
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://x402factory.ai/base/ata http 2026-02-17t23:15:08.914z 1 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"description\": \"create a solana associated token account (ata) for a given solana wallet and spl ..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/music",
+      "matched_keywords": [
+        "points",
+        "quest"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/music http post 2026-03-14t22:32:02.119z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"solana-music\", \"iconurl\": \"https://x402factory.ai/x402factoryfavoic..."
+    },
+    {
+      "resource": "https://x402factory.ai/solana/xprofile",
+      "matched_keywords": [
+        "points",
+        "quest"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://x402factory.ai/solana/xprofile http post 2026-03-25t03:32:21.610z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"kind\": \"solana-xprofile\", \"iconurl\": \"https://x402factory.ai/x402factory..."
+    },
+    {
+      "resource": "http://api.deepnets.ai/api/clean-trending-tokens",
+      "matched_keywords": [
+        "token"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "http://api.deepnets.ai/api/clean-trending-tokens http 2026-02-17t23:15:03.885z 2 {\"amount\": \"100000\", \"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"feepayer\": \"gvjj7rdgixr5xaybrwrbjfajl7fmwrygfi1..."
+    },
+    {
+      "resource": "http://api.xona-agent.com/xlayer/token/solana-market",
+      "matched_keywords": [
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "http://api.xona-agent.com/xlayer/token/solana-market http post 2026-03-24t06:34:27.601z 2 {\"asset\": \"0x74b7f16337b8972027f6196a17a631ac6de26d22\", \"extra\": {\"name\": \"usd coin\", \"eip712\": {\"name\": \"usd coin\", \"version\":..."
+    },
+    {
+      "resource": "http://apiv2.laevitas.ch/api/v1/options/snapshot",
+      "matched_keywords": [
+        "snapshot"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "http://apiv2.laevitas.ch/api/v1/options/snapshot http get 2026-03-20t19:09:25.401z 2 {\"asset\": \"0x833589fcd6edb6e08f4c7c32d4f71b54bda02913\", \"extra\": {\"name\": \"usd coin\", \"version\": \"2\"}, \"payto\": \"0xdb5c2df47e4a6df74..."
+    },
+    {
+      "resource": "http://x-research-x402-n3ak8.ondigitalocean.app/x402/read",
+      "matched_keywords": [
+        "distribution"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "http://x-research-x402-n3ak8.ondigitalocean.app/x402/read http get 2026-03-13t11:22:21.534z 2 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"feepayer\": \"2wkuplr9q6wxyppw8gr2nvwxkbuqm4ppjkkqfoxhdb..."
+    },
+    {
+      "resource": "http://x-research.suzi.trade/x402/accounts-feed/20",
+      "matched_keywords": [
+        "distribution"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "http://x-research.suzi.trade/x402/accounts-feed/20 http get 2026-03-14t08:17:06.804z 2 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"feepayer\": \"2wkuplr9q6wxyppw8gr2nvwxkbuqm4ppjkkqfoxhdbg4\"}, \"..."
+    },
+    {
+      "resource": "http://x-research.suzi.trade/x402/read",
+      "matched_keywords": [
+        "distribution"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "http://x-research.suzi.trade/x402/read http get 2026-03-20t18:47:24.519z 2 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"feepayer\": \"2wkuplr9q6wxyppw8gr2nvwxkbuqm4ppjkkqfoxhdbg4\"}, \"payto\": \"fpf..."
+    },
+    {
+      "resource": "http://x-research.suzi.trade/x402/search/100",
+      "matched_keywords": [
+        "distribution"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "http://x-research.suzi.trade/x402/search/100 http get 2026-03-14t18:00:59.621z 2 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"feepayer\": \"2wkuplr9q6wxyppw8gr2nvwxkbuqm4ppjkkqfoxhdbg4\"}, \"payto\"..."
+    },
+    {
+      "resource": "http://x-research.suzi.trade/x402/search/20",
+      "matched_keywords": [
+        "distribution"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "http://x-research.suzi.trade/x402/search/20 http get 2026-03-20t19:51:04.451z 2 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"feepayer\": \"2wkuplr9q6wxyppw8gr2nvwxkbuqm4ppjkkqfoxhdbg4\"}, \"payto\":..."
+    },
+    {
+      "resource": "http://x-research.suzi.trade/x402/thread/100",
+      "matched_keywords": [
+        "distribution"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "http://x-research.suzi.trade/x402/thread/100 http get 2026-03-14t18:02:04.383z 2 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"feepayer\": \"2wkuplr9q6wxyppw8gr2nvwxkbuqm4ppjkkqfoxhdbg4\"}, \"payto\"..."
+    },
+    {
+      "resource": "http://x-research.suzi.trade/x402/trending/general",
+      "matched_keywords": [
+        "distribution"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "http://x-research.suzi.trade/x402/trending/general http get 2026-03-14t08:16:12.067z 2 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"feepayer\": \"2wkuplr9q6wxyppw8gr2nvwxkbuqm4ppjkkqfoxhdbg4\"}, \"..."
+    },
+    {
+      "resource": "http://x-research.suzi.trade/x402/trending/solana",
+      "matched_keywords": [
+        "distribution"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "http://x-research.suzi.trade/x402/trending/solana http get 2026-03-18t11:51:56.945z 2 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"feepayer\": \"2wkuplr9q6wxyppw8gr2nvwxkbuqm4ppjkkqfoxhdbg4\"}, \"p..."
+    },
+    {
+      "resource": "https://agent.collabrachain.fun/api/polymarket/discovery/early-movers",
+      "matched_keywords": [
+        "early"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://agent.collabrachain.fun/api/polymarket/discovery/early-movers http post 2026-03-25t04:46:05.614z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"feepayer\": \"2wkuplr9q6wxyppw8gr2nvwxkbuqm..."
+    },
+    {
+      "resource": "https://agent.collabrachain.fun/api/token-screener/rugger",
+      "matched_keywords": [
+        "token"
+      ],
+      "sources_seen": [
+        "payai"
+      ],
+      "snippet": "https://agent.collabrachain.fun/api/token-screener/rugger http post 2026-03-25t05:30:35.613z 1 {\"asset\": \"epjfwdd5aufqssqem2qn1xzybapc8g4weggkzwytdt1v\", \"extra\": {\"feepayer\": \"2wkuplr9q6wxyppw8gr2nvwxkbuqm4ppjkkqfoxhd..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:682303bfd973977d61d66a38",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:682303bfd973977d61d66a38 http 2026-02-17t23:15:49.702z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"can send email using no-reply@..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68230442d973977d61d66ccb",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68230442d973977d61d66ccb http 2026-02-17t23:15:48.469z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"twitter agent enables users to..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68230447d973977d61d66ce1",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68230447d973977d61d66ce1 http 2026-02-17t23:15:38.39z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"enhance real-time messaging and..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68230461d973977d61d66dad",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68230461d973977d61d66dad http 2026-02-17t23:15:44.569z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"reporting on the business of t..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:6823047dd973977d61d66e5f",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:6823047dd973977d61d66e5f http 2026-02-17t23:15:12.568z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"boost collaboration and versio..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:6823065f5380bd59df4992e4",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:6823065f5380bd59df4992e4 http 2026-02-17t23:15:13.128z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"\\n dex screener is a platform ..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:682306635380bd59df4992fa",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:682306635380bd59df4992fa http 2026-02-17t23:15:15.257z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"can perform deep search on the..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68355af5edb8edd20e1c362d",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68355af5edb8edd20e1c362d http 2026-02-17t23:15:16.653z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"coingecko is a comprehensive c..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:684abbca938f9dfa5feb0597",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:684abbca938f9dfa5feb0597 http 2026-02-17t23:15:46.179z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"jina can crawl website you giv..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:686e427e62eed6598f066dfd",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:686e427e62eed6598f066dfd http 2026-02-17t23:15:10.956z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"generate high-quality images u..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:687f06f575c60d9158e812f4",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:687f06f575c60d9158e812f4 http 2026-02-17t23:15:11.447z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"generate high-quality images u..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:687f3708eb51e7d6d6849d8c",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:687f3708eb51e7d6d6849d8c http 2026-02-17t23:15:49.39z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"generate high-quality images us..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:6891bd58092f17ff446a3b4c",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:6891bd58092f17ff446a3b4c http 2026-02-17t23:15:29.46z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"financial datasets | powered by..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68b5463de9a4e050db0efbdb",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68b5463de9a4e050db0efbdb http 2026-02-17t23:15:30.327z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"nano banana is an ai-powered i..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68ce54b51f3dbc744518a415",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68ce54b51f3dbc744518a415 http 2026-02-17t23:15:39.384z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"firecrawl | powered by questfl..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68d64499d2f95c290af9fa9c",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68d64499d2f95c290af9fa9c http 2026-02-17t23:15:16.939z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"notion-zm | powered by questfl..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68db407a7fbdb84f70af1288",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68db407a7fbdb84f70af1288 http 2026-02-17t23:15:10.264z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"exa search | powered by questf..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68dba0e582f61ca4a1686963",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68dba0e582f61ca4a1686963 http 2026-02-17t23:15:52.065z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"the official alpha vantage api..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68e4a5d524bb22800207a929",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68e4a5d524bb22800207a929 http 2026-02-17t23:15:11.649z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"generate high-quality videos u..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68ee03aed8b26d2e2dff7c2f",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68ee03aed8b26d2e2dff7c2f http 2026-02-17t23:15:21.879z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"duckduckgo web search tool tha..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68ee0521d8b26d2e2dff7dc3",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68ee0521d8b26d2e2dff7dc3 http 2026-02-17t23:15:15.013z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"minimax is an ai platform offe..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68ee165dd8b26d2e2dffa01c",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68ee165dd8b26d2e2dffa01c http 2026-02-17t23:15:48.212z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"the tavily mcp server provides..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68ee2b6a1d6130e109861f6f",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68ee2b6a1d6130e109861f6f http 2026-02-17t23:15:12.895z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"duckduckgo search tool has com..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68ef7eb7edb2088cc0dddc1a",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68ef7eb7edb2088cc0dddc1a http 2026-02-17t23:15:28.07z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"coinglass provides users with c..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68f59a6a93d1a55ee56c7d3b",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/agent/qrn:agent:68f59a6a93d1a55ee56c7d3b http 2026-02-17t23:15:15.632z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"coingecko provides abilities t..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/copilot/qrn:copilot:tars",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/copilot/qrn:copilot:tars http 2026-02-17t23:15:11.216z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"questflow tars is an ai task planner and coord..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:683984b8ec15a7b81ce4a4ac",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:683984b8ec15a7b81ce4a4ac http 2026-02-17t23:15:47.38z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"schedule master helps you set u..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:6878d00a66c4580268017ead",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:6878d00a66c4580268017ead http 2026-02-17t23:15:27.8z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"a collaborative swarm of ai agen..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68b11e2e29c09efa605ed4f3",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68b11e2e29c09efa605ed4f3 http 2026-02-17t23:15:18.703z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"\\u89c4\\u5212\\u884c\\u7a0b\\uff0c..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68db860782f61ca4a1683407",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68db860782f61ca4a1683407 http 2026-02-17t23:15:30.34z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"new project | powered by questf..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68db86fb82f61ca4a16835b5",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68db86fb82f61ca4a16835b5 http 2026-02-17t23:15:47.457z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"researcher | powered by questf..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68db8960622da9e5eb2e5596",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68db8960622da9e5eb2e5596 http 2026-02-17t23:15:20.579z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"new project | powered by quest..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68dbd9a87706fb5081dcc99d",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68dbd9a87706fb5081dcc99d http 2026-02-17t23:15:38.138z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"an interactive flappy bird sty..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68dcbb9bab3e24a6307ad4df",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68dcbb9bab3e24a6307ad4df http 2026-02-17t23:15:25.305z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"researcher | powered by questf..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68dccb9e7706fb5081dd9a7e",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68dccb9e7706fb5081dd9a7e http 2026-02-17t23:15:38.466z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"new project | powered by quest..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68dd145f642815754d3ec176",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68dd145f642815754d3ec176 http 2026-02-17t23:15:33.603z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"a cyberpunk\\u2011styled, respo..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68e4a9c2f71c46c3dab6c5da",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68e4a9c2f71c46c3dab6c5da http 2026-02-17t23:15:22.734z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"sora is openai's newest fronti..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68e8b14c3c3d5114bcb07b2c",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68e8b14c3c3d5114bcb07b2c http 2026-02-17t23:15:25.221z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"researcher | powered by questf..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68e9cf3fb3955a431305fb2d",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68e9cf3fb3955a431305fb2d http 2026-02-17t23:15:46.555z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"a dashboard presenting the top..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68eca3887938a7458fbd1de5",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68eca3887938a7458fbd1de5 http 2026-02-17t23:15:47.584z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"a real\\u2011time ethereum (eth..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68eccf1bb80b349148efa165",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68eccf1bb80b349148efa165 http 2026-02-17t23:15:15.559z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"comprehensive reference detail..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68eccf48b80b349148efa1ea",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68eccf48b80b349148efa1ea http 2026-02-17t23:15:42.517z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"personal use | powered by ques..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68eccf50b80b349148efa240",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68eccf50b80b349148efa240 http 2026-02-17t23:15:14.879z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"personal use | powered by ques..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68edbf049a89cedc559091b4",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68edbf049a89cedc559091b4 http 2026-02-17t23:15:36.122z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"researcher | powered by questf..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68edbf9a9a89cedc55909218",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68edbf9a9a89cedc55909218 http 2026-02-17t23:15:29.884z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"researcher | powered by questf..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68edc2f59a89cedc559092d3",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68edc2f59a89cedc559092d3 http 2026-02-17t23:15:47.134z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"researcher | powered by questf..."
+    },
+    {
+      "resource": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68edef0d9e742e46897d7af1",
+      "matched_keywords": [
+        "quest"
+      ],
+      "sources_seen": [
+        "cdp"
+      ],
+      "snippet": "https://api-dev.intra-tls2.dctx.link/x402/swarm/qrn:swarm:68edef0d9e742e46897d7af1 http 2026-02-17t23:15:10.63z 1 {\"asset\": \"0x036cbd53842c5426634e7929541ec2318f3dcf7e\", \"description\": \"an interactive ai-driven applic..."
+    }
+  ]
+}
