@@ -523,7 +523,7 @@
   <section id="live-endpoints">
     <div class="container">
       <h2 class="section-title">Live endpoints</h2>
-      <p class="section-sub">Single source of truth: <code style="color: #a5b4fc;">docs/endpoints.json</code> — regenerate from your machine with <code style="color: #a5b4fc;">python scripts/sync_endpoints_json.py</code> (reads <code>T54_SELLER_PUBLIC_BASE_URL</code> and <code>X402_SELLER_PUBLIC_URL</code> from <code>.env</code>), then commit and push so this page stays in sync with discovery.</p>
+      <p class="section-sub">Single source of truth: <code style="color: #a5b4fc;">docs/endpoints.json</code> — regenerate with <code style="color: #a5b4fc;">npm run docs:sync-endpoints</code> (reads <code>T54_SELLER_PUBLIC_BASE_URL</code>, <code>X402_SELLER_PUBLIC_URL</code>, and <code>MARKETPLACE_PUBLIC_BASE_URL</code> from <code>.env</code>). After unified Caddy + ngrok, run <code style="color: #a5b4fc;">npm run stack:unified:wire</code> first, then sync and commit so GitHub Pages matches your live tunnels.</p>
       <div id="live-endpoints-root" class="t54-spotlight" style="margin-top: 24px;">
         <p style="color: var(--text-muted);">Loading…</p>
       </div>

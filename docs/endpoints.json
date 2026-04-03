@@ -1,23 +1,31 @@
 {
   "schema_note": "Canonical public URLs for agents and buyers. Regenerate: python scripts/sync_endpoints_json.py",
   "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
-  "updated_at": "2026-03-25T15:46:39Z",
+  "updated_at": "2026-04-03T04:44:10Z",
   "endpoints": [
     {
       "id": "t54_public_origin",
       "label": "T54 XRPL x402 seller (discovery origin)",
-      "description": "Discovery appends each SKU path from x402_providers.json.",
-      "url": "https://0387-159-118-65-248.ngrok-free.app",
+      "description": "Discovery appends each SKU path from x402_providers.json. With unified Caddy, base URL ends with /t54.",
+      "url": "https://9bdd-159-118-65-248.ngrok-free.app/t54",
       "network": "xrpl:0",
-      "health_url": "https://0387-159-118-65-248.ngrok-free.app/health"
+      "health_url": "https://9bdd-159-118-65-248.ngrok-free.app/t54/health"
     },
     {
       "id": "base_x402_query",
       "label": "Base USDC x402 seller (facilitator / Bazaar)",
       "description": "Full GET /x402/v1/query URL for Coinbase Bazaar / x402 clients.",
-      "url": "https://fe9f-159-118-65-248.ngrok-free.app/x402/v1/query",
+      "url": "https://9bdd-159-118-65-248.ngrok-free.app/x402/v1/query",
       "network": "eip155:8453",
-      "health_url": "https://fe9f-159-118-65-248.ngrok-free.app/health"
+      "health_url": "https://9bdd-159-118-65-248.ngrok-free.app/health"
+    },
+    {
+      "id": "marketplace_public_origin",
+      "label": "Marketplace HTTP (Stripe MPP, buyer API, webhooks)",
+      "description": "Unified reverse proxy exposes /webhooks/stripe, /v1/*, /marketplace/* on this origin when using Caddy + ngrok.",
+      "url": "https://9bdd-159-118-65-248.ngrok-free.app",
+      "network": "marketplace",
+      "health_url": "https://9bdd-159-118-65-248.ngrok-free.app/health"
     }
   ]
 }
