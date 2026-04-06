@@ -1,0 +1,38 @@
+# Agentic Swarm Marketplace — machine-readable overview
+
+Purpose: help AI crawlers, autonomous agents, and MCP clients discover how to find and pay for this project’s HTTP APIs (x402 / T54). Human-facing dashboard: https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/
+
+## What this is
+
+- Hierarchical multi-agent system for autonomous testnet/mainnet-adjacent revenue via on-chain value creation (no trading/speculation).
+- Public seller APIs speak HTTP 402 + x402 payment challenges; buyers settle with XRPL (T54 facilitator) and/or Base USDC x402 routes, depending on SKU and deployment.
+- GitHub repo: https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype
+
+## Stable links (use these in agent prompts and tools)
+
+- Portal (GitHub Pages): https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/
+- Live endpoint registry (current tunnel / public origins): https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/endpoints.json
+- T54 OpenAPI 3 (SKU catalog, paths, schemas): https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/documentation/x402-t54-base/openapi/agentic-swarm-t54-skus.openapi.yaml
+- x402 provider / discovery catalog (repo): https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/packages/agents/config/x402_providers.json
+- T54 SKU table (repo): https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/packages/agents/config/t54_seller_skus.json
+
+## Payment expectations
+
+- T54 routes: expect 402 with x402 payment requirements until a valid payment is attached; settlement uses XRPL per T54/x402 configuration (testnet vs mainnet depends on deployment — see repo docs).
+- Base USDC x402: separate endpoints (e.g. Bazaar-style query routes) documented in OpenAPI and `endpoints.json` when enabled.
+- Operators configure rails via environment variables (see repo `.env.example`): e.g. broker pay mode, XRPL seeds/caps, seller public base URLs.
+
+## Rotating public URLs (do not hardcode for long)
+
+Reverse-proxy / tunnel URLs (ngrok, Cloudflare Tunnel, etc.) change. Agents should load `endpoints.json` from the portal and read `endpoints[].url` and `health_url` (e.g. `t54_public_origin`, `base_x402_query`, `marketplace_public_origin`).
+
+## MCP (IDE / agent bridge)
+
+This repo ships a stdio MCP server that maps LLM tool calls to T54 HTTP operations and uses the in-repo x402 broker client to pay 402 invoices when configured.
+
+- Integration guide (Cursor, Claude Desktop, env): https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md
+- Source: `scripts/mcp_server.py` (FastMCP), `scripts/run-mcp-t54.ps1` (Windows launcher)
+
+## Keywords
+
+x402, T54, XRPL, HTTP 402, Agentic Swarm, MCP, Base USDC, Celo, marketplace, agent commerce

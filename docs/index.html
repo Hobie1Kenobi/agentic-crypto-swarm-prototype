@@ -381,7 +381,7 @@
       line-height: 1.65;
     }
     .mpp-list li { margin-bottom: 10px; }
-    #stripe-mpp, #operator-bundle { scroll-margin-top: 96px; }
+    #stripe-mpp, #operator-bundle, #mcp-agent { scroll-margin-top: 96px; }
     @media (max-width: 640px) {
       .hero { padding: 48px 0 64px; }
       .nav-links { width: 100%; justify-content: flex-start; }
@@ -398,6 +398,7 @@
         <a href="#stripe-mpp">Stripe MPP</a>
         <a href="#operator-bundle">Dashboard bundle</a>
         <a href="#live-endpoints">Live endpoints</a>
+        <a href="#mcp-agent">Agent MCP</a>
         <a href="#t54-x402">T54 x402</a>
         <a href="#proof">Proof</a>
         <a href="#x402-upgrade">x402 Upgrade</a>
@@ -526,6 +527,27 @@
       <p class="section-sub">Single source of truth: <code style="color: #a5b4fc;">docs/endpoints.json</code> — regenerate with <code style="color: #a5b4fc;">npm run docs:sync-endpoints</code> (reads <code>T54_SELLER_PUBLIC_BASE_URL</code>, <code>X402_SELLER_PUBLIC_URL</code>, and <code>MARKETPLACE_PUBLIC_BASE_URL</code> from <code>.env</code>). After unified Caddy + ngrok, run <code style="color: #a5b4fc;">npm run stack:unified:wire</code> first, then sync and commit so GitHub Pages matches your live tunnels.</p>
       <div id="live-endpoints-root" class="t54-spotlight" style="margin-top: 24px;">
         <p style="color: var(--text-muted);">Loading…</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="mcp-agent">
+    <div class="container">
+      <h2 class="section-title">Connect your agent (MCP)</h2>
+      <p class="section-sub">Use the repo’s stdio MCP server to let Cursor, Claude Desktop, or any MCP client call T54 SKUs as tools: the bridge pays HTTP <strong style="color: #e2e8f0;">402</strong> invoices via <code style="color: #a5b4fc;">x402_broker_client</code> when your <code style="color: #a5b4fc;">.env</code> is configured. Copy-paste configs and prerequisites live in <a href="mcp-integration.md" style="color: var(--accent-cyan);">mcp-integration.md</a>.</p>
+      <div class="grid-2">
+        <div class="card">
+          <div class="card-icon">📄</div>
+          <h3>llms.txt (agent SEO)</h3>
+          <p>Machine-readable overview, stable raw links to OpenAPI and <code style="color: #a5b4fc;">endpoints.json</code>, payment expectations, MCP pointers — for crawlers and external LLMs.</p>
+          <p style="margin-top: 12px;"><a href="llms.txt" class="btn btn-secondary" style="display: inline-block;">Open llms.txt</a></p>
+        </div>
+        <div class="card">
+          <div class="card-icon">🧩</div>
+          <h3>MCP setup</h3>
+          <p>Windows PowerShell launcher, Cursor <code style="color: #a5b4fc;">mcp.json</code>, Claude Desktop absolute paths, dry-run and preflight commands.</p>
+          <p style="margin-top: 12px;"><a href="mcp-integration.md" class="btn btn-primary" style="display: inline-block;">mcp-integration.md</a></p>
+        </div>
       </div>
     </div>
   </section>
