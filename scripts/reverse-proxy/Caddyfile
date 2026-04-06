@@ -26,6 +26,11 @@
 		reverse_proxy 127.0.0.1:8055
 	}
 
+	# Celo-native api_402 (/query + POST) — must be before default catch-all
+	handle /query {
+		reverse_proxy 127.0.0.1:8042
+	}
+
 	# Base x402 Bazaar (same paths as direct :8043)
 	handle /x402/* {
 		reverse_proxy 127.0.0.1:8043
@@ -34,6 +39,12 @@
 	# T54 XRPL seller — prefix /t54 stripped (avoids /x402 clash with Base)
 	handle_path /t54/* {
 		reverse_proxy 127.0.0.1:8765
+	}
+
+	# MCP (FastMCP SSE) — strip /mcp prefix → backend /sse and /messages/
+	# Start: python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9050
+	handle_path /mcp/* {
+		reverse_proxy 127.0.0.1:9050
 	}
 
 	# Default: Base seller (e.g. /health on x402 app)

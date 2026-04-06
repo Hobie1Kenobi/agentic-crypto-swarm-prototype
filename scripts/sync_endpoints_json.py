@@ -63,6 +63,13 @@ def main() -> int:
 
     x402_full = (os.getenv("X402_SELLER_PUBLIC_URL") or os.getenv("X402_SELLER_PROBE_URL") or "").strip()
     x402_origin = _origin(x402_full)
+    intake_explicit = (os.getenv("X402_INTAKE_RESALE_PUBLIC_URL") or "").strip()
+    if intake_explicit:
+        intake_resale_url = intake_explicit
+    elif x402_full:
+        intake_resale_url = x402_full.replace("/x402/v1/query", "/x402/v1/intake-resale")
+    else:
+        intake_resale_url = ""
 
     mp_base = (os.getenv("MARKETPLACE_PUBLIC_BASE_URL") or "").strip().rstrip("/")
     mp_health = f"{mp_base}/health" if mp_base else ""
@@ -86,6 +93,14 @@ def main() -> int:
             "network": (os.getenv("X402_SELLER_NETWORK") or "eip155:8453").strip(),
             "health_url": _health_url_from_origin(x402_origin) if x402_origin else "",
         },
+        {
+            "id": "base_x402_intake_resale",
+            "label": "Base USDC intake resale (same packs as T54 XRPL)",
+            "description": "GET /x402/v1/intake-resale?pack_id=<uuid>. USDC settles to X402_SELLER_PAY_TO. Override URL with X402_INTAKE_RESALE_PUBLIC_URL.",
+            "url": intake_resale_url,
+            "network": (os.getenv("X402_SELLER_NETWORK") or "eip155:8453").strip(),
+            "health_url": _health_url_from_origin(x402_origin) if x402_origin else "",
+        },
     ]
     if mp_base:
         endpoints.append(
@@ -96,6 +111,21 @@ def main() -> int:
                 "url": mp_base,
                 "network": "marketplace",
                 "health_url": mp_health,
+            }
+        )
+
+    mcp_sse = (os.getenv("MCP_SSE_PUBLIC_URL") or "").strip().rstrip("/")
+    if mcp_sse:
+        endpoints.append(
+            {
+                "id": "mcp_t54_sse",
+                "label": "MCP T54 x402 (SSE, remote clients)",
+                "description": "FastMCP SSE: stream GET .../mcp/sse, POST .../mcp/messages/. Run local server on 127.0.0.1:9050; Caddy maps /mcp to it. Set MCP_SSE_PUBLIC_URL to https://<your-tunnel-host>/mcp for Agent.ai.",
+                "url": mcp_sse,
+                "sse_url": f"{mcp_sse}/sse",
+                "messages_url": f"{mcp_sse}/messages/",
+                "network": "mcp",
+                "health_url": "",
             }
         )
 
@@ -111,7 +141,9 @@ def main() -> int:
     print(f"Wrote {out_path}")
     print(f"  T54_SELLER_PUBLIC_BASE_URL -> {t54_base or '(empty)'}")
     print(f"  X402_SELLER_PUBLIC_URL -> {x402_full or '(empty)'}")
+    print(f"  X402_INTAKE_RESALE_PUBLIC_URL -> {intake_resale_url or '(empty)'}")
     print(f"  MARKETPLACE_PUBLIC_BASE_URL -> {mp_base or '(empty)'}")
+    print(f"  MCP_SSE_PUBLIC_URL -> {mcp_sse or '(empty)'}")
     return 0
 
 

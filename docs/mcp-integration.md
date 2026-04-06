@@ -98,11 +98,43 @@ Restart Claude Desktop after saving.
 - **Tools:** `t54_list_operations`, `t54_x402_request`, and one tool per operation id (e.g. `t54_airdropIntelligence`).
 - Behavior: tool call → HTTP request → **402** → broker pays → retry → JSON result back to the model.
 
-## 5. Public “one-line install” (future)
+## 5. Remote SSE (Agent.ai, HTTPS)
+
+Hosted clients (e.g. **Agent.ai → Connections → MCP → Add MCP Server**) need an **HTTPS URL** to an MCP server using **SSE**, not stdio. This repo runs **FastMCP** with `transport=sse` (Starlette + uvicorn).
+
+**1. Start the SSE process** (binds localhost only):
+
+```bash
+npm run mcp:t54:sse
+```
+
+Or: `python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9050`  
+(Override with `X402_MCP_SSE_HOST` / `X402_MCP_SSE_PORT`.)
+
+**2. Put HTTPS in front** (pick one):
+
+- **Unified Caddy** (`:9080`) already maps **`/mcp/*`** → `127.0.0.1:9050` (see `scripts/reverse-proxy/Caddyfile`). Start Caddy + your app stack, then point **Cloudflare Tunnel** or **ngrok** at `:9080` (same as your T54/Base routes).
+- Public endpoints on the MCP app:
+  - **SSE stream:** `https://<your-public-host>/mcp/sse`
+  - **Messages:** `https://<your-public-host>/mcp/messages/`
+
+**3. Agent.ai:** In **Add MCP Server**, use the **SSE** URL your client expects — typically **`https://<host>/mcp/sse`** (if the product asks for a single URL, try that first; some UIs want the `/mcp` base — follow their field label).
+
+**4. Record the URL in discovery:** set in `.env`:
+
+```bash
+MCP_SSE_PUBLIC_URL=https://YOUR_TUNNEL_HOST/mcp
+```
+
+Then `npm run docs:sync-endpoints` so [endpoints.json](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/endpoints.json) includes `mcp_t54_sse` with `sse_url` / `messages_url`.
+
+**Security:** The MCP process has no built-in API key; anyone who can reach the URL can invoke tools (and trigger x402 flows if your broker env allows). Prefer **tunnel + Access**, IP allowlists, or running only while testing.
+
+## 6. Public “one-line install” (future)
 
 A small **`npx`** or **`uvx`**-style wrapper that downloads nothing secret but points at **your** public seller URL is **not** published in this repo yet. Until then, third parties should clone the repo, set `.env`, and use the JSON above. When a packaged client exists, it will be linked from [llms.txt](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/llms.txt) and this page.
 
-## 6. Related discovery files
+## 7. Related discovery files
 
 | File | URL |
 |------|-----|

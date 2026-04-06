@@ -2,15 +2,26 @@
 
 **Site:** [agent.ai](https://agent.ai) — professional marketplace for agents built on their **no-code** platform.
 
-## Reality check
+## Connections → MCP → Add MCP Server (SSE URL)
 
-Agent.ai is optimized for **agents created inside their builder** (drag-and-drop, hosted steps). This repository is a **self-hosted GitHub + MCP** stack, not a native Agent.ai agent bundle. You have three practical options:
+This repo exposes **FastMCP over SSE** when you run `npm run mcp:t54:sse` and route HTTPS to it (unified **Caddy `:9080`** strips **`/mcp`** → `127.0.0.1:9050`). Full steps: **[docs/mcp-integration.md](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md)** (section **Remote SSE**).
 
-1. **Suggest demand** (if they still run it): [Request / suggest an agent](https://docs.agent.ai/user/request-an-agent) — describe “Agentic Swarm–style x402 MCP + T54 seller” and link GitHub Pages so builders see demand.  
-2. **Builder program** — If you later rebuild a **thin orchestration agent** on Agent.ai that calls your public HTTPS APIs, you can list that agent and link the marketplace URL in the description.  
-3. **Parallel directories** — Prefer **AI Agents Directory** (you already have a badge on Pages) and **TAAFT** for “GitHub-first” discovery: [aiagentsdirectory.com/submit-agent](https://aiagentsdirectory.com/submit-agent).
+**Paste in Agent.ai (typical):**
 
-## Copy-paste blurb (if you get an “external URL” or “documentation” field)
+- **SSE URL:** `https://<your-unified-tunnel-host>/mcp/sse`  
+- If the form asks for a **base** MCP URL, try `https://<host>/mcp` and follow any path hints in their UI.
+
+Set `MCP_SSE_PUBLIC_URL=https://<host>/mcp` in `.env`, then `npm run docs:sync-endpoints` so **endpoints.json** lists `mcp_t54_sse`.
+
+**Security:** No API key on the MCP process — protect with tunnel access controls or run only for demos.
+
+## Other listing options
+
+1. **Suggest demand:** [Request / suggest an agent](https://docs.agent.ai/user/request-an-agent).  
+2. **Builder-hosted agent** later — thin wrapper calling your public HTTPS APIs.  
+3. **Parallel directories:** [AI Agents Directory](https://aiagentsdirectory.com/submit-agent), TAAFT, etc.
+
+## Copy-paste blurb (documentation / about fields)
 
 **Name:** Agentic Swarm Marketplace  
 **URL:** https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/  

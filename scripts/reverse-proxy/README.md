@@ -4,6 +4,7 @@ Use this when you want **one HTTPS hostname** (one ngrok URL) for:
 
 | Path | Service | Local port |
 |------|---------|------------|
+| `/mcp/*` | MCP T54 x402 **SSE** (`scripts/mcp_server.py --transport sse`); **`/mcp` is stripped** → `/sse`, `/messages/` | 9050 |
 | `/x402/*` | Base x402 seller (`api_seller_x402`) | 8043 |
 | `/t54/*` | T54 XRPL seller (`t54_seller_app`); **`/t54` is stripped** before proxying | 8765 |
 | `/webhooks/*`, `/v1/*`, `/marketplace/*`, `/docs*`, `/openapi.json`, `/redoc*` | Marketplace (`marketplace_api`) | 8055 |
@@ -30,7 +31,13 @@ caddy run --config scripts/reverse-proxy/Caddyfile
 
 Listens on **`http://127.0.0.1:9080`**.
 
+## Cloudflare Tunnel (stable HTTPS, no router ports)
+
+See **`scripts/cloudflare-tunnel/README.md`** — `cloudflared` + Docker exposes **9080** (this Caddy stack) on your Cloudflare hostname. Set **`T54_SELLER_PUBLIC_BASE_URL=https://YOUR_HOST/t54`** the same way as with ngrok.
+
 ## ngrok
+
+**One command (Caddy + dual ngrok + sync .env):** with sellers on **8765/8043/8055**, run **`npm run stack:unified:wire`** — starts Caddy on **9080** if missing, restarts ngrok with **`scripts/ngrok-dual-stack.yml`**, writes **`T54_SELLER_PUBLIC_BASE_URL`**, **`X402_SELLER_PUBLIC_URL`**, **`MARKETPLACE_PUBLIC_BASE_URL`**, reloads T54 discovery. Does not stop your seller processes.
 
 **Option A — one tunnel only (Caddy):** `npm run ngrok:unified` → forwards **9080**.
 
