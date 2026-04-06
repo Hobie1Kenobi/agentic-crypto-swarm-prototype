@@ -1,7 +1,7 @@
 {
   "schema_note": "Canonical public URLs for agents and buyers. Regenerate: python scripts/sync_endpoints_json.py",
   "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
-  "updated_at": "2026-04-03T04:44:10Z",
+  "updated_at": "2026-04-06T02:09:27Z",
   "endpoints": [
     {
       "id": "t54_public_origin",
@@ -16,6 +16,14 @@
       "label": "Base USDC x402 seller (facilitator / Bazaar)",
       "description": "Full GET /x402/v1/query URL for Coinbase Bazaar / x402 clients.",
       "url": "https://9bdd-159-118-65-248.ngrok-free.app/x402/v1/query",
+      "network": "eip155:8453",
+      "health_url": "https://9bdd-159-118-65-248.ngrok-free.app/health"
+    },
+    {
+      "id": "base_x402_intake_resale",
+      "label": "Base USDC intake resale (same packs as T54 XRPL)",
+      "description": "GET /x402/v1/intake-resale?pack_id=<uuid>. USDC settles to X402_SELLER_PAY_TO. Override URL with X402_INTAKE_RESALE_PUBLIC_URL.",
+      "url": "https://9bdd-159-118-65-248.ngrok-free.app/x402/v1/intake-resale",
       "network": "eip155:8453",
       "health_url": "https://9bdd-159-118-65-248.ngrok-free.app/health"
     },
