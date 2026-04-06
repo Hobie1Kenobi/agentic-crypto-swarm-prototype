@@ -88,7 +88,7 @@ See [`mcp-integration.md`](https://hobie1kenobi.github.io/agentic-crypto-swarm-p
 
 ### Awesome MCP Servers (GitHub)
 
-- Usually a **PR** adding one line to the curated README. Find the upstream repo’s contributing rules, open a PR with: **name**, **one-line description**, **repo link**, link to **mcp-manifest.json** or **mcp-integration.md**.
+- **Started:** Step-by-step fork/PR + exact README line → **[submissions/awesome-mcp-servers-PR.md](submissions/awesome-mcp-servers-PR.md)**. Upstream: [punkpeye/awesome-mcp-servers](https://github.com/punkpeye/awesome-mcp-servers). **Claim or add the server on Glama first** so the badge URL in the PR resolves (maintainers often require it).
 
 ### Smithery.ai / Glama.ai
 
@@ -100,8 +100,9 @@ See [`mcp-integration.md`](https://hobie1kenobi.github.io/agentic-crypto-swarm-p
 
 ### ThereIsAnAIForThat.com / Agent.ai
 
-- Paste **tagline**, **short description**, **long description**, **GitHub Pages** as the “live” URL, **repo** as source.
-- Attach **categories**: Developer Tools, Crypto, Finance, Automation.
+- **TAAFT:** Pre-filled copy for their form is in **[submissions/taaft-form-copy.md](submissions/taaft-form-copy.md)** — submit at [theresanaiforthat.com/s/submit/](https://theresanaiforthat.com/s/submit/).
+- **Agent.ai:** Their marketplace targets agents built **on platform**; see **[submissions/agent-ai-notes.md](submissions/agent-ai-notes.md)** for realistic options (suggest-agent, future builder listing, parallel directories).
+- General: use **tagline**, **short / long description** from this kit; **GitHub Pages** as live URL; **repo** as source; categories **Developer Tools**, **Crypto**, **Finance**, **Automation** where applicable.
 
 ### CDP (Coinbase Developer Platform) / Base
 
@@ -116,6 +117,16 @@ See [`mcp-integration.md`](https://hobie1kenobi.github.io/agentic-crypto-swarm-p
 ### e2b.dev / LangChain Hub
 
 - Publish **templates** as separate artifacts (notebook or repo template); link this monorepo as **source** and **OpenAPI** + **MCP** as integration paths.
+
+---
+
+## In-repo submission artifacts (started)
+
+| Target | File |
+|--------|------|
+| **Awesome MCP** (PR to punkpeye list) | [submissions/awesome-mcp-servers-PR.md](submissions/awesome-mcp-servers-PR.md) |
+| **TAAFT** (form copy) | [submissions/taaft-form-copy.md](submissions/taaft-form-copy.md) |
+| **Agent.ai** (expectations + blurb) | [submissions/agent-ai-notes.md](submissions/agent-ai-notes.md) |
 
 ---
 
@@ -135,5 +146,6 @@ See [`mcp-integration.md`](https://hobie1kenobi.github.io/agentic-crypto-swarm-p
 | `smithery.yaml` | Smithery **stdio** `commandFunction` + optional `configSchema` (wizard / one-click) |
 | `docs/.well-known/ai-plugin.json` | Legacy ChatGPT plugin–style metadata + OpenAPI URL (**served on Pages**) |
 | `.well-known/ai-plugin.json` | Same JSON at repo root for tools that scan the repository |
+| `submissions/*.md` | Awesome MCP PR, TAAFT copy, Agent.ai notes |
 
 **Note:** GitHub Actions deploys **`docs/`** only. The live **ai-plugin** URL for directories must use the **Pages** path above, not raw GitHub path under `.well-known` at repo root.

@@ -7,6 +7,8 @@
   · <a href="https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/llms.txt">llms.txt</a>
   · <a href="https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md">MCP setup</a>
   · <a href="DIRECTORY_SUBMISSION_KIT.md">Directory submission kit</a>
+  · <a href="submissions/awesome-mcp-servers-PR.md">Awesome MCP PR</a>
+  · <a href="submissions/taaft-form-copy.md">TAAFT copy</a>
 </p>
 
 <p align="center">
