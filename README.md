@@ -2,6 +2,21 @@
   <img src="assets/logo.png" alt="Agentic Swarm Marketplace" width="480">
 </p>
 
+<p align="center">
+  <a href="https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/"><strong>Live dashboard &amp; documentation (GitHub Pages)</strong></a>
+  · <a href="https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/llms.txt">llms.txt</a>
+  · <a href="https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md">MCP setup</a>
+  · <a href="DIRECTORY_SUBMISSION_KIT.md">Directory submission kit</a>
+</p>
+
+<p align="center">
+  <a href="https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md"><img src="https://img.shields.io/badge/MCP-compatible-6366f1?style=flat-square" alt="MCP compatible"></a>
+  <a href="https://www.base.org/"><img src="https://img.shields.io/badge/Base-network-0052FF?style=flat-square" alt="Base network"></a>
+  <a href="https://xrpl.org/"><img src="https://img.shields.io/badge/XRPL-x402%20T54-23292F?style=flat-square" alt="XRPL x402 T54"></a>
+  <a href="https://olas.network/"><img src="https://img.shields.io/badge/Olas-network-8b5cf6?style=flat-square" alt="Olas network"></a>
+  <a href="https://www.celo.org/"><img src="https://img.shields.io/badge/Celo-settlement-35D07F?style=flat-square" alt="Celo settlement"></a>
+</p>
+
 # Agentic Crypto Swarm Prototype
 
 A hierarchical multi-agent system that autonomously earns testnet revenue through on-chain value creation — no trading, no speculation. **Celo-first:** Celo Sepolia (testnet), Celo mainnet (production); local Anvil for zero-faucet testing; optional Base/Polygon paths.
@@ -54,6 +69,7 @@ A hierarchical multi-agent system that autonomously earns testnet revenue throug
 | **Compute marketplace** | `npm run miner` · `npm run validator` | Celo · escrow / scoring |
 | **Multi-rail hybrid demo** | `npm run demo:multi-rail` | Celo + XRPL composition |
 | **External x402 discovery** | `packages/agents/external_commerce/discovery.py` + [`x402_providers.json`](packages/agents/config/x402_providers.json) | Catalog of providers |
+| **Airdrop intelligence & EVM claims** | `npm run airdrop:intake` · `npm run airdrop:pipeline` · `npm run airdrop:pull-catalog` · `npm run airdrop:catalog:base` · `npm run airdrop:claim:recon` · `npm run airdrop:claim:verify` · `npm run airdrop:claim:spec-from-merkle` · `npm run airdrop:claim` | **`airdrop:intake`** writes `external_commerce_data/airdrop_intake_snapshot.json` (catalog + LLM scout + per-chain filters + recon). Then queue `ClaimSpec` → approve → dry-run → execute; [AIRDROP_CLAIM_EXECUTION.md](documentation/discovery/AIRDROP_CLAIM_EXECUTION.md) · [CLAIM_EXTRACT_AND_VERIFY.md](documentation/discovery/CLAIM_EXTRACT_AND_VERIFY.md) |
 | **Sellable dashboard bundle (Stripe MPP)** | `npm run marketplace:pack` (writes `dist/...-latest.zip`) · `npm run marketplace:webhook-dev` · `npm run marketplace:order` · [documentation/marketplace-stripe/MARKETPLACE_DASHBOARD_BUNDLE.md](documentation/marketplace-stripe/MARKETPLACE_DASHBOARD_BUNDLE.md) | USD · Tempo crypto deposit (`npm run marketplace:serve`) |
 | **Unified reverse proxy (one HTTPS host)** | `npm run proxy:unified` → `:9080` · [scripts/reverse-proxy/README.md](scripts/reverse-proxy/README.md) · `npm run ngrok:dual` (three tunnels incl. unified) or `npm run ngrok:unified` | Routes `/x402/*`, `/t54/*`, `/webhooks/*` to Base, T54, marketplace |
 
@@ -82,7 +98,7 @@ Root Strategist (ERC-4337 smart account)
 - [Foundry](https://getfoundry.sh/)
 - Python 3.12+
 - Node.js 18+
-- [Ollama](https://ollama.com) (local LLM; no API key). Default model: `qwen3:8b`; use `tinyllama` if low RAM.
+- [Ollama](https://ollama.com) for LLM inference. **Recommended (low local RAM):** cloud models such as `kimi-k2.5:cloud` — run `ollama signin`, then `ollama pull kimi-k2.5:cloud`, keep the Ollama app running, set `OLLAMA_MODEL` / `OLLAMA_BASE_URL=http://127.0.0.1:11434` in `.env`. **Alternative:** fully local `qwen3.5:9b` (~8.7 GiB RAM) or `phi3:mini` / `tinyllama`. **Direct cloud API:** `OLLAMA_BASE_URL=https://ollama.com` + `OLLAMA_API_KEY` from [ollama.com/settings/keys](https://ollama.com/settings/keys).
 - RPC: set `RPC_URL` or `CELO_SEPOLIA_RPC_URL` for Celo Sepolia; Alchemy optional for Base legacy
 
 ## Setup
@@ -96,7 +112,7 @@ Root Strategist (ERC-4337 smart account)
 
 2. **Environment**
 
-   Copy `.env.example` to `.env`. Set `CHAIN_NAME=celo-sepolia` (default) or `anvil` for local. Optional: `RPC_URL`, `BENEFICIARY_ADDRESS`, `PIMLICO_API_KEY` (Base only). For Ollama use `OLLAMA_MODEL` (default `qwen3:8b`).
+   Copy `.env.example` to `.env`. Set `CHAIN_NAME=celo-sepolia` (default) or `anvil` for local. Optional: `RPC_URL`, `BENEFICIARY_ADDRESS`, `PIMLICO_API_KEY` (Base only). Configure Ollama in `.env` (`OLLAMA_MODEL`, `OLLAMA_BASE_URL`; optional `OLLAMA_API_KEY` for direct cloud — see Prerequisites).
 
 3. **Install dependencies**
 

@@ -1,0 +1,17 @@
+{
+  "schema_version": "v1",
+  "name_for_human": "Agentic Swarm Marketplace (T54 x402)",
+  "name_for_model": "agentic_swarm_t54_x402",
+  "description_for_human": "Machine-paid agent commerce: T54 XRPL x402 seller SKUs, Base USDC x402 routes, Celo settlement, Olas intake. HTTP 402 + brokered payment.",
+  "description_for_model": "Use the published OpenAPI YAML to discover operationIds for the T54 seller. Paid routes return HTTP 402 until x402 payment requirements are satisfied (XRPL via T54 facilitator or configured rail). Public catalog and live tunnel URLs: GitHub Pages endpoints.json and llms.txt.",
+  "api": {
+    "type": "openapi",
+    "url": "https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/documentation/x402-t54-base/openapi/agentic-swarm-t54-skus.openapi.yaml"
+  },
+  "auth": {
+    "type": "none"
+  },
+  "logo_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/og-banner.png",
+  "contact_email": "",
+  "legal_info_url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype"
+}

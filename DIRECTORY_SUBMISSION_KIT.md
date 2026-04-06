@@ -1,0 +1,135 @@
+# Directory submission kit — Agentic Swarm Marketplace
+
+Use this file when submitting to **Awesome MCP**, **Smithery**, **Glama**, **TAAFT**, **Agent.ai**, **CDP / Base**, **Farcaster**, and similar. Paths refer to this repo: [`Hobie1Kenobi/agentic-crypto-swarm-prototype`](https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype).
+
+## Canonical URLs
+
+| Asset | URL |
+|--------|-----|
+| **Live dashboard & docs (GitHub Pages)** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/ |
+| **Agent / crawler overview** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/llms.txt |
+| **MCP setup (Cursor / Claude)** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md |
+| **Live tunnel & seller origins** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/endpoints.json |
+| **T54 OpenAPI (raw)** | https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/documentation/x402-t54-base/openapi/agentic-swarm-t54-skus.openapi.yaml |
+| **ai-plugin.json (Pages)** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/.well-known/ai-plugin.json |
+| **mcp-manifest.json (repo root)** | https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/mcp-manifest.json |
+
+---
+
+## Tagline (max ~50 characters)
+
+**Multi-rail x402 agent swarm: XRPL, Base USDC, Celo, Olas.**
+
+(49 characters)
+
+---
+
+## Short description (max ~200 characters)
+
+**Hierarchical agents for paid API commerce: T54 XRPL x402 seller, Base USDC x402, Celo marketplace, Olas intake. MCP stdio server, OpenAPI SKUs, HTTP 402 + broker. GitHub Pages + tunnel registry.**
+
+(199 characters)
+
+---
+
+## Long description (Markdown)
+
+**Agentic Swarm Marketplace** is a hierarchical multi-agent stack built for **machine-paid** commerce — not trading or speculation. It exposes **HTTP 402** + **x402** seller APIs (notably **T54 on XRPL** with the T54 facilitator), **Base USDC** x402 / Bazaar-style routes, **Celo** private settlement and marketplace contracts, and **Olas**-style public intake when configured.
+
+**Payments & rails:** Buyers hit priced routes; the stack routes settlement across **XRPL (XRP)** and **EVM (USDC / CELO)** depending on SKU and deployment. An **x402 broker client** pays 402 invoices from agent processes (mock, XRPL testnet/mainnet, Xaman, or Base USDC modes — see repo `.env.example`).
+
+**MCP:** A **stdio MCP server** (`scripts/mcp_server.py`) exposes T54 **OpenAPI** operations as LLM tools so **Cursor** and **Claude Desktop** can call your seller with automatic 402 handling when env is set. Integration guide: **mcp-integration.md** on GitHub Pages.
+
+**Discovery:** External commerce discovery uses a growing provider catalog; x402 Scout–style snapshots in-repo reference on the order of **~1,175** cataloged third-party services in chunk metadata (see `external_commerce_data/x402scout-catalog-chunks/`) — your **T54 seller SKUs** are a separate, first-party OpenAPI catalog.
+
+**Public machine-readable entry points:** **llms.txt**, **endpoints.json**, and **.well-known/ai-plugin.json** on Pages.
+
+---
+
+## SEO tags (comma-separated)
+
+AI Agent, MCP, x402, HTTP 402, Crypto, Web3, Base, USDC, XRPL, T54, Celo, Olas, DeFi, Agent Commerce, LangChain, Autonomous Agents, Machine Payments, OpenAPI
+
+---
+
+## Copy-paste: GitHub repo URL
+
+```
+https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype
+```
+
+---
+
+## Copy-paste: MCP Cursor config (local clone)
+
+See [`mcp-integration.md`](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md) for full detail. Minimal shape:
+
+```json
+{
+  "mcpServers": {
+    "swarm-t54-x402": {
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/run-mcp-t54.ps1"
+      ]
+    }
+  }
+}
+```
+
+---
+
+## Per-directory notes
+
+### Awesome MCP Servers (GitHub)
+
+- Usually a **PR** adding one line to the curated README. Find the upstream repo’s contributing rules, open a PR with: **name**, **one-line description**, **repo link**, link to **mcp-manifest.json** or **mcp-integration.md**.
+
+### Smithery.ai / Glama.ai
+
+- Submit the **GitHub repo URL** and/or **mcp-manifest.json** per their current form.
+- **Smithery** may prefer **`smithery.yaml`** or hosted MCP URL for some flows — check [Smithery docs](https://smithery.ai/docs); `mcp-manifest.json` in this repo follows a **MCPB-style** layout for discovery.
+- If a form asks for **install command**, use: `python -u scripts/mcp_server.py` with **working directory = repo root**, or document **PowerShell** + `scripts/run-mcp-t54.ps1` on Windows.
+
+### ThereIsAnAIForThat.com / Agent.ai
+
+- Paste **tagline**, **short description**, **long description**, **GitHub Pages** as the “live” URL, **repo** as source.
+- Attach **categories**: Developer Tools, Crypto, Finance, Automation.
+
+### CDP (Coinbase Developer Platform) / Base
+
+- Tag **Base** and **USDC** in descriptions; link **Base** x402 endpoints from **endpoints.json** when live.
+- If they have an **AgentKit** or ecosystem list, submit **repo + Pages + OpenAPI**.
+
+### Awesome-Olas / Fetch.ai Almanac / Farcaster
+
+- **Olas:** point to **hybrid / public adapter** docs under `documentation/` and `MARKET_MODE`.
+- **Farcaster:** not a form — share **Frames** or **casts** linking **Pages** + **llms.txt**; join `/agents` channels with the short description.
+
+### e2b.dev / LangChain Hub
+
+- Publish **templates** as separate artifacts (notebook or repo template); link this monorepo as **source** and **OpenAPI** + **MCP** as integration paths.
+
+---
+
+## After you submit
+
+1. **Push** `master` so **GitHub Pages** deploys `docs/` (includes **`docs/.well-known/ai-plugin.json`**).
+2. Verify: `https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/.well-known/ai-plugin.json` returns JSON.
+3. **Search Console:** keep **sitemap.xml** submitted; optional URL inspection for new paths.
+
+---
+
+## Files generated in this repo
+
+| File | Role |
+|------|------|
+| `mcp-manifest.json` | Smithery / Glama–style MCP package metadata + `python` launch |
+| `docs/.well-known/ai-plugin.json` | Legacy ChatGPT plugin–style metadata + OpenAPI URL (**served on Pages**) |
+| `.well-known/ai-plugin.json` | Same JSON at repo root for tools that scan the repository |
+
+**Note:** GitHub Actions deploys **`docs/`** only. The live **ai-plugin** URL for directories must use the **Pages** path above, not raw GitHub path under `.well-known` at repo root.

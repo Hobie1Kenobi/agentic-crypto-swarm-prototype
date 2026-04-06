@@ -1,0 +1,40 @@
+{
+  "manifest_version": "0.1",
+  "name": "agentic-crypto-swarm",
+  "version": "0.1.0",
+  "description": "MCP stdio server: T54 x402 seller SKUs from OpenAPI; HTTP 402 settled via x402_broker_client (XRPL/Base per env).",
+  "author": "Hobie1Kenobi",
+  "license": "MIT",
+  "homepage": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+  "repository": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
+  "documentation": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md",
+  "server": {
+    "type": "python",
+    "entry_point": "scripts/mcp_server.py",
+    "mcp_config": {
+      "command": "python",
+      "args": ["-u", "scripts/mcp_server.py"],
+      "env": {
+        "T54_SELLER_PUBLIC_BASE_URL": "",
+        "X402_BROKER_PAY_MODE": "mock",
+        "X402_MCP_DRY_RUN": "0"
+      }
+    }
+  },
+  "metadata": {
+    "tags": [
+      "mcp",
+      "x402",
+      "xrpl",
+      "base",
+      "usdc",
+      "celo",
+      "olas",
+      "agents",
+      "defi",
+      "http-402"
+    ],
+    "categories": ["developer-tools", "web3", "finance"],
+    "notes": "Windows: use scripts/run-mcp-t54.ps1 via PowerShell (see .cursor/mcp.json). Preflight: python scripts/mcp_server.py --check"
+  }
+}
