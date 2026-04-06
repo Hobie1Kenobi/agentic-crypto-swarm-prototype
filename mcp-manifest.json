@@ -35,6 +35,6 @@
       "http-402"
     ],
     "categories": ["developer-tools", "web3", "finance"],
-    "notes": "Windows: use scripts/run-mcp-t54.ps1 via PowerShell (see .cursor/mcp.json). Preflight: python scripts/mcp_server.py --check"
+    "notes": "Smithery: see smithery.yaml (uv + stdio). Windows: scripts/run-mcp-t54.ps1 (see .cursor/mcp.json). Preflight: python scripts/mcp_server.py --check"
   }
 }

@@ -13,6 +13,7 @@ Use this file when submitting to **Awesome MCP**, **Smithery**, **Glama**, **TAA
 | **T54 OpenAPI (raw)** | https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/documentation/x402-t54-base/openapi/agentic-swarm-t54-skus.openapi.yaml |
 | **ai-plugin.json (Pages)** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/.well-known/ai-plugin.json |
 | **mcp-manifest.json (repo root)** | https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/mcp-manifest.json |
+| **smithery.yaml (Smithery wizard)** | https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/smithery.yaml |
 
 ---
 
@@ -91,9 +92,11 @@ See [`mcp-integration.md`](https://hobie1kenobi.github.io/agentic-crypto-swarm-p
 
 ### Smithery.ai / Glama.ai
 
-- Submit the **GitHub repo URL** and/or **mcp-manifest.json** per their current form.
-- **Smithery** may prefer **`smithery.yaml`** or hosted MCP URL for some flows — check [Smithery docs](https://smithery.ai/docs); `mcp-manifest.json` in this repo follows a **MCPB-style** layout for discovery.
-- If a form asks for **install command**, use: `python -u scripts/mcp_server.py` with **working directory = repo root**, or document **PowerShell** + `scripts/run-mcp-t54.ps1` on Windows.
+- **Smithery one-click:** Repo root includes **`smithery.yaml`** — `startCommand.type: stdio` with a **`commandFunction`** that runs **`uv`** from `packages/agents` with `--with mcp[cli]` and `--with pyyaml`, then `python -u ../../scripts/mcp_server.py`. Config fields are **optional** (empty defaults + `mock`) so tool listing works without secrets.
+- Submit the **GitHub repo URL**; the wizard should detect **`smithery.yaml`** automatically.
+- Also submit **`mcp-manifest.json`** if a form asks for package-style metadata.
+- **Glama:** use the same repo link + **`mcp-manifest.json`** per their form.
+- **Local dev without `uv`:** use `python -u scripts/mcp_server.py` from repo root (see **mcp-integration.md**) or **PowerShell** + `scripts/run-mcp-t54.ps1` on Windows.
 
 ### ThereIsAnAIForThat.com / Agent.ai
 
@@ -129,6 +132,7 @@ See [`mcp-integration.md`](https://hobie1kenobi.github.io/agentic-crypto-swarm-p
 | File | Role |
 |------|------|
 | `mcp-manifest.json` | Smithery / Glama–style MCP package metadata + `python` launch |
+| `smithery.yaml` | Smithery **stdio** `commandFunction` + optional `configSchema` (wizard / one-click) |
 | `docs/.well-known/ai-plugin.json` | Legacy ChatGPT plugin–style metadata + OpenAPI URL (**served on Pages**) |
 | `.well-known/ai-plugin.json` | Same JSON at repo root for tools that scan the repository |
 

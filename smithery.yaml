@@ -1,0 +1,43 @@
+# Smithery — https://smithery.ai/docs/config#smitheryyaml
+# Stdio MCP: T54 x402 tools from OpenAPI; optional env for seller URL and broker mode.
+# All fields optional so the wizard can list tools with mock defaults (per Smithery guidance).
+
+startCommand:
+  type: stdio
+  configSchema:
+    type: object
+    properties:
+      t54SellerPublicBaseUrl:
+        type: string
+        description: Public T54 seller origin (no trailing slash), e.g. https://your-host/t54
+      x402BrokerPayMode:
+        type: string
+        description: x402_broker_client rail — mock, xrpl_testnet, xrpl_mainnet, xumm, base_usdc, etc.
+        default: mock
+      x402McpDryRun:
+        type: string
+        description: Set to 1 for mock pay without real settlement
+        default: "0"
+    required: []
+    exampleConfig:
+      t54SellerPublicBaseUrl: ""
+      x402BrokerPayMode: mock
+      x402McpDryRun: "0"
+  commandFunction: |-
+    (config) => ({
+      command: 'uv',
+      args: [
+        'run',
+        '--directory', 'packages/agents',
+        '--with', 'mcp[cli]',
+        '--with', 'pyyaml',
+        'python',
+        '-u',
+        '../../scripts/mcp_server.py'
+      ],
+      env: {
+        T54_SELLER_PUBLIC_BASE_URL: config.t54SellerPublicBaseUrl || '',
+        X402_BROKER_PAY_MODE: config.x402BrokerPayMode || 'mock',
+        X402_MCP_DRY_RUN: config.x402McpDryRun || '0',
+      },
+    })
