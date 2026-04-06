@@ -82,7 +82,7 @@
     "cdp:write-smoke": "python scripts/cdp_smoke.py --write-smoke",
     "mcp:t54": "python scripts/mcp_server.py",
     "mcp:t54:check": "python scripts/mcp_server.py --check",
-    "mcp:t54:sse": "python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9050",
+    "mcp:t54:sse": "python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9051",
     "local:t54-mcp-windows": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-local-t54-mcp-windows.ps1",
     "airdrop:scout": "python scripts/run-airdrop-scout.py",
     "airdrop:pipeline": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-airdrop-pipeline.ps1",

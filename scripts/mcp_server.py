@@ -7,7 +7,7 @@ Run (stdio, for Cursor / Claude Desktop / OpenClaw):
   python scripts/mcp_server.py
 
 Remote SSE (Agent.ai, hosted clients) — bind localhost, put Caddy/ngrok in front:
-  python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9050
+  python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9051
   Paths: GET /sse (stream), POST /messages/ (MCP). Public URL with unified proxy: https://<origin>/mcp/sse
 
 Validate without starting stdio (CI / preflight):
@@ -312,8 +312,8 @@ def main() -> None:
     ap.add_argument(
         "--port",
         type=int,
-        default=int((os.getenv("X402_MCP_SSE_PORT") or "9050").strip() or "9050"),
-        help="Port for SSE (default 9050; env X402_MCP_SSE_PORT)",
+        default=int((os.getenv("X402_MCP_SSE_PORT") or "9051").strip() or "9051"),
+        help="Port for SSE (default 9051; env X402_MCP_SSE_PORT)",
     )
     args = ap.parse_args()
     if args.check:

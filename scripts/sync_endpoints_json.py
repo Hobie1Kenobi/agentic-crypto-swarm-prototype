@@ -120,7 +120,7 @@ def main() -> int:
             {
                 "id": "mcp_t54_sse",
                 "label": "MCP T54 x402 (SSE, remote clients)",
-                "description": "FastMCP SSE: stream GET .../mcp/sse, POST .../mcp/messages/. Run local server on 127.0.0.1:9050; Caddy maps /mcp to it. Set MCP_SSE_PUBLIC_URL to https://<your-tunnel-host>/mcp for Agent.ai.",
+                "description": "FastMCP SSE: stream GET .../mcp/sse, POST .../mcp/messages/. Run local server on 127.0.0.1:9051; Caddy maps /mcp to it. Set MCP_SSE_PUBLIC_URL to https://<your-tunnel-host>/mcp for Agent.ai.",
                 "url": mcp_sse,
                 "sse_url": f"{mcp_sse}/sse",
                 "messages_url": f"{mcp_sse}/messages/",

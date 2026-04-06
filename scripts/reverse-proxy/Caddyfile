@@ -42,9 +42,9 @@
 	}
 
 	# MCP (FastMCP SSE) — strip /mcp prefix → backend /sse and /messages/
-	# Start: python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9050
+	# Start: python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9051
 	handle_path /mcp/* {
-		reverse_proxy 127.0.0.1:9050
+		reverse_proxy 127.0.0.1:9051
 	}
 
 	# Default: Base seller (e.g. /health on x402 app)

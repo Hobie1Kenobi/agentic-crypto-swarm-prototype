@@ -2,7 +2,7 @@
 $ErrorActionPreference = "Stop"
 $RepoRoot = Split-Path $PSScriptRoot -Parent
 Set-Location $RepoRoot
-$port = if ($env:X402_MCP_SSE_PORT) { $env:X402_MCP_SSE_PORT } else { "9050" }
+$port = if ($env:X402_MCP_SSE_PORT) { $env:X402_MCP_SSE_PORT } else { "9051" }
 $hostBind = if ($env:X402_MCP_SSE_HOST) { $env:X402_MCP_SSE_HOST } else { "127.0.0.1" }
 if ($env:SWARM_MCP_PYTHON) {
     & $env:SWARM_MCP_PYTHON -u (Join-Path $PSScriptRoot "mcp_server.py") --transport sse --host $hostBind --port $port @args

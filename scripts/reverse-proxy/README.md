@@ -4,7 +4,7 @@ Use this when you want **one HTTPS hostname** (one ngrok URL) for:
 
 | Path | Service | Local port |
 |------|---------|------------|
-| `/mcp/*` | MCP T54 x402 **SSE** (`scripts/mcp_server.py --transport sse`); **`/mcp` is stripped** → `/sse`, `/messages/` | 9050 |
+| `/mcp/*` | MCP T54 x402 **SSE** (`scripts/mcp_server.py --transport sse`); **`/mcp` is stripped** → `/sse`, `/messages/` | 9051 |
 | `/x402/*` | Base x402 seller (`api_seller_x402`) | 8043 |
 | `/t54/*` | T54 XRPL seller (`t54_seller_app`); **`/t54` is stripped** before proxying | 8765 |
 | `/webhooks/*`, `/v1/*`, `/marketplace/*`, `/docs*`, `/openapi.json`, `/redoc*` | Marketplace (`marketplace_api`) | 8055 |

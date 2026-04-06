@@ -108,12 +108,12 @@ Hosted clients (e.g. **Agent.ai → Connections → MCP → Add MCP Server**) ne
 npm run mcp:t54:sse
 ```
 
-Or: `python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9050`  
+Or: `python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9051`  
 (Override with `X402_MCP_SSE_HOST` / `X402_MCP_SSE_PORT`.)
 
 **2. Put HTTPS in front** (pick one):
 
-- **Unified Caddy** (`:9080`) already maps **`/mcp/*`** → `127.0.0.1:9050` (see `scripts/reverse-proxy/Caddyfile`). Start Caddy + your app stack, then point **Cloudflare Tunnel** or **ngrok** at `:9080` (same as your T54/Base routes).
+- **Unified Caddy** (`:9080`) already maps **`/mcp/*`** → `127.0.0.1:9051` (see `scripts/reverse-proxy/Caddyfile`). Start Caddy + your app stack, then point **Cloudflare Tunnel** or **ngrok** at `:9080` (same as your T54/Base routes).
 - Public endpoints on the MCP app:
   - **SSE stream:** `https://<your-public-host>/mcp/sse`
   - **Messages:** `https://<your-public-host>/mcp/messages/`
@@ -129,6 +129,8 @@ MCP_SSE_PUBLIC_URL=https://YOUR_TUNNEL_HOST/mcp
 Then `npm run docs:sync-endpoints` so [endpoints.json](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/endpoints.json) includes `mcp_t54_sse` with `sse_url` / `messages_url`.
 
 **Security:** The MCP process has no built-in API key; anyone who can reach the URL can invoke tools (and trigger x402 flows if your broker env allows). Prefer **tunnel + Access**, IP allowlists, or running only while testing.
+
+**Port already in use (Windows `WinError 10048`):** Another process is bound to the same port (often a leftover Python from an earlier MCP run). Either stop it — `netstat -ano | findstr :9051` then `taskkill /PID <pid> /F` — or set **`X402_MCP_SSE_PORT`** (and the **Caddy** `reverse_proxy` port) to a free port.
 
 ## 6. Public “one-line install” (future)
 

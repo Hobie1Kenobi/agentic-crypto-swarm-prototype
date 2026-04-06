@@ -4,7 +4,7 @@
 
 ## Connections → MCP → Add MCP Server (SSE URL)
 
-This repo exposes **FastMCP over SSE** when you run `npm run mcp:t54:sse` and route HTTPS to it (unified **Caddy `:9080`** strips **`/mcp`** → `127.0.0.1:9050`). Full steps: **[docs/mcp-integration.md](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md)** (section **Remote SSE**).
+This repo exposes **FastMCP over SSE** when you run `npm run mcp:t54:sse` and route HTTPS to it (unified **Caddy `:9080`** strips **`/mcp`** → `127.0.0.1:9051`). Full steps: **[docs/mcp-integration.md](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md)** (section **Remote SSE**).
 
 **Paste in Agent.ai (typical):**
 
