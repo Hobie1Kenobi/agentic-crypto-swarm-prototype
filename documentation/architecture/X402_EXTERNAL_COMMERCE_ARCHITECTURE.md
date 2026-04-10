@@ -120,7 +120,8 @@ python scripts/run-x402-invoke.py
 ```
 
 ### Inspect Outputs
-- `external_commerce_data/providers.json` — provider registry
+- `external_commerce_data/providers.json` — small **canonical** provider registry (checked in; used by `ProviderRegistry`)
+- `external_commerce_data/providers.discovery-snapshot.json` — full merged export (config + x402scout slim catalog + public API URLs); **not** loaded at runtime. Regenerate: `npm run commerce:providers-snapshot`
 - `external_commerce_data/provider_relationships.json` — relationship memory
 - `external_commerce_data/external-invocations.jsonl` — invocation records
 - `external_commerce_data/discovery-results.json` — discovery output

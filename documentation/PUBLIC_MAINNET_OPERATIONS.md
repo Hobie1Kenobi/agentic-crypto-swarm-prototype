@@ -64,6 +64,7 @@ After **`api.<domain>`** is live: **[operations/CLOUDFLARE_CACHE_AND_SECURITY.md
 |------|------|
 | `docs/endpoints.json` | Machine-readable **public** URLs for Pages + agents (generated from `.env`) |
 | `packages/agents/config/x402_providers.json` | Discovery seeds; **runtime** URLs are overridden from env when set (`discovery.py`) |
+| `external_commerce_data/providers.discovery-snapshot.json` | Optional full merged catalog export for diffs/review (`npm run commerce:providers-snapshot`); not the runtime registry |
 | `DIRECTORY_SUBMISSION_KIT.md` | Copy for listings; link **endpoints.json** after sync |
 
 ## Related docs

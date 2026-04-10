@@ -64,6 +64,7 @@
     "stack:unified:install-startup": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-unified-stack-startup.ps1",
     "stack:unified:uninstall-startup": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/uninstall-unified-stack-startup.ps1",
     "commerce:snapshot": "python scripts/run-marketplace-discovery-snapshot.py",
+    "commerce:providers-snapshot": "python scripts/export_providers_discovery_snapshot.py",
     "commerce:discover": "python scripts/run-x402-discovery.py",
     "marketplace:prep": "npm run catalog:scout-slim && npm run commerce:discover",
     "catalog:scout-slim": "python scripts/build-x402scout-providers-slim.py",
