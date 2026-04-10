@@ -530,7 +530,7 @@
   <section id="live-endpoints">
     <div class="container">
       <h2 class="section-title">Live endpoints</h2>
-      <p class="section-sub">Single source of truth: <code style="color: #a5b4fc;">docs/endpoints.json</code> — regenerate with <code style="color: #a5b4fc;">npm run docs:sync-endpoints</code> (reads <code>T54_SELLER_PUBLIC_BASE_URL</code>, <code>X402_SELLER_PUBLIC_URL</code>, and <code>MARKETPLACE_PUBLIC_BASE_URL</code> from <code>.env</code>). After unified Caddy + ngrok, run <code style="color: #a5b4fc;">npm run stack:unified:wire</code> first, then sync and commit so GitHub Pages matches your live tunnels.</p>
+      <p class="section-sub">Single source of truth: <code style="color: #a5b4fc;">docs/endpoints.json</code> — regenerate with <code style="color: #a5b4fc;">npm run docs:sync-endpoints</code> (reads <code>T54_SELLER_PUBLIC_BASE_URL</code>, <code>X402_SELLER_PUBLIC_URL</code>, and <code>MARKETPLACE_PUBLIC_BASE_URL</code> from <code>.env</code>). Use <strong>stable HTTPS</strong> and <strong>mainnet</strong> settlement (<code>eip155:8453</code> USDC, <code>xrpl:0</code> XRP) for real inbound sales — see <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/PUBLIC_MAINNET_OPERATIONS.md" target="_blank" rel="noopener" style="color: var(--accent-cyan);">PUBLIC_MAINNET_OPERATIONS.md</a>. After unified Caddy + tunnel, run <code style="color: #a5b4fc;">npm run stack:unified:wire</code> first, then sync and commit so GitHub Pages matches your live origins.</p>
       <div id="live-endpoints-root" class="t54-spotlight" style="margin-top: 24px;">
         <p style="color: var(--text-muted);">Loading…</p>
       </div>
@@ -729,7 +729,7 @@
         </div>
         <div class="card" style="border-color: rgba(99, 102, 241, 0.35); background: linear-gradient(145deg, rgba(99, 102, 241, 0.08), var(--bg-card));">
           <h3>T54 x402 seller (XRPL)</h3>
-          <p>Runbook: ngrok, env vars, 24/7 startup, multi-SKU discovery.</p>
+          <p>Runbook: Cloudflare Tunnel / ngrok, env vars, 24/7 startup, multi-SKU discovery.</p>
           <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/x402-t54-base/T54_SELLER.md" target="_blank" rel="noopener" class="btn btn-primary" style="margin-top: 16px; display: inline-flex;">View Doc</a>
         </div>
         <div class="card" style="border-color: rgba(245, 158, 11, 0.35); background: linear-gradient(145deg, rgba(245, 158, 11, 0.06), var(--bg-card));">

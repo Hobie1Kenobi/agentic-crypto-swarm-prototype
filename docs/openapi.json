@@ -1,0 +1,344 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Agentic Swarm x402 API (api_402)",
+    "description": "Celo-native HTTP 402 flow: first request returns payment instructions for AgentRevenueService.fulfillQuery; retry with X-Payment-Tx-Hash after on-chain payment. Implemented in packages/agents/api_402.py.",
+    "version": "0.1.0",
+    "contact": {
+      "name": "Agentic Swarm Marketplace",
+      "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://api.agentic-swarm-marketplace.com",
+      "description": "Public HTTPS (Cloudflare Tunnel → unified Caddy :9080). Celo api_402 lives on :8042 behind proxy paths; see docs/endpoints.json for current routes and /health."
+    },
+    {
+      "url": "http://127.0.0.1:8042",
+      "description": "Local api_402 (API_402_PORT=8042)"
+    }
+  ],
+  "tags": [
+    { "name": "query", "description": "Paid LLM query (Celo fulfillQuery + x402-style 402)" },
+    { "name": "health", "description": "Liveness" }
+  ],
+  "paths": {
+    "/query": {
+      "get": {
+        "tags": ["query"],
+        "summary": "Query (GET)",
+        "description": "Returns 402 with payment details if X-Payment-Tx-Hash is absent. With a valid payment tx hash, returns LLM answer JSON.",
+        "operationId": "queryGet",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "User question (alternative: POST body {\"query\": \"...\"})."
+          },
+          {
+            "$ref": "#/components/parameters/XPaymentTxHash"
+          },
+          {
+            "$ref": "#/components/parameters/XPaymentAmount"
+          },
+          {
+            "$ref": "#/components/parameters/XPaymentAmountWei"
+          }
+        ],
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Paid request; LLM response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuerySuccess" }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing query",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HttpError" },
+                "example": { "detail": "Missing query (use ?q=... or JSON body {\"query\": \"...\"})" }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required (no/invalid tx) or invalid payment",
+            "headers": {
+              "X-Payment-Contract": {
+                "schema": { "type": "string" },
+                "description": "AgentRevenueService contract address"
+              },
+              "X-Payment-Amount-Wei": {
+                "schema": { "type": "string" },
+                "description": "Minimum payment in wei"
+              },
+              "X-Payment-Chain-Id": {
+                "schema": { "type": "string" },
+                "description": "Chain id for fulfillQuery"
+              },
+              "X-Payment-Metadata": {
+                "schema": { "type": "string" },
+                "description": "resultMetadata passed to fulfillQuery (x402:...)"
+              },
+              "X-Payment-Native-Symbol": {
+                "schema": { "type": "string" },
+                "description": "Native token symbol (e.g. CELO)"
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    { "$ref": "#/components/schemas/PaymentRequired" },
+                    { "$ref": "#/components/schemas/HttpError" }
+                  ]
+                },
+                "examples": {
+                  "challenge": {
+                    "value": {
+                      "message": "Payment Required",
+                      "payment": {
+                        "contract": "0x0000000000000000000000000000000000000000",
+                        "amount_wei": "1000000000000000",
+                        "chain_id": "11142220",
+                        "method": "fulfillQuery(string resultMetadata)",
+                        "result_metadata": "x402:example",
+                        "value_eth": "0.001",
+                        "native_symbol": "CELO"
+                      }
+                    }
+                  },
+                  "invalidTx": {
+                    "value": { "detail": "Invalid or unconfirmed payment tx" }
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error (e.g. LLM failure)",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HttpError" }
+              }
+            }
+          },
+          "503": {
+            "description": "Service not configured",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HttpError" },
+                "example": { "detail": "REVENUE_SERVICE_ADDRESS not set" }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["query"],
+        "summary": "Query (POST)",
+        "description": "Same as GET but query text may be supplied in JSON body.",
+        "operationId": "queryPost",
+        "parameters": [
+          {
+            "name": "q",
+            "in": "query",
+            "required": false,
+            "schema": { "type": "string" },
+            "description": "Optional; overrides body if both set (implementation prefers body then q)."
+          },
+          {
+            "$ref": "#/components/parameters/XPaymentTxHash"
+          },
+          {
+            "$ref": "#/components/parameters/XPaymentAmount"
+          },
+          {
+            "$ref": "#/components/parameters/XPaymentAmountWei"
+          }
+        ],
+        "requestBody": {
+          "required": false,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "query": {
+                    "type": "string",
+                    "description": "User question"
+                  }
+                }
+              },
+              "example": { "query": "What is sustainable agent commerce?" }
+            }
+          }
+        },
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "Paid request; LLM response",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/QuerySuccess" }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing query",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HttpError" }
+              }
+            }
+          },
+          "402": {
+            "description": "Payment required or invalid payment",
+            "headers": {
+              "X-Payment-Contract": { "schema": { "type": "string" } },
+              "X-Payment-Amount-Wei": { "schema": { "type": "string" } },
+              "X-Payment-Chain-Id": { "schema": { "type": "string" } },
+              "X-Payment-Metadata": { "schema": { "type": "string" } },
+              "X-Payment-Native-Symbol": { "schema": { "type": "string" } }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    { "$ref": "#/components/schemas/PaymentRequired" },
+                    { "$ref": "#/components/schemas/HttpError" }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal error",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HttpError" }
+              }
+            }
+          },
+          "503": {
+            "description": "Service not configured",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HttpError" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": ["health"],
+        "summary": "Health check",
+        "operationId": "healthGet",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/HealthResponse" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "parameters": {
+      "XPaymentTxHash": {
+        "name": "X-Payment-Tx-Hash",
+        "in": "header",
+        "required": false,
+        "schema": { "type": "string" },
+        "description": "After 402, pay via fulfillQuery on-chain, then retry the same request with this tx hash. Server verifies against AgentRevenueService."
+      },
+      "XPaymentAmount": {
+        "name": "X-Payment-Amount",
+        "in": "header",
+        "required": false,
+        "schema": { "type": "string" },
+        "description": "Optional informational header (e.g. for gateways). The canonical amount is in the 402 body (amount_wei) and header X-Payment-Amount-Wei on the challenge response."
+      },
+      "XPaymentAmountWei": {
+        "name": "X-Payment-Amount-Wei",
+        "in": "header",
+        "required": false,
+        "schema": { "type": "string" },
+        "description": "Optional on retry; the server verifies payment using the transaction hash, not this header alone."
+      }
+    },
+    "schemas": {
+      "QuerySuccess": {
+        "type": "object",
+        "required": ["query", "response"],
+        "properties": {
+          "query": { "type": "string" },
+          "response": { "type": "string" }
+        }
+      },
+      "PaymentRequired": {
+        "type": "object",
+        "required": ["message", "payment"],
+        "properties": {
+          "message": { "type": "string", "example": "Payment Required" },
+          "payment": {
+            "type": "object",
+            "properties": {
+              "contract": { "type": "string" },
+              "amount_wei": { "type": "string" },
+              "chain_id": { "type": "string" },
+              "method": { "type": "string" },
+              "result_metadata": { "type": "string" },
+              "value_eth": { "type": "string" },
+              "native_symbol": { "type": "string" }
+            }
+          }
+        }
+      },
+      "HttpError": {
+        "type": "object",
+        "properties": {
+          "detail": {
+            "oneOf": [{ "type": "string" }, { "type": "array", "items": {} }]
+          }
+        }
+      },
+      "HealthResponse": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "example": "ok" },
+          "revenue_contract": {
+            "type": "string",
+            "description": "REVENUE_SERVICE_ADDRESS or 'not set'"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "x402PaymentTx": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-Payment-Tx-Hash",
+        "description": "Celo-native x402: complete fulfillQuery on AgentRevenueService, then send the transaction hash on the retried request."
+      },
+      "rapidApiKey": {
+        "type": "apiKey",
+        "in": "header",
+        "name": "X-RapidAPI-Key",
+        "description": "When the API is published behind RapidAPI, subscribers authenticate with this key. Your deployment must validate it (not implemented in api_402.py by default)."
+      }
+    }
+  }
+}

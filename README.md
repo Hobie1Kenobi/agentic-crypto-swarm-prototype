@@ -3,7 +3,8 @@
 </p>
 
 <p align="center">
-  <a href="https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/"><strong>Live dashboard &amp; documentation (GitHub Pages)</strong></a>
+  <a href="https://www.agentic-swarm-marketplace.com/agentic-crypto-swarm-prototype/"><strong>Live site (custom domain)</strong></a>
+  · <a href="https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/"><strong>GitHub Pages mirror</strong></a>
   · <a href="https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/llms.txt">llms.txt</a>
   · <a href="https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md">MCP setup</a>
   · <a href="DIRECTORY_SUBMISSION_KIT.md">Directory submission kit</a>
@@ -21,7 +22,7 @@
 
 # Agentic Crypto Swarm Prototype
 
-A hierarchical multi-agent system that autonomously earns testnet revenue through on-chain value creation — no trading, no speculation. **Celo-first:** Celo Sepolia (testnet), Celo mainnet (production); local Anvil for zero-faucet testing; optional Base/Polygon paths.
+A hierarchical multi-agent system for **machine-paid** on-chain value creation — no trading, no speculation. **Defaults:** Celo Sepolia (`11142220`) for development; **production settlement** on **Celo mainnet** (`42220`). **Public inbound sales** use **Base mainnet USDC** (x402 facilitator seller, `eip155:8453`) and **XRPL mainnet XRP** (T54, `xrpl:0`) once **HTTPS URLs** are set — see **[documentation/PUBLIC_MAINNET_OPERATIONS.md](documentation/PUBLIC_MAINNET_OPERATIONS.md)**. Local Anvil (`31337`) for zero-faucet testing.
 
 **Layout:** long-form manuals live under **`documentation/`** (see `documentation/README.md`). Generated soak reports, traces, proof bundles, and communication traces live under **`artifacts/`** (see `artifacts/README.md`). The **`docs/`** folder is reserved for **GitHub Pages** (`index.html`, `endpoints.json`, sitemap, discovery scans linked from the site).
 
@@ -67,7 +68,7 @@ A hierarchical multi-agent system that autonomously earns testnet revenue throug
 | **T54 XRPL x402 seller** | `npm run t54:seller` | XRP · `xrpl:0` · T54 facilitator |
 | **T54 stack** (seller + tunnel helper) | `npm run t54:stack:start` | Same (orchestration script) |
 | **Celo native x402 API** | `npm run api:402` | CELO · on-chain `fulfillQuery` |
-| **Base Sepolia x402 seller** (facilitator / Bazaar path) | `packages/agents/api_seller_x402.py` | USDC · facilitator |
+| **Base mainnet USDC x402 seller** (facilitator / Bazaar path) | `npm run x402:seller` → `api_seller_x402` | USDC · `eip155:8453` · [public URL setup](documentation/PUBLIC_MAINNET_OPERATIONS.md) |
 | **Compute marketplace** | `npm run miner` · `npm run validator` | Celo · escrow / scoring |
 | **Multi-rail hybrid demo** | `npm run demo:multi-rail` | Celo + XRPL composition |
 | **External x402 discovery** | `packages/agents/external_commerce/discovery.py` + [`x402_providers.json`](packages/agents/config/x402_providers.json) | Catalog of providers |

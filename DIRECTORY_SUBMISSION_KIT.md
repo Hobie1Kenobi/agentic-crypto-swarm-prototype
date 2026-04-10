@@ -6,10 +6,12 @@ Use this file when submitting to **Awesome MCP**, **Smithery**, **Glama**, **TAA
 
 | Asset | URL |
 |--------|-----|
-| **Live dashboard & docs (GitHub Pages)** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/ |
-| **Agent / crawler overview** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/llms.txt |
-| **MCP setup (Cursor / Claude)** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md |
-| **Live tunnel & seller origins** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/endpoints.json |
+| **Live dashboard & docs (custom domain)** | https://www.agentic-swarm-marketplace.com/agentic-crypto-swarm-prototype/ |
+| **Same site (github.io mirror)** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/ |
+| **Agent / crawler overview** | https://www.agentic-swarm-marketplace.com/agentic-crypto-swarm-prototype/llms.txt |
+| **MCP setup (Cursor / Claude)** | https://www.agentic-swarm-marketplace.com/agentic-crypto-swarm-prototype/mcp-integration.md |
+| **Public API + tunnel registry (`endpoints.json`)** | https://www.agentic-swarm-marketplace.com/agentic-crypto-swarm-prototype/endpoints.json |
+| **Production API host (x402 / T54 / marketplace via tunnel)** | https://api.agentic-swarm-marketplace.com/health |
 | **T54 OpenAPI (raw)** | https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/documentation/x402-t54-base/openapi/agentic-swarm-t54-skus.openapi.yaml |
 | **ai-plugin.json (Pages)** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/.well-known/ai-plugin.json |
 | **mcp-manifest.json (repo root)** | https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/mcp-manifest.json |
@@ -44,6 +46,8 @@ Use this file when submitting to **Awesome MCP**, **Smithery**, **Glama**, **TAA
 **Discovery:** External commerce discovery uses a growing provider catalog; x402 Scout–style snapshots in-repo reference on the order of **~1,175** cataloged third-party services in chunk metadata (see `external_commerce_data/x402scout-catalog-chunks/`) — your **T54 seller SKUs** are a separate, first-party OpenAPI catalog.
 
 **Public machine-readable entry points:** **llms.txt**, **endpoints.json**, and **.well-known/ai-plugin.json** on Pages.
+
+**Before expecting inbound paid traffic:** set **stable HTTPS** `X402_SELLER_PUBLIC_URL` and `T54_SELLER_PUBLIC_BASE_URL`, run **`npm run docs:sync-endpoints`**, commit **`docs/endpoints.json`**, and use **Base mainnet** (`eip155:8453`) and **XRPL mainnet** (`xrpl:0`) for real settlement — see **[documentation/PUBLIC_MAINNET_OPERATIONS.md](documentation/PUBLIC_MAINNET_OPERATIONS.md)**.
 
 ---
 
