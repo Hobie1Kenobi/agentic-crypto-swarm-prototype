@@ -107,7 +107,7 @@ def main() -> int:
             {
                 "id": "marketplace_public_origin",
                 "label": "Marketplace HTTP (Stripe MPP, buyer API, webhooks)",
-                "description": "Unified reverse proxy exposes /webhooks/stripe, /v1/*, /marketplace/* on this origin when using Caddy + ngrok.",
+                "description": "Stripe MPP + buyer API + webhooks: unified Caddy maps /webhooks/stripe, /v1/*, /marketplace/* to marketplace:serve (8055). Same public HTTPS origin as x402/T54 when MARKETPLACE_PUBLIC_BASE_URL matches your tunnel.",
                 "url": mp_base,
                 "network": "marketplace",
                 "health_url": mp_health,
@@ -130,7 +130,7 @@ def main() -> int:
         )
 
     data = {
-        "schema_note": "Canonical public URLs for agents and buyers. Regenerate: python scripts/sync_endpoints_json.py",
+        "schema_note": "Canonical public URLs for agents and buyers. Regenerate: npm run docs:sync-endpoints (reads repo-root .env). Commit result for GitHub Pages. Stable HTTPS + mainnet alignment: documentation/PUBLIC_MAINNET_OPERATIONS.md",
         "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
         "updated_at": ts,
         "endpoints": endpoints,
