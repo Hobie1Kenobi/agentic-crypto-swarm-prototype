@@ -6,14 +6,14 @@ Use this file when submitting to **Awesome MCP**, **Smithery**, **Glama**, **TAA
 
 | Asset | URL |
 |--------|-----|
-| **Live dashboard & docs (custom domain)** | https://www.agentic-swarm-marketplace.com/agentic-crypto-swarm-prototype/ |
+| **Live dashboard & docs (custom domain)** | https://www.agentic-swarm-marketplace.com/ |
 | **Same site (github.io mirror)** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/ |
-| **Agent / crawler overview** | https://www.agentic-swarm-marketplace.com/agentic-crypto-swarm-prototype/llms.txt |
-| **MCP setup (Cursor / Claude)** | https://www.agentic-swarm-marketplace.com/agentic-crypto-swarm-prototype/mcp-integration.md |
-| **Public API + tunnel registry (`endpoints.json`)** | https://www.agentic-swarm-marketplace.com/agentic-crypto-swarm-prototype/endpoints.json |
+| **Agent / crawler overview** | https://www.agentic-swarm-marketplace.com/llms.txt |
+| **MCP setup (Cursor / Claude)** | https://www.agentic-swarm-marketplace.com/mcp-integration.md |
+| **Public API + tunnel registry (`endpoints.json`)** | https://www.agentic-swarm-marketplace.com/endpoints.json |
 | **Production API host (x402 / T54 / marketplace via tunnel)** | https://api.agentic-swarm-marketplace.com/health |
 | **T54 OpenAPI (raw)** | https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/documentation/x402-t54-base/openapi/agentic-swarm-t54-skus.openapi.yaml |
-| **ai-plugin.json (Pages)** | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/.well-known/ai-plugin.json |
+| **ai-plugin.json (Pages)** | https://www.agentic-swarm-marketplace.com/.well-known/ai-plugin.json (mirror: https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/.well-known/ai-plugin.json) |
 | **mcp-manifest.json (repo root)** | https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/mcp-manifest.json |
 | **smithery.yaml (Smithery wizard)** | https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/smithery.yaml |
 
@@ -67,7 +67,7 @@ https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype
 
 ## Copy-paste: MCP Cursor config (local clone)
 
-See [`mcp-integration.md`](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md) for full detail. Minimal shape:
+See [`mcp-integration.md`](https://www.agentic-swarm-marketplace.com/mcp-integration.md) (or [github.io mirror](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md)) for full detail. Minimal shape:
 
 ```json
 {
@@ -96,15 +96,16 @@ See [`mcp-integration.md`](https://hobie1kenobi.github.io/agentic-crypto-swarm-p
 
 ### Smithery.ai / Glama.ai
 
-- **Smithery one-click:** Repo root includes **`smithery.yaml`** — `startCommand.type: stdio` with a **`commandFunction`** that runs **`uv`** from `packages/agents` with `--with mcp[cli]` and `--with pyyaml`, then `python -u ../../scripts/mcp_server.py`. Config fields are **optional** (empty defaults + `mock`) so tool listing works without secrets.
-- Submit the **GitHub repo URL**; the wizard should detect **`smithery.yaml`** automatically.
-- Also submit **`mcp-manifest.json`** if a form asks for package-style metadata.
-- **Glama:** use the same repo link + **`mcp-manifest.json`** per their form.
-- **Local dev without `uv`:** use `python -u scripts/mcp_server.py` from repo root (see **mcp-integration.md**) or **PowerShell** + `scripts/run-mcp-t54.ps1` on Windows.
+**Step-by-step:** **[submissions/SMITHERY_GLAMA_TAAFT.md](submissions/SMITHERY_GLAMA_TAAFT.md)** — Glama first (Awesome MCP badge), then Smithery (GitHub **`smithery.yaml`** and/or URL **`https://api.agentic-swarm-marketplace.com/mcp`**), Cloudflare **`SmitheryBot`** note.
+
+- **Smithery:** Repo root **`smithery.yaml`** — `startCommand.type: stdio` with **`commandFunction`** running **`uv`** from `packages/agents` with `--with mcp[cli]` and `--with pyyaml`, then `python -u ../../scripts/mcp_server.py`. Config fields are **optional** (empty defaults + `mock`). URL publish: **[smithery.ai/new](https://smithery.ai/new)** for hosted Streamable HTTP MCP.
+- Submit the **GitHub repo URL** where the wizard asks; **`mcp-manifest.json`** for package-style metadata.
+- **Glama:** **[glama.ai/mcp/servers](https://glama.ai/mcp/servers)** → **Add Server** with the same repo link.
+- **Local dev without `uv`:** `python -u scripts/mcp_server.py` from repo root (see **mcp-integration.md**) or **PowerShell** + `scripts/run-mcp-t54.ps1` on Windows.
 
 ### ThereIsAnAIForThat.com / Agent.ai
 
-- **TAAFT:** Pre-filled copy for their form is in **[submissions/taaft-form-copy.md](submissions/taaft-form-copy.md)** — submit at [theresanaiforthat.com/s/submit/](https://theresanaiforthat.com/s/submit/).
+- **TAAFT:** Pre-filled copy: **[submissions/taaft-form-copy.md](submissions/taaft-form-copy.md)** · submit: [theresanaiforthat.com/s/submit/](https://theresanaiforthat.com/s/submit/) · order with Smithery/Glama: **[submissions/SMITHERY_GLAMA_TAAFT.md](submissions/SMITHERY_GLAMA_TAAFT.md)**.
 - **Agent.ai:** Their marketplace targets agents built **on platform**; see **[submissions/agent-ai-notes.md](submissions/agent-ai-notes.md)** for realistic options (suggest-agent, future builder listing, parallel directories).
 - General: use **tagline**, **short / long description** from this kit; **GitHub Pages** as live URL; **repo** as source; categories **Developer Tools**, **Crypto**, **Finance**, **Automation** where applicable.
 
@@ -128,6 +129,7 @@ See [`mcp-integration.md`](https://hobie1kenobi.github.io/agentic-crypto-swarm-p
 
 | Target | File |
 |--------|------|
+| **Smithery + Glama + TAAFT** (ordered runbook) | [submissions/SMITHERY_GLAMA_TAAFT.md](submissions/SMITHERY_GLAMA_TAAFT.md) |
 | **Awesome MCP** (PR to punkpeye list) | [submissions/awesome-mcp-servers-PR.md](submissions/awesome-mcp-servers-PR.md) |
 | **TAAFT** (form copy) | [submissions/taaft-form-copy.md](submissions/taaft-form-copy.md) |
 | **Agent.ai** (expectations + blurb) | [submissions/agent-ai-notes.md](submissions/agent-ai-notes.md) |
@@ -137,8 +139,10 @@ See [`mcp-integration.md`](https://hobie1kenobi.github.io/agentic-crypto-swarm-p
 ## After you submit
 
 1. **Push** `master` so **GitHub Pages** deploys `docs/` (includes **`docs/.well-known/ai-plugin.json`**).
-2. Verify: `https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/.well-known/ai-plugin.json` returns JSON.
+2. Verify JSON: **`https://www.agentic-swarm-marketplace.com/.well-known/ai-plugin.json`** (and optionally the **github.io** mirror URL above).
 3. **Search Console:** keep **sitemap.xml** submitted; optional URL inspection for new paths.
+
+**Custom domain note:** `docs/CNAME` maps **`www.agentic-swarm-marketplace.com`** to the **project site root** — use **`https://www.agentic-swarm-marketplace.com/...`** paths without `/agentic-crypto-swarm-prototype/` in the path (that segment is only for the default **github.io** project URL).
 
 ---
 
@@ -150,6 +154,6 @@ See [`mcp-integration.md`](https://hobie1kenobi.github.io/agentic-crypto-swarm-p
 | `smithery.yaml` | Smithery **stdio** `commandFunction` + optional `configSchema` (wizard / one-click) |
 | `docs/.well-known/ai-plugin.json` | Legacy ChatGPT plugin–style metadata + OpenAPI URL (**served on Pages**) |
 | `.well-known/ai-plugin.json` | Same JSON at repo root for tools that scan the repository |
-| `submissions/*.md` | Awesome MCP PR, TAAFT copy, Agent.ai notes |
+| `submissions/*.md` | Smithery/Glama/TAAFT runbook, Awesome MCP PR, TAAFT copy, Agent.ai notes |
 
 **Note:** GitHub Actions deploys **`docs/`** only. The live **ai-plugin** URL for directories must use the **Pages** path above, not raw GitHub path under `.well-known` at repo root.

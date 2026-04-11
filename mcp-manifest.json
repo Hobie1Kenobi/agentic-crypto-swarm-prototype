@@ -5,9 +5,9 @@
   "description": "MCP stdio server: T54 x402 seller SKUs from OpenAPI; HTTP 402 settled via x402_broker_client (XRPL/Base per env).",
   "author": "Hobie1Kenobi",
   "license": "MIT",
-  "homepage": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+  "homepage": "https://www.agentic-swarm-marketplace.com/",
   "repository": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
-  "documentation": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md",
+  "documentation": "https://www.agentic-swarm-marketplace.com/mcp-integration.md",
   "server": {
     "type": "python",
     "entry_point": "scripts/mcp_server.py",

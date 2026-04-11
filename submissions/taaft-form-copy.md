@@ -15,9 +15,9 @@ Search the site first for “Agentic Swarm” / your URL — claim or update an 
 
 ## Primary URL (website)
 
-`https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/`
+`https://www.agentic-swarm-marketplace.com/`
 
-(Secondary / source: `https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype`)
+(Secondary / mirror: `https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/` · source: `https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype`)
 
 ---
 
@@ -58,5 +58,5 @@ Hierarchical agents earn through machine-paid commerce (HTTP 402 + x402), not sp
 
 ## Logo / image
 
-Use repo **`assets/logo.png`** or GitHub Pages **`og-banner.png`**:  
-`https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/og-banner.png`
+Use repo **`assets/logo.png`** or Pages **`og-banner.png`**:  
+`https://www.agentic-swarm-marketplace.com/og-banner.png` (mirror: `https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/og-banner.png`)

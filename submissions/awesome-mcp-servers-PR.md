@@ -19,7 +19,7 @@
 4. **Insert** the following line **after** `[Handshake58/DRAIN-marketplace]` and **before** `[hifriendbot/agentwallet-mcp]`:
 
 ```markdown
-- [Hobie1Kenobi/agentic-crypto-swarm-prototype](https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype) [![Hobie1Kenobi/agentic-crypto-swarm-prototype MCP server](https://glama.ai/mcp/servers/Hobie1Kenobi/agentic-crypto-swarm-prototype/badges/score.svg)](https://glama.ai/mcp/servers/Hobie1Kenobi/agentic-crypto-swarm-prototype) 🐍 ☁️ 🏠 🍎 🪟 🐧 - T54 x402 seller SKUs as MCP tools: OpenAPI-driven stdio server pays HTTP 402 via x402_broker_client (XRPL / Base USDC per env). Cursor & Claude Desktop; `smithery.yaml` + `mcp-manifest.json`. [Live portal](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/) · [MCP setup](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md).
+- [Hobie1Kenobi/agentic-crypto-swarm-prototype](https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype) [![Hobie1Kenobi/agentic-crypto-swarm-prototype MCP server](https://glama.ai/mcp/servers/Hobie1Kenobi/agentic-crypto-swarm-prototype/badges/score.svg)](https://glama.ai/mcp/servers/Hobie1Kenobi/agentic-crypto-swarm-prototype) 🐍 ☁️ 🏠 🍎 🪟 🐧 - T54 x402 seller SKUs as MCP tools: OpenAPI-driven stdio server pays HTTP 402 via x402_broker_client (XRPL / Base USDC per env). Cursor & Claude Desktop; `smithery.yaml` + `mcp-manifest.json`. [Live portal](https://www.agentic-swarm-marketplace.com/) · [MCP setup](https://www.agentic-swarm-marketplace.com/mcp-integration.md).
 ```
 
 5. **Open PR** with title: `feat: add Hobie1Kenobi/agentic-crypto-swarm-prototype (T54 x402 MCP)`  
