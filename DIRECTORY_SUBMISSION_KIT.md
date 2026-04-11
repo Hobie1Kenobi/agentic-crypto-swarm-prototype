@@ -131,6 +131,7 @@ See [`mcp-integration.md`](https://www.agentic-swarm-marketplace.com/mcp-integra
 |--------|------|
 | **Smithery + Glama + TAAFT** (ordered runbook) | [submissions/SMITHERY_GLAMA_TAAFT.md](submissions/SMITHERY_GLAMA_TAAFT.md) |
 | **Awesome MCP** (PR to punkpeye list) | [submissions/awesome-mcp-servers-PR.md](submissions/awesome-mcp-servers-PR.md) |
+| **Web3 MCP portals** (DeMCP, mcp.so, MCP Market, AgentKit, ElizaOS, …) | [submissions/MCP_WEB3_PORTALS.md](submissions/MCP_WEB3_PORTALS.md) |
 | **TAAFT** (form copy) | [submissions/taaft-form-copy.md](submissions/taaft-form-copy.md) |
 | **Agent.ai** (expectations + blurb) | [submissions/agent-ai-notes.md](submissions/agent-ai-notes.md) |
 
