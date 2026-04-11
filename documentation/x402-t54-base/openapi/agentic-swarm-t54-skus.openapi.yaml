@@ -1,0 +1,231 @@
+openapi: 3.0.3
+info:
+  title: Agentic Swarm Marketplace — T54 XRPL x402 SKUs
+  description: |
+    Machine-readable catalog for LLM tool selection. All paid routes return **HTTP 402 Payment Required**
+    until the T54 facilitator accepts an XRPL payment proof (see `components.responses.PaymentRequiredT54`).
+    Base URL is your public origin: set **`T54_SELLER_PUBLIC_BASE_URL`** to match **`servers`** below
+    (unified Caddy + Cloudflare Tunnel, ngrok, or direct host). See `scripts/cloudflare-tunnel/README.md`.
+  version: "1.0.0"
+  contact:
+    name: Agentic Swarm Marketplace
+    url: https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype
+
+servers:
+  - url: "{origin}"
+    description: |
+      Set to your real public base (must match env `T54_SELLER_PUBLIC_BASE_URL`, no trailing slash).
+      Unified stack (Caddy :9080 + path `/t54`): e.g. `https://agent.yourdomain.com/t54`.
+      Cloudflare Tunnel: see `scripts/cloudflare-tunnel/README.md`. Legacy: `https://xxxx.ngrok-free.app/t54`.
+      For local-only testing: `http://127.0.0.1:8765` if the seller listens there without a `/t54` prefix.
+
+tags:
+  - name: health
+    description: Unpaid liveness (no 402).
+  - name: sku-paid
+    description: Paid SKUs — expect 402 on first request without payment proof.
+
+paths:
+  /health:
+    get:
+      tags: [health]
+      summary: Seller health and LLM probe
+      description: Returns JSON including `llm` probe; does not require payment.
+      operationId: getHealth
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+
+  /hello:
+    get:
+      tags: [sku-paid]
+      summary: Micropayment ping (cheapest SKU)
+      description: Confirms HTTP 402 + T54 facilitator path; minimal JSON body.
+      operationId: helloPing
+      responses:
+        "200":
+          description: Paid response
+        "402":
+          $ref: "#/components/responses/PaymentRequiredT54"
+
+  /x402/v1/query:
+    get:
+      tags: [sku-paid]
+      summary: Constitution-safe short LLM answer
+      description: Listing-friendly GET with `q` query parameter.
+      operationId: structuredQuery
+      parameters:
+        - name: q
+          in: query
+          required: false
+          description: Natural-language question for a short constitution-safe answer (max 512 chars).
+          schema:
+            type: string
+            maxLength: 512
+            default: "What is ethical agent commerce?"
+      responses:
+        "200":
+          description: Structured JSON answer
+        "402":
+          $ref: "#/components/responses/PaymentRequiredT54"
+
+  /x402/v1/research-brief:
+    get:
+      tags: [sku-paid]
+      summary: Multi-section research brief
+      operationId: researchBrief
+      parameters:
+        - name: topic
+          in: query
+          description: Subject line for the multi-section research brief (max 256 chars).
+          schema:
+            type: string
+            maxLength: 256
+        - name: context
+          in: query
+          required: false
+          description: Optional extra context, URLs, or constraints for the brief (max 2000 chars).
+          schema:
+            type: string
+            maxLength: 2000
+      responses:
+        "200":
+          description: Research brief JSON
+        "402":
+          $ref: "#/components/responses/PaymentRequiredT54"
+
+  /x402/v1/constitution-audit:
+    get:
+      tags: [sku-paid]
+      summary: Heuristic constitution / ethics review
+      operationId: constitutionAuditLite
+      parameters:
+        - name: prompt_snippet
+          in: query
+          description: Text or agent instruction excerpt to screen for constitution / ethics heuristics (max 4000 chars).
+          schema:
+            type: string
+            maxLength: 4000
+      responses:
+        "200":
+          description: Audit JSON
+        "402":
+          $ref: "#/components/responses/PaymentRequiredT54"
+
+  /x402/v1/agent-commerce-data:
+    get:
+      tags: [sku-paid]
+      summary: Verifiable swarm proof + x402 commerce bundle (premium)
+      operationId: agentCommerceData
+      parameters:
+        - name: depth
+          in: query
+          description: Payload size — standard (smaller bundle) or full (more evidence rows).
+          schema:
+            type: string
+            enum: [standard, full]
+            default: standard
+      responses:
+        "200":
+          description: Large JSON bundle
+        "402":
+          $ref: "#/components/responses/PaymentRequiredT54"
+
+  /x402/v1/airdrop-intelligence:
+    get:
+      tags: [sku-paid]
+      summary: Airdrop / incentive screening (Farm Score, risk flags)
+      operationId: airdropIntelligence
+      parameters:
+        - name: topic
+          in: query
+          description: Airdrop or incentive topic to score (Farm Score, narrative screening).
+          schema:
+            type: string
+            maxLength: 256
+        - name: context
+          in: query
+          required: false
+          description: Optional free-text context or links for the screening report (max 4000 chars).
+          schema:
+            type: string
+            maxLength: 4000
+        - name: contractAddress
+          in: query
+          required: false
+          description: Optional EVM contract on Base for Tier-1 triage merge
+          schema:
+            type: string
+            pattern: "^0x[a-fA-F0-9]{40}$"
+      responses:
+        "200":
+          description: Intelligence report JSON
+        "402":
+          $ref: "#/components/responses/PaymentRequiredT54"
+
+components:
+  responses:
+    PaymentRequiredT54:
+      description: |
+        Payment required before content. The client must parse `accepts` (x402-style),
+        submit an XRPL payment via the T54 facilitator, then retry with `PAYMENT-SIGNATURE`
+        (base64 JSON payload) as implemented in `integrations.t54_xrpl.adapter`.
+      headers:
+        PAYMENT-REQUIRED:
+          description: Optional base64-encoded JSON payment terms (x402 v2).
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/PaymentRequiredBodyT54"
+
+  schemas:
+    PaymentRequiredBodyT54:
+      type: object
+      description: Typical x402 JSON body on 402 (may also include `payment` wrapper).
+      properties:
+        x402Version:
+          type: integer
+          example: 2
+        accepts:
+          type: array
+          items:
+            $ref: "#/components/schemas/X402AcceptItem"
+        error:
+          type: string
+          description: Human-readable reason when payment cannot proceed.
+
+    X402AcceptItem:
+      type: object
+      properties:
+        scheme:
+          type: string
+          example: exact
+        network:
+          type: string
+          description: e.g. xrpl:0 (mainnet) or xrpl:1 (testnet)
+        asset:
+          type: string
+          example: XRP
+        payTo:
+          type: string
+          description: XRPL destination address (r...)
+        amount:
+          type: string
+          description: Amount in drops (string integer)
+        maxTimeoutSeconds:
+          type: integer
+        extra:
+          type: object
+          properties:
+            invoiceId:
+              type: string
+            sourceTag:
+              type: integer
+            destinationTag:
+              type: integer

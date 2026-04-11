@@ -1,14 +1,15 @@
 # Smithery — https://smithery.ai/docs/config#smitheryyaml
-# Stdio MCP: T54 x402 tools from OpenAPI; optional env for seller URL and broker mode.
-# All fields optional so the wizard can list tools with mock defaults (per Smithery guidance).
+# Stdio MCP: T54 x402 tools from OpenAPI + Base USDC tools (contract_*, airdrop); optional env.
+# configSchema drives Smithery "Configuration UX" score — every property needs title + description.
 
 startCommand:
   type: stdio
   configSchema:
-    title: Agentic Swarm T54 MCP
+    $schema: https://json-schema.org/draft/2020-12/schema
+    title: Agentic Swarm Marketplace MCP
     description: |
-      Optional configuration for the stdio MCP server (tools, prompts, OpenAPI resource).
-      Leave defaults for a mock-safe listing; set a public seller URL for live HTTP calls.
+      Optional wiring for T54 (XRPL) and Base (USDC) x402 sellers. Defaults are mock-safe for tool listing.
+      Set marketplace + T54 URLs for live calls; use dry run until you intend real settlement.
     type: object
     additionalProperties: false
     properties:
@@ -16,21 +17,36 @@ startCommand:
         type: string
         title: T54 seller public base URL
         description: |
-          Public origin for the T54 seller (no trailing slash), e.g. https://api.example.com/t54
-          or https://xxxx.ngrok-free.app/t54. Maps to T54_SELLER_PUBLIC_BASE_URL.
+          Public origin for the XRPL T54 seller (no trailing slash), e.g. https://api.example.com/t54.
+          Required for t54_* tools against a live host. Maps to T54_SELLER_PUBLIC_BASE_URL.
+        default: ""
+      marketplacePublicBaseUrl:
+        type: string
+        title: Public API origin (Base x402 + MCP parity)
+        description: |
+          HTTPS origin of the unified stack or API host (no trailing slash), e.g. https://api.example.com.
+          Used for contract_triage, contract_audit, contract_monitor_subscribe, airdrop_intelligence on Base.
+          Maps to MARKETPLACE_PUBLIC_BASE_URL.
+        default: ""
+      x402SellerPublicUrl:
+        type: string
+        title: Base x402 seller listing URL (optional)
+        description: |
+          Full URL to a paid Base route if you set it explicitly (e.g. https://.../x402/v1/query).
+          Falls back to marketplace origin when empty. Maps to X402_SELLER_PUBLIC_URL.
         default: ""
       x402BrokerPayMode:
         type: string
         title: x402 broker payment mode
         description: |
-          Rail for x402_broker_client: mock (no chain), xrpl_testnet, xrpl_mainnet, xumm, base_usdc, etc.
+          Settlement rail for x402_broker_client: mock (no chain), xrpl_testnet, xrpl_mainnet, xumm, base_usdc, etc.
           Maps to X402_BROKER_PAY_MODE.
         default: mock
       x402McpDryRun:
         type: string
-        title: MCP dry run
+        title: MCP dry run (no real payment)
         description: |
-          Set to 1 to force mock settlement (no real payment) for MCP tool calls. Maps to X402_MCP_DRY_RUN.
+          Set to 1 to force mock settlement for MCP tool calls. Maps to X402_MCP_DRY_RUN.
         default: "0"
         enum:
           - "0"
@@ -38,6 +54,8 @@ startCommand:
     required: []
     exampleConfig:
       t54SellerPublicBaseUrl: ""
+      marketplacePublicBaseUrl: ""
+      x402SellerPublicUrl: ""
       x402BrokerPayMode: mock
       x402McpDryRun: "0"
   commandFunction: |-
@@ -54,6 +72,8 @@ startCommand:
       ],
       env: {
         T54_SELLER_PUBLIC_BASE_URL: config.t54SellerPublicBaseUrl || '',
+        MARKETPLACE_PUBLIC_BASE_URL: config.marketplacePublicBaseUrl || '',
+        X402_SELLER_PUBLIC_URL: config.x402SellerPublicUrl || '',
         X402_BROKER_PAY_MODE: config.x402BrokerPayMode || 'mock',
         X402_MCP_DRY_RUN: config.x402McpDryRun || '0',
       },

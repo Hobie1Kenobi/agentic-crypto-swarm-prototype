@@ -16,6 +16,8 @@
       "args": ["-u", "scripts/mcp_server.py"],
       "env": {
         "T54_SELLER_PUBLIC_BASE_URL": "",
+        "MARKETPLACE_PUBLIC_BASE_URL": "",
+        "X402_SELLER_PUBLIC_URL": "",
         "X402_BROKER_PAY_MODE": "mock",
         "X402_MCP_DRY_RUN": "0"
       }

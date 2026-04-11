@@ -136,7 +136,7 @@ def _tool_name_for_operation(operation_id: str) -> str:
 def _python_param_name(openapi_name: str) -> str:
     if openapi_name == "context":
         return "context_note"
-    return openapi_name
+    return _camel_to_snake(openapi_name)
 
 
 def _param_description(p: dict[str, Any], op: dict[str, Any]) -> str:
@@ -498,6 +498,140 @@ def _build_fastmcp(**settings: Any):
         return await _run_t54_operation(registry, operation_id, query, context)
 
     _register_per_op_tools(mcp, registry, _run_t54_operation)
+
+    def _base_seller_origin() -> str:
+        o = (os.getenv("MARKETPLACE_PUBLIC_BASE_URL") or os.getenv("X402_SELLER_PUBLIC_URL") or "").strip()
+        if not o:
+            return ""
+        return o.rstrip("/").split("/x402")[0]
+
+    async def _run_base_x402(
+        method: str,
+        path: str,
+        *,
+        params: dict[str, str] | None = None,
+        json_body: dict[str, Any] | None = None,
+    ) -> str:
+        from x402_broker_client.client import execute_x402_request, get_pay_invoice_fn
+
+        origin = _base_seller_origin()
+        if not origin:
+            return json.dumps(
+                {
+                    "error": "set MARKETPLACE_PUBLIC_BASE_URL or X402_SELLER_PUBLIC_URL to the Base seller origin",
+                },
+                indent=2,
+            )
+        url = _join_url(origin, path)
+        pay = _pay_fn()
+        status, body, err = execute_x402_request(
+            url,
+            payload=json_body,
+            method=method,
+            params=params,
+            timeout=float((os.getenv("X402_MCP_TIMEOUT_SEC") or "120").strip() or "120"),
+            pay_invoice=pay,
+        )
+        return json.dumps(
+            {"status": status, "body": body, "error": err, "url": url},
+            indent=2,
+            default=str,
+        )
+
+    @mcp.tool(
+        name="contract_triage",
+        title="EVM contract triage (Base USDC x402)",
+        description=(
+            "Screen an EVM smart contract address for malicious patterns, honeypots, rug mechanics, "
+            "and known scam frameworks. Returns risk score (0-100), verdict (SAFE/SUSPICIOUS/MALICIOUS), "
+            "and top threat flags. Completes in under 30 seconds."
+        ),
+        annotations=_annotations_t54_network(),
+    )
+    async def contract_triage(
+        contract_address: Annotated[str, Field(description="0x-prefixed EVM contract address to screen")],
+        chain_id: Annotated[
+            str,
+            Field(description="CAIP-2 chain id (default Base mainnet eip155:8453)"),
+        ] = "eip155:8453",
+        context: Context | None = None,
+    ) -> str:
+        if context:
+            await context.info(f"contract_triage {contract_address}")
+        return await _run_base_x402(
+            "GET",
+            "/x402/v1/contract-triage",
+            params={"contractAddress": contract_address, "chainId": chain_id},
+        )
+
+    @mcp.tool(
+        name="contract_audit",
+        title="Full contract audit (Base USDC x402)",
+        description=(
+            "Run a full 5-phase security audit on up to 3 EVM contract addresses. Handles EIP-1167 "
+            "proxy/implementation pairs. Returns complete intelligence card including Slither findings, "
+            "Echidna fuzz results, deployer profiling, EIP-7702 delegate detection, money flow trace, "
+            "and holder analysis."
+        ),
+        annotations=_annotations_t54_network(),
+    )
+    async def contract_audit(
+        addresses: Annotated[str, Field(description="Comma-separated 0x addresses (max 3 proxy/implementation pairs)")],
+        chain_id: Annotated[
+            str,
+            Field(description="CAIP-2 chain id (default Base mainnet eip155:8453)"),
+        ] = "eip155:8453",
+        context: Context | None = None,
+    ) -> str:
+        if context:
+            await context.info("contract_audit")
+        return await _run_base_x402(
+            "GET",
+            "/x402/v1/contract-audit",
+            params={"addresses": addresses, "chainId": chain_id},
+        )
+
+    @mcp.tool(
+        name="contract_monitor_subscribe",
+        title="Contract monitoring subscription (Base USDC x402)",
+        description=(
+            "Subscribe to 30-day continuous monitoring of up to 10 EVM contract addresses. "
+            "Fires webhook alerts on admin key movement, liquidity drops, claim condition changes, "
+            "or new critical Slither findings."
+        ),
+        annotations=_annotations_t54_network(),
+    )
+    async def contract_monitor_subscribe(
+        addresses: Annotated[list[str], Field(description="Up to 10 0x-prefixed EVM addresses to watch")],
+        webhook_url: Annotated[str, Field(description="HTTPS URL that receives POST alerts when risk thresholds breach")],
+        thresholds: Annotated[
+            dict[str, Any] | None,
+            Field(
+                default=None,
+                description=(
+                    "Optional JSON object for alert sensitivity (e.g. liquidity drop %, admin key moves). "
+                    "Omit or {} for seller defaults."
+                ),
+            ),
+        ] = None,
+        duration_days: Annotated[
+            int,
+            Field(
+                default=30,
+                description="Subscription length in days (default 30; max per seller policy).",
+            ),
+        ] = 30,
+        context: Context | None = None,
+    ) -> str:
+        if context:
+            await context.info("contract_monitor_subscribe")
+        body = {
+            "addresses": addresses[:10],
+            "webhookUrl": webhook_url,
+            "durationDays": duration_days,
+            "thresholds": thresholds or {},
+        }
+        return await _run_base_x402("POST", "/x402/v1/contract-monitor", json_body=body)
 
     @mcp.prompt(
         name="t54_swarm_intro",

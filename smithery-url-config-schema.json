@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Agentic Swarm Marketplace MCP (URL)",
+  "description": "Optional settings for Smithery Connect. Gateway forwards values as query params or headers per field.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "t54SellerPublicBaseUrl": {
+      "type": "string",
+      "title": "T54 seller base URL",
+      "description": "Public origin for the XRPL T54 seller (no trailing slash).",
+      "default": "",
+      "x-from": { "query": "t54SellerPublicBaseUrl" }
+    },
+    "marketplacePublicBaseUrl": {
+      "type": "string",
+      "title": "Marketplace API origin",
+      "description": "HTTPS origin for Base x402 contract tools (no trailing slash).",
+      "default": "",
+      "x-from": { "query": "marketplacePublicBaseUrl" }
+    },
+    "x402BrokerPayMode": {
+      "type": "string",
+      "title": "x402 broker rail",
+      "description": "Settlement mode: mock, xrpl_testnet, base_usdc, etc.",
+      "default": "mock",
+      "x-from": { "query": "x402BrokerPayMode" }
+    },
+    "x402McpDryRun": {
+      "type": "string",
+      "title": "Dry run",
+      "description": "1 for mock settlement only; 0 for real rail when configured.",
+      "default": "0",
+      "enum": ["0", "1"],
+      "x-from": { "query": "x402McpDryRun" }
+    }
+  }
+}
