@@ -113,30 +113,36 @@ Or: `python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9051`
 
 **2. Put HTTPS in front** (pick one):
 
-- **Unified Caddy** (`:9080`) already maps **`/mcp/*`** → `127.0.0.1:9051` (see `scripts/reverse-proxy/Caddyfile`). Start Caddy + your app stack, then point **Cloudflare Tunnel** or **ngrok** at `:9080` (same as your T54/Base routes).
+- **Unified Caddy** (`:9080`) maps **`/mcp/sse` and `/mcp/messages/*`** → `127.0.0.1:9051` (prefix stripped); exact **`/mcp`** → Streamable HTTP on **`127.0.0.1:9052`** (see `scripts/reverse-proxy/Caddyfile`). Start Caddy + your app stack, then point **Cloudflare Tunnel** or **ngrok** at `:9080` (same as your T54/Base routes).
 - Public endpoints on the MCP app:
   - **SSE stream:** `https://<your-public-host>/mcp/sse`
   - **Messages:** `https://<your-public-host>/mcp/messages/`
 
 **3. Agent.ai:** In **Add MCP Server**, use the **SSE** URL your client expects — typically **`https://<host>/mcp/sse`** (if the product asks for a single URL, try that first; some UIs want the `/mcp` base — follow their field label).
 
-**4. Record the URL in discovery:** set in `.env`:
+**4. Record the URL in discovery:** With the **`unified`** ngrok tunnel (→ **9080**), run **`npm run t54:sync-ngrok-env`** or **`npm run sync:ngrok-all`** — this sets **`MCP_SSE_PUBLIC_URL=https://<host>/mcp`** and updates **`docs/endpoints.json`** (same as `MCP_SSE_PUBLIC_URL` manually, then `npm run docs:sync-endpoints`). If the tunnel hostname changed after a restart, run that sync again so Agent.ai and Pages stay aligned.
 
-```bash
-MCP_SSE_PUBLIC_URL=https://YOUR_TUNNEL_HOST/mcp
-```
-
-Then `npm run docs:sync-endpoints` so [endpoints.json](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/endpoints.json) includes `mcp_t54_sse` with `sse_url` / `messages_url`.
+**ngrok free tier:** Some remote MCP clients receive an HTML interstitial instead of SSE; paid ngrok, Cloudflare Tunnel, or another HTTPS front without that page may be required for Agent.ai.
 
 **Security:** The MCP process has no built-in API key; anyone who can reach the URL can invoke tools (and trigger x402 flows if your broker env allows). Prefer **tunnel + Access**, IP allowlists, or running only while testing.
 
 **Port already in use (Windows `WinError 10048`):** Another process is bound to the same port (often a leftover Python from an earlier MCP run). Either stop it — `netstat -ano | findstr :9051` then `taskkill /PID <pid> /F` — or set **`X402_MCP_SSE_PORT`** (and the **Caddy** `reverse_proxy` port) to a free port.
 
-## 6. Public “one-line install” (future)
+## 6. Streamable HTTP (Smithery, Glama URL connector)
+
+Directories that expect **Streamable HTTP** (not SSE) use **`POST https://<host>/mcp`** with JSON-RPC (`initialize`, etc.). This requires **`mcp` Python package ≥ 1.23** and a **second** local process on port **9052**:
+
+```bash
+npm run mcp:t54:streamable-http
+```
+
+Run it **alongside** `npm run mcp:t54:sse` when using the unified proxy. Public URL for registries: **`https://<your-host>/mcp`**.
+
+## 7. Public “one-line install” (future)
 
 A small **`npx`** or **`uvx`**-style wrapper that downloads nothing secret but points at **your** public seller URL is **not** published in this repo yet. Until then, third parties should clone the repo, set `.env`, and use the JSON above. When a packaged client exists, it will be linked from [llms.txt](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/llms.txt) and this page.
 
-## 7. Related discovery files
+## 8. Related discovery files
 
 | File | URL |
 |------|-----|
