@@ -120,7 +120,7 @@ def main() -> int:
             {
                 "id": "mcp_t54_sse",
                 "label": "MCP T54 x402 (SSE, remote clients)",
-                "description": "FastMCP SSE: GET .../mcp/sse, POST .../mcp/messages/. Local server 127.0.0.1:9051; Caddy maps /mcp. Set MCP_SSE_PUBLIC_URL to your public HTTPS origin + /mcp (e.g. same host as unified tunnel).",
+                "description": "Streamable HTTP (Smithery): POST .../mcp (port 9052, mcp>=1.23). SSE: GET .../mcp/sse, POST .../mcp/messages/ (9051). Caddy: exact /mcp → 9052; /mcp/* → 9051. Set MCP_SSE_PUBLIC_URL to your public HTTPS origin + /mcp.",
                 "url": mcp_sse,
                 "sse_url": f"{mcp_sse}/sse",
                 "messages_url": f"{mcp_sse}/messages/",

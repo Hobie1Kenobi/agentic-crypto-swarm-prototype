@@ -33,13 +33,13 @@ Docs: **[smithery.ai/docs/build](https://smithery.ai/docs/build/index)** · conf
 
 ### Option B — Hosted URL (Streamable HTTP)
 
-If you want the gateway to proxy your **live** MCP:
+**Prerequisites on your host:** `mcp>=1.23`, **`npm run mcp:t54:streamable-http`** (port **9052**), **`npm run proxy:unified`** (Caddy routes exact **`/mcp`** → 9052; **`/mcp/sse`** → 9051 SSE). Without 9052 running, **`GET /mcp` returned 404** (SSE-only).
 
-- **MCP base (unified Caddy):** `https://api.agentic-swarm-marketplace.com/mcp`  
-  (SSE: `/mcp/sse`, messages: `/mcp/messages/` — see **`docs/endpoints.json`**.)
+- **MCP URL for Smithery:** `https://api.agentic-swarm-marketplace.com/mcp`  
+  (Initialize with **`Accept: application/json`** + **`Content-Type: application/json`** POST.)
 
 1. Go to **[smithery.ai/new](https://smithery.ai/new)** (URL publish).
-2. Enter the public MCP URL; finish the wizard.
+2. Enter **`https://api.agentic-swarm-marketplace.com/mcp`**; finish the wizard.
 
 **Cloudflare:** Smithery scans with **`SmitheryBot/1.0`**. If the scan fails with **403**, allow that user-agent or follow **[Smithery publish troubleshooting](https://smithery.ai/docs/build/publish#troubleshooting)** (same guidance as **`documentation/operations/CLOUDFLARE_CACHE_AND_SECURITY.md`** for bots).
 

@@ -10,6 +10,10 @@ Remote SSE (Agent.ai, hosted clients) — bind localhost, put Caddy/ngrok in fro
   python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9051
   Paths: GET /sse (stream), POST /messages/ (MCP). Public URL with unified proxy: https://<origin>/mcp/sse
 
+Streamable HTTP (Smithery, Glama URL publish) — requires mcp>=1.23; separate port behind Caddy:
+  python scripts/mcp_server.py --transport streamable-http --host 127.0.0.1 --port 9052
+  Public URL: https://<origin>/mcp (Caddy routes exact /mcp → 9052; /mcp/sse → 9051 SSE).
+
 Validate without starting stdio (CI / preflight):
   python scripts/mcp_server.py --check
 
@@ -36,6 +40,7 @@ from pathlib import Path
 from typing import Any
 
 from mcp.server.fastmcp import Context
+from mcp.server.transport_security import TransportSecuritySettings
 
 root = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(root / "packages" / "agents"))
@@ -207,6 +212,27 @@ def check_mcp_stack() -> int:
         return 1
 
 
+def _mcp_transport_security() -> TransportSecuritySettings | None:
+    """Behind Cloudflare+Caddy, Host is the public API hostname, not 127.0.0.1."""
+    raw = (os.getenv("MCP_HTTP_DNS_REBINDING") or "").strip().lower()
+    if raw in {"0", "false", "off", "no"}:
+        return TransportSecuritySettings(enable_dns_rebinding_protection=False)
+    hosts = (os.getenv("MCP_HTTP_ALLOWED_HOSTS") or "").strip()
+    if not hosts:
+        return TransportSecuritySettings(enable_dns_rebinding_protection=False)
+    allowed = []
+    for h in hosts.split(","):
+        h = h.strip()
+        if not h:
+            continue
+        allowed.append(h if ":" in h else f"{h}:*")
+    return TransportSecuritySettings(
+        enable_dns_rebinding_protection=True,
+        allowed_hosts=allowed,
+        allowed_origins=[],
+    )
+
+
 def _build_fastmcp(**settings: Any):
     from mcp.server.fastmcp import FastMCP
 
@@ -291,8 +317,22 @@ def run_sse_server(host: str, port: int) -> None:
     mcp.run(transport="sse")
 
 
+def run_streamable_http_server(host: str, port: int) -> None:
+    mcp = _build_fastmcp(
+        host=host,
+        port=port,
+        streamable_http_path="/mcp",
+        stateless_http=True,
+        json_response=True,
+        transport_security=_mcp_transport_security(),
+    )
+    mcp.run(transport="streamable-http")
+
+
 def main() -> None:
-    ap = argparse.ArgumentParser(description="MCP server for T54 x402: stdio (default) or SSE (remote)")
+    ap = argparse.ArgumentParser(
+        description="MCP server for T54 x402: stdio (default), SSE (remote), or streamable-http (Smithery)"
+    )
     ap.add_argument(
         "--check",
         action="store_true",
@@ -300,9 +340,9 @@ def main() -> None:
     )
     ap.add_argument(
         "--transport",
-        choices=("stdio", "sse"),
+        choices=("stdio", "sse", "streamable-http"),
         default="stdio",
-        help="stdio for Cursor/Claude; sse for Agent.ai / remote (behind HTTPS reverse proxy)",
+        help="stdio for Cursor/Claude; sse for Agent.ai; streamable-http for Smithery/Glama URL (mcp>=1.23)",
     )
     ap.add_argument(
         "--host",
@@ -312,16 +352,24 @@ def main() -> None:
     ap.add_argument(
         "--port",
         type=int,
-        default=int((os.getenv("X402_MCP_SSE_PORT") or "9051").strip() or "9051"),
-        help="Port for SSE (default 9051; env X402_MCP_SSE_PORT)",
+        default=None,
+        help="HTTP port (SSE default 9051 via X402_MCP_SSE_PORT; streamable-http default 9052 via X402_MCP_STREAMABLE_PORT)",
     )
     args = ap.parse_args()
     if args.check:
         raise SystemExit(check_mcp_stack())
+    port = args.port
+    if port is None:
+        if args.transport == "streamable-http":
+            port = int((os.getenv("X402_MCP_STREAMABLE_PORT") or "9052").strip() or "9052")
+        else:
+            port = int((os.getenv("X402_MCP_SSE_PORT") or "9051").strip() or "9051")
     if args.transport == "stdio":
         run_stdio_server()
+    elif args.transport == "sse":
+        run_sse_server(host=args.host, port=port)
     else:
-        run_sse_server(host=args.host, port=args.port)
+        run_streamable_http_server(host=args.host, port=port)
 
 
 if __name__ == "__main__":

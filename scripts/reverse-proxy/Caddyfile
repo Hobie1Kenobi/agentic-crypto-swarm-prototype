@@ -41,9 +41,18 @@
 		reverse_proxy 127.0.0.1:8765
 	}
 
-	# MCP (FastMCP SSE) — strip /mcp prefix → backend /sse and /messages/
+	# MCP Streamable HTTP (Smithery, Glama URL) — full path /mcp on backend (no strip)
+	# Start: python scripts/mcp_server.py --transport streamable-http --host 127.0.0.1 --port 9052
+	@mcpstream {
+		path /mcp /mcp/
+	}
+	handle @mcpstream {
+		reverse_proxy 127.0.0.1:9052
+	}
+	# MCP SSE — strip /mcp prefix → backend /sse and /messages/
 	# Start: python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9051
-	handle_path /mcp/* {
+	handle /mcp/* {
+		uri strip_prefix /mcp
 		reverse_proxy 127.0.0.1:9051
 	}
 

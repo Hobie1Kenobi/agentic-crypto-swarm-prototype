@@ -4,7 +4,10 @@ Use this when you want **one HTTPS hostname** (one ngrok URL) for:
 
 | Path | Service | Local port |
 |------|---------|------------|
-| `/mcp/*` | MCP T54 x402 **SSE** (`scripts/mcp_server.py --transport sse`); **`/mcp` is stripped** → `/sse`, `/messages/` | 9051 |
+| `/mcp` (exact) | MCP **Streamable HTTP** (`npm run mcp:t54:streamable-http`) — Smithery / Glama URL publish | 9052 |
+| `/mcp/sse`, `/mcp/messages/*` | MCP T54 x402 **SSE** (`npm run mcp:t54:sse`); **`/mcp` is stripped** → `/sse`, `/messages/` | 9051 |
+
+**Do not** point MCP clients (Agent.ai, etc.) at the **x402 seller** (8043) or **T54** (8765) tunnel — those return **404** with `wrong_service` for `/mcp/*`. Use the **unified** tunnel (→ **9080**).
 | `/x402/*` | Base x402 seller (`api_seller_x402`) | 8043 |
 | `/t54/*` | T54 XRPL seller (`t54_seller_app`); **`/t54` is stripped** before proxying | 8765 |
 | `/webhooks/*`, `/v1/*`, `/marketplace/*`, `/docs*`, `/openapi.json`, `/redoc*` | Marketplace (`marketplace_api`) | 8055 |
@@ -14,7 +17,7 @@ Use this when you want **one HTTPS hostname** (one ngrok URL) for:
 
 ## Prerequisites
 
-1. [Caddy](https://caddyserver.com/docs/install) on your PATH.
+1. [Caddy](https://caddyserver.com/docs/install) on your PATH, or install via **winget** (Windows: `npm run proxy:unified` resolves WinGet `caddy.exe` automatically).
 2. All three backends running: `npm run t54:seller` (8765), `npm run x402:seller` (8043), `npm run marketplace:serve` (8055).
 
 ## Run the proxy
@@ -37,7 +40,7 @@ See **`scripts/cloudflare-tunnel/README.md`** — `cloudflared` + Docker exposes
 
 ## ngrok
 
-**One command (Caddy + dual ngrok + sync .env):** with sellers on **8765/8043/8055**, run **`npm run stack:unified:wire`** — starts Caddy on **9080** if missing, restarts ngrok with **`scripts/ngrok-dual-stack.yml`**, writes **`T54_SELLER_PUBLIC_BASE_URL`**, **`X402_SELLER_PUBLIC_URL`**, **`MARKETPLACE_PUBLIC_BASE_URL`**, reloads T54 discovery. Does not stop your seller processes.
+**One command (Caddy + dual ngrok + sync .env):** with sellers on **8765/8043/8055**, run **`npm run stack:unified:wire`** — starts Caddy on **9080** if missing, restarts ngrok with **`scripts/ngrok-dual-stack.yml`**, writes **`T54_SELLER_PUBLIC_BASE_URL`**, **`MCP_SSE_PUBLIC_URL`** (unified tunnel only), **`X402_SELLER_PUBLIC_URL`**, **`MARKETPLACE_PUBLIC_BASE_URL`**, reloads T54 discovery, regenerates **`docs/endpoints.json`**. Does not stop your seller processes. After any ngrok restart, **`npm run sync:ngrok-all`** (or **`npm run t54:sync-ngrok-env`**) refreshes the same URLs.
 
 **Option A — one tunnel only (Caddy):** `npm run ngrok:unified` → forwards **9080**.
 
