@@ -35,11 +35,14 @@ from __future__ import annotations
 import argparse
 import json
 import os
+import re
 import sys
 from pathlib import Path
-from typing import Any
+from typing import Annotated, Any, Literal
 
 from mcp.server.fastmcp import Context
+from mcp.types import ToolAnnotations
+from pydantic import Field
 from mcp.server.transport_security import TransportSecuritySettings
 
 root = Path(__file__).resolve().parents[1]
@@ -99,6 +102,7 @@ def _operations_from_spec(spec: dict[str, Any]) -> list[dict[str, Any]]:
                         "name": name,
                         "required": bool(p.get("required")),
                         "schema": p.get("schema") or {},
+                        "description": (p.get("description") or "").strip(),
                     }
                 )
             out.append(
@@ -118,6 +122,179 @@ def _join_url(base: str, path: str) -> str:
     b = base.rstrip("/")
     p = path if path.startswith("/") else "/" + path
     return b + p
+
+
+def _camel_to_snake(name: str) -> str:
+    s1 = re.sub(r"([a-z0-9])([A-Z])", r"\1_\2", name)
+    return s1.lower()
+
+
+def _tool_name_for_operation(operation_id: str) -> str:
+    return "t54_" + _camel_to_snake(operation_id)
+
+
+def _python_param_name(openapi_name: str) -> str:
+    if openapi_name == "context":
+        return "context_note"
+    return openapi_name
+
+
+def _param_description(p: dict[str, Any], op: dict[str, Any]) -> str:
+    d = (p.get("description") or "").strip()
+    if d:
+        return d
+    schema = p.get("schema") or {}
+    oid = op.get("operationId", "")
+    extras: list[str] = []
+    if schema.get("maxLength"):
+        extras.append(f"max length {schema['maxLength']}")
+    if schema.get("enum"):
+        extras.append("allowed values: " + ", ".join(str(x) for x in schema["enum"]))
+    if "default" in schema:
+        extras.append(f"default: {schema['default']!r}")
+    base = (
+        f"Query parameter `{p['name']}` for operation `{oid}` "
+        f"({op.get('method')} {op.get('path')})."
+    )
+    if extras:
+        base += " " + "; ".join(extras) + "."
+    return base
+
+
+def _tool_docstring_for_registry(meta: dict[str, Any], oid: str) -> str:
+    parts: list[str] = []
+    if meta.get("summary"):
+        parts.append(meta["summary"])
+    if meta.get("description"):
+        parts.append(meta["description"])
+    parts.append(
+        f"HTTP {meta['method']} `{meta['path']}` (`operationId` `{oid}`). "
+        "Paid routes may return HTTP 402 until the x402 broker settles on the configured rail."
+    )
+    return "\n\n".join(parts)
+
+
+def _annotations_t54_network() -> ToolAnnotations:
+    return ToolAnnotations(
+        readOnlyHint=False,
+        destructiveHint=False,
+        idempotentHint=True,
+        openWorldHint=True,
+    )
+
+
+def _annotations_t54_local() -> ToolAnnotations:
+    return ToolAnnotations(
+        readOnlyHint=True,
+        destructiveHint=False,
+        idempotentHint=True,
+        openWorldHint=False,
+    )
+
+
+def _emit_per_op_tool_source(oid: str, meta: dict[str, Any]) -> str:
+    doc_short = (meta.get("summary") or oid).replace('"', "'")
+    params = meta["parameters"]
+    sig_lines: list[str] = []
+    body_lines: list[str] = ["    q: dict[str, str] = {}"]
+    for p in params:
+        api_name = p["name"]
+        py_name = _python_param_name(api_name)
+        desc = _param_description(p, meta)
+        sch = p.get("schema") or {}
+        enum = sch.get("enum")
+        req = bool(p.get("required"))
+        if enum:
+            lit = ", ".join(repr(x) for x in enum)
+            typ = f"Literal[{lit}]"
+            if sch.get("default") is not None:
+                d = repr(sch["default"])
+                sig_lines.append(
+                    f"    {py_name}: Annotated[{typ}, Field(default={d}, description={desc!r})]"
+                )
+                body_lines.append(f"    q[{api_name!r}] = str({py_name})")
+            else:
+                sig_lines.append(
+                    f"    {py_name}: Annotated[{typ} | None, Field(default=None, description={desc!r})] = None"
+                )
+                body_lines.append(
+                    f"    if {py_name} is not None:\n        q[{api_name!r}] = str({py_name})"
+                )
+        elif req:
+            sig_lines.append(f"    {py_name}: Annotated[str, Field(description={desc!r})]")
+            body_lines.append(f"    q[{api_name!r}] = str({py_name})")
+        else:
+            sig_lines.append(
+                f"    {py_name}: Annotated[str | None, Field(default=None, description={desc!r})] = None"
+            )
+            body_lines.append(
+                f"    if {py_name} is not None:\n        q[{api_name!r}] = str({py_name})"
+            )
+    sig_text = ",\n".join(sig_lines)
+    body_text = "\n".join(body_lines)
+    return f"""
+async def _dyn_{oid}(
+{sig_text},
+    context: Context | None = None,
+) -> str:
+    \"\"\"{doc_short}\"\"\"
+{body_text}
+    return await _run_t54_operation(_registry, {oid!r}, q, context)
+"""
+
+
+def _make_no_param_per_op_tool(
+    registry: dict[str, dict[str, Any]],
+    _run_t54_operation: Any,
+    oid_local: str,
+    meta: dict[str, Any],
+) -> Any:
+    async def _fn(context: Context | None = None) -> str:
+        return await _run_t54_operation(registry, oid_local, None, context)
+
+    _fn.__name__ = f"t54_{_camel_to_snake(oid_local)}"
+    _fn.__doc__ = (meta.get("summary") or oid_local).replace('"', "'")
+    return _fn
+
+
+def _register_per_op_tools(
+    mcp: Any,
+    registry: dict[str, dict[str, Any]],
+    _run_t54_operation: Any,
+) -> None:
+    for oid, meta in sorted(registry.items()):
+        if not oid.isalnum():
+            continue
+        params_list = meta["parameters"]
+        if not params_list:
+            _no_params = _make_no_param_per_op_tool(registry, _run_t54_operation, oid, meta)
+            mcp.add_tool(
+                _no_params,
+                name=_tool_name_for_operation(oid),
+                title=meta.get("summary") or oid,
+                description=_tool_docstring_for_registry(meta, oid),
+                annotations=_annotations_t54_network(),
+            )
+            continue
+
+        ns: dict[str, Any] = {
+            "Annotated": Annotated,
+            "Field": Field,
+            "Literal": Literal,
+            "Context": Context,
+            "_run_t54_operation": _run_t54_operation,
+            "_registry": registry,
+        }
+        src = _emit_per_op_tool_source(oid, meta)
+        exec(src, ns)
+        fn = ns[f"_dyn_{oid}"]
+        mcp.add_tool(
+            fn,
+            name=_tool_name_for_operation(oid),
+            title=meta.get("summary") or oid,
+            description=_tool_docstring_for_registry(meta, oid),
+            annotations=_annotations_t54_network(),
+        )
 
 
 def _pay_fn():
@@ -251,12 +428,32 @@ def _build_fastmcp(**settings: Any):
         **settings,
     )
 
+    _known_operation_ids = ", ".join(sorted(registry.keys()))
+    _t54_generic_op_id_desc = (
+        "Exact OpenAPI operationId. Call t54_list_operations first. Known: "
+        + _known_operation_ids
+    )
+    _t54_query_desc = (
+        "Query string parameters as a JSON object. Keys must match OpenAPI query "
+        "names for this operation (see resource openapi://agentic-swarm-t54-skus)."
+    )
+    globals()["_T54_MCP_GENERIC_OP_ID_DESC"] = _t54_generic_op_id_desc
+    globals()["_T54_MCP_QUERY_DESC"] = _t54_query_desc
+
     @mcp.resource("openapi://agentic-swarm-t54-skus")
     def openapi_yaml() -> str:
         """Raw OpenAPI 3 YAML for T54 SKUs."""
         return openapi_text
 
-    @mcp.tool()
+    @mcp.tool(
+        name="t54_list_operations",
+        title="List T54 OpenAPI operations",
+        description=(
+            "Returns operationIds, HTTP methods, paths, and query parameter names from the bundled "
+            "OpenAPI spec (no network). Use before t54_x402_request or per-SKU tools."
+        ),
+        annotations=_annotations_t54_local(),
+    )
     async def t54_list_operations() -> str:
         """List T54 seller operationIds, paths, and query parameters from the loaded OpenAPI spec (no HTTP)."""
         rows = []
@@ -279,30 +476,81 @@ def _build_fastmcp(**settings: Any):
             indent=2,
         )
 
-    @mcp.tool()
+    @mcp.tool(
+        name="t54_x402_request",
+        title="T54 x402 request (generic)",
+        description=(
+            "Execute any T54 seller operation by operationId with an optional query map. "
+            "Prefer per-operation t54_* tools when available for clearer arguments. "
+            "On HTTP 402, x402_broker_client pays then retries."
+        ),
+        annotations=_annotations_t54_network(),
+    )
     async def t54_x402_request(
-        operation_id: str,
-        query: dict[str, Any] | None = None,
+        operation_id: Annotated[str, Field(description=_T54_MCP_GENERIC_OP_ID_DESC)],
+        query: Annotated[
+            dict[str, Any] | None,
+            Field(default=None, description=_T54_MCP_QUERY_DESC),
+        ] = None,
         context: Context | None = None,
     ) -> str:
         """Execute one T54 HTTP operation by operationId. On 402, pays via x402_broker_client then retries."""
         return await _run_t54_operation(registry, operation_id, query, context)
 
-    def _make_per_op_tool(oid: str):
-        async def _per_op_tool(
-            query: dict[str, Any] | None = None,
-            context: Context | None = None,
-        ) -> str:
-            return await _run_t54_operation(registry, oid, query, context)
+    _register_per_op_tools(mcp, registry, _run_t54_operation)
 
-        return _per_op_tool
+    @mcp.prompt(
+        name="t54_swarm_intro",
+        title="T54 x402 MCP — intro",
+        description="Explains how to use this MCP server with Agentic Swarm.",
+    )
+    def prompt_t54_swarm_intro() -> str:
+        return (
+            "You are connected to Agentic Swarm T54 x402 MCP tools. "
+            "1) Call t54_list_operations to see operationIds and HTTP paths. "
+            "2) Prefer per-operation tools (t54_* snake_case) with explicit parameters. "
+            "3) Or use t54_x402_request(operation_id, query) for generic calls. "
+            "4) Paid routes return HTTP 402 until the broker settles; set T54_SELLER_PUBLIC_BASE_URL "
+            "and X402_BROKER_PAY_MODE in the environment. "
+            "5) Open openapi://agentic-swarm-t54-skus for full OpenAPI."
+        )
 
-    for _oid, _meta in sorted(registry.items()):
-        _summary = (_meta.get("summary") or "").strip()
-        _path_line = f"T54 x402 `{_oid}` → HTTP {_meta['method']} `{_meta['path']}` (brokered)."
-        _fn = _make_per_op_tool(_oid)
-        _fn.__doc__ = (_summary + "\n\n" if _summary else "") + _path_line
-        mcp.add_tool(_fn, name=f"t54_{_oid}")
+    @mcp.prompt(
+        name="t54_call_sku",
+        title="T54 — call a SKU",
+        description="Structured prompt for a specific operationId.",
+    )
+    def prompt_t54_call_sku(
+        operation_id: Annotated[
+            str,
+            Field(
+                description=(
+                    "OpenAPI operationId (e.g. structuredQuery, getHealth, researchBrief, "
+                    "constitutionAuditLite, agentCommerceData, airdropIntelligence, helloPing)."
+                ),
+            ),
+        ] = "structuredQuery",
+    ) -> str:
+        return (
+            f"Call the T54 seller operation `{operation_id}`. "
+            "First use t54_list_operations to confirm query parameters, then invoke the matching "
+            f"t54_* tool or t54_x402_request with operation_id={operation_id!r}. "
+            "If the response is HTTP 402, the x402 broker must pay before the body returns."
+        )
+
+    @mcp.prompt(
+        name="t54_x402_troubleshooting",
+        title="T54 x402 — troubleshooting",
+        description="When 402, env, or broker issues appear.",
+    )
+    def prompt_t54_troubleshoot() -> str:
+        return (
+            "If tools return JSON with status 402: the seller requires payment. Ensure "
+            "X402_BROKER_PAY_MODE and keys match your rail (mock for dry runs). "
+            "Set T54_SELLER_PUBLIC_BASE_URL to the public seller origin (no trailing slash). "
+            "Use X402_MCP_DRY_RUN=1 only for mock settlement. Check openapi://agentic-swarm-t54-skus "
+            "for parameter names and paths."
+        )
 
     return mcp
 

@@ -5,19 +5,36 @@
 startCommand:
   type: stdio
   configSchema:
+    title: Agentic Swarm T54 MCP
+    description: |
+      Optional configuration for the stdio MCP server (tools, prompts, OpenAPI resource).
+      Leave defaults for a mock-safe listing; set a public seller URL for live HTTP calls.
     type: object
+    additionalProperties: false
     properties:
       t54SellerPublicBaseUrl:
         type: string
-        description: Public T54 seller origin (no trailing slash), e.g. https://your-host/t54
+        title: T54 seller public base URL
+        description: |
+          Public origin for the T54 seller (no trailing slash), e.g. https://api.example.com/t54
+          or https://xxxx.ngrok-free.app/t54. Maps to T54_SELLER_PUBLIC_BASE_URL.
+        default: ""
       x402BrokerPayMode:
         type: string
-        description: x402_broker_client rail — mock, xrpl_testnet, xrpl_mainnet, xumm, base_usdc, etc.
+        title: x402 broker payment mode
+        description: |
+          Rail for x402_broker_client: mock (no chain), xrpl_testnet, xrpl_mainnet, xumm, base_usdc, etc.
+          Maps to X402_BROKER_PAY_MODE.
         default: mock
       x402McpDryRun:
         type: string
-        description: Set to 1 for mock pay without real settlement
+        title: MCP dry run
+        description: |
+          Set to 1 to force mock settlement (no real payment) for MCP tool calls. Maps to X402_MCP_DRY_RUN.
         default: "0"
+        enum:
+          - "0"
+          - "1"
     required: []
     exampleConfig:
       t54SellerPublicBaseUrl: ""
