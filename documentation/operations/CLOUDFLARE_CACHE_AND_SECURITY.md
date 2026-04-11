@@ -22,6 +22,12 @@ You can add a second rule for **`www`** if you only want to cache static assets 
 
 - Default **Managed rules** are fine to start. If legitimate x402 clients get blocked, use **Security Events** to tune or add an exception for your buyer IPs (short-lived).
 
+### Smithery / MCP Streamable HTTP (`/mcp`)
+
+**Smithery** scans **`https://api.<domain>/mcp`** with **`User-Agent: SmitheryBot/1.0`**. If **Connect** fails with **403** or **Initialization failed**, add a **WAF custom rule** (Pro+) or **IP Access Rule** (free): allow requests where **User Agent** contains `SmitheryBot`, or follow [Smithery’s Cloudflare troubleshooting](https://smithery.ai/docs/build/publish#cloudflare-free-plan--bot-fight-mode).
+
+Your origin must run **both** MCP processes: **SSE** on **9051** and **Streamable HTTP** on **9052** (`npm run mcp:t54:unified` or the unified stack scripts below), with **Caddy** mapping exact **`/mcp`** → 9052.
+
 ## Secrets hygiene
 
 - **Never commit** `.env`, `.env.local`, `.env.mainnet`, or tunnel **`credentials.json`** (repo `.gitignore` already lists these).

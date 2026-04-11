@@ -16,7 +16,7 @@ Get-Process -Name "caddy" -ErrorAction SilentlyContinue | ForEach-Object {
     } catch {}
 }
 
-foreach ($port in @(8765, 8043, 8055, 9080)) {
+foreach ($port in @(8765, 8043, 8055, 9051, 9052, 9080)) {
     $conn = Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue
     foreach ($c in $conn) {
         if (-not $c.OwningProcess) { continue }

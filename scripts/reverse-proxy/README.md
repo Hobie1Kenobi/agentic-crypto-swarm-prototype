@@ -18,7 +18,8 @@ Use this when you want **one HTTPS hostname** (one ngrok URL) for:
 ## Prerequisites
 
 1. [Caddy](https://caddyserver.com/docs/install) on your PATH, or install via **winget** (Windows: `npm run proxy:unified` resolves WinGet `caddy.exe` automatically).
-2. All three backends running: `npm run t54:seller` (8765), `npm run x402:seller` (8043), `npm run marketplace:serve` (8055).
+2. All backends running: `npm run t54:seller` (8765), `npm run x402:seller` (8043), `npm run marketplace:serve` (8055).
+3. **MCP (both):** `npm run mcp:t54:unified` — SSE **9051** + Streamable HTTP **9052** (Smithery uses **`POST /mcp`** on **9052**). **`npm run stack:unified:start`** / **`stack:unified:ensure`** starts these automatically.
 
 ## Run the proxy
 

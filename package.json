@@ -85,6 +85,7 @@
     "mcp:t54:check": "python scripts/mcp_server.py --check",
     "mcp:t54:sse": "python scripts/mcp_server.py --transport sse --host 127.0.0.1 --port 9051",
     "mcp:t54:streamable-http": "python scripts/mcp_server.py --transport streamable-http --host 127.0.0.1 --port 9052",
+    "mcp:t54:unified": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-mcp-unified.ps1",
     "local:t54-mcp-windows": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-local-t54-mcp-windows.ps1",
     "airdrop:scout": "python scripts/run-airdrop-scout.py",
     "airdrop:pipeline": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/run-airdrop-pipeline.ps1",
