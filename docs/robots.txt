@@ -7,5 +7,5 @@ User-agent: *
 Allow: /
 
 # Optional: hint where the URL list lives (Google, Bing, etc. may use it).
-# In Search Console → Sitemaps, submit this exact URL (https, path /sitemap.xml):
-Sitemap: https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/sitemap.xml
+# In Search Console → Sitemaps, submit this exact URL (canonical www custom domain):
+Sitemap: https://www.agentic-swarm-marketplace.com/sitemap.xml

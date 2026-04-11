@@ -4,7 +4,7 @@
 
   <!-- 1. HOMEPAGE - Highest priority -->
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -12,35 +12,35 @@
 
   <!-- 2. Core Data & Discovery Files -->
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/endpoints.json</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/endpoints.json</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.85</priority>
   </url>
 
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/llms.txt</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/llms.txt</loc>
     <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.84</priority>
   </url>
 
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/mcp-integration.md</loc>
     <lastmod>2026-04-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.83</priority>
   </url>
 
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/.well-known/ai-plugin.json</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/.well-known/ai-plugin.json</loc>
     <lastmod>2026-04-06</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.82</priority>
   </url>
 
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/discovery-keyword-scan.json</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/discovery-keyword-scan.json</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.80</priority>
@@ -48,28 +48,28 @@
 
   <!-- 3. Key Documentation Pages (these are the highest-value SEO pages) -->
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/discovery-keyword-scan.md</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/discovery-keyword-scan.md</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
   </url>
 
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/docs/ARCHITECTURE.md</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/docs/ARCHITECTURE.md</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.78</priority>
   </url>
 
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/docs/X402_MARKETPLACE_INTEGRATION.md</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/docs/X402_MARKETPLACE_INTEGRATION.md</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.77</priority>
   </url>
 
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/docs/T54_SELLER.md</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/docs/T54_SELLER.md</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.76</priority>
@@ -77,21 +77,21 @@
 
   <!-- 4. High-Value Soak & Proof Reports (great for long-tail SEO) -->
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/x402_agent_commerce_soak_report.md</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/x402_agent_commerce_soak_report.md</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.72</priority>
   </url>
 
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/live_xrpl_to_celo_proof_report.md</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/live_xrpl_to_celo_proof_report.md</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.70</priority>
   </url>
 
   <url>
-    <loc>https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/continuous_multi_rail_24h_report.md</loc>
+    <loc>https://www.agentic-swarm-marketplace.com/continuous_multi_rail_24h_report.md</loc>
     <lastmod>2026-03-28</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.68</priority>
