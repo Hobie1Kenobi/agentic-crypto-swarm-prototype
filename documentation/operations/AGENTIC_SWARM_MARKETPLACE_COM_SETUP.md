@@ -114,6 +114,35 @@ Repo reference: `scripts/cloudflare-tunnel/README.md`, `scripts/reverse-proxy/RE
 
 ---
 
+## Part F — Keep `api.*` on the same commit as GitHub
+
+`https://api.agentic-swarm-marketplace.com` is **not** deployed from GitHub Actions by default. It is **Cloudflare Tunnel → `http://localhost:9080`** on whatever machine runs **`cloudflared`** and the **unified stack** (Caddy, sellers, MCP). Smithery’s **Publish** URL only sees what that process serves.
+
+To make production match **`Hobie1Kenobi/agentic-crypto-swarm-prototype`** `master` (e.g. `3b11d2f`):
+
+1. On the **tunnel host**, open a shell in your **clone** of this repo (same remote you trust for production).
+2. Pull and optionally restart:
+
+   ```powershell
+   npm run sync:api-host -- -RestartStack
+   ```
+
+   Or without restarting processes (only git sync):
+
+   ```powershell
+   npm run sync:api-host
+   ```
+
+   The script prints **`HEAD`** — compare to [GitHub `master`](https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commits/master).
+
+3. Ensure **`cloudflared`** is still running and the tunnel **public hostname** still targets **`http://127.0.0.1:9080`** (or your Docker equivalent). See `scripts/cloudflare-tunnel/README.md`.
+
+4. In Smithery, **Publish** again against `https://api.agentic-swarm-marketplace.com/mcp` so their scan picks up the running server.
+
+**If the tunnel runs on a different PC than your dev machine:** repeat steps 1–2 on **that** PC (or clone/pull there via CI/SSH). The commit on disk must match the commit you want.
+
+---
+
 ## Part E — Clean up GoDaddy-only records
 
 After nameservers point to Cloudflare, **GoDaddy DNS tab no longer controls DNS**. In **Cloudflare**, do **not** copy:

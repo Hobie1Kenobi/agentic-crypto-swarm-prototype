@@ -59,6 +59,7 @@
     "stack:unified:ensure": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/start-unified-stack.ps1 -Ensure",
     "stack:unified:wire": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/wire-unified-proxy-ngrok.ps1",
     "stack:unified:stop": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/stop-unified-stack.ps1",
+    "sync:api-host": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/sync-api-host-from-git.ps1",
     "stack:unified:install-task": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-unified-stack-task.ps1",
     "stack:unified:uninstall-task": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/uninstall-unified-stack-task.ps1",
     "stack:unified:install-startup": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/install-unified-stack-startup.ps1",
