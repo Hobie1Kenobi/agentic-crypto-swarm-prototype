@@ -7,6 +7,13 @@ __pycache__/
 venv/
 .venv/
 .venv-olas/
+.venv-aea/
+.open-aea-upstream/
+
+# Open AEA agent keys (generate locally; see scripts/install-open-aea.ps1)
+aea/**/ethereum_private_key.txt
+aea/**/cosmos_private_key.txt
+aea/**/fetchai_private_key.txt
 env/
 .env
 .env.bak
@@ -14,9 +21,18 @@ env/
 .env.*.local
 .env.secrets
 .env.mainnet
+.env.btc.mainnet
+.env.clawcredit
 
 # Local tooling (e.g. ngrok binary from scripts)
 .tools/
+
+# Fork clones for upstream MCP list PRs (large; regenerate with gh repo fork)
+submissions/portal-pr-work/
+
+# Cloudflare Tunnel secrets (scripts/cloudflare-tunnel)
+scripts/cloudflare-tunnel/credentials.json
+scripts/cloudflare-tunnel/config.yml
 
 # T54 stack runtime logs
 logs/
@@ -65,7 +81,7 @@ simulation_report.md
 logs/
 
 # Local copy of funding checklist (may list deposit addresses / ops notes)
-docs/airdrop_funding_checklist.local.md
+**/airdrop_funding_checklist.local.md
 
 # OS
 .DS_Store
