@@ -45,6 +45,8 @@ Docs: **[smithery.ai/docs/build](https://smithery.ai/docs/build/index)** · conf
 
 CLI (optional): `smithery mcp publish "https://api.agentic-swarm-marketplace.com/mcp" -n @your-namespace/agentic-crypto-swarm` (see Smithery CLI docs).
 
+**Observability / health:** See **[documentation/operations/SMITHERY_OBSERVABILITY.md](../documentation/operations/SMITHERY_OBSERVABILITY.md)** and run **`python scripts/probe_smithery_upstream.py`** (uses **SmitheryBot** UA). Smithery **runtime logs** API: [list runtime logs](https://smithery.ai/docs/api-reference/servers/list-runtime-logs.md) (`GET /servers/{qualifiedName}/logs` with API key).
+
 ---
 
 ## 3. TAAFT (There's An AI For That)

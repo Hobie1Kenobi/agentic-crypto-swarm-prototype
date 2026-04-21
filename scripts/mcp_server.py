@@ -467,9 +467,13 @@ def _build_fastmcp(**settings: Any):
                     "query_parameters": [p["name"] for p in op["parameters"]],
                 }
             )
+        try:
+            openapi_display = str(openapi_path.resolve().relative_to(root))
+        except ValueError:
+            openapi_display = openapi_path.name
         return json.dumps(
             {
-                "openapi_path": str(openapi_path.resolve()),
+                "openapi_path": openapi_display,
                 "base_url_env": "T54_SELLER_PUBLIC_BASE_URL",
                 "operations": rows,
             },
