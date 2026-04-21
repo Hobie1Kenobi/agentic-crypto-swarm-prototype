@@ -2,6 +2,17 @@
 
 Your Smithery **Observability** tab shows RPC methods (`tools/list`, `tools/call`), error rates, and latency. This doc ties those metrics to your stack and shows how to see **how far a call got**.
 
+## Where things live in the Smithery dashboard (vs **API** tab)
+
+| Tab | What it is for |
+|-----|----------------|
+| **Observability** | Charts and rollups (e.g. last 30 days): RPC volume, error rates, latency percentiles — this is the “saved report” style view for past periods if the UI offers a date range. |
+| **Logs** | Per-invocation detail (often easier than charts for “what exactly failed”). |
+| **Performance** / **Usage** | Other aggregates; check each for time selectors. |
+| **API** | **Smithery Connect**: API keys, CLI (`smithery mcp add …`), and client integration — **not** where historical observability charts are stored. Use **Observability** or **Logs** (or the Platform API below) for past results. |
+
+Sign in at [smithery.ai](https://smithery.ai) → open **`hobiecunningham/agentic-swarm-marketplace`** → click **Observability** (or **Logs**) in the top nav.
+
 ## Request path
 
 ```text

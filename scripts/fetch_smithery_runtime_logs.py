@@ -41,6 +41,20 @@ def main() -> int:
     )
     ap.add_argument("--limit", type=int, default=20, help="Max invocations (1-100)")
     ap.add_argument("--search", default="", help="Filter log text")
+    ap.add_argument(
+        "--from",
+        dest="from_ts",
+        default="",
+        metavar="ISO8601",
+        help="Start of time range (e.g. 2026-03-01T00:00:00Z)",
+    )
+    ap.add_argument(
+        "--to",
+        dest="to_ts",
+        default="",
+        metavar="ISO8601",
+        help="End of time range (e.g. 2026-03-28T23:59:59Z)",
+    )
     ap.add_argument("--raw", action="store_true", help="Print JSON only")
     args = ap.parse_args()
 
@@ -51,9 +65,14 @@ def main() -> int:
         return 1
 
     enc = urllib.parse.quote(args.qualified_name, safe="")
-    q = urllib.parse.urlencode({"limit": min(100, max(1, args.limit))})
+    params: dict[str, str | int] = {"limit": min(100, max(1, args.limit))}
     if args.search:
-        q += "&" + urllib.parse.urlencode({"search": args.search})
+        params["search"] = args.search
+    if args.from_ts:
+        params["from"] = args.from_ts
+    if args.to_ts:
+        params["to"] = args.to_ts
+    q = urllib.parse.urlencode(params)
     url = f"https://api.smithery.ai/servers/{enc}/logs?{q}"
 
     req = urllib.request.Request(
