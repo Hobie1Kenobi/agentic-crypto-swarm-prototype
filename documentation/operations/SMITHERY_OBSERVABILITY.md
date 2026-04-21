@@ -41,7 +41,8 @@ The probe script posts **`initialize` → `tools/list` → `tools/call`** on `t5
 1. **Smithery Platform API — runtime logs** (per-invocation request/response, duration, log lines, exceptions):  
    - Docs: [List runtime logs](https://smithery.ai/docs/api-reference/servers/list-runtime-logs.md)  
    - `GET https://api.smithery.ai/servers/{qualifiedName}/logs` with **`Authorization: Bearer <SMITHERY_API_KEY>`**  
-   - Example qualified name: `hobiecunningham%2Fagentic-swarm-marketplace` (encode `/` as `%2F`).
+   - Example qualified name: `hobiecunningham%2Fagentic-swarm-marketplace` (encode `/` as `%2F`).  
+   - **CLI:** `python scripts/fetch_smithery_runtime_logs.py` (reads **`SMITHERY_API_KEY`** from **`.env.local`**). Override server with `--qualified-name namespace/server`.
 
 2. **Your origin** (if you host the MCP process):  
    - `logs/mcp-unified-streamable.log` / `.err.log` when started via `scripts/start-mcp-unified.ps1`  
