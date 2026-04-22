@@ -20,6 +20,7 @@ PATHS = (
     "/.well-known/api-catalog",
     "/.well-known/openid-configuration",
     "/.well-known/oauth-authorization-server",
+    "/.well-known/oauth-protected-resource",
     "/.well-known/jwks.json",
 )
 
@@ -85,6 +86,19 @@ def main() -> int:
             miss = next((k for k in need if k not in data), None)
             if miss:
                 print(f"FAIL {path} missing {miss!r}")
+                continue
+            print(f"OK   {path} status={code} bytes={len(body)}")
+            ok += 1
+            continue
+        if path == "/.well-known/oauth-protected-resource":
+            if "resource" not in data or not isinstance(data.get("authorization_servers"), list):
+                print(f"FAIL {path} missing resource or authorization_servers list")
+                continue
+            if not data["authorization_servers"]:
+                print(f"FAIL {path} authorization_servers empty")
+                continue
+            if not isinstance(data.get("scopes_supported"), list) or not data["scopes_supported"]:
+                print(f"FAIL {path} missing or empty scopes_supported")
                 continue
             print(f"OK   {path} status={code} bytes={len(body)}")
             ok += 1

@@ -102,6 +102,7 @@ def create_app():
         build_jwks_document,
         build_mcp_manifest,
         build_oauth_authorization_server_metadata,
+        build_oauth_protected_resource_metadata,
         build_openid_configuration,
         build_x402_manifest,
         oauth_stub_unavailable_payload,
@@ -491,6 +492,10 @@ def create_app():
     @app.get("/.well-known/oauth-authorization-server")
     async def well_known_oauth_authorization_server():
         return JSONResponse(content=build_oauth_authorization_server_metadata())
+
+    @app.get("/.well-known/oauth-protected-resource")
+    async def well_known_oauth_protected_resource():
+        return JSONResponse(content=build_oauth_protected_resource_metadata())
 
     @app.get("/.well-known/jwks.json")
     async def well_known_jwks():

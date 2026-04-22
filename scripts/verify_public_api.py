@@ -37,6 +37,7 @@ def main() -> int:
         ),
         (f"{base}/.well-known/openid-configuration", "__oauth_discovery__", None),
         (f"{base}/.well-known/oauth-authorization-server", "__oauth_discovery__", None),
+        (f"{base}/.well-known/oauth-protected-resource", "__oauth_pr__", None),
         (f"{base}/.well-known/jwks.json", "__jwks__", None),
     ]
     for url, key, accept in checks:
@@ -72,6 +73,21 @@ def main() -> int:
                 print(f"FAIL {url} must include {need}")
                 continue
             print(f"OK   {url} (issuer={str(j.get('issuer'))[:56]}...)")
+            ok += 1
+            continue
+        if key == "__oauth_pr__":
+            if "resource" not in j:
+                print(f"FAIL {url} missing resource")
+                continue
+            servers = j.get("authorization_servers")
+            if not isinstance(servers, list) or not servers:
+                print(f"FAIL {url} authorization_servers must be non-empty list")
+                continue
+            scopes = j.get("scopes_supported")
+            if not isinstance(scopes, list) or not scopes:
+                print(f"FAIL {url} scopes_supported must be non-empty list")
+                continue
+            print(f"OK   {url} (resource={str(j.get('resource'))[:48]}...)")
             ok += 1
             continue
         if key == "__jwks__":

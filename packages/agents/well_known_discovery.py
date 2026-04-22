@@ -218,6 +218,19 @@ def oauth_issuer() -> str:
     return o or get_public_api_base_url()
 
 
+def oauth_resource_identifier() -> str:
+    """RFC 9728 resource — HTTPS identifier for this protected API (no fragment)."""
+    r = (os.getenv("OAUTH_RESOURCE_IDENTIFIER") or "").strip().rstrip("/")
+    return r or get_public_api_base_url()
+
+
+def oauth_authorization_servers_list() -> list[str]:
+    raw = (os.getenv("OAUTH_AUTHORIZATION_SERVERS") or "").strip()
+    if raw:
+        return [x.strip().rstrip("/") for x in raw.split(",") if x.strip()]
+    return [oauth_issuer()]
+
+
 def oauth_authorization_token_jwks_urls(issuer: str) -> tuple[str, str, str]:
     auth = (os.getenv("OAUTH_AUTHORIZATION_ENDPOINT") or "").strip()
     token = (os.getenv("OAUTH_TOKEN_ENDPOINT") or "").strip()
@@ -273,6 +286,17 @@ def build_openid_configuration() -> dict:
     meta["subject_types_supported"] = ["public"]
     meta["id_token_signing_alg_values_supported"] = ["RS256"]
     return meta
+
+
+def build_oauth_protected_resource_metadata() -> dict:
+    """RFC 9728 OAuth 2.0 Protected Resource Metadata (/.well-known/oauth-protected-resource)."""
+    as_meta = build_oauth_authorization_server_metadata()
+    return {
+        "resource": oauth_resource_identifier(),
+        "authorization_servers": oauth_authorization_servers_list(),
+        "scopes_supported": list(as_meta.get("scopes_supported") or ["openid", "profile", "email"]),
+        "bearer_methods_supported": ["header"],
+    }
 
 
 def oauth_stub_unavailable_payload() -> dict:
