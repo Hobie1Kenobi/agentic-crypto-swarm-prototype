@@ -17,5 +17,3 @@ startCommand:
     - streamable-http
     - --host
     - "0.0.0.0"
-env:
-  PYTHONUNBUFFERED: "1"

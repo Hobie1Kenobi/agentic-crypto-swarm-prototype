@@ -70,7 +70,7 @@ mcpize deploy --yes
 mcpize publish --auto
 ```
 
-Set paid-tool secrets (T54 / Base URLs, keys, `X402_MCP_DRY_RUN`, etc.) in the MCPize dashboard if you need live settlement; the manifest only sets `PYTHONUNBUFFERED=1` by default.
+Set paid-tool secrets (T54 / Base URLs, keys, `X402_MCP_DRY_RUN`, etc.) in the MCPize dashboard if you need live settlement. Do not use a top-level `env:` key in `mcpize.yaml` (MCPize ignores it); use **`secrets`** / **`credentials`** per [mcpize.yaml wiki](https://github.com/mcpize/cli/wiki/How-to-configure-your-deployment-via-mcpize.yaml).
 
 Docs: [https://github.com/mcpize/cli](https://github.com/mcpize/cli)
 
