@@ -6,10 +6,10 @@
 
 | Step | Action |
 |------|--------|
-| 1 | In your GCP project, run **`scripts/gcp/bootstrap-wif-github.sh`** (Cloud Shell or local `gcloud` logged in as project admin). Set `GCP_PROJECT_ID`, `GITHUB_ORG`, `GITHUB_REPO`. |
-| 2 | In GitHub: **Variables** — `GCP_WIF_ENABLED=true`, `GCP_PROJECT_ID=<id>`. **Secrets** — `GCP_WORKLOAD_IDENTITY_PROVIDER`, `GCP_SERVICE_ACCOUNT_EMAIL` (values printed by the script). |
-| 3 | Grant the new service account **least-privilege IAM roles** for what CI will do (example in script output: start with `roles/viewer` for a smoke test). |
-| 4 | **Actions → “GCP WIF verify” → Run workflow** to confirm. |
+| 1 | Open **[Google Cloud Shell](https://shell.cloud.google.com)** in your project (or any machine with `gcloud` as project Owner/Editor). Clone this repo or upload `scripts/gcp/bootstrap-wif-github.sh`, then: `export GCP_PROJECT_ID=... GITHUB_ORG=Hobie1Kenobi GITHUB_REPO=agentic-crypto-swarm-prototype` and run **`bash scripts/gcp/bootstrap-wif-github.sh`**. |
+| 2 | **GitHub:** either set Variables + Secrets in **Settings → Secrets and variables → Actions**, or from a Windows checkout run **`pwsh scripts/gcp/push-wif-to-github.ps1`** with `-GcpProjectId`, `-WorkloadIdentityProvider`, `-ServiceAccountEmail` (script prints exact `-RunVerify` example). Requires **`gh auth login`** with `repo` + `workflow`. |
+| 3 | Grant the new service account **least-privilege IAM roles** (smoke test: `roles/viewer` as in bootstrap output). |
+| 4 | **Actions → “GCP WIF verify”** (or use **`-RunVerify`** on the PowerShell helper). |
 
 Workflow file: [`.github/workflows/gcp-wif-verify.yml`](../../.github/workflows/gcp-wif-verify.yml).
 
