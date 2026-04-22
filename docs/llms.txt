@@ -25,7 +25,12 @@ Purpose: help AI crawlers, autonomous agents, and MCP clients discover how to fi
 
 - T54 routes: expect 402 with x402 payment requirements until a valid payment is attached; settlement uses XRPL per T54/x402 configuration (testnet vs mainnet depends on deployment — see repo docs).
 - Base USDC x402: separate endpoints (e.g. Bazaar-style query routes) documented in OpenAPI and `endpoints.json` when enabled.
+- **Primary Base x402 probe URL (unpaid GET must return HTTP 402):** `https://api.agentic-swarm-marketplace.com/x402/v1/query` — use the **api** host, not `www` (GitHub Pages is static and does not terminate x402).
 - Operators configure rails via environment variables (see repo `.env.example`): e.g. broker pay mode, XRPL seeds/caps, seller public base URLs.
+
+## Commerce / x402 audits
+
+Third-party “commerce” or “x402 protocol” checks that only request `https://www.agentic-swarm-marketplace.com/` and `/api` will not see HTTP 402; that is expected. Run the same checks against **`https://api.agentic-swarm-marketplace.com/x402/v1/query`** (or read `/.well-known/x402.json` on **api**). Bazaar discovery lists resources under the **api** hostname unless you add a deliberate `www` proxy — see `documentation/operations/AGENTIC_SWARM_MARKETPLACE_COM_SETUP.md` (section *Third-party x402 and commerce audits*).
 
 ## Rotating public URLs (do not hardcode for long)
 
