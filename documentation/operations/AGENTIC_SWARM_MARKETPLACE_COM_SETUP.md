@@ -162,6 +162,42 @@ After nameservers point to Cloudflare, **GoDaddy DNS tab no longer controls DNS*
 
 ---
 
+## Third-party x402 and commerce audits (www vs api)
+
+Some scanners treat the **marketing hostname** (`www`, GitHub Pages) as the “commerce site” and send `GET /`, `GET /api`, and `GET /api/v1`. That site is **static HTML**: you will see **200** on `/` and **404** on paths that do not exist there. That does **not** mean x402 is missing; it means the probe is on the wrong host.
+
+**Where x402 actually runs**
+
+- **Base USDC seller (Bazaar-style routes, HTTP 402 when unpaid):** `https://api.agentic-swarm-marketplace.com/x402/v1/query` (and sibling paths under `/x402/v1/*`).
+- **Discovery metadata:** `https://api.agentic-swarm-marketplace.com/.well-known/x402.json` and related `/.well-known/*` documents.
+- **T54 XRPL seller:** under `https://api.agentic-swarm-marketplace.com/t54/...` (prefix stripped by Caddy to the T54 app).
+
+**Quick manual check (expect 402 without payment)**
+
+```text
+curl -sS -o /dev/null -w "%{http_code}\n" "https://api.agentic-swarm-marketplace.com/x402/v1/query"
+```
+
+You should see `402` (and JSON payment requirements if you omit `-o /dev/null`).
+
+**Coinbase Bazaar / `platform/v2/x402/discovery/resources`**
+
+Discovery entries use the **resource URL** your facilitator sees — typically **`api.agentic-swarm-marketplace.com`**, not `www`. If a report says “no entries matching `www.agentic-swarm-marketplace.com`”, that is usually a **hostname filter** on the audit side. Fixes (pick one):
+
+1. **Configure the audit** to use the **api** hostname or the full query URL above (best, no infra change).
+2. **Optional (advanced):** Put a **Cloudflare Worker** (or selective reverse proxy) in front of `www` so paths like `/x402/*` (and optionally `/.well-known/x402.json`) are **fetched from the api origin** while everything else still serves GitHub Pages. Then you could register or display `www` URLs — only do this if you accept the operational complexity.
+
+**Optional redirects on `www` (may satisfy naive probes)**
+
+In Cloudflare **Redirect Rules** (single redirects), you can map marketing paths to the live seller, for example:
+
+- `https://www.agentic-swarm-marketplace.com/api` → **302** → `https://api.agentic-swarm-marketplace.com/x402/v1/query`
+- `https://www.agentic-swarm-marketplace.com/api/v1` → **302** → same target
+
+Whether a given audit treats **302 → 402** as “x402 detected” varies by tool; the reliable signal is still a direct **GET** to **`api`** `/x402/v1/query`.
+
+---
+
 ## If you must keep GoDaddy nameservers
 
 You cannot use **Cloudflare Tunnel hostnames** on your domain the same way without the zone on Cloudflare. Options: **move NS to Cloudflare** (above), or use **another** tunnel product / VPS with a **manual** CNAME in GoDaddy to that provider. For this repo, **Cloudflare + NS migration** is the path that matches the existing docs.

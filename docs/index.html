@@ -406,6 +406,7 @@
         <a href="#stripe-mpp">Stripe MPP</a>
         <a href="#operator-bundle">Dashboard bundle</a>
         <a href="#live-endpoints">Live endpoints</a>
+        <a href="https://api.agentic-swarm-marketplace.com/x402/v1/query" target="_blank" rel="noopener">Base x402 (402)</a>
         <a href="#mcp-agent">Agent MCP</a>
         <a href="#t54-x402">T54 x402</a>
         <a href="#proof">Proof</a>
@@ -564,6 +565,7 @@
     <div class="container">
       <h2 class="section-title">Live endpoints</h2>
       <p class="section-sub">Single source of truth: <code style="color: #a5b4fc;">docs/endpoints.json</code> — regenerate with <code style="color: #a5b4fc;">npm run docs:sync-endpoints</code> (reads <code>T54_SELLER_PUBLIC_BASE_URL</code>, <code>X402_SELLER_PUBLIC_URL</code>, and <code>MARKETPLACE_PUBLIC_BASE_URL</code> from <code>.env</code>). Use <strong>stable HTTPS</strong> and <strong>mainnet</strong> settlement (<code>eip155:8453</code> USDC, <code>xrpl:0</code> XRP) for real inbound sales — see <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/PUBLIC_MAINNET_OPERATIONS.md" target="_blank" rel="noopener" style="color: var(--accent-cyan);">PUBLIC_MAINNET_OPERATIONS.md</a>. After unified Caddy + tunnel, run <code style="color: #a5b4fc;">npm run stack:unified:wire</code> first, then sync and commit so GitHub Pages matches your live origins.</p>
+      <p class="section-sub" style="margin-top: 14px;">Automated <strong>x402 protocol</strong> checks that only hit this <strong>www</strong> site (<code>GET /</code>, <code>/api</code>) will not see HTTP <strong>402</strong> — that is normal: this page is static GitHub Pages. Paid routes and x402 challenges run on the <strong>API</strong> host. Try <a href="https://api.agentic-swarm-marketplace.com/x402/v1/query" target="_blank" rel="noopener" style="color: var(--accent-cyan);">GET https://api.agentic-swarm-marketplace.com/x402/v1/query</a> without payment (expect <strong>402</strong> + JSON). Bazaar discovery lists <code>api</code> URLs; audits that filter for <code>www</code> should be pointed at <code>api</code> or use optional Cloudflare redirects — see <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/operations/AGENTIC_SWARM_MARKETPLACE_COM_SETUP.md#third-party-x402-and-commerce-audits-www-vs-api" target="_blank" rel="noopener" style="color: var(--accent-cyan);">AGENTIC_SWARM_MARKETPLACE_COM_SETUP.md</a>.</p>
       <div id="live-endpoints-root" class="t54-spotlight" style="margin-top: 24px;">
         <p style="color: var(--text-muted);">Loading…</p>
       </div>
