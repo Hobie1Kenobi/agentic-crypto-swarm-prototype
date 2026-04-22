@@ -27,6 +27,87 @@ def get_public_api_base_url() -> str:
     return "https://api.agentic-swarm-marketplace.com"
 
 
+def get_public_site_origin() -> str:
+    """HTTPS origin for marketing / policy pages (vendor UCP spec URLs must match this host)."""
+    base = (os.getenv("PUBLIC_SITE_ORIGIN") or "").strip().rstrip("/")
+    if base:
+        return base
+    return "https://agentic-swarm-marketplace.com"
+
+
+UCP_PROTOCOL_VERSION = "2026-04-08"
+
+
+def build_ucp_profile() -> dict:
+    """Universal Commerce Protocol business profile for /.well-known/ucp (UCP discovery)."""
+    api = get_public_api_base_url()
+    site = get_public_site_origin()
+    v = UCP_PROTOCOL_VERSION
+    spec = f"https://ucp.dev/{v}/specification/overview"
+    ns = "com.agentic_swarm_marketplace"
+    return {
+        "ucp": {
+            "version": v,
+            "services": {
+                f"{ns}.api": [
+                    {
+                        "version": v,
+                        "spec": spec,
+                        "transport": "rest",
+                        "endpoint": api,
+                        "schema": f"{api}/openapi.json",
+                    },
+                    {
+                        "version": v,
+                        "spec": spec,
+                        "transport": "a2a",
+                        "endpoint": f"{api}/.well-known/agent-card.json",
+                    },
+                ]
+            },
+            "capabilities": {
+                f"{ns}.api.paid_skus": [
+                    {
+                        "version": v,
+                        "spec": f"{site}/",
+                        "schema": f"{api}/openapi.json",
+                    }
+                ]
+            },
+        }
+    }
+
+
+def build_acp_discovery() -> dict:
+    """Agentic Commerce Protocol discovery for /.well-known/acp.json (passive agent discovery)."""
+    api = get_public_api_base_url()
+    ver = (os.getenv("ACP_PROTOCOL_VERSION") or "2026-04-17").strip()
+    return {
+        "protocol": {"name": "acp", "version": ver},
+        "api_base_url": api,
+        "supported_transports": ["rest", "mcp"],
+        "capabilities": {
+            "services": {
+                "x402_http_skus": {
+                    "description": "Per-route HTTP APIs with x402 settlement (Base USDC); resource list and prices in /.well-known/x402.json",
+                    "catalog_url": f"{api}/.well-known/x402.json",
+                    "rest_base_url": api,
+                },
+                "mcp_streamable_http": {
+                    "description": "Model Context Protocol: Streamable HTTP and SSE tools for audits, intelligence, and commerce helpers",
+                    "mcp_server_card_url": f"{api}/.well-known/mcp/server-card.json",
+                    "mcp_endpoint": f"{api}/mcp",
+                },
+                "stripe_marketplace_orders": {
+                    "description": "Marketplace orders and MPP discovery (OpenAPI, POST /v1/orders)",
+                    "openapi_url": f"{api}/openapi.json",
+                    "orders_path": "/v1/orders",
+                },
+            }
+        },
+    }
+
+
 def get_seller_pay_to() -> str:
     explicit = (os.getenv("X402_SELLER_PAY_TO") or "").strip()
     if explicit.startswith("0x") and len(explicit) == 42:

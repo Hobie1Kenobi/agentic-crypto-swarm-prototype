@@ -42,6 +42,8 @@ def _mcp_server_card_ok(obj: dict) -> bool:
 
 
 PATHS = (
+    "/.well-known/ucp",
+    "/.well-known/acp.json",
     "/.well-known/x402.json",
     "/.well-known/agent-card.json",
     "/.well-known/mcp.json",
@@ -106,6 +108,44 @@ def main() -> int:
             )
             if missing:
                 print(f"FAIL {path} linkset[0] missing {missing!r}")
+                continue
+            print(f"OK   {path} status={code} bytes={len(body)}")
+            ok += 1
+            continue
+        if path == "/.well-known/ucp":
+            ucp = data.get("ucp")
+            if not isinstance(ucp, dict):
+                print(f"FAIL {path} missing top-level ucp object")
+                continue
+            if not ucp.get("version") or not isinstance(ucp.get("services"), dict) or not ucp["services"]:
+                print(f"FAIL {path} missing ucp.version or non-empty ucp.services")
+                continue
+            caps = ucp.get("capabilities")
+            if not isinstance(caps, dict) or not caps:
+                print(f"FAIL {path} missing non-empty ucp.capabilities")
+                continue
+            print(f"OK   {path} status={code} bytes={len(body)}")
+            ok += 1
+            continue
+        if path == "/.well-known/acp.json":
+            proto = data.get("protocol")
+            if not isinstance(proto, dict) or proto.get("name") != "acp" or not proto.get("version"):
+                print(f"FAIL {path} missing protocol.name acp and protocol.version")
+                continue
+            if not data.get("api_base_url"):
+                print(f"FAIL {path} missing api_base_url")
+                continue
+            st = data.get("supported_transports")
+            if not isinstance(st, list) or not st:
+                print(f"FAIL {path} missing non-empty supported_transports")
+                continue
+            caps = data.get("capabilities")
+            if not isinstance(caps, dict):
+                print(f"FAIL {path} missing capabilities object")
+                continue
+            svcs = caps.get("services")
+            if not isinstance(svcs, dict) or not svcs:
+                print(f"FAIL {path} missing non-empty capabilities.services")
                 continue
             print(f"OK   {path} status={code} bytes={len(body)}")
             ok += 1

@@ -108,6 +108,8 @@ def create_app():
         build_oauth_authorization_server_metadata,
         build_oauth_protected_resource_metadata,
         build_openid_configuration,
+        build_acp_discovery,
+        build_ucp_profile,
         build_x402_manifest,
         oauth_stub_unavailable_payload,
     )
@@ -469,6 +471,14 @@ def create_app():
     async def paid_intake_resale(pack_id: str):
         m = run_intake_resale_pack(pack_id, revenue_usd=resale_price, rail="Base")
         return m.model_dump()
+
+    @app.get("/.well-known/ucp")
+    async def well_known_ucp():
+        return JSONResponse(content=build_ucp_profile())
+
+    @app.get("/.well-known/acp.json")
+    async def well_known_acp():
+        return JSONResponse(content=build_acp_discovery())
 
     @app.get("/.well-known/x402.json")
     async def well_known_x402():

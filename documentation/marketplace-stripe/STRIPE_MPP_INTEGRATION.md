@@ -69,6 +69,14 @@ Stripe’s [MPP quickstart](https://docs.stripe.com/payments/machine/mpp/quickst
 
 **Amounts:** Stripe enforces a **minimum charge** (often **$0.50 USD** in our tests). This repo enforces a minimum of **$0.50** for `create_crypto_deposit_payment_intent`; the default script uses **$1.00** to align with MPP sample math.
 
+### Connect: “Agentic Swarm Marketplace” `pmc_...` vs this server
+
+If you use **Stripe Connect** and see **Settings → Connect → Payment methods** with a custom **Payment method configuration** (for example `pmc_1TF637...` for “Agentic Swarm Marketplace”) and **Stablecoins and Crypto** set to **On by default**, that mainly controls **which methods appear for connected accounts / Checkout** built with that configuration.
+
+**This repository’s marketplace HTTP server does not send `payment_method_configuration` when creating deposit PaymentIntents.** It uses the same shape as Stripe’s [deposit mode](https://docs.stripe.com/payments/deposit-mode-stablecoin-payments) samples: `payment_method_types: ['crypto']`, `payment_method_data`, and `payment_method_options[crypto][mode]=deposit`. Stripe documents that **deposit mode access** is separate from flipping Crypto on in the Dashboard — see *Before you begin* on that page (contact **machine-payments@stripe.com** if the API still rejects `mode`).
+
+So: your Connect PMC being **Enabled** is good for Connect flows, but it **does not by itself** unlock `payment_method_options[crypto][mode]=deposit` on `PaymentIntent.create`. You still need preview API version + Stripe’s deposit entitlement on the **same account** as `STRIPE_SECRET_KEY`.
+
 ### Payment method configuration (`pmc_...`)
 
 - **Not used for Tempo deposit addresses** in this repo (Stripe rejects mixing `payment_method_configuration` with crypto **deposit** options; the official MPP sample uses explicit `payment_method_types: ['crypto']` only).

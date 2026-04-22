@@ -54,6 +54,7 @@ def main() -> int:
     ok = 0
     checks = [
         (f"{base}/health", "status", None),
+        (f"{base}/.well-known/acp.json", "__acp_discovery__", None),
         (f"{base}/.well-known/x402.json", "version", None),
         (f"{base}/.well-known/agent-card.json", "name", None),
         (f"{base}/.well-known/mcp.json", "mcp_endpoint", None),
@@ -96,6 +97,26 @@ def main() -> int:
                 print(f"FAIL {url} linkset[0] must include {need}")
                 continue
             print(f"OK   {url} (anchor={str(entry.get('anchor'))[:56]}...)")
+            ok += 1
+            continue
+        if key == "__acp_discovery__":
+            proto = j.get("protocol")
+            if not isinstance(proto, dict) or proto.get("name") != "acp" or not proto.get("version"):
+                print(f"FAIL {url} missing protocol.name acp and protocol.version")
+                continue
+            if not j.get("api_base_url"):
+                print(f"FAIL {url} missing api_base_url")
+                continue
+            st = j.get("supported_transports")
+            if not isinstance(st, list) or not st:
+                print(f"FAIL {url} missing supported_transports")
+                continue
+            caps = j.get("capabilities") or {}
+            svcs = caps.get("services") if isinstance(caps, dict) else None
+            if not isinstance(svcs, dict) or not svcs:
+                print(f"FAIL {url} missing capabilities.services")
+                continue
+            print(f"OK   {url} (acp v{proto.get('version')})")
             ok += 1
             continue
         if key == "__oauth_discovery__":

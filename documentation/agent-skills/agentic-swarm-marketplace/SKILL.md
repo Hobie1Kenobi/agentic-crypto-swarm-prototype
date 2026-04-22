@@ -11,6 +11,8 @@ Use this skill when integrating or operating **Agentic Swarm Marketplace**: mult
 
 On the public API host, fetch:
 
+- `/.well-known/ucp` — Universal Commerce Protocol business profile (services, capabilities, API/OpenAPI links).
+- `/.well-known/acp.json` — Agentic Commerce Protocol discovery (`protocol`, `api_base_url`, transports, `capabilities.services`).
 - `/.well-known/x402.json` — paid resource catalog (paths, prices, network).
 - `/.well-known/mcp/server-card.json` — MCP Server Card (SEP-1649); connect to `transport.endpoint` (e.g. `/mcp`).
 - `/.well-known/api-catalog` — RFC 9727 linkset (`Accept: application/linkset+json`).
