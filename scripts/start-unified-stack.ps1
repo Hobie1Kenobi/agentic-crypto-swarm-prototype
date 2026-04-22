@@ -200,10 +200,16 @@ if (-not $NoSync) {
     $fpBefore = Get-EnvPublicUrlFingerprint
     $py = (Get-Command python -ErrorAction SilentlyContinue).Source
     if (-not $py) { $py = "python" }
-    & $py "$Root\scripts\sync_t54_env_from_ngrok.py"
-    if ($LASTEXITCODE -ne 0) { Write-Host "[unified-stack] sync T54 exited $LASTEXITCODE" }
-    & $py "$Root\scripts\sync_x402_env_from_ngrok.py"
-    if ($LASTEXITCODE -ne 0) { Write-Host "[unified-stack] sync x402 exited $LASTEXITCODE" }
+    & $py "$Root\scripts\apply_public_api_origin.py"
+    $prodUrls = ($LASTEXITCODE -eq 2)
+    if ($prodUrls) {
+        Write-Host '[unified-stack] PUBLIC_API_ORIGIN set in .env - skipped ngrok URL sync (production-cohesive URLs)'
+    } else {
+        & $py "$Root\scripts\sync_t54_env_from_ngrok.py"
+        if ($LASTEXITCODE -ne 0) { Write-Host "[unified-stack] sync T54 exited $LASTEXITCODE" }
+        & $py "$Root\scripts\sync_x402_env_from_ngrok.py"
+        if ($LASTEXITCODE -ne 0) { Write-Host "[unified-stack] sync x402 exited $LASTEXITCODE" }
+    }
     $fpAfter = Get-EnvPublicUrlFingerprint
     $urlsChanged = $fpBefore -ne $fpAfter
     $doSellerRestart = (-not $Ensure) -or $urlsChanged
@@ -223,17 +229,17 @@ if (-not $NoSync) {
 
 foreach ($port in @(8765, 8043, 8055, 9051, 9052, 9080, 4040)) {
     if (Test-PortListen $port) {
-        Write-Host "[unified-stack] OK listen :$port"
+        Write-Host ('[unified-stack] OK listen :' + $port)
     } else {
-        Write-Host "[unified-stack] MISSING listener :$port (see logs under $logDir)"
+        Write-Host ('[unified-stack] MISSING listener :' + $port + ' (see logs under ' + $logDir + ')')
     }
 }
 
 try {
     $t = Invoke-RestMethod -Uri "http://127.0.0.1:4040/api/tunnels" -TimeoutSec 5
-    $t.tunnels | ForEach-Object { Write-Host "[unified-stack] tunnel $($_.name) $($_.public_url)" }
+    $t.tunnels | ForEach-Object { Write-Host ('[unified-stack] tunnel ' + $_.name + ' ' + $_.public_url) }
 } catch {
-    Write-Host "[unified-stack] could not list tunnels: $_"
+    Write-Host ('[unified-stack] could not list tunnels: ' + $_)
 }
 
-Write-Host "[unified-stack] done. Caddy/ngrok left running. Full start reloads sellers after sync; ensure-mode only restarts sellers when T54/X402 URLs in .env change."
+Write-Host '[unified-stack] done. Caddy/ngrok left running. Full start reloads sellers after sync; ensure-mode only restarts sellers when T54/X402 URLs in .env change.'

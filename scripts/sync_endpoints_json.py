@@ -4,6 +4,8 @@ Write docs/endpoints.json from repo-root .env (T54, Base x402, optional marketpl
 
 Run after ngrok sync or when your public URLs change, then commit docs/endpoints.json
 so GitHub Pages shows the same canonical links as discovery.
+If PUBLIC_API_ORIGIN is set in .env, it overrides per-key public URLs for this export
+(same cohesion as scripts/apply_public_api_origin.py).
 
   python scripts/sync_endpoints_json.py
   npm run docs:sync-endpoints
@@ -50,6 +52,13 @@ def _health_url_from_origin(origin: str) -> str:
 
 def main() -> int:
     _load_env()
+    pub = (os.getenv("PUBLIC_API_ORIGIN") or "").strip().rstrip("/")
+    if pub.startswith("https://"):
+        os.environ["MARKETPLACE_PUBLIC_BASE_URL"] = pub
+        os.environ["X402_SELLER_PUBLIC_URL"] = f"{pub}/x402/v1/query"
+        os.environ["T54_SELLER_PUBLIC_BASE_URL"] = f"{pub}/t54"
+        os.environ["MCP_SSE_PUBLIC_URL"] = f"{pub}/mcp"
+
     t54_base = (os.getenv("T54_SELLER_PUBLIC_BASE_URL") or "").strip()
     if not t54_base:
         legacy = (
