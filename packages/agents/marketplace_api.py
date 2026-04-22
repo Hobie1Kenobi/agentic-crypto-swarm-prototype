@@ -80,6 +80,8 @@ def create_app():
 
     @app.get("/health")
     async def health():
+        from swarm.llm import get_llm_probe_info
+
         cfg = MarketplaceConfig.from_env()
         mpp = StripeMppConfig.from_env()
         zip_ok = bool(
@@ -93,7 +95,42 @@ def create_app():
             "bundle_zip_ready": zip_ok,
             "public_base_url": cfg.public_base_url or None,
             "url_resolution": "env MARKETPLACE_PUBLIC_BASE_URL or incoming request Host",
+            "llm": get_llm_probe_info(),
         }
+
+    from well_known_discovery import (
+        LINKSET_JSON_MEDIA_TYPE,
+        build_agent_card_manifest,
+        build_api_catalog_linkset,
+        build_mcp_manifest,
+        build_x402_manifest,
+        get_seller_pay_to,
+    )
+
+    @app.get("/.well-known/x402.json")
+    async def well_known_x402():
+        pay_to = get_seller_pay_to()
+        if not pay_to:
+            return JSONResponse(
+                status_code=503,
+                content={"error": "X402_SELLER_PAY_TO (or strategist key) not configured"},
+            )
+        return JSONResponse(content=build_x402_manifest(pay_to))
+
+    @app.get("/.well-known/agent-card.json")
+    async def well_known_agent_card():
+        return JSONResponse(content=build_agent_card_manifest())
+
+    @app.get("/.well-known/mcp.json")
+    async def well_known_mcp():
+        return JSONResponse(content=build_mcp_manifest())
+
+    @app.get("/.well-known/api-catalog")
+    async def well_known_api_catalog():
+        return JSONResponse(
+            content=build_api_catalog_linkset(),
+            media_type=LINKSET_JSON_MEDIA_TYPE,
+        )
 
     @app.post("/v1/orders")
     async def create_order(request: Request, body: CreateOrderBody):
