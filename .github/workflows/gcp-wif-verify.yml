@@ -1,0 +1,35 @@
+# Verifies keyless GitHub -> GCP auth (Workload Identity Federation).
+# Prereq: run scripts/gcp/bootstrap-wif-github.sh in your GCP project, then set repo variables + secrets.
+name: GCP WIF verify
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  verify:
+    name: Verify WIF + gcloud
+    runs-on: ubuntu-latest
+    if: vars.GCP_WIF_ENABLED == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        uses: google-github-actions/auth@v2
+        with:
+          workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
+          service_account: ${{ secrets.GCP_SERVICE_ACCOUNT_EMAIL }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Describe project (read-only sanity check)
+        env:
+          GCP_PROJECT_ID: ${{ vars.GCP_PROJECT_ID }}
+        run: |
+          test -n "$GCP_PROJECT_ID"
+          gcloud projects describe "$GCP_PROJECT_ID" --format='table(projectId,name,lifecycleState)'

@@ -1,5 +1,22 @@
 # Google Cloud — machine-to-machine (workload) auth
 
+## Swarm-Economy default (implemented in-repo)
+
+**Use GitHub Actions + Workload Identity Federation (WIF)** for any GCP access from CI (Vertex, Secret Manager, Artifact Registry, etc.). It avoids service account JSON keys in GitHub and keeps MCPize (third-party host) free of GCP long-lived credentials.
+
+| Step | Action |
+|------|--------|
+| 1 | In your GCP project, run **`scripts/gcp/bootstrap-wif-github.sh`** (Cloud Shell or local `gcloud` logged in as project admin). Set `GCP_PROJECT_ID`, `GITHUB_ORG`, `GITHUB_REPO`. |
+| 2 | In GitHub: **Variables** — `GCP_WIF_ENABLED=true`, `GCP_PROJECT_ID=<id>`. **Secrets** — `GCP_WORKLOAD_IDENTITY_PROVIDER`, `GCP_SERVICE_ACCOUNT_EMAIL` (values printed by the script). |
+| 3 | Grant the new service account **least-privilege IAM roles** for what CI will do (example in script output: start with `roles/viewer` for a smoke test). |
+| 4 | **Actions → “GCP WIF verify” → Run workflow** to confirm. |
+
+Workflow file: [`.github/workflows/gcp-wif-verify.yml`](../../.github/workflows/gcp-wif-verify.yml).
+
+Runtime on **MCPize** should not hold GCP keys; if agents need Gemini/Vertex from production, prefer **Ollama / existing LLM env** or a **small Cloud Run** service in your project (attached service account, Path B below).
+
+---
+
 Google does not sell a single product named “M2M platform.” For **service-to-service** auth you usually use one of these:
 
 | Pattern | Use when |
@@ -68,10 +85,6 @@ For WIF outside GCP, tools usually use a **credential configuration JSON** from 
 
 ---
 
-## Suggested next step for this repo
+## See also
 
-1. Decide **which caller** needs GCP (GitHub Actions only vs. MCP server runtime vs. long-running agent on Cloud Run).
-2. If **GitHub → GCP**: implement **Path A** and store only the WIF provider + SA email in GitHub secrets.
-3. If **MCPize container → your GCP**: prefer **Path B** (deploy a small proxy or worker on Cloud Run with an attached SA) or expose only **public HTTPS APIs** with your own auth — feeding SA keys into a third-party host is high risk.
-
-For Vertex / Gemini from **local** dev, `gcloud auth application-default login` is enough; do not commit keys.
+The **default caller** for this repo is **GitHub Actions** (section at top). For **MCPize → GCP**, use Path B (Cloud Run) or avoid GCP in that process. For **local** Vertex/Gemini, `gcloud auth application-default login` is enough; do not commit keys.
