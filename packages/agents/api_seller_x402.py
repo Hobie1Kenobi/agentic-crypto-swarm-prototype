@@ -77,7 +77,7 @@ def create_app():
     from contextlib import asynccontextmanager
 
     from fastapi import Body, FastAPI
-    from fastapi.responses import JSONResponse
+    from fastapi.responses import JSONResponse, Response
 
     from facilitator_health import FacilitatorMonitor
     from intake_resale_sell_guard import create_intake_resale_probe_middleware
@@ -97,7 +97,9 @@ def create_app():
     from api_402 import generate_response_for_query
     from well_known_discovery import (
         LINKSET_JSON_MEDIA_TYPE,
+        agent_skill_markdown_path,
         build_agent_card_manifest,
+        build_agent_skills_index,
         build_api_catalog_linkset,
         build_jwks_document,
         build_mcp_manifest,
@@ -510,6 +512,21 @@ def create_app():
     @app.get("/.well-known/jwks.json")
     async def well_known_jwks():
         return JSONResponse(content=build_jwks_document())
+
+    @app.get("/.well-known/agent-skills/index.json")
+    async def well_known_agent_skills_index():
+        return JSONResponse(content=build_agent_skills_index())
+
+    @app.get("/.well-known/skills/index.json")
+    async def well_known_agent_skills_index_legacy():
+        return JSONResponse(content=build_agent_skills_index())
+
+    @app.get("/.well-known/agent-skills/{skill_name}/SKILL.md")
+    async def well_known_agent_skill_md(skill_name: str):
+        p = agent_skill_markdown_path(skill_name)
+        if p is None:
+            return JSONResponse(status_code=404, content={"error": "skill_not_found"})
+        return Response(content=p.read_bytes(), media_type="text/markdown; charset=utf-8")
 
     @app.get("/oauth/authorize")
     async def oauth_authorize_stub():

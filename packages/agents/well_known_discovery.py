@@ -6,8 +6,11 @@ discovery when the reverse proxy routes the public API host to a single backend.
 
 from __future__ import annotations
 
+import hashlib
 import json
 import os
+import re
+from pathlib import Path
 from urllib.parse import urlparse
 
 
@@ -224,6 +227,96 @@ def build_mcp_server_card() -> dict:
 def build_mcp_server_cards_list() -> list[dict]:
     """JSON array for /.well-known/mcp/server-cards.json (multiple cards per host)."""
     return [build_mcp_server_card()]
+
+
+AGENT_SKILLS_DISCOVERY_SCHEMA = "https://schemas.agentskills.io/discovery/0.2.0/schema.json"
+
+
+def _repo_root() -> Path:
+    return Path(__file__).resolve().parents[2]
+
+
+def agent_skills_content_root() -> Path:
+    override = (os.getenv("AGENT_SKILLS_CONTENT_DIR") or "").strip()
+    if override:
+        return Path(override).expanduser().resolve()
+    return (_repo_root() / "documentation" / "agent-skills").resolve()
+
+
+def _skill_dir_name_ok(name: str) -> bool:
+    return bool(re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", name))
+
+
+def _parse_skill_md_description(md_path: Path) -> str:
+    default = md_path.parent.name.replace("-", " ")
+    try:
+        text = md_path.read_text(encoding="utf-8")
+    except OSError:
+        return default
+    if not text.startswith("---"):
+        for ln in text.splitlines():
+            s = ln.strip()
+            if s and not s.startswith("#"):
+                return s[:500]
+        return default
+    end = text.find("\n---", 3)
+    if end == -1:
+        return default
+    fm = text[3:end]
+    for line in fm.splitlines():
+        line = line.strip()
+        if line.startswith("description:"):
+            val = line.split("description:", 1)[1].strip()
+            if val.startswith('"') and val.endswith('"') and len(val) >= 2:
+                val = val[1:-1]
+            return val[:500] or default
+    return default
+
+
+def build_agent_skills_index() -> dict:
+    """Agent Skills Discovery RFC v0.2.0 index for /.well-known/agent-skills/index.json."""
+    root = agent_skills_content_root()
+    skills: list[dict] = []
+    if root.is_dir():
+        for d in sorted(root.iterdir()):
+            if not d.is_dir() or d.name.startswith("."):
+                continue
+            if not _skill_dir_name_ok(d.name):
+                continue
+            md = d / "SKILL.md"
+            if not md.is_file():
+                continue
+            body = md.read_bytes()
+            digest = "sha256:" + hashlib.sha256(body).hexdigest()
+            skills.append(
+                {
+                    "name": d.name,
+                    "type": "skill-md",
+                    "description": _parse_skill_md_description(md),
+                    "url": f"/.well-known/agent-skills/{d.name}/SKILL.md",
+                    "digest": digest,
+                }
+            )
+    return {"$schema": AGENT_SKILLS_DISCOVERY_SCHEMA, "skills": skills}
+
+
+def agent_skill_markdown_path(skill_name: str) -> Path | None:
+    """Resolved path to SKILL.md if valid and present; else None."""
+    if not _skill_dir_name_ok(skill_name):
+        return None
+    root = agent_skills_content_root()
+    try:
+        root_r = root.resolve()
+    except OSError:
+        return None
+    p = (root_r / skill_name / "SKILL.md").resolve()
+    try:
+        p.relative_to(root_r)
+    except ValueError:
+        return None
+    if p.is_file():
+        return p
+    return None
 
 
 LINKSET_JSON_MEDIA_TYPE = (

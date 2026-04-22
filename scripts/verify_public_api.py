@@ -10,6 +10,23 @@ import urllib.request
 DEFAULT_BASE = "https://api.agentic-swarm-marketplace.com"
 
 
+def _agent_skills_index_ok(data: dict) -> bool:
+    if data.get("$schema") != "https://schemas.agentskills.io/discovery/0.2.0/schema.json":
+        return False
+    skills = data.get("skills")
+    if not isinstance(skills, list) or not skills:
+        return False
+    for s in skills:
+        if not isinstance(s, dict):
+            return False
+        for k in ("name", "type", "description", "url", "digest"):
+            if k not in s or not isinstance(s[k], str) or not s[k].strip():
+                return False
+        if not str(s.get("digest", "")).startswith("sha256:"):
+            return False
+    return True
+
+
 def _mcp_server_card_ok(obj: dict) -> bool:
     si = obj.get("serverInfo")
     if not isinstance(si, dict) or not si.get("name") or not si.get("version"):
@@ -42,6 +59,8 @@ def main() -> int:
         (f"{base}/.well-known/mcp.json", "mcp_endpoint", None),
         (f"{base}/.well-known/mcp/server-card.json", "__mcp_server_card__", None),
         (f"{base}/.well-known/mcp/server-cards.json", "__mcp_server_cards__", None),
+        (f"{base}/.well-known/agent-skills/index.json", "__agent_skills__", None),
+        (f"{base}/.well-known/skills/index.json", "__agent_skills__", None),
         (
             f"{base}/.well-known/api-catalog",
             "linkset",
@@ -125,6 +144,14 @@ def main() -> int:
                 print(f"FAIL {url} invalid server card entry")
                 continue
             print(f"OK   {url} (count={len(j)})")
+            ok += 1
+            continue
+        if key == "__agent_skills__":
+            if not isinstance(j, dict) or not _agent_skills_index_ok(j):
+                print(f"FAIL {url} invalid Agent Skills index (v0.2.0)")
+                continue
+            n = len(j.get("skills") or [])
+            print(f"OK   {url} (skills={n})")
             ok += 1
             continue
         if key not in j:
