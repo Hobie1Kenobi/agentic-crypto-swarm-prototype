@@ -746,7 +746,10 @@ def main() -> None:
         raise SystemExit(check_mcp_stack())
     port = args.port
     if port is None:
-        if args.transport == "streamable-http":
+        pe = (os.getenv("PORT") or "").strip()
+        if pe.isdigit():
+            port = int(pe)
+        elif args.transport == "streamable-http":
             port = int((os.getenv("X402_MCP_STREAMABLE_PORT") or "9052").strip() or "9052")
         else:
             port = int((os.getenv("X402_MCP_SSE_PORT") or "9051").strip() or "9051")
