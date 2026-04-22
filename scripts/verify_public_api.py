@@ -35,6 +35,9 @@ def main() -> int:
             "linkset",
             "application/linkset+json, application/json",
         ),
+        (f"{base}/.well-known/openid-configuration", "__oauth_discovery__", None),
+        (f"{base}/.well-known/oauth-authorization-server", "__oauth_discovery__", None),
+        (f"{base}/.well-known/jwks.json", "__jwks__", None),
     ]
     for url, key, accept in checks:
         try:
@@ -61,6 +64,21 @@ def main() -> int:
                 print(f"FAIL {url} linkset[0] must include {need}")
                 continue
             print(f"OK   {url} (anchor={str(entry.get('anchor'))[:56]}...)")
+            ok += 1
+            continue
+        if key == "__oauth_discovery__":
+            need = ("issuer", "authorization_endpoint", "token_endpoint", "jwks_uri")
+            if any(k not in j for k in need):
+                print(f"FAIL {url} must include {need}")
+                continue
+            print(f"OK   {url} (issuer={str(j.get('issuer'))[:56]}...)")
+            ok += 1
+            continue
+        if key == "__jwks__":
+            if not isinstance(j.get("keys"), list):
+                print(f"FAIL {url} missing keys array")
+                continue
+            print(f"OK   {url} (keys={len(j['keys'])})")
             ok += 1
             continue
         if key not in j:

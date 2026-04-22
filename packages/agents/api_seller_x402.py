@@ -99,8 +99,12 @@ def create_app():
         LINKSET_JSON_MEDIA_TYPE,
         build_agent_card_manifest,
         build_api_catalog_linkset,
+        build_jwks_document,
         build_mcp_manifest,
+        build_oauth_authorization_server_metadata,
+        build_openid_configuration,
         build_x402_manifest,
+        oauth_stub_unavailable_payload,
     )
     from x402_seller_bazaar import (
         bazaar_agent_commerce_data,
@@ -346,6 +350,8 @@ def create_app():
             return await call_next(request)
         if request.url.path.startswith("/.well-known/"):
             return await call_next(request)
+        if request.url.path.startswith("/oauth/"):
+            return await call_next(request)
         if is_mcp_path(request.url.path):
             return mcp_wrong_port_response()
         if not monitor.is_ok():
@@ -477,6 +483,26 @@ def create_app():
             content=build_api_catalog_linkset(),
             media_type=LINKSET_JSON_MEDIA_TYPE,
         )
+
+    @app.get("/.well-known/openid-configuration")
+    async def well_known_openid_configuration():
+        return JSONResponse(content=build_openid_configuration())
+
+    @app.get("/.well-known/oauth-authorization-server")
+    async def well_known_oauth_authorization_server():
+        return JSONResponse(content=build_oauth_authorization_server_metadata())
+
+    @app.get("/.well-known/jwks.json")
+    async def well_known_jwks():
+        return JSONResponse(content=build_jwks_document())
+
+    @app.get("/oauth/authorize")
+    async def oauth_authorize_stub():
+        return JSONResponse(status_code=501, content=oauth_stub_unavailable_payload())
+
+    @app.post("/oauth/token")
+    async def oauth_token_stub():
+        return JSONResponse(status_code=501, content=oauth_stub_unavailable_payload())
 
     @app.get("/health")
     async def health():

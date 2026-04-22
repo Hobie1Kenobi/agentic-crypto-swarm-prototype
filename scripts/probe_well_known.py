@@ -18,6 +18,9 @@ PATHS = (
     "/.well-known/agent-card.json",
     "/.well-known/mcp.json",
     "/.well-known/api-catalog",
+    "/.well-known/openid-configuration",
+    "/.well-known/oauth-authorization-server",
+    "/.well-known/jwks.json",
 )
 
 
@@ -70,6 +73,25 @@ def main() -> int:
             )
             if missing:
                 print(f"FAIL {path} linkset[0] missing {missing!r}")
+                continue
+            print(f"OK   {path} status={code} bytes={len(body)}")
+            ok += 1
+            continue
+        if path in (
+            "/.well-known/openid-configuration",
+            "/.well-known/oauth-authorization-server",
+        ):
+            need = ("issuer", "authorization_endpoint", "token_endpoint", "jwks_uri")
+            miss = next((k for k in need if k not in data), None)
+            if miss:
+                print(f"FAIL {path} missing {miss!r}")
+                continue
+            print(f"OK   {path} status={code} bytes={len(body)}")
+            ok += 1
+            continue
+        if path == "/.well-known/jwks.json":
+            if not isinstance(data.get("keys"), list):
+                print(f"FAIL {path} missing keys array")
                 continue
             print(f"OK   {path} status={code} bytes={len(body)}")
             ok += 1

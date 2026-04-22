@@ -6,6 +6,7 @@ discovery when the reverse proxy routes the public API host to a single backend.
 
 from __future__ import annotations
 
+import json
 import os
 from urllib.parse import urlparse
 
@@ -209,4 +210,77 @@ def build_api_catalog_linkset() -> dict:
                 ],
             }
         ]
+    }
+
+
+def oauth_issuer() -> str:
+    o = (os.getenv("OAUTH_ISSUER") or "").strip().rstrip("/")
+    return o or get_public_api_base_url()
+
+
+def oauth_authorization_token_jwks_urls(issuer: str) -> tuple[str, str, str]:
+    auth = (os.getenv("OAUTH_AUTHORIZATION_ENDPOINT") or "").strip()
+    token = (os.getenv("OAUTH_TOKEN_ENDPOINT") or "").strip()
+    jwks = (os.getenv("OAUTH_JWKS_URI") or "").strip()
+    if auth and token and jwks:
+        return auth, token, jwks
+    return (
+        f"{issuer}/oauth/authorize",
+        f"{issuer}/oauth/token",
+        f"{issuer}/.well-known/jwks.json",
+    )
+
+
+def build_jwks_document() -> dict:
+    raw = (os.getenv("OAUTH_JWKS_JSON") or "").strip()
+    if raw:
+        try:
+            data = json.loads(raw)
+            if isinstance(data, dict) and isinstance(data.get("keys"), list):
+                return data
+        except json.JSONDecodeError:
+            pass
+    return {"keys": []}
+
+
+def build_oauth_authorization_server_metadata() -> dict:
+    """RFC 8414 authorization server metadata (for /.well-known/oauth-authorization-server)."""
+    iss = oauth_issuer()
+    auth_ep, token_ep, jwks_uri = oauth_authorization_token_jwks_urls(iss)
+    return {
+        "issuer": iss,
+        "authorization_endpoint": auth_ep,
+        "token_endpoint": token_ep,
+        "jwks_uri": jwks_uri,
+        "grant_types_supported": [
+            "authorization_code",
+            "client_credentials",
+        ],
+        "token_endpoint_auth_methods_supported": [
+            "client_secret_basic",
+            "client_secret_post",
+            "private_key_jwt",
+        ],
+        "scopes_supported": ["openid", "profile", "email"],
+        "response_types_supported": ["code"],
+        "code_challenge_methods_supported": ["S256"],
+    }
+
+
+def build_openid_configuration() -> dict:
+    """OpenID Connect Discovery 1.0 provider metadata (/.well-known/openid-configuration)."""
+    meta = dict(build_oauth_authorization_server_metadata())
+    meta["subject_types_supported"] = ["public"]
+    meta["id_token_signing_alg_values_supported"] = ["RS256"]
+    return meta
+
+
+def oauth_stub_unavailable_payload() -> dict:
+    return {
+        "error": "oauth_not_available",
+        "error_description": (
+            "This host does not issue OAuth or OIDC tokens. "
+            "Paid API access uses HTTP 402 x402; see /.well-known/x402.json."
+        ),
+        "x402_discovery": "/.well-known/x402.json",
     }
