@@ -101,6 +101,8 @@ def create_app():
         build_api_catalog_linkset,
         build_jwks_document,
         build_mcp_manifest,
+        build_mcp_server_card,
+        build_mcp_server_cards_list,
         build_oauth_authorization_server_metadata,
         build_oauth_protected_resource_metadata,
         build_openid_configuration,
@@ -477,6 +479,14 @@ def create_app():
     @app.get("/.well-known/mcp.json")
     async def well_known_mcp():
         return JSONResponse(content=build_mcp_manifest())
+
+    @app.get("/.well-known/mcp/server-card.json")
+    async def well_known_mcp_server_card():
+        return JSONResponse(content=build_mcp_server_card())
+
+    @app.get("/.well-known/mcp/server-cards.json")
+    async def well_known_mcp_server_cards():
+        return JSONResponse(content=build_mcp_server_cards_list())
 
     @app.get("/.well-known/api-catalog")
     async def well_known_api_catalog():

@@ -161,10 +161,16 @@ def build_agent_card_manifest() -> dict:
     }
 
 
+MCP_SERVER_CARD_SCHEMA_URL = (
+    "https://static.modelcontextprotocol.io/schemas/mcp-server-card/v1.json"
+)
+
+
 def build_mcp_manifest() -> dict:
+    base = get_public_api_base_url()
     return {
-        "mcp_endpoint": "https://api.agentic-swarm-marketplace.com/mcp",
-        "mcp_sse": "https://api.agentic-swarm-marketplace.com/mcp/sse",
+        "mcp_endpoint": f"{base}/mcp",
+        "mcp_sse": f"{base}/mcp/sse",
         "version": "1.23",
         "tools": [
             "contract_triage",
@@ -176,6 +182,48 @@ def build_mcp_manifest() -> dict:
             "agent_commerce_data",
         ],
     }
+
+
+def build_mcp_server_card() -> dict:
+    """SEP-1649 MCP Server Card for /.well-known/mcp/server-card.json (draft SEP-2127 shape)."""
+    base = get_public_api_base_url()
+    proto = (os.getenv("MCP_PROTOCOL_VERSION") or "2025-06-18").strip()
+    impl_ver = (os.getenv("MCP_SERVER_IMPLEMENTATION_VERSION") or "1.23.0").strip()
+    return {
+        "$schema": MCP_SERVER_CARD_SCHEMA_URL,
+        "version": "1.0",
+        "protocolVersion": proto,
+        "serverInfo": {
+            "name": "agentic-swarm-marketplace",
+            "title": "Agentic Swarm Marketplace",
+            "version": impl_ver,
+        },
+        "description": (
+            "MCP HTTP tools for contract triage and audit, airdrop intelligence, research briefs, and x402 commerce data. "
+            "Primary transport: Streamable HTTP at /mcp; SSE at /mcp/sse. Paid REST SKUs: /.well-known/x402.json."
+        ),
+        "documentationUrl": f"{base}/docs",
+        "transport": {
+            "type": "streamable-http",
+            "endpoint": "/mcp",
+        },
+        "capabilities": {
+            "tools": {"listChanged": True},
+            "resources": {"listChanged": True, "subscribe": False},
+            "prompts": {"listChanged": False},
+        },
+        "tools": ["dynamic"],
+        "resources": ["dynamic"],
+        "instructions": (
+            f"Connect with Streamable HTTP to {base}/mcp (or SSE at {base}/mcp/sse). "
+            "Use /.well-known/mcp.json for legacy hint JSON; x402-paid HTTP APIs are listed in /.well-known/x402.json."
+        ),
+    }
+
+
+def build_mcp_server_cards_list() -> list[dict]:
+    """JSON array for /.well-known/mcp/server-cards.json (multiple cards per host)."""
+    return [build_mcp_server_card()]
 
 
 LINKSET_JSON_MEDIA_TYPE = (

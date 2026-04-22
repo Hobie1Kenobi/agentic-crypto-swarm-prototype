@@ -13,10 +13,23 @@ BASE = (
     or "https://api.agentic-swarm-marketplace.com"
 ).rstrip("/")
 
+
+def _mcp_server_card_ok(obj: dict) -> bool:
+    si = obj.get("serverInfo")
+    if not isinstance(si, dict) or not si.get("name") or not si.get("version"):
+        return False
+    tr = obj.get("transport")
+    if not isinstance(tr, dict) or not tr.get("type") or not tr.get("endpoint"):
+        return False
+    return isinstance(obj.get("capabilities"), dict)
+
+
 PATHS = (
     "/.well-known/x402.json",
     "/.well-known/agent-card.json",
     "/.well-known/mcp.json",
+    "/.well-known/mcp/server-card.json",
+    "/.well-known/mcp/server-cards.json",
     "/.well-known/api-catalog",
     "/.well-known/openid-configuration",
     "/.well-known/oauth-authorization-server",
@@ -106,6 +119,23 @@ def main() -> int:
         if path == "/.well-known/jwks.json":
             if not isinstance(data.get("keys"), list):
                 print(f"FAIL {path} missing keys array")
+                continue
+            print(f"OK   {path} status={code} bytes={len(body)}")
+            ok += 1
+            continue
+        if path == "/.well-known/mcp/server-card.json":
+            if not isinstance(data, dict) or not _mcp_server_card_ok(data):
+                print(f"FAIL {path} invalid MCP server card")
+                continue
+            print(f"OK   {path} status={code} bytes={len(body)}")
+            ok += 1
+            continue
+        if path == "/.well-known/mcp/server-cards.json":
+            if not isinstance(data, list) or not data:
+                print(f"FAIL {path} must be non-empty JSON array")
+                continue
+            if not all(isinstance(c, dict) and _mcp_server_card_ok(c) for c in data):
+                print(f"FAIL {path} invalid server card entry")
                 continue
             print(f"OK   {path} status={code} bytes={len(body)}")
             ok += 1

@@ -10,6 +10,16 @@ import urllib.request
 DEFAULT_BASE = "https://api.agentic-swarm-marketplace.com"
 
 
+def _mcp_server_card_ok(obj: dict) -> bool:
+    si = obj.get("serverInfo")
+    if not isinstance(si, dict) or not si.get("name") or not si.get("version"):
+        return False
+    tr = obj.get("transport")
+    if not isinstance(tr, dict) or not tr.get("type") or not tr.get("endpoint"):
+        return False
+    return isinstance(obj.get("capabilities"), dict)
+
+
 def _get(url: str, accept: str | None = None) -> tuple[int, str]:
     req = urllib.request.Request(
         url,
@@ -30,6 +40,8 @@ def main() -> int:
         (f"{base}/.well-known/x402.json", "version", None),
         (f"{base}/.well-known/agent-card.json", "name", None),
         (f"{base}/.well-known/mcp.json", "mcp_endpoint", None),
+        (f"{base}/.well-known/mcp/server-card.json", "__mcp_server_card__", None),
+        (f"{base}/.well-known/mcp/server-cards.json", "__mcp_server_cards__", None),
         (
             f"{base}/.well-known/api-catalog",
             "linkset",
@@ -95,6 +107,24 @@ def main() -> int:
                 print(f"FAIL {url} missing keys array")
                 continue
             print(f"OK   {url} (keys={len(j['keys'])})")
+            ok += 1
+            continue
+        if key == "__mcp_server_card__":
+            if not isinstance(j, dict) or not _mcp_server_card_ok(j):
+                print(f"FAIL {url} invalid MCP server card")
+                continue
+            si = j.get("serverInfo") or {}
+            print(f"OK   {url} (name={si.get('name')!r})")
+            ok += 1
+            continue
+        if key == "__mcp_server_cards__":
+            if not isinstance(j, list) or not j:
+                print(f"FAIL {url} must be non-empty JSON array")
+                continue
+            if not all(isinstance(c, dict) and _mcp_server_card_ok(c) for c in j):
+                print(f"FAIL {url} invalid server card entry")
+                continue
+            print(f"OK   {url} (count={len(j)})")
             ok += 1
             continue
         if key not in j:
