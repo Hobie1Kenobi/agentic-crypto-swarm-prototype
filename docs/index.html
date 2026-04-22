@@ -908,6 +908,143 @@
   })();
   </script>
 
+  <script>
+  (function () {
+    function webmcpText(text) {
+      return { content: [{ type: 'text', text: String(text) }] };
+    }
+    var API_ORIGIN = 'https://api.agentic-swarm-marketplace.com';
+    var tools = [
+      {
+        name: 'marketplace_portal_summary',
+        description:
+          'Brief overview of Agentic Swarm Marketplace for AI agents: rails (Base x402 USDC, XRPL T54, Celo), passive discovery paths, and remote MCP endpoint.',
+        inputSchema: { type: 'object', properties: {} },
+        execute: function () {
+          return webmcpText(
+            'Agentic Swarm Marketplace: multi-rail agent commerce — Base mainnet USDC x402 seller (facilitator), XRPL T54 machine payments, Celo private settlement, optional Stripe MPP for the x402 Strategy Dashboard bundle. Passive discovery (no payment): ' +
+              API_ORIGIN +
+              '/.well-known/x402.json and related /.well-known/* (MCP server card, agent skills index, API catalog). Remote MCP (Streamable HTTP): ' +
+              API_ORIGIN +
+              '/mcp. Paid REST routes return HTTP 402 until an x402 client settles; prefer MCP tools with a configured broker.'
+          );
+        },
+      },
+      {
+        name: 'marketplace_get_discovery_urls',
+        description:
+          'Returns JSON with canonical discovery and health URLs on the public API host (api.agentic-swarm-marketplace.com).',
+        inputSchema: { type: 'object', properties: {} },
+        execute: function () {
+          return webmcpText(
+            JSON.stringify(
+              {
+                api_origin: API_ORIGIN,
+                urls: {
+                  x402_catalog: API_ORIGIN + '/.well-known/x402.json',
+                  agent_card: API_ORIGIN + '/.well-known/agent-card.json',
+                  mcp_hint: API_ORIGIN + '/.well-known/mcp.json',
+                  mcp_server_card: API_ORIGIN + '/.well-known/mcp/server-card.json',
+                  agent_skills_index: API_ORIGIN + '/.well-known/agent-skills/index.json',
+                  api_catalog: API_ORIGIN + '/.well-known/api-catalog',
+                  oauth_authorization_server: API_ORIGIN + '/.well-known/oauth-authorization-server',
+                  openid_configuration: API_ORIGIN + '/.well-known/openid-configuration',
+                  oauth_protected_resource: API_ORIGIN + '/.well-known/oauth-protected-resource',
+                  health: API_ORIGIN + '/health',
+                  mcp_streamable_http: API_ORIGIN + '/mcp',
+                },
+              },
+              null,
+              2
+            )
+          );
+        },
+      },
+      {
+        name: 'marketplace_fetch_api_path',
+        description:
+          'GET a path on the public API host from the user tab (e.g. /.well-known/x402.json). Response may be truncated. If the browser blocks cross-origin access, the error explains CORS.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            path: {
+              type: 'string',
+              description: 'Path starting with /, e.g. /.well-known/x402.json',
+            },
+          },
+          required: ['path'],
+        },
+        execute: function (args) {
+          var path = (args && args.path) || '/';
+          if (path.charAt(0) !== '/') {
+            return Promise.resolve(webmcpText('path must start with /'));
+          }
+          return fetch(API_ORIGIN + path, {
+            headers: { Accept: 'application/json, application/linkset+json, text/plain, */*' },
+          })
+            .then(function (r) {
+              return r.text().then(function (body) {
+                var ct = r.headers.get('content-type') || '';
+                var head =
+                  'HTTP ' + r.status + ' ' + r.statusText + '\nContent-Type: ' + ct + '\n\n';
+                var max = 14000;
+                if (body.length > max) {
+                  body = body.slice(0, max) + '\n… [truncated]';
+                }
+                return webmcpText(head + body);
+              });
+            })
+            .catch(function (e) {
+              return webmcpText('fetch_failed: ' + (e && e.message ? e.message : String(e)));
+            });
+        },
+      },
+      {
+        name: 'marketplace_scroll_to_section',
+        description:
+          'Scroll this marketing portal to a section by HTML id (no #), e.g. live-endpoints, mcp-agent, t54-x402, operator-bundle, stripe-mpp.',
+        inputSchema: {
+          type: 'object',
+          properties: {
+            section_id: { type: 'string', description: 'DOM id without # prefix' },
+          },
+          required: ['section_id'],
+        },
+        execute: function (args) {
+          var id = args && args.section_id;
+          if (!id) {
+            return webmcpText('section_id is required');
+          }
+          id = String(id).replace(/^#/, '');
+          var el = document.getElementById(id);
+          if (!el) {
+            return webmcpText('no element with id: ' + id);
+          }
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          return webmcpText('ok: scrolled to #' + id);
+        },
+      },
+    ];
+    var mc = navigator.modelContext;
+    if (!mc) {
+      return;
+    }
+    try {
+      if (typeof mc.provideContext === 'function') {
+        mc.provideContext({ tools: tools });
+        return;
+      }
+    } catch (e1) {}
+    if (typeof mc.registerTool === 'function') {
+      tools.forEach(function (t) {
+        try {
+          mc.registerTool(t);
+        } catch (e2) {}
+      });
+    }
+  })();
+  </script>
+
   <footer class="footer">
     <div class="container">
       <div class="footer-links">
