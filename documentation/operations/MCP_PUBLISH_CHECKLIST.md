@@ -55,7 +55,7 @@ Docs: [https://modelcontextprotocol.io/registry/quickstart](https://modelcontext
 
 ## 3. MCPize (optional hosted duplicate + marketplace)
 
-This repo includes **`mcpize.yaml`** at the repository root: **install** uses `pip install -r requirements.txt` because MCPize’s generated Dockerfile copies `packages/agents/requirements.txt` to **`/app/requirements.txt`** in an early layer; using `packages/agents/requirements.txt` in the install line runs before `COPY . .` and fails silently, then **`ModuleNotFoundError: mcp`**. **Build** runs `python scripts/mcp_server.py --check`; **start** runs Streamable HTTP on **`0.0.0.0`** with port from **`PORT`**. Local preflight:
+This repo includes **`mcpize.yaml`** at the repository root: **install** is `pip install -r requirements.txt`. MCPize’s generated Dockerfile runs **`COPY requirements.txt* ./`** at the repo root, then pip, then **`COPY . .`**; the canonical list is **`requirements.txt`** at the repository root ( **`packages/agents/requirements.txt`** is a `-r ../../requirements.txt` shim for existing `pip install -r packages/agents/...` docs). **Build** runs `python scripts/mcp_server.py --check`; **start** runs Streamable HTTP on **`0.0.0.0`** with port from **`PORT`**. Local preflight:
 
 ```bash
 npx mcpize@latest doctor

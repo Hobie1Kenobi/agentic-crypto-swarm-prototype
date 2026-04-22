@@ -1,0 +1,33 @@
+langgraph>=0.2.0
+langchain>=0.3.0
+langchain-core>=0.3.0
+langchain-ollama>=0.2.0
+web3>=7.0.0
+eth-account>=0.10.0
+eth-abi>=5.0.0
+python-dotenv>=1.0.0
+pydantic>=2.0.0
+fastapi>=0.115.0
+uvicorn>=0.32.0
+pytest>=8.0.0
+mcp[cli]>=1.23.0
+
+# XRPL payments (required for live XRPL mode and create-xrpl-wallets)
+xrpl-py>=4.0.0
+# xrpl-py 4.x imports websockets.asyncio (websockets 13+; keep <16 for web3 7.x upper bound)
+websockets>=13.0,<16.0
+
+# Base x402 (Coinbase Bazaar / facilitator) — include extensions for Bazaar discovery (jsonschema)
+x402[extensions]>=2.5.0
+# Optional: self-hosted XRPL testnet facilitator (pip install xrpl-x402-facilitator redis)
+# xrpl-x402-facilitator  # uncomment for scripts/start-xrpl-facilitator-testnet.*
+# Optional: T54 XRPL x402 seller (npm run t54:seller) — pip install x402-xrpl  (see docs/T54_SELLER.md)
+# Stripe MPP — PaymentIntent crypto deposit (Tempo); optional until you use MPP scripts
+stripe>=11.0.0
+# MPP HTTP 402 challenges on empty POST /v1/orders (discovery probes); tempo extra for Tempo chain
+pympp[tempo]>=0.6.0
+
+# Public marketplace adapter (Olas / Mech)
+# NOTE: The official Olas `mech-client` currently pins dependencies (e.g. FastAPI) that conflict with this repo's
+# Python runtime dependencies (we use newer FastAPI/web3). To keep the core stack stable, we run `mechx`
+# from an isolated venv created by `scripts/install-olas-mech-client.ps1`.
