@@ -1,3 +1,7 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "swarm-agents"
 version = "0.1.0"
@@ -5,8 +9,15 @@ requires-python = ">=3.12"
 dependencies = [
     "langgraph>=0.2.0",
     "langchain>=0.3.0",
+    "langchain-community>=0.3.0",
     "langchain-ollama>=0.2.0",
     "web3>=7.0.0",
     "python-dotenv>=1.0.0",
     "pydantic>=2.0.0",
+    "requests>=2.31.0",
+    "xrpl-py>=4.0.0",
 ]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["x402_broker_client*", "external_commerce*", "integrations*"]
