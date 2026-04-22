@@ -45,7 +45,16 @@ from mcp.types import ToolAnnotations
 from pydantic import Field
 from mcp.server.transport_security import TransportSecuritySettings
 
-root = Path(__file__).resolve().parents[1]
+
+def _repo_root() -> Path:
+    here = Path(__file__).resolve().parent
+    for d in (here, *here.parents):
+        if (d / "packages" / "agents" / "x402_broker_client").is_dir():
+            return d
+    return here.parents[1]
+
+
+root = _repo_root()
 sys.path.insert(0, str(root / "packages" / "agents"))
 
 from dotenv import load_dotenv
