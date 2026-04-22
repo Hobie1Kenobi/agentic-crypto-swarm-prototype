@@ -1,21 +1,23 @@
+# MCPize Configuration
+# Docs: https://mcpize.com/docs/mcpize-yaml
+
 version: 1
-name: agentic-swarm-marketplace-mcp
-description: >
-  Agentic Swarm Marketplace MCP — T54 XRPL x402 tools, Base USDC contract triage/audit/airdrop,
-  brokered via x402_broker_client. Use X402_MCP_DRY_RUN=1 for listing without settlement.
+
+name: "agentic-crypto-swarm-prototype"
+slug: "agentic-crypto-swarm-prototype"
+
 runtime: python
-entry: scripts/mcp_server.py
+
 build:
-  install: pip install -r packages/agents/requirements.txt
-  command: python scripts/mcp_server.py --check
-startCommand:
+  install: "pip install -r packages/agents/requirements.txt"
+  command: "python scripts/mcp_server.py --check"
+
+start:
   type: http
-  command: python
+  command: "python"
   args:
-    - scripts/mcp_server.py
-    - --transport
-    - streamable-http
-    - --host
+    - "scripts/mcp_server.py"
+    - "--transport"
+    - "streamable-http"
+    - "--host"
     - "0.0.0.0"
-env:
-  PYTHONUNBUFFERED: "1"
