@@ -34,6 +34,19 @@ import sys
 sys.path.insert(0, str(root / "packages" / "agents"))
 
 from fastapi import Request
+from pydantic import BaseModel, Field
+
+
+class CreateOrderBody(BaseModel):
+    product_id: str = Field(
+        default="x402_strategy_dashboard_bundle",
+        description="Catalog product id",
+    )
+    buyer_ref: str | None = Field(
+        default=None,
+        max_length=200,
+        description="Optional email or opaque id for operator fulfillment",
+    )
 
 
 def _public_url(cfg, path: str, request: Request | None = None) -> str:
@@ -49,7 +62,6 @@ def _public_url(cfg, path: str, request: Request | None = None) -> str:
 def create_app():
     from fastapi import FastAPI, HTTPException
     from fastapi.responses import FileResponse, HTMLResponse, JSONResponse, Response
-    from pydantic import BaseModel, Field
 
     from integrations.marketplace.config import (
         MarketplaceConfig,
@@ -66,17 +78,6 @@ def create_app():
     from integrations.stripe_mpp import create_crypto_deposit_payment_intent
 
     app = FastAPI(title="Swarm Marketplace (Stripe MPP)", version="0.2.0")
-
-    class CreateOrderBody(BaseModel):
-        product_id: str = Field(
-            default="x402_strategy_dashboard_bundle",
-            description="Catalog product id",
-        )
-        buyer_ref: str | None = Field(
-            default=None,
-            max_length=200,
-            description="Optional email or opaque id for operator fulfillment",
-        )
 
     @app.get("/health")
     async def health():
@@ -456,6 +457,75 @@ def create_app():
 </body>
 </html>"""
         return HTMLResponse(html)
+
+    def _apply_mpp_discovery_extensions(schema: dict) -> None:
+        """MPP (Machine Payment Protocol) discovery: OpenAPI 3.1 + x-payment-info + 402 on paid ops."""
+        cfg = MarketplaceConfig.from_env()
+        prod = product_dashboard_bundle()
+        try:
+            amount_cents = str(int(cfg.dashboard_bundle_price_usd * 100))
+        except Exception:
+            amount_cents = "4900"
+        pub = (cfg.public_base_url or "").rstrip("/") or "https://api.agentic-swarm-marketplace.com"
+        www_base = "https://www.agentic-swarm-marketplace.com/agentic-crypto-swarm-prototype"
+        schema["openapi"] = "3.1.0"
+        schema["x-service-info"] = {
+            "categories": ["commerce", "payments", "agent-marketplace"],
+            "docs": {
+                "homepage": f"{www_base}/",
+                "apiReference": f"{pub}/docs",
+                "llms": f"{www_base}/llms.txt",
+            },
+        }
+        paths = schema.get("paths") or {}
+        orders_path = paths.get("/v1/orders")
+        if isinstance(orders_path, dict):
+            post_op = orders_path.get("post")
+            if isinstance(post_op, dict):
+                post_op["x-payment-info"] = {
+                    "amount": amount_cents,
+                    "currency": "usd",
+                    "description": (
+                        f"{prod.name}: Stripe MPP PaymentIntent with crypto deposit; "
+                        "POST creates the intent and returns settlement instructions."
+                    ),
+                    "intent": "session",
+                    "method": "stripe",
+                }
+                responses = post_op.setdefault("responses", {})
+                responses.setdefault(
+                    "402",
+                    {
+                        "description": (
+                            "Payment required (MPP): agent must satisfy Payment-Authenticate / "
+                            "funding challenge before the paid resource is issued, when applicable."
+                        ),
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object",
+                                    "additionalProperties": True,
+                                }
+                            }
+                        },
+                    },
+                )
+
+    def custom_openapi():
+        if app.openapi_schema:
+            return app.openapi_schema
+        from fastapi.openapi.utils import get_openapi
+
+        openapi_schema = get_openapi(
+            title=app.title,
+            version=app.version,
+            routes=app.routes,
+        )
+        _apply_mpp_discovery_extensions(openapi_schema)
+        app.openapi_schema = openapi_schema
+        return app.openapi_schema
+
+    app.openapi = custom_openapi
 
     from services.access_log_middleware import attach_access_log
 
