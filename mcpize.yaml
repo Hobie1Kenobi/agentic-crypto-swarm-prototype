@@ -6,7 +6,7 @@ description: >
 runtime: python
 entry: scripts/mcp_server.py
 build:
-  install: pip install -r packages/agents/requirements.txt
+  install: pip install --no-cache-dir -r requirements.txt
   command: python scripts/mcp_server.py --check
 startCommand:
   type: http
