@@ -47,11 +47,21 @@ from mcp.server.transport_security import TransportSecuritySettings
 
 
 def _repo_root() -> Path:
-    here = Path(__file__).resolve().parent
+    script = Path(__file__).resolve()
+    here = script.parent
+    if here.name == "scripts" and (here.parent / "packages" / "agents" / "x402_broker_client").is_dir():
+        return here.parent
     for d in (here, *here.parents):
+        if d == Path("/"):
+            continue
         if (d / "packages" / "agents" / "x402_broker_client").is_dir():
             return d
-    return here.parents[1]
+    if here.name == "scripts":
+        return here.parent
+    try:
+        return here.parents[1]
+    except IndexError:
+        return here.parent
 
 
 root = _repo_root()
@@ -68,9 +78,17 @@ DEFAULT_OPENAPI_REL = "documentation/x402-t54-base/openapi/agentic-swarm-t54-sku
 
 def _default_openapi_path() -> Path:
     p = (os.getenv("X402_MCP_OPENAPI_PATH") or "").strip()
-    if p:
-        return Path(p) if Path(p).is_absolute() else root / p
-    return root / DEFAULT_OPENAPI_REL
+    if not p:
+        return root / DEFAULT_OPENAPI_REL
+    raw = Path(p)
+    if raw.is_file():
+        return raw
+    if raw.is_absolute():
+        anchored = root / str(raw).lstrip("/\\")
+        if anchored.is_file():
+            return anchored
+        return raw
+    return root / p
 
 
 def _load_openapi() -> dict[str, Any]:
