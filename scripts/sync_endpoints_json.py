@@ -6,6 +6,7 @@ Run after ngrok sync or when your public URLs change, then commit docs/endpoints
 so GitHub Pages shows the same canonical links as discovery.
 If PUBLIC_API_ORIGIN is set in .env, it overrides per-key public URLs for this export
 (same cohesion as scripts/apply_public_api_origin.py).
+Also updates docs/openapi.json ``x-payment-info.amount`` from MARKETPLACE_DASHBOARD_BUNDLE_PRICE_USD when present.
 
   python scripts/sync_endpoints_json.py
   npm run docs:sync-endpoints
@@ -19,10 +20,12 @@ import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from decimal import Decimal
 from urllib.parse import urlparse
 
 root = Path(__file__).resolve().parents[1]
 out_path = root / "docs" / "endpoints.json"
+openapi_path = root / "docs" / "openapi.json"
 
 
 def _load_env() -> None:
@@ -48,6 +51,32 @@ def _origin(url: str) -> str:
 
 def _health_url_from_origin(origin: str) -> str:
     return f"{origin}/health" if origin else ""
+
+
+def _sync_docs_openapi_mpp_amount() -> None:
+    """Keep docs/openapi.json MPP x-payment-info.amount in sync with bundle price env."""
+    raw = (os.getenv("MARKETPLACE_DASHBOARD_BUNDLE_PRICE_USD") or "49.00").strip()
+    try:
+        cents = str(int((Decimal(raw) * 100).to_integral_value()))
+    except Exception:
+        cents = "4900"
+    if not openapi_path.is_file():
+        return
+    try:
+        data = json.loads(openapi_path.read_text(encoding="utf-8"))
+    except Exception:
+        return
+    po = data.get("paths", {}).get("/v1/orders", {}).get("post")
+    if not isinstance(po, dict):
+        return
+    xpi = po.get("x-payment-info")
+    if not isinstance(xpi, dict):
+        return
+    if xpi.get("amount") == cents:
+        return
+    xpi["amount"] = cents
+    openapi_path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    print(f"Updated docs/openapi.json x-payment-info.amount -> {cents}")
 
 
 def main() -> int:
@@ -153,6 +182,7 @@ def main() -> int:
     print(f"  X402_INTAKE_RESALE_PUBLIC_URL -> {intake_resale_url or '(empty)'}")
     print(f"  MARKETPLACE_PUBLIC_BASE_URL -> {mp_base or '(empty)'}")
     print(f"  MCP_SSE_PUBLIC_URL -> {mcp_sse or '(empty)'}")
+    _sync_docs_openapi_mpp_amount()
     return 0
 
 

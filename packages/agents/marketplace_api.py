@@ -76,6 +76,7 @@ def create_app():
     from integrations.marketplace.orders import write_pending_order
     from integrations.stripe_mpp.config import StripeMppConfig
     from integrations.stripe_mpp import create_crypto_deposit_payment_intent
+    from integrations.stripe_mpp.mpp_orders_challenge import maybe_mpp_empty_orders_challenge
 
     app = FastAPI(title="Swarm Marketplace (Stripe MPP)", version="0.2.0")
 
@@ -190,16 +191,32 @@ def create_app():
         return JSONResponse(status_code=501, content=oauth_stub_unavailable_payload())
 
     @app.post("/v1/orders")
-    async def create_order(request: Request, body: CreateOrderBody):
+    async def create_order(request: Request):
+        raw = await request.body()
         cfg = MarketplaceConfig.from_env()
+        mpp = StripeMppConfig.from_env()
+        challenged = await maybe_mpp_empty_orders_challenge(
+            request, cfg=cfg, mpp_cfg=mpp, raw_body=raw
+        )
+        if challenged is not None:
+            return challenged
+
         if not cfg.http_enabled:
             raise HTTPException(
                 status_code=503,
                 detail="MARKETPLACE_HTTP_ENABLED is not 1",
             )
-        mpp = StripeMppConfig.from_env()
         if not mpp.secret_key:
             raise HTTPException(status_code=503, detail="STRIPE_SECRET_KEY not set")
+
+        try:
+            body = (
+                CreateOrderBody.model_validate_json(raw)
+                if raw.strip()
+                else CreateOrderBody()
+            )
+        except Exception as e:
+            raise HTTPException(status_code=422, detail=str(e)) from e
 
         prod = product_dashboard_bundle()
         if body.product_id != prod.product_id:
