@@ -72,6 +72,10 @@
 		uri strip_prefix /agents/slippage-sentinel
 		reverse_proxy 127.0.0.1:8092
 	}
+	handle /agents/gas-route-oracle/* {
+		uri strip_prefix /agents/gas-route-oracle
+		reverse_proxy 127.0.0.1:8093
+	}
 
 	# Default: Base seller (e.g. /health on x402 app)
 	handle {

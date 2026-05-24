@@ -1,0 +1,147 @@
+{
+  "version": 1,
+  "description": "Earning worker sources — bounty boards, oracle feeds, Aerodrome Base config.",
+  "aerodrome": {
+    "chain_id": 8453,
+    "router": "0xcF77a3Ba9A5CA399B7c97c74d54e5b1Beb874E43",
+    "voter": "0x16613524e02ad97eDfeF371bC883F2F5d6C480A5",
+    "voting_escrow": "0xeBf418Fe2512e7E6bd9b87a8F0f294aCDC67e6B4",
+    "note": "Aerodrome uses ve(3,3) LP fees + veAERO voter bribes, not swap referral codes."
+  },
+  "bounty_sources": [
+    {
+      "id": "github-agent-bounties",
+      "type": "github_issues",
+      "repos": ["daydreamsai/agent-bounties", "claude-builders-bounty/claude-builders-bounty"],
+      "labels": ["bounty"],
+      "capability_tags": ["code", "writing", "data", "research"],
+      "reward_hint": "USDC on Solana (Daydreams) or USDC/ETH (Claude Builders)"
+    },
+    {
+      "id": "github-shapeshift-bounties",
+      "type": "github_issues",
+      "repos": ["shapeshift/web"],
+      "labels": ["bounty", "needs bounty"],
+      "capability_tags": ["code", "writing", "data"],
+      "reward_hint": "FOX / USD via Dework + Gnosis Safe"
+    },
+    {
+      "id": "github-base-ecosystem",
+      "type": "github_issues",
+      "repos": [
+        "base-org/contracts",
+        "coinbase/onchainkit",
+        "safe-global/safe-smart-account"
+      ],
+      "labels": ["bounty", "good first issue"],
+      "capability_tags": ["code", "writing", "data"],
+      "reward_hint": "Varies — confirm payout token/chain on issue"
+    },
+    {
+      "id": "github-open-bounty-search",
+      "type": "github_search",
+      "per_page": 20,
+      "capability_tags": ["code", "writing", "data", "research"],
+      "reward_hint": "Public GitHub bounties (often Dework / OnlyDust linked)",
+      "queries": [
+        "label:bounty state:open archived:false",
+        "label:\"needs bounty\" state:open archived:false",
+        "label:bounty label:help-wanted state:open language:TypeScript",
+        "label:bounty org:ethereum-optimism state:open",
+        "label:bounty org:uniswap state:open"
+      ]
+    },
+    {
+      "id": "github-base-evm-bounties",
+      "type": "github_search",
+      "per_page": 25,
+      "capability_tags": ["code", "writing", "data", "research"],
+      "reward_hint": "Base / L2 / EVM bounties — payout to Base USDC/ETH wallet",
+      "queries": [
+        "label:bounty org:base-org state:open archived:false",
+        "label:bounty org:coinbase state:open archived:false",
+        "label:bounty org:safe-global state:open archived:false",
+        "label:bounty org:aerodrome-finance state:open archived:false",
+        "label:bounty org:celo-org state:open archived:false",
+        "label:bounty base state:open archived:false",
+        "label:bounty usdc state:open archived:false",
+        "label:bounty \"base sepolia\" state:open archived:false",
+        "label:bounty org:ethereum-optimism state:open language:Solidity",
+        "label:\"good first issue\" org:base-org state:open archived:false",
+        "label:bounty onchainkit state:open archived:false",
+        "label:bounty org:daydreamsai state:open archived:false",
+        "label:bounty org:claude-builders-bounty state:open archived:false"
+      ]
+    },
+    {
+      "id": "dework-global-bounties",
+      "type": "dework",
+      "limit": 200,
+      "statuses": ["TODO", "BACKLOG"],
+      "only_with_rewards": true,
+      "organization_slugs": [],
+      "capability_tags": ["code", "writing", "data"],
+      "reward_hint": "USDC/DAO token via Dework + Gnosis Safe"
+    },
+    {
+      "id": "dework-shapeshift-workspace",
+      "type": "dework_workspaces",
+      "workspace_ids": [],
+      "organization_slugs": ["shapeshift"],
+      "only_with_rewards": false,
+      "capability_tags": ["code", "writing", "data"],
+      "reward_hint": "FOX / USD via Dework — set DEWORK workspace UUID in workspace_ids"
+    },
+    {
+      "id": "onlydust-github-legacy",
+      "type": "onlydust_github",
+      "per_page": 20,
+      "capability_tags": ["code", "writing", "data", "research"],
+      "reward_hint": "Legacy OnlyDust-tagged GitHub issues (platform closed; apply on GitHub)",
+      "queries": [
+        "label:onlydust state:open archived:false",
+        "label:ODHack state:open archived:false",
+        "label:ODBoost state:open archived:false",
+        "label:\"good first issue\" label:onlydust state:open archived:false"
+      ]
+    },
+    {
+      "id": "manual-bounties",
+      "type": "jsonl",
+      "path": "external_commerce_data/earning_bounties_manual.jsonl",
+      "capability_tags": ["code", "writing", "research", "data"]
+    }
+  ],
+  "bounty_completion": {
+    "workspace_dir": "data/bounty_repos",
+    "max_files_changed": 5,
+    "max_file_bytes": 120000,
+    "blocked_repos": ["shapeshift/lib", "orchestration-agent/AgentOrchestration", "Scottcjn/rustchain-bounties", "Scottcjn/Rustchain"],
+    "allowed_repos": [
+      "Reqrefusion/FreeCAD-Documentation-Project",
+      "base-org/contracts",
+      "coinbase/onchainkit",
+      "safe-global/safe-smart-account",
+      "claude-builders-bounty/claude-builders-bounty"
+    ],
+    "skip_issue_keywords": [
+      "integrate chain",
+      "chain support",
+      "mainnet deploy",
+      "uniswap",
+      "security audit",
+      "motion graphic",
+      "video"
+    ]
+  },
+  "oracle_feeds": [
+    {
+      "id": "base-ecosystem-prices",
+      "type": "coingecko_simple",
+      "title": "Base ecosystem token USD snapshot",
+      "coin_ids": ["ethereum", "usd-coin", "aerodrome-finance"],
+      "vs_currency": "usd",
+      "sell_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/agent-commerce-data"
+    }
+  ]
+}
