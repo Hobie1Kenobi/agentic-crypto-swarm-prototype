@@ -1,0 +1,20 @@
+{
+  "name": "@swarm-economy/approval-risk-auditor",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/index.ts",
+    "dev": "tsx watch src/index.ts"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.14.3",
+    "@lucid-dreams/agent-kit": "^0.2.24",
+    "viem": "^2.38.5",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.4",
+    "typescript": "^5.8.3"
+  }
+}

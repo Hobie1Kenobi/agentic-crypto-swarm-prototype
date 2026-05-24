@@ -88,6 +88,8 @@
     "daydreams:fresh-markets": "cd packages/daydreams-agents/fresh-markets-watch && npm start",
     "daydreams:slippage-sentinel": "cd packages/daydreams-agents/slippage-sentinel && npm start",
     "daydreams:gas-route-oracle": "cd packages/daydreams-agents/gas-route-oracle && npm start",
+    "daydreams:approval-auditor": "cd packages/daydreams-agents/approval-risk-auditor && npm start",
+    "daydreams:yield-pools": "cd packages/daydreams-agents/yield-pool-watcher && npm start",
     "lucid:gas-oracle": "cd packages/lucid-data-apis/gas-oracle && npm start",
     "lucid:gas-oracle:test": "cd packages/lucid-data-apis/gas-oracle && npm test",
     "wallet:solana-bounty": "python scripts/generate_solana_wallet.py --env-file .env.local",

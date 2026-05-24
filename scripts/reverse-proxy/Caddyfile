@@ -76,6 +76,14 @@
 		uri strip_prefix /agents/gas-route-oracle
 		reverse_proxy 127.0.0.1:8093
 	}
+	handle /agents/approval-risk-auditor/* {
+		uri strip_prefix /agents/approval-risk-auditor
+		reverse_proxy 127.0.0.1:8095
+	}
+	handle /agents/yield-pool-watcher/* {
+		uri strip_prefix /agents/yield-pool-watcher
+		reverse_proxy 127.0.0.1:8096
+	}
 
 	# Default: Base seller (e.g. /health on x402 app)
 	handle {
