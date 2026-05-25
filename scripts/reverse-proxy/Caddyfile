@@ -106,6 +106,10 @@
 		uri strip_prefix /agents/lp-il-estimator
 		reverse_proxy 127.0.0.1:8103
 	}
+	handle /agents/cross-dex-arbitrage-alert/* {
+		uri strip_prefix /agents/cross-dex-arbitrage-alert
+		reverse_proxy 127.0.0.1:8104
+	}
 
 	# Default: Base seller (e.g. /health on x402 app)
 	handle {

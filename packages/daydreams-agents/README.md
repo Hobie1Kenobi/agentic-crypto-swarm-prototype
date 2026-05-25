@@ -13,6 +13,7 @@ x402-enabled agents for [daydreamsai/agent-bounties](https://github.com/daydream
 | [perps-funding-pulse](./perps-funding-pulse/) | 8101 | `npm run daydreams:perps-funding` | [#8](https://github.com/daydreamsai/agent-bounties/issues/8) |
 | [lending-liquidation-sentinel](./lending-liquidation-sentinel/) | 8102 | `npm run daydreams:lending-sentinel` | [#9](https://github.com/daydreamsai/agent-bounties/issues/9) |
 | [lp-il-estimator](./lp-il-estimator/) | 8103 | `npm run daydreams:lp-il` | [#7](https://github.com/daydreamsai/agent-bounties/issues/7) |
+| [cross-dex-arbitrage-alert](./cross-dex-arbitrage-alert/) | 8104 | `npm run daydreams:cross-dex-arbitrage` | [#2](https://github.com/daydreamsai/agent-bounties/issues/2) |
 
 Lucid TaskMarket APIs live in [`../lucid-data-apis/`](../lucid-data-apis/) (e.g. gas oracle for [lucid-agents#178](https://github.com/daydreamsai/lucid-agents/issues/178)).
 
@@ -33,3 +34,4 @@ Unified Caddy routes (when stack is wired):
 - `/agents/perps-funding-pulse/*` → `:8101`
 - `/agents/lending-liquidation-sentinel/*` → `:8102`
 - `/agents/lp-il-estimator/*` → `:8103`
+- `/agents/cross-dex-arbitrage-alert/*` → `:8104`
