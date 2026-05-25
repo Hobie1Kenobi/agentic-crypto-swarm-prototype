@@ -34,10 +34,16 @@
 	# Base x402 Bazaar (same paths as direct :8043). /.well-known/* (x402.json, agent-card.json, mcp.json)
 	# is served by the same FastAPI app on 8043 — no separate static root required.
 	handle /x402/* {
-		reverse_proxy 127.0.0.1:8043
+		reverse_proxy 127.0.0.1:8043 {
+			header_up X-Forwarded-Proto {scheme}
+			header_up X-Forwarded-Host {host}
+		}
 	}
 	handle /.well-known/* {
-		reverse_proxy 127.0.0.1:8043
+		reverse_proxy 127.0.0.1:8043 {
+			header_up X-Forwarded-Proto {scheme}
+			header_up X-Forwarded-Host {host}
+		}
 	}
 
 	# T54 XRPL seller — full /t54/* path forwarded (x402 resource URLs must include prefix)
@@ -84,9 +90,28 @@
 		uri strip_prefix /agents/yield-pool-watcher
 		reverse_proxy 127.0.0.1:8096
 	}
+	handle /agents/bridge-route-pinger/* {
+		uri strip_prefix /agents/bridge-route-pinger
+		reverse_proxy 127.0.0.1:8100
+	}
+	handle /agents/perps-funding-pulse/* {
+		uri strip_prefix /agents/perps-funding-pulse
+		reverse_proxy 127.0.0.1:8101
+	}
+	handle /agents/lending-liquidation-sentinel/* {
+		uri strip_prefix /agents/lending-liquidation-sentinel
+		reverse_proxy 127.0.0.1:8102
+	}
+	handle /agents/lp-il-estimator/* {
+		uri strip_prefix /agents/lp-il-estimator
+		reverse_proxy 127.0.0.1:8103
+	}
 
 	# Default: Base seller (e.g. /health on x402 app)
 	handle {
-		reverse_proxy 127.0.0.1:8043
+		reverse_proxy 127.0.0.1:8043 {
+			header_up X-Forwarded-Proto {scheme}
+			header_up X-Forwarded-Host {host}
+		}
 	}
 }
