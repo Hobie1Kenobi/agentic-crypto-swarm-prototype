@@ -17,6 +17,7 @@ OPEN_PRS = ROOT / "artifacts" / "earning_worker" / "QUEUE_OPEN_PRS.json"
 # Manual map: issue → PR (verified via gh)
 KNOWN_PR_MAP: dict[str, str] = {
     "daydreamsai/agent-bounties#1": "https://github.com/daydreamsai/agent-bounties/pull/199",
+    "daydreamsai/agent-bounties#2": "https://github.com/daydreamsai/agent-bounties/pull/208",
     "daydreamsai/agent-bounties#3": "https://github.com/daydreamsai/agent-bounties/pull/200",
     "daydreamsai/agent-bounties#4": "https://github.com/daydreamsai/agent-bounties/pull/201",
     "daydreamsai/agent-bounties#5": "https://github.com/daydreamsai/agent-bounties/pull/202",
@@ -42,9 +43,7 @@ KNOWN_PR_MAP: dict[str, str] = {
     "celo-org/gitcoin#54": "https://github.com/electric-capital/open-dev-data/pull/2878",
 }
 
-CLAIMED_NOT_BUILT = [
-    "daydreamsai/agent-bounties#2",
-]
+CLAIMED_NOT_BUILT: list[str] = []
 
 SKIP = {
     "Scottcjn/rustchain-bounties",
@@ -141,6 +140,11 @@ def main() -> int:
         ("Daydreams #4 GasRoute Oracle", KNOWN_PR_MAP["daydreamsai/agent-bounties#4"], "Solana"),
         ("Daydreams #5 Approval Risk", KNOWN_PR_MAP["daydreamsai/agent-bounties#5"], "Solana"),
         ("Daydreams #6 Yield Pool Watcher", KNOWN_PR_MAP["daydreamsai/agent-bounties#6"], "Solana"),
+        ("Daydreams #7 LP IL Estimator", KNOWN_PR_MAP["daydreamsai/agent-bounties#7"], "Solana"),
+        ("Daydreams #8 Perps Funding Pulse", KNOWN_PR_MAP["daydreamsai/agent-bounties#8"], "Solana"),
+        ("Daydreams #9 Lending Liquidation Sentinel", KNOWN_PR_MAP["daydreamsai/agent-bounties#9"], "Solana"),
+        ("Daydreams #10 Bridge Route Pinger", KNOWN_PR_MAP["daydreamsai/agent-bounties#10"], "Solana"),
+        ("Daydreams #2 Cross DEX Arbitrage Alert", KNOWN_PR_MAP["daydreamsai/agent-bounties#2"], "Solana"),
         ("Claude Builders #1–#5", "PRs #2080–#2084", "Base USDC"),
         ("base/contracts docs #257–#259, #279, #286", "PRs #303–#307", "TBD"),
         ("OnchainKit #2646, #2652, #2655, #2657", "PRs #2659–#2662", "TBD"),
@@ -151,7 +155,7 @@ def main() -> int:
 
     lines += [
         "",
-        "**Est. in-flight value:** ~$5,000 Solana (Daydreams) + ~$575 Base (Claude Builders) + doc bounties TBD.",
+        "**Est. in-flight value:** ~$10,000 Solana (Daydreams) + ~$575 Base (Claude Builders) + doc bounties TBD.",
         "",
         "## Tier 2 — Claimed, not built yet",
         "",
@@ -165,7 +169,10 @@ def main() -> int:
         "#9": "Lending Liquidation Sentinel",
         "#10": "Bridge Route Pinger",
     }
-    for eid in CLAIMED_NOT_BUILT:
+    if not CLAIMED_NOT_BUILT:
+        lines.append("| *(none)* | — | All claimed Daydreams agents submitted |")
+    else:
+        for eid in CLAIMED_NOT_BUILT:
         num = eid.split("#")[1]
         lines.append(f"| [{eid}](https://github.com/{eid.replace('#', '/issues/')}) | {agents.get('#'+num, '?')} | Build agent + submission PR |")
 
