@@ -1,7 +1,7 @@
 {
   "schema_note": "Canonical public URLs for agents and buyers. Regenerate: npm run docs:sync-endpoints (reads repo-root .env). Commit result for GitHub Pages. Stable HTTPS + mainnet alignment: documentation/PUBLIC_MAINNET_OPERATIONS.md",
   "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
-  "updated_at": "2026-04-22T16:52:19Z",
+  "updated_at": "2026-05-26T16:05:47Z",
   "endpoints": [
     {
       "id": "t54_public_origin",
@@ -26,6 +26,14 @@
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health"
+    },
+    {
+      "id": "celo_native_query",
+      "label": "Celo native x402 seller (api_402 / fulfillQuery)",
+      "description": "GET/POST /celo/query \u2014 HTTP 402 with CELO payment via AgentRevenueService.fulfillQuery (no facilitator). Set CELO_402_PUBLIC_URL or PUBLIC_API_ORIGIN.",
+      "url": "https://api.agentic-swarm-marketplace.com/celo/query",
+      "network": "eip155:11142220",
+      "health_url": "https://api.agentic-swarm-marketplace.com/celo/health"
     },
     {
       "id": "marketplace_public_origin",

@@ -14,7 +14,23 @@ for _ in range(5):
         break
     root = root.parent
 load_dotenv(root / ".env", override=False)
-if (root / ".env.local").exists():
+
+
+def _should_load_env_local() -> bool:
+    if (os.getenv("PUBLIC_API_ORIGIN", "") or "").strip().startswith("https://"):
+        return False
+    if (os.getenv("USE_ENV_LOCAL", "") or "").strip().lower() in {"1", "true", "yes", "on"}:
+        return True
+    chain_id = (os.getenv("CHAIN_ID", "") or "").strip()
+    if chain_id == "31337":
+        return True
+    rpc = (os.getenv("RPC_URL", "") or "").strip().lower()
+    if rpc.startswith("http://127.0.0.1") or rpc.startswith("http://localhost") or "localhost" in rpc:
+        return True
+    return False
+
+
+if _should_load_env_local() and (root / ".env.local").exists():
     load_dotenv(root / ".env.local", override=True)
 import sys
 sys.path.insert(0, str(root / "packages" / "agents"))
@@ -102,7 +118,21 @@ def create_app():
 
     @app.get("/health")
     async def health():
-        return {"status": "ok", "revenue_contract": revenue_addr or "not set"}
+        from swarm.llm import get_llm_probe_info
+
+        public_url = (os.getenv("CELO_402_PUBLIC_URL") or os.getenv("API_402_PUBLIC_URL") or "").strip()
+        return {
+            "status": "ok",
+            "service": "api_402",
+            "payment_flow": "celo_native",
+            "chain_id": chain_id,
+            "network": f"eip155:{chain_id}",
+            "native_symbol": native_symbol,
+            "revenue_contract": revenue_addr or "not set",
+            "min_payment_wei": str(min_payment_wei),
+            "public_query_url": public_url or None,
+            "llm": get_llm_probe_info(),
+        }
 
     from services.access_log_middleware import attach_access_log
 

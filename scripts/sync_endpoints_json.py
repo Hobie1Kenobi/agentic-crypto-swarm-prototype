@@ -34,7 +34,9 @@ def _load_env() -> None:
 
         load_dotenv(root / ".env", override=True)
         if (root / ".env.local").exists():
-            load_dotenv(root / ".env.local", override=True)
+            pub = (os.getenv("PUBLIC_API_ORIGIN") or "").strip()
+            if not pub.startswith("https://"):
+                load_dotenv(root / ".env.local", override=True)
     except ImportError:
         pass
 
@@ -86,6 +88,7 @@ def main() -> int:
         os.environ["MARKETPLACE_PUBLIC_BASE_URL"] = pub
         os.environ["X402_SELLER_PUBLIC_URL"] = f"{pub}/x402/v1/query"
         os.environ["T54_SELLER_PUBLIC_BASE_URL"] = f"{pub}/t54"
+        os.environ["CELO_402_PUBLIC_URL"] = f"{pub}/celo/query"
         os.environ["MCP_SSE_PUBLIC_URL"] = f"{pub}/mcp"
 
     t54_base = (os.getenv("T54_SELLER_PUBLIC_BASE_URL") or "").strip()
@@ -111,6 +114,13 @@ def main() -> int:
 
     mp_base = (os.getenv("MARKETPLACE_PUBLIC_BASE_URL") or "").strip().rstrip("/")
     mp_health = f"{mp_base}/health" if mp_base else ""
+
+    celo_query = (os.getenv("CELO_402_PUBLIC_URL") or "").strip()
+    if not celo_query and pub:
+        celo_query = f"{pub}/celo/query"
+    celo_origin = _origin(celo_query)
+    chain_id = (os.getenv("CHAIN_ID") or "42220").strip()
+    celo_network = f"eip155:{chain_id}" if chain_id.isdigit() else "eip155:42220"
 
     ts = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
 
@@ -138,6 +148,14 @@ def main() -> int:
             "url": intake_resale_url,
             "network": (os.getenv("X402_SELLER_NETWORK") or "eip155:8453").strip(),
             "health_url": _health_url_from_origin(x402_origin) if x402_origin else "",
+        },
+        {
+            "id": "celo_native_query",
+            "label": "Celo native x402 seller (api_402 / fulfillQuery)",
+            "description": "GET/POST /celo/query — HTTP 402 with CELO payment via AgentRevenueService.fulfillQuery (no facilitator). Set CELO_402_PUBLIC_URL or PUBLIC_API_ORIGIN.",
+            "url": celo_query,
+            "network": celo_network,
+            "health_url": f"{celo_origin}/celo/health" if celo_origin else "",
         },
     ]
     if mp_base:
@@ -180,6 +198,7 @@ def main() -> int:
     print(f"  T54_SELLER_PUBLIC_BASE_URL -> {t54_base or '(empty)'}")
     print(f"  X402_SELLER_PUBLIC_URL -> {x402_full or '(empty)'}")
     print(f"  X402_INTAKE_RESALE_PUBLIC_URL -> {intake_resale_url or '(empty)'}")
+    print(f"  CELO_402_PUBLIC_URL -> {celo_query or '(empty)'}")
     print(f"  MARKETPLACE_PUBLIC_BASE_URL -> {mp_base or '(empty)'}")
     print(f"  MCP_SSE_PUBLIC_URL -> {mcp_sse or '(empty)'}")
     _sync_docs_openapi_mpp_amount()

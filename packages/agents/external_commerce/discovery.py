@@ -51,6 +51,90 @@ DISCOVERY_URLS = [
     "https://facilitator.payai.network/discovery/resources",
 ]
 
+CDP_BAZAAR_SEARCH_URL = "https://api.cdp.coinbase.com/platform/v2/x402/discovery/search"
+CDP_X402_FACILITATOR = "https://api.cdp.coinbase.com/platform/v2/x402"
+
+
+def _truthy(key: str, default: str = "0") -> bool:
+    return _env(key, default).strip().lower() in {"1", "true", "yes", "on"}
+
+
+def _normalize_bazaar_row(item: dict[str, Any], *, discovery_source: str) -> dict[str, Any] | None:
+    resource = (item.get("resource") or item.get("url") or "").strip()
+    if not resource:
+        return None
+    acc = item.get("accepts") or []
+    net = "eip155:8453"
+    if isinstance(acc, list) and acc and isinstance(acc[0], dict):
+        net = str(acc[0].get("network") or net).strip() or net
+    name = (item.get("description") or item.get("name") or resource)[:80]
+    meta: dict[str, Any] = {}
+    if item.get("description"):
+        meta["description"] = item.get("description")
+    if item.get("lastUpdated"):
+        meta["last_updated"] = item.get("lastUpdated")
+    if item.get("type"):
+        meta["resource_type"] = item.get("type")
+    return {
+        "provider_id": resource[:64].replace("/", "_"),
+        "provider_name": name,
+        "resource_url": resource,
+        "network": net,
+        "facilitator_url": CDP_X402_FACILITATOR,
+        "payment_flow": "facilitator",
+        "source_type": "discovery",
+        "discovery_source": discovery_source,
+        "metadata": meta,
+    }
+
+
+def _fetch_bazaar_search(timeout: float = 15) -> list[dict[str, Any]]:
+    if not _truthy("X402_BAZAAR_SEARCH_ENABLED", "0"):
+        return []
+    out: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    queries_raw = _env(
+        "X402_BAZAAR_SEARCH_QUERIES",
+        "agent commerce,llm query,crypto research,contract audit",
+    )
+    queries = [q.strip() for q in queries_raw.split(",") if q.strip()]
+    try:
+        limit = int(_env("X402_BAZAAR_SEARCH_LIMIT", "15") or "15")
+    except ValueError:
+        limit = 15
+    limit = max(1, min(limit, 20))
+    network = _env("X402_BAZAAR_SEARCH_NETWORK", "eip155:8453")
+    max_usd = _env("X402_BAZAAR_SEARCH_MAX_USD", "0.50")
+    for query in queries:
+        params: dict[str, Any] = {"limit": limit}
+        if query:
+            params["query"] = query[:400]
+        if network:
+            params["network"] = network
+        if max_usd:
+            params["maxUsdPrice"] = max_usd
+        try:
+            r = requests.get(CDP_BAZAAR_SEARCH_URL, params=params, timeout=timeout)
+            if r.status_code != 200:
+                continue
+            data = r.json()
+            if not isinstance(data, dict):
+                continue
+            for item in data.get("resources") or []:
+                if not isinstance(item, dict):
+                    continue
+                row = _normalize_bazaar_row(item, discovery_source="bazaar_search")
+                if not row:
+                    continue
+                url = row["resource_url"]
+                if url in seen:
+                    continue
+                seen.add(url)
+                out.append(row)
+        except Exception:
+            continue
+    return out
+
 
 def _fetch_remote_discovery(timeout: float = 15) -> list[dict[str, Any]]:
     out: list[dict[str, Any]] = []
@@ -80,18 +164,9 @@ def _fetch_remote_discovery(timeout: float = 15) -> list[dict[str, Any]]:
             elif isinstance(data, dict) and "items" in data:
                 for item in data.get("items", []):
                     if isinstance(item, dict) and item.get("resource"):
-                        acc = item.get("accepts", [])
-                        net = acc[0].get("network", "eip155:84532") if acc else "eip155:84532"
-                        out.append({
-                            "provider_id": (item.get("resource", "") or "")[:64].replace("/", "_"),
-                            "provider_name": (item.get("resource", "") or "")[:80],
-                            "resource_url": item.get("resource", ""),
-                            "network": net,
-                            "facilitator_url": "https://x402.org/facilitator",
-                            "payment_flow": "facilitator",
-                            "source_type": "discovery",
-                            "discovery_source": "bazaar",
-                        })
+                        row = _normalize_bazaar_row(item, discovery_source="bazaar")
+                        if row:
+                            out.append(row)
             elif isinstance(data, list):
                 for item in data:
                     if isinstance(item, dict) and (item.get("resource") or item.get("url")):
@@ -108,6 +183,7 @@ def _fetch_remote_discovery(timeout: float = 15) -> list[dict[str, Any]]:
                         })
         except Exception:
             continue
+    out.extend(_fetch_bazaar_search(timeout=timeout))
     return out
 
 
@@ -120,6 +196,16 @@ def _apply_env_overrides(raw: dict[str, Any]) -> dict[str, Any]:
         out = dict(raw)
         out["resource_url"] = base + t54_path
         return out
+    if pid == "swarm-self":
+        url = _env("CELO_402_PUBLIC_URL") or _env("API_402_PUBLIC_URL")
+        chain_id = _env("CHAIN_ID")
+        if url or chain_id:
+            out = dict(raw)
+            if url:
+                out["resource_url"] = url.strip()
+            if chain_id.isdigit():
+                out["network"] = f"eip155:{chain_id}"
+            return out
     if pid == "swarm-seller-facilitator":
         url = _env("X402_SELLER_PUBLIC_URL") or _env("X402_SELLER_PROBE_URL")
         net = _env("X402_SELLER_NETWORK")
@@ -148,6 +234,28 @@ def _apply_env_overrides(raw: dict[str, Any]) -> dict[str, Any]:
         url = _env("X402_SELLER_PUBLIC_URL") or _env("X402_SELLER_PROBE_URL")
         if url:
             u = url.strip().replace("/x402/v1/query", "/x402/v1/celo-agent-data")
+            out = dict(raw)
+            out["resource_url"] = u
+            if net:
+                out["network"] = net
+            if fac:
+                out["facilitator_url"] = fac
+            return out
+    if pid == "swarm-seller-intake-resale":
+        explicit = _env("X402_INTAKE_RESALE_PUBLIC_URL")
+        net = _env("X402_SELLER_NETWORK")
+        fac = _env("X402_TEST_FACILITATOR_URL") or _env("X402_SELLER_FACILITATOR_URL")
+        if explicit:
+            out = dict(raw)
+            out["resource_url"] = explicit.strip()
+            if net:
+                out["network"] = net
+            if fac:
+                out["facilitator_url"] = fac
+            return out
+        url = _env("X402_SELLER_PUBLIC_URL") or _env("X402_SELLER_PROBE_URL")
+        if url:
+            u = url.strip().replace("/x402/v1/query", "/x402/v1/intake-resale")
             out = dict(raw)
             out["resource_url"] = u
             if net:
@@ -280,7 +388,7 @@ class Discovery:
             ).strip().lower() in {"1", "true", "yes"}
         if include_scout_catalog:
             self.discover_from_scout_catalog(merge=True)
-        return list(self._registry.list_all()) if discovered else discovered
+        return list(self._registry.list_all())
 
     def get_registry(self) -> ProviderRegistry:
         return self._registry
