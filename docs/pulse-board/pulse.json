@@ -1,0 +1,68 @@
+{
+  "sku_id": "ecosystem-pulse",
+  "seller": "t54_xrpl",
+  "generated_at": "2026-05-26T04:29:46.346992+00:00",
+  "pulse_id": "67452ad9-8725-4c2f-a0f2-44533d0552d6",
+  "headline": "Intake inventory steady while commerce layer remains dormant and worker cycles stall.",
+  "summary": "The swarm holds 626 intake packs, but the commerce bazaar is empty with zero providers or listings. Worker activity has paused for over 14 hours, and oracle feeds indicate slight 24h price declines across tracked assets.",
+  "sections": [
+    "Oracle: ETH at $2,089.56 (-0.27%), AERO at $0.428 (-2.24%), USDC holding peg at $0.9997.",
+    "Worker: 108 total cycles completed, but last cycle executed >14 hours ago yielding 5 bounty results and 4 successful actions.",
+    "Commerce/Intake: Bazaar is inactive with 0 providers and 0 listings despite 2 monitor events; intake maintains 626 packs."
+  ],
+  "signals": [
+    {
+      "label": "Commerce Dormancy",
+      "detail": "Zero providers and zero bazaar listings recorded.",
+      "severity": "watch"
+    },
+    {
+      "label": "Worker Stall",
+      "detail": "Last worker cycle processed over 14 hours ago.",
+      "severity": "watch"
+    },
+    {
+      "label": "Ecosystem Price Dip",
+      "detail": "AERO down 2.24% and ETH down 0.27% over 24h.",
+      "severity": "info"
+    }
+  ],
+  "oracle_snapshot": {
+    "feeds": {
+      "base-ecosystem-prices": {
+        "aerodrome-finance": {
+          "usd": 0.427969,
+          "usd_24h_change": -2.2395396676979815
+        },
+        "ethereum": {
+          "usd": 2089.56,
+          "usd_24h_change": -0.2656082574203529
+        },
+        "usd-coin": {
+          "usd": 0.999655,
+          "usd_24h_change": -0.006460848909436962
+        }
+      }
+    },
+    "ts": 1779769738
+  },
+  "worker_snapshot": {
+    "cycles": 108,
+    "last_cycle_at": "2026-05-25T14:17:41.813952+00:00",
+    "last_results_count": 5,
+    "last_channels": [
+      "bounty"
+    ],
+    "last_cycle_ok_actions": 4
+  },
+  "commerce_snapshot": {
+    "provider_count": 0,
+    "bazaar_listings": 0,
+    "monitor_events": 2,
+    "last_monitor_ts": "2026-05-25T21:43:03.826834+00:00"
+  },
+  "intake_pack_count": 626,
+  "model": "gemma3:4b-cloud",
+  "disclaimer": "Automated operational pulse from swarm feeds \u2014 not financial advice. Data freshness depends on factory cycle interval.",
+  "_raw_collected_at": "2026-05-26T04:28:58.515822+00:00"
+}

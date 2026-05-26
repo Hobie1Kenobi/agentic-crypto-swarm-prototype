@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Agentic Swarm — Live PoCon Pulse</title>
+  <meta name="description" content="Real-time ecosystem pulse: oracle, worker, x402 bazaar, intake inventory." />
+  <style>
+    :root {
+      --bg: #07080c;
+      --card: #11141c;
+      --border: #1f2937;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #00d4aa;
+      --watch: #f59e0b;
+      --alert: #ef4444;
+      --info: #38bdf8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(0,212,170,.12), transparent),
+                  radial-gradient(800px 400px at 90% 0%, rgba(56,189,248,.08), transparent),
+                  var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+    }
+    header {
+      padding: 2rem clamp(1rem, 4vw, 2.5rem) 1rem;
+      border-bottom: 1px solid var(--border);
+    }
+    h1 { margin: 0 0 .35rem; font-size: clamp(1.4rem, 3vw, 2rem); }
+    .sub { color: var(--muted); max-width: 60ch; }
+    .links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+    .links a {
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: .35rem .85rem;
+      font-size: .85rem;
+      background: rgba(255,255,255,.02);
+    }
+    .links a:hover { border-color: var(--accent); }
+    .community-banner {
+      margin-top: 1rem;
+      padding: .85rem 1rem;
+      border-radius: 12px;
+      border: 1px solid rgba(0,212,170,.35);
+      background: linear-gradient(90deg, rgba(0,212,170,.12), rgba(88,101,242,.08));
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: .75rem;
+    }
+    .community-banner p { margin: 0; color: var(--text); font-size: .92rem; flex: 1 1 220px; }
+    .community-banner a.cta {
+      background: var(--accent);
+      color: #041510;
+      border: none;
+      font-weight: 600;
+    }
+    .community-banner a.cta:hover { filter: brightness(1.05); }
+    .community-banner a.cta.discord { background: #5865F2; color: #fff; }
+    main { padding: 1.5rem clamp(1rem, 4vw, 2.5rem) 3rem; display: grid; gap: 1rem; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 1.1rem 1.2rem;
+      box-shadow: 0 8px 32px rgba(0,0,0,.35);
+    }
+    .card h2 { margin: 0 0 .75rem; font-size: .95rem; color: var(--accent); text-transform: uppercase; letter-spacing: .06em; }
+    .headline { font-size: 1.15rem; font-weight: 600; line-height: 1.4; margin-bottom: .5rem; }
+    .summary { color: var(--muted); line-height: 1.55; }
+    .signal {
+      border-left: 3px solid var(--info);
+      padding: .55rem .75rem;
+      margin: .5rem 0;
+      background: rgba(255,255,255,.02);
+      border-radius: 0 8px 8px 0;
+    }
+    .signal.watch { border-color: var(--watch); }
+    .signal.alert { border-color: var(--alert); }
+    .signal b { display: block; margin-bottom: .2rem; }
+    .stat { display: flex; justify-content: space-between; padding: .35rem 0; border-bottom: 1px solid var(--border); font-size: .9rem; }
+    .stat:last-child { border-bottom: none; }
+    .stat span:last-child { color: var(--accent); font-variant-numeric: tabular-nums; }
+    .pill {
+      display: inline-block;
+      font-size: .75rem;
+      padding: .15rem .5rem;
+      border-radius: 999px;
+      background: rgba(0,212,170,.15);
+      color: var(--accent);
+      margin-left: .35rem;
+    }
+    .err { color: var(--alert); padding: 1rem; }
+    footer { text-align: center; color: var(--muted); font-size: .8rem; padding: 2rem; }
+    @keyframes pulse-dot { 0%,100%{opacity:1} 50%{opacity:.35} }
+    .live::before {
+      content: "";
+      display: inline-block;
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      background: var(--accent);
+      margin-right: .4rem;
+      animation: pulse-dot 1.5s infinite;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1><span class="live"></span>Agentic Swarm Marketplace · PoCon Pulse</h1>
+    <p class="sub">Autonomous operational dashboard — oracle prices, earning worker, x402 bazaar, intake inventory. Updated by the PoCon content factory.</p>
+    <div id="community-banner" class="community-banner" style="display:none">
+      <p id="community-banner-text">Join live PoCon alerts — hourly x402, T54, MCP signals.</p>
+      <a id="community-discord" class="cta discord" href="#" target="_blank" rel="noopener">Join Discord</a>
+      <a id="community-telegram" class="cta" href="https://t.me/agenticswarmmarketplace" target="_blank" rel="noopener">Telegram</a>
+    </div>
+    <div class="links" id="header-links">
+      <a href="https://www.agentic-swarm-marketplace.com/">Marketplace</a>
+      <a href="https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse">ecosystem-pulse (x402)</a>
+      <a href="https://api.agentic-swarm-marketplace.com/mcp">MCP</a>
+      <a href="https://t.me/agenticswarmmarketplace">Telegram</a>
+      <a href="https://agenthive.to/agents/swarm_pocon">AgentHive @swarm_pocon</a>
+      <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype">GitHub</a>
+    </div>
+  </header>
+  <main>
+    <p id="load-err" class="err" style="display:none"></p>
+    <div class="card">
+      <h2>Headline</h2>
+      <div class="headline" id="headline">Loading…</div>
+      <p class="summary" id="summary"></p>
+      <p class="summary" id="meta"></p>
+      <img id="chart" alt="PoCon pulse chart" style="display:none;width:100%;max-width:960px;margin-top:1rem;border-radius:12px;border:1px solid var(--border)" />
+    </div>
+    <div class="grid">
+      <div class="card"><h2>Signals</h2><div id="signals"></div></div>
+      <div class="card"><h2>Sections</h2><div id="sections"></div></div>
+      <div class="card"><h2>Worker</h2><div id="worker"></div></div>
+      <div class="card"><h2>Commerce</h2><div id="commerce"></div></div>
+      <div class="card"><h2>Oracle</h2><div id="oracle"></div></div>
+      <div class="card"><h2>GitHub</h2><div id="github"></div></div>
+    </div>
+  </main>
+  <footer>Not financial advice · Machine-generated pulse · <span id="pulse-id"></span></footer>
+  <script>
+    function stat(label, value) {
+      return `<div class="stat"><span>${label}</span><span>${value ?? "—"}</span></div>`;
+    }
+    function renderSignals(signals) {
+      const el = document.getElementById("signals");
+      if (!signals?.length) { el.innerHTML = "<p class='summary'>No signals</p>"; return; }
+      el.innerHTML = signals.map(s => `
+        <div class="signal ${s.severity || "info"}">
+          <b>[${(s.severity || "info").toUpperCase()}] ${s.label}</b>
+          ${s.detail || ""}
+        </div>`).join("");
+    }
+    function renderSections(sections) {
+      const el = document.getElementById("sections");
+      el.innerHTML = (sections || []).map(s => `<p class="summary">• ${s}</p>`).join("");
+    }
+    function renderWorker(w) {
+      const el = document.getElementById("worker");
+      if (!w || !Object.keys(w).length) { el.innerHTML = "<p class='summary'>No data</p>"; return; }
+      el.innerHTML = [
+        stat("Cycles", w.cycles),
+        stat("Last cycle", w.last_cycle_at ? new Date(w.last_cycle_at).toLocaleString() : "—"),
+        stat("Last OK actions", w.last_cycle_ok_actions),
+        stat("Channels", (w.last_channels || []).join(", ") || "—"),
+      ].join("");
+    }
+    function renderCommerce(c) {
+      const el = document.getElementById("commerce");
+      if (!c) { el.innerHTML = "<p class='summary'>No data</p>"; return; }
+      el.innerHTML = [
+        stat("Providers", c.provider_count),
+        stat("Bazaar listings", c.bazaar_listings),
+        stat("Monitor events", c.monitor_events),
+        stat("Intake packs", document.__intakePacks),
+      ].join("");
+    }
+    function renderOracle(o) {
+      const el = document.getElementById("oracle");
+      const feeds = o?.feeds || {};
+      const prices = feeds["base-ecosystem-prices"] || {};
+      const rows = Object.entries(prices).map(([k, v]) => {
+        if (!v || typeof v !== "object") return "";
+        const usd = v.usd != null ? `$${Number(v.usd).toLocaleString(undefined, {maximumFractionDigits: 4})}` : "—";
+        const chg = v.usd_24h_change != null ? `${Number(v.usd_24h_change).toFixed(2)}%` : "";
+        return stat(k, `${usd} ${chg ? `<span class="pill">${chg}</span>` : ""}`);
+      }).join("");
+      el.innerHTML = rows || "<p class='summary'>No oracle feeds</p>";
+    }
+    function renderGithub(g) {
+      const el = document.getElementById("github");
+      if (!g?.available) { el.innerHTML = `<p class="summary">${g?.error || "Unavailable"}</p>`; return; }
+      let html = [
+        stat("Stars", g.stars),
+        stat("Open issues", g.open_issues),
+        stat("Last push", g.pushed_at ? new Date(g.pushed_at).toLocaleString() : "—"),
+      ].join("");
+      const c = (g.recent_commits || [])[0];
+      if (c) html += `<p class="summary"><a href="${c.url}">${c.sha}</a> ${c.message}</p>`;
+      el.innerHTML = html;
+    }
+    fetch("./links.json?_=" + Date.now())
+      .then(r => r.ok ? r.json() : {})
+      .then(links => {
+        const banner = document.getElementById("community-banner");
+        const discord = links.discord;
+        const telegram = links.telegram || "https://t.me/agenticswarmmarketplace";
+        document.getElementById("community-telegram").href = telegram;
+        if (discord) {
+          document.getElementById("community-discord").href = discord;
+          document.getElementById("community-banner-text").textContent =
+            links.discord_label || "Join #swarm-pulse on Discord for hourly PoCon + x402 alerts.";
+          banner.style.display = "flex";
+          const header = document.getElementById("header-links");
+          if (header && !header.querySelector("[data-discord]")) {
+            const a = document.createElement("a");
+            a.href = discord;
+            a.textContent = "Discord #swarm-pulse";
+            a.target = "_blank";
+            a.rel = "noopener";
+            a.dataset.discord = "1";
+            header.insertBefore(a, header.children[4] || null);
+          }
+        } else if (telegram) {
+          document.getElementById("community-banner-text").textContent =
+            "Follow live PoCon on Telegram — Discord invite syncs when SOCIAL_DISCORD_URL is set.";
+          document.getElementById("community-discord").style.display = "none";
+          banner.style.display = "flex";
+        }
+      })
+      .catch(() => {});
+    fetch("./pulse.json?_=" + Date.now())
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(data => {
+        document.getElementById("headline").textContent = data.headline || "Pulse";
+        document.getElementById("summary").textContent = data.summary || "";
+        document.getElementById("meta").textContent =
+          `Generated ${data.generated_at || "—"} · model ${data.model || "—"} · ${data.intake_pack_count ?? 0} intake packs`;
+        document.getElementById("pulse-id").textContent = data.pulse_id || "";
+        document.__intakePacks = data.intake_pack_count;
+        renderSignals(data.signals);
+        renderSections(data.sections);
+        renderWorker(data.worker_snapshot);
+        renderCommerce(data.commerce_snapshot);
+        renderOracle(data.oracle_snapshot);
+        renderGithub(data.github);
+        const chart = document.getElementById("chart");
+        chart.onload = () => { chart.style.display = "block"; };
+        chart.onerror = () => { chart.style.display = "none"; };
+        chart.src = "./pulse-chart.png?_=" + Date.now();
+      })
+      .catch(err => {
+        document.getElementById("load-err").style.display = "block";
+        document.getElementById("load-err").textContent =
+          "Could not load pulse.json — run npm run pocon:export-board after pocon:factory.";
+        document.getElementById("headline").textContent = "Awaiting first export";
+      });
+    setInterval(() => location.reload(), 300000);
+  </script>
+</body>
+</html>
