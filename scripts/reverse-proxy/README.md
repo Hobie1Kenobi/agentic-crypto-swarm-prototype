@@ -6,10 +6,12 @@ Use this when you want **one HTTPS hostname** (one ngrok URL) for:
 |------|---------|------------|
 | `/mcp` (exact) | MCP **Streamable HTTP** (`npm run mcp:t54:streamable-http`) — Smithery / Glama URL publish | 9052 |
 | `/mcp/sse`, `/mcp/messages/*` | MCP T54 x402 **SSE** (`npm run mcp:t54:sse`); **`/mcp` is stripped** → `/sse`, `/messages/` | 9051 |
+| `/.well-known/*` | Passive discovery: `x402.json`, `agent-card.json`, `mcp.json` (no auth, no 402) — same handlers on **8043** (primary) and **8055** (fallback) | 8043 / 8055 |
+| `/celo/*` | Celo native x402 seller (`api_402`); **strip `/celo`** → `/query`, `/health` | 8042 |
+| `/x402/*` | Base x402 seller (`api_seller_x402`) | 8043 |
 
 **Do not** point MCP clients (Agent.ai, etc.) at the **x402 seller** (8043) or **T54** (8765) tunnel — those return **404** with `wrong_service` for `/mcp/*`. Use the **unified** tunnel (→ **9080**).
-| `/x402/*` | Base x402 seller (`api_seller_x402`) | 8043 |
-| `/t54/*` | T54 XRPL seller (`t54_seller_app`); **`/t54` is stripped** before proxying | 8765 |
+| `/t54/*` | T54 XRPL seller (`t54_seller_app`); **full path forwarded** (e.g. `/t54/hello`) | 8765 |
 | `/webhooks/*`, `/v1/*`, `/marketplace/*`, `/docs*`, `/openapi.json`, `/redoc*` | Marketplace (`marketplace_api`) | 8055 |
 | everything else (e.g. `/health`) | Defaults to Base x402 (8043) | 8043 |
 
@@ -18,7 +20,7 @@ Use this when you want **one HTTPS hostname** (one ngrok URL) for:
 ## Prerequisites
 
 1. [Caddy](https://caddyserver.com/docs/install) on your PATH, or install via **winget** (Windows: `npm run proxy:unified` resolves WinGet `caddy.exe` automatically).
-2. All backends running: `npm run t54:seller` (8765), `npm run x402:seller` (8043), `npm run marketplace:serve` (8055).
+2. All backends running: `npm run t54:seller` (8765), `npm run api:402` (8042), `npm run x402:seller` (8043), `npm run marketplace:serve` (8055).
 3. **MCP (both):** `npm run mcp:t54:unified` — SSE **9051** + Streamable HTTP **9052** (Smithery uses **`POST /mcp`** on **9052**). **`npm run stack:unified:start`** / **`stack:unified:ensure`** starts these automatically.
 
 ## Run the proxy
@@ -69,11 +71,24 @@ Replace `https://YOUR_UNIFIED_HOST` with your real origin (no trailing slash).
 
 ```env
 X402_SELLER_PUBLIC_URL=https://YOUR_UNIFIED_HOST/x402/v1/query
+CELO_402_PUBLIC_URL=https://YOUR_UNIFIED_HOST/celo/query
 T54_SELLER_PUBLIC_BASE_URL=https://YOUR_UNIFIED_HOST/t54
 MARKETPLACE_PUBLIC_BASE_URL=https://YOUR_UNIFIED_HOST
 ```
 
 Discovery/listings that build T54 `resource_url` should use base **`.../t54`** so paths become **`.../t54/x402/v1/query`**, etc.
+
+## Passive discovery (`/.well-known/*`)
+
+Payloads live in **`packages/agents/well_known_discovery.py`**. The Base seller (`api_seller_x402`, **8043**) serves them; **`marketplace_api` (8055)** registers the same paths so discovery still works if the tunnel hits marketplace first.
+
+Verify after deploy (expects HTTP **200** + JSON):
+
+```bash
+npm run probe:well-known
+```
+
+If **`https://api.agentic-swarm-marketplace.com/.well-known/x402.json`** returns **404**, the running build is behind `master` or the tunnel does not reach a process with these routes: on the API host run **`scripts/sync-api-host-from-git.ps1 -RestartStack`**, or pull and restart **`x402:seller`** / **`marketplace:serve`**. Confirm Cloudflare Tunnel **`service`** is **`http://127.0.0.1:9080`** (unified Caddy) or **`http://127.0.0.1:8043`** (seller only); this repo’s **`scripts/reverse-proxy/Caddyfile`** routes `/.well-known/*` to **8043**.
 
 ## nginx
 

@@ -6,7 +6,7 @@ Snapshot from live listeners on the dev machine. Public URLs use Caddy `:9080` p
 
 | Port | Process | Service |
 |------|---------|---------|
-| 8042 | python | Celo-native api_402 `/query` |
+| 8042 | python | Celo-native api_402 (`/query`; public `/celo/query` via Caddy) |
 | 8043 | python | Base x402 seller (default catch-all) |
 | 8044 | python | auxiliary seller / worker |
 | 8046 | python | auxiliary seller / worker |

@@ -54,6 +54,7 @@ def main() -> int:
         "MARKETPLACE_PUBLIC_BASE_URL": origin,
         "X402_SELLER_PUBLIC_URL": f"{origin}/x402/v1/query",
         "T54_SELLER_PUBLIC_BASE_URL": f"{origin}/t54",
+        "CELO_402_PUBLIC_URL": f"{origin}/celo/query",
         "MCP_SSE_PUBLIC_URL": f"{origin}/mcp",
     }
     for k, v in pairs.items():

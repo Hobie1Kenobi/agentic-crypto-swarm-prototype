@@ -1,19 +1,22 @@
 [
   {
     "provider_id": "swarm-self",
-    "provider_name": "Our Swarm (Celo)",
+    "provider_name": "Our Swarm (Celo native x402)",
     "source_type": "config",
     "discovery_source": "internal",
     "protocol_type": "x402",
-    "network": "eip155:11142220",
+    "network": "eip155:42220",
     "facilitator_url": null,
     "resource_url": "http://127.0.0.1:8042/query",
     "supported_assets": ["CELO"],
     "pricing_model": "per_request",
-    "categories": ["query", "llm", "self"],
+    "categories": ["query", "llm", "self", "seller"],
     "payment_flow": "celo_native",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/"
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "seller": true,
+      "api_402": true,
+      "note": "Production: CHAIN_ID=42220, REVENUE_SERVICE_ADDRESS on Celo mainnet, CELO_402_PUBLIC_URL=https://YOUR_HOST/celo/query (unified Caddy). Dev: localhost:8042/query or Sepolia."
     }
   },
   {
@@ -34,7 +37,7 @@
       "seller": true,
       "api_seller_x402": true,
       "settlement_chain": "base-mainnet",
-      "note": "Set X402_SELLER_NETWORK=eip155:84532 in .env for Base Sepolia dev. Override resource_url with X402_SELLER_PUBLIC_URL for HTTPS."
+      "note": "Production inbound sales: X402_SELLER_NETWORK=eip155:8453 (Base mainnet USDC). Use eip155:84532 only for Sepolia dev. Override resource_url with X402_SELLER_PUBLIC_URL (HTTPS). See documentation/PUBLIC_MAINNET_OPERATIONS.md."
     }
   },
   {
@@ -57,6 +60,50 @@
       "sku_id": "agent-commerce-data",
       "settlement_chain": "base-mainnet",
       "note": "Premium JSON; ?depth=full for larger evidence. Set X402_SELLER_DATA_PUBLIC_URL or derive from X402_SELLER_PUBLIC_URL (/query -> /celo-agent-data). Price via X402_SELLER_DATA_PRICE on seller."
+    }
+  },
+  {
+    "provider_id": "swarm-seller-intake-resale",
+    "provider_name": "Our Swarm (Base USDC) — Olas intake resale pack (same UUID files as T54)",
+    "source_type": "config",
+    "discovery_source": "internal",
+    "protocol_type": "x402",
+    "network": "eip155:8453",
+    "facilitator_url": "https://x402.org/facilitator",
+    "resource_url": "http://127.0.0.1:8043/x402/v1/intake-resale",
+    "supported_assets": ["USDC"],
+    "pricing_model": "per_request",
+    "categories": ["t54", "xrpl", "data", "resale", "seller", "bazaar"],
+    "payment_flow": "facilitator",
+    "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "seller": true,
+      "api_seller_x402": true,
+      "sku_id": "intake-resale-pack",
+      "settlement_chain": "base-mainnet",
+      "note": "Requires ?pack_id=<uuid>. Set X402_INTAKE_RESALE_PUBLIC_URL or derive from X402_SELLER_PUBLIC_URL. Price: X402_INTAKE_RESALE_PRICE. Run npm run x402:seller alongside t54:seller."
+    }
+  },
+  {
+    "provider_id": "swarm-seller-ecosystem-pulse",
+    "provider_name": "Our Swarm (Base USDC) — PoCon ecosystem pulse (oracle + worker + bazaar signals)",
+    "source_type": "config",
+    "discovery_source": "internal",
+    "protocol_type": "x402",
+    "network": "eip155:8453",
+    "facilitator_url": "https://x402.org/facilitator",
+    "resource_url": "http://127.0.0.1:8043/x402/v1/ecosystem-pulse",
+    "supported_assets": ["USDC"],
+    "pricing_model": "per_request",
+    "categories": ["data", "oracle", "seller", "bazaar", "pocon"],
+    "payment_flow": "facilitator",
+    "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "seller": true,
+      "api_seller_x402": true,
+      "sku_id": "ecosystem-pulse",
+      "settlement_chain": "base-mainnet",
+      "note": "Hourly-refreshed operational pulse. GET ?fresh=1 rebuilds. Price: X402_SELLER_PRICE_PULSE. Index via npm run bazaar:ignition:ecosystem-pulse."
     }
   },
   {
@@ -96,6 +143,25 @@
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
       "t54_path": "/x402/v1/research-brief",
       "sku_id": "research-brief"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-ecosystem-pulse",
+    "provider_name": "T54 XRPL — PoCon ecosystem pulse (oracle + worker signals)",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "",
+    "supported_assets": ["XRP"],
+    "pricing_model": "per_request",
+    "categories": ["t54", "xrpl", "data", "oracle", "pocon"],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "t54_path": "/x402/v1/ecosystem-pulse",
+      "sku_id": "ecosystem-pulse"
     }
   },
   {
@@ -174,6 +240,141 @@
       "t54_path": "/x402/v1/airdrop-intelligence",
       "sku_id": "airdrop-intelligence-report",
       "note": "LLM screening only; run scripts/run-airdrop-scout.py separately from sellers"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-intake-resale-pack",
+    "provider_name": "T54 XRPL — intake resale pack (UUID inventory from artifacts/intake_resale/)",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "",
+    "supported_assets": ["XRP"],
+    "pricing_model": "per_request",
+    "categories": ["t54", "xrpl", "data", "resale"],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "t54_path": "/x402/v1/intake-resale",
+      "sku_id": "intake-resale-pack",
+      "note": "GET with ?pack_id=<uuid>. Drops price in t54_seller_skus.json. Dual rail: Base USDC listing swarm-seller-intake-resale."
+    }
+  },
+  {
+    "provider_id": "swarm-seller-contract-triage",
+    "provider_name": "Our Swarm (Base USDC) — smart contract triage (Slither + brand heuristics)",
+    "source_type": "config",
+    "discovery_source": "internal",
+    "protocol_type": "x402",
+    "network": "eip155:8453",
+    "facilitator_url": "https://x402.org/facilitator",
+    "resource_url": "http://127.0.0.1:8043/x402/v1/contract-triage",
+    "supported_assets": ["USDC"],
+    "pricing_model": "per_request",
+    "categories": ["security", "audit", "evm", "seller", "bazaar"],
+    "payment_flow": "facilitator",
+    "metadata": {
+      "seller": true,
+      "api_seller_x402": true,
+      "sku_id": "contract-triage",
+      "description": "Fast EVM smart contract malicious pattern triage. 30-second static analysis screens a single contract address for honeypots, drainers, rug mechanics, trust-borrowing brand names (Vanguard, BlackRock, Trump, Federal Reserve variants), and Slither high-severity detectors. Returns risk score, verdict, and top flags. Input: contractAddress (required), chainId (optional, default eip155:8453). Output: JSON {riskScore, verdict, topFlags[], verified, completedIn}."
+    }
+  },
+  {
+    "provider_id": "swarm-seller-contract-audit",
+    "provider_name": "Our Swarm (Base USDC) — full contract audit (5-phase intelligence)",
+    "source_type": "config",
+    "discovery_source": "internal",
+    "protocol_type": "x402",
+    "network": "eip155:8453",
+    "facilitator_url": "https://x402.org/facilitator",
+    "resource_url": "http://127.0.0.1:8043/x402/v1/contract-audit",
+    "supported_assets": ["USDC"],
+    "pricing_model": "per_request",
+    "categories": ["security", "audit", "evm", "seller", "bazaar"],
+    "payment_flow": "facilitator",
+    "metadata": {
+      "seller": true,
+      "api_seller_x402": true,
+      "sku_id": "contract-audit",
+      "description": "Full 5-phase EVM smart contract security audit. Accepts up to 3 contract addresses (handles EIP-1167 proxy + implementation pairs automatically). Runs Slither static analysis, Echidna fork-mode fuzz testing (12k cycles), on-chain identity resolution, deployer wallet profiling including EIP-7702 delegate detection, money flow tracing (claim conditions, fee routing, sale recipients), and holder concentration analysis. Returns structured intelligence card per contract with confidence-scored verdict. Input: addresses (comma-separated, required), chainId (optional). Output: full audit_report_v2 JSON schema."
+    }
+  },
+  {
+    "provider_id": "swarm-seller-contract-monitor",
+    "provider_name": "Our Swarm (Base USDC) — contract monitoring subscription (webhook)",
+    "source_type": "config",
+    "discovery_source": "internal",
+    "protocol_type": "x402",
+    "network": "eip155:8453",
+    "facilitator_url": "https://x402.org/facilitator",
+    "resource_url": "http://127.0.0.1:8043/x402/v1/contract-monitor",
+    "supported_assets": ["USDC"],
+    "pricing_model": "per_request",
+    "categories": ["security", "monitoring", "webhook", "seller", "bazaar"],
+    "payment_flow": "facilitator",
+    "metadata": {
+      "seller": true,
+      "api_seller_x402": true,
+      "sku_id": "contract-monitor",
+      "http_method": "POST",
+      "description": "30-day continuous monitoring subscription for EVM smart contract threat intelligence. Monitors up to 10 addresses for: admin key movement, claim condition changes, liquidity threshold breaches (configurable %), new Slither critical findings on any code update. Fires webhook on alert. Ideal for DeFi agents and wallet providers managing live positions. Input POST body: {addresses[], webhookUrl, thresholds{}, durationDays}. Output: {subscriptionId, expiresAt, status}."
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-contract-triage",
+    "provider_name": "T54 XRPL — smart contract triage (same handler as Base; XRP pricing)",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "",
+    "supported_assets": ["XRP"],
+    "pricing_model": "per_request",
+    "categories": ["t54", "xrpl", "security", "audit"],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/x402/v1/contract-triage",
+      "sku_id": "contract-triage"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-contract-audit",
+    "provider_name": "T54 XRPL — full contract audit (same handler as Base; XRP pricing)",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "",
+    "supported_assets": ["XRP"],
+    "pricing_model": "per_request",
+    "categories": ["t54", "xrpl", "security", "audit"],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/x402/v1/contract-audit",
+      "sku_id": "contract-audit"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-contract-monitor",
+    "provider_name": "T54 XRPL — contract monitor subscription (GET query params; XRP pricing)",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "",
+    "supported_assets": ["XRP"],
+    "pricing_model": "per_request",
+    "categories": ["t54", "xrpl", "security", "monitoring"],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/x402/v1/contract-monitor",
+      "sku_id": "contract-monitor"
     }
   },
   {

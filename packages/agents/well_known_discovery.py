@@ -131,7 +131,7 @@ def build_x402_manifest(pay_to: str) -> dict:
             "description": (
                 "Multi-rail agent commerce platform. Smart contract security audits, x402 commerce "
                 "intelligence, airdrop threat screening, research briefs, and compliance reviews. "
-                "Pays via USDC on Base or XRP on XRPL."
+                "Pays via USDC on Base, CELO on Celo (native fulfillQuery), or XRP on XRPL."
             ),
             "url": "https://agentic-swarm-marketplace.com",
             "payTo": pay_to,
@@ -179,6 +179,20 @@ def build_x402_manifest(pay_to: str) -> dict:
                 "network": "eip155:8453",
                 "description": "Premium x402 commerce intelligence bundle with catalog snapshot and earning playbooks.",
             },
+            {
+                "path": "/x402/v1/ecosystem-pulse",
+                "method": "GET",
+                "price": "0.05 USDC",
+                "network": "eip155:8453",
+                "description": "PoCon ecosystem pulse: oracle snapshot, worker activity, bazaar readiness, intake inventory.",
+            },
+            {
+                "path": "/celo/query",
+                "method": "GET",
+                "price": "CELO (fulfillQuery)",
+                "network": "eip155:42220",
+                "description": "Celo-native x402 Q&A: HTTP 402 → pay CELO on AgentRevenueService → constitution-safe LLM answer.",
+            },
         ],
     }
 
@@ -189,7 +203,7 @@ def build_agent_card_manifest() -> dict:
         "description": (
             "Multi-rail agent commerce platform specializing in smart contract security auditing, "
             "airdrop threat intelligence, x402 commerce data, and compliance review. "
-            "Available on Base (USDC) and XRPL (XRP). MCP-compatible."
+            "Available on Base (USDC), Celo (CELO native x402), and XRPL (XRP). MCP-compatible."
         ),
         "url": "https://api.agentic-swarm-marketplace.com",
         "version": "2.0",

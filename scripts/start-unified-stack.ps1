@@ -45,7 +45,7 @@ function Start-NpmRunDetached {
 }
 
 function Stop-UnifiedSellersOnly {
-    foreach ($port in @(8765, 8043, 8055)) {
+    foreach ($port in @(8765, 8042, 8043, 8055)) {
         $conn = Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue
         foreach ($c in $conn) {
             if (-not $c.OwningProcess) { continue }
@@ -63,6 +63,9 @@ function Start-UnifiedSellers {
     param([string]$NpmCmd)
     Write-Host "[unified-stack] starting t54:seller -> logs/unified-stack-t54-seller.log"
     Start-NpmRunDetached -NpmCmd $NpmCmd -ScriptName "t54:seller" -LogBaseName "unified-stack-t54-seller"
+    Start-Sleep -Seconds 2
+    Write-Host "[unified-stack] starting api:402 (Celo native) -> logs/unified-stack-celo-402.log"
+    Start-NpmRunDetached -NpmCmd $NpmCmd -ScriptName "api:402" -LogBaseName "unified-stack-celo-402"
     Start-Sleep -Seconds 2
     Write-Host "[unified-stack] starting x402:seller -> logs/unified-stack-x402-seller.log"
     Start-NpmRunDetached -NpmCmd $NpmCmd -ScriptName "x402:seller" -LogBaseName "unified-stack-x402-seller"
@@ -130,6 +133,11 @@ if ($Ensure) {
     if (-not (Test-PortListen 8765)) {
         Write-Host "[unified-stack] ensure: starting t54:seller -> logs/unified-stack-t54-seller.log"
         Start-NpmRunDetached -NpmCmd $npm -ScriptName "t54:seller" -LogBaseName "unified-stack-t54-seller"
+        Start-Sleep -Seconds 2
+    }
+    if (-not (Test-PortListen 8042)) {
+        Write-Host "[unified-stack] ensure: starting api:402 -> logs/unified-stack-celo-402.log"
+        Start-NpmRunDetached -NpmCmd $npm -ScriptName "api:402" -LogBaseName "unified-stack-celo-402"
         Start-Sleep -Seconds 2
     }
     if (-not (Test-PortListen 8043)) {
@@ -217,7 +225,7 @@ if (-not $NoSync) {
         if ($Ensure -and $urlsChanged) {
             Write-Host "[unified-stack] public URLs in .env changed - restarting sellers to load new T54/X402 origins"
         } else {
-            Write-Host "[unified-stack] restarting sellers (8765/8043/8055) so uvicorn loads synced T54/X402 URLs from .env"
+            Write-Host "[unified-stack] restarting sellers (8765/8042/8043/8055) so uvicorn loads synced public URLs from .env"
         }
         Stop-UnifiedSellersOnly
         Start-Sleep -Seconds 2
@@ -227,7 +235,7 @@ if (-not $NoSync) {
     }
 }
 
-foreach ($port in @(8765, 8043, 8055, 9051, 9052, 9080, 4040)) {
+foreach ($port in @(8765, 8042, 8043, 8055, 9051, 9052, 9080, 4040)) {
     if (Test-PortListen $port) {
         Write-Host ('[unified-stack] OK listen :' + $port)
     } else {

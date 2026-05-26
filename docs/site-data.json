@@ -1,10 +1,14 @@
 {
+  "site": {
+    "canonical_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+    "github_pages_repo": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype"
+  },
   "project": {
     "name": "Agentic Swarm Marketplace",
-    "tagline": "Multi-rail agent commerce: XRPL machine payments + Celo private settlement + Stripe MPP marketplace + x402 Strategy Dashboard bundle",
+    "tagline": "Multi-rail x402 sellers: XRPL (T54) + Base (USDC) + Celo (native CELO) + Stripe MPP marketplace",
     "repo": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
-    "chain": "Celo Sepolia (testnet)",
-    "chainId": 11142220
+    "chain": "Multi-rail (XRPL mainnet, Base mainnet, Celo native x402)",
+    "chainId": null
   },
   "metrics": {
     "soak_6h": {
@@ -16,7 +20,7 @@
       "celo_txs": 216,
       "xrp_paid": 24.0,
       "avg_settlement_sec": 67.02,
-      "label": "6-hour continuous soak test"
+      "label": "6-hour continuous soak test (R&D hybrid rail)"
     },
     "soak_24h": {
       "cycles_attempted": 96,
@@ -27,23 +31,26 @@
       "celo_txs": 864,
       "xrp_paid": 96.0,
       "avg_settlement_sec": 68.61,
-      "label": "24-hour continuous soak test"
+      "label": "24-hour continuous soak test (R&D hybrid rail)"
     },
     "live_proof": {
       "status": "verified",
       "xrpl_tx_hash": "D055E8F6CE7B77719463728CE4F98B20394656467191E8C70D669D8DCEEDC192",
       "celo_task_id": 42,
-      "celo_tx_count": 9
+      "celo_tx_count": 9,
+      "note": "Hybrid XRPL→ComputeMarketplace proof (testnet R&D); production sellers use per-request x402 on each rail."
     }
   },
   "contracts": {
+    "revenue_service_note": "AgentRevenueService powers the Celo native x402 seller (api_402 / fulfillQuery). Set REVENUE_SERVICE_ADDRESS in .env on the API host.",
     "compute_marketplace": "0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9",
     "compute_marketplace_verified": true,
+    "compute_marketplace_role": "Optional R&D escrow (Celo Sepolia testnet only)",
     "blockscout_contract_url": "https://celo-sepolia.blockscout.com/address/0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9?tab=contract",
     "treasury": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
     "finance_distributor": "0xCF3572136265A5ED34D412200E63017e39223592",
     "celo_explorer": "https://celo-sepolia.blockscout.com",
-    "xrpl_explorer": "https://testnet.xrpl.org"
+    "xrpl_explorer": "https://livenet.xrpl.org"
   },
   "reports": {
     "live_proof_md": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/live_xrpl_to_celo_proof_report.md",
@@ -54,6 +61,7 @@
     "soak_24h_json": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/artifacts/reports/continuous_multi_rail_24h_report.json",
     "architecture": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/architecture/ARCHITECTURE.md",
     "xrpl_payments": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/celo-xrpl/XRPL_PAYMENTS.md",
+    "celo_x402_seller": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/operations/CELO_X402_SELLER.md",
     "production_readiness": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/operations/PRODUCTION-READINESS.md",
     "stripe_mpp": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/marketplace-stripe/STRIPE_MPP_INTEGRATION.md",
     "marketplace_dashboard_bundle": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/marketplace-stripe/MARKETPLACE_DASHBOARD_BUNDLE.md",

@@ -26,9 +26,13 @@
 		reverse_proxy 127.0.0.1:8055
 	}
 
-	# Celo-native api_402 (/query + POST) — must be before default catch-all
-	handle /query {
-		reverse_proxy 127.0.0.1:8042
+	# Celo-native api_402 — strip /celo → backend /query, /health (public: .../celo/query)
+	handle /celo/* {
+		uri strip_prefix /celo
+		reverse_proxy 127.0.0.1:8042 {
+			header_up X-Forwarded-Proto {scheme}
+			header_up X-Forwarded-Host {host}
+		}
 	}
 
 	# Base x402 Bazaar (same paths as direct :8043). /.well-known/* (x402.json, agent-card.json, mcp.json)
