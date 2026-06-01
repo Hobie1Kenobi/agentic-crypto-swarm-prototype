@@ -1,8 +1,8 @@
 {
   "sku_id": "ecosystem-pulse",
   "seller": "t54_xrpl",
-  "generated_at": "2026-06-01T20:18:09.532777+00:00",
-  "pulse_id": "75ddef62-4d6d-499c-9c61-9bec18c77d92",
+  "generated_at": "2026-06-01T21:18:15.404079+00:00",
+  "pulse_id": "10eb3678-6d9b-45a7-ab6a-691a5c58778f",
   "headline": "Swarm ecosystem pulse (deterministic stub)",
   "summary": "Worker cycles=None; intake packs=0; providers=0.",
   "sections": [
@@ -21,20 +21,20 @@
     "feeds": {
       "base-ecosystem-prices": {
         "aerodrome-finance": {
-          "usd": 0.404158,
-          "usd_24h_change": -1.2548824680416497
+          "usd": 0.400129,
+          "usd_24h_change": -2.5009320225562752
         },
         "ethereum": {
-          "usd": 1999.34,
-          "usd_24h_change": 0.005200637434046706
+          "usd": 1994.62,
+          "usd_24h_change": -0.5690517323480747
         },
         "usd-coin": {
-          "usd": 0.999651,
-          "usd_24h_change": -0.04836228978966929
+          "usd": 0.99972,
+          "usd_24h_change": 0.012485429512927311
         }
       }
     },
-    "ts": 1780345086
+    "ts": 1780348692
   },
   "worker_snapshot": {
     "cycles": null,
@@ -52,7 +52,7 @@
   "intake_pack_count": 0,
   "model": "gemma3:4b-cloud",
   "disclaimer": "Automated operational pulse from swarm feeds \u2014 not financial advice. Data freshness depends on factory cycle interval.",
-  "_raw_collected_at": "2026-06-01T20:18:06.732523+00:00",
+  "_raw_collected_at": "2026-06-01T21:18:12.705013+00:00",
   "github": {
     "repo": "Hobie1Kenobi/agentic-crypto-swarm-prototype",
     "available": true,
@@ -61,9 +61,15 @@
     "open_issues": 2,
     "default_branch": "master",
     "html_url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
-    "pushed_at": "2026-06-01T19:52:42Z",
+    "pushed_at": "2026-06-01T20:25:45Z",
     "description": "Agentic Swarm Marketplace: MCP + x402 machine-paid SKUs \u2014 XRPL (T54) and Base USDC \u2014 for contract triage, audits, monitoring, and agent commerce. Streamable HTTP for Smithery/Glama/Cursor; public disc",
     "recent_commits": [
+      {
+        "sha": "a917e40",
+        "message": "chore(pocon): sync pulse board for GitHub Pages",
+        "author": "Your Name",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/a917e40cd2f72ad86ed08a582b36a8d683e8a7fb"
+      },
       {
         "sha": "a0758b2",
         "message": "chore(pocon): sync pulse board for GitHub Pages",
@@ -75,36 +81,30 @@
         "message": "Reframe GitHub Pages for three x402 sellers and wire Celo api_402.",
         "author": "Hobie Cunningham",
         "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/ac8fb0dd15d847281820225a514ae4d732dbb678"
-      },
-      {
-        "sha": "6314470",
-        "message": "Track Daydreams #2 submission PR in bounty queue audit.",
-        "author": "Hobie Cunningham",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/6314470fc72214431a4672775210009cec9d1fe0"
       }
     ]
   },
   "marketing_campaign": {
-    "campaign_id": "75ddef62-4d6d-499c-9c61-9bec18c77d92:bazaar_discovery",
-    "theme_id": "bazaar_discovery",
-    "theme_title": "Coinbase Bazaar \u00b7 x402",
+    "campaign_id": "10eb3678-6d9b-45a7-ab6a-691a5c58778f:olas_intake",
+    "theme_id": "olas_intake",
+    "theme_title": "Olas intake resale",
     "rails": [
-      "Base",
-      "Bazaar"
+      "Olas",
+      "intake"
     ],
-    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
-    "cta_label": "Bazaar-listed pulse",
+    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
+    "cta_label": "Intake packs",
     "accent_color": 54442,
-    "hook": "Coinbase Bazaar \u00b7 x402",
-    "body_short": "Coinbase Bazaar \u00b7 x402 \u2014 CDP facilitator discovery for Base USDC seller routes. Live signal: Swarm ecosystem pulse (deterministic stub). https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
-    "body_long": "**Coinbase Bazaar \u00b7 x402** (Base, Bazaar)\n\nCDP facilitator discovery for Base USDC seller routes.\nMachine-indexed SKUs for autonomous buyers.\n\nOperational note: Swarm ecosystem pulse (deterministic stub)\n\n\u2192 https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
+    "hook": "Olas intake resale",
+    "body_short": "Olas intake resale \u2014 Minted intake bundles replayable via x402 ?pack_id=uuid. Live signal: Swarm ecosystem pulse (deterministic stub). https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
+    "body_long": "**Olas intake resale** (Olas, intake)\n\nMinted intake bundles replayable via x402 ?pack_id=uuid.\nSame UUID files on T54 and Base rails.\n\nOperational note: Swarm ecosystem pulse (deterministic stub)\n\n\u2192 https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
     "hashtags": "",
     "model": "gemma3:4b-cloud",
-    "generated_at": "2026-06-01T20:18:11.048124+00:00",
+    "generated_at": "2026-06-01T21:18:16.910979+00:00",
     "facts": [
-      "CDP facilitator discovery for Base USDC seller routes.",
-      "Machine-indexed SKUs for autonomous buyers.",
-      "Ignition-settled pays register catalog presence."
+      "Minted intake bundles replayable via x402 ?pack_id=uuid.",
+      "Same UUID files on T54 and Base rails.",
+      "Feeds PoCon intake inventory signals."
     ]
   }
 }

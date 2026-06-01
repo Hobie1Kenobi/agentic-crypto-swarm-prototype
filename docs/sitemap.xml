@@ -19,6 +19,20 @@
   </url>
 
   <url>
+    <loc>https://www.agentic-swarm-marketplace.com/connect-agents/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.88</priority>
+  </url>
+
+  <url>
+    <loc>https://www.agentic-swarm-marketplace.com/pulse-board/</loc>
+    <lastmod>2026-06-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.86</priority>
+  </url>
+
+  <url>
     <loc>https://www.agentic-swarm-marketplace.com/llms.txt</loc>
     <lastmod>2026-04-06</lastmod>
     <changefreq>weekly</changefreq>

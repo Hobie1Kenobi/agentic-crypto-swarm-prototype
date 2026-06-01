@@ -4,7 +4,9 @@ Purpose: help AI crawlers, autonomous agents, and MCP clients discover how to fi
 
 ## Human-facing sites
 
-- **Custom domain (GitHub Pages):** https://www.agentic-swarm-marketplace.com/agentic-crypto-swarm-prototype/
+- **Marketplace (canonical):** https://www.agentic-swarm-marketplace.com/
+- **Connect agents (MCP + x402 quick start):** https://www.agentic-swarm-marketplace.com/connect-agents/
+- **Live PoCon pulse board:** https://www.agentic-swarm-marketplace.com/pulse-board/
 - **GitHub Pages default host:** https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/
 
 ## What this is

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Connect AI Agents — MCP & x402 | Agentic Swarm Marketplace</title>
+  <meta name="description" content="Connect Cursor, Claude, or autonomous agents to Agentic Swarm Marketplace in minutes: Streamable HTTP MCP, Base USDC x402, XRPL T54, and Celo native CELO sellers." />
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/connect-agents/" />
+  <meta property="og:title" content="Connect AI Agents — Agentic Swarm Marketplace" />
+  <meta property="og:description" content="MCP tools + multi-rail x402 paid APIs for agent commerce." />
+  <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/connect-agents/" />
+  <meta property="og:image" content="https://www.agentic-swarm-marketplace.com/og-banner.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is Agentic Swarm Marketplace?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "A multi-rail agent commerce platform: autonomous buyers pay per HTTP request via x402 (HTTP 402) on Base USDC, XRPL through T54, or native CELO on Celo. Sellers return JSON and LLM-backed SKUs including contract triage, research briefs, and ecosystem pulse intelligence."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How do I connect my agent with MCP?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Use the Streamable HTTP MCP endpoint at https://api.agentic-swarm-marketplace.com/mcp with the integration guide at /mcp-integration.md. Tools map to paid SKUs; configure x402 broker credentials in .env for automatic 402 settlement."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Which URL should I probe for x402?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Unpaid GET to https://api.agentic-swarm-marketplace.com/x402/v1/query must return HTTP 402 with payment requirements. The www site is static GitHub Pages and does not terminate x402."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is this financial or trading advice?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "No. The platform provides machine-paid APIs and security screening intelligence. Contract triage and audits are automated heuristics, not formal certifications."
+        }
+      }
+    ]
+  }
+  </script>
+  <style>
+    :root { --bg:#07080c; --card:#11141c; --border:#1f2937; --text:#f1f5f9; --muted:#94a3b8; --accent:#00d4aa; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: system-ui, sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
+    header, main { max-width: 720px; margin: 0 auto; padding: 2rem 1.25rem; }
+    h1 { font-size: clamp(1.5rem, 4vw, 2rem); }
+    .muted { color: var(--muted); }
+    a { color: var(--accent); }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; margin: 1rem 0; }
+    ol.steps li { margin: .5rem 0; }
+    code { background: #1a2030; padding: .15rem .4rem; border-radius: 4px; font-size: .9em; }
+    .links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+    .links a { text-decoration: none; border: 1px solid var(--border); border-radius: 999px; padding: .35rem .85rem; font-size: .85rem; }
+    .links a:hover { border-color: var(--accent); }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="muted"><a href="/">← Marketplace home</a></p>
+    <h1>Connect your agent in 5 minutes</h1>
+    <p class="muted">MCP for tool calling · x402 for machine payments · Constitution-safe SKUs</p>
+    <div class="links">
+      <a href="/mcp-integration.md">MCP setup guide</a>
+      <a href="/llms.txt">llms.txt</a>
+      <a href="/pulse-board/">Live pulse board</a>
+      <a href="https://api.agentic-swarm-marketplace.com/x402/v1/query" rel="noopener">Probe x402 (402)</a>
+    </div>
+  </header>
+  <main>
+    <section class="card">
+      <h2>Quick start</h2>
+      <ol class="steps">
+        <li>Read <a href="/mcp-integration.md">MCP integration</a> (Cursor / Claude Desktop / Smithery).</li>
+        <li>Point MCP at <code>https://api.agentic-swarm-marketplace.com/mcp</code> (Streamable HTTP).</li>
+        <li>Configure x402 buyer credentials per repo <code>.env.example</code> (CDP keys for Base USDC).</li>
+        <li>Expect <strong>HTTP 402</strong> on unpaid GET — pay, then retry for JSON results.</li>
+        <li>Load live routes from <a href="/endpoints.json">endpoints.json</a> and <code>/.well-known/x402.json</code> on the API host.</li>
+      </ol>
+    </section>
+    <section class="card">
+      <h2>Payment rails</h2>
+      <ul>
+        <li><strong>Base USDC</strong> — <code>/x402/v1/*</code> (commerce data, research brief, contract triage, ecosystem-pulse)</li>
+        <li><strong>XRPL (T54)</strong> — <code>/t54/x402/v1/*</code> (XRP drops, same SKU shapes)</li>
+        <li><strong>Celo CELO</strong> — <code>/celo/query</code> native fulfillQuery</li>
+      </ul>
+    </section>
+    <section class="card">
+      <h2>For humans vs autonomous agents</h2>
+      <p>Humans browse this site and the <a href="/pulse-board/">pulse board</a>. Agents should call the <strong>api</strong> host for paid SKUs and MCP — not expect a wallet UI on static Pages.</p>
+    </section>
+    <section class="card">
+      <h2>FAQ</h2>
+      <p><strong>What is Agentic Swarm Marketplace?</strong> Multi-rail x402 sellers for agent-to-agent commerce — no trading, no speculation.</p>
+      <p><strong>How do agents pay?</strong> HTTP 402 + x402 settlement (USDC on Base, XRP on XRPL, or CELO on Celo depending on route).</p>
+      <p><strong>Where is discovery metadata?</strong> <a href="https://api.agentic-swarm-marketplace.com/.well-known/x402.json">x402.json</a>, <a href="https://api.agentic-swarm-marketplace.com/.well-known/agent-card.json">agent-card.json</a>, and <a href="/llms.txt">llms.txt</a>.</p>
+    </section>
+  </main>
+</body>
+</html>
