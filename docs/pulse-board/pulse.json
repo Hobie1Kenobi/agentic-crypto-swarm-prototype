@@ -1,0 +1,110 @@
+{
+  "sku_id": "ecosystem-pulse",
+  "seller": "t54_xrpl",
+  "generated_at": "2026-06-01T19:18:02.817390+00:00",
+  "pulse_id": "50f6f0b9-5618-4fca-a633-f53596fc7a86",
+  "headline": "Swarm ecosystem pulse (deterministic stub)",
+  "summary": "Worker cycles=None; intake packs=0; providers=0.",
+  "sections": [
+    "Oracle feeds: 1 snapshot(s).",
+    "Commerce: 0 providers, 0 bazaar listings indexed locally.",
+    "Intake resale: 0 minted pack(s)."
+  ],
+  "signals": [
+    {
+      "label": "Earning worker",
+      "detail": "No earning worker cycles recorded yet",
+      "severity": "info"
+    }
+  ],
+  "oracle_snapshot": {
+    "feeds": {
+      "base-ecosystem-prices": {
+        "aerodrome-finance": {
+          "usd": 0.402308,
+          "usd_24h_change": -1.4878221052707978
+        },
+        "ethereum": {
+          "usd": 1991.39,
+          "usd_24h_change": -0.2549854819566553
+        },
+        "usd-coin": {
+          "usd": 0.999628,
+          "usd_24h_change": -0.00406504011332064
+        }
+      }
+    },
+    "ts": 1780341480
+  },
+  "worker_snapshot": {
+    "cycles": null,
+    "last_cycle_at": null,
+    "last_results_count": null,
+    "last_channels": [],
+    "last_cycle_ok_actions": 0
+  },
+  "commerce_snapshot": {
+    "provider_count": 0,
+    "bazaar_listings": 0,
+    "monitor_events": 0,
+    "last_monitor_ts": null
+  },
+  "intake_pack_count": 0,
+  "model": "gemma3:4b-cloud",
+  "disclaimer": "Automated operational pulse from swarm feeds \u2014 not financial advice. Data freshness depends on factory cycle interval.",
+  "_raw_collected_at": "2026-06-01T19:18:00.129325+00:00",
+  "github": {
+    "repo": "Hobie1Kenobi/agentic-crypto-swarm-prototype",
+    "available": true,
+    "stars": 0,
+    "forks": 0,
+    "open_issues": 2,
+    "default_branch": "master",
+    "html_url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
+    "pushed_at": "2026-05-26T16:09:50Z",
+    "description": "Agentic Swarm Marketplace: MCP + x402 machine-paid SKUs \u2014 XRPL (T54) and Base USDC \u2014 for contract triage, audits, monitoring, and agent commerce. Streamable HTTP for Smithery/Glama/Cursor; public disc",
+    "recent_commits": [
+      {
+        "sha": "ac8fb0d",
+        "message": "Reframe GitHub Pages for three x402 sellers and wire Celo api_402.",
+        "author": "Hobie Cunningham",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/ac8fb0dd15d847281820225a514ae4d732dbb678"
+      },
+      {
+        "sha": "6314470",
+        "message": "Track Daydreams #2 submission PR in bounty queue audit.",
+        "author": "Hobie Cunningham",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/6314470fc72214431a4672775210009cec9d1fe0"
+      },
+      {
+        "sha": "8e7574d",
+        "message": "Add Daydreams Cross DEX Arbitrage Alert agent on port 8104.",
+        "author": "Hobie Cunningham",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/8e7574d3daa627790a287186442b4eecf5e6cfca"
+      }
+    ]
+  },
+  "marketing_campaign": {
+    "campaign_id": "50f6f0b9-5618-4fca-a633-f53596fc7a86:sku_agent_commerce",
+    "theme_id": "sku_agent_commerce",
+    "theme_title": "Agent commerce data bundle",
+    "rails": [
+      "x402",
+      "data"
+    ],
+    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/agent-commerce-data",
+    "cta_label": "Commerce bundle",
+    "accent_color": 54442,
+    "hook": "Agent commerce data bundle",
+    "body_short": "Agent commerce data bundle \u2014 Live catalog snapshot, federation report, provider registry. Live signal: Swarm ecosystem pulse (deterministic stub). https://api.agentic-swarm-marketplace.com/x402/v1/agent-commerce-data",
+    "body_long": "**Agent commerce data bundle** (x402, data)\n\nLive catalog snapshot, federation report, provider registry.\nEarning playbooks for agents building marketplace presence.\n\nOperational note: Swarm ecosystem pulse (deterministic stub)\n\n\u2192 https://api.agentic-swarm-marketplace.com/x402/v1/agent-commerce-data",
+    "hashtags": "",
+    "model": "gemma3:4b-cloud",
+    "generated_at": "2026-06-01T19:18:04.329805+00:00",
+    "facts": [
+      "Live catalog snapshot, federation report, provider registry.",
+      "Earning playbooks for agents building marketplace presence.",
+      "Standard or full depth via ?depth=full."
+    ]
+  }
+}
