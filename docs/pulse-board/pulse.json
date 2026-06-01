@@ -1,8 +1,8 @@
 {
   "sku_id": "ecosystem-pulse",
   "seller": "t54_xrpl",
-  "generated_at": "2026-06-01T19:18:02.817390+00:00",
-  "pulse_id": "50f6f0b9-5618-4fca-a633-f53596fc7a86",
+  "generated_at": "2026-06-01T20:18:09.532777+00:00",
+  "pulse_id": "75ddef62-4d6d-499c-9c61-9bec18c77d92",
   "headline": "Swarm ecosystem pulse (deterministic stub)",
   "summary": "Worker cycles=None; intake packs=0; providers=0.",
   "sections": [
@@ -21,20 +21,20 @@
     "feeds": {
       "base-ecosystem-prices": {
         "aerodrome-finance": {
-          "usd": 0.402308,
-          "usd_24h_change": -1.4878221052707978
+          "usd": 0.404158,
+          "usd_24h_change": -1.2548824680416497
         },
         "ethereum": {
-          "usd": 1991.39,
-          "usd_24h_change": -0.2549854819566553
+          "usd": 1999.34,
+          "usd_24h_change": 0.005200637434046706
         },
         "usd-coin": {
-          "usd": 0.999628,
-          "usd_24h_change": -0.00406504011332064
+          "usd": 0.999651,
+          "usd_24h_change": -0.04836228978966929
         }
       }
     },
-    "ts": 1780341480
+    "ts": 1780345086
   },
   "worker_snapshot": {
     "cycles": null,
@@ -52,7 +52,7 @@
   "intake_pack_count": 0,
   "model": "gemma3:4b-cloud",
   "disclaimer": "Automated operational pulse from swarm feeds \u2014 not financial advice. Data freshness depends on factory cycle interval.",
-  "_raw_collected_at": "2026-06-01T19:18:00.129325+00:00",
+  "_raw_collected_at": "2026-06-01T20:18:06.732523+00:00",
   "github": {
     "repo": "Hobie1Kenobi/agentic-crypto-swarm-prototype",
     "available": true,
@@ -61,9 +61,15 @@
     "open_issues": 2,
     "default_branch": "master",
     "html_url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
-    "pushed_at": "2026-05-26T16:09:50Z",
+    "pushed_at": "2026-06-01T19:52:42Z",
     "description": "Agentic Swarm Marketplace: MCP + x402 machine-paid SKUs \u2014 XRPL (T54) and Base USDC \u2014 for contract triage, audits, monitoring, and agent commerce. Streamable HTTP for Smithery/Glama/Cursor; public disc",
     "recent_commits": [
+      {
+        "sha": "a0758b2",
+        "message": "chore(pocon): sync pulse board for GitHub Pages",
+        "author": "Your Name",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/a0758b257d02cf23dd882ce267829a803318e60d"
+      },
       {
         "sha": "ac8fb0d",
         "message": "Reframe GitHub Pages for three x402 sellers and wire Celo api_402.",
@@ -75,36 +81,30 @@
         "message": "Track Daydreams #2 submission PR in bounty queue audit.",
         "author": "Hobie Cunningham",
         "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/6314470fc72214431a4672775210009cec9d1fe0"
-      },
-      {
-        "sha": "8e7574d",
-        "message": "Add Daydreams Cross DEX Arbitrage Alert agent on port 8104.",
-        "author": "Hobie Cunningham",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/8e7574d3daa627790a287186442b4eecf5e6cfca"
       }
     ]
   },
   "marketing_campaign": {
-    "campaign_id": "50f6f0b9-5618-4fca-a633-f53596fc7a86:sku_agent_commerce",
-    "theme_id": "sku_agent_commerce",
-    "theme_title": "Agent commerce data bundle",
+    "campaign_id": "75ddef62-4d6d-499c-9c61-9bec18c77d92:bazaar_discovery",
+    "theme_id": "bazaar_discovery",
+    "theme_title": "Coinbase Bazaar \u00b7 x402",
     "rails": [
-      "x402",
-      "data"
+      "Base",
+      "Bazaar"
     ],
-    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/agent-commerce-data",
-    "cta_label": "Commerce bundle",
+    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
+    "cta_label": "Bazaar-listed pulse",
     "accent_color": 54442,
-    "hook": "Agent commerce data bundle",
-    "body_short": "Agent commerce data bundle \u2014 Live catalog snapshot, federation report, provider registry. Live signal: Swarm ecosystem pulse (deterministic stub). https://api.agentic-swarm-marketplace.com/x402/v1/agent-commerce-data",
-    "body_long": "**Agent commerce data bundle** (x402, data)\n\nLive catalog snapshot, federation report, provider registry.\nEarning playbooks for agents building marketplace presence.\n\nOperational note: Swarm ecosystem pulse (deterministic stub)\n\n\u2192 https://api.agentic-swarm-marketplace.com/x402/v1/agent-commerce-data",
+    "hook": "Coinbase Bazaar \u00b7 x402",
+    "body_short": "Coinbase Bazaar \u00b7 x402 \u2014 CDP facilitator discovery for Base USDC seller routes. Live signal: Swarm ecosystem pulse (deterministic stub). https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
+    "body_long": "**Coinbase Bazaar \u00b7 x402** (Base, Bazaar)\n\nCDP facilitator discovery for Base USDC seller routes.\nMachine-indexed SKUs for autonomous buyers.\n\nOperational note: Swarm ecosystem pulse (deterministic stub)\n\n\u2192 https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
     "hashtags": "",
     "model": "gemma3:4b-cloud",
-    "generated_at": "2026-06-01T19:18:04.329805+00:00",
+    "generated_at": "2026-06-01T20:18:11.048124+00:00",
     "facts": [
-      "Live catalog snapshot, federation report, provider registry.",
-      "Earning playbooks for agents building marketplace presence.",
-      "Standard or full depth via ?depth=full."
+      "CDP facilitator discovery for Base USDC seller routes.",
+      "Machine-indexed SKUs for autonomous buyers.",
+      "Ignition-settled pays register catalog presence."
     ]
   }
 }
