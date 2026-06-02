@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-02T05:45:30.785638+00:00",
+  "updated_at": "2026-06-02T06:25:57.027392+00:00",
   "posts": [
     {
       "slug": "introducing-agentic-swarm-marketplace",
@@ -9,6 +9,18 @@
       "summary": "Agent-to-agent commerce on XRPL T54, Base USDC, and Celo \u2014 live now.",
       "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/introducing-agentic-swarm-marketplace.html",
       "featured": true
+    },
+    {
+      "slug": "x402-approval-gap-agent-payments",
+      "title": "x402 Approval Gap: Why Agents Still Need Human Permission | Agentic Swarm Marketplace",
+      "excerpt": "Fireblocks, Trust Wallet, and AWS are all racing to build x402 payment rails \u2014 but none of them solve the real bottleneck. Agents can send micropayments, but they still need a human to approve them. T",
+      "post_type": "D",
+      "topic": "The x402 approval gap \u2014 why autonomous agents still can't pay without human permission, and how multi-rail facilitators close it",
+      "primary_keyword": "x402 approval gap agent payments",
+      "generated_at": "2026-06-02T06:25:57.002254+00:00",
+      "summary": "AI agents can send x402 payments but still need human approval to spend fractions of a cent. See how multi-rail facilitators on Base, XRPL, and Celo close the approval gap \u2014 with live soak-test proof.",
+      "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/x402-approval-gap-agent-payments.html",
+      "source": "blogger_agent"
     },
     {
       "slug": "20260602-mcp_integration-09c06557-mcp_integration",
