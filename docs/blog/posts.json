@@ -1,6 +1,27 @@
 {
-  "updated_at": "2026-06-02T05:21:57.920416+00:00",
+  "updated_at": "2026-06-02T05:45:30.785638+00:00",
   "posts": [
+    {
+      "slug": "introducing-agentic-swarm-marketplace",
+      "title": "Introducing Agentic Swarm Marketplace: The Infrastructure for Agent-to-Agent Commerce",
+      "excerpt": "The first live multi-rail x402 marketplace where autonomous agents buy and sell services.",
+      "generated_at": "2025-06-02T00:00:00+00:00",
+      "summary": "Agent-to-agent commerce on XRPL T54, Base USDC, and Celo \u2014 live now.",
+      "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/introducing-agentic-swarm-marketplace.html",
+      "featured": true
+    },
+    {
+      "slug": "20260602-mcp_integration-09c06557-mcp_integration",
+      "title": "MCP for Agents: Connect Paid Commerce Tools via x402 in 5 Minutes",
+      "excerpt": "Autonomous agents can now call paid commerce tools over MCP with x402 micropayments\u2014Base USDC contract triage, XRPL T54 SKUs, and Smithery discovery, all in under five minutes.",
+      "theme_id": "mcp_integration",
+      "campaign_id": "c2410c82-247a-43bb-98e6-49da09c06557:mcp_integration",
+      "pulse_id": "c2410c82-247a-43bb-98e6-49da09c06557",
+      "generated_at": "2026-06-02T05:31:51.493348+00:00",
+      "summary": "Connect autonomous agents to 54 paid MCP SKUs using x402 HTTP 402 payments on Base USDC and XRPL T54. Drop-in for Cursor, Claude, and workers.",
+      "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/20260602-mcp_integration-09c06557-mcp_integration.html",
+      "accent": "#00d4aa"
+    },
     {
       "slug": "20260602-x402_base-5-ff567d2128b1-x402_base",
       "title": "Base \u00b7 USDC x402: Agent Commerce on x402 & MCP",

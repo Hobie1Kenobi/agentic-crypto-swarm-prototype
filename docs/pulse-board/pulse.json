@@ -1,40 +1,30 @@
 {
   "sku_id": "ecosystem-pulse",
   "seller": "t54_xrpl",
-  "generated_at": "2026-06-02T05:14:08.308536+00:00",
-  "pulse_id": "7259d344-620e-4b39-8c45-ff567d2128b1",
-  "headline": "Oracle-only state: feeds live, all operational layers cold",
-  "summary": "The swarm is in a pre-activation phase with price feeds flowing but zero activity across worker, commerce, and intake. AERO leads the downside at -3.7% while ETH and USDC hold flat. GitHub commits continue on site infrastructure, but no agent-commerce cycles have executed.",
+  "generated_at": "2026-06-02T05:31:43.557827+00:00",
+  "pulse_id": "c2410c82-247a-43bb-98e6-49da09c06557",
+  "headline": "Swarm Idle: Oracle Feeds Active While Worker, Commerce, and Intake Remain Offline",
+  "summary": "Oracle price feeds are live, showing minor 24h dips for AERO (-3.5%) and ETH (-0.18%), while USDC holds peg. Worker, commerce, and intake modules report zero activity, indicating a pre-operational or dormant state. Recent dev activity focused on SEO and pulse board infrastructure rather than operational compute.",
   "sections": [
-    "Oracle: ETH $1,993.41 (-0.15%), AERO $0.398 (-3.73%), USDC $0.9995 (-0.02%). AERO showing notable relative weakness; stablecoin peg holding.",
-    "Worker: Fully dormant \u2014 no cycles recorded, no channels active, zero actions executed. No last_cycle_at timestamp indicates the worker has never completed a run.",
-    "Commerce & Intake: Zero providers, zero bazaar listings, zero monitor events, zero intake packs. x402 payment rails and marketplace have no inventory or participants yet.",
-    "GitHub: Repo active with 3 recent commits (SEO/sitemap/pulse board), 2 open issues. Last push 4 min before snapshot \u2014 dev velocity on site layer, not agent operations."
+    "Oracle: AERO at $0.397 (-3.5% 24h), ETH at $1,989 (-0.18% 24h), USDC at $0.999.",
+    "Worker/Intake: Zero worker cycles executed, zero intake packs processed, and zero actions completed.",
+    "Commerce: Bazaar empty with 0 providers, 0 x402 listings, and 0 monitor events registered.",
+    "Infrastructure: Recent GitHub commits deployed SEO pages and pulse board; 2 open issues remain."
   ],
   "signals": [
     {
-      "label": "Worker never cycled",
-      "detail": "last_cycle_at is null \u2014 worker has not executed a single cycle since deployment",
-      "severity": "alert"
-    },
-    {
-      "label": "Commerce empty",
-      "detail": "0 providers, 0 bazaar listings, 0 monitor events \u2014 x402 marketplace has no supply side",
-      "severity": "alert"
-    },
-    {
-      "label": "Intake empty",
-      "detail": "0 packs queued \u2014 no demand entering the pipeline",
+      "label": "Worker Dormancy",
+      "detail": "0 cycles executed and 0 actions completed.",
       "severity": "watch"
     },
     {
-      "label": "AERO -3.7% 24h",
-      "detail": "Largest price mover in feed; may affect Aerodrome-linked LP or fee assumptions if commerce activates",
-      "severity": "info"
+      "label": "Bazaar Empty",
+      "detail": "No x402 providers, listings, or monitor events registered.",
+      "severity": "watch"
     },
     {
-      "label": "USDC peg stable",
-      "detail": "$0.9995 with -0.018% drift \u2014 payment rail integrity intact for x402 settlement",
+      "label": "AERO Price Dip",
+      "detail": "Aerodrome Finance token down 3.5% in 24h.",
       "severity": "info"
     }
   ],
@@ -42,20 +32,20 @@
     "feeds": {
       "base-ecosystem-prices": {
         "aerodrome-finance": {
-          "usd": 0.398077,
-          "usd_24h_change": -3.727479606522964
+          "usd": 0.397732,
+          "usd_24h_change": -3.508402681513772
         },
         "ethereum": {
-          "usd": 1993.41,
-          "usd_24h_change": -0.14972405458413357
+          "usd": 1989.02,
+          "usd_24h_change": -0.18470188928156825
         },
         "usd-coin": {
-          "usd": 0.999489,
-          "usd_24h_change": -0.01813582353758148
+          "usd": 0.999471,
+          "usd_24h_change": -0.027021224341497296
         }
       }
     },
-    "ts": 1780377237
+    "ts": 1780378285
   },
   "worker_snapshot": {
     "cycles": null,
@@ -73,7 +63,7 @@
   "intake_pack_count": 0,
   "model": "glm-5.1:cloud",
   "disclaimer": "Automated operational pulse from swarm feeds \u2014 not financial advice. Data freshness depends on factory cycle interval.",
-  "_raw_collected_at": "2026-06-02T05:13:57.682114+00:00",
+  "_raw_collected_at": "2026-06-02T05:31:25.541389+00:00",
   "github": {
     "repo": "Hobie1Kenobi/agentic-crypto-swarm-prototype",
     "available": true,
@@ -82,9 +72,15 @@
     "open_issues": 2,
     "default_branch": "master",
     "html_url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
-    "pushed_at": "2026-06-02T05:09:27Z",
+    "pushed_at": "2026-06-02T05:22:00Z",
     "description": "Agentic Swarm Marketplace: MCP + x402 machine-paid SKUs \u2014 XRPL (T54) and Base USDC \u2014 for contract triage, audits, monitoring, and agent commerce. Streamable HTTP for Smithery/Glama/Cursor; public disc",
     "recent_commits": [
+      {
+        "sha": "3cb7914",
+        "message": "chore(site): SEO pages, sitemap, connect-agents, pulse board",
+        "author": "Your Name",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/3cb7914aa9d2d79a50558bdc72450295c61d32ed"
+      },
       {
         "sha": "f185aaf",
         "message": "chore(site): SEO pages, sitemap, connect-agents, pulse board",
@@ -96,37 +92,29 @@
         "message": "chore(site): SEO pages, sitemap, connect-agents, pulse board",
         "author": "Your Name",
         "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/0c1ff0cc6b5ec3bf497e9e4160f6efb985b64ed0"
-      },
-      {
-        "sha": "c529e96",
-        "message": "chore(site): SEO pages, sitemap, connect-agents, pulse board",
-        "author": "Your Name",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/c529e96f03ab7917de5696b0fb4d10bb630e88d1"
       }
     ]
   },
   "marketing_campaign": {
-    "campaign_id": "7259d344-620e-4b39-8c45-ff567d2128b1:x402_base",
-    "theme_id": "x402_base",
-    "theme_title": "Base \u00b7 USDC x402",
+    "campaign_id": "c2410c82-247a-43bb-98e6-49da09c06557:mcp_integration",
+    "theme_id": "mcp_integration",
+    "theme_title": "MCP for agents",
     "rails": [
-      "Base",
-      "USDC",
-      "x402"
+      "MCP"
     ],
-    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/query",
-    "cta_label": "Base x402 query",
+    "cta_url": "https://api.agentic-swarm-marketplace.com/mcp",
+    "cta_label": "Connect MCP",
     "accent_color": 54442,
-    "hook": "Base USDC x402: Agent Micropayments, Zero Friction",
-    "body_short": "Your agents need to pay for API calls \u2014 USDC exact-scheme micropayments on Base make it happen automatically. Connect via MCP + x402 in under 5 minutes and start transacting. \u2192 https://api.agentic-swarm-marketplace.com/x402/v1/query",
-    "body_long": "Coinbase CDP Bazaar-listed facilitator, now live on Base mainnet. The **Base \u00b7 USDC \u00b7 x402** rails deliver exact-scheme micropayments purpose-built for agent-to-agent commerce \u2014 contract triage, audits, and data queries on eip155:8453, all settled in USDC. Connect your agents via MCP + x402 in under 5 minutes with no manual key management. The marketplace is fresh and waiting for first movers to list and query. Start now \u2192 https://api.agentic-swarm-marketplace.com/x402/v1/query",
-    "hashtags": "agent commerce API, Base USDC x402",
+    "hook": "MCP Plugs Agents Into x402 Commerce Rails",
+    "body_short": "Streamable HTTP MCP connects Cursor, Claude, and autonomous workers to 54 T54 SKUs and x402 commerce tools in minutes \u2014 listed on Smithery for instant discovery. Oracle feeds are live; your agents just need the rail. https://api.agentic-swarm-marketplace.com/mcp",
+    "body_long": "Drop any agent onto the **MCP** rail and unlock 54 T54 SKUs with the x402 agent commerce API in under five minutes. Streamable HTTP means zero-friction setup for Cursor, Claude, and autonomous workers \u2014 plus Smithery listing puts your agent on the discovery map. Oracle feeds are already active; commerce rails are ready for your first autonomous transaction. Built-in Base USDC contract triage and agent-to-agent payments let buyers act the moment they connect. https://api.agentic-swarm-marketplace.com/mcp",
+    "hashtags": "agent commerce API, MCP paid tools",
     "model": "glm-5.1:cloud",
-    "generated_at": "2026-06-02T05:14:15.690495+00:00",
+    "generated_at": "2026-06-02T05:31:51.493348+00:00",
     "facts": [
-      "Coinbase CDP Bazaar-listed facilitator seller on Base mainnet.",
-      "USDC exact-scheme micropayments for agent API calls.",
-      "Contract triage, audits, and commerce data on eip155:8453."
+      "Streamable HTTP MCP \u2014 audits, T54 SKUs, x402 commerce tools.",
+      "Listed on Smithery for agent discovery.",
+      "Drop-in for Cursor, Claude, and autonomous workers."
     ]
   }
 }
