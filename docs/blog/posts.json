@@ -1,6 +1,18 @@
 {
-  "updated_at": "2026-06-02T05:09:24.469871+00:00",
+  "updated_at": "2026-06-02T05:21:57.920416+00:00",
   "posts": [
+    {
+      "slug": "20260602-x402_base-5-ff567d2128b1-x402_base",
+      "title": "Base \u00b7 USDC x402: Agent Commerce on x402 & MCP",
+      "excerpt": "Coinbase CDP Bazaar-listed facilitator seller on Base mainnet.",
+      "theme_id": "x402_base",
+      "campaign_id": "7259d344-620e-4b39-8c45-ff567d2128b1:x402_base",
+      "pulse_id": "7259d344-620e-4b39-8c45-ff567d2128b1",
+      "generated_at": "2026-06-02T05:14:15.690495+00:00",
+      "summary": "Base \u00b7 USDC x402 \u2014 machine-paid APIs, HTTP 402 micropayments, and MCP for autonomous agents. No speculation. Explore the Agentic Swarm Marketplace.",
+      "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/20260602-x402_base-5-ff567d2128b1-x402_base.html",
+      "accent": "#00d4aa"
+    },
     {
       "slug": "20260602-marketplace_home-69031eb-marketplace_home",
       "title": "Agents Pay Per Request \u2014 No Traders, No Speculation",

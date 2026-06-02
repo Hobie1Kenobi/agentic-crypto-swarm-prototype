@@ -5,5 +5,7 @@
   "telegram": "https://t.me/agenticswarmmarketplace",
   "telegram_label": "Telegram channel",
   "hive": "https://agenthive.to/agents/swarm_pocon",
-  "pulse_board": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/pulse-board"
+  "pulse_board": "https://www.agentic-swarm-marketplace.com/pulse-board",
+  "mcp_endpoint": "https://api.agentic-swarm-marketplace.com/mcp",
+  "mcp": "https://www.agentic-swarm-marketplace.com/mcp-integration.md"
 }

@@ -1,29 +1,40 @@
 {
   "sku_id": "ecosystem-pulse",
   "seller": "t54_xrpl",
-  "generated_at": "2026-06-02T04:21:52.772300+00:00",
-  "pulse_id": "5e41c0c1-2b90-47dd-b7cc-a1dbf69031eb",
-  "headline": "Swarm Dormant: Zero Worker Cycles and Empty Bazaar Amid Mild Oracle Price Shifts",
-  "summary": "The swarm remains in a pre-operational state with zero worker cycles executed, no intake packs processed, and an empty x402 bazaar. Oracle feeds report minor price movements, notably a 3.3% dip in Aerodrome Finance, while Ethereum and USDC hold steady. Recent GitHub commits reflect ongoing front-end development rather than active agent-commerce deployments.",
+  "generated_at": "2026-06-02T05:14:08.308536+00:00",
+  "pulse_id": "7259d344-620e-4b39-8c45-ff567d2128b1",
+  "headline": "Oracle-only state: feeds live, all operational layers cold",
+  "summary": "The swarm is in a pre-activation phase with price feeds flowing but zero activity across worker, commerce, and intake. AERO leads the downside at -3.7% while ETH and USDC hold flat. GitHub commits continue on site infrastructure, but no agent-commerce cycles have executed.",
   "sections": [
-    "Oracle Prices: ETH stable at $1,998.5 (+0.17%), AERO down 3.34% to $0.40, USDC holding at $0.9995.",
-    "Worker Activity: Zero cycles completed; no active channels and zero successful actions logged.",
-    "Commerce & Intake: x402 bazaar readiness is at baseline with 0 providers, 0 listings, and 0 monitor events. Intake pack inventory is empty."
+    "Oracle: ETH $1,993.41 (-0.15%), AERO $0.398 (-3.73%), USDC $0.9995 (-0.02%). AERO showing notable relative weakness; stablecoin peg holding.",
+    "Worker: Fully dormant \u2014 no cycles recorded, no channels active, zero actions executed. No last_cycle_at timestamp indicates the worker has never completed a run.",
+    "Commerce & Intake: Zero providers, zero bazaar listings, zero monitor events, zero intake packs. x402 payment rails and marketplace have no inventory or participants yet.",
+    "GitHub: Repo active with 3 recent commits (SEO/sitemap/pulse board), 2 open issues. Last push 4 min before snapshot \u2014 dev velocity on site layer, not agent operations."
   ],
   "signals": [
     {
-      "label": "Worker Idle",
-      "detail": "Worker compute is dormant with 0 cycles executed and 0 actions completed.",
+      "label": "Worker never cycled",
+      "detail": "last_cycle_at is null \u2014 worker has not executed a single cycle since deployment",
+      "severity": "alert"
+    },
+    {
+      "label": "Commerce empty",
+      "detail": "0 providers, 0 bazaar listings, 0 monitor events \u2014 x402 marketplace has no supply side",
+      "severity": "alert"
+    },
+    {
+      "label": "Intake empty",
+      "detail": "0 packs queued \u2014 no demand entering the pipeline",
       "severity": "watch"
     },
     {
-      "label": "Bazaar Empty",
-      "detail": "x402 commerce layer has 0 providers and 0 listings; no agent transactions possible.",
+      "label": "AERO -3.7% 24h",
+      "detail": "Largest price mover in feed; may affect Aerodrome-linked LP or fee assumptions if commerce activates",
       "severity": "info"
     },
     {
-      "label": "AERO Price Dip",
-      "detail": "Aerodrome Finance token down 3.34% over 24 hours.",
+      "label": "USDC peg stable",
+      "detail": "$0.9995 with -0.018% drift \u2014 payment rail integrity intact for x402 settlement",
       "severity": "info"
     }
   ],
@@ -31,20 +42,20 @@
     "feeds": {
       "base-ecosystem-prices": {
         "aerodrome-finance": {
-          "usd": 0.399997,
-          "usd_24h_change": -3.345903782743872
+          "usd": 0.398077,
+          "usd_24h_change": -3.727479606522964
         },
         "ethereum": {
-          "usd": 1998.5,
-          "usd_24h_change": 0.17676619261948628
+          "usd": 1993.41,
+          "usd_24h_change": -0.14972405458413357
         },
         "usd-coin": {
-          "usd": 0.999545,
-          "usd_24h_change": -0.0084603411008743
+          "usd": 0.999489,
+          "usd_24h_change": -0.01813582353758148
         }
       }
     },
-    "ts": 1780374088
+    "ts": 1780377237
   },
   "worker_snapshot": {
     "cycles": null,
@@ -60,9 +71,9 @@
     "last_monitor_ts": null
   },
   "intake_pack_count": 0,
-  "model": "gemma3:4b-cloud",
+  "model": "glm-5.1:cloud",
   "disclaimer": "Automated operational pulse from swarm feeds \u2014 not financial advice. Data freshness depends on factory cycle interval.",
-  "_raw_collected_at": "2026-06-02T04:21:28.443210+00:00",
+  "_raw_collected_at": "2026-06-02T05:13:57.682114+00:00",
   "github": {
     "repo": "Hobie1Kenobi/agentic-crypto-swarm-prototype",
     "available": true,
@@ -71,49 +82,51 @@
     "open_issues": 2,
     "default_branch": "master",
     "html_url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
-    "pushed_at": "2026-06-01T21:38:23Z",
+    "pushed_at": "2026-06-02T05:09:27Z",
     "description": "Agentic Swarm Marketplace: MCP + x402 machine-paid SKUs \u2014 XRPL (T54) and Base USDC \u2014 for contract triage, audits, monitoring, and agent commerce. Streamable HTTP for Smithery/Glama/Cursor; public disc",
     "recent_commits": [
+      {
+        "sha": "f185aaf",
+        "message": "chore(site): SEO pages, sitemap, connect-agents, pulse board",
+        "author": "Your Name",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/f185aaf7295d7c704cbeb419fcb9bcfe87c91e13"
+      },
+      {
+        "sha": "0c1ff0c",
+        "message": "chore(site): SEO pages, sitemap, connect-agents, pulse board",
+        "author": "Your Name",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/0c1ff0cc6b5ec3bf497e9e4160f6efb985b64ed0"
+      },
       {
         "sha": "c529e96",
         "message": "chore(site): SEO pages, sitemap, connect-agents, pulse board",
         "author": "Your Name",
         "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/c529e96f03ab7917de5696b0fb4d10bb630e88d1"
-      },
-      {
-        "sha": "93f7d1b",
-        "message": "chore(site): SEO pages, sitemap, connect-agents, pulse board",
-        "author": "Your Name",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/93f7d1b126b895f74c65b2fc3c2a967c922c0bd0"
-      },
-      {
-        "sha": "a917e40",
-        "message": "chore(pocon): sync pulse board for GitHub Pages",
-        "author": "Your Name",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/a917e40cd2f72ad86ed08a582b36a8d683e8a7fb"
       }
     ]
   },
   "marketing_campaign": {
-    "campaign_id": "5e41c0c1-2b90-47dd-b7cc-a1dbf69031eb:marketplace_home",
-    "theme_id": "marketplace_home",
-    "theme_title": "Agentic Swarm Marketplace",
+    "campaign_id": "7259d344-620e-4b39-8c45-ff567d2128b1:x402_base",
+    "theme_id": "x402_base",
+    "theme_title": "Base \u00b7 USDC x402",
     "rails": [
-      "multi-rail"
+      "Base",
+      "USDC",
+      "x402"
     ],
-    "cta_url": "https://www.agentic-swarm-marketplace.com",
-    "cta_label": "Explore marketplace",
+    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/query",
+    "cta_label": "Base x402 query",
     "accent_color": 54442,
-    "hook": "Agents Pay Per Request \u2014 No Traders, No Speculation",
-    "body_short": "Machine-paid agent commerce is live. Agents transact via HTTP 402 with constitution-safe LLM APIs and on-chain settlement \u2014 zero speculation, pure utility. The bazaar awaits its first providers. Explore marketplace: https://www.agentic-swarm-marketplace.com",
-    "body_long": "The **Agentic Swarm Marketplace** is built for machine-to-machine commerce \u2014 agents pay per request via HTTP 402, with constitution-safe LLM APIs and on-chain settlement across **multi-rail** infrastructure. No trading. No speculation. Just agents paying agents for real work. The rails are active, settlement is live, and the bazaar is open for providers to list services. Early builders who step in now shape the ecosystem from day one. Explore marketplace: https://www.agentic-swarm-marketplace.com",
-    "hashtags": "agentic-commerce, http402, machine-commerce",
-    "model": "gemma3:4b-cloud",
-    "generated_at": "2026-06-02T04:22:04.595177+00:00",
+    "hook": "Base USDC x402: Agent Micropayments, Zero Friction",
+    "body_short": "Your agents need to pay for API calls \u2014 USDC exact-scheme micropayments on Base make it happen automatically. Connect via MCP + x402 in under 5 minutes and start transacting. \u2192 https://api.agentic-swarm-marketplace.com/x402/v1/query",
+    "body_long": "Coinbase CDP Bazaar-listed facilitator, now live on Base mainnet. The **Base \u00b7 USDC \u00b7 x402** rails deliver exact-scheme micropayments purpose-built for agent-to-agent commerce \u2014 contract triage, audits, and data queries on eip155:8453, all settled in USDC. Connect your agents via MCP + x402 in under 5 minutes with no manual key management. The marketplace is fresh and waiting for first movers to list and query. Start now \u2192 https://api.agentic-swarm-marketplace.com/x402/v1/query",
+    "hashtags": "agent commerce API, Base USDC x402",
+    "model": "glm-5.1:cloud",
+    "generated_at": "2026-06-02T05:14:15.690495+00:00",
     "facts": [
-      "Machine-paid agent commerce \u2014 no trading, no speculation.",
-      "Constitution-safe LLM APIs with on-chain settlement.",
-      "Agents pay per request via HTTP 402."
+      "Coinbase CDP Bazaar-listed facilitator seller on Base mainnet.",
+      "USDC exact-scheme micropayments for agent API calls.",
+      "Contract triage, audits, and commerce data on eip155:8453."
     ]
   }
 }
