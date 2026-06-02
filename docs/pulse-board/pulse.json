@@ -1,19 +1,29 @@
 {
   "sku_id": "ecosystem-pulse",
   "seller": "t54_xrpl",
-  "generated_at": "2026-06-01T21:18:15.404079+00:00",
-  "pulse_id": "10eb3678-6d9b-45a7-ab6a-691a5c58778f",
-  "headline": "Swarm ecosystem pulse (deterministic stub)",
-  "summary": "Worker cycles=None; intake packs=0; providers=0.",
+  "generated_at": "2026-06-02T04:21:52.772300+00:00",
+  "pulse_id": "5e41c0c1-2b90-47dd-b7cc-a1dbf69031eb",
+  "headline": "Swarm Dormant: Zero Worker Cycles and Empty Bazaar Amid Mild Oracle Price Shifts",
+  "summary": "The swarm remains in a pre-operational state with zero worker cycles executed, no intake packs processed, and an empty x402 bazaar. Oracle feeds report minor price movements, notably a 3.3% dip in Aerodrome Finance, while Ethereum and USDC hold steady. Recent GitHub commits reflect ongoing front-end development rather than active agent-commerce deployments.",
   "sections": [
-    "Oracle feeds: 1 snapshot(s).",
-    "Commerce: 0 providers, 0 bazaar listings indexed locally.",
-    "Intake resale: 0 minted pack(s)."
+    "Oracle Prices: ETH stable at $1,998.5 (+0.17%), AERO down 3.34% to $0.40, USDC holding at $0.9995.",
+    "Worker Activity: Zero cycles completed; no active channels and zero successful actions logged.",
+    "Commerce & Intake: x402 bazaar readiness is at baseline with 0 providers, 0 listings, and 0 monitor events. Intake pack inventory is empty."
   ],
   "signals": [
     {
-      "label": "Earning worker",
-      "detail": "No earning worker cycles recorded yet",
+      "label": "Worker Idle",
+      "detail": "Worker compute is dormant with 0 cycles executed and 0 actions completed.",
+      "severity": "watch"
+    },
+    {
+      "label": "Bazaar Empty",
+      "detail": "x402 commerce layer has 0 providers and 0 listings; no agent transactions possible.",
+      "severity": "info"
+    },
+    {
+      "label": "AERO Price Dip",
+      "detail": "Aerodrome Finance token down 3.34% over 24 hours.",
       "severity": "info"
     }
   ],
@@ -21,20 +31,20 @@
     "feeds": {
       "base-ecosystem-prices": {
         "aerodrome-finance": {
-          "usd": 0.400129,
-          "usd_24h_change": -2.5009320225562752
+          "usd": 0.399997,
+          "usd_24h_change": -3.345903782743872
         },
         "ethereum": {
-          "usd": 1994.62,
-          "usd_24h_change": -0.5690517323480747
+          "usd": 1998.5,
+          "usd_24h_change": 0.17676619261948628
         },
         "usd-coin": {
-          "usd": 0.99972,
-          "usd_24h_change": 0.012485429512927311
+          "usd": 0.999545,
+          "usd_24h_change": -0.0084603411008743
         }
       }
     },
-    "ts": 1780348692
+    "ts": 1780374088
   },
   "worker_snapshot": {
     "cycles": null,
@@ -52,7 +62,7 @@
   "intake_pack_count": 0,
   "model": "gemma3:4b-cloud",
   "disclaimer": "Automated operational pulse from swarm feeds \u2014 not financial advice. Data freshness depends on factory cycle interval.",
-  "_raw_collected_at": "2026-06-01T21:18:12.705013+00:00",
+  "_raw_collected_at": "2026-06-02T04:21:28.443210+00:00",
   "github": {
     "repo": "Hobie1Kenobi/agentic-crypto-swarm-prototype",
     "available": true,
@@ -61,50 +71,49 @@
     "open_issues": 2,
     "default_branch": "master",
     "html_url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
-    "pushed_at": "2026-06-01T20:25:45Z",
+    "pushed_at": "2026-06-01T21:38:23Z",
     "description": "Agentic Swarm Marketplace: MCP + x402 machine-paid SKUs \u2014 XRPL (T54) and Base USDC \u2014 for contract triage, audits, monitoring, and agent commerce. Streamable HTTP for Smithery/Glama/Cursor; public disc",
     "recent_commits": [
+      {
+        "sha": "c529e96",
+        "message": "chore(site): SEO pages, sitemap, connect-agents, pulse board",
+        "author": "Your Name",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/c529e96f03ab7917de5696b0fb4d10bb630e88d1"
+      },
+      {
+        "sha": "93f7d1b",
+        "message": "chore(site): SEO pages, sitemap, connect-agents, pulse board",
+        "author": "Your Name",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/93f7d1b126b895f74c65b2fc3c2a967c922c0bd0"
+      },
       {
         "sha": "a917e40",
         "message": "chore(pocon): sync pulse board for GitHub Pages",
         "author": "Your Name",
         "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/a917e40cd2f72ad86ed08a582b36a8d683e8a7fb"
-      },
-      {
-        "sha": "a0758b2",
-        "message": "chore(pocon): sync pulse board for GitHub Pages",
-        "author": "Your Name",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/a0758b257d02cf23dd882ce267829a803318e60d"
-      },
-      {
-        "sha": "ac8fb0d",
-        "message": "Reframe GitHub Pages for three x402 sellers and wire Celo api_402.",
-        "author": "Hobie Cunningham",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/ac8fb0dd15d847281820225a514ae4d732dbb678"
       }
     ]
   },
   "marketing_campaign": {
-    "campaign_id": "10eb3678-6d9b-45a7-ab6a-691a5c58778f:olas_intake",
-    "theme_id": "olas_intake",
-    "theme_title": "Olas intake resale",
+    "campaign_id": "5e41c0c1-2b90-47dd-b7cc-a1dbf69031eb:marketplace_home",
+    "theme_id": "marketplace_home",
+    "theme_title": "Agentic Swarm Marketplace",
     "rails": [
-      "Olas",
-      "intake"
+      "multi-rail"
     ],
-    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
-    "cta_label": "Intake packs",
+    "cta_url": "https://www.agentic-swarm-marketplace.com",
+    "cta_label": "Explore marketplace",
     "accent_color": 54442,
-    "hook": "Olas intake resale",
-    "body_short": "Olas intake resale \u2014 Minted intake bundles replayable via x402 ?pack_id=uuid. Live signal: Swarm ecosystem pulse (deterministic stub). https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
-    "body_long": "**Olas intake resale** (Olas, intake)\n\nMinted intake bundles replayable via x402 ?pack_id=uuid.\nSame UUID files on T54 and Base rails.\n\nOperational note: Swarm ecosystem pulse (deterministic stub)\n\n\u2192 https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
-    "hashtags": "",
+    "hook": "Agents Pay Per Request \u2014 No Traders, No Speculation",
+    "body_short": "Machine-paid agent commerce is live. Agents transact via HTTP 402 with constitution-safe LLM APIs and on-chain settlement \u2014 zero speculation, pure utility. The bazaar awaits its first providers. Explore marketplace: https://www.agentic-swarm-marketplace.com",
+    "body_long": "The **Agentic Swarm Marketplace** is built for machine-to-machine commerce \u2014 agents pay per request via HTTP 402, with constitution-safe LLM APIs and on-chain settlement across **multi-rail** infrastructure. No trading. No speculation. Just agents paying agents for real work. The rails are active, settlement is live, and the bazaar is open for providers to list services. Early builders who step in now shape the ecosystem from day one. Explore marketplace: https://www.agentic-swarm-marketplace.com",
+    "hashtags": "agentic-commerce, http402, machine-commerce",
     "model": "gemma3:4b-cloud",
-    "generated_at": "2026-06-01T21:18:16.910979+00:00",
+    "generated_at": "2026-06-02T04:22:04.595177+00:00",
     "facts": [
-      "Minted intake bundles replayable via x402 ?pack_id=uuid.",
-      "Same UUID files on T54 and Base rails.",
-      "Feeds PoCon intake inventory signals."
+      "Machine-paid agent commerce \u2014 no trading, no speculation.",
+      "Constitution-safe LLM APIs with on-chain settlement.",
+      "Agents pay per request via HTTP 402."
     ]
   }
 }

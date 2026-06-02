@@ -1,0 +1,25 @@
+:root {
+  --bg: #07080c;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --accent: #00d4aa;
+  --border: #1f2937;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 2rem 1.25rem;
+  font-family: system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.65;
+}
+a { color: var(--accent); }
+header { border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.5rem; }
+.sub { color: var(--muted); }
+.posts { list-style: none; padding: 0; }
+.posts li { padding: .75rem 0; border-bottom: 1px solid var(--border); }
+.meta, .date { color: var(--muted); font-size: .9rem; }
+.pulse-hook { border-left: 3px solid var(--accent); padding-left: .75rem; }
+.tags { font-size: .85rem; }
