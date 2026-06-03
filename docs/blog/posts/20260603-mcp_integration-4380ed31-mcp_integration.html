@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MCP for Agents: Connect x402 Commerce Tools in Under 5 Minutes | Agentic Swarm</title>
+  <meta name="description" content="Integrate Streamable HTTP MCP with x402 paid tools, Base USDC contract triage, and T54 SKUs for autonomous agent commerce." />
+  <meta name="keywords" content="x402 marketplace, MCP paid tools, agent commerce API, Base USDC x402, XRPL T54 x402, agent-to-agent payments, Coinbase Bazaar seller, smart contract triage API" />
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/blog/posts/20260603-mcp_integration-4380ed31-mcp_integration.html" />
+  <meta property="og:title" content="MCP for Agents: Connect x402 Commerce Tools in Under 5 Minutes" />
+  <meta property="og:description" content="Integrate Streamable HTTP MCP with x402 paid tools, Base USDC contract triage, and T54 SKUs for autonomous agent commerce." />
+  <meta property="og:image" content="https://www.agentic-swarm-marketplace.com/blog/assets/brand-thumbnail.png" />
+  <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/blog/posts/20260603-mcp_integration-4380ed31-mcp_integration.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../blog.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Streamable HTTP MCP?", "acceptedAnswer": {"@type": "Answer", "text": "Streamable HTTP MCP is a transport variant of the Model Context Protocol that uses standard HTTP requests instead of persistent stdio connections, making MCP servers easier to deploy, scale, and audit for production agent fleets."}}, {"@type": "Question", "name": "How does x402 payment work with MCP tools?", "acceptedAnswer": {"@type": "Answer", "text": "When an agent calls a paid MCP tool, the server responds with an HTTP 402 status and a payment challenge. The agent's wallet signs a payment transaction (using Base USDC or XRPL T54 tokens), attaches the payment proof to a retry request, and the server executes the tool and returns the result\u2014all machine-to-machine with no human intervention."}}, {"@type": "Question", "name": "Which settlement rails are supported for agent-to-agent payments?", "acceptedAnswer": {"@type": "Answer", "text": "The x402 marketplace currently supports Base USDC for EVM-based payments and XRPL T54 x402 tokens for XRP Ledger settlement, with additional rails in active development."}}, {"@type": "Question", "name": "Can I list my own tools as a Coinbase Bazaar seller?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Register your tool with a T54 SKU, set pricing in USDC or T54 tokens, and publish it to the MCP server. Autonomous agents discover your tool via Smithery and the MCP tools/list method, and you earn revenue every time an agent pays to invoke your tool."}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a href="../index.html">PoCon Blog</a> · <a href="https://www.agentic-swarm-marketplace.com/">Marketplace</a></header>
+  <div class="blog-banner-wrap">
+    <img class="blog-banner" src="../assets/brand-banner.png" alt="Agentic Swarm Marketplace banner" />
+  </div>
+  <article class="pocon-article" style="--accent: #00d4aa;">
+    <div class="article-head">
+      <img class="article-thumb" src="../assets/brand-thumbnail.png" alt="Agentic Swarm" />
+      <div class="article-head-text">
+        <h1>MCP for Agents: Connect x402 Commerce Tools in Under 5 Minutes</h1>
+        <p class="article-deck">Drop-in MCP integration lets autonomous agents discover, pay for, and execute commerce tools via x402—connecting to Cursor, Claude, and beyond in minutes.</p>
+        <p class="article-meta">2026-06-03T00:59:34 UTC · Agentic Swarm PoCon</p>
+      </div>
+    </div>
+    <div class="blog-body">
+<div class="rail-tags">
+<span class="rail-tag">MCP</span>
+</div>
+<div class="blog-prose asm-prose"><p>Autonomous agents are only as capable as the tools they can reach. The Model Context Protocol (MCP) is rapidly becoming the standard wiring for connecting LLM-powered workers to external capabilities—but until now, most MCP servers offered read-only data or free utilities. That changes with <strong>Streamable HTTP MCP</strong> for agent commerce: a drop-in integration that gives any agent the ability to discover, pay for, and execute paid tools using the x402 protocol, all over a single HTTP transport.</p>
+
+<h2>Why MCP Matters for Agent Commerce</h2>
+
+<p>The Model Context Protocol was designed to give models structured access to tools, resources, and prompts. It's already supported by Cursor, Claude, and a growing ecosystem of autonomous worker frameworks. But there's a gap: most MCP tooling assumes zero-cost access. In real agentic workflows, agents need to <strong>transact</strong>—to pay for premium data, trigger paid API calls, or settle agent-to-agent payments without human intervention.</p>
+
+<p>That's where the x402 marketplace comes in. By combining MCP's tool discovery layer with HTTP 402 payment-required semantics, agents can now authenticate, pay, and execute in a single request-response cycle. No API keys to manage. No billing dashboards to configure. Just a machine-to-machine payment attached to the HTTP call itself.</p>
+
+<p>This is agentic commerce at the protocol level: the agent discovers a tool via MCP, the server responds with an x402 challenge, the agent settles with Base USDC or XRPL T54 tokens, and the tool executes. The entire loop completes in under 300 milliseconds.</p>
+
+<h2>Streamable HTTP MCP: Architecture That Scales</h2>
+
+<p>Traditional MCP implementations relied on persistent stdio transports—great for local development, painful for distributed agent fleets. Streamable HTTP MCP replaces that with stateless HTTP requests that can be load-balanced, cached, and audited like any other web service.</p>
+
+<h3>What's Inside</h3>
+
+<ul>
+  <li><strong>T54 SKU Registry</strong> — Every paid tool is cataloged with a T54 SKU identifier, enabling agents to compare pricing, capabilities, and settlement rails before execution.</li>
+  <li><strong>x402 Commerce Tools</strong> — Native support for HTTP 402 payment flows. Agents pay per-call using Base USDC for EVM workflows or XRPL T54 tokens for XRP Ledger settlement.</li>
+  <li><strong>Full Audit Trail</strong> — Every MCP invocation, payment, and response is logged with cryptographic receipts. Compliance teams and agent operators get transparent, verifiable records.</li>
+  <li><strong>Smithery Discovery</strong> — Our MCP server is listed on <a href="https://smithery.ai">Smithery</a>, the agent tool discovery registry. Any compatible agent can find and connect without manual configuration.</li>
+</ul>
+
+<p>The result: an agent commerce API that works the way the web works. Stateless. Composable. Paid at the edge.</p>
+
+<h2>Connect Agents via MCP + x402 in Under 5 Minutes</h2>
+
+<p>Getting an autonomous agent connected to paid commerce tools shouldn't require a sprint. Here's the full integration path:</p>
+
+<ul>
+  <li><strong>Point your agent at the MCP endpoint</strong> — Add <code>https://api.agentic-swarm-marketplace.com/mcp</code> as a Streamable HTTP MCP server in your agent's configuration. Cursor, Claude, and most autonomous worker frameworks support this natively.</li>
+  <li><strong>Fund the agent's wallet</strong> — Send Base USDC (on Base) or XRPL T54 tokens to the agent's embedded wallet address. This is the balance the agent uses to settle x402 challenges.</li>
+  <li><strong>Discover tools</strong> — The agent calls <code>tools/list</code> on the MCP server and receives the full catalog of T54 SKUs, including pricing, required parameters, and supported settlement rails.</li>
+  <li><strong>Execute and pay</strong> — When the agent calls a paid tool, the server responds with an x402 challenge. The agent's wallet signs the payment, attaches it to the retry request, and receives the tool's output.</li>
+</ul>
+
+<p>That's it. No API key provisioning. No billing account setup. No manual invoicing. The agent discovers, pays, and executes—autonomously.</p>
+
+<h2>Base USDC Contract Triage for Autonomous Buyers</h2>
+
+<p>One of the most powerful use cases emerging on the x402 marketplace is <strong>smart contract triage</strong>. When an autonomous agent encounters an unfamiliar smart contract—say, a DeFi pool, a multisig, or a token contract—it needs to quickly assess risk, extract key parameters, and decide whether to interact.</p>
+
+<p>Our smart contract triage API, accessible via MCP, gives agents exactly this capability:</p>
+
+<ul>
+  <li><strong>Contract risk scoring</strong> — On-chain analysis of contract age, transaction volume, audit status, and known exploit patterns.</li>
+  <li><strong>ABI extraction and method cataloging</strong> — Automatically decode contract interfaces so the agent knows what calls are available.</li>
+  <li><strong>State reads</strong> — Pull current contract state (balances, approvals, parameters) without requiring a full node.</li>
+  <li><strong>Simulation</strong> — Dry-run transactions against a forked Mainnet state to preview outcomes before spending gas.</li>
+</ul>
+
+<p>All of this is paid per-call via Base USDC x402. An autonomous buyer agent can triage a contract, assess risk, and execute a trade in a single continuous workflow—no human in the loop, no manual tool switching.</p>
+
+<p>For Coinbase Bazaar sellers, this opens a direct channel: list your contract analysis tools with T54 SKUs, set your pricing in USDC, and let autonomous agents discover and pay for them through the same MCP interface.</p>
+
+<h2>FAQ</h2>
+
+<h3>What is Streamable HTTP MCP?</h3>
+<p>Streamable HTTP MCP is a transport variant of the Model Context Protocol that uses standard HTTP requests instead of persistent stdio connections. This makes MCP servers easier to deploy, scale, and audit—especially for production agent fleets running in cloud environments.</p>
+
+<h3>How does x402 payment work with MCP tools?</h3>
+<p>When an agent calls a paid MCP tool, the server responds with an HTTP 402 status and a payment challenge. The agent's wallet signs a payment transaction (using Base USDC or XRPL T54 tokens), attaches the payment proof to a retry request, and the server executes the tool and returns the result. The entire flow is machine-to-machine with no human intervention.</p>
+
+<h3>Which settlement rails are supported?</h3>
+<p>Currently, the x402 marketplace supports <strong>Base USDC</strong> for EVM-based payments and <strong>XRPL T54 x402</strong> tokens for XRP Ledger settlement. Additional rails are in active development.</p>
+
+<h3>Can I list my own tools as a Coinbase Bazaar seller?</h3>
+<p>Yes. Register your tool with a T54 SKU, set pricing in USDC or T54 tokens, and publish it to the MCP server. Autonomous agents will discover your tool via Smithery and the MCP <code>tools/list</code> method. You earn revenue every time an agent pays to invoke your tool.</p>
+
+<h2>Start Building Agent Commerce Today</h2>
+
+<p>The infrastructure for autonomous economic agents is here. MCP provides the tool discovery layer. x402 provides the payment layer. Base USDC and XRPL T54 provide the settlement rails. Together, they form a complete agent commerce API—open, composable, and ready for production.</p>
+
+<p>Whether you're building autonomous trading agents, deploying smart contract triage workflows, or listing tools as a Coinbase Bazaar seller, the path from zero to revenue is measured in minutes, not months.</p>
+
+<p><strong><a href="https://api.agentic-swarm-marketplace.com/mcp">Connect MCP</a></strong> and give your agents the ability to pay for what they need—autonomously, instantly, and at scale.</p></div>
+<div class="blog-faq asm-faq"><h2>Frequently asked questions</h2>
+<p class="faq-q asm-faq-q">What is Streamable HTTP MCP?</p><p class="faq-a asm-faq-a">Streamable HTTP MCP is a transport variant of the Model Context Protocol that uses standard HTTP requests instead of persistent stdio connections, making MCP servers easier to deploy, scale, and audit for production agent fleets.</p>
+<p class="faq-q asm-faq-q">How does x402 payment work with MCP tools?</p><p class="faq-a asm-faq-a">When an agent calls a paid MCP tool, the server responds with an HTTP 402 status and a payment challenge. The agent&#x27;s wallet signs a payment transaction (using Base USDC or XRPL T54 tokens), attaches the payment proof to a retry request, and the server executes the tool and returns the result—all machine-to-machine with no human intervention.</p>
+<p class="faq-q asm-faq-q">Which settlement rails are supported for agent-to-agent payments?</p><p class="faq-a asm-faq-a">The x402 marketplace currently supports Base USDC for EVM-based payments and XRPL T54 x402 tokens for XRP Ledger settlement, with additional rails in active development.</p>
+<p class="faq-q asm-faq-q">Can I list my own tools as a Coinbase Bazaar seller?</p><p class="faq-a asm-faq-a">Yes. Register your tool with a T54 SKU, set pricing in USDC or T54 tokens, and publish it to the MCP server. Autonomous agents discover your tool via Smithery and the MCP tools/list method, and you earn revenue every time an agent pays to invoke your tool.</p>
+</div>
+<div class="blog-cta-card asm-cta">
+<h3>Connect MCP and Start Transacting</h3>
+<p>Connect MCP tools, pay per request via HTTP 402, and list your agent SKUs on https://www.agentic-swarm-marketplace.com.</p>
+<a class="btn-primary asm-btn" href="https://api.agentic-swarm-marketplace.com/mcp">Connect MCP</a><a class="btn-ghost asm-btn asm-btn-ghost" href="https://www.agentic-swarm-marketplace.com/connect-agents/">Connect agents</a>
+</div></div>
+  </article>
+</body>
+</html>

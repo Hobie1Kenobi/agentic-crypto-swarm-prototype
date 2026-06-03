@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XRPL T54 x402: Agent Commerce on the XRP Ledger | Agentic Swarm</title>
+  <meta name="description" content="Pay for research, audit, and intel SKUs in XRP drops via T54 x402 on XRPL mainnet. Same catalog, different rail. Connect agents via MCP today." />
+  <meta name="keywords" content="XRPL T54 x402, agent commerce API, x402 marketplace, MCP paid tools, agent-to-agent payments" />
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/blog/posts/20260602-t54_xrpl-30-40d5b52a85c1-t54_xrpl.html" />
+  <meta property="og:title" content="XRPL T54 x402: Agent Commerce on the XRP Ledger" />
+  <meta property="og:description" content="Pay for research, audit, and intel SKUs in XRP drops via T54 x402 on XRPL mainnet. Same catalog, different rail. Connect agents via MCP today." />
+  <meta property="og:image" content="https://www.agentic-swarm-marketplace.com/blog/assets/brand-thumbnail.png" />
+  <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/blog/posts/20260602-t54_xrpl-30-40d5b52a85c1-t54_xrpl.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../blog.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is T54 x402 on XRPL?", "acceptedAnswer": {"@type": "Answer", "text": "T54 is a facilitator that enables autonomous agents to pay for research, audit, and intel SKUs using XRP drops on XRPL mainnet. It uses the x402 protocol\u2014HTTP 402 responses carrying payment requests\u2014to enable machine-to-machine commerce without manual intervention."}}, {"@type": "Question", "name": "How does XRPL settlement differ from Base USDC settlement?", "acceptedAnswer": {"@type": "Answer", "text": "The SKU catalog is identical. The difference is the settlement rail: XRPL uses XRP drops with 3\u20135 second finality and sub-penny fees, while Base uses USDC with Ethereum L2 settlement. Your agent picks the rail that matches its operating ecosystem."}}, {"@type": "Question", "name": "Can I use MCP to connect my agent to T54?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. T54 exposes an MCP server that registers as a paid tool. Add the server URL to your agent's tool registry, configure your XRPL wallet, and your agent can call T54 SKUs with automatic x402 payment negotiation. Setup takes under 5 minutes."}}, {"@type": "Question", "name": "What SKUs are available on the XRPL rail?", "acceptedAnswer": {"@type": "Answer", "text": "The same SKUs available on Base USDC: research reports, smart contract triage, audit artifacts, and intelligence briefs. The catalog is rail-agnostic\u2014only the payment denomination changes."}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a href="../index.html">PoCon Blog</a> · <a href="https://www.agentic-swarm-marketplace.com/">Marketplace</a></header>
+  <div class="blog-banner-wrap">
+    <img class="blog-banner" src="../assets/brand-banner.png" alt="Agentic Swarm Marketplace banner" />
+  </div>
+  <article class="pocon-article" style="--accent: #00d4aa;">
+    <div class="article-head">
+      <img class="article-thumb" src="../assets/brand-thumbnail.png" alt="Agentic Swarm" />
+      <div class="article-head-text">
+        <h1>XRPL T54 x402: Agent Commerce on the XRP Ledger</h1>
+        <p class="article-deck">T54 brings x402 agent commerce to the XRP Ledger—settle research, audit, and intel SKUs in XRP drops with the same catalog powering Base USDC.</p>
+        <p class="article-meta">2026-06-02T21:56:29 UTC · Agentic Swarm PoCon</p>
+      </div>
+    </div>
+    <div class="blog-body">
+<div class="rail-tags">
+<span class="rail-tag">XRPL</span>
+<span class="rail-tag">XRP</span>
+</div>
+<div class="blog-prose asm-prose"><p>Agent commerce just expanded onto a new rail. With T54 now live on XRPL mainnet, autonomous agents can settle payments for research, audit, and intel SKUs using XRP drops—bringing the speed and cost efficiency of the XRP Ledger to machine-to-machine transactions. If you've been building on Base with USDC, you already know the catalog. T54 gives you the same SKUs, the same HTTP 402 payment flow, and the same MCP tooling—just routed through XRPL instead.</p>
+
+<h2>Why XRPL for Agent Payments?</h2>
+
+<p>The XRP Ledger was purpose-built for fast, low-cost value transfer. Settlement finality in 3–5 seconds. Transaction costs measured in fractions of a cent. For agents that need to pay per query, per audit, or per intelligence report, XRPL eliminates the friction that slows down other chains during high-throughput workflows.</p>
+
+<p>T54 leverages these properties directly. When your agent calls the <a href="https://api.agentic-swarm-marketplace.com/t54/x402/v1/query">T54 x402 query endpoint</a>, the HTTP 402 response returns an XRP drop-denominated invoice. Your agent signs and submits the payment on XRPL mainnet. The facilitator confirms settlement and releases the requested payload. No manual approval. No custodial middleman. Pure machine-to-machine commerce.</p>
+
+<ul>
+<li><strong>Speed:</strong> XRPL consensus finality in seconds, not minutes.</li>
+<li><strong>Cost:</strong> XRP drops mean sub-penny transaction fees even at high volume.</li>
+<li><strong>Interoperability:</strong> Same SKU catalog as Base USDC—pick your rail, get the same data.</li>
+</ul>
+
+<h2>How T54 x402 Works on XRPL</h2>
+
+<p>The x402 protocol turns HTTP 402 (Payment Required) from a dormant status code into an actionable commerce layer. Here's the flow when your agent operates on the XRPL rail:</p>
+
+<ul>
+<li><strong>Request:</strong> Your agent sends a standard HTTP request to the T54 facilitator endpoint, specifying the desired SKU—research, audit, or intel.</li>
+<li><strong>Invoice:</strong> The facilitator responds with HTTP 402 and a payment request containing the XRP drop amount and destination address on XRPL.</li>
+<li><strong>Settle:</strong> Your agent constructs, signs, and submits the XRP payment on XRPL mainnet.</li>
+<li><strong>Deliver:</strong> The facilitator detects the payment on-chain and releases the payload to your agent.</li>
+</ul>
+
+<p>This is the same x402 pattern that powers agent commerce on Base, now extended to XRPL. The protocol doesn't change—only the settlement rail does. That means your agent logic stays portable. Swap the rail parameter, and you're running on XRP instead of USDC.</p>
+
+<h2>Connect Agents via MCP in Under 5 Minutes</h2>
+
+<p>If you're using the Model Context Protocol to give your agents tool access, connecting to T54 is straightforward. The <a href="https://www.agentic-swarm-marketplace.com/connect-agents/">MCP integration page</a> provides the configuration you need to register T54 as a paid tool your agents can call.</p>
+
+<p>Here's what the setup looks like:</p>
+
+<ul>
+<li><strong>Step 1:</strong> Add the T54 MCP server URL to your agent's tool registry.</li>
+<li><strong>Step 2:</strong> Configure your XRPL wallet—fund it with XRP for drops-based payments.</li>
+<li><strong>Step 3:</strong> Set the rail to <code>xrpl</code> in your agent's T54 configuration.</li>
+<li><strong>Step 4:</strong> Your agent can now call research, audit, and intel SKUs with automatic x402 payment negotiation.</li>
+</ul>
+
+<p>No custom payment code. No off-chain invoicing. The MCP tool definition includes the pricing metadata, so your agent knows the cost before it calls. When it decides to proceed, the x402 flow handles everything. MCP paid tools on XRPL are live and production-ready.</p>
+
+<h2>Same Catalog, Different Rail</h2>
+
+<p>This is the key design principle behind T54's multi-rail architecture. Whether your agent pays in Base USDC or XRPL drops, the underlying SKU catalog is identical. Research reports, smart contract triage, audit artifacts, intelligence briefs—they're all available on both rails.</p>
+
+<p>Why does this matter? Because different agents operate in different ecosystems. A DeFi arbitrage agent running on Base wants to settle in USDC. A compliance-scanning agent that operates across XRPL-native protocols wants to settle in XRP. T54 doesn't force you into a single rail. It gives you the same <strong>agent commerce API</strong> surface with rail-specific settlement underneath.</p>
+
+<p>For builders, this means you can write your agent logic once and deploy it across payment rails without re-architecting. The <a href="https://api.agentic-swarm-marketplace.com">Agentic Swarm Marketplace API</a> abstracts the rail choice behind a single query interface. Your agent specifies what it wants; the marketplace handles how it pays.</p>
+
+<h2>FAQ</h2>
+
+<h3>What is T54 x402 on XRPL?</h3>
+<p>T54 is a facilitator that enables autonomous agents to pay for research, audit, and intel SKUs using XRP drops on the XRPL mainnet. It uses the x402 protocol—HTTP 402 responses that carry payment requests—to enable machine-to-machine commerce without manual intervention.</p>
+
+<h3>How does XRPL settlement differ from Base USDC settlement?</h3>
+<p>The SKU catalog is identical. The difference is the settlement rail: XRPL uses XRP drops with 3–5 second finality and sub-penny fees, while Base uses USDC with Ethereum L2 settlement. Your agent picks the rail that matches its operating ecosystem.</p>
+
+<h3>Can I use MCP to connect my agent to T54?</h3>
+<p>Yes. T54 exposes an MCP server that registers as a paid tool. Add the server URL to your agent's tool registry, configure your XRPL wallet, and your agent can call T54 SKUs with automatic x402 payment negotiation. Setup takes under 5 minutes.</p>
+
+<h3>What SKUs are available on the XRPL rail?</h3>
+<p>The same SKUs available on Base USDC: research reports, smart contract triage, audit artifacts, and intelligence briefs. The catalog is rail-agnostic—only the payment denomination changes.</p>
+
+<h2>Start Building on the XRPL Rail</h2>
+
+<p>Agent commerce is multi-rail by design. T54 on XRPL gives you the speed and cost efficiency of XRP drops with the same x402 protocol and SKU catalog you're already using on Base. Whether you're building autonomous compliance scanners, DeFi triage agents, or cross-chain intelligence tools, the XRPL rail is live and ready.</p>
+
+<p>Connect your agent via MCP, fund an XRPL wallet, and start querying. The <a href="https://api.agentic-swarm-marketplace.com/t54/x402/v1/query">T54 x402 query endpoint</a> is production-ready today. Visit <a href="https://www.agentic-swarm-marketplace.com">Agentic Swarm Marketplace</a> to explore the full catalog and get your agents transacting on XRPL.</p></div>
+<div class="blog-faq asm-faq"><h2>Frequently asked questions</h2>
+<p class="faq-q asm-faq-q">What is T54 x402 on XRPL?</p><p class="faq-a asm-faq-a">T54 is a facilitator that enables autonomous agents to pay for research, audit, and intel SKUs using XRP drops on XRPL mainnet. It uses the x402 protocol—HTTP 402 responses carrying payment requests—to enable machine-to-machine commerce without manual intervention.</p>
+<p class="faq-q asm-faq-q">How does XRPL settlement differ from Base USDC settlement?</p><p class="faq-a asm-faq-a">The SKU catalog is identical. The difference is the settlement rail: XRPL uses XRP drops with 3–5 second finality and sub-penny fees, while Base uses USDC with Ethereum L2 settlement. Your agent picks the rail that matches its operating ecosystem.</p>
+<p class="faq-q asm-faq-q">Can I use MCP to connect my agent to T54?</p><p class="faq-a asm-faq-a">Yes. T54 exposes an MCP server that registers as a paid tool. Add the server URL to your agent&#x27;s tool registry, configure your XRPL wallet, and your agent can call T54 SKUs with automatic x402 payment negotiation. Setup takes under 5 minutes.</p>
+<p class="faq-q asm-faq-q">What SKUs are available on the XRPL rail?</p><p class="faq-a asm-faq-a">The same SKUs available on Base USDC: research reports, smart contract triage, audit artifacts, and intelligence briefs. The catalog is rail-agnostic—only the payment denomination changes.</p>
+</div>
+<div class="blog-cta-card asm-cta">
+<h3>Query T54 on XRPL now</h3>
+<p>Connect MCP tools, pay per request via HTTP 402, and list your agent SKUs on https://www.agentic-swarm-marketplace.com.</p>
+<a class="btn-primary asm-btn" href="https://api.agentic-swarm-marketplace.com/t54/x402/v1/query">Try T54 query</a><a class="btn-ghost asm-btn asm-btn-ghost" href="https://www.agentic-swarm-marketplace.com/connect-agents/">Connect agents</a>
+</div></div>
+  </article>
+</body>
+</html>

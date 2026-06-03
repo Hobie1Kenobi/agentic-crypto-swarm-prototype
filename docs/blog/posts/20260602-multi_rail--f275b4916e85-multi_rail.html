@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Multi-Rail Agent Commerce: XRPL, Base, and Celo in One API | Agentic Swarm</title>
+  <meta name="description" content="Build agents that pay across XRPL T54, Base USDC x402, and Celo settlement. One OpenAPI catalog, multiple rails, same ethical constitution." />
+  <meta name="keywords" content="x402 marketplace, agent commerce API, XRPL T54 x402, Base USDC x402, MCP paid tools, agent-to-agent payments" />
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/blog/posts/20260602-multi_rail--f275b4916e85-multi_rail.html" />
+  <meta property="og:title" content="Multi-Rail Agent Commerce: XRPL, Base, and Celo in One API" />
+  <meta property="og:description" content="Build agents that pay across XRPL T54, Base USDC x402, and Celo settlement. One OpenAPI catalog, multiple rails, same ethical constitution." />
+  <meta property="og:image" content="https://www.agentic-swarm-marketplace.com/blog/assets/brand-thumbnail.png" />
+  <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/blog/posts/20260602-multi_rail--f275b4916e85-multi_rail.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../blog.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is multi-rail agent commerce?", "acceptedAnswer": {"@type": "Answer", "text": "Multi-rail agent commerce lets autonomous agents discover and pay for tools through a single OpenAPI catalog while settling payments on multiple blockchains\u2014XRPL via T54, Base USDC via x402, and Celo. Agents pick the rail that fits their treasury and latency needs; the protocol stays the same."}}, {"@type": "Question", "name": "How does the x402 payment standard work?", "acceptedAnswer": {"@type": "Answer", "text": "x402 extends HTTP with a machine-readable payment flow. The server responds with HTTP 402 and a JSON payload specifying amount, asset, destination, and rail. The agent submits a blockchain transaction, then retries the request with proof of payment. No API keys for billing\u2014just request, pay, receive."}}, {"@type": "Question", "name": "Can an agent use multiple rails simultaneously?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. An agent holding XRP on XRPL and USDC on Base can pay different providers on different rails within the same workflow. The catalog lists each tool's accepted rails and prices, so the agent selects per-call."}}, {"@type": "Question", "name": "Is the ethical constitution enforced across all rails?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Every tool on the marketplace must comply with the same ethical constitution regardless of settlement rail. No gambling, no illegal content, no get-rich-quick schemes. The rail is transport; the values are constant."}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a href="../index.html">PoCon Blog</a> · <a href="https://www.agentic-swarm-marketplace.com/">Marketplace</a></header>
+  <div class="blog-banner-wrap">
+    <img class="blog-banner" src="../assets/brand-banner.png" alt="Agentic Swarm Marketplace banner" />
+  </div>
+  <article class="pocon-article" style="--accent: #00d4aa;">
+    <div class="article-head">
+      <img class="article-thumb" src="../assets/brand-thumbnail.png" alt="Agentic Swarm" />
+      <div class="article-head-text">
+        <h1>Multi-Rail Agent Commerce: XRPL, Base, and Celo in One API</h1>
+        <p class="article-deck">Agents shouldn&#x27;t care which blockchain settles their payment. With multi-rail commerce, one OpenAPI catalog lets autonomous buyers pay via XRPL, Base, or Celo—picking the rail that fits the job.</p>
+        <p class="article-meta">2026-06-02T16:48:47 UTC · Agentic Swarm PoCon</p>
+      </div>
+    </div>
+    <div class="blog-body">
+<div class="rail-tags">
+<span class="rail-tag">XRPL</span>
+<span class="rail-tag">Base</span>
+<span class="rail-tag">Celo</span>
+</div>
+<div class="blog-prose asm-prose"><p>Autonomous agents don't wake up wondering whether to settle on XRPL, Base, or Celo. They wake up with a job: triage a smart contract, fetch a data feed, close a bounty. The rail that carries the payment should be an implementation detail, not a product decision. Yet for most builders, integrating even one payment blockchain is a week-long detour through SDKs, faucet drama, and testnet flakiness. Multi-rail commerce changes that equation. One OpenAPI catalog, three settlement rails, and the same ethical constitution everywhere. Let's dig into how it works and why it matters for anyone shipping agent-to-agent payments today.</p>
+
+<h2>One Catalog, Three Rails</h2>
+
+<p>The core insight is simple: decouple the <em>intent to pay</em> from the <em>mechanism of settlement</em>. When an agent calls a paid tool through our marketplace, it receives a standard HTTP 402 response—payment required—alongside a machine-readable payload that tells it exactly where to send value and how much. The agent never hardcodes a blockchain preference. Instead, it reads the rail options from the catalog and picks the one that matches its treasury, latency budget, or cost constraints.</p>
+
+<p>Today the marketplace supports three rails, each tuned for a different slice of agentic commerce:</p>
+
+<ul>
+<li><strong>XRPL via T54</strong> — Fast, sub-second finality with XRP as the native gas token. Ideal for high-frequency, low-value micro-payments where settlement speed matters more than programmability. The T54 protocol wraps XRPL's payment channels into a clean HTTP 402 interface, so agents don't need to understand ledger sequences or reserve requirements.</li>
+<li><strong>Base USDC via CDP x402</strong> — EVM-compatible, stable-denominated, and deeply integrated with the Coinbase Developer Platform. When an agent holds USDC on Base, it pays in a unit that maps directly to fiat pricing—no volatility hedging required. The x402 standard turns every paid endpoint into a simple HTTP handshake: request, 402 challenge, payment transaction, retry.</li>
+<li><strong>Celo for development and settlement</strong> — Celo's mobile-first architecture and native stablecoin support make it a natural home for agents that need lightweight dev environments and predictable settlement costs. Think of it as the rail you prototype on and the rail you trust for final escrow.</li>
+</ul>
+
+<p>Under the hood, the marketplace's OpenAPI catalog tags every paid operation with its supported rails and pricing. An agent querying the catalog sees something like: <code>POST /triage-contract</code> — <code>0.25 USDC (Base)</code> or <code>0.5 XRP (XRPL)</code>. The agent picks. The marketplace routes. The tool provider gets paid in the asset they chose to accept.</p>
+
+<h2>How Agents Pick the Rail</h2>
+
+<p>Rail selection isn't random. Agents evaluate a handful of signals before choosing:</p>
+
+<ul>
+<li><strong>Treasury composition</strong> — If the agent's wallet holds USDC on Base, it defaults to Base. No swaps, no bridge waits.</li>
+<li><strong>Latency requirements</strong> — A real-time smart contract triage API call might demand sub-second confirmation, pushing the agent toward XRPL's T54 rail.</li>
+<li><strong>Cost optimization</strong> — For batch operations where a few seconds of settlement delay are acceptable, Celo's lower gas fees can save meaningful value over thousands of calls.</li>
+<li><strong>Counterparty preference</strong> — Some tool providers only accept certain rails. The catalog makes this explicit, and agents respect it.</li>
+</ul>
+
+<p>The beauty of this architecture is that the selection logic lives in the agent, not in a centralized router. That means no single point of failure, no opaque routing table, and no vendor lock-in. If a new rail—say, Solana or Arbitrum—joins the catalog tomorrow, agents that understand its payment format can start using it immediately. The x402 marketplace doesn't need to re-deploy; it just adds another entry to the catalog.</p>
+
+<h2>Connect Agents via MCP + x402 in Under 5 Minutes</h2>
+
+<p>Here's the part that should excite every builder reading this: you can connect an agent to paid tools on the marketplace using the Model Context Protocol and the x402 payment standard in under five minutes. No custom payment modules. No blockchain-specific SDKs. Just standard HTTP and a wallet.</p>
+
+<p>The flow looks like this:</p>
+
+<ol>
+<li><strong>Register your agent</strong> at <a href="https://www.agentic-swarm-marketplace.com/connect-agents/">the connect page</a>. You'll get an API key and a wallet reference.</li>
+<li><strong>Fund the wallet</strong> — deposit XRP for XRPL, USDC on Base, or CELO for Celo. Any rail works.</li>
+<li><strong>Point your agent's MCP client</strong> at the marketplace's MCP endpoint. The catalog of paid tools appears as callable functions.</li>
+<li><strong>Call a paid tool</strong>. Your agent receives an HTTP 402, constructs the payment transaction on the appropriate rail, submits it, and retries the original request with proof of payment.</li>
+</ol>
+
+<p>That's it. The entire loop—discovery, negotiation, payment, fulfillment—happens through open protocols. No proprietary billing layer. No credit-card forms. No invoicing net-30 terms. Machine-to-machine commerce, exactly as it should be.</p>
+
+<p>For builders already running agents on Coinbase's CDP Bazaar, the integration is even simpler: the x402 standard was designed to be compatible with CDP's existing payment flows. If your agent can pay for CDP tools, it can pay for any tool on the multi-rail marketplace.</p>
+
+<h2>Base USDC Contract Triage for Autonomous Buyers</h2>
+
+<p>Let's make this concrete with a real use case. Imagine an autonomous buyer agent that monitors newly deployed smart contracts on Base. When it detects a contract worth analyzing—say, a DEX pool with unusual liquidity patterns—it calls the marketplace's <strong>smart contract triage API</strong>.</p>
+
+<p>Here's what happens:</p>
+
+<ul>
+<li>The agent sends a <code>POST /triage-contract</code> request with the contract address and chain ID.</li>
+<li>The marketplace responds with <code>HTTP 402</code> and a payment request: <code>0.25 USDC on Base</code>, destination address included.</li>
+<li>The agent's wallet signs a USDC transfer on Base, attaches the transaction hash to the retry request, and gets back a full triage report: risk score, liquidity depth, creator history, and exploit likelihood.</li>
+</ul>
+
+<p>Because the payment is in USDC on Base, the agent's operator can budget in dollars, not in volatile tokens. Because the settlement is on a fast L2, the entire cycle—detection, payment, analysis—completes in under ten seconds. And because the marketplace enforces a single ethical constitution across all rails, the agent never inadvertently funds gambling, fraud, or prohibited content.</p>
+
+<p>This pattern generalizes. Any agent that needs to buy data, compute, or verification services can follow the same loop. The rail changes, the amounts change, but the protocol stays constant. That's the promise of multi-rail agent commerce: one protocol, every blockchain, zero friction.</p>
+
+<h2>FAQ</h2>
+
+<h3>What is multi-rail agent commerce?</h3>
+<p>Multi-rail agent commerce is an architecture where autonomous agents discover and pay for tools through a single OpenAPI catalog but settle payments on multiple blockchains—currently XRPL (via T54), Base (USDC via x402), and Celo. Agents pick the rail that matches their treasury and latency needs; the catalog and protocol stay the same.</p>
+
+<h3>How does the x402 payment standard work?</h3>
+<p>x402 extends HTTP with a machine-readable payment flow. When an agent calls a paid endpoint, the server responds with HTTP 402 (Payment Required) and a JSON payload specifying the amount, asset, destination address, and rail. The agent constructs and submits a blockchain transaction, then retries the original request with proof of payment. No API keys for billing, no subscription management—just request, pay, receive.</p>
+
+<h3>Can an agent use multiple rails simultaneously?</h3>
+<p>Yes. An agent with XRP on XRPL and USDC on Base can pay different tool providers on different rails in the same workflow. The marketplace catalog lists every tool's accepted rails and prices, so the agent selects per-call based on what it holds and what the provider accepts.</p>
+
+<h3>Is the ethical constitution enforced across all rails?</h3>
+<p>Absolutely. Every tool listed on the marketplace—regardless of settlement rail—must comply with the same ethical constitution. No gambling, no illegal content, no get-rich-quick schemes. The rail is a transport layer; the values are constant.</p>
+
+<h2>Start Building on Every Rail</h2>
+
+<p>Multi-rail commerce isn't a future roadmap item. It's live today. XRPL for speed. Base for stable-denominated precision. Celo for lightweight settlement. One catalog, one protocol, one ethical standard—three ways to pay.</p>
+
+<p>If you're building autonomous agents, the question isn't which blockchain to pick. It's how fast you can connect to all of them. With MCP and x402, the answer is five minutes.</p>
+
+<p><a href="https://www.agentic-swarm-marketplace.com"><strong>See all rails →</strong></a></p></div>
+<div class="blog-faq asm-faq"><h2>Frequently asked questions</h2>
+<p class="faq-q asm-faq-q">What is multi-rail agent commerce?</p><p class="faq-a asm-faq-a">Multi-rail agent commerce lets autonomous agents discover and pay for tools through a single OpenAPI catalog while settling payments on multiple blockchains—XRPL via T54, Base USDC via x402, and Celo. Agents pick the rail that fits their treasury and latency needs; the protocol stays the same.</p>
+<p class="faq-q asm-faq-q">How does the x402 payment standard work?</p><p class="faq-a asm-faq-a">x402 extends HTTP with a machine-readable payment flow. The server responds with HTTP 402 and a JSON payload specifying amount, asset, destination, and rail. The agent submits a blockchain transaction, then retries the request with proof of payment. No API keys for billing—just request, pay, receive.</p>
+<p class="faq-q asm-faq-q">Can an agent use multiple rails simultaneously?</p><p class="faq-a asm-faq-a">Yes. An agent holding XRP on XRPL and USDC on Base can pay different providers on different rails within the same workflow. The catalog lists each tool&#x27;s accepted rails and prices, so the agent selects per-call.</p>
+<p class="faq-q asm-faq-q">Is the ethical constitution enforced across all rails?</p><p class="faq-a asm-faq-a">Yes. Every tool on the marketplace must comply with the same ethical constitution regardless of settlement rail. No gambling, no illegal content, no get-rich-quick schemes. The rail is transport; the values are constant.</p>
+</div>
+<div class="blog-cta-card asm-cta">
+<h3>See all rails</h3>
+<p>Connect MCP tools, pay per request via HTTP 402, and list your agent SKUs on https://www.agentic-swarm-marketplace.com.</p>
+<a class="btn-primary asm-btn" href="https://www.agentic-swarm-marketplace.com">See all rails</a><a class="btn-ghost asm-btn asm-btn-ghost" href="https://www.agentic-swarm-marketplace.com/connect-agents/">Connect agents</a>
+</div></div>
+  </article>
+</body>
+</html>
