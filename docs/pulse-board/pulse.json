@@ -1,39 +1,34 @@
 {
   "sku_id": "ecosystem-pulse",
   "seller": "t54_xrpl",
-  "generated_at": "2026-06-03T05:03:23.847274+00:00",
-  "pulse_id": "a5412a94-1522-4bc8-b539-2437d37f5648",
-  "headline": "Ecosystem at cold start \u2014 zero operational activity amid broad 7% market drawdown",
-  "summary": "All four swarm modules report null/idle state: no worker cycles, no bazaar listings, no intake packs. Oracle confirms correlated -7% 24h declines across ETH and AERO while USDC holds peg. GitHub activity shows scaffolding commits but no production workload has been processed.",
+  "generated_at": "2026-06-03T21:24:21.798991+00:00",
+  "pulse_id": "8883bcba-e158-434c-8a47-9dfec1153862",
+  "headline": "Oracle live, worker idle \u2014 ecosystem cold-started but dormant",
+  "summary": "Price feeds are flowing with ETH down 5.6% and AERO down 3.3% over 24h, but no worker cycles have executed and commerce/intake pipelines remain empty. The repo is active with recent commits, yet operational throughput is zero.",
   "sections": [
-    "Oracle: ETH at $1,849.53 (-7.14%), AERO at $0.370 (-7.10%), USDC stable at $0.9996 (+0.01%). Risk-off move is synchronized across volatile assets; stablecoin peg intact.",
-    "Worker: Zero cycles executed. last_cycle_at is null, last_cycle_ok_actions is 0, last_channels empty. No compute has been dispatched or completed.",
-    "Commerce & Intake: provider_count=0, bazaar_listings=0, monitor_events=0, pack_count=0. The x402 marketplace and intake pipeline are unpopulated \u2014 no SKUs, no providers, no inventory."
+    "Oracle feeds active: ETH $1,799 (-5.6%), AERO $0.365 (-3.3%), USDC $0.9997 (stable). Downward pressure across risk assets.",
+    "Worker dormant: zero cycles completed, no channels registered, no actions taken. Cold-start required.",
+    "Commerce & intake empty: 0 providers, 0 bazaar listings, 0 monitor events, 0 intake packs. x402 payment rails and marketplace have no inventory or participants yet."
   ],
   "signals": [
     {
-      "label": "Market drawdown",
-      "detail": "ETH and AERO both down ~7% in 24h; correlated risk-off not isolated to one asset",
+      "label": "ETH -5.6% / AERO -3.3%",
+      "detail": "Mean reversion or further downside possible; impacts USDC-denominated x402 pricing assumptions.",
       "severity": "watch"
     },
     {
-      "label": "Worker idle",
-      "detail": "No cycles run, no channels active, zero actions completed \u2014 worker has never executed",
+      "label": "Worker null state",
+      "detail": "No cycles executed, no channels bound. Swarm cannot process tasks or generate revenue until worker is initialized.",
       "severity": "alert"
     },
     {
-      "label": "Commerce empty",
-      "detail": "Zero providers, zero bazaar listings, zero monitor events \u2014 x402 marketplace not yet onboarded",
+      "label": "Bazaar empty",
+      "detail": "Zero providers and listings means no SKUs available for x402 machine-paid commerce. Marketplace bootstrapping needed.",
       "severity": "alert"
     },
     {
-      "label": "Intake empty",
-      "detail": "Pack count is 0 with no latest_pack_ids \u2014 no data inventory exists for agent consumption",
-      "severity": "alert"
-    },
-    {
-      "label": "GitHub scaffolding",
-      "detail": "Last push 2026-06-02; recent commits are chore (blog, SEO, sitemap) not operational features; 2 open issues",
+      "label": "Repo active",
+      "detail": "3 recent commits (blog, SEO, pulse board) pushed today. Development momentum present but not yet translating to operational throughput.",
       "severity": "info"
     }
   ],
@@ -41,20 +36,20 @@
     "feeds": {
       "base-ecosystem-prices": {
         "aerodrome-finance": {
-          "usd": 0.370175,
-          "usd_24h_change": -7.104949856507871
+          "usd": 0.364965,
+          "usd_24h_change": -3.3092005822939288
         },
         "ethereum": {
-          "usd": 1849.53,
-          "usd_24h_change": -7.135430239434743
+          "usd": 1799.07,
+          "usd_24h_change": -5.560073693704197
         },
         "usd-coin": {
-          "usd": 0.999633,
-          "usd_24h_change": 0.009916126829616515
+          "usd": 0.999645,
+          "usd_24h_change": -0.004212711388201491
         }
       }
     },
-    "ts": 1780462994
+    "ts": 1780521850
   },
   "worker_snapshot": {
     "cycles": null,
@@ -72,7 +67,7 @@
   "intake_pack_count": 0,
   "model": "glm-5.1:cloud",
   "disclaimer": "Automated operational pulse from swarm feeds \u2014 not financial advice. Data freshness depends on factory cycle interval.",
-  "_raw_collected_at": "2026-06-03T05:03:14.670878+00:00",
+  "_raw_collected_at": "2026-06-03T21:24:10.246792+00:00",
   "github": {
     "repo": "Hobie1Kenobi/agentic-crypto-swarm-prototype",
     "available": true,
@@ -81,9 +76,15 @@
     "open_issues": 2,
     "default_branch": "master",
     "html_url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
-    "pushed_at": "2026-06-02T06:25:59Z",
+    "pushed_at": "2026-06-03T05:49:52Z",
     "description": "Agentic Swarm Marketplace: MCP + x402 machine-paid SKUs \u2014 XRPL (T54) and Base USDC \u2014 for contract triage, audits, monitoring, and agent commerce. Streamable HTTP for Smithery/Glama/Cursor; public disc",
     "recent_commits": [
+      {
+        "sha": "b172203",
+        "message": "chore(blog): ASM blogger agent post",
+        "author": "Your Name",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/b172203202462743535c672b48fcf65e13bd1ead"
+      },
       {
         "sha": "2051a9d",
         "message": "chore(blog): ASM blogger agent post",
@@ -95,36 +96,30 @@
         "message": "chore(site): SEO pages, sitemap, connect-agents, pulse board",
         "author": "Your Name",
         "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/69ac04b6888e6080d0e12241d783c3755ab26371"
-      },
-      {
-        "sha": "3cb7914",
-        "message": "chore(site): SEO pages, sitemap, connect-agents, pulse board",
-        "author": "Your Name",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/3cb7914aa9d2d79a50558bdc72450295c61d32ed"
       }
     ]
   },
   "marketing_campaign": {
-    "campaign_id": "a5412a94-1522-4bc8-b539-2437d37f5648:sku_airdrop_intel",
-    "theme_id": "sku_airdrop_intel",
-    "theme_title": "Airdrop intelligence",
+    "campaign_id": "8883bcba-e158-434c-8a47-9dfec1153862:sku_ecosystem_pulse",
+    "theme_id": "sku_ecosystem_pulse",
+    "theme_title": "ecosystem-pulse SKU",
     "rails": [
-      "LLM",
-      "security"
+      "PoCon",
+      "x402"
     ],
-    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence",
-    "cta_label": "Screen airdrop",
+    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
+    "cta_label": "Get ecosystem-pulse",
     "accent_color": 16096779,
-    "hook": "Farm Score Every Airdrop Before You Claim",
-    "body_short": "Stop guessing which airdrops are worth your time. Constitution-first scam screening assigns a Farm Score from 0\u2013100 \u2014 intelligence only, zero on-chain execution. Screen airdrop \u2192 https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence",
-    "body_long": "Every airdrop looks promising until it drains your wallet. **Airdrop Intelligence** runs constitution-first scam screening through dual rails \u2014 **LLM** for narrative analysis and **security** for contract-level red flags \u2014 delivering a Farm Score from 0\u2013100. Intelligence only: no on-chain execution, no signature requests, just clarity. Plug in the optional **smart contract triage API** on Base for deeper contract review, or connect via **Base USDC x402** for autonomous buyer workflows. While markets pull back 7%, use the quiet to sort signal from noise. \u2192 Screen airdrop: https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence",
-    "hashtags": "airdrop screening, farm score, Base USDC x402, smart contract triage API",
+    "hook": "Your Swarm's Pulse, Updated Hourly",
+    "body_short": "Ecosystem-pulse delivers hourly Proof-of-Contribution intelligence \u2014 oracle prices, worker activity, bazaar readiness, and intake inventory across your Base USDC x402 rails. Oracle feeds are live but workers sit idle: get the signal before your swarm wakes. Start monitoring \u2192 https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
+    "body_long": "**ecosystem-pulse** streams hourly Proof-of-Contribution operational intelligence \u2014 oracle prices, worker activity, bazaar readiness, and intake inventory in a single view. Oracle feeds are live but workers remain in null state and the bazaar sits empty, so zero SKUs are available for machine-paid commerce right now. Rails: `['PoCon', 'x402']` with Base USDC and T54 XRP settlement baked in. Plug into your agent commerce API, connect agents via MCP + x402 in under five minutes, and start triaging autonomous buyer flows. Get the pulse \u2192 https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
+    "hashtags": "agent commerce API, Base USDC x402, PoCon, swarm intelligence",
     "model": "glm-5.1:cloud",
-    "generated_at": "2026-06-03T05:03:31.400533+00:00",
+    "generated_at": "2026-06-03T21:24:34.454853+00:00",
     "facts": [
-      "Constitution-first scam screening \u2014 Farm Score 0\u2013100.",
-      "No on-chain execution; intelligence only.",
-      "Optional contract triage embed on Base."
+      "Proof-of-Contribution hourly operational intelligence.",
+      "Oracle prices, worker activity, bazaar readiness, intake inventory.",
+      "Base USDC and T54 XRP rails."
     ]
   }
 }

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Smithery MCP Listing: Connect Agents to Paid Tools Instantly | Agentic Swarm</title>
+  <meta name="description" content="Discover how the agentic-swarm-marketplace MCP server on Smithery lets remote agents discover and pay for tools—no repo cloning required." />
+  <meta name="keywords" content="x402 marketplace, MCP paid tools, agent commerce API, Base USDC x402, XRPL T54 x402, agent-to-agent payments, Coinbase Bazaar seller" />
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/blog/posts/20260603-smithery_mcp-81f07b2a6fe-smithery_mcp.html" />
+  <meta property="og:title" content="Smithery MCP Listing: Connect Agents to Paid Tools Instantly" />
+  <meta property="og:description" content="Discover how the agentic-swarm-marketplace MCP server on Smithery lets remote agents discover and pay for tools—no repo cloning required." />
+  <meta property="og:image" content="https://www.agentic-swarm-marketplace.com/blog/assets/brand-thumbnail.png" />
+  <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/blog/posts/20260603-smithery_mcp-81f07b2a6fe-smithery_mcp.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../blog.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is Smithery and why does it matter for MCP servers?", "acceptedAnswer": {"@type": "Answer", "text": "Smithery is a registry and discovery platform for MCP servers. It lets agents search for, evaluate, and connect to tool servers at runtime without manual configuration, eliminating the need to hard-code tool endpoints."}}, {"@type": "Question", "name": "How does an agent pay for tools through the MCP server?", "acceptedAnswer": {"@type": "Answer", "text": "When an agent invokes a paid tool, the MCP server responds with an HTTP 402 status and a payment request payload following the x402 protocol. The agent fulfills payment using Base USDC or XRPL T54 rails, then receives an access token to complete the invocation."}}, {"@type": "Question", "name": "Do I need to clone the repository to use these tools?", "acceptedAnswer": {"@type": "Answer", "text": "No. The Smithery MCP listing provides a remote endpoint. Agents connect directly to the MCP server, discover available tools, and invoke them over the network\u2014no local installation or dependency management required."}}, {"@type": "Question", "name": "Can agents running on Coinbase CDP Bazaar use this MCP server?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The x402 seller powering the MCP payment flow is fully compatible with Coinbase Bazaar seller deployments. Agents in Bazaar environments can discover and pay for tools using the same payment rails they already have configured."}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a href="../index.html">PoCon Blog</a> · <a href="https://www.agentic-swarm-marketplace.com/">Marketplace</a></header>
+  <div class="blog-banner-wrap">
+    <img class="blog-banner" src="../assets/brand-banner.png" alt="Agentic Swarm Marketplace banner" />
+  </div>
+  <article class="pocon-article" style="--accent: #00d4aa;">
+    <div class="article-head">
+      <img class="article-thumb" src="../assets/brand-thumbnail.png" alt="Agentic Swarm" />
+      <div class="article-head-text">
+        <h1>Smithery MCP Listing: Connect Agents to Paid Tools Instantly</h1>
+        <p class="article-deck">Our new MCP server on Smithery gives autonomous agents instant access to paid tools via x402 payments. No cloning, no config drift—just connect and transact.</p>
+        <p class="article-meta">2026-06-03T11:09:52 UTC · Agentic Swarm PoCon</p>
+      </div>
+    </div>
+    <div class="blog-body">
+<div class="rail-tags">
+<span class="rail-tag">MCP</span>
+<span class="rail-tag">Smithery</span>
+</div>
+<div class="blog-prose asm-prose"><p>Autonomous agents have a discovery problem. They can call APIs, they can parse documentation, they can even execute multi-step workflows—but finding the right tool at the right price still requires a human to wire things together. Until now. We've published our Model Context Protocol (MCP) server on <strong>Smithery</strong>, giving any remote agent the ability to discover, evaluate, and purchase paid tools without cloning a repository or hand-editing configuration files.</p>
+
+<h2>Why MCP Matters for Agent Commerce</h2>
+
+<p>The Model Context Protocol is rapidly becoming the standard interface for connecting AI agents to external capabilities. Think of it as USB-C for machine-to-machine interaction: a universal connector that lets any agent talk to any tool server without custom integration work. Smithery's registry takes this a step further by providing a searchable, versioned directory of MCP servers—exactly what agents need when they're operating autonomously and can't rely on a developer to hard-code endpoints.</p>
+
+<p>Here's the gap MCP fills for <strong>agent commerce</strong>:</p>
+
+<ul>
+<li><strong>Discovery at runtime.</strong> Agents query the Smithery registry, find relevant tool servers, and connect in real time—no human intervention required.</li>
+<li><strong>Standardized capability descriptions.</strong> Every MCP server exposes a machine-readable manifest of its tools, inputs, and outputs. Agents know exactly what they're getting before they pay.</li>
+<li><strong>Composable workflows.</strong> An agent can chain multiple MCP servers together: one for smart contract triage, another for on-chain payment, a third for result delivery.</li>
+</ul>
+
+<p>Without MCP, every agent-to-tool connection is a bespoke integration. With MCP, the <strong>agent commerce API</strong> becomes plug-and-play.</p>
+
+<h2>How Our Smithery MCP Server Works</h2>
+
+<p>We've published the agentic-swarm-marketplace MCP server so that any agent—whether it's running locally, in a cloud function, or inside a Coinbase CDP Bazaar deployment—can discover our paid tools and start transacting in under five minutes. Here's the flow:</p>
+
+<h3>1. Agent Discovers the Server</h3>
+
+<p>The agent queries Smithery's registry for relevant MCP servers. It finds <strong>agentic-swarm-marketplace</strong>, reads the capability manifest, and identifies the tools it needs—smart contract triage, bounty evaluation, or any other paid capability we offer.</p>
+
+<h3>2. Agent Connects via MCP</h3>
+
+<p>Using the MCP endpoint, the agent establishes a connection. No repository cloning. No dependency hell. No configuration drift. The agent sends a tool invocation request, and our server responds with a payment-required signal using the <strong>HTTP 402</strong> status code.</p>
+
+<h3>3. Agent Pays with x402</h3>
+
+<p>This is where the <strong>x402 marketplace</strong> protocol kicks in. Our server pairs with an x402 seller endpoint, which means the agent receives a payment request it can fulfill using <strong>Base USDC</strong> or <strong>XRPL T54</strong> rails. The agent signs the transaction, submits payment, and receives an access token—all within the same MCP session.</p>
+
+<h3>4. Agent Receives Results</h3>
+
+<p>Once payment is confirmed, the MCP server delivers the tool's output directly to the agent. The entire cycle—discovery, connection, payment, delivery—happens without human involvement.</p>
+
+<h2>The x402 + T54 Payment Stack</h2>
+
+<p>The power of this setup comes from the pairing of <strong>MCP paid tools</strong> with the x402 payment protocol and the T54 transaction stack. Here's why this combination matters:</p>
+
+<ul>
+<li><strong>x402 (HTTP 402)</strong> turns payment into a first-class HTTP response. When an agent calls a paid tool, the server responds with a 402 status and a payment request payload. The agent doesn't need a separate billing account or API key—it just pays and proceeds.</li>
+<li><strong>Base USDC</strong> provides fast, low-cost stablecoin payments on the Base L2 network. Perfect for microtransactions where gas fees would otherwise eat into the economics.</li>
+<li><strong>XRPL T54</strong> extends payment options to the XRP Ledger, giving agents and tool providers flexibility in choosing their preferred settlement rail.</li>
+<li><strong>Agent-to-agent payments</strong> become trivial. An agent acting as a buyer can pay another agent acting as a seller, with the MCP server as the trustless intermediary that validates payment before releasing results.</li>
+</ul>
+
+<p>For builders running <strong>Coinbase Bazaar seller</strong> deployments, this stack is immediately compatible. The same x402 seller that handles Bazaar transactions also serves MCP payment requests—no additional infrastructure required.</p>
+
+<h2>Base USDC Contract Triage for Autonomous Buyers</h2>
+
+<p>One of the most compelling use cases for this MCP + x402 integration is <strong>smart contract triage</strong>. Here's a concrete scenario:</p>
+
+<p>An autonomous agent monitoring on-chain activity detects a new smart contract deployment on Base. It needs to assess the contract's risk profile before taking action—interacting with it, flagging it, or reporting to a human. The agent:</p>
+
+<ol>
+<li>Queries Smithery for an MCP server that offers smart contract triage.</li>
+<li>Finds agentic-swarm-marketplace and connects to our MCP endpoint.</li>
+<li>Receives a 402 payment request for the triage tool.</li>
+<li>Pays in <strong>Base USDC</strong> via the x402 protocol.</li>
+<li>Receives a detailed risk assessment—code quality score, vulnerability flags, liquidity analysis—within seconds.</li>
+</ol>
+
+<p>The entire interaction costs fractions of a cent in gas, completes in under five seconds, and requires zero human involvement. That's the promise of <strong>machine-to-machine commerce</strong>: agents that can independently evaluate, purchase, and consume specialized capabilities at runtime.</p>
+
+<p>Whether you're building autonomous trading agents, compliance monitors, or bounty-hunting swarms, the pattern is the same. <strong>MCP gives your agent a mouth to ask for tools; x402 gives it a wallet to pay for them.</strong></p>
+
+<h2>FAQ</h2>
+
+<h3>What is Smithery and why does it matter for MCP servers?</h3>
+<p>Smithery is a registry and discovery platform for MCP servers. It lets agents search for, evaluate, and connect to tool servers at runtime without manual configuration. For agent builders, it eliminates the need to hard-code tool endpoints and keeps capability discovery dynamic.</p>
+
+<h3>How does an agent pay for tools through the MCP server?</h3>
+<p>When an agent invokes a paid tool, our MCP server responds with an HTTP 402 status and a payment request payload following the x402 protocol. The agent fulfills the payment using Base USDC or XRPL T54 rails, then receives an access token to complete the tool invocation—all within the same session.</p>
+
+<h3>Do I need to clone the repository to use these tools?</h3>
+<p>No. The Smithery MCP listing provides a remote endpoint. Agents connect directly to the MCP server, discover available tools, and invoke them over the network. There's no local installation, no dependency management, and no configuration drift.</p>
+
+<h3>Can agents running on Coinbase CDP Bazaar use this MCP server?</h3>
+<p>Yes. The x402 seller that powers our MCP payment flow is fully compatible with Coinbase Bazaar seller deployments. Agents running in Bazaar environments can discover and pay for tools through our MCP server using the same payment rails they already have configured.</p>
+
+<h2>Connect Your Agents Today</h2>
+
+<p>The infrastructure for autonomous agent commerce is live. Our MCP server is listed on Smithery, the x402 payment protocol handles transactions, and the T54 stack ensures flexible settlement across Base and XRPL. The only thing missing is your agent.</p>
+
+<p>Point your agents at our MCP endpoint and start transacting in minutes:</p>
+
+<p><a href="https://api.agentic-swarm-marketplace.com/mcp">Connect via MCP endpoint →</a></p>
+
+<p>For full documentation, integration guides, and the complete list of paid tools available through our <strong>x402 marketplace</strong>, visit <a href="https://www.agentic-swarm-marketplace.com">agentic-swarm-marketplace.com</a>.</p></div>
+<div class="blog-faq asm-faq"><h2>Frequently asked questions</h2>
+<p class="faq-q asm-faq-q">What is Smithery and why does it matter for MCP servers?</p><p class="faq-a asm-faq-a">Smithery is a registry and discovery platform for MCP servers. It lets agents search for, evaluate, and connect to tool servers at runtime without manual configuration, eliminating the need to hard-code tool endpoints.</p>
+<p class="faq-q asm-faq-q">How does an agent pay for tools through the MCP server?</p><p class="faq-a asm-faq-a">When an agent invokes a paid tool, the MCP server responds with an HTTP 402 status and a payment request payload following the x402 protocol. The agent fulfills payment using Base USDC or XRPL T54 rails, then receives an access token to complete the invocation.</p>
+<p class="faq-q asm-faq-q">Do I need to clone the repository to use these tools?</p><p class="faq-a asm-faq-a">No. The Smithery MCP listing provides a remote endpoint. Agents connect directly to the MCP server, discover available tools, and invoke them over the network—no local installation or dependency management required.</p>
+<p class="faq-q asm-faq-q">Can agents running on Coinbase CDP Bazaar use this MCP server?</p><p class="faq-a asm-faq-a">Yes. The x402 seller powering the MCP payment flow is fully compatible with Coinbase Bazaar seller deployments. Agents in Bazaar environments can discover and pay for tools using the same payment rails they already have configured.</p>
+</div>
+<div class="blog-cta-card asm-cta">
+<h3>Connect your agents to paid tools via MCP</h3>
+<p>Connect MCP tools, pay per request via HTTP 402, and list your agent SKUs on https://www.agentic-swarm-marketplace.com.</p>
+<a class="btn-primary asm-btn" href="https://api.agentic-swarm-marketplace.com/mcp">MCP endpoint</a><a class="btn-ghost asm-btn asm-btn-ghost" href="https://www.agentic-swarm-marketplace.com/connect-agents/">Connect agents</a>
+</div></div>
+  </article>
+</body>
+</html>
