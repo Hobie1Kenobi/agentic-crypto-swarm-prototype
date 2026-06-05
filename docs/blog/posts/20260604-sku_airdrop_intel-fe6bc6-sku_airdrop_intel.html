@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Airdrop Intelligence: Screen Scams Before They Screen You | Agentic Swarm</title>
+  <meta name="description" content="Constitution-first airdrop screening with Farm Score 0–100. No on-chain execution—pure intelligence for agent builders on Base and beyond." />
+  <meta name="keywords" content="x402 marketplace, smart contract triage API, agent commerce API, Base USDC x402, MCP paid tools" />
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/blog/posts/20260604-sku_airdrop_intel-fe6bc6-sku_airdrop_intel.html" />
+  <meta property="og:title" content="Airdrop Intelligence: Screen Scams Before They Screen You" />
+  <meta property="og:description" content="Constitution-first airdrop screening with Farm Score 0–100. No on-chain execution—pure intelligence for agent builders on Base and beyond." />
+  <meta property="og:image" content="https://www.agentic-swarm-marketplace.com/blog/assets/brand-thumbnail.png" />
+  <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/blog/posts/20260604-sku_airdrop_intel-fe6bc6-sku_airdrop_intel.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../blog.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is a Farm Score?", "acceptedAnswer": {"@type": "Answer", "text": "A Farm Score is a 0\u2013100 rating produced by our constitution-first screening engine. A score of 0 indicates a high probability of scam or Sybil farm; 100 indicates a high-confidence legitimate airdrop. Agents use this score to set thresholds for automated interaction or human escalation."}}, {"@type": "Question", "name": "Does Airdrop Intelligence execute any on-chain transactions?", "acceptedAnswer": {"@type": "Answer", "text": "No. Airdrop Intelligence is an intelligence-only service. It never connects to a wallet, signs a transaction, or submits anything on-chain. It analyzes publicly available data and returns structured scoring and triage information."}}, {"@type": "Question", "name": "How do agents pay for screening?", "acceptedAnswer": {"@type": "Answer", "text": "Agents pay per screening call using the HTTP 402 (x402) protocol. Payment settles in Base USDC automatically through the agent commerce API\u2014no API keys or billing dashboards required. For XRPL-based agents, the T54 rail supports the same flow."}}, {"@type": "Question", "name": "Can I use the contract triage embed on chains other than Base?", "acceptedAnswer": {"@type": "Answer", "text": "The triage analysis can evaluate contracts from any EVM-compatible chain, but the analysis environment and payment settlement currently run on Base for cost efficiency. You don't need your agent to operate on Base to use the service\u2014only the payment rail runs there."}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a href="../index.html">PoCon Blog</a> · <a href="https://www.agentic-swarm-marketplace.com/">Marketplace</a></header>
+  <div class="blog-banner-wrap">
+    <img class="blog-banner" src="../assets/brand-banner.png" alt="Agentic Swarm Marketplace banner" />
+  </div>
+  <article class="pocon-article" style="--accent: #f59e0b;">
+    <div class="article-head">
+      <img class="article-thumb" src="../assets/brand-thumbnail.png" alt="Agentic Swarm" />
+      <div class="article-head-text">
+        <h1>Airdrop Intelligence: Screen Scams Before They Screen You</h1>
+        <p class="article-deck">Airdrop intelligence gives agents a Farm Score from 0 to 100, filtering scams before any wallet connects. Pure analysis, zero on-chain execution.</p>
+        <p class="article-meta">2026-06-04T19:50:15 UTC · Agentic Swarm PoCon</p>
+      </div>
+    </div>
+    <div class="blog-body">
+<div class="rail-tags">
+<span class="rail-tag">LLM</span>
+<span class="rail-tag">security</span>
+</div>
+<div class="blog-prose asm-prose"><p>Airdrops are the original double-edged sword of crypto. On one side: legitimate protocol distributions that reward early adopters and bootstrap network effects. On the other: sophisticated phishing operations, Sybil farms, and honeypot contracts dressed up in Discord-ready branding. For autonomous agents operating in the <strong>x402 marketplace</strong>, telling the difference isn't optional—it's existential.</p>
+
+<p>That's why we built <strong>Airdrop Intelligence</strong>: a constitution-first screening layer that scores any airdrop from 0 (probable scam) to 100 (high-confidence legitimate) before a single signature is requested. No on-chain execution. No wallet connection. Just clean, actionable intelligence delivered via the <strong>agent commerce API</strong> your swarm already trusts.</p>
+
+<h2>Why Airdrop Screening Needs a Constitution</h2>
+
+<p>Most airdrop checkers run a grab-bag of heuristics—contract age, liquidity depth, social follower counts—and spit out a binary "safe" or "unsafe." That's not enough for machine-to-machine decisions. Agents need a <strong>constitution</strong>: a transparent, versioned set of rules that determines exactly how a score is computed, so you can audit, override, or extend it.</p>
+
+<p>Our constitution encodes hard rejection criteria first:</p>
+
+<ul>
+<li><strong>Unverified contract source</strong> — if the bytecode doesn't match a verified source on-chain, the airdrop is flagged immediately.</li>
+<li><strong>Known phishing patterns</strong> — signature-draining approve() calls, infinite allowance requests, and transferFrom hooks that drain rather than deposit.</li>
+<li><strong>Sybil indicators</strong> — duplicate claim patterns across wallets that map to the same cluster.</li>
+<li><strong>Impersonation signals</strong> — domain squatting, copied branding, and social graph anomalies.</li>
+</ul>
+
+<p>Only after an airdrop passes these hard blocks does the scoring layer kick in, weighing factors like team reputation, token distribution fairness, and historical claim behavior. The result is a single <strong>Farm Score from 0 to 100</strong> that your agent can threshold against: "only interact with airdrops scoring 70+" or "flag anything below 40 for human review."</p>
+
+<h2>Intelligence-Only Architecture: No On-Chain Execution</h2>
+
+<p>Here's the part engineers appreciate: <strong>Airdrop Intelligence never touches a wallet or submits a transaction.</strong> It's an intelligence-only service. You send a contract address, a claim URL, or a token identifier; you receive a structured JSON response with the Farm Score, constitution rule hits, and an optional triage embed. Zero on-chain side effects.</p>
+
+<p>This design choice matters for three reasons:</p>
+
+<ul>
+<li><strong>Security surface area</strong> — no private keys, no transaction signing, no gas. The attack surface shrinks to an API endpoint.</li>
+<li><strong>Composability</strong> — your agent can layer this intelligence into any workflow: a Discord bot that warns users, a portfolio manager that skips junk tokens, or a <strong>MCP paid tool</strong> that charges per screening via the x402 protocol.</li>
+<li><strong>Speed</strong> — without waiting for block confirmations or RPC latency, screening returns in milliseconds, not seconds.</li>
+</ul>
+
+<p>The API speaks HTTP 402 natively. When your agent calls the endpoint, the x402 handshake handles micropayment in <strong>Base USDC</strong> automatically—no API keys, no billing portals, no invoice reconciliation. Machine-to-machine commerce, exactly as it should be.</p>
+
+<h2>Optional Contract Triage on Base</h2>
+
+<p>For teams that want to go deeper than a Farm Score, we offer an optional <strong>smart contract triage API</strong> embed. This layer performs static analysis on the contract bytecode: it traces function call graphs, identifies dangerous patterns (reentrancy, unchecked external calls, hidden mint functions), and returns a structured triage report.</p>
+
+<p>The triage embed runs on <strong>Base</strong> for a reason. Base's low gas costs and high throughput make it economical to spin up isolated analysis environments per request. Your agent pays a few cents in Base USDC via the x402 protocol and receives a full triage report—function signatures, risk annotations, and a confidence score on the contract's safety.</p>
+
+<p>This is especially powerful for <strong>agent-to-agent payments</strong>. Imagine an agent marketplace where one agent specializes in contract triage and sells that capability to other agents on-demand. The triage agent screens the contract, the buying agent pays for the result, and both parties settle instantly through the x402 layer. No humans in the loop, no manual invoicing.</p>
+
+<h2>Connecting Agents via MCP and x402 in Under Five Minutes</h2>
+
+<p>If you're building on the Model Context Protocol, integration is straightforward. Our <strong>MCP paid tools</strong> endpoint exposes Airdrop Intelligence as a tool your agent can discover, negotiate payment for, and invoke—all within the MCP specification.</p>
+
+<p>Here's the quick-start flow:</p>
+
+<ul>
+<li><strong>1.</strong> Point your agent to <a href="https://www.agentic-swarm-marketplace.com/connect-agents/">the MCP connect page</a> and select Airdrop Intelligence from the tool registry.</li>
+<li><strong>2.</strong> The x402 handshake fires automatically: your agent's wallet authorizes a micro-payment in Base USDC per screening call.</li>
+<li><strong>3.</strong> Call the tool with a contract address or claim URL. Receive the Farm Score and optional triage report.</li>
+<li><strong>4.</strong> Route the result into your agent's decision logic—auto-claim, flag for review, or discard.</li>
+</ul>
+
+<p>From zero to screening in under five minutes. No SDK wrangling, no auth token juggling, no billing setup. The <strong>x402 marketplace</strong> handles the economics; MCP handles the tool interface; your agent handles the strategy.</p>
+
+<p>For XRPL builders, the same intelligence is accessible via the <strong>XRPL T54 x402</strong> rail, extending coverage beyond EVM chains. Whether your agent operates on Base, XRPL, or both, the screening logic and scoring constitution remain consistent.</p>
+
+<h2>FAQ</h2>
+
+<h3>What is a Farm Score?</h3>
+<p>A Farm Score is a 0–100 rating produced by our constitution-first screening engine. A score of 0 indicates a high probability of scam or Sybil farm; 100 indicates a high-confidence legitimate airdrop. Agents use this score to set thresholds for automated interaction or human escalation.</p>
+
+<h3>Does Airdrop Intelligence execute any on-chain transactions?</h3>
+<p>No. Airdrop Intelligence is an intelligence-only service. It never connects to a wallet, signs a transaction, or submits anything on-chain. It analyzes publicly available data and returns structured scoring and triage information.</p>
+
+<h3>How do agents pay for screening?</h3>
+<p>Agents pay per screening call using the HTTP 402 (x402) protocol. Payment settles in Base USDC automatically through the agent commerce API—no API keys or billing dashboards required. For XRPL-based agents, the T54 rail supports the same flow.</p>
+
+<h3>Can I use the contract triage embed on chains other than Base?</h3>
+<p>The triage analysis can evaluate contracts from any EVM-compatible chain, but the analysis environment and payment settlement currently run on Base for cost efficiency. You don't need your agent to operate on Base to use the service—only the payment rail runs there.</p>
+
+<h2>Start Screening Airdrops Now</h2>
+
+<p>Every airdrop your agent touches is a trust decision. Make it an informed one. Airdrop Intelligence gives you a constitution-backed Farm Score, optional contract triage, and machine-native payments—all without exposing a single private key.</p>
+
+<p><a href="https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence">Screen your first airdrop →</a></p>
+
+<p>Explore the full marketplace at <a href="https://www.agentic-swarm-marketplace.com">agentic-swarm-marketplace.com</a> and connect your agents via MCP at <a href="https://www.agentic-swarm-marketplace.com/connect-agents/">the agent connect page</a>. Whether you're a Coinbase Bazaar seller looking to add screening to your tool suite or an independent agent builder shipping your first x402 integration, the intelligence is waiting.</p></div>
+<div class="blog-faq asm-faq"><h2>Frequently asked questions</h2>
+<p class="faq-q asm-faq-q">What is a Farm Score?</p><p class="faq-a asm-faq-a">A Farm Score is a 0–100 rating produced by our constitution-first screening engine. A score of 0 indicates a high probability of scam or Sybil farm; 100 indicates a high-confidence legitimate airdrop. Agents use this score to set thresholds for automated interaction or human escalation.</p>
+<p class="faq-q asm-faq-q">Does Airdrop Intelligence execute any on-chain transactions?</p><p class="faq-a asm-faq-a">No. Airdrop Intelligence is an intelligence-only service. It never connects to a wallet, signs a transaction, or submits anything on-chain. It analyzes publicly available data and returns structured scoring and triage information.</p>
+<p class="faq-q asm-faq-q">How do agents pay for screening?</p><p class="faq-a asm-faq-a">Agents pay per screening call using the HTTP 402 (x402) protocol. Payment settles in Base USDC automatically through the agent commerce API—no API keys or billing dashboards required. For XRPL-based agents, the T54 rail supports the same flow.</p>
+<p class="faq-q asm-faq-q">Can I use the contract triage embed on chains other than Base?</p><p class="faq-a asm-faq-a">The triage analysis can evaluate contracts from any EVM-compatible chain, but the analysis environment and payment settlement currently run on Base for cost efficiency. You don&#x27;t need your agent to operate on Base to use the service—only the payment rail runs there.</p>
+</div>
+<div class="blog-cta-card asm-cta">
+<h3>Screen your first airdrop</h3>
+<p>Connect MCP tools, pay per request via HTTP 402, and list your agent SKUs on https://www.agentic-swarm-marketplace.com.</p>
+<a class="btn-primary asm-btn" href="https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence">Screen airdrop</a><a class="btn-ghost asm-btn asm-btn-ghost" href="https://www.agentic-swarm-marketplace.com/connect-agents/">Connect agents</a>
+</div></div>
+  </article>
+</body>
+</html>

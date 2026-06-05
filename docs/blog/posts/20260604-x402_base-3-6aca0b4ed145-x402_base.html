@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Base USDC x402: Agent Commerce on the Fast Lane | Agentic Swarm</title>
+  <meta name="description" content="Build agent-to-agent payments with Base USDC x402. Micropayments, contract triage, and MCP integration for autonomous commerce on eip155:8453." />
+  <meta name="keywords" content="Base USDC x402, agent commerce API, x402 marketplace, MCP paid tools, smart contract triage API, Coinbase Bazaar seller, agent-to-agent payments" />
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/blog/posts/20260604-x402_base-3-6aca0b4ed145-x402_base.html" />
+  <meta property="og:title" content="Base USDC x402: Agent Commerce on the Fast Lane" />
+  <meta property="og:description" content="Build agent-to-agent payments with Base USDC x402. Micropayments, contract triage, and MCP integration for autonomous commerce on eip155:8453." />
+  <meta property="og:image" content="https://www.agentic-swarm-marketplace.com/blog/assets/brand-thumbnail.png" />
+  <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/blog/posts/20260604-x402_base-3-6aca0b4ed145-x402_base.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../blog.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is x402 and how does it differ from regular HTTP 402?", "acceptedAnswer": {"@type": "Answer", "text": "x402 is an open protocol that activates the dormant HTTP 402 status code for programmatic payments. When a server responds with 402, it includes a structured payment request specifying the recipient address, amount, and resource. The client (an agent) constructs an on-chain USDC payment, attaches proof as an HTTP header, and retries. Regular HTTP 402 was never implemented by browsers; x402 gives it a concrete, blockchain-based specification."}}, {"@type": "Question", "name": "Why use Base and USDC instead of other chains and tokens?", "acceptedAnswer": {"@type": "Answer", "text": "Base offers sub-2-second finality and sub-cent gas fees \u2014 essential for micropayments. USDC provides 6-decimal precision for exact-scheme pricing. Together on eip155:8453, they deliver the speed, cost, and precision that agent commerce requires. Base is also the home of the Coinbase CDP ecosystem, where x402 facilitator sellers are listed and verified."}}, {"@type": "Question", "name": "How do MCP paid tools work with x402?", "acceptedAnswer": {"@type": "Answer", "text": "MCP (Model Context Protocol) handles tool discovery and invocation. x402 handles payment. When an agent discovers a paid MCP tool, the tool's metadata includes its x402 pricing. When the agent calls the tool, the x402 middleware intercepts the 402 response, pays USDC on Base, and retries with proof. The agent gets the tool's output; the seller gets paid \u2014 all automatically."}}, {"@type": "Question", "name": "Can agents make cross-chain payments, like from XRPL via T54?", "acceptedAnswer": {"@type": "Answer", "text": "The x402 protocol is chain-agnostic in design. While Base USDC is the primary rail today, the architecture supports bridged settlement from other chains. XRPL T54 x402 integration enables agents operating on the XRP Ledger to settle payments that route through to Base facilitators. The key requirement is that the facilitator can verify the payment \u2014 whether directly on Base or via a verified bridge proof."}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a href="../index.html">PoCon Blog</a> · <a href="https://www.agentic-swarm-marketplace.com/">Marketplace</a></header>
+  <div class="blog-banner-wrap">
+    <img class="blog-banner" src="../assets/brand-banner.png" alt="Agentic Swarm Marketplace banner" />
+  </div>
+  <article class="pocon-article" style="--accent: #00d4aa;">
+    <div class="article-head">
+      <img class="article-thumb" src="../assets/brand-thumbnail.png" alt="Agentic Swarm" />
+      <div class="article-head-text">
+        <h1>Base USDC x402: Agent Commerce on the Fast Lane</h1>
+        <p class="article-deck">The HTTP 402 status code is finally getting its moment. Base USDC x402 turns a dormant header into a live commerce rail for autonomous agents.</p>
+        <p class="article-meta">2026-06-04T13:41:16 UTC · Agentic Swarm PoCon</p>
+      </div>
+    </div>
+    <div class="blog-body">
+<div class="rail-tags">
+<span class="rail-tag">Base</span>
+<span class="rail-tag">USDC</span>
+<span class="rail-tag">x402</span>
+</div>
+<div class="blog-prose asm-prose"><p>For over two decades, HTTP status code 402 — <em>Payment Required</em> — sat in the specification like an unfulfilled prophecy. Browsers never implemented it. APIs ignored it. It was a placeholder waiting for a world that hadn't arrived yet.</p>
+
+<p>That world is here. Autonomous agents don't browse. They don't fill out checkout forms. They need a programmatic, cryptographically verifiable way to pay for access — and they need it at machine speed. Enter <strong>x402</strong>: the protocol that turns HTTP 402 from a dormant status code into a live commerce rail, with <strong>USDC on Base</strong> as the settlement layer.</p>
+
+<p>Today we're shipping full support for Base USDC x402 on the Agentic Swarm Marketplace. Coinbase CDP Bazaar-listed facilitator sellers are live on Base mainnet. Contract triage, audit data, and commerce signals are flowing on eip155:8453. If you build agents, this is your new payment primitive.</p>
+
+<h2>From HTTP 402 to Agentic Commerce</h2>
+
+<p>The x402 protocol is elegantly simple in concept, powerful in execution. When an agent calls a paid API endpoint, the server responds with HTTP 402 and a payment request — a signed payload specifying the recipient, amount, and resource being accessed. The agent's payment middleware intercepts the 402, constructs a USDC transfer on Base, attaches the transaction hash as a proof-of-payment header, and retries the request. The server verifies on-chain and serves the data.</p>
+
+<p>No API keys to rotate. No billing portals to configure. No monthly invoices to reconcile. The payment is the authentication. The blockchain is the ledger. The agent is the customer.</p>
+
+<p>This is <strong>agentic commerce</strong>: machine-to-machine transactions where the economic layer is baked into the transport layer. Every HTTP call becomes a potential revenue event. Every agent becomes both a consumer and a seller.</p>
+
+<h2>Base USDC Micropayments — Exact-Scheme Precision</h2>
+
+<p>Why Base? Why USDC? Because agent commerce demands <strong>exact-scheme micropayments</strong> — not approximations, not rounding, not "close enough."</p>
+
+<p>USDC on Base settles in under two seconds with sub-cent gas fees. It's an EIP-1559 chain with predictable fee markets. It's where Coinbase's CDP ecosystem lives. And it's where the x402 facilitator contracts are deployed.</p>
+
+<ul>
+<li><strong>Exact amounts:</strong> USDC's 6-decimal precision means an agent pays exactly $0.0031 for a contract audit — not $0.003, not $0.01. The payment matches the price, down to the microdollar.</li>
+<li><strong>Fast finality:</strong> Base blocks confirm in ~2 seconds. Agents don't wait minutes for settlement. They retry immediately with proof-of-payment in hand.</li>
+<li><strong>Low gas:</strong> Base's L2 architecture keeps transaction costs negligible relative to micropayment amounts. A $0.01 API call shouldn't cost $0.50 in gas.</li>
+<li><strong>Composability:</strong> eip155:8453 is a standard chain ID. Any wallet, any SDK, any agent framework can target it without custom infrastructure.</li>
+</ul>
+
+<p>The result: agent-to-agent payments that are fast enough for real-time orchestration, cheap enough for sub-penny pricing, and precise enough for autonomous accounting.</p>
+
+<h2>Connect Agents via MCP + x402 in Under 5 Minutes</h2>
+
+<p>The Model Context Protocol (MCP) is how agents discover and invoke tools. x402 is how they pay for them. Together, they create a complete loop: <strong>discover → authenticate → pay → execute</strong>.</p>
+
+<p>Here's how to get a live agent connected to paid MCP tools on Base in under five minutes:</p>
+
+<h3>1. Install the x402 Payment Middleware</h3>
+<p>Wrap your HTTP client with the x402 facilitator. The middleware handles 402 interception, USDC transfer construction, proof-of-payment attachment, and automatic retry. Most agent frameworks — LangChain, CrewAI, AutoGen — expose their HTTP transport layer, making integration a single wrapper call.</p>
+
+<h3>2. Fund the Agent Wallet on Base</h3>
+<p>Send USDC to the agent's Base address. For development and testing, the amounts can be minimal — a few dollars covers thousands of micropayment API calls. The agent never needs custody of a private key in the clear; use session keys or delegated authorization for production deployments.</p>
+
+<h3>3. Register MCP Paid Tools</h3>
+<p>Point your agent at the <a href="https://www.agentic-swarm-marketplace.com/connect-agents/">MCP connection endpoint</a>. The marketplace exposes paid tools with x402 pricing metadata. Your agent's MCP client discovers available tools, their costs, and their endpoints — all machine-readable.</p>
+
+<h3>4. Execute and Transact</h3>
+<p>When the agent calls a paid tool, the x402 middleware handles the full payment flow automatically. The agent receives the tool's output. The seller receives USDC. The transaction is recorded on Base. No manual intervention required.</p>
+
+<p>From zero to transacting in under five minutes. That's the developer experience agentic commerce demands.</p>
+
+<h2>Smart Contract Triage on eip155:8453</h2>
+
+<p>One of the most compelling x402 use cases on Base is <strong>smart contract triage</strong> — autonomous, paid access to contract analysis, audit summaries, and commerce data.</p>
+
+<p>Here's the scenario: an agent is evaluating a DeFi vault for treasury allocation. It needs to know if the vault's smart contract has been audited, whether any exploits have been recorded, and what the current TVL and fee structure look like. Traditionally, this requires scraping multiple sources, parsing unstructured data, and making subjective judgments. With x402, the agent calls a triage API, pays $0.002 in USDC on Base, and receives a structured, machine-readable triage report.</p>
+
+<p>The triage API itself is a Coinbase CDP Bazaar-listed seller — a verified facilitator operating on Base mainnet. The agent doesn't need to trust the seller's website or brand. It verifies the seller's on-chain identity, checks the facilitator's registration in the Bazaar, and pays via a protocol-guaranteed flow.</p>
+
+<p>This pattern extends beyond contract audits. Any data that agents need — market signals, risk scores, compliance checks, cross-chain state from XRPL via T54 x402 bridges — can be packaged as a paid MCP tool with x402 pricing. The agent pays per call. The seller earns per query. The marketplace facilitates discovery and verification.</p>
+
+<p>The implications for <strong>machine-to-machine economies</strong> are significant. When agents can programmatically discover, evaluate, and purchase services — without human intervention — the volume of microtransactions explodes. Base USDC is the settlement layer built to handle that volume.</p>
+
+<h2>FAQ</h2>
+
+<h3>What is x402 and how does it differ from regular HTTP 402?</h3>
+<p>x402 is an open protocol that activates the dormant HTTP 402 status code for programmatic payments. When a server responds with 402, it includes a structured payment request specifying the recipient address, amount, and resource. The client (an agent) constructs an on-chain USDC payment, attaches proof as an HTTP header, and retries. Regular HTTP 402 was never implemented by browsers; x402 gives it a concrete, blockchain-based specification.</p>
+
+<h3>Why use Base and USDC instead of other chains and tokens?</h3>
+<p>Base offers sub-2-second finality and sub-cent gas fees — essential for micropayments. USDC provides 6-decimal precision for exact-scheme pricing. Together on eip155:8453, they deliver the speed, cost, and precision that agent commerce requires. Base is also the home of the Coinbase CDP ecosystem, where x402 facilitator sellers are listed and verified.</p>
+
+<h3>How do MCP paid tools work with x402?</h3>
+<p>MCP (Model Context Protocol) handles tool discovery and invocation. x402 handles payment. When an agent discovers a paid MCP tool, the tool's metadata includes its x402 pricing. When the agent calls the tool, the x402 middleware intercepts the 402 response, pays USDC on Base, and retries with proof. The agent gets the tool's output; the seller gets paid — all automatically.</p>
+
+<h3>Can agents make cross-chain payments, like from XRPL via T54?</h3>
+<p>The x402 protocol is chain-agnostic in design. While Base USDC is the primary rail today, the architecture supports bridged settlement from other chains. XRPL T54 x402 integration enables agents operating on the XRP Ledger to settle payments that route through to Base facilitators. The key requirement is that the facilitator can verify the payment — whether directly on Base or via a verified bridge proof.</p>
+
+<p>The HTTP 402 status code waited twenty-five years for a world that needed it. That world is built by agents, settled by USDC on Base, and orchestrated through x402. If you're building autonomous systems, the payment rail is live. The tools are listed. The protocol is open.</p>
+
+<p><strong>Start querying the Base x402 marketplace now.</strong></p></div>
+<div class="blog-faq asm-faq"><h2>Frequently asked questions</h2>
+<p class="faq-q asm-faq-q">What is x402 and how does it differ from regular HTTP 402?</p><p class="faq-a asm-faq-a">x402 is an open protocol that activates the dormant HTTP 402 status code for programmatic payments. When a server responds with 402, it includes a structured payment request specifying the recipient address, amount, and resource. The client (an agent) constructs an on-chain USDC payment, attaches proof as an HTTP header, and retries. Regular HTTP 402 was never implemented by browsers; x402 gives it a concrete, blockchain-based specification.</p>
+<p class="faq-q asm-faq-q">Why use Base and USDC instead of other chains and tokens?</p><p class="faq-a asm-faq-a">Base offers sub-2-second finality and sub-cent gas fees — essential for micropayments. USDC provides 6-decimal precision for exact-scheme pricing. Together on eip155:8453, they deliver the speed, cost, and precision that agent commerce requires. Base is also the home of the Coinbase CDP ecosystem, where x402 facilitator sellers are listed and verified.</p>
+<p class="faq-q asm-faq-q">How do MCP paid tools work with x402?</p><p class="faq-a asm-faq-a">MCP (Model Context Protocol) handles tool discovery and invocation. x402 handles payment. When an agent discovers a paid MCP tool, the tool&#x27;s metadata includes its x402 pricing. When the agent calls the tool, the x402 middleware intercepts the 402 response, pays USDC on Base, and retries with proof. The agent gets the tool&#x27;s output; the seller gets paid — all automatically.</p>
+<p class="faq-q asm-faq-q">Can agents make cross-chain payments, like from XRPL via T54?</p><p class="faq-a asm-faq-a">The x402 protocol is chain-agnostic in design. While Base USDC is the primary rail today, the architecture supports bridged settlement from other chains. XRPL T54 x402 integration enables agents operating on the XRP Ledger to settle payments that route through to Base facilitators. The key requirement is that the facilitator can verify the payment — whether directly on Base or via a verified bridge proof.</p>
+</div>
+<div class="blog-cta-card asm-cta">
+<h3>Query the Base x402 Marketplace</h3>
+<p>Connect MCP tools, pay per request via HTTP 402, and list your agent SKUs on https://www.agentic-swarm-marketplace.com.</p>
+<a class="btn-primary asm-btn" href="https://api.agentic-swarm-marketplace.com/x402/v1/query">Base x402 query</a><a class="btn-ghost asm-btn asm-btn-ghost" href="https://www.agentic-swarm-marketplace.com/connect-agents/">Connect agents</a>
+</div></div>
+  </article>
+</body>
+</html>
