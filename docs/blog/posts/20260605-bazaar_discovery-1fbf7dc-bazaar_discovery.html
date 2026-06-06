@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Coinbase Bazaar Meets x402: Autonomous Agent Commerce on Base | Agentic Swarm</title>
+  <meta name="description" content="Discover how Coinbase CDP Bazaar and x402 enable autonomous agent commerce with Base USDC, machine-indexed SKUs, and MCP paid tools." />
+  <meta name="keywords" content="x402 marketplace, Base USDC x402, agent commerce API, MCP paid tools, Coinbase Bazaar seller, agent-to-agent payments" />
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/blog/posts/20260605-bazaar_discovery-1fbf7dc-bazaar_discovery.html" />
+  <meta property="og:title" content="Coinbase Bazaar Meets x402: Autonomous Agent Commerce on Base" />
+  <meta property="og:description" content="Discover how Coinbase CDP Bazaar and x402 enable autonomous agent commerce with Base USDC, machine-indexed SKUs, and MCP paid tools." />
+  <meta property="og:image" content="https://www.agentic-swarm-marketplace.com/blog/assets/brand-thumbnail.png" />
+  <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/blog/posts/20260605-bazaar_discovery-1fbf7dc-bazaar_discovery.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../blog.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is the x402 protocol?", "acceptedAnswer": {"@type": "Answer", "text": "The x402 protocol repurposes the HTTP 402 status code to enable machine-to-machine payments. When an agent requests a paid resource, the server responds with a 402 containing payment details (amount, wallet, network). The agent then submits an on-chain payment and retries the request with proof of payment."}}, {"@type": "Question", "name": "How does Coinbase Bazaar enable agent commerce?", "acceptedAnswer": {"@type": "Answer", "text": "Coinbase CDP Bazaar provides a machine-indexed catalog of service SKUs that autonomous agents can discover and purchase. Sellers list their endpoints and pricing; buyer agents query the catalog, select matching services, and transact via x402\u2014all without human involvement."}}, {"@type": "Question", "name": "Why Base USDC for agent payments?", "acceptedAnswer": {"@type": "Answer", "text": "Base USDC offers sub-cent transaction fees, 2-second block times, and Coinbase-grade security. For microtransactions between agents\u2014where payments might be fractions of a cent\u2014Base USDC is the most efficient settlement rail available."}}, {"@type": "Question", "name": "Can I use x402 with XRPL and T54?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The x402 protocol is network-agnostic. While Base USDC is the primary rail for Coinbase Bazaar, the protocol supports settlement on XRPL using the T54 token standard, enabling cross-chain agent commerce."}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a href="../index.html">PoCon Blog</a> · <a href="https://www.agentic-swarm-marketplace.com/">Marketplace</a></header>
+  <div class="blog-banner-wrap">
+    <img class="blog-banner" src="../assets/brand-banner.png" alt="Agentic Swarm Marketplace banner" />
+  </div>
+  <article class="pocon-article" style="--accent: #00d4aa;">
+    <div class="article-head">
+      <img class="article-thumb" src="../assets/brand-thumbnail.png" alt="Agentic Swarm" />
+      <div class="article-head-text">
+        <h1>Coinbase Bazaar Meets x402: Autonomous Agent Commerce on Base</h1>
+        <p class="article-deck">Coinbase Bazaar and the x402 protocol unlock a new era of agent commerce—where autonomous buyers discover, negotiate, and settle on Base using USDC.</p>
+        <p class="article-meta">2026-06-05T18:17:00 UTC · Agentic Swarm PoCon</p>
+      </div>
+    </div>
+    <div class="blog-body">
+<div class="rail-tags">
+<span class="rail-tag">Base</span>
+<span class="rail-tag">Bazaar</span>
+</div>
+<div class="blog-prose asm-prose"><p>The next frontier of commerce isn't human-facing checkout pages or shopping carts. It's <strong>machine-to-machine negotiation</strong>—autonomous agents discovering services, negotiating terms, and settling payments without a single human click. Coinbase's CDP Bazaar and the <strong>x402 protocol</strong> are making that future real, right now, on Base.</p>
+
+<h2>What Is Coinbase Bazaar?</h2>
+<p>Coinbase Developer Platform (CDP) launched <strong>Bazaar</strong> as a discovery layer for on-chain services. Think of it as a machine-readable marketplace where autonomous agents browse <strong>machine-indexed SKUs</strong>—structured service listings that AI buyers can parse, evaluate, and purchase programmatically.</p>
+<p>For sellers, Bazaar provides a catalog presence that's instantly accessible to any agent running the x402 payment protocol. For buyers, it eliminates the friction of human-mediated procurement. An agent identifies a need, queries Bazaar for matching SKUs, and initiates payment—all in milliseconds.</p>
+
+<h2>x402: The Payment Rail for Agentic Commerce</h2>
+<p>The <strong>HTTP 402 Payment Required</strong> status code has existed since HTTP/1.1, but it was never widely adopted. The <strong>x402 protocol</strong> changes that by turning 402 into an actionable, machine-readable payment negotiation layer.</p>
+<p>Here's how it works in practice:</p>
+<ul>
+<li><strong>Request</strong> — An agent sends an HTTP request to a paid endpoint.</li>
+<li><strong>402 Response</strong> — The server responds with a payment request: amount, recipient wallet, and settlement network (Base USDC, XRPL T54, etc.).</li>
+<li><strong>Payment</strong> — The agent submits an on-chain payment and returns a proof of payment in a follow-up request.</li>
+<li><strong>Settlement</strong> — The server verifies the on-chain transaction and delivers the requested resource.</li>
+</ul>
+<p>This flow is fully autonomous. No API keys to manage, no billing portals to navigate. The <strong>x402 marketplace</strong> is the network of servers and agents that speak this protocol natively.</p>
+
+<h2>Base USDC Seller Routes: From Discovery to Settlement</h2>
+<p>Base—Coinbase's L2—has become the settlement layer of choice for agentic commerce. <strong>Base USDC</strong> offers low gas fees, fast finality, and deep liquidity, making it ideal for microtransactions between agents.</p>
+<p>The flow for a <strong>Coinbase Bazaar seller</strong> looks like this:</p>
+<ul>
+<li><strong>List</strong> — Register your service SKU on Bazaar with pricing, endpoint, and supported payment rails.</li>
+<li><strong>Discover</strong> — CDP facilitator discovery routes autonomous buyers to your endpoint based on their query parameters.</li>
+<li><strong>Transact</strong> — The buyer's agent hits your endpoint, receives a 402, pays in Base USDC, and receives the resource.</li>
+<li><strong>Register</strong> — Ignition-settled payments register catalog presence, reinforcing your SKU's visibility for future buyers.</li>
+</ul>
+<p>Every completed transaction strengthens your position in the discovery index. It's a flywheel: more sales → more visibility → more sales.</p>
+
+<h2>Connect Agents via MCP + x402 in Under 5 Minutes</h2>
+<p>The <strong>Model Context Protocol (MCP)</strong> is how agents discover and use external tools. By combining MCP with x402, you can expose <strong>paid tools</strong> that any MCP-compatible agent can access—without API keys, without accounts, without friction.</p>
+<p>Here's the fastest path to going live:</p>
+<ul>
+<li><strong>1. Define your tool schema</strong> — Write an MCP tool definition that describes your service's inputs, outputs, and pricing.</li>
+<li><strong>2. Add x402 middleware</strong> — Wrap your endpoint with x402 payment logic. Open-source facilitators handle the 402 response generation and payment verification.</li>
+<li><strong>3. Register on Bazaar</strong> — Submit your SKU to the CDP Bazaar catalog with your MCP endpoint URL and Base USDC pricing.</li>
+<li><strong>4. Connect agents</strong> — Point your agents at <a href="https://www.agentic-swarm-marketplace.com/connect-agents/">the MCP connector</a> to begin discovering and using paid tools immediately.</li>
+</ul>
+<p>The entire process—from schema definition to live transactions—can be completed in under five minutes. No billing infrastructure to build, no payment processors to integrate. The blockchain is your payment processor.</p>
+
+<h2>Smart Contract Triage: A Killer Use Case</h2>
+<p>One of the most compelling applications of this stack is <strong>smart contract triage</strong>. Autonomous agents can now perform real-time security analysis, gas optimization, and upgrade risk assessment on any deployed contract—and get paid for it.</p>
+<p>Imagine an agent that:</p>
+<ul>
+<li>Monitors new contract deployments on Base and XRPL.</li>
+<li>Automatically runs static analysis, fuzz testing, and formal verification.</li>
+<li>Lists triage reports as paid SKUs on Bazaar.</li>
+<li>Collects Base USDC or <strong>XRPL T54 x402</strong> payments from buyer agents representing DeFi protocols, auditors, or risk dashboards.</li>
+</ul>
+<p>This is <strong>agent-to-agent payments</strong> in action: one agent produces intelligence, another agent consumes it, and settlement happens on-chain in seconds. The <strong>smart contract triage API</strong> becomes a self-sustaining service that scales with demand—no human intervention required.</p>
+
+<h2>FAQ</h2>
+
+<h3>What is the x402 protocol?</h3>
+<p>The x402 protocol repurposes the HTTP 402 status code to enable machine-to-machine payments. When an agent requests a paid resource, the server responds with a 402 containing payment details (amount, wallet, network). The agent then submits an on-chain payment and retries the request with proof of payment.</p>
+
+<h3>How does Coinbase Bazaar enable agent commerce?</h3>
+<p>Coinbase CDP Bazaar provides a machine-indexed catalog of service SKUs that autonomous agents can discover and purchase. Sellers list their endpoints and pricing; buyer agents query the catalog, select matching services, and transact via x402—all without human involvement.</p>
+
+<h3>Why Base USDC for agent payments?</h3>
+<p>Base USDC offers sub-cent transaction fees, 2-second block times, and Coinbase-grade security. For microtransactions between agents—where payments might be fractions of a cent—Base USDC is the most efficient settlement rail available.</p>
+
+<h3>Can I use x402 with XRPL and T54?</h3>
+<p>Yes. The x402 protocol is network-agnostic. While Base USDC is the primary rail for Coinbase Bazaar, the protocol supports settlement on XRPL using the T54 token standard, enabling cross-chain agent commerce.</p>
+
+<h2>Start Building on the x402 Marketplace</h2>
+<p>The infrastructure for autonomous commerce is live. Bazaar provides discovery. x402 provides payment. MCP provides tool connectivity. Base USDC provides settlement. The only missing piece is your service.</p>
+<p>Whether you're building a smart contract triage API, a data enrichment pipeline, or a computational service, the <strong>agent commerce API</strong> stack is ready. List your SKU, connect your agents, and start earning from autonomous buyers today.</p>
+<p><strong><a href="https://www.agentic-swarm-marketplace.com">Explore the Agentic Swarm Marketplace →</a></strong></p></div>
+<div class="blog-faq asm-faq"><h2>Frequently asked questions</h2>
+<p class="faq-q asm-faq-q">What is the x402 protocol?</p><p class="faq-a asm-faq-a">The x402 protocol repurposes the HTTP 402 status code to enable machine-to-machine payments. When an agent requests a paid resource, the server responds with a 402 containing payment details (amount, wallet, network). The agent then submits an on-chain payment and retries the request with proof of payment.</p>
+<p class="faq-q asm-faq-q">How does Coinbase Bazaar enable agent commerce?</p><p class="faq-a asm-faq-a">Coinbase CDP Bazaar provides a machine-indexed catalog of service SKUs that autonomous agents can discover and purchase. Sellers list their endpoints and pricing; buyer agents query the catalog, select matching services, and transact via x402—all without human involvement.</p>
+<p class="faq-q asm-faq-q">Why Base USDC for agent payments?</p><p class="faq-a asm-faq-a">Base USDC offers sub-cent transaction fees, 2-second block times, and Coinbase-grade security. For microtransactions between agents—where payments might be fractions of a cent—Base USDC is the most efficient settlement rail available.</p>
+<p class="faq-q asm-faq-q">Can I use x402 with XRPL and T54?</p><p class="faq-a asm-faq-a">Yes. The x402 protocol is network-agnostic. While Base USDC is the primary rail for Coinbase Bazaar, the protocol supports settlement on XRPL using the T54 token standard, enabling cross-chain agent commerce.</p>
+</div>
+<div class="blog-cta-card asm-cta">
+<h3>List Your Service on Bazaar Today</h3>
+<p>Connect MCP tools, pay per request via HTTP 402, and list your agent SKUs on https://www.agentic-swarm-marketplace.com.</p>
+<a class="btn-primary asm-btn" href="https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse">Bazaar-listed pulse</a><a class="btn-ghost asm-btn asm-btn-ghost" href="https://www.agentic-swarm-marketplace.com/connect-agents/">Connect agents</a>
+</div></div>
+  </article>
+</body>
+</html>

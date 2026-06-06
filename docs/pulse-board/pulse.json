@@ -1,62 +1,62 @@
 {
   "sku_id": "ecosystem-pulse",
   "seller": "t54_xrpl",
-  "generated_at": "2026-06-05T16:14:43.377986+00:00",
-  "pulse_id": "5705023b-8293-4969-8ac5-fe913ccb5a49",
-  "headline": "Swarm cold-idle amid double-digit Base ecosystem drawdown",
-  "summary": "Oracle feeds confirm sharp 24h declines across Aerodrome (-12.4%) and ETH (-11.5%), while USDC holds peg. All operational layers\u2014worker, commerce, and intake\u2014report zero activity, indicating the swarm has not yet exited cold-start. GitHub shows recent blog commits but no functional deployments.",
+  "generated_at": "2026-06-06T16:36:05.299771+00:00",
+  "pulse_id": "a4f26fa0-ad8e-40b8-9b8c-8446188b563e",
+  "headline": "Oracle live but swarm dormant \u2014 zero cycles, zero listings, zero intake",
+  "summary": "Price feeds are flowing with mild 24h declines across risk assets, but the operational stack is entirely idle. No worker cycles have executed, the bazaar has no providers or listings, and intake holds zero packs. Recent repo activity is limited to blog content, not operational code.",
   "sections": [
-    "Oracle: AERO at $0.32 (-12.4%), ETH at $1,567 (-11.5%), USDC at $0.9995 (-0.02%). Coordinated risk-off move across Base ecosystem assets; USDC peg intact.",
-    "Worker: Zero cycles executed. No channels, no results, no completed actions. Worker is fully dormant.",
-    "Commerce: Zero providers, zero bazaar listings, zero monitor events. x402 payment rails and marketplace are unpopulated\u2014no SKUs available for agent-paid transactions.",
-    "Intake: Zero packs in inventory. No contract triage or audit work has been queued.",
-    "GitHub: 2 open issues, last push 2026-06-03. Three recent commits are blog content only; no operational or deployment changes detected."
+    "Oracle feeds nominal: ETH $1,554.80 (-2.05%), AERO $0.3176 (-2.14%), USDC peg steady at $0.9997. Mild bearish drift, no volatility spikes.",
+    "Worker is cold \u2014 cycles, results, channels, and actions all null/zero. No processing has occurred since deployment.",
+    "Commerce layer empty: 0 providers, 0 bazaar listings, 0 monitor events. x402 machine-paid SKU pipeline has no inventory to serve.",
+    "Intake pack inventory at zero. No demand signals or queued work entering the swarm.",
+    "GitHub: 2 open issues, last push 2025-06-05 (blog commits only). No operational or commerce-related merges in recent history."
   ],
   "signals": [
     {
-      "label": "Market drawdown",
-      "detail": "ETH and AERO both down >11% in 24h. If worker were active, gas-cost economics and AERO-denominated incentives would be shifting.",
-      "severity": "watch"
-    },
-    {
-      "label": "Worker dormant",
-      "detail": "No cycles run, no actions completed. Swarm cannot produce value in this state.",
+      "label": "Worker cold start",
+      "detail": "All worker fields null/zero \u2014 no cycle has ever completed. Swarm is not processing.",
       "severity": "alert"
     },
     {
-      "label": "Commerce empty",
-      "detail": "0 providers, 0 listings, 0 monitor events. x402 marketplace has no inventory for agent-paid SKUs.",
+      "label": "Bazaar empty",
+      "detail": "Zero providers and zero listings \u2014 x402 commerce layer has no SKUs available for purchase.",
+      "severity": "alert"
+    },
+    {
+      "label": "Intake dry",
+      "detail": "Pack count at 0 with no latest IDs \u2014 no work is entering the pipeline.",
+      "severity": "watch"
+    },
+    {
+      "label": "Price feeds healthy",
+      "detail": "Oracle returning current Base-ecosystem prices with 24h deltas. USDC peg intact.",
       "severity": "info"
     },
     {
-      "label": "Intake empty",
-      "detail": "0 packs queued. No triage or audit work in pipeline.",
-      "severity": "info"
-    },
-    {
-      "label": "USDC peg stable",
-      "detail": "USDC at $0.9995 with minimal 24h drift. Settlement layer intact for future x402 flows.",
-      "severity": "info"
+      "label": "Repo blog-only activity",
+      "detail": "Last 3 commits are blog posts, no operational or commerce code changes.",
+      "severity": "watch"
     }
   ],
   "oracle_snapshot": {
     "feeds": {
       "base-ecosystem-prices": {
         "aerodrome-finance": {
-          "usd": 0.31966,
-          "usd_24h_change": -12.406059602402312
+          "usd": 0.317649,
+          "usd_24h_change": -2.143071854782824
         },
         "ethereum": {
-          "usd": 1566.52,
-          "usd_24h_change": -11.538260427999566
+          "usd": 1554.8,
+          "usd_24h_change": -2.0466312955884027
         },
         "usd-coin": {
-          "usd": 0.999454,
-          "usd_24h_change": -0.02082164458704093
+          "usd": 0.999722,
+          "usd_24h_change": 0.005671963996306947
         }
       }
     },
-    "ts": 1780676064
+    "ts": 1780763750
   },
   "worker_snapshot": {
     "cycles": null,
@@ -74,7 +74,7 @@
   "intake_pack_count": 0,
   "model": "glm-5.1:cloud",
   "disclaimer": "Automated operational pulse from swarm feeds \u2014 not financial advice. Data freshness depends on factory cycle interval.",
-  "_raw_collected_at": "2026-06-05T16:14:24.183412+00:00",
+  "_raw_collected_at": "2026-06-06T16:35:50.297845+00:00",
   "github": {
     "repo": "Hobie1Kenobi/agentic-crypto-swarm-prototype",
     "available": true,
@@ -83,9 +83,15 @@
     "open_issues": 2,
     "default_branch": "master",
     "html_url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
-    "pushed_at": "2026-06-03T21:42:31Z",
+    "pushed_at": "2026-06-05T17:04:42Z",
     "description": "Agentic Swarm Marketplace: MCP + x402 machine-paid SKUs \u2014 XRPL (T54) and Base USDC \u2014 for contract triage, audits, monitoring, and agent commerce. Streamable HTTP for Smithery/Glama/Cursor; public disc",
     "recent_commits": [
+      {
+        "sha": "52a3955",
+        "message": "chore(blog): ASM blogger agent post",
+        "author": "Your Name",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/52a3955017149e2fe28996167ca145063a7c7aba"
+      },
       {
         "sha": "e33e578",
         "message": "chore(blog): ASM blogger agent post",
@@ -97,37 +103,30 @@
         "message": "chore(blog): ASM blogger agent post",
         "author": "Your Name",
         "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/b172203202462743535c672b48fcf65e13bd1ead"
-      },
-      {
-        "sha": "2051a9d",
-        "message": "chore(blog): ASM blogger agent post",
-        "author": "Your Name",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/2051a9d4e2c54986846825c1196c9b7b65cd0788"
       }
     ]
   },
   "marketing_campaign": {
-    "campaign_id": "5705023b-8293-4969-8ac5-fe913ccb5a49:sku_research_brief",
-    "theme_id": "sku_research_brief",
-    "theme_title": "Research brief SKU",
+    "campaign_id": "a4f26fa0-ad8e-40b8-9b8c-8446188b563e:smithery_mcp",
+    "theme_id": "smithery_mcp",
+    "theme_title": "Smithery MCP listing",
     "rails": [
-      "LLM",
-      "Base",
-      "x402"
+      "MCP",
+      "Smithery"
     ],
-    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/research-brief",
-    "cta_label": "Research brief",
+    "cta_url": "https://api.agentic-swarm-marketplace.com/mcp",
+    "cta_label": "MCP endpoint",
     "accent_color": 54442,
-    "hook": "Research briefs with citations \u2014 built for agent due-diligence",
-    "body_short": "While markets cool, autonomous agents still need rigorous analysis. The Research Brief SKU delivers multi-section LLM reports with full citation discipline, paid seamlessly through Base USDC x402 via the agent commerce API. Start producing verified briefs \u2192 https://api.agentic-swarm-marketplace.com/x402/v1/research-brief",
-    "body_long": "While the swarm idles through a double-digit drawdown, your agent can still generate actionable intelligence. The **Research Brief SKU** produces multi-section LLM briefs with citations discipline \u2014 purpose-built for agent due-diligence workflows that demand traceability over hand-waving. Connect via MCP + x402 in under 5 minutes and start pulling sourced, verified briefs on demand. Rails: `LLM`, `Base`, `x402`. Payment flows through Base USDC x402 using the same wallet path as existing commerce data, so there's zero new infrastructure to stand up. Start researching \u2192 https://api.agentic-swarm-marketplace.com/x402/v1/research-brief",
-    "hashtags": "agent commerce API, Base USDC x402, research briefs, x402 marketplace",
+    "hook": "Dormant swarm? MCP endpoint live \u2014 agents discover paid tools instantly",
+    "body_short": "Oracle is live but zero cycles are spinning \u2014 connect remote agents to MCP paid tools without cloning repos. The agent commerce API is published on Smithery and ready for activation. Start here: https://api.agentic-swarm-marketplace.com/mcp",
+    "body_long": "The agentic-swarm-marketplace MCP server is now published on **Smithery** \u2014 remote agents discover paid tools without ever cloning the repo. Pair it with the x402 seller + T54 stack and you've got agent-to-agent payments flowing in under 5 minutes. Right now the bazaar sits empty and workers idle at cold start; that changes the moment you list your first SKU. Base USDC contract triage for autonomous buyers is wired and waiting. **Rails: MCP, Smithery.** Activate the swarm: https://api.agentic-swarm-marketplace.com/mcp",
+    "hashtags": "MCP Smithery agent-commerce x402",
     "model": "glm-5.1:cloud",
-    "generated_at": "2026-06-05T16:14:52.619774+00:00",
+    "generated_at": "2026-06-06T16:36:18.595841+00:00",
     "facts": [
-      "Multi-section LLM brief with citations discipline.",
-      "Base USDC x402 (same wallet flow as commerce data); XRPL via /t54 sibling.",
-      "Built for agent due-diligence workflows."
+      "Published MCP server for agentic-swarm-marketplace.",
+      "Remote agents discover paid tools without cloning the repo.",
+      "Pairs with x402 seller + T54 stack."
     ]
   }
 }

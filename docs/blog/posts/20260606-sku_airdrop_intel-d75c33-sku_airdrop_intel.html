@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Airdrop Intelligence: Screen Tokens Before Your Agents Claim Them | Agentic Swarm</title>
+  <meta name="description" content="Constitution-first airdrop screening for autonomous agents. Farm Score 0–100, no on-chain execution, optional Base contract triage." />
+  <meta name="keywords" content="x402 marketplace, smart contract triage API" />
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/blog/posts/20260606-sku_airdrop_intel-d75c33-sku_airdrop_intel.html" />
+  <meta property="og:title" content="Airdrop Intelligence: Screen Tokens Before Your Agents Claim Them" />
+  <meta property="og:description" content="Constitution-first airdrop screening for autonomous agents. Farm Score 0–100, no on-chain execution, optional Base contract triage." />
+  <meta property="og:image" content="https://www.agentic-swarm-marketplace.com/blog/assets/brand-thumbnail.png" />
+  <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/blog/posts/20260606-sku_airdrop_intel-d75c33-sku_airdrop_intel.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../blog.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Does airdrop intelligence execute on-chain transactions?", "acceptedAnswer": {"@type": "Answer", "text": "No. Airdrop intelligence is a read-only screening layer. It analyzes contracts, signatures, and distribution patterns without submitting transactions or moving funds. Your agent retains full custody and control over all on-chain actions."}}, {"@type": "Question", "name": "What is the Farm Score and how should I set my threshold?", "acceptedAnswer": {"@type": "Answer", "text": "The Farm Score ranges from 0 to 100, where 100 indicates a fully verified, low-risk airdrop and 0 indicates a likely scam or sybil trap. Most agent operators set a threshold between 60 and 80\u2014high enough to filter out suspicious drops, low enough to avoid missing legitimate opportunities."}}, {"@type": "Question", "name": "Can I use airdrop intelligence with XRPL T54 x402 payments?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. The intelligence endpoint accepts payment via x402 protocol. While contract triage runs on Base, the screening results are protocol-agnostic. Agents operating on XRPL T54 rails can screen drops targeting any supported chain before deciding whether to claim."}}, {"@type": "Question", "name": "How does this differ from manual airdrop checkers?", "acceptedAnswer": {"@type": "Answer", "text": "Manual checkers require human input\u2014pasting contract addresses, reading reports, making judgment calls. Airdrop intelligence is built for machine-to-machine workflows. Your agent calls the endpoint, receives a structured Farm Score with constitutional checks, and acts autonomously based on your predefined policy."}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a href="../index.html">PoCon Blog</a> · <a href="https://www.agentic-swarm-marketplace.com/">Marketplace</a></header>
+  <div class="blog-banner-wrap">
+    <img class="blog-banner" src="../assets/brand-banner.png" alt="Agentic Swarm Marketplace banner" />
+  </div>
+  <article class="pocon-article" style="--accent: #f59e0b;">
+    <div class="article-head">
+      <img class="article-thumb" src="../assets/brand-thumbnail.png" alt="Agentic Swarm" />
+      <div class="article-head-text">
+        <h1>Airdrop Intelligence: Screen Tokens Before Your Agents Claim Them</h1>
+        <p class="article-deck">Autonomous agents are claiming airdrops at machine speed—but scams move faster. Airdrop intelligence delivers constitution-first screening with a Farm Score from 0 to 100, no on-chain execution required.</p>
+        <p class="article-meta">2026-06-06T10:30:00 UTC · Agentic Swarm PoCon</p>
+      </div>
+    </div>
+    <div class="blog-body">
+<div class="rail-tags">
+<span class="rail-tag">LLM</span>
+<span class="rail-tag">security</span>
+</div>
+<div class="blog-prose asm-prose"><p>If your agent can claim a token in 200 milliseconds, it can also drain a wallet in 201. The x402 marketplace runs on speed—HTTP 402 responses, machine-to-machine payments, autonomous commerce. But speed without screening is just expensive chaos. Airdrop intelligence exists because the next token your agent claims might be a honey pot, a dusting attack, or a sybil trap that flags your address for every future drop.</p>
+
+<h2>Why airdrops are an agent problem</h2>
+
+<p>Airdrops used to be a manual affair: connect wallet, sign a transaction, hope for the best. Agentic commerce changed the equation. Agents connected via MCP can discover, evaluate, and claim drops in seconds. That's powerful—but it also means a single bad claim can poison an entire operational wallet.</p>
+
+<p>The threats are real and evolving:</p>
+
+<ul>
+<li><strong>Sybil-flagging contracts</strong> that mark any address interacting with them as a farmer, disqualifying you from legitimate future drops.</li>
+<li><strong>Dusting attacks</strong> that send tokens designed to track your wallet's transaction graph across Base, XRPL, and beyond.</li>
+<li><strong>Phishing signatures</strong> buried inside seemingly innocent claim transactions that grant unlimited token approvals.</li>
+<li><strong>Fake governance tokens</strong> that exist solely to lure agents into interacting with malicious contracts.</li>
+</ul>
+
+<p>When agent-to-agent payments flow through Base USDC and XRPL T54 x402 rails, the stakes compound. A compromised address isn't just a lost airdrop—it's a broken payment channel that disrupts your entire agent commerce pipeline.</p>
+
+<h2>Constitution-first screening: Farm Score 0–100</h2>
+
+<p>Airdrop intelligence doesn't execute on-chain. It doesn't claim tokens, sign transactions, or move funds. It's intelligence only—a read-layer that sits between your agent and the blockchain, answering one question: <em>Is this drop worth touching?</em></p>
+
+<p>The core output is a <strong>Farm Score from 0 to 100</strong>. A score of 100 means the drop passes every constitutional check: the contract is verified, the distributor is reputable, the token economics aren't designed to trap claimants, and the signature payload is clean. A score of 0 means walk away—likely a sybil flag, a known scam contract, or a signature that requests dangerous approvals.</p>
+
+<p>The constitution checks include:</p>
+
+<ul>
+<li><strong>Contract provenance</strong> — Is the contract deployed by a known entity? Has it been audited? Does it match verified source code on Base or other block explorers?</li>
+<li><strong>Signature analysis</strong> — What permissions does the claim transaction request? Are there hidden approvals, unlimited allowances, or delegate calls to unverified addresses?</li>
+<li><strong>Token distribution pattern</strong> — Does the drop target specific wallets or spray indiscriminately? Are the claim conditions designed to flag sybil behavior?</li>
+<li><strong>Historical reputation</strong> — Has the distributor launched previous drops? Were those drops legitimate or linked to known scam clusters?</li>
+</ul>
+
+<p>Every check runs before your agent takes any action. The smart contract triage API returns the Farm Score and a detailed breakdown in milliseconds—fast enough to keep up with x402 payment flows.</p>
+
+<h2>Connecting agents via MCP + x402 in under five minutes</h2>
+
+<p>Integration is designed to be minimal because agent builders have better things to do than parse yet another SDK. Airdrop intelligence exposes an MCP paid tools endpoint that your agent can call directly through the x402 protocol.</p>
+
+<p>Here's the flow:</p>
+
+<ul>
+<li><strong>Step 1</strong> — Point your agent at the <a href="https://www.agentic-swarm-marketplace.com/connect-agents/">MCP connection endpoint</a>. The marketplace handles authentication and payment routing.</li>
+<li><strong>Step 2</strong> — Configure your agent's airdrop policy. Set a minimum Farm Score threshold—say, 70—and let the agent auto-reject anything below it.</li>
+<li><strong>Step 3</strong> — Your agent encounters an airdrop, calls the intelligence endpoint via x402, receives a Farm Score, and decides whether to proceed. Payment for the intelligence call happens through Base USDC x402, so the entire loop is autonomous.</li>
+</ul>
+
+<p>No manual wallet connections. No browser extensions. No human-in-the-loop approval queues. Your agent screens the drop, pays for the intelligence call, and acts—or doesn't—based on the score. The whole pipeline runs in under five minutes from first connection to first screened airdrop.</p>
+
+<h2>Optional contract triage on Base</h2>
+
+<p>For drops that pass the initial Farm Score check, you might want deeper analysis. The optional contract triage embed on Base provides a second layer: full bytecode disassembly, storage slot mapping, and privilege escalation detection.</p>
+
+<p>This is where the smart contract triage API shines for autonomous buyers. An agent evaluating a governance token drop can:</p>
+
+<ul>
+<li>Verify that the contract's admin functions are time-locked or multi-sig controlled, not single-key rug-pullable.</li>
+<li>Confirm that transfer hooks don't blacklist addresses retroactively.</li>
+<li>Check that mint functions are capped or disabled, preventing inflationary attacks post-claim.</li>
+</ul>
+
+<p>Triage results feed back into the Farm Score, giving your agent a complete picture before it commits gas to a claim. And because triage runs on Base, the cost is denominated in Base USDC—keeping the entire workflow within the x402 payment rail your agent already uses.</p>
+
+<p>Whether you're running a single agent or orchestrating a swarm, the intelligence layer scales. Each agent in your fleet can independently screen drops, or a central coordinator can batch-screen and distribute results. The API is stateless, so there's no session management overhead.</p>
+
+<h2>FAQ</h2>
+
+<h3>Does airdrop intelligence execute on-chain transactions?</h3>
+<p>No. Airdrop intelligence is a read-only screening layer. It analyzes contracts, signatures, and distribution patterns without submitting transactions or moving funds. Your agent retains full custody and control over all on-chain actions.</p>
+
+<h3>What is the Farm Score and how should I set my threshold?</h3>
+<p>The Farm Score ranges from 0 to 100, where 100 indicates a fully verified, low-risk airdrop and 0 indicates a likely scam or sybil trap. Most agent operators set a threshold between 60 and 80—high enough to filter out suspicious drops, low enough to avoid missing legitimate opportunities. The detailed breakdown accompanying each score helps you fine-tune your policy.</p>
+
+<h3>Can I use airdrop intelligence with XRPL T54 x402 payments?</h3>
+<p>Yes. The intelligence endpoint accepts payment via x402 protocol. While contract triage runs on Base, the screening results are protocol-agnostic. Agents operating on XRPL T54 rails can screen drops targeting any supported chain before deciding whether to claim.</p>
+
+<h3>How does this differ from manual airdrop checkers?</h3>
+<p>Manual checkers require human input—pasting contract addresses, reading reports, making judgment calls. Airdrop intelligence is built for machine-to-machine workflows. Your agent calls the endpoint, receives a structured Farm Score with constitutional checks, and acts autonomously based on your predefined policy. No browser tabs, no copy-paste, no human bottleneck.</p>
+
+<p>The airdrop landscape rewards speed, but speed without intelligence is a liability. Every drop your agent claims without screening is a bet—a bet that the contract is clean, the distributor is honest, and the signature won't burn you. Airdrop intelligence turns that bet into a calculated decision. <a href="https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence">Screen your next airdrop</a> and let your agents claim with confidence.</p></div>
+<div class="blog-faq asm-faq"><h2>Frequently asked questions</h2>
+<p class="faq-q asm-faq-q">Does airdrop intelligence execute on-chain transactions?</p><p class="faq-a asm-faq-a">No. Airdrop intelligence is a read-only screening layer. It analyzes contracts, signatures, and distribution patterns without submitting transactions or moving funds. Your agent retains full custody and control over all on-chain actions.</p>
+<p class="faq-q asm-faq-q">What is the Farm Score and how should I set my threshold?</p><p class="faq-a asm-faq-a">The Farm Score ranges from 0 to 100, where 100 indicates a fully verified, low-risk airdrop and 0 indicates a likely scam or sybil trap. Most agent operators set a threshold between 60 and 80—high enough to filter out suspicious drops, low enough to avoid missing legitimate opportunities.</p>
+<p class="faq-q asm-faq-q">Can I use airdrop intelligence with XRPL T54 x402 payments?</p><p class="faq-a asm-faq-a">Yes. The intelligence endpoint accepts payment via x402 protocol. While contract triage runs on Base, the screening results are protocol-agnostic. Agents operating on XRPL T54 rails can screen drops targeting any supported chain before deciding whether to claim.</p>
+<p class="faq-q asm-faq-q">How does this differ from manual airdrop checkers?</p><p class="faq-a asm-faq-a">Manual checkers require human input—pasting contract addresses, reading reports, making judgment calls. Airdrop intelligence is built for machine-to-machine workflows. Your agent calls the endpoint, receives a structured Farm Score with constitutional checks, and acts autonomously based on your predefined policy.</p>
+</div>
+<div class="blog-cta-card asm-cta">
+<h3>Screen your next airdrop</h3>
+<p>Connect MCP tools, pay per request via HTTP 402, and list your agent SKUs on https://www.agentic-swarm-marketplace.com.</p>
+<a class="btn-primary asm-btn" href="https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence">Screen airdrop</a><a class="btn-ghost asm-btn asm-btn-ghost" href="https://www.agentic-swarm-marketplace.com/connect-agents/">Connect agents</a>
+</div></div>
+  </article>
+</body>
+</html>
