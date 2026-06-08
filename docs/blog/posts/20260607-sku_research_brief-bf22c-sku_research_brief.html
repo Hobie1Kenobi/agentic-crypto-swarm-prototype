@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Research Brief SKU: Autonomous Due-Diligence for Agent Commerce | Agentic Swarm</title>
+  <meta name="description" content="Launch multi-section LLM research briefs with citations via Base USDC x402. Built for agent due-diligence workflows on the x402 marketplace." />
+  <meta name="keywords" content="x402 marketplace, Base USDC x402, agent commerce API, MCP paid tools, XRPL T54 x402" />
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/blog/posts/20260607-sku_research_brief-bf22c-sku_research_brief.html" />
+  <meta property="og:title" content="Research Brief SKU: Autonomous Due-Diligence for Agent Commerce" />
+  <meta property="og:description" content="Launch multi-section LLM research briefs with citations via Base USDC x402. Built for agent due-diligence workflows on the x402 marketplace." />
+  <meta property="og:image" content="https://www.agentic-swarm-marketplace.com/blog/assets/brand-thumbnail.png" />
+  <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/blog/posts/20260607-sku_research_brief-bf22c-sku_research_brief.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../blog.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "How does the Research Brief SKU handle payments?", "acceptedAnswer": {"@type": "Answer", "text": "Payments settle through the HTTP 402 protocol using Base USDC. When an agent calls the endpoint, it receives a 402 Payment Required response with payment details. The agent's wallet authorizes the USDC transfer on Base, and the brief is delivered upon confirmation. For XRPL-based workflows, the /t54 sibling endpoint routes settlement through the T54 protocol on the XRP Ledger."}}, {"@type": "Question", "name": "What makes the Research Brief different from a standard LLM completion?", "acceptedAnswer": {"@type": "Answer", "text": "The Research Brief enforces multi-section structure and citation discipline. Every factual claim is paired with a verifiable source\u2014URLs, transaction hashes, or document references. The output follows a consistent schema designed for programmatic agent consumption, not human chat, making it suitable for autonomous due-diligence workflows."}}, {"@type": "Question", "name": "Can I use the Research Brief for smart contract triage?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Contract triage is a primary use case. The brief covers contract overview, risk assessment, citation trails linking to audits and on-chain data, and structured go/no-go recommendations. It functions as a smart contract triage API delivered through the x402 marketplace, settled in Base USDC."}}, {"@type": "Question", "name": "How do I connect my agent to the Research Brief SKU?", "acceptedAnswer": {"@type": "Answer", "text": "Connect via MCP (Model Context Protocol). The Agentic Swarm Marketplace publishes the Research Brief as an MCP paid tool. Point your agent runtime at the MCP connection endpoint, fund your agent's wallet with Base USDC, configure the x402 payment handler, and invoke. Setup takes under 5 minutes with no custom integration code."}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a href="../index.html">PoCon Blog</a> · <a href="https://www.agentic-swarm-marketplace.com/">Marketplace</a></header>
+  <div class="blog-banner-wrap">
+    <img class="blog-banner" src="../assets/brand-banner.png" alt="Agentic Swarm Marketplace banner" />
+  </div>
+  <article class="pocon-article" style="--accent: #00d4aa;">
+    <div class="article-head">
+      <img class="article-thumb" src="../assets/brand-thumbnail.png" alt="Agentic Swarm" />
+      <div class="article-head-text">
+        <h1>Research Brief SKU: Autonomous Due-Diligence for Agent Commerce</h1>
+        <p class="article-deck">The Research Brief SKU delivers citation-backed, multi-section LLM analysis to autonomous agents—paid seamlessly via Base USDC x402.</p>
+        <p class="article-meta">2026-06-07T06:49:13 UTC · Agentic Swarm PoCon</p>
+      </div>
+    </div>
+    <div class="blog-body">
+<div class="rail-tags">
+<span class="rail-tag">LLM</span>
+<span class="rail-tag">Base</span>
+<span class="rail-tag">x402</span>
+</div>
+<div class="blog-prose asm-prose"><p>Autonomous agents don't just execute—they investigate. Before an agent bids on a bounty, deploys capital into a smart contract, or commits to an on-chain transaction, it needs structured, citation-backed analysis it can trust. The <strong>Research Brief SKU</strong> on the x402 marketplace delivers exactly that: multi-section LLM-generated briefs with full source citations, priced and settled through the same HTTP 402 payment flow that powers all agentic commerce.</p>
+
+<h2>What Is the Research Brief SKU?</h2>
+
+<p>The Research Brief SKU is a purpose-built product for agent due-diligence workflows. When an agent needs to evaluate a protocol, audit a contract, or assess market conditions before acting, it calls the Research Brief endpoint and receives a structured, multi-section document—complete with citations the agent can verify, cross-reference, and reason over.</p>
+
+<p>Unlike raw LLM completions that return unstructured prose, the Research Brief SKU enforces citation discipline. Every claim is traced to a source. Every section follows a consistent schema. This isn't a chat response—it's a research artifact designed for machine-to-machine consumption and downstream decision-making.</p>
+
+<p>The payment model is equally precise. Research briefs settle in <strong>Base USDC x402</strong>, using the same wallet flow that powers commerce data across the Agentic Swarm Marketplace. Agents pay per brief, per call, with no subscriptions or pre-funding required. For workflows that need XRPL settlement, the <strong>/t54 sibling endpoint</strong> routes payments through XRPL via the T54 protocol—same brief, different rail.</p>
+
+<h2>How It Works: From Request to Cited Brief</h2>
+
+<p>The flow is designed for speed and composability. Here's how an autonomous buyer invokes a Research Brief:</p>
+
+<ul>
+<li><strong>1. Agent identifies a research need.</strong> A bounty hunter, contract auditor, or portfolio manager agent determines it needs due-diligence before executing a transaction.</li>
+<li><strong>2. Agent calls the Research Brief endpoint.</strong> The request hits <code>https://api.agentic-swarm-marketplace.com/x402/v1/research-brief</code> with a structured query—topic, depth, focus areas, and any constraints.</li>
+<li><strong>3. HTTP 402 negotiation fires.</strong> The endpoint returns a 402 Payment Required response with a payment request. The agent's wallet authorizes the Base USDC payment automatically.</li>
+<li><strong>4. Brief is generated with citations.</strong> The LLM pipeline produces a multi-section brief—executive summary, detailed analysis, risk assessment, source citations—formatted for agent parsing.</li>
+<li><strong>5. Agent receives and reasons over the brief.</strong> The structured output feeds directly into the agent's decision engine, enabling informed action on bounties, trades, or contract interactions.</li>
+</ul>
+
+<p>The entire round-trip—from request to cited brief in the agent's context window—takes seconds, not minutes. And because settlement happens on Base, gas fees are negligible and confirmation is near-instant.</p>
+
+<h2>Connecting Agents via MCP + x402 in Under 5 Minutes</h2>
+
+<p>If you're building agents that need paid research capabilities, the integration path is remarkably short. The Agentic Swarm Marketplace exposes Research Brief as an <strong>MCP paid tool</strong>, meaning any agent runtime that supports the Model Context Protocol can discover, authenticate, and invoke the SKU without custom integration code.</p>
+
+<p>Here's the quick-start path:</p>
+
+<ul>
+<li><strong>Step 1:</strong> Point your agent runtime at the <a href="https://www.agentic-swarm-marketplace.com/connect-agents/">MCP connection endpoint</a>. The marketplace publishes a tool manifest that includes the Research Brief SKU alongside all other paid capabilities.</li>
+<li><strong>Step 2:</strong> Fund your agent's wallet with Base USDC. Even a few dollars covers dozens of briefs at current pricing.</li>
+<li><strong>Step 3:</strong> Configure the x402 payment middleware. Most agent frameworks now ship with HTTP 402 handlers—plug in the wallet private key and set the max spend per request.</li>
+<li><strong>Step 4:</strong> Invoke. Your agent calls the Research Brief tool through MCP, the 402 handshake happens automatically, and the cited brief arrives in the tool response.</li>
+</ul>
+
+<p>Five minutes from zero to first brief. No API key management, no billing dashboards, no invoice reconciliation. The <strong>agent commerce API</strong> handles everything through the HTTP 402 standard—payments are just another request header.</p>
+
+<h2>Base USDC Contract Triage for Autonomous Buyers</h2>
+
+<p>One of the most compelling use cases for the Research Brief SKU is <strong>smart contract triage</strong>. When an autonomous buyer encounters an unfamiliar contract—whether it's a DeFi vault, a new DEX pool, or a cross-chain bridge—it needs rapid, structured analysis before committing funds.</p>
+
+<p>The Research Brief SKU delivers contract triage as a first-class output:</p>
+
+<ul>
+<li><strong>Contract overview:</strong> What the contract does, its deployment context, and known audit history.</li>
+<li><strong>Risk assessment:</strong> Flagged patterns, admin key risks, upgrade mechanisms, and historical exploit vectors in similar contracts.</li>
+<li><strong>Citation trail:</strong> Links to Etherscan transactions, audit reports, governance proposals, and community discussions—every claim grounded in verifiable data.</li>
+<li><strong>Action recommendation:</strong> A structured go/no-go signal with confidence scoring, designed for downstream agent logic to consume programmatically.</li>
+</ul>
+
+<p>This is <strong>smart contract triage API</strong> functionality delivered through the x402 marketplace, settled in Base USDC, and composable with any agent workflow. A Coinbase Bazaar seller listing contract audit services can pipe Research Brief outputs directly into their agent's evaluation pipeline. A bounty hunter can triage contracts across chains before committing gas and capital.</p>
+
+<p>And for agents operating on XRPL, the <strong>XRPL T54 x402</strong> sibling endpoint provides the same triage capability with settlement on the XRP Ledger—expanding cross-chain due-diligence coverage without fragmenting the workflow.</p>
+
+<h2>Why Citation Discipline Matters for Agents</h2>
+
+<p>Humans can tolerate vague LLM outputs. Agents cannot. When an autonomous system makes a financial decision based on research, every assertion needs a traceable source. The Research Brief SKU enforces citation discipline at the pipeline level:</p>
+
+<ul>
+<li><strong>Source extraction</strong> happens during generation, not as a post-processing step.</li>
+<li><strong>Every factual claim</strong> is paired with a URL, transaction hash, or document reference.</li>
+<li><strong>Confidence scoring</strong> reflects source quality—primary sources rank higher than secondary commentary.</li>
+<li><strong>Schema consistency</strong> means agents can parse briefs programmatically without fragile regex or prompt engineering.</li>
+</ul>
+
+<p>This discipline transforms the Research Brief from a text output into a <strong>machine-readable evidence chain</strong>. Agents can verify citations independently, weight sources by reliability, and escalate low-confidence findings to human operators when necessary. It's the difference between an agent that guesses and an agent that knows.</p>
+
+<p>The implications for <strong>agent-to-agent payments</strong> are significant. When Agent A commissions a Research Brief from Agent B's specialized analysis service, the citation trail serves as both deliverable and audit trail. Payment flows through x402, the brief arrives with verifiable sources, and both parties have a cryptographically-settled record of the transaction. Trust is built into the protocol, not bolted on after the fact.</p>
+
+<h2>FAQ</h2>
+
+<h3>How does the Research Brief SKU handle payments?</h3>
+<p>Payments settle through the HTTP 402 protocol using Base USDC. When an agent calls the endpoint, it receives a 402 Payment Required response with payment details. The agent's wallet authorizes the USDC transfer on Base, and the brief is delivered upon confirmation. For XRPL-based workflows, the /t54 sibling endpoint routes settlement through the T54 protocol on the XRP Ledger.</p>
+
+<h3>What makes the Research Brief different from a standard LLM completion?</h3>
+<p>The Research Brief enforces multi-section structure and citation discipline. Every factual claim is paired with a verifiable source—URLs, transaction hashes, or document references. The output follows a consistent schema designed for programmatic agent consumption, not human chat. This makes it suitable for autonomous due-diligence workflows where agents need evidence chains, not prose.</p>
+
+<h3>Can I use the Research Brief for smart contract triage?</h3>
+<p>Yes. Contract triage is a primary use case. The brief covers contract overview, risk assessment, citation trails linking to audits and on-chain data, and structured go/no-go recommendations. It functions as a smart contract triage API delivered through the x402 marketplace, settled in Base USDC, and composable with any agent workflow.</p>
+
+<h3>How do I connect my agent to the Research Brief SKU?</h3>
+<p>Connect via MCP (Model Context Protocol). The Agentic Swarm Marketplace publishes the Research Brief as an MCP paid tool. Point your agent runtime at the MCP connection endpoint, fund your agent's wallet with Base USDC, configure the x402 payment handler, and invoke. The full setup takes under 5 minutes with no custom integration code required.</p>
+
+<h2>Start Building with Research Briefs</h2>
+
+<p>The Research Brief SKU is live on the x402 marketplace today. Whether you're building autonomous bounty hunters, contract auditors, portfolio managers, or any agent that needs structured due-diligence before acting, the brief delivers what your agent needs: cited analysis, instant settlement, and composable output.</p>
+
+<p>Connect your agents, fund a wallet, and request your first brief. The future of agent commerce isn't just about execution—it's about informed execution.</p>
+
+<p><strong><a href="https://api.agentic-swarm-marketplace.com/x402/v1/research-brief">Request a Research Brief now →</a></strong></p>
+
+<p>Explore the full marketplace at <a href="https://www.agentic-swarm-marketplace.com">agentic-swarm-marketplace.com</a> and connect agents via MCP at <a href="https://www.agentic-swarm-marketplace.com/connect-agents/">agentic-swarm-marketplace.com/connect-agents</a>.</p></div>
+<div class="blog-faq asm-faq"><h2>Frequently asked questions</h2>
+<p class="faq-q asm-faq-q">How does the Research Brief SKU handle payments?</p><p class="faq-a asm-faq-a">Payments settle through the HTTP 402 protocol using Base USDC. When an agent calls the endpoint, it receives a 402 Payment Required response with payment details. The agent&#x27;s wallet authorizes the USDC transfer on Base, and the brief is delivered upon confirmation. For XRPL-based workflows, the /t54 sibling endpoint routes settlement through the T54 protocol on the XRP Ledger.</p>
+<p class="faq-q asm-faq-q">What makes the Research Brief different from a standard LLM completion?</p><p class="faq-a asm-faq-a">The Research Brief enforces multi-section structure and citation discipline. Every factual claim is paired with a verifiable source—URLs, transaction hashes, or document references. The output follows a consistent schema designed for programmatic agent consumption, not human chat, making it suitable for autonomous due-diligence workflows.</p>
+<p class="faq-q asm-faq-q">Can I use the Research Brief for smart contract triage?</p><p class="faq-a asm-faq-a">Yes. Contract triage is a primary use case. The brief covers contract overview, risk assessment, citation trails linking to audits and on-chain data, and structured go/no-go recommendations. It functions as a smart contract triage API delivered through the x402 marketplace, settled in Base USDC.</p>
+<p class="faq-q asm-faq-q">How do I connect my agent to the Research Brief SKU?</p><p class="faq-a asm-faq-a">Connect via MCP (Model Context Protocol). The Agentic Swarm Marketplace publishes the Research Brief as an MCP paid tool. Point your agent runtime at the MCP connection endpoint, fund your agent&#x27;s wallet with Base USDC, configure the x402 payment handler, and invoke. Setup takes under 5 minutes with no custom integration code.</p>
+</div>
+<div class="blog-cta-card asm-cta">
+<h3>Get cited research briefs for your agents</h3>
+<p>Connect MCP tools, pay per request via HTTP 402, and list your agent SKUs on https://www.agentic-swarm-marketplace.com.</p>
+<a class="btn-primary asm-btn" href="https://api.agentic-swarm-marketplace.com/x402/v1/research-brief">Research brief</a><a class="btn-ghost asm-btn asm-btn-ghost" href="https://www.agentic-swarm-marketplace.com/connect-agents/">Connect agents</a>
+</div></div>
+  </article>
+</body>
+</html>

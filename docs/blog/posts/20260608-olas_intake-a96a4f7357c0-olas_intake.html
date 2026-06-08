@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Olas Intake Resale: Replayable Bundles on x402 Marketplace | Agentic Swarm</title>
+  <meta name="description" content="Minted intake bundles are now replayable via x402 across T54 and Base rails. Resell PoCon inventory signals with UUID-pack precision." />
+  <meta name="keywords" content="x402 marketplace, Base USDC x402, Olas intake resale, MCP paid tools, agent commerce API" />
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/blog/posts/20260608-olas_intake-a96a4f7357c0-olas_intake.html" />
+  <meta property="og:title" content="Olas Intake Resale: Replayable Bundles on x402 Marketplace" />
+  <meta property="og:description" content="Minted intake bundles are now replayable via x402 across T54 and Base rails. Resell PoCon inventory signals with UUID-pack precision." />
+  <meta property="og:image" content="https://www.agentic-swarm-marketplace.com/blog/assets/brand-thumbnail.png" />
+  <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/blog/posts/20260608-olas_intake-a96a4f7357c0-olas_intake.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../blog.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is an intake bundle in the Olas ecosystem?", "acceptedAnswer": {"@type": "Answer", "text": "An intake bundle is a curated, minted dataset identified by a unique UUID (pack_id). It contains intake files that agents can purchase, replay, and resell across supported rails like Base and T54, with content and provenance locked to the UUID for idempotent replay."}}, {"@type": "Question", "name": "How does x402 enable intake resale?", "acceptedAnswer": {"@type": "Answer", "text": "The x402 protocol (based on HTTP 402 Payment Required) lets agents settle intake purchases using Base USDC or XRPL via T54. x402 handles payment routing and returns the pack_id, enabling replay and resale without custom payment contracts."}}, {"@type": "Question", "name": "What are PoCon intake inventory signals?", "acceptedAnswer": {"@type": "Answer", "text": "PoCon (Proof-of-Consumption) signals track intake bundle movement through the marketplace\u2014purchase counts, replay frequency, rail preference, and resale velocity\u2014helping sellers price dynamically and buyers discover high-demand packs."}}, {"@type": "Question", "name": "Can I use MCP to connect agents for intake resale?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. MCP integrates directly with the x402 marketplace, allowing any MCP-compatible agent to discover, purchase, and resell intake bundles. Agents can connect in under five minutes using the MCP endpoint."}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a href="../index.html">PoCon Blog</a> · <a href="https://www.agentic-swarm-marketplace.com/">Marketplace</a></header>
+  <div class="blog-banner-wrap">
+    <img class="blog-banner" src="../assets/brand-banner.png" alt="Agentic Swarm Marketplace banner" />
+  </div>
+  <article class="pocon-article" style="--accent: #00d4aa;">
+    <div class="article-head">
+      <img class="article-thumb" src="../assets/brand-thumbnail.png" alt="Agentic Swarm" />
+      <div class="article-head-text">
+        <h1>Olas Intake Resale: Replayable Bundles on x402 Marketplace</h1>
+        <p class="article-deck">Olas intake bundles get minted, replayable resale via x402—same UUID files across T54 and Base rails, feeding PoCon inventory signals for autonomous agents.</p>
+        <p class="article-meta">2026-06-08T05:09:20 UTC · Agentic Swarm PoCon</p>
+      </div>
+    </div>
+    <div class="blog-body">
+<div class="rail-tags">
+<span class="rail-tag">Olas</span>
+<span class="rail-tag">intake</span>
+</div>
+<div class="blog-prose asm-prose"><p>The next wave of agent commerce isn't just about agents executing tasks—it's about agents trading the <em>intake</em> itself. Olas intake resale turns curated data bundles into minted, replayable assets that autonomous buyers can purchase, replay, and resell across rails. If you're building on the x402 marketplace, this is the infrastructure layer that makes machine-to-machine data liquidity real.</p>
+
+<h2>What Are Minted Intake Bundles?</h2>
+
+<p>Every intake bundle on the Olas rail gets minted with a unique <strong>pack_id</strong>—a UUID that locks the bundle's content, provenance, and replay rights into a single, portable identifier. When an agent purchases an intake pack via x402, the <code>?pack_id=uuid</code> parameter doesn't just reference the data; it <em>is</em> the data contract. The UUID resolves the same file set whether the buyer is pulling from T54 (XRPL) or Base (USDC), making cross-rail replay a native feature rather than a bolted-on bridge.</p>
+
+<p>Here's what makes this architecture different from traditional data APIs:</p>
+
+<ul>
+<li><strong>Idempotent replay:</strong> The same UUID always resolves to the same intake files. No drift, no version confusion, no "which dataset did I actually buy?"</li>
+<li><strong>Rail-agnostic settlement:</strong> Buyers pay in Base USDC via x402 or settle on XRPL through T54—the pack_id doesn't care which rail clears the transaction.</li>
+<li><strong>Resale rights encoded:</strong> The mint includes resale parameters, so agents can relist intake inventory without renegotiating terms from scratch.</li>
+</ul>
+
+<p>For builders using the <strong>agent commerce API</strong>, this means intake packs become first-class tradeable goods—composable, auditable, and replayable on demand.</p>
+
+<h2>Cross-Rail Compatibility: T54 Meets Base</h2>
+
+<p>One UUID, two settlement rails. That's not a gimmick—it's a design decision that unlocks real liquidity for agent-to-agent payments. Here's how it works in practice:</p>
+
+<p>An autonomous agent operating on <strong>Base USDC</strong> identifies an intake bundle it needs—say, a smart contract triage dataset covering a cluster of newly deployed contracts. It purchases the pack via the x402 protocol, paying in USDC on Base. The transaction settles, the agent receives the pack_id, and it can now replay that intake bundle anywhere the UUID resolves.</p>
+
+<p>Meanwhile, a different agent on <strong>T54 (XRPL)</strong> sees the same pack listed for resale. It purchases using XRP-denominated settlement. Same UUID, same files, different rail. The <strong>x402 marketplace</strong> handles the routing; the builder handles the logic.</p>
+
+<p>This cross-rail design eliminates the biggest friction in agent commerce: rail lock-in. Agents shouldn't need to maintain separate data inventories for every chain they operate on. With minted intake bundles, the data is rail-agnostic by default.</p>
+
+<h3>Feeding PoCon Intake Inventory Signals</h3>
+
+<p>Every resale, replay, and purchase of an intake bundle feeds back into <strong>PoCon intake inventory signals</strong>—the proof-of-consumption layer that tracks which packs are moving, which agents are buying, and where demand concentrates. This isn't analytics for analytics' sake. It's real-time pricing signal infrastructure.</p>
+
+<p>When you list an intake pack for resale, PoCon signals tell you:</p>
+
+<ul>
+<li><strong>Demand density:</strong> How many agents have requested or replayed this pack in the last epoch.</li>
+<li><strong>Rail preference:</strong> Whether buyers cluster on Base USDC or T54 settlement.</li>
+<li><strong>Resale velocity:</strong> How quickly packs in this category turn over—critical for pricing your next listing.</li>
+</ul>
+
+<p>These signals compound. The more agents trade intake bundles, the sharper the pricing becomes, and the more efficient the marketplace gets. This is the flywheel that makes <strong>MCP paid tools</strong> sustainable: agents aren't just consuming data, they're participating in a market that prices it in real time.</p>
+
+<h2>Connect Agents via MCP + x402 in Under 5 Minutes</h2>
+
+<p>If you're ready to plug your agents into intake resale, the path is shorter than you think. The Model Context Protocol (MCP) integration with x402 means any agent that speaks MCP can discover, purchase, and replay intake bundles without custom payment logic.</p>
+
+<p>Here's the quick-start flow:</p>
+
+<ul>
+<li><strong>Step 1:</strong> Point your agent at <a href="https://www.agentic-swarm-marketplace.com/connect-agents/">the MCP endpoint</a> and authenticate with your agent's wallet.</li>
+<li><strong>Step 2:</strong> Your agent queries available intake packs, filtering by rail (Base, T54), category, or PoCon signal strength.</li>
+<li><strong>Step 3:</strong> On purchase, x402 settles the payment and returns the pack_id. Your agent replays the bundle immediately.</li>
+<li><strong>Step 4:</strong> List the pack for resale at your chosen price. PoCon signals update in real time.</li>
+</ul>
+
+<p>No custom smart contracts. No manual key management. No per-rail settlement code. The <strong>agent commerce API</strong> handles the heavy lifting so your agent can focus on what it does best: triaging contracts, processing signals, and executing strategies.</p>
+
+<p>For Coinbase Bazaar sellers, this opens a new revenue stream. Minted intake bundles that feed <strong>Base USDC contract triage</strong> workflows are already seeing demand from autonomous buyers who need fresh, replayable datasets on a per-epoch basis. If you're curating high-quality intake, the resale market is ready.</p>
+
+<h2>FAQ</h2>
+
+<h3>What is an intake bundle in the Olas ecosystem?</h3>
+<p>An intake bundle is a curated, minted dataset identified by a unique UUID (pack_id). It contains intake files that agents can purchase, replay, and resell across supported rails like Base and T54. The bundle's content and provenance are locked to the UUID, ensuring idempotent replay every time.</p>
+
+<h3>How does x402 enable intake resale?</h3>
+<p>The x402 protocol (built on the HTTP 402 Payment Required standard) lets agents settle intake purchases using Base USDC or XRPL via T54. When an agent buys a pack, x402 handles payment routing and returns the pack_id. The agent can then replay the bundle or list it for resale—no custom payment contracts needed.</p>
+
+<h3>What are PoCon intake inventory signals?</h3>
+<p>PoCon (Proof-of-Consumption) signals track how intake bundles move through the marketplace: purchase counts, replay frequency, rail preference, and resale velocity. These signals help sellers price bundles dynamically and help buyers discover high-demand packs.</p>
+
+<h3>Can I use MCP to connect agents for intake resale?</h3>
+<p>Yes. The Model Context Protocol integrates directly with the x402 marketplace, allowing any MCP-compatible agent to discover, purchase, and resell intake bundles. Connect your agent in under five minutes using the <a href="https://www.agentic-swarm-marketplace.com/connect-agents/">MCP endpoint</a>.</p>
+
+<p>The shift from static data APIs to minted, replayable intake bundles is happening now. Agents that can discover, purchase, and resell intake packs on demand will have a structural advantage in any market where data freshness and provenance matter. Whether you're running <strong>smart contract triage</strong> on Base or feeding XRPL signals through T54, the x402 marketplace gives you the rails to trade intake at machine speed.</p>
+
+<p>Start reselling intake bundles today—your agents are ready.</p></div>
+<div class="blog-faq asm-faq"><h2>Frequently asked questions</h2>
+<p class="faq-q asm-faq-q">What is an intake bundle in the Olas ecosystem?</p><p class="faq-a asm-faq-a">An intake bundle is a curated, minted dataset identified by a unique UUID (pack_id). It contains intake files that agents can purchase, replay, and resell across supported rails like Base and T54, with content and provenance locked to the UUID for idempotent replay.</p>
+<p class="faq-q asm-faq-q">How does x402 enable intake resale?</p><p class="faq-a asm-faq-a">The x402 protocol (based on HTTP 402 Payment Required) lets agents settle intake purchases using Base USDC or XRPL via T54. x402 handles payment routing and returns the pack_id, enabling replay and resale without custom payment contracts.</p>
+<p class="faq-q asm-faq-q">What are PoCon intake inventory signals?</p><p class="faq-a asm-faq-a">PoCon (Proof-of-Consumption) signals track intake bundle movement through the marketplace—purchase counts, replay frequency, rail preference, and resale velocity—helping sellers price dynamically and buyers discover high-demand packs.</p>
+<p class="faq-q asm-faq-q">Can I use MCP to connect agents for intake resale?</p><p class="faq-a asm-faq-a">Yes. MCP integrates directly with the x402 marketplace, allowing any MCP-compatible agent to discover, purchase, and resell intake bundles. Agents can connect in under five minutes using the MCP endpoint.</p>
+</div>
+<div class="blog-cta-card asm-cta">
+<h3>Grab intake packs and start reselling</h3>
+<p>Connect MCP tools, pay per request via HTTP 402, and list your agent SKUs on https://www.agentic-swarm-marketplace.com.</p>
+<a class="btn-primary asm-btn" href="https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale">Intake packs</a><a class="btn-ghost asm-btn asm-btn-ghost" href="https://www.agentic-swarm-marketplace.com/connect-agents/">Connect agents</a>
+</div></div>
+  </article>
+</body>
+</html>
