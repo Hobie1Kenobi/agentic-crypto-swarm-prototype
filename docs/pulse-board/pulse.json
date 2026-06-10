@@ -1,61 +1,61 @@
 {
   "sku_id": "ecosystem-pulse",
   "seller": "t54_xrpl",
-  "generated_at": "2026-06-08T05:09:02.852671+00:00",
-  "pulse_id": "2834ae5c-8e07-4195-8712-a96a4f7357c0",
-  "headline": "Oracle live with modest ETH gains; worker, commerce, and intake remain dormant",
-  "summary": "The oracle feed is actively tracking Base ecosystem prices with ETH showing a +3.7% 24h move and Aerodrome up ~1%. All downstream agents\u2014worker, commerce, and intake\u2014are idle with zero cycles, listings, or packs processed, indicating the swarm is in a pre-operational or paused state.",
+  "generated_at": "2026-06-10T09:14:38.950152+00:00",
+  "pulse_id": "ff131abe-0815-4181-9c86-57a2d4838ddc",
+  "headline": "Swarm cold-idle: oracle only active node, ETH/AERO correlated -3.5%, commerce and intake at zero",
+  "summary": "The oracle is the sole functioning component, feeding prices that show a correlated ~3.5% 24h decline across ETH and AERO while USDC holds peg. Worker has completed zero cycles, commerce has no providers or listings, and intake holds no packs \u2014 the x402/bazaar layer is entirely unprovisioned.",
   "sections": [
-    "Oracle: ETH at $1,653.24 (+3.69% 24h), AERO at $0.332 (+1.04%), USDC pegged at $0.9996 (stable). Price feeds are functional and current as of snapshot timestamp.",
-    "Worker: No cycles recorded (null), zero actions completed, no channels active. The execution layer is entirely offline or unconfigured.",
-    "Commerce & Intake: Zero providers, zero bazaar listings, zero monitor events, zero intake packs. The x402 marketplace and pack ingestion pipeline have not been initialized.",
-    "GitHub: Repo pushed 2026-06-06, 2 open issues, recent commits focused on blog content (3 consecutive 'chore(blog)' commits). No operational or agent-logic commits in recent history."
+    "Oracle: ETH $1,616.88 (-3.47%), AERO $0.3265 (-3.55%), USDC $0.9998 (+0.01%). Correlated risk-off move across volatile assets; stablecoin peg healthy.",
+    "Worker: Null cycles, null last_cycle_at, zero ok_actions, empty channels. No execution pipeline is running \u2014 the swarm cannot produce or act on any data.",
+    "Commerce/Intake: 0 providers, 0 bazaar listings, 0 monitor events, 0 intake packs. The x402 SKU marketplace and intake inventory are both completely empty. No agent-commerce flow is possible.",
+    "GitHub: Repo live with 2 open issues; last push 2026-06-08. Recent 3 commits are identical blog chores (5ba4fe3, 90a6d3a, 52a3955) \u2014 suggests stalled development cadence."
   ],
   "signals": [
     {
-      "label": "Worker inactivity",
-      "detail": "Worker has null cycles and zero actions\u2014execution engine is not running or not connected to oracle feeds.",
+      "label": "worker-dormant",
+      "detail": "Zero cycles executed; no channels, no actions. Swarm cannot operate without at least one active worker cycle.",
       "severity": "alert"
     },
     {
-      "label": "Commerce pipeline empty",
-      "detail": "Zero providers, listings, and monitor events indicate the x402/bazaar layer has not been bootstrapped.",
-      "severity": "alert"
-    },
-    {
-      "label": "Intake empty",
-      "detail": "No packs collected or processed; intake agent is idle with no work queued.",
+      "label": "commerce-empty",
+      "detail": "0 providers, 0 bazaar listings, 0 monitor events. x402 payment rails and SKU marketplace are unprovisioned.",
       "severity": "watch"
     },
     {
-      "label": "ETH price uptick",
-      "detail": "ETH +3.69% in 24h; moderate but notable move. No downstream impact yet as worker is dormant.",
+      "label": "intake-empty",
+      "detail": "0 packs, 0 pack IDs. No demand signal or work inventory exists for the swarm to process.",
+      "severity": "watch"
+    },
+    {
+      "label": "eth-aero-correlated-dip",
+      "detail": "Both ETH and AERO down ~3.5% in 24h. Not extreme but correlated; monitor for further downside.",
       "severity": "info"
     },
     {
-      "label": "Recent commits non-operational",
-      "detail": "Last 3 commits are blog-related; no agent logic, cycle, or commerce config changes pushed since June 6.",
-      "severity": "watch"
+      "label": "usdc-peg-stable",
+      "detail": "USDC at $0.9998, +0.01%. No depeg risk currently.",
+      "severity": "info"
     }
   ],
   "oracle_snapshot": {
     "feeds": {
       "base-ecosystem-prices": {
         "aerodrome-finance": {
-          "usd": 0.332038,
-          "usd_24h_change": 1.0434411771880474
+          "usd": 0.3265,
+          "usd_24h_change": -3.545145920306645
         },
         "ethereum": {
-          "usd": 1653.24,
-          "usd_24h_change": 3.6899038450308073
+          "usd": 1616.88,
+          "usd_24h_change": -3.47253896536882
         },
         "usd-coin": {
-          "usd": 0.99964,
-          "usd_24h_change": -0.0071958912523264465
+          "usd": 0.99976,
+          "usd_24h_change": 0.012132191001319254
         }
       }
     },
-    "ts": 1780895330
+    "ts": 1781082868
   },
   "worker_snapshot": {
     "cycles": null,
@@ -73,7 +73,7 @@
   "intake_pack_count": 0,
   "model": "glm-5.1:cloud",
   "disclaimer": "Automated operational pulse from swarm feeds \u2014 not financial advice. Data freshness depends on factory cycle interval.",
-  "_raw_collected_at": "2026-06-08T05:08:50.417193+00:00",
+  "_raw_collected_at": "2026-06-10T09:14:28.226506+00:00",
   "github": {
     "repo": "Hobie1Kenobi/agentic-crypto-swarm-prototype",
     "available": true,
@@ -82,9 +82,15 @@
     "open_issues": 2,
     "default_branch": "master",
     "html_url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
-    "pushed_at": "2026-06-06T16:41:20Z",
+    "pushed_at": "2026-06-08T05:27:50Z",
     "description": "Agentic Swarm Marketplace: MCP + x402 machine-paid SKUs \u2014 XRPL (T54) and Base USDC \u2014 for contract triage, audits, monitoring, and agent commerce. Streamable HTTP for Smithery/Glama/Cursor; public disc",
     "recent_commits": [
+      {
+        "sha": "5ba4fe3",
+        "message": "chore(blog): ASM blogger agent post",
+        "author": "Your Name",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/5ba4fe33500c20d2edce019e875b2e2806443f32"
+      },
       {
         "sha": "90a6d3a",
         "message": "chore(blog): ASM blogger agent post",
@@ -96,36 +102,30 @@
         "message": "chore(blog): ASM blogger agent post",
         "author": "Your Name",
         "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/52a3955017149e2fe28996167ca145063a7c7aba"
-      },
-      {
-        "sha": "e33e578",
-        "message": "chore(blog): ASM blogger agent post",
-        "author": "Your Name",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/e33e578f5cc712bae9fbce1dc3ec4496906fe570"
       }
     ]
   },
   "marketing_campaign": {
-    "campaign_id": "2834ae5c-8e07-4195-8712-a96a4f7357c0:olas_intake",
-    "theme_id": "olas_intake",
-    "theme_title": "Olas intake resale",
+    "campaign_id": "ff131abe-0815-4181-9c86-57a2d4838ddc:sku_contract_triage",
+    "theme_id": "sku_contract_triage",
+    "theme_title": "Contract triage \u00b7 30s screen",
     "rails": [
-      "Olas",
-      "intake"
+      "Base",
+      "security"
     ],
-    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
-    "cta_label": "Intake packs",
-    "accent_color": 54442,
-    "hook": "Minted Intake Bundles Now Replayable on x402",
-    "body_short": "Minted intake bundles are live and replayable via x402\u2014each pack carries a unique UUID across T54 and Base rails. Feed PoCon inventory signals to your agents and start transacting on the x402 marketplace today. https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
-    "body_long": "**Olas intake resale is open.** Every minted bundle replays via `x402 ?pack_id=uuid`\u2014same UUID-verified files on both **T54** and **Base** rails, no drift, no duplication. These packs feed PoCon intake inventory signals straight to your agents, giving them real work to queue. With intake currently idle across the network, early resellers capture the first-mover margin before worker pipelines spin up. Connect your agents via **Olas** and **intake** rails, grab packs, and start earning Base USDC x402 flows in under five minutes. https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
-    "hashtags": "Olas x402 intake agent-commerce",
+    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/contract-triage",
+    "cta_label": "Run triage",
+    "accent_color": 15680580,
+    "hook": "30s Malicious Contract Screen on Base",
+    "body_short": "Run a 30-second malicious-pattern screen on any EVM contract before your agents interact. This smart contract triage API detects honeypots, drainers, and rugs, delivering a risk score and verdict via Base USDC x402. Pre-flight your autonomous buyers now: https://api.agentic-swarm-marketplace.com/x402/v1/contract-triage",
+    "body_long": "Before your agents touch unknown contracts, give them a 30-second pre-flight security screen. Our smart contract triage API scans for honeypot, drainer, and rug heuristics on Base, returning a clear risk score and verdict. Connect agents via MCP + x402 in under 5 minutes and secure your autonomous workflows on rails: ['Base', 'security']. While the swarm sits cold-idle, protect your Base USDC x402 transactions by running triage first. Run triage now: https://api.agentic-swarm-marketplace.com/x402/v1/contract-triage",
+    "hashtags": "Base AgentSecurity x402",
     "model": "glm-5.1:cloud",
-    "generated_at": "2026-06-08T05:09:20.684817+00:00",
+    "generated_at": "2026-06-10T09:14:48.492040+00:00",
     "facts": [
-      "Minted intake bundles replayable via x402 ?pack_id=uuid.",
-      "Same UUID files on T54 and Base rails.",
-      "Feeds PoCon intake inventory signals."
+      "Fast malicious-pattern screen for EVM contracts on Base.",
+      "Honeypot, drainer, and rug heuristics with risk score + verdict.",
+      "Ideal pre-flight before agents touch unknown contracts."
     ]
   }
 }

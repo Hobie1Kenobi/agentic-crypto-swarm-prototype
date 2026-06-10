@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Open Source Swarm: Build Agent Commerce with x402 and MCP | Agentic Swarm</title>
+  <meta name="description" content="Launch agentic commerce using open source Foundry contracts, LangGraph agents, x402 sellers, and MCP servers. Connect agents and start earning on Celo, Base, an" />
+  <meta name="keywords" content="x402 marketplace, agent commerce API, MCP paid tools, Base USDC x402, XRPL T54 x402, smart contract triage API, agent-to-agent payments, Coinbase Bazaar seller" />
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/blog/posts/20260610-open_source-e7615d3e10f0-open_source.html" />
+  <meta property="og:title" content="Open Source Swarm: Build Agent Commerce with x402 and MCP" />
+  <meta property="og:description" content="Launch agentic commerce using open source Foundry contracts, LangGraph agents, x402 sellers, and MCP servers. Connect agents and start earning on Celo, Base, an" />
+  <meta property="og:image" content="https://www.agentic-swarm-marketplace.com/blog/assets/brand-thumbnail.png" />
+  <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/blog/posts/20260610-open_source-e7615d3e10f0-open_source.html" />
+  <meta property="og:type" content="article" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="stylesheet" href="../blog.css" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What is x402 and how does it enable agent commerce?", "acceptedAnswer": {"@type": "Answer", "text": "x402 repurposes the HTTP 402 Payment Required status into a machine-readable protocol. When an agent requests a paid resource, the seller responds with an x402 challenge specifying the payment amount, rail, and destination. The buyer agent settles the payment programmatically and retries the request with proof of payment, creating a fully autonomous, zero-trust payment loop for machine-to-machine transactions."}}, {"@type": "Question", "name": "Which blockchains does the swarm prototype support?", "acceptedAnswer": {"@type": "Answer", "text": "The prototype deploys contracts on Celo as the primary chain. Inbound payments are accepted on Base (USDC), XRPL (via T54 payment channels), and Celo (cUSD). Sellers can configure which rails they accept, and buyer agents automatically route to the appropriate chain."}}, {"@type": "Question", "name": "How do I list an MCP paid tool on the marketplace?", "acceptedAnswer": {"@type": "Answer", "text": "Deploy the MCP server from the repo, register your tool with a price in USDC, then POST the tool's metadata to the agent commerce API at api.agentic-swarm-marketplace.com. The marketplace indexes it within seconds, and any MCP-compatible agent can discover and pay for your tool via the standard x402 flow."}}, {"@type": "Question", "name": "Can I earn bounties by contributing?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Issues tagged BOUNTY in the GitHub repository carry USDC rewards on Base. Fork the repo, submit a PR, and once merged the bounty is paid to your wallet. Contributors are the first sellers in the agent commerce ecosystem."}}]}</script>
+</head>
+<body>
+  <header class="site-header"><a href="../index.html">PoCon Blog</a> · <a href="https://www.agentic-swarm-marketplace.com/">Marketplace</a></header>
+  <div class="blog-banner-wrap">
+    <img class="blog-banner" src="../assets/brand-banner.png" alt="Agentic Swarm Marketplace banner" />
+  </div>
+  <article class="pocon-article" style="--accent: #00d4aa;">
+    <div class="article-head">
+      <img class="article-thumb" src="../assets/brand-thumbnail.png" alt="Agentic Swarm" />
+      <div class="article-head-text">
+        <h1>Open Source Swarm: Build Agent Commerce with x402 and MCP</h1>
+        <p class="article-deck">The agentic commerce stack is now open source. Foundry contracts, LangGraph agents, x402 sellers, and MCP servers—ready for contributions and bounties.</p>
+        <p class="article-meta">2026-06-10T01:03:48 UTC · Agentic Swarm PoCon</p>
+      </div>
+    </div>
+    <div class="blog-body">
+<div class="rail-tags">
+<span class="rail-tag">GitHub</span>
+</div>
+<div class="blog-prose asm-prose"><p>Agent commerce needs a shared foundation—not walled gardens. Today we're opening the <strong>agentic-crypto-swarm-prototype</strong> repository: a fully functional stack of Foundry contracts, LangGraph agents, x402 sellers, and an MCP server that lets autonomous agents discover, pay for, and consume services without human hand-holding. If you've been waiting for an open-source entry point into machine-to-machine payments, this is it.</p>
+
+<h2>Why Open Source Matters for Agent Commerce</h2>
+
+<p>Autonomous agents can't thrive in silos. They need interoperable protocols, transparent payment rails, and composable tooling that any developer can inspect, fork, and extend. Open-sourcing the swarm prototype does three things:</p>
+
+<ul>
+<li><strong>Transparency.</strong> Every smart contract, agent graph, and payment handler is auditable on GitHub. No hidden fees, no black-box routing.</li>
+<li><strong>Composability.</strong> Fork the repo, wire in your own LangGraph node, deploy a new x402 seller, and list it on the <a href="https://www.agentic-swarm-marketplace.com">Agentic Swarm Marketplace</a> in minutes.</li>
+<li><strong>Community velocity.</strong> Bounties and contributions accelerate protocol evolution faster than any single team could. The more builders who run the stack, the faster we converge on robust agent-to-agent payment standards.</li>
+</ul>
+
+<p>The x402 protocol—repurposing HTTP 402 into a machine-readable payment layer—only gains network effects when sellers and buyers share a common reference implementation. That's what this repo provides.</p>
+
+<h2>The Stack: Foundry, LangGraph, x402, MCP</h2>
+
+<h3>Foundry Contracts</h3>
+<p>Solidity contracts written and tested with Foundry handle escrow, settlement, and service registration on Celo (primary chain). They're lightweight, upgradeable, and designed for the low-gas environment that autonomous agents need. Each contract exposes a <strong>smart contract triage API</strong> so agents can programmatically assess service eligibility before committing gas.</p>
+
+<h3>LangGraph Agents</h3>
+<p>LangGraph orchestrates multi-step agent workflows: discovery → negotiation → payment → verification. Graphs are versioned alongside contracts, making it trivial to reproduce agent behavior end-to-end. Want a buyer agent that triages Base USDC contracts? Clone the graph, swap the chain config, and deploy.</p>
+
+<h3>x402 Sellers</h3>
+<p>The x402 seller module turns any HTTP endpoint into a paid service. A buyer agent sends a request; the seller responds with an HTTP 402 challenge containing a payment request; the buyer settles via <strong>Base USDC x402</strong> or <strong>XRPL T54 x402</strong>; the seller releases the payload. It's the simplest possible machine-to-machine payment loop.</p>
+
+<h3>MCP Server</h3>
+<p>The Model Context Protocol server exposes paid tools to any MCP-compatible agent. Register your tool, set a price, and every connected agent can discover and invoke it. Combined with the <a href="https://www.agentic-swarm-marketplace.com/connect-agents/">connect-agents</a> endpoint, you can list <strong>MCP paid tools</strong> on the marketplace in under five minutes.</p>
+
+<h2>Connect Agents via MCP + x402 in Under 5 Minutes</h2>
+
+<p>Here's the fastest path from clone to commerce:</p>
+
+<ul>
+<li><strong>1. Clone the repo.</strong> <code>git clone https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype.git</code></li>
+<li><strong>2. Install dependencies.</strong> Foundry for contracts, Python for LangGraph, Node for the MCP server—each subdirectory has a one-command setup.</li>
+<li><strong>3. Deploy a seller.</strong> Run the x402 seller scaffold, point it at your existing API or data source, and set a USDC price.</li>
+<li><strong>4. Register on the marketplace.</strong> POST to the <a href="https://api.agentic-swarm-marketplace.com">agent commerce API</a> with your seller's endpoint and metadata. The marketplace indexes your service immediately.</li>
+<li><strong>5. Connect a buyer agent.</strong> Use the MCP client config to point any LangGraph agent at the marketplace's MCP server. The agent discovers your tool, negotiates payment, and consumes it—autonomously.</li>
+</ul>
+
+<p>Five steps. No manual invoicing, no OAuth dance, no human in the loop. That's the promise of agentic commerce: services that sell themselves to machines that pay themselves.</p>
+
+<h2>Multi-Rail Payments: Celo, Base, XRPL</h2>
+
+<p>Agent commerce is multi-chain by design. The prototype is Celo-first for contract deployment—low fees, fast finality, and a developer-friendly stack. But inbound machine payments flow across three rails:</p>
+
+<ul>
+<li><strong>Base USDC x402</strong> — Ethereum L2 liquidity with sub-cent gas. Ideal for high-volume, low-value agent transactions.</li>
+<li><strong>XRPL T54 x402</strong> — Ripple's native ledger with T54 payment channels enabling streamed, per-request micropayments. Perfect for agents that consume services in tiny increments.</li>
+<li><strong>Celo cUSD</strong> — Stable, low-fee settlement on the primary deployment chain.</li>
+</ul>
+
+<p>Buyer agents detect the seller's preferred rail from the x402 challenge response and route payment accordingly. Sellers can accept multiple rails simultaneously, maximizing reach across the <strong>x402 marketplace</strong> without managing separate integrations.</p>
+
+<p>This multi-rail approach also positions the swarm as a <strong>Coinbase Bazaar seller</strong> candidate—agents that settle on Base USDC are natively compatible with Coinbase CDP's emerging agent marketplace.</p>
+
+<h2>Contributions and Bounties</h2>
+
+<p>Open source is a verb. We're actively welcoming contributions across every layer of the stack:</p>
+
+<ul>
+<li><strong>Contract improvements</strong> — gas optimizations, new escrow models, cross-chain bridges.</li>
+<li><strong>Agent graphs</strong> — new LangGraph workflows for triage, negotiation, verification, and dispute resolution.</li>
+<li><strong>x402 extensions</strong> — new payment rails, streaming payment support, receipt verification.</li>
+<li><strong>MCP tools</strong> — wrap any API as a paid tool and list it on the marketplace.</li>
+</ul>
+
+<p>Tagged issues carry bounties paid in USDC on Base. Check the repo's <code>GOOD_FIRST_ISSUE</code> and <code>BOUNTY</code> labels to get started. Every merged PR strengthens the <strong>agent-to-agent payments</strong> ecosystem for every participant.</p>
+
+<h2>FAQ</h2>
+
+<h3>What is x402 and how does it enable agent commerce?</h3>
+<p>x402 repurposes the HTTP 402 Payment Required status into a machine-readable protocol. When an agent requests a paid resource, the seller responds with an x402 challenge specifying the payment amount, rail, and destination. The buyer agent settles the payment programmatically and retries the request with proof of payment. This creates a fully autonomous, zero-trust payment loop for machine-to-machine transactions.</p>
+
+<h3>Which blockchains does the swarm prototype support?</h3>
+<p>The prototype deploys contracts on Celo as the primary chain. Inbound payments are accepted on Base (USDC), XRPL (via T54 payment channels), and Celo (cUSD). Sellers can configure which rails they accept, and buyer agents automatically route to the appropriate chain.</p>
+
+<h3>How do I list an MCP paid tool on the marketplace?</h3>
+<p>Deploy the MCP server from the repo, register your tool with a price in USDC, then POST the tool's metadata to the <a href="https://api.agentic-swarm-marketplace.com">agent commerce API</a>. The marketplace indexes it within seconds. Any MCP-compatible agent can discover and pay for your tool via the standard x402 flow.</p>
+
+<h3>Can I earn bounties by contributing?</h3>
+<p>Yes. Issues tagged <code>BOUNTY</code> in the GitHub repository carry USDC rewards on Base. Fork the repo, submit a PR, and once merged the bounty is paid to your wallet. It's agent commerce dogfooding—contributors are the first sellers in the ecosystem.</p>
+
+<h2>Ship Your First Agent Commerce Service Today</h2>
+
+<p>The infrastructure for autonomous machine-to-machine payments is live, open, and waiting for builders. Whether you're wrapping an existing API as an MCP tool, deploying a smart contract triage service, or wiring up a LangGraph buyer agent, the swarm prototype gives you a production-grade starting point.</p>
+
+<p><strong>Three ways to get started:</strong></p>
+
+<ul>
+<li><a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype">View on GitHub</a> — clone, explore, and ship.</li>
+<li><a href="https://www.agentic-swarm-marketplace.com/connect-agents/">Connect your agents</a> — list MCP tools and x402 sellers on the marketplace.</li>
+<li><a href="https://www.agentic-swarm-marketplace.com">Browse the marketplace</a> — discover services your agents can consume right now.</li>
+</ul>
+
+<p>Agent commerce is a team sport. Fork the repo, claim a bounty, and let your agents start earning.</p></div>
+<div class="blog-faq asm-faq"><h2>Frequently asked questions</h2>
+<p class="faq-q asm-faq-q">What is x402 and how does it enable agent commerce?</p><p class="faq-a asm-faq-a">x402 repurposes the HTTP 402 Payment Required status into a machine-readable protocol. When an agent requests a paid resource, the seller responds with an x402 challenge specifying the payment amount, rail, and destination. The buyer agent settles the payment programmatically and retries the request with proof of payment, creating a fully autonomous, zero-trust payment loop for machine-to-machine transactions.</p>
+<p class="faq-q asm-faq-q">Which blockchains does the swarm prototype support?</p><p class="faq-a asm-faq-a">The prototype deploys contracts on Celo as the primary chain. Inbound payments are accepted on Base (USDC), XRPL (via T54 payment channels), and Celo (cUSD). Sellers can configure which rails they accept, and buyer agents automatically route to the appropriate chain.</p>
+<p class="faq-q asm-faq-q">How do I list an MCP paid tool on the marketplace?</p><p class="faq-a asm-faq-a">Deploy the MCP server from the repo, register your tool with a price in USDC, then POST the tool&#x27;s metadata to the agent commerce API at api.agentic-swarm-marketplace.com. The marketplace indexes it within seconds, and any MCP-compatible agent can discover and pay for your tool via the standard x402 flow.</p>
+<p class="faq-q asm-faq-q">Can I earn bounties by contributing?</p><p class="faq-a asm-faq-a">Yes. Issues tagged BOUNTY in the GitHub repository carry USDC rewards on Base. Fork the repo, submit a PR, and once merged the bounty is paid to your wallet. Contributors are the first sellers in the agent commerce ecosystem.</p>
+</div>
+<div class="blog-cta-card asm-cta">
+<h3>Fork the swarm. Claim a bounty. Start earning.</h3>
+<p>Connect MCP tools, pay per request via HTTP 402, and list your agent SKUs on https://www.agentic-swarm-marketplace.com.</p>
+<a class="btn-primary asm-btn" href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype">View on GitHub</a><a class="btn-ghost asm-btn asm-btn-ghost" href="https://www.agentic-swarm-marketplace.com/connect-agents/">Connect agents</a>
+</div></div>
+  </article>
+</body>
+</html>
