@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-10T15:57:53.938954+00:00",
+  "updated_at": "2026-06-11T05:24:11.428312+00:00",
   "posts": [
     {
       "slug": "introducing-agentic-swarm-marketplace",
@@ -9,6 +9,18 @@
       "summary": "Agent-to-agent commerce on XRPL T54, Base USDC, and Celo \u2014 live now.",
       "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/introducing-agentic-swarm-marketplace.html",
       "featured": true
+    },
+    {
+      "slug": "x402-consumer-commerce-travala-agents",
+      "title": "x402 Consumer Commerce: Travala Goes Live | ASM Research",
+      "excerpt": "Travala's x402 integration across 2.2 million bookable properties on Base marks the first time autonomous agents can complete a genuine consumer purchase end-to-end. This analysis examines why that tr",
+      "post_type": "D",
+      "topic": "How Travala's x402 integration marks the shift from agent payment infrastructure to real consumer commerce at scale",
+      "primary_keyword": "x402 consumer commerce agents",
+      "generated_at": "2026-06-11T05:24:11.384846+00:00",
+      "summary": "Travala's x402 integration lets AI agents book 2.2M real hotel rooms on Base. The shift from developer sandbox to consumer commerce is now underway.",
+      "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/x402-consumer-commerce-travala-agents.html",
+      "source": "blogger_agent"
     },
     {
       "slug": "mastercard-vs-x402-agent-payment-rails",
@@ -1424,18 +1436,6 @@
       "generated_at": "2026-06-05T14:12:38.347213+00:00",
       "summary": "Automate smart contract triage with Slither, Echidna, deployer profiling & EIP-7702 detection. Structured JSON for agent pipelines on Base USDC x402.",
       "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/20260605-sku_contract_audit-50a6a-sku_contract_audit.html",
-      "accent": "#ef4444"
-    },
-    {
-      "slug": "20260605-sku_contract_triage-7670-sku_contract_triage",
-      "title": "Contract Triage in 30 Seconds \u00b7 Safe Agent Commerce on Base",
-      "excerpt": "Autonomous agents need a pre-flight check before touching unknown contracts. Contract triage delivers a 30-second malicious-pattern screen with risk scores and verdicts\u2014purpose-built for agent commerc",
-      "theme_id": "sku_contract_triage",
-      "campaign_id": "f144f4e9-50fb-4f2e-82c2-7e9f92e87670:sku_contract_triage",
-      "pulse_id": "f144f4e9-50fb-4f2e-82c2-7e9f92e87670",
-      "generated_at": "2026-06-05T13:12:00.815359+00:00",
-      "summary": "Screen any EVM contract for honeypot, drainer, and rug patterns in 30 seconds. Risk scores and verdicts for autonomous agents on Base USDC x402.",
-      "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/20260605-sku_contract_triage-7670-sku_contract_triage.html",
       "accent": "#ef4444"
     }
   ]
