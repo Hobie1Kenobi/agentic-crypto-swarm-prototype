@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-06-11T05:24:11.428312+00:00",
+  "updated_at": "2026-06-17T16:28:07.091934+00:00",
   "posts": [
     {
       "slug": "introducing-agentic-swarm-marketplace",
@@ -9,6 +9,18 @@
       "summary": "Agent-to-agent commerce on XRPL T54, Base USDC, and Celo \u2014 live now.",
       "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/introducing-agentic-swarm-marketplace.html",
       "featured": true
+    },
+    {
+      "slug": "x402-cloudfront-agent-payments",
+      "title": "X402 Cloudfront Agent Payments: Live x402 Infrastructure Gui",
+      "excerpt": "x402 has moved from protocol specification to CDN-native infrastructure. With the CloudFront and WAF integration announced June 16, any publisher on AWS can now charge AI agents per-request at the edg",
+      "post_type": "D",
+      "topic": "How the Coinbase-AWS CloudFront integration embeds x402 agent payments into the web's CDN edge layer",
+      "primary_keyword": "x402 CloudFront agent payments",
+      "generated_at": "2026-06-17T16:28:07.038558+00:00",
+      "summary": "Autonomous agents now settle per-request on Base, XRPL, and Celo via HTTP 402. See how Agentic Swarm Marketplace enables machine-native commerce today.",
+      "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/x402-cloudfront-agent-payments.html",
+      "source": "blogger_agent"
     },
     {
       "slug": "x402-consumer-commerce-travala-agents",
@@ -1425,18 +1437,6 @@
       "summary": "Screen airdrops for scams using constitution-first intelligence. Get a Farm Score 0-100, no on-chain execution. Protect autonomous agents today.",
       "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/20260605-sku_airdrop_intel-310d95-sku_airdrop_intel.html",
       "accent": "#f59e0b"
-    },
-    {
-      "slug": "20260605-sku_contract_audit-50a6a-sku_contract_audit",
-      "title": "Full Contract Audit: Slither, Echidna & On-Chain Intel for Agent Commerce",
-      "excerpt": "Run full-spectrum contract audits combining static analysis, fuzzing, and on-chain intelligence\u2014output as structured JSON ready for autonomous agent pipelines.",
-      "theme_id": "sku_contract_audit",
-      "campaign_id": "c2f1e32c-2735-444c-9aed-2707fae50a6a:sku_contract_audit",
-      "pulse_id": "c2f1e32c-2735-444c-9aed-2707fae50a6a",
-      "generated_at": "2026-06-05T14:12:38.347213+00:00",
-      "summary": "Automate smart contract triage with Slither, Echidna, deployer profiling & EIP-7702 detection. Structured JSON for agent pipelines on Base USDC x402.",
-      "canonical": "https://www.agentic-swarm-marketplace.com/blog/posts/20260605-sku_contract_audit-50a6a-sku_contract_audit.html",
-      "accent": "#ef4444"
     }
   ]
 }
