@@ -1,0 +1,14 @@
+{
+  "explorer": "https://basescan.org/contactus",
+  "address": "0x408f39B19266022FeC03076091e59D1f4f163658",
+  "suggested_nametag": "Agentic Swarm Marketplace",
+  "website": "https://www.agentic-swarm-marketplace.com",
+  "description": "x402 merchant receiver for Agentic Swarm Marketplace. USDC on Base via Coinbase CDP ExactEvm. Operator: Liberty ChainGuard Consulting LLC.",
+  "public_proof": "https://www.agentic-swarm-marketplace.com/proof/",
+  "agent_registration": "https://api.agentic-swarm-marketplace.com/.well-known/agent-registration.json",
+  "notes": [
+    "Submit a nametag request from a Basescan account that can sign with this address, or via Contact Us.",
+    "Do not claim SDVOSB unless the operator has confirmed eligibility.",
+    "Sourcify any ASM-deployed contracts separately; this address is an EOA receiver."
+  ]
+}

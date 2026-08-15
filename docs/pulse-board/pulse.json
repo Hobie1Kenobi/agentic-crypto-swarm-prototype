@@ -1,126 +1,130 @@
 {
   "sku_id": "ecosystem-pulse",
   "seller": "t54_xrpl",
-  "generated_at": "2026-06-10T17:03:53.040137+00:00",
-  "pulse_id": "1d986f7d-2fe6-4d47-91af-146be9f3b2b2",
-  "headline": "Swarm Dormant: Zero Worker Cycles and Empty Bazaar Despite Active Dev Commits",
-  "summary": "Oracle feeds report nominal pricing with AERO up 2.19% and ETH flat, but the operational swarm is entirely idle. Zero worker cycles, empty intake inventory, and no x402 bazaar listings indicate a paused or pre-launch state, though recent GitHub activity confirms ongoing development.",
+  "generated_at": "2026-08-15T21:41:19.428702+00:00",
+  "pulse_id": "e7d11430-8c82-442b-add2-a8d1df38224d",
+  "headline": "Catalog live with 25 SKUs; 12 settlements processed in 24h while worker idles",
+  "summary": "The x402 marketplace catalog is active with 25 SKUs and a dozen recent settlements, confirming real machine-paid commerce flow despite zero local provider registrations. The worker node reports 60 applications loaded but no completed cycles, suggesting a stalled or paused execution pipeline. Oracle feeds show modest 24h gains for ETH and AERO with USDC holding its peg.",
   "sections": [
-    "Oracle/Prices: ETH at $1,641.50 (+0.32%), AERO at $0.337 (+2.19%), USDC stable at $0.9997. Minimal volatility across tracked feeds.",
-    "Worker Activity: Complete dormancy. Zero cycles executed, no active channels, and zero successful actions logged. Compute resources are currently unutilized.",
-    "Commerce & Intake: Bazaar is empty with 0 providers and 0 listings. Intake pack inventory stands at 0. No x402 machine-paid SKUs are currently operational.",
-    "Development: Repository active with 3 recent blog-related commits pushed ~1 hour prior to snapshot. 2 open issues pending."
+    "Oracle: ETH at $1,882.95 (+0.27% 24h), USDC at $0.9996 (-0.009% 24h, peg intact), AERO at $0.4015 (+0.50% 24h). No volatile moves; stable pricing environment for x402 settlement.",
+    "Worker: 60 applications loaded, last results count of 60, but cycles=null and last_cycle_ok_actions=0. Execution pipeline appears idle or stalled \u2014 no completed cycle recorded.",
+    "Commerce: 25-SKU catalog is live. 12 settlements in the past 24h confirm active machine-paid transactions. Zero bazaar listings and zero provider entries suggest all SKUs are served from the default catalog rather than locally registered providers. Monitor events empty.",
+    "Intake: Pack count at 0 with no latest pack IDs. No new data packs queued for processing."
   ],
   "signals": [
     {
-      "label": "Worker Dormancy",
-      "detail": "Worker has executed 0 cycles with no active channels. Compute is fully idle.",
-      "severity": "alert"
-    },
-    {
-      "label": "Bazaar Readiness",
-      "detail": "Zero providers and listings in the commerce layer. x402 marketplace is unpopulated.",
+      "label": "Worker stall",
+      "detail": "cycles=null, last_cycle_ok_actions=0 despite 60 applications loaded. Execution engine may be paused or misconfigured.",
       "severity": "watch"
     },
     {
-      "label": "Intake Inventory",
-      "detail": "Pack count is 0. No data ingestion or contract triage packs are queued.",
-      "severity": "watch"
+      "label": "Settlement flow",
+      "detail": "12 settlements in 24h against 25 live SKUs \u2014 healthy transaction ratio for an early-stage catalog.",
+      "severity": "info"
     },
     {
-      "label": "Price Stability",
-      "detail": "Oracle tracking nominal; AERO shows minor positive variance (+2.19%), ETH and USDC flat.",
+      "label": "USDC peg",
+      "detail": "USDC at $0.9996 with -0.009% 24h change. Peg intact; no settlement risk from price deviation.",
+      "severity": "info"
+    },
+    {
+      "label": "Intake empty",
+      "detail": "Zero packs queued. If worker resumes cycles, there is no backlog to process.",
       "severity": "info"
     }
   ],
   "oracle_snapshot": {
     "feeds": {
       "base-ecosystem-prices": {
-        "aerodrome-finance": {
-          "usd": 0.337425,
-          "usd_24h_change": 2.1944113778622274
-        },
         "ethereum": {
-          "usd": 1641.5,
-          "usd_24h_change": 0.31720691209350277
+          "usd": 1882.95,
+          "usd_24h_change": 0.26740899183734756
         },
         "usd-coin": {
-          "usd": 0.999782,
-          "usd_24h_change": 0.0009502949176061784
+          "usd": 0.999584,
+          "usd_24h_change": -0.008570989807667665
+        },
+        "aerodrome-finance": {
+          "usd": 0.401501,
+          "usd_24h_change": 0.4982431899644417
         }
       }
     },
-    "ts": 1781110995
+    "ts": 1786830067
   },
   "worker_snapshot": {
     "cycles": null,
     "last_cycle_at": null,
-    "last_results_count": null,
+    "last_results_count": 60,
     "last_channels": [],
-    "last_cycle_ok_actions": 0
+    "last_cycle_ok_actions": 0,
+    "application_count": 60
   },
   "commerce_snapshot": {
     "provider_count": 0,
     "bazaar_listings": 0,
     "monitor_events": 0,
-    "last_monitor_ts": null
+    "last_monitor_ts": null,
+    "sku_count": 25,
+    "settled_24h": 12
   },
   "intake_pack_count": 0,
   "model": "glm-5.1:cloud",
   "disclaimer": "Automated operational pulse from swarm feeds \u2014 not financial advice. Data freshness depends on factory cycle interval.",
-  "_raw_collected_at": "2026-06-10T17:03:15.432476+00:00",
+  "recommended_next_actions": [],
+  "_raw_collected_at": "2026-08-15T21:41:07.017885+00:00",
   "github": {
     "repo": "Hobie1Kenobi/agentic-crypto-swarm-prototype",
     "available": true,
     "stars": 0,
-    "forks": 0,
+    "forks": 1,
     "open_issues": 2,
     "default_branch": "master",
     "html_url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
-    "pushed_at": "2026-06-10T15:57:58Z",
+    "pushed_at": "2026-06-17T16:28:11Z",
     "description": "Agentic Swarm Marketplace: MCP + x402 machine-paid SKUs \u2014 XRPL (T54) and Base USDC \u2014 for contract triage, audits, monitoring, and agent commerce. Streamable HTTP for Smithery/Glama/Cursor; public disc",
     "recent_commits": [
+      {
+        "sha": "10149e1",
+        "message": "chore(blog): ASM blogger agent post",
+        "author": "Your Name",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/10149e1e4de94fb8d77cf5821149de8fb076351c"
+      },
+      {
+        "sha": "45c2640",
+        "message": "chore(blog): ASM blogger agent post",
+        "author": "Your Name",
+        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/45c2640b694ac8e2241e4d2f79c83874209c1aab"
+      },
       {
         "sha": "db1338d",
         "message": "chore(blog): ASM blogger agent post",
         "author": "Your Name",
         "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/db1338d670d4105fac500255a6f8ee8594a2316e"
-      },
-      {
-        "sha": "5ba4fe3",
-        "message": "chore(blog): ASM blogger agent post",
-        "author": "Your Name",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/5ba4fe33500c20d2edce019e875b2e2806443f32"
-      },
-      {
-        "sha": "90a6d3a",
-        "message": "chore(blog): ASM blogger agent post",
-        "author": "Your Name",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/90a6d3aff63eb625075a503dac1cae9ab26c7e3f"
       }
     ]
   },
   "marketing_campaign": {
-    "campaign_id": "1d986f7d-2fe6-4d47-91af-146be9f3b2b2:sku_airdrop_intel",
-    "theme_id": "sku_airdrop_intel",
-    "theme_title": "Airdrop intelligence",
+    "campaign_id": "e7d11430-8c82-442b-add2-a8d1df38224d:pulse_live_board",
+    "theme_id": "pulse_live_board",
+    "theme_title": "Live PoCon board",
     "rails": [
-      "LLM",
-      "security"
+      "PoCon",
+      "dashboard"
     ],
-    "cta_url": "https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence",
-    "cta_label": "Screen airdrop",
-    "accent_color": 16096779,
-    "hook": "Airdrop Scam Filter \u2014 Farm Score 0\u2013100 Before You Claim",
-    "body_short": "Stop guessing which airdrops are legit. Constitution-first screening scores every drop 0\u2013100 so you skip the scams \u2014 no on-chain execution, pure intel. Screen airdrop \u2192 https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence",
-    "body_long": "Every airdrop season floods your feed with phishing traps and dust scams. This agent runs constitution-first scam screening through **LLM** + **security** rails, delivering a Farm Score from 0\u2013100 before you touch any claim link. No on-chain execution \u2014 intelligence only, so your wallet stays safe. Optional contract triage embed on Base lets autonomous buyers tap a smart contract triage API for deeper due diligence. Plug in via agent commerce API in under 5 minutes and let your agents screen drops while the swarm idles. \u2192 https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence",
-    "hashtags": "airdropsecurity agentcommerce basesmartcontracts",
+    "cta_url": "https://www.agentic-swarm-marketplace.com/pulse-board/",
+    "cta_label": "Open live board",
+    "accent_color": 54442,
+    "hook": "Live PoCon board: watch 25 SKUs transact in real-time",
+    "body_short": "25 SKUs live, 12 settlements in 24h \u2014 see agent commerce API traffic flow in real-time. The interactive PoCon dashboard tracks oracle signals, worker cycles, and Base USDC x402 settlement charts, updated every factory cycle. Open the live board: https://www.agentic-swarm-marketplace.com/pulse-board/",
+    "body_long": "## Live PoCon Dashboard\n\nThe swarm is live and transacting \u2014 25 SKUs active, 12 settlements cleared in 24h through the agent commerce API. The **PoCon** rail streams real-time telemetry: oracle feeds, worker cycles, signal severity, and settlement charts, refreshed each factory cycle.\n\nUSDC peg holds at $0.9996 with zero settlement risk from price deviation. A worker stall flag is active \u2014 execution engine may be paused, worth monitoring.\n\nJump into the **dashboard** rail for Base USDC x402 contract triage and full swarm visibility. Open the live board: https://www.agentic-swarm-marketplace.com/pulse-board/",
+    "hashtags": "agent commerce, PoCon, x402",
     "model": "glm-5.1:cloud",
-    "generated_at": "2026-06-10T17:04:10.815406+00:00",
+    "generated_at": "2026-08-15T21:41:40.974347+00:00",
     "facts": [
-      "Constitution-first scam screening \u2014 Farm Score 0\u2013100.",
-      "No on-chain execution; intelligence only.",
-      "Optional contract triage embed on Base."
+      "Interactive pulse dashboard \u2014 oracle, worker, signals, chart.",
+      "Updated each factory cycle from swarm telemetry.",
+      "Public GitHub Pages mirror of artifacts/pocon."
     ]
   }
 }

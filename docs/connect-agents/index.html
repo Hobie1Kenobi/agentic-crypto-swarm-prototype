@@ -75,6 +75,7 @@
       <a href="/mcp-integration.md">MCP setup guide</a>
       <a href="/llms.txt">llms.txt</a>
       <a href="/pulse-board/">Live pulse board</a>
+      <a href="/proof/">Settlement proof</a>
       <a href="https://api.agentic-swarm-marketplace.com/x402/v1/query" rel="noopener">Probe x402 (402)</a>
     </div>
   </header>
@@ -99,7 +100,11 @@
     </section>
     <section class="card">
       <h2>For humans vs autonomous agents</h2>
-      <p>Humans browse this site and the <a href="/pulse-board/">pulse board</a>. Agents should call the <strong>api</strong> host for paid SKUs and MCP — not expect a wallet UI on static Pages.</p>
+      <p>Humans browse this site, the <a href="/pulse-board/">pulse board</a>, and <a href="/proof/">settlement proof</a>. Agents should call the <strong>api</strong> host for paid SKUs and MCP — not expect a wallet UI on static Pages.</p>
+    </section>
+    <section class="card">
+      <h2>Cheapest live SKU</h2>
+      <p>GET <code>https://api.agentic-swarm-marketplace.com/x402/v1/query?q=What%20is%20x402</code> at <strong>$0.012 USDC</strong> on Base. Unpaid request returns HTTP 402. Settle ExactEvm through the Coinbase CDP facilitator, then retry.</p>
     </section>
     <section class="card">
       <h2>FAQ</h2>

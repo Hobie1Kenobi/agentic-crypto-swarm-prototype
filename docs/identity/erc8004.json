@@ -1,0 +1,55 @@
+{
+  "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+  "name": "Agentic Swarm Marketplace",
+  "description": "Multi-rail x402 marketplace for agent-to-agent commerce. SKUs settle in USDC on Base via the Coinbase CDP facilitator and in XRP on XRPL via T54. Operator: Liberty ChainGuard Consulting LLC. No trading or speculation.",
+  "image": "https://www.agentic-swarm-marketplace.com/og-banner.png",
+  "services": [
+    {
+      "name": "web",
+      "endpoint": "https://www.agentic-swarm-marketplace.com/"
+    },
+    {
+      "name": "A2A",
+      "endpoint": "https://api.agentic-swarm-marketplace.com/.well-known/agent-card.json",
+      "version": "0.3.0"
+    },
+    {
+      "name": "MCP",
+      "endpoint": "https://api.agentic-swarm-marketplace.com/mcp",
+      "version": "2025-06-18"
+    },
+    {
+      "name": "x402",
+      "endpoint": "https://api.agentic-swarm-marketplace.com/.well-known/x402.json",
+      "version": "2"
+    },
+    {
+      "name": "ENS",
+      "endpoint": "agentic-swarm.base.eth",
+      "version": "v1"
+    },
+    {
+      "name": "wallet",
+      "endpoint": "eip155:8453:0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "name": "xrpl",
+      "endpoint": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf"
+    }
+  ],
+  "x402Support": true,
+  "active": true,
+  "registrations": [
+    {
+      "agentId": 63737,
+      "agentRegistry": "eip155:8453:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432"
+    }
+  ],
+  "supportedTrust": [
+    "reputation"
+  ],
+  "operator": {
+    "name": "Liberty ChainGuard Consulting LLC",
+    "url": "https://libertychainguard.com"
+  }
+}

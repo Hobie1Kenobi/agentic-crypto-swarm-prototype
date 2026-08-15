@@ -1,0 +1,40 @@
+{
+  "name": "Agentic Swarm Marketplace",
+  "operator": "Liberty ChainGuard Consulting LLC",
+  "operator_url": "https://libertychainguard.com",
+  "site": "https://www.agentic-swarm-marketplace.com",
+  "api": "https://api.agentic-swarm-marketplace.com",
+  "base": {
+    "chainId": 8453,
+    "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658",
+    "asset": "USDC",
+    "explorer": "https://basescan.org/address/0x408f39B19266022FeC03076091e59D1f4f163658",
+    "usdc": "https://basescan.org/token/0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913?a=0x408f39B19266022FeC03076091e59D1f4f163658",
+    "basename": "agentic-swarm.base.eth",
+    "erc8004_registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+    "erc8004_agent_id": 63737,
+    "erc8004_tx": "0xd3ffef8a01ffab479da5ecaf8c8667a86d9dc0e79551da692d0f6597ea04b8ee",
+    "erc8004_explorer": "https://basescan.org/nft/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432/63737",
+    "eas_schema_uid": "0x93549a9213f9ff98b3dde16e60b67164baed682d3b4428bd110e47430760c174",
+    "eas_uid": "0x9ca928f307db1edf37ebc9880d44c90836ab1692ad9c2b22c71fdf3ab0b96af9",
+    "eas_tx": "0x0f81f0685eb238e958967978147b84d3bd418d85a6f602987f920b9d13724031",
+    "eas_explorer": "https://base.easscan.org/attestation/view/0x9ca928f307db1edf37ebc9880d44c90836ab1692ad9c2b22c71fdf3ab0b96af9",
+    "basename_tx": null
+  },
+  "xrpl": {
+    "network": "xrpl:0",
+    "payTo": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+    "explorer": "https://xrpscan.com/account/rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+    "domain": "agentic-swarm-marketplace.com",
+    "domain_tx": null,
+    "nft_id": null,
+    "nft_tx": null
+  },
+  "catalogs": {
+    "x402": "https://api.agentic-swarm-marketplace.com/.well-known/x402.json",
+    "agent_card": "https://api.agentic-swarm-marketplace.com/.well-known/agent-card.json",
+    "agent_registration": "https://api.agentic-swarm-marketplace.com/.well-known/agent-registration.json",
+    "t54": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json",
+    "proof": "https://www.agentic-swarm-marketplace.com/proof/"
+  }
+}

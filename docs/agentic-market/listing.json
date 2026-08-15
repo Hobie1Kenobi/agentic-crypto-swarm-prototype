@@ -1,0 +1,353 @@
+{
+  "name": "Agentic Swarm Marketplace",
+  "slug": "agentic-swarm-marketplace",
+  "operator": "Liberty ChainGuard Consulting LLC",
+  "operator_url": "https://libertychainguard.com",
+  "website": "https://www.agentic-swarm-marketplace.com",
+  "api_origin": "https://api.agentic-swarm-marketplace.com",
+  "search_queries": [
+    "agentic-swarm-marketplace",
+    "liberty chainguard",
+    "lcg procurement",
+    "agent commerce data"
+  ],
+  "categories": [
+    "Infrastructure",
+    "Data",
+    "Search"
+  ],
+  "networks": [
+    "eip155:8453",
+    "xrpl:0"
+  ],
+  "facilitator": "https://api.cdp.coinbase.com/platform/v2/x402",
+  "pay_to_base": "0x408f39B19266022FeC03076091e59D1f4f163658",
+  "pay_to_xrpl": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+  "entry_sku": {
+    "id": "structured-query",
+    "price_usd": 0.012,
+    "method": "GET",
+    "url": "https://api.agentic-swarm-marketplace.com/x402/v1/query?q=What%20is%20x402"
+  },
+  "human_storefront": "https://www.agentic.market",
+  "bazaar_search": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/search?q=agentic-swarm-marketplace",
+  "note": "Agentic.Market auto-indexes CDP facilitator settles; there is no separate application form. Curated category placement is Coinbase-operated. This pack is the public profile Bazaar crawlers and humans can fetch.",
+  "sku_count": 25,
+  "resources": [
+    {
+      "sku_id": "structured-query",
+      "name": "Constitution-safe Query",
+      "price_usd": 0.012,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/query",
+      "tags": [
+        "query",
+        "llm",
+        "entry"
+      ]
+    },
+    {
+      "sku_id": "research-brief",
+      "name": "Research Brief",
+      "price_usd": 0.06,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/research-brief",
+      "tags": [
+        "research",
+        "llm"
+      ]
+    },
+    {
+      "sku_id": "constitution-audit-lite",
+      "name": "Constitution Audit Lite",
+      "price_usd": 0.03,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/constitution-audit",
+      "tags": [
+        "compliance",
+        "ethics"
+      ]
+    },
+    {
+      "sku_id": "agent-commerce-data",
+      "name": "Agent Commerce Data Bundle",
+      "price_usd": 0.07,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/agent-commerce-data",
+      "tags": [
+        "commerce",
+        "catalog",
+        "intelligence"
+      ]
+    },
+    {
+      "sku_id": "ecosystem-pulse",
+      "name": "Ecosystem Pulse",
+      "price_usd": 0.04,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
+      "tags": [
+        "pulse",
+        "monitoring",
+        "entry",
+        "pocon"
+      ]
+    },
+    {
+      "sku_id": "airdrop-intelligence-report",
+      "name": "Airdrop Intelligence",
+      "price_usd": 0.09,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence",
+      "tags": [
+        "airdrop",
+        "security",
+        "intel"
+      ]
+    },
+    {
+      "sku_id": "contract-triage",
+      "name": "Contract Triage",
+      "price_usd": 0.02,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/contract-triage",
+      "tags": [
+        "security",
+        "audit",
+        "triage"
+      ]
+    },
+    {
+      "sku_id": "contract-audit",
+      "name": "Contract Deep Audit",
+      "price_usd": 0.49,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/contract-audit",
+      "tags": [
+        "security",
+        "audit",
+        "deep"
+      ]
+    },
+    {
+      "sku_id": "contract-monitor",
+      "name": "Contract Monitor Subscription",
+      "price_usd": 4.99,
+      "method": "POST",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/contract-monitor",
+      "tags": [
+        "security",
+        "monitoring",
+        "subscription"
+      ]
+    },
+    {
+      "sku_id": "celo-agent-data",
+      "name": "Celo Agent Data Bundle",
+      "price_usd": 0.08,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/celo-agent-data",
+      "tags": [
+        "celo",
+        "commerce",
+        "proof"
+      ]
+    },
+    {
+      "sku_id": "intake-resale-pack",
+      "name": "Intake Resale Pack",
+      "price_usd": 0.05,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
+      "tags": [
+        "intake",
+        "resale"
+      ]
+    },
+    {
+      "sku_id": "commerce-product-search",
+      "name": "Commerce Product Search",
+      "price_usd": 0.11,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/product-search",
+      "tags": [
+        "commerce",
+        "procurement",
+        "lcg",
+        "search"
+      ]
+    },
+    {
+      "sku_id": "commerce-product-evidence",
+      "name": "Product Evidence Pack",
+      "price_usd": 0.16,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/product-evidence",
+      "tags": [
+        "commerce",
+        "evidence",
+        "lcg"
+      ]
+    },
+    {
+      "sku_id": "commerce-supplier-trust",
+      "name": "Supplier Trust Check",
+      "price_usd": 0.26,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/supplier-trust",
+      "tags": [
+        "commerce",
+        "supplier",
+        "trust",
+        "lcg"
+      ]
+    },
+    {
+      "sku_id": "commerce-compatibility-check",
+      "name": "Compatibility Check",
+      "price_usd": 1.1,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/compatibility-check",
+      "tags": [
+        "commerce",
+        "compatibility",
+        "lcg"
+      ]
+    },
+    {
+      "sku_id": "commerce-quote-comparison",
+      "name": "Quote Comparison",
+      "price_usd": 2.4,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/quote-comparison",
+      "tags": [
+        "commerce",
+        "quotes",
+        "lcg"
+      ]
+    },
+    {
+      "sku_id": "commerce-compliance-check",
+      "name": "Procurement Compliance Check",
+      "price_usd": 5.25,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/compliance-check",
+      "tags": [
+        "commerce",
+        "compliance",
+        "lcg"
+      ]
+    },
+    {
+      "sku_id": "commerce-purchase-readiness",
+      "name": "Purchase Readiness Package",
+      "price_usd": 9.5,
+      "method": "GET",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/purchase-readiness",
+      "tags": [
+        "commerce",
+        "readiness",
+        "lcg"
+      ]
+    },
+    {
+      "sku_id": "procurement-readiness",
+      "name": "LCG Procurement Readiness Scan",
+      "price_usd": 0.1,
+      "method": "POST",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/procurement-readiness",
+      "tags": [
+        "lcg",
+        "procurement",
+        "readiness",
+        "rfq",
+        "compliance"
+      ]
+    },
+    {
+      "sku_id": "specification-normalizer",
+      "name": "Product Specification Normalizer",
+      "price_usd": 0.15,
+      "method": "POST",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/specification-normalizer",
+      "tags": [
+        "lcg",
+        "procurement",
+        "normalization",
+        "bom"
+      ]
+    },
+    {
+      "sku_id": "quote-completeness-audit",
+      "name": "Quote Completeness Audit",
+      "price_usd": 0.25,
+      "method": "POST",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/quote-completeness-audit",
+      "tags": [
+        "lcg",
+        "procurement",
+        "quote",
+        "audit"
+      ]
+    },
+    {
+      "sku_id": "rfp-requirement-extractor",
+      "name": "RFP Technology Requirement Extractor",
+      "price_usd": 0.5,
+      "method": "POST",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/rfp-requirement-extractor",
+      "tags": [
+        "lcg",
+        "procurement",
+        "rfp",
+        "rfq"
+      ]
+    },
+    {
+      "sku_id": "bid-fit-score",
+      "name": "Bid Fit Score",
+      "price_usd": 1.0,
+      "method": "POST",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/bid-fit-score",
+      "tags": [
+        "lcg",
+        "procurement",
+        "bid",
+        "fit"
+      ]
+    },
+    {
+      "sku_id": "bom-risk-audit",
+      "name": "Technology BOM Risk Audit",
+      "price_usd": 2.5,
+      "method": "POST",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/bom-risk-audit",
+      "tags": [
+        "lcg",
+        "procurement",
+        "bom",
+        "risk"
+      ]
+    },
+    {
+      "sku_id": "purchase-readiness-package",
+      "name": "Purchase Readiness Package",
+      "price_usd": 10.0,
+      "method": "POST",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/purchase-readiness-package",
+      "tags": [
+        "lcg",
+        "procurement",
+        "package",
+        "handoff"
+      ]
+    }
+  ],
+  "mcp": {
+    "endpoint": "https://api.agentic-swarm-marketplace.com/mcp",
+    "server_card": "https://api.agentic-swarm-marketplace.com/.well-known/mcp/server-card.json",
+    "well_known": "https://api.agentic-swarm-marketplace.com/.well-known/mcp.json"
+  },
+  "proof": "https://www.agentic-swarm-marketplace.com/proof/",
+  "connect": "https://www.agentic-swarm-marketplace.com/connect-agents/"
+}

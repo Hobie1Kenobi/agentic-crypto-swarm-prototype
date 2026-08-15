@@ -1,0 +1,16 @@
+{
+  "name": "agentic-swarm-marketplace",
+  "title": "Agentic Swarm Marketplace",
+  "description": "Paid MCP tools for contract triage, airdrop screening, procurement intelligence, and x402 commerce data. Tools settle via HTTP 402 on Base USDC.",
+  "homepage": "https://www.agentic-swarm-marketplace.com",
+  "remote": {
+    "type": "streamable-http",
+    "url": "https://api.agentic-swarm-marketplace.com/mcp"
+  },
+  "well_known": "https://api.agentic-swarm-marketplace.com/.well-known/mcp/server-card.json",
+  "registries": [
+    "https://github.com/modelcontextprotocol/servers",
+    "https://www.pulsemcp.com/submit",
+    "https://glama.ai/mcp/servers"
+  ]
+}

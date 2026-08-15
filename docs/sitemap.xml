@@ -27,9 +27,23 @@
 
   <url>
     <loc>https://www.agentic-swarm-marketplace.com/connect-agents/</loc>
-    <lastmod>2026-06-01</lastmod>
+    <lastmod>2026-08-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
+  </url>
+
+  <url>
+    <loc>https://www.agentic-swarm-marketplace.com/proof/</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://www.agentic-swarm-marketplace.com/agentic-market/</loc>
+    <lastmod>2026-08-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.86</priority>
   </url>
 
   <url>
