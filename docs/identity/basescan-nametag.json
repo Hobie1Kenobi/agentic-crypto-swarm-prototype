@@ -1,14 +1,18 @@
 {
   "explorer": "https://basescan.org/contactus",
+  "nametag_ui": "https://basescan.org/address/0x408f39B19266022FeC03076091e59D1f4f163658#nametag",
   "address": "0x408f39B19266022FeC03076091e59D1f4f163658",
   "suggested_nametag": "Agentic Swarm Marketplace",
   "website": "https://www.agentic-swarm-marketplace.com",
   "description": "x402 merchant receiver for Agentic Swarm Marketplace. USDC on Base via Coinbase CDP ExactEvm. Operator: Liberty ChainGuard Consulting LLC.",
   "public_proof": "https://www.agentic-swarm-marketplace.com/proof/",
   "agent_registration": "https://api.agentic-swarm-marketplace.com/.well-known/agent-registration.json",
+  "operator_address": "0xEBd956F5c8C4b32752d87D62314F9431Dc0449e9",
+  "operator_nametag_ui": "https://basescan.org/address/0xEBd956F5c8C4b32752d87D62314F9431Dc0449e9#nametag",
   "notes": [
-    "Submit a nametag request from a Basescan account that can sign with this address, or via Contact Us.",
+    "Merchant receiver nametag requires proving control of the pay-to EOA (wallet connect on Basescan or Contact Us).",
+    "The operator EOA that registered ERC-8004 can nametag itself immediately by connecting that wallet on Basescan.",
     "Do not claim SDVOSB unless the operator has confirmed eligibility.",
-    "Sourcify any ASM-deployed contracts separately; this address is an EOA receiver."
+    "Sourcify any ASM-deployed contracts separately; the merchant receiver is an EOA."
   ]
 }

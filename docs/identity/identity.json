@@ -19,7 +19,7 @@
     "eas_uid": "0x9ca928f307db1edf37ebc9880d44c90836ab1692ad9c2b22c71fdf3ab0b96af9",
     "eas_tx": "0x0f81f0685eb238e958967978147b84d3bd418d85a6f602987f920b9d13724031",
     "eas_explorer": "https://base.easscan.org/attestation/view/0x9ca928f307db1edf37ebc9880d44c90836ab1692ad9c2b22c71fdf3ab0b96af9",
-    "basename_tx": null
+    "basename_tx": "0x89f799b806ea0fb9f06b4159d223ac1cc8f8bcdb99c8ba254146ef93e34cd703"
   },
   "xrpl": {
     "network": "xrpl:0",
