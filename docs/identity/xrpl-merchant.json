@@ -2,10 +2,12 @@
   "name": "Agentic Swarm Marketplace",
   "description": "XLS-20 merchant credential for T54 / XRPL x402 SKUs. Not a collectible drop.",
   "domain": "agentic-swarm-marketplace.com",
-  "account": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+  "account": "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
+  "payTo": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
   "origin": "https://api.agentic-swarm-marketplace.com/t54",
   "catalog": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json",
   "proof": "https://www.agentic-swarm-marketplace.com/proof/",
   "operator": "Liberty ChainGuard Consulting LLC",
-  "operator_url": "https://libertychainguard.com"
+  "operator_url": "https://libertychainguard.com",
+  "note": "Xaman signs Domain/NFT on `account`. T54 x402 payTo is the standalone receive address."
 }

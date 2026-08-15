@@ -23,6 +23,7 @@
   "facilitator": "https://api.cdp.coinbase.com/platform/v2/x402",
   "pay_to_base": "0x408f39B19266022FeC03076091e59D1f4f163658",
   "pay_to_xrpl": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+  "xrpl_xaman": "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
   "entry_sku": {
     "id": "structured-query",
     "price_usd": 0.012,

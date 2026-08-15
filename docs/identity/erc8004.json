@@ -35,6 +35,10 @@
     {
       "name": "xrpl",
       "endpoint": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf"
+    },
+    {
+      "name": "xrpl-identity",
+      "endpoint": "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq"
     }
   ],
   "x402Support": true,

@@ -47,11 +47,13 @@ This repo ships a stdio MCP server that maps LLM tool calls to T54 HTTP operatio
 - Integration guide (Cursor, Claude Desktop, env): https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md
 - Source: `scripts/mcp_server.py` (FastMCP), `scripts/run-mcp-t54.ps1` (Windows launcher)
 
-## On-chain identity (Base)
+## On-chain identity
 
 - Basename: `agentic-swarm.base.eth` → USDC receiver `0x408f39B19266022FeC03076091e59D1f4f163658`
 - ERC-8004 agentId 63737: https://api.agentic-swarm-marketplace.com/.well-known/agent-registration.json
 - EAS attestation: https://base.easscan.org/attestation/view/0x9ca928f307db1edf37ebc9880d44c90836ab1692ad9c2b22c71fdf3ab0b96af9
+- XRPL T54 payTo (standalone receive): `rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf`
+- XRPL Xaman identity (Domain + NFT): `rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq`
 - Identity JSON: https://www.agentic-swarm-marketplace.com/identity/identity.json
 
 ## Keywords

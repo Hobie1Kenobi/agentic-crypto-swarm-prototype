@@ -4,7 +4,8 @@ Agentic Swarm Marketplace settles HTTP 402 SKUs in XRP drops on xrpl:0 via the T
 
 - Public origin: https://api.agentic-swarm-marketplace.com/t54
 - Catalog: https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json
-- Receiver: rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf
+- Receiver (T54 payTo): rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf
+- Xaman identity (Domain / NFT): rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq
 - Domain (AccountSet): agentic-swarm-marketplace.com
 - Proof: https://www.agentic-swarm-marketplace.com/proof/
 
