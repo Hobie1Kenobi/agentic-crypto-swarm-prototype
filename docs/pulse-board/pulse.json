@@ -1,56 +1,51 @@
 {
   "sku_id": "ecosystem-pulse",
   "seller": "t54_xrpl",
-  "generated_at": "2026-08-15T21:41:19.428702+00:00",
-  "pulse_id": "e7d11430-8c82-442b-add2-a8d1df38224d",
-  "headline": "Catalog live with 25 SKUs; 12 settlements processed in 24h while worker idles",
-  "summary": "The x402 marketplace catalog is active with 25 SKUs and a dozen recent settlements, confirming real machine-paid commerce flow despite zero local provider registrations. The worker node reports 60 applications loaded but no completed cycles, suggesting a stalled or paused execution pipeline. Oracle feeds show modest 24h gains for ETH and AERO with USDC holding its peg.",
+  "generated_at": "2026-08-17T14:04:18.605803+00:00",
+  "pulse_id": "83d4c10b-5980-4fae-8977-a610ebe2a66a",
+  "headline": "Worker idle with 60 apps loaded; 25 SKUs live but zero settlements; AERO up 3.5%",
+  "summary": "The swarm remains in a pre-operational state with worker applications loaded but no cycles executed. The commerce layer maintains a live catalog of 25 SKUs despite zero recent settlements. Oracle feeds indicate stable base prices with Aerodrome Finance showing a 3.5% 24h gain.",
   "sections": [
-    "Oracle: ETH at $1,882.95 (+0.27% 24h), USDC at $0.9996 (-0.009% 24h, peg intact), AERO at $0.4015 (+0.50% 24h). No volatile moves; stable pricing environment for x402 settlement.",
-    "Worker: 60 applications loaded, last results count of 60, but cycles=null and last_cycle_ok_actions=0. Execution pipeline appears idle or stalled \u2014 no completed cycle recorded.",
-    "Commerce: 25-SKU catalog is live. 12 settlements in the past 24h confirm active machine-paid transactions. Zero bazaar listings and zero provider entries suggest all SKUs are served from the default catalog rather than locally registered providers. Monitor events empty.",
-    "Intake: Pack count at 0 with no latest pack IDs. No new data packs queued for processing."
+    "Oracle: ETH at $1,901.33 (+1.13%), USDC at $0.9995 (-0.01%), AERO at $0.417 (+3.50%).",
+    "Worker: 60 applications loaded but dormant; no cycles executed and zero actions completed.",
+    "Commerce: 25 SKUs active in the x402 catalog; zero settled payments in the last 24 hours.",
+    "Intake: Pack inventory is empty with zero packs processed."
   ],
   "signals": [
     {
-      "label": "Worker stall",
-      "detail": "cycles=null, last_cycle_ok_actions=0 despite 60 applications loaded. Execution engine may be paused or misconfigured.",
+      "label": "Worker Dormancy",
+      "detail": "60 applications loaded but no cycles executed or actions completed.",
       "severity": "watch"
     },
     {
-      "label": "Settlement flow",
-      "detail": "12 settlements in 24h against 25 live SKUs \u2014 healthy transaction ratio for an early-stage catalog.",
+      "label": "Zero Settlements",
+      "detail": "Commerce catalog is live with 25 SKUs, but 0 transactions settled in 24h.",
       "severity": "info"
     },
     {
-      "label": "USDC peg",
-      "detail": "USDC at $0.9996 with -0.009% 24h change. Peg intact; no settlement risk from price deviation.",
-      "severity": "info"
-    },
-    {
-      "label": "Intake empty",
-      "detail": "Zero packs queued. If worker resumes cycles, there is no backlog to process.",
-      "severity": "info"
+      "label": "GitHub API Timeout",
+      "detail": "504 Gateway Timeout error when fetching repository data.",
+      "severity": "watch"
     }
   ],
   "oracle_snapshot": {
     "feeds": {
       "base-ecosystem-prices": {
         "ethereum": {
-          "usd": 1882.95,
-          "usd_24h_change": 0.26740899183734756
+          "usd": 1901.33,
+          "usd_24h_change": 1.1277757452677504
         },
         "usd-coin": {
-          "usd": 0.999584,
-          "usd_24h_change": -0.008570989807667665
+          "usd": 0.999554,
+          "usd_24h_change": -0.009517373898371267
         },
         "aerodrome-finance": {
-          "usd": 0.401501,
-          "usd_24h_change": 0.4982431899644417
+          "usd": 0.417051,
+          "usd_24h_change": 3.4986823889250416
         }
       }
     },
-    "ts": 1786830067
+    "ts": 1786975417
   },
   "worker_snapshot": {
     "cycles": null,
@@ -66,65 +61,40 @@
     "monitor_events": 0,
     "last_monitor_ts": null,
     "sku_count": 25,
-    "settled_24h": 12
+    "settled_24h": 0
   },
   "intake_pack_count": 0,
   "model": "glm-5.1:cloud",
   "disclaimer": "Automated operational pulse from swarm feeds \u2014 not financial advice. Data freshness depends on factory cycle interval.",
   "recommended_next_actions": [],
-  "_raw_collected_at": "2026-08-15T21:41:07.017885+00:00",
+  "_raw_collected_at": "2026-08-17T14:03:37.782483+00:00",
   "github": {
     "repo": "Hobie1Kenobi/agentic-crypto-swarm-prototype",
-    "available": true,
-    "stars": 0,
-    "forks": 1,
-    "open_issues": 2,
-    "default_branch": "master",
-    "html_url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype",
-    "pushed_at": "2026-06-17T16:28:11Z",
-    "description": "Agentic Swarm Marketplace: MCP + x402 machine-paid SKUs \u2014 XRPL (T54) and Base USDC \u2014 for contract triage, audits, monitoring, and agent commerce. Streamable HTTP for Smithery/Glama/Cursor; public disc",
-    "recent_commits": [
-      {
-        "sha": "10149e1",
-        "message": "chore(blog): ASM blogger agent post",
-        "author": "Your Name",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/10149e1e4de94fb8d77cf5821149de8fb076351c"
-      },
-      {
-        "sha": "45c2640",
-        "message": "chore(blog): ASM blogger agent post",
-        "author": "Your Name",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/45c2640b694ac8e2241e4d2f79c83874209c1aab"
-      },
-      {
-        "sha": "db1338d",
-        "message": "chore(blog): ASM blogger agent post",
-        "author": "Your Name",
-        "url": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/commit/db1338d670d4105fac500255a6f8ee8594a2316e"
-      }
-    ]
+    "available": false,
+    "error": "504 Server Error: Gateway Timeout for url: https://api.github.com/repos/Hobie1Kenobi/agentic-crypto-swarm-prototype"
   },
   "marketing_campaign": {
-    "campaign_id": "e7d11430-8c82-442b-add2-a8d1df38224d:pulse_live_board",
-    "theme_id": "pulse_live_board",
-    "theme_title": "Live PoCon board",
+    "campaign_id": "83d4c10b-5980-4fae-8977-a610ebe2a66a:multi_rail",
+    "theme_id": "multi_rail",
+    "theme_title": "Multi-rail commerce",
     "rails": [
-      "PoCon",
-      "dashboard"
+      "XRPL",
+      "Base",
+      "Celo"
     ],
-    "cta_url": "https://www.agentic-swarm-marketplace.com/pulse-board/",
-    "cta_label": "Open live board",
+    "cta_url": "https://www.agentic-swarm-marketplace.com",
+    "cta_label": "See all rails",
     "accent_color": 54442,
-    "hook": "Live PoCon board: watch 25 SKUs transact in real-time",
-    "body_short": "25 SKUs live, 12 settlements in 24h \u2014 see agent commerce API traffic flow in real-time. The interactive PoCon dashboard tracks oracle signals, worker cycles, and Base USDC x402 settlement charts, updated every factory cycle. Open the live board: https://www.agentic-swarm-marketplace.com/pulse-board/",
-    "body_long": "## Live PoCon Dashboard\n\nThe swarm is live and transacting \u2014 25 SKUs active, 12 settlements cleared in 24h through the agent commerce API. The **PoCon** rail streams real-time telemetry: oracle feeds, worker cycles, signal severity, and settlement charts, refreshed each factory cycle.\n\nUSDC peg holds at $0.9996 with zero settlement risk from price deviation. A worker stall flag is active \u2014 execution engine may be paused, worth monitoring.\n\nJump into the **dashboard** rail for Base USDC x402 contract triage and full swarm visibility. Open the live board: https://www.agentic-swarm-marketplace.com/pulse-board/",
-    "hashtags": "agent commerce, PoCon, x402",
+    "hook": "Three Rails. One Constitution. Commerce Without Compromise.",
+    "body_short": "Your agents shouldn't pick a payment rail\u2014they should have them all. XRPL XRP via T54, Base USDC via CDP x402, and Celo for settlement, all from one agent commerce API catalog. See all rails \u2192 https://www.agentic-swarm-marketplace.com",
+    "body_long": "Multi-rail commerce means your agents transact on their terms. Whether it's **XRPL** for fast XRP settlement via T54, **Base** for USDC flows through CDP x402, or **Celo** optimized for dev and settlement\u2014the same ethical constitution governs every rail. One OpenAPI catalog, multiple payment paths, zero stack-switching. Connect agents via MCP + x402 in under 5 minutes and let autonomous buyers run Base USDC x402 contract triage without friction. Explore the rails \u2192 https://www.agentic-swarm-marketplace.com",
+    "hashtags": "agent commerce, multi-rail, x402, Base USDC",
     "model": "glm-5.1:cloud",
-    "generated_at": "2026-08-15T21:41:40.974347+00:00",
+    "generated_at": "2026-08-17T14:04:33.937542+00:00",
     "facts": [
-      "Interactive pulse dashboard \u2014 oracle, worker, signals, chart.",
-      "Updated each factory cycle from swarm telemetry.",
-      "Public GitHub Pages mirror of artifacts/pocon."
+      "XRPL XRP via T54 \u00b7 Base USDC via CDP x402 \u00b7 Celo for dev/settlement.",
+      "One OpenAPI catalog, multiple payment rails.",
+      "Agents pick the rail; same ethical constitution everywhere."
     ]
   }
 }

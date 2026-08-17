@@ -350,5 +350,34 @@
     "well_known": "https://api.agentic-swarm-marketplace.com/.well-known/mcp.json"
   },
   "proof": "https://www.agentic-swarm-marketplace.com/proof/",
-  "connect": "https://www.agentic-swarm-marketplace.com/connect-agents/"
+  "connect": "https://www.agentic-swarm-marketplace.com/connect-agents/",
+  "payment_authorization": {
+    "table": "who_authorized_pay",
+    "proof": "https://www.agentic-swarm-marketplace.com/proof/",
+    "required_to_quote": "HTTP 402 + ExactEvm (Base USDC) or T54 (XRPL)",
+    "required_for_catalog_presence": [
+      "payer",
+      "authorization_class",
+      "authorized_by",
+      "role"
+    ],
+    "not_yet_bound": [
+      "buyer_erc8004_agent_id",
+      "session_policy",
+      "human_approval_attestation"
+    ],
+    "classes": [
+      "operator_ignition",
+      "third_party_wallet",
+      "unverified"
+    ],
+    "known_principals": {
+      "operator": "Liberty ChainGuard Consulting LLC",
+      "operator_ignition_eoa": "0xEBd956F5c8C4b32752d87D62314F9431Dc0449e9",
+      "seller_pay_to": "0x408f39B19266022FeC03076091e59D1f4f163658",
+      "seller_erc8004_agent_id": 63737,
+      "seller_erc8004_role": "merchant_not_buyer"
+    },
+    "honest_limit": "Unpaid GET 402 proves a quote. A USDC/XRP transfer proves settlement. This table names who signed that pay when the payer is known. It does not invent third-party agent buyers or bind a buyer ERC-8004 id."
+  }
 }

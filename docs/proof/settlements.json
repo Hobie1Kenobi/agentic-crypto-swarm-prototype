@@ -1,6 +1,6 @@
 {
   "name": "Agentic Swarm Marketplace",
-  "updated_at": "2026-08-15T22:37:35Z",
+  "updated_at": "2026-08-17T14:53:23Z",
   "site": "https://www.agentic-swarm-marketplace.com",
   "api": "https://api.agentic-swarm-marketplace.com",
   "identity": {
@@ -44,7 +44,8 @@
       "agent_card": "https://api.agentic-swarm-marketplace.com/.well-known/agent-card.json",
       "agent_registration": "https://api.agentic-swarm-marketplace.com/.well-known/agent-registration.json",
       "t54": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json",
-      "proof": "https://www.agentic-swarm-marketplace.com/proof/"
+      "proof": "https://www.agentic-swarm-marketplace.com/proof/",
+      "payment_authorization": "https://www.agentic-swarm-marketplace.com/proof/settlements.json#authorization"
     }
   },
   "onchain": {
@@ -75,11 +76,46 @@
     "xrpl_operator_nft_tx": "23373DD67CB08432AC3E83DA44B2E81344CC2D4486F1593667BC74228210A6AD",
     "xrpl_operator_nft_id": "00080000B47A42E9BA2B665E1A025DA69BE6406E927C46E7D8D4BD9B05A41544"
   },
+  "authorization": {
+    "table": "who_authorized_pay",
+    "proof": "https://www.agentic-swarm-marketplace.com/proof/",
+    "required_to_quote": "HTTP 402 + ExactEvm (Base USDC) or T54 (XRPL)",
+    "required_for_catalog_presence": [
+      "payer",
+      "authorization_class",
+      "authorized_by",
+      "role"
+    ],
+    "not_yet_bound": [
+      "buyer_erc8004_agent_id",
+      "session_policy",
+      "human_approval_attestation"
+    ],
+    "classes": [
+      "operator_ignition",
+      "third_party_wallet",
+      "unverified"
+    ],
+    "known_principals": {
+      "operator": "Liberty ChainGuard Consulting LLC",
+      "operator_ignition_eoa": "0xEBd956F5c8C4b32752d87D62314F9431Dc0449e9",
+      "seller_pay_to": "0x408f39B19266022FeC03076091e59D1f4f163658",
+      "seller_erc8004_agent_id": 63737,
+      "seller_erc8004_role": "merchant_not_buyer"
+    },
+    "honest_limit": "Unpaid GET 402 proves a quote. A USDC/XRP transfer proves settlement. This table names who signed that pay when the payer is known. It does not invent third-party agent buyers or bind a buyer ERC-8004 id.",
+    "counts": {
+      "operator_ignition": 12,
+      "third_party_wallet": 0,
+      "unverified": 16
+    }
+  },
   "counts": {
     "receipts": 28,
     "base": 28,
     "xrpl": 0,
-    "with_explorer": 12
+    "with_explorer": 12,
+    "with_payer": 12
   },
   "receipts": [
     {
@@ -94,7 +130,17 @@
       "receiver": "0x408f39b19266022fec03076091e59d1f4f163658",
       "block": 50017673,
       "resource": "https://api.agentic-swarm-marketplace.com/x402/v1/query",
-      "source": "base_usdc_transfer"
+      "source": "base_usdc_transfer",
+      "authorization": {
+        "authorization_class": "operator_ignition",
+        "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9",
+        "role": "human_operator_eoa",
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Liberty ChainGuard Consulting LLC operator EOA used for CDP ignition / catalog presence. Not a third-party autonomous buyer. Seller ERC-8004 63737 is merchant identity only."
+      },
+      "authorization_class": "operator_ignition",
+      "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9"
     },
     {
       "rail": "base",
@@ -108,7 +154,17 @@
       "receiver": "0x408f39b19266022fec03076091e59d1f4f163658",
       "block": 50017505,
       "resource": "https://api.agentic-swarm-marketplace.com/x402/v1/query",
-      "source": "base_usdc_transfer"
+      "source": "base_usdc_transfer",
+      "authorization": {
+        "authorization_class": "operator_ignition",
+        "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9",
+        "role": "human_operator_eoa",
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Liberty ChainGuard Consulting LLC operator EOA used for CDP ignition / catalog presence. Not a third-party autonomous buyer. Seller ERC-8004 63737 is merchant identity only."
+      },
+      "authorization_class": "operator_ignition",
+      "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9"
     },
     {
       "rail": "base",
@@ -122,7 +178,17 @@
       "receiver": "0x408f39b19266022fec03076091e59d1f4f163658",
       "block": 50017503,
       "resource": "https://api.agentic-swarm-marketplace.com/x402/v1/research-brief",
-      "source": "base_usdc_transfer"
+      "source": "base_usdc_transfer",
+      "authorization": {
+        "authorization_class": "operator_ignition",
+        "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9",
+        "role": "human_operator_eoa",
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Liberty ChainGuard Consulting LLC operator EOA used for CDP ignition / catalog presence. Not a third-party autonomous buyer. Seller ERC-8004 63737 is merchant identity only."
+      },
+      "authorization_class": "operator_ignition",
+      "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9"
     },
     {
       "rail": "base",
@@ -136,7 +202,17 @@
       "receiver": "0x408f39b19266022fec03076091e59d1f4f163658",
       "block": 50017501,
       "resource": "https://api.agentic-swarm-marketplace.com/x402/v1/constitution-audit",
-      "source": "base_usdc_transfer"
+      "source": "base_usdc_transfer",
+      "authorization": {
+        "authorization_class": "operator_ignition",
+        "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9",
+        "role": "human_operator_eoa",
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Liberty ChainGuard Consulting LLC operator EOA used for CDP ignition / catalog presence. Not a third-party autonomous buyer. Seller ERC-8004 63737 is merchant identity only."
+      },
+      "authorization_class": "operator_ignition",
+      "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9"
     },
     {
       "rail": "base",
@@ -150,7 +226,17 @@
       "receiver": "0x408f39b19266022fec03076091e59d1f4f163658",
       "block": 50017450,
       "resource": "https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence",
-      "source": "base_usdc_transfer"
+      "source": "base_usdc_transfer",
+      "authorization": {
+        "authorization_class": "operator_ignition",
+        "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9",
+        "role": "human_operator_eoa",
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Liberty ChainGuard Consulting LLC operator EOA used for CDP ignition / catalog presence. Not a third-party autonomous buyer. Seller ERC-8004 63737 is merchant identity only."
+      },
+      "authorization_class": "operator_ignition",
+      "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9"
     },
     {
       "rail": "base",
@@ -164,7 +250,17 @@
       "receiver": "0x408f39b19266022fec03076091e59d1f4f163658",
       "block": 50017447,
       "resource": "https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
-      "source": "base_usdc_transfer"
+      "source": "base_usdc_transfer",
+      "authorization": {
+        "authorization_class": "operator_ignition",
+        "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9",
+        "role": "human_operator_eoa",
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Liberty ChainGuard Consulting LLC operator EOA used for CDP ignition / catalog presence. Not a third-party autonomous buyer. Seller ERC-8004 63737 is merchant identity only."
+      },
+      "authorization_class": "operator_ignition",
+      "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9"
     },
     {
       "rail": "base",
@@ -178,7 +274,17 @@
       "receiver": "0x408f39b19266022fec03076091e59d1f4f163658",
       "block": 50017434,
       "resource": "https://api.agentic-swarm-marketplace.com/x402/v1/contract-triage",
-      "source": "base_usdc_transfer"
+      "source": "base_usdc_transfer",
+      "authorization": {
+        "authorization_class": "operator_ignition",
+        "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9",
+        "role": "human_operator_eoa",
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Liberty ChainGuard Consulting LLC operator EOA used for CDP ignition / catalog presence. Not a third-party autonomous buyer. Seller ERC-8004 63737 is merchant identity only."
+      },
+      "authorization_class": "operator_ignition",
+      "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9"
     },
     {
       "rail": "base",
@@ -192,7 +298,17 @@
       "receiver": "0x408f39b19266022fec03076091e59d1f4f163658",
       "block": 50017321,
       "resource": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/product-search",
-      "source": "base_usdc_transfer"
+      "source": "base_usdc_transfer",
+      "authorization": {
+        "authorization_class": "operator_ignition",
+        "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9",
+        "role": "human_operator_eoa",
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Liberty ChainGuard Consulting LLC operator EOA used for CDP ignition / catalog presence. Not a third-party autonomous buyer. Seller ERC-8004 63737 is merchant identity only."
+      },
+      "authorization_class": "operator_ignition",
+      "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9"
     },
     {
       "rail": "base",
@@ -206,7 +322,17 @@
       "receiver": "0x408f39b19266022fec03076091e59d1f4f163658",
       "block": 50017319,
       "resource": "https://api.agentic-swarm-marketplace.com/x402/v1/procurement-readiness",
-      "source": "base_usdc_transfer"
+      "source": "base_usdc_transfer",
+      "authorization": {
+        "authorization_class": "operator_ignition",
+        "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9",
+        "role": "human_operator_eoa",
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Liberty ChainGuard Consulting LLC operator EOA used for CDP ignition / catalog presence. Not a third-party autonomous buyer. Seller ERC-8004 63737 is merchant identity only."
+      },
+      "authorization_class": "operator_ignition",
+      "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9"
     },
     {
       "rail": "base",
@@ -220,7 +346,17 @@
       "receiver": "0x408f39b19266022fec03076091e59d1f4f163658",
       "block": 50017317,
       "resource": "https://api.agentic-swarm-marketplace.com/x402/v1/celo-agent-data",
-      "source": "base_usdc_transfer"
+      "source": "base_usdc_transfer",
+      "authorization": {
+        "authorization_class": "operator_ignition",
+        "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9",
+        "role": "human_operator_eoa",
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Liberty ChainGuard Consulting LLC operator EOA used for CDP ignition / catalog presence. Not a third-party autonomous buyer. Seller ERC-8004 63737 is merchant identity only."
+      },
+      "authorization_class": "operator_ignition",
+      "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9"
     },
     {
       "rail": "base",
@@ -234,7 +370,17 @@
       "receiver": "0x408f39b19266022fec03076091e59d1f4f163658",
       "block": 50017313,
       "resource": "https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
-      "source": "base_usdc_transfer"
+      "source": "base_usdc_transfer",
+      "authorization": {
+        "authorization_class": "operator_ignition",
+        "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9",
+        "role": "human_operator_eoa",
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Liberty ChainGuard Consulting LLC operator EOA used for CDP ignition / catalog presence. Not a third-party autonomous buyer. Seller ERC-8004 63737 is merchant identity only."
+      },
+      "authorization_class": "operator_ignition",
+      "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9"
     },
     {
       "rail": "base",
@@ -248,7 +394,17 @@
       "receiver": "0x408f39b19266022fec03076091e59d1f4f163658",
       "block": 50016824,
       "resource": "https://api.agentic-swarm-marketplace.com/x402/v1/agent-commerce-data",
-      "source": "base_usdc_transfer"
+      "source": "base_usdc_transfer",
+      "authorization": {
+        "authorization_class": "operator_ignition",
+        "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9",
+        "role": "human_operator_eoa",
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Liberty ChainGuard Consulting LLC operator EOA used for CDP ignition / catalog presence. Not a third-party autonomous buyer. Seller ERC-8004 63737 is merchant identity only."
+      },
+      "authorization_class": "operator_ignition",
+      "authorized_by": "0xebd956f5c8c4b32752d87d62314f9431dc0449e9"
     },
     {
       "rail": "base",
@@ -261,7 +417,17 @@
       "timestamp": "2026-08-15T20:11:31Z",
       "resource": "/x402/v1/query",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -274,7 +440,17 @@
       "timestamp": "2026-08-15T20:05:56Z",
       "resource": "/x402/v1/query",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -287,7 +463,17 @@
       "timestamp": "2026-08-15T20:05:52Z",
       "resource": "/x402/v1/research-brief",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -300,7 +486,17 @@
       "timestamp": "2026-08-15T20:05:48Z",
       "resource": "/x402/v1/constitution-audit",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -313,7 +509,17 @@
       "timestamp": "2026-08-15T20:04:06Z",
       "resource": "/x402/v1/airdrop-intelligence",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -326,7 +532,17 @@
       "timestamp": "2026-08-15T20:04:00Z",
       "resource": "/x402/v1/intake-resale",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -339,7 +555,17 @@
       "timestamp": "2026-08-15T20:03:33Z",
       "resource": "/x402/v1/contract-triage",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -352,7 +578,17 @@
       "timestamp": "2026-08-15T19:59:47Z",
       "resource": "/x402/v1/commerce/product-search",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -365,7 +601,17 @@
       "timestamp": "2026-08-15T19:59:44Z",
       "resource": "/x402/v1/procurement-readiness",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -378,7 +624,17 @@
       "timestamp": "2026-08-15T19:59:39Z",
       "resource": "/x402/v1/celo-agent-data",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -391,7 +647,17 @@
       "timestamp": "2026-08-15T19:59:31Z",
       "resource": "/x402/v1/ecosystem-pulse",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -404,7 +670,17 @@
       "timestamp": "2026-08-15T19:43:13Z",
       "resource": "/x402/v1/agent-commerce-data",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -417,7 +693,17 @@
       "timestamp": "2026-07-27T05:14:54Z",
       "resource": "/x402/v1/agent-commerce-data",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -430,7 +716,17 @@
       "timestamp": "2026-07-26T04:59:43Z",
       "resource": "/x402/v1/agent-commerce-data",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -443,7 +739,17 @@
       "timestamp": "2026-07-25T04:43:35Z",
       "resource": "/x402/v1/agent-commerce-data",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     },
     {
       "rail": "base",
@@ -456,7 +762,17 @@
       "timestamp": "2026-07-23T04:16:34Z",
       "resource": "/x402/v1/agent-commerce-data",
       "source": "event_log",
-      "response_status": 200
+      "response_status": 200,
+      "authorization": {
+        "authorization_class": "unverified",
+        "authorized_by": null,
+        "role": null,
+        "buyer_erc8004_agent_id": null,
+        "session_policy": null,
+        "note": "Paywall/SKU mapped, but this receipt has no payer field. 402 proves a quote; it does not name who authorized spend."
+      },
+      "authorization_class": "unverified",
+      "authorized_by": null
     }
   ],
   "buyer_snippet": {

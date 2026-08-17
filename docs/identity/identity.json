@@ -39,6 +39,7 @@
     "agent_card": "https://api.agentic-swarm-marketplace.com/.well-known/agent-card.json",
     "agent_registration": "https://api.agentic-swarm-marketplace.com/.well-known/agent-registration.json",
     "t54": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json",
-    "proof": "https://www.agentic-swarm-marketplace.com/proof/"
+    "proof": "https://www.agentic-swarm-marketplace.com/proof/",
+    "payment_authorization": "https://www.agentic-swarm-marketplace.com/proof/settlements.json#authorization"
   }
 }
