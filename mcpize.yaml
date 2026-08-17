@@ -6,8 +6,12 @@ description: >
 runtime: python
 entry: scripts/mcp_server.py
 build:
+  # This GitHub repo is the static Pages site. MCPize is GitHub-connected, so
+  # every pulse-board push was rebuilding MCP. Do not pip install ./packages/agents
+  # (pulls mcp 2.x which dropped mcp.server.fastmcp). Slim check only.
+  # Preferred: disconnect GitHub auto-deploy and CLI-deploy from Swarm-Economy/deploy/mcpize.
   install: pip install --no-cache-dir -r requirements.txt
-  command: pip install --no-cache-dir ./packages/agents && python scripts/mcp_server.py --check
+  command: python scripts/mcp_server.py --check
 startCommand:
   type: http
   command: python
