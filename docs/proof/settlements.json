@@ -1,6 +1,6 @@
 {
   "name": "Agentic Swarm Marketplace",
-  "updated_at": "2026-08-17T14:53:23Z",
+  "updated_at": "2026-08-17T21:33:57Z",
   "site": "https://www.agentic-swarm-marketplace.com",
   "api": "https://api.agentic-swarm-marketplace.com",
   "identity": {
@@ -25,6 +25,19 @@
       "eas_tx": "0x0f81f0685eb238e958967978147b84d3bd418d85a6f602987f920b9d13724031",
       "eas_explorer": "https://base.easscan.org/attestation/view/0x9ca928f307db1edf37ebc9880d44c90836ab1692ad9c2b22c71fdf3ab0b96af9",
       "basename_tx": "0x89f799b806ea0fb9f06b4159d223ac1cc8f8bcdb99c8ba254146ef93e34cd703"
+    },
+    "celo": {
+      "chainId": 42220,
+      "revenueService": "0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4",
+      "asset": "CELO",
+      "explorer": "https://celoscan.io/address/0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4",
+      "celoname": "agentic-swarm.celo.eth",
+      "celoname_tx": "0xd3c2cfdcfffcc04850e5115491eef9b8b4e40c6505a1487d7a6a591c3331058c",
+      "erc8004_registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+      "erc8004_agent_id": 9775,
+      "erc8004_tx": "0x387f4682c6b562c994f14b4de38a151c2275258a6fe6734783fff06e304edaad",
+      "erc8004_revenue_meta_tx": "0x7d49ea2e6774759cdf59048ec26dfca65643ae2caa90af2472a312a28674d8be",
+      "erc8004_explorer": "https://celoscan.io/nft/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432/9775"
     },
     "xrpl": {
       "network": "xrpl:0",
@@ -74,7 +87,17 @@
     "xrpl_operator_account": "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
     "xrpl_operator_domain_tx": "D97C1C07C10BA42AF3E7C7C5ACD0A891B1CA4399C7EF9E3D3771D2393509B3F1",
     "xrpl_operator_nft_tx": "23373DD67CB08432AC3E83DA44B2E81344CC2D4486F1593667BC74228210A6AD",
-    "xrpl_operator_nft_id": "00080000B47A42E9BA2B665E1A025DA69BE6406E927C46E7D8D4BD9B05A41544"
+    "xrpl_operator_nft_id": "00080000B47A42E9BA2B665E1A025DA69BE6406E927C46E7D8D4BD9B05A41544",
+    "celoname": "agentic-swarm.celo.eth",
+    "celoname_tx": "0xd3c2cfdcfffcc04850e5115491eef9b8b4e40c6505a1487d7a6a591c3331058c",
+    "celoname_owner": "0x3430C51aD9476029a03bE8Da64c09b8BC930eBa6",
+    "celoname_resolved": "0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4",
+    "celoname_price_wei": 16842837128754394717,
+    "celo_erc8004_tx": "0x387f4682c6b562c994f14b4de38a151c2275258a6fe6734783fff06e304edaad",
+    "celo_erc8004_agent_id": 9775,
+    "celo_erc8004_owner": "0x3430C51aD9476029a03bE8Da64c09b8BC930eBa6",
+    "celo_erc8004_uri": "https://api.agentic-swarm-marketplace.com/.well-known/agent-registration.json",
+    "celo_erc8004_revenue_meta_tx": "0x7d49ea2e6774759cdf59048ec26dfca65643ae2caa90af2472a312a28674d8be"
   },
   "authorization": {
     "table": "who_authorized_pay",

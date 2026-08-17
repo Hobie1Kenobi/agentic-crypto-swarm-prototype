@@ -21,6 +21,19 @@
     "eas_explorer": "https://base.easscan.org/attestation/view/0x9ca928f307db1edf37ebc9880d44c90836ab1692ad9c2b22c71fdf3ab0b96af9",
     "basename_tx": "0x89f799b806ea0fb9f06b4159d223ac1cc8f8bcdb99c8ba254146ef93e34cd703"
   },
+  "celo": {
+    "chainId": 42220,
+    "revenueService": "0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4",
+    "asset": "CELO",
+    "explorer": "https://celoscan.io/address/0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4",
+    "celoname": "agentic-swarm.celo.eth",
+    "celoname_tx": "0xd3c2cfdcfffcc04850e5115491eef9b8b4e40c6505a1487d7a6a591c3331058c",
+    "erc8004_registry": "0x8004A169FB4a3325136EB29fA0ceB6D2e539a432",
+    "erc8004_agent_id": 9775,
+    "erc8004_tx": "0x387f4682c6b562c994f14b4de38a151c2275258a6fe6734783fff06e304edaad",
+    "erc8004_revenue_meta_tx": "0x7d49ea2e6774759cdf59048ec26dfca65643ae2caa90af2472a312a28674d8be",
+    "erc8004_explorer": "https://celoscan.io/nft/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432/9775"
+  },
   "xrpl": {
     "network": "xrpl:0",
     "payTo": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",

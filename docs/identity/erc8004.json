@@ -1,7 +1,7 @@
 {
   "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
   "name": "Agentic Swarm Marketplace",
-  "description": "Multi-rail x402 marketplace for agent-to-agent commerce. SKUs settle in USDC on Base via the Coinbase CDP facilitator and in XRP on XRPL via T54. Operator: Liberty ChainGuard Consulting LLC. No trading or speculation.",
+  "description": "Multi-rail x402 marketplace for agent-to-agent commerce. SKUs settle in USDC on Base via the Coinbase CDP facilitator, XRP on XRPL via T54, and native CELO on Celo via AgentRevenueService.fulfillQuery. Operator: Liberty ChainGuard Consulting LLC. No trading or speculation.",
   "image": "https://www.agentic-swarm-marketplace.com/og-banner.png",
   "services": [
     {
@@ -29,8 +29,17 @@
       "version": "v1"
     },
     {
+      "name": "celoname",
+      "endpoint": "agentic-swarm.celo.eth",
+      "version": "v1"
+    },
+    {
       "name": "wallet",
       "endpoint": "eip155:8453:0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "name": "celo-wallet",
+      "endpoint": "eip155:42220:0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4"
     },
     {
       "name": "xrpl",
@@ -47,6 +56,10 @@
     {
       "agentId": 63737,
       "agentRegistry": "eip155:8453:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432"
+    },
+    {
+      "agentId": 9775,
+      "agentRegistry": "eip155:42220:0x8004A169FB4a3325136EB29fA0ceB6D2e539a432"
     }
   ],
   "supportedTrust": [

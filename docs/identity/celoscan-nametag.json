@@ -1,0 +1,35 @@
+{
+  "blockscout_submit": "https://celo.blockscout.com/public-tags/submit",
+  "celoscan_contact": "https://celoscan.io/contactus",
+  "suggested_nametag": "Agentic Swarm Marketplace",
+  "website": "https://www.agentic-swarm-marketplace.com",
+  "operator": "Liberty ChainGuard Consulting LLC",
+  "addresses": [
+    {
+      "role": "AgentRevenueService",
+      "address": "0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4",
+      "celoscan": "https://celoscan.io/address/0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4",
+      "tag": "Agentic Swarm Marketplace",
+      "description": "Celo mainnet x402 seller. Buyers call fulfillQuery; HTTP 402 at /celo/query."
+    },
+    {
+      "role": "owner / deployer",
+      "address": "0x3430C51aD9476029a03bE8Da64c09b8BC930eBa6",
+      "celoscan": "https://celoscan.io/address/0x3430C51aD9476029a03bE8Da64c09b8BC930eBa6#nametag",
+      "tag": "ASM Celo operator",
+      "description": "Liberty ChainGuard Consulting LLC. Owner of AgentRevenueService."
+    },
+    {
+      "role": "treasury",
+      "address": "0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+      "celoscan": "https://celoscan.io/address/0xD92264f5f6a98B62ff635e0F0b77c8A059Eb3Bb6",
+      "tag": "ASM treasury",
+      "description": "10% protocol fee recipient from AgentRevenueService."
+    }
+  ],
+  "notes": [
+    "Celoscan nametag for the owner EOA: connect 0x3430\u2026eBa6 at the address page #nametag.",
+    "Blockscout public tags: submit the three addresses with the tags above.",
+    "Do not claim SDVOSB or fake buyer volume."
+  ]
+}
