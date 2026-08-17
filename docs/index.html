@@ -608,7 +608,7 @@
   <section id="celo-x402">
     <div class="container">
       <h2 class="section-title">Celo native x402 seller — api_402</h2>
-      <p class="section-sub">Live on the unified API host at <a href="https://api.agentic-swarm-marketplace.com/celo/query?q=hello" target="_blank" rel="noopener" style="color: var(--accent-cyan);"><code>/celo/query</code></a> (<strong>Celo Sepolia</strong> today; mainnet contract deploy on roadmap). HTTP <strong>402</strong> with CELO payment terms; buyers submit <code style="color: #a5b4fc;">AgentRevenueService.fulfillQuery</code>, then retry with <code style="color: #a5b4fc;">X-Payment-Tx-Hash</code>.</p>
+      <p class="section-sub">Live on the unified API host at <a href="https://api.agentic-swarm-marketplace.com/celo/query?q=hello" target="_blank" rel="noopener" style="color: var(--accent-cyan);"><code>/celo/query</code></a> (<strong>Celo mainnet</strong> chain 42220). HTTP <strong>402</strong> with CELO payment terms; buyers submit <code style="color: #a5b4fc;">AgentRevenueService.fulfillQuery</code>, then retry with <code style="color: #a5b4fc;">X-Payment-Tx-Hash</code>.</p>
 
       <div class="t54-spotlight">
         <h3>Service details</h3>
@@ -616,7 +616,7 @@
         <div class="t54-badges">
           <span class="t54-badge x402">HTTP 402</span>
           <span class="t54-badge xrpl" style="background: rgba(245,158,11,0.2); color: #fcd34d;">CELO</span>
-          <span class="t54-badge caip">CAIP-2 eip155:11142220</span>
+          <span class="t54-badge caip">CAIP-2 eip155:42220</span>
           <span class="t54-badge fac">fulfillQuery</span>
         </div>
         <div class="t54-grid">
@@ -640,6 +640,7 @@
         </table>
         <div class="t54-cta">
           <a href="https://api.agentic-swarm-marketplace.com/celo/query?q=hello" target="_blank" rel="noopener" class="btn btn-primary">Probe (expect 402)</a>
+          <a href="https://celoscan.io/address/0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4" target="_blank" rel="noopener" class="btn btn-secondary">AgentRevenueService</a>
           <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/operations/CELO_X402_SELLER.md" target="_blank" rel="noopener" class="btn btn-secondary">CELO_X402_SELLER.md</a>
           <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/packages/agents/api_402.py" target="_blank" rel="noopener" class="btn btn-secondary">api_402.py</a>
         </div>
@@ -908,8 +909,8 @@
           <div><strong>Live public Olas adapter</strong> — Gnosis/Base intake → paid x402 SKUs (T54 / Base / Celo)</div>
         </li>
         <li>
-          <span class="roadmap-badge planned">Planned</span>
-          <div><strong>Celo mainnet AgentRevenueService</strong> — Deploy revenue contract on chain 42220 for production CELO sales</div>
+          <span class="roadmap-badge done">Done</span>
+          <div><strong>Celo mainnet AgentRevenueService</strong> — Revenue contract on chain 42220; public <code>/celo/query</code> 402 uses <code>0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4</code></div>
         </li>
       </ul>
     </div>

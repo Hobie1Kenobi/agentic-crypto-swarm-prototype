@@ -1,13 +1,37 @@
 {
   "schema_note": "Canonical public URLs for agents and buyers. Regenerate: npm run docs:sync-endpoints (reads repo-root .env). Commit result for GitHub Pages. Stable HTTPS + mainnet alignment: documentation/PUBLIC_MAINNET_OPERATIONS.md",
   "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
-  "updated_at": "2026-05-26T16:05:47Z",
+  "updated_at": "2026-08-17T20:28:53Z",
   "endpoints": [
     {
       "id": "t54_public_origin",
       "label": "T54 XRPL x402 seller (discovery origin)",
       "description": "Discovery appends each SKU path from x402_providers.json. With unified Caddy, base URL ends with /t54.",
       "url": "https://api.agentic-swarm-marketplace.com/t54",
+      "network": "xrpl:0",
+      "health_url": "https://api.agentic-swarm-marketplace.com/t54/health"
+    },
+    {
+      "id": "t54_well_known_x402",
+      "label": "T54 XRPL well-known catalog",
+      "description": "Machine-readable XRPL SKU catalog for agent discovery (paths, drops, payTo, facilitator).",
+      "url": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json",
+      "network": "xrpl:0",
+      "health_url": "https://api.agentic-swarm-marketplace.com/t54/health"
+    },
+    {
+      "id": "t54_agent_card",
+      "label": "T54 XRPL agent card",
+      "description": "Agent capability card listing T54/LCG XRPL skills and endpoints.",
+      "url": "https://api.agentic-swarm-marketplace.com/t54/.well-known/agent-card.json",
+      "network": "xrpl:0",
+      "health_url": "https://api.agentic-swarm-marketplace.com/t54/health"
+    },
+    {
+      "id": "t54_lcg_procurement_readiness",
+      "label": "T54 XRPL — LCG Procurement Readiness Scan",
+      "description": "Entry SKU for LCG procurement intelligence on XRPL (POST JSON; GET ?payload= also supported).",
+      "url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/procurement-readiness",
       "network": "xrpl:0",
       "health_url": "https://api.agentic-swarm-marketplace.com/t54/health"
     },
@@ -32,7 +56,7 @@
       "label": "Celo native x402 seller (api_402 / fulfillQuery)",
       "description": "GET/POST /celo/query \u2014 HTTP 402 with CELO payment via AgentRevenueService.fulfillQuery (no facilitator). Set CELO_402_PUBLIC_URL or PUBLIC_API_ORIGIN.",
       "url": "https://api.agentic-swarm-marketplace.com/celo/query",
-      "network": "eip155:11142220",
+      "network": "eip155:42220",
       "health_url": "https://api.agentic-swarm-marketplace.com/celo/health"
     },
     {

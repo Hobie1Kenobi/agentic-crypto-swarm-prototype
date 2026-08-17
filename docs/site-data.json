@@ -42,7 +42,10 @@
     }
   },
   "contracts": {
-    "revenue_service_note": "AgentRevenueService powers the Celo native x402 seller (api_402 / fulfillQuery). Set REVENUE_SERVICE_ADDRESS in .env on the API host.",
+    "revenue_service": "0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4",
+    "revenue_service_chain": "eip155:42220",
+    "revenue_service_note": "AgentRevenueService on Celo mainnet powers the public Celo native x402 seller (api_402 /celo/query).",
+    "revenue_service_explorer": "https://celoscan.io/address/0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4",
     "compute_marketplace": "0xad8eaf9436b2580172e65d537ef9cf7d5f06a5a9",
     "compute_marketplace_verified": true,
     "compute_marketplace_role": "Optional R&D escrow (Celo Sepolia testnet only)",
