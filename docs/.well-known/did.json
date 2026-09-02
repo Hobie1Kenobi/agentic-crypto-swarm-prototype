@@ -71,7 +71,7 @@
     "payTo": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
     "payToRole": "T54 receive address \u2014 not the DID subject",
     "domain": "agentic-swarm-marketplace.com",
-    "ledgerObjectPresent": false,
+    "ledgerObjectPresent": true,
     "hostedDocument": "https://www.agentic-swarm-marketplace.com/.well-known/did.json",
     "name": "Agentic Swarm Marketplace",
     "operator": "Liberty ChainGuard Consulting LLC"

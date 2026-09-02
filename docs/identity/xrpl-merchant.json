@@ -5,7 +5,7 @@
   "description": "XLS-20 merchant credential for T54 / XRPL x402 SKUs. Not a collectible drop.",
   "domain": "agentic-swarm-marketplace.com",
   "did": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
-  "didLedgerObject": false,
+  "didLedgerObject": true,
   "account": "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
   "identityAccount": "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
   "payTo": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
@@ -45,5 +45,5 @@
   },
   "operator": "Liberty ChainGuard Consulting LLC",
   "operator_url": "https://libertychainguard.com",
-  "note": "Xaman signs Domain/NFT/DID on `identityAccount`. T54 x402 payTo is the standalone receive address. XLS-40 DID object is not on ledger until DIDSet is signed."
+  "note": "Xaman signs Domain/NFT/DID on `identityAccount`. T54 x402 payTo is the standalone receive address. XLS-40 DID object is on ledger (DIDSet 26CF16E2\u2026BB1E). Credential ASM-T54-PayTo binds payTo as subject."
 }

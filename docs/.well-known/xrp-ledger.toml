@@ -15,7 +15,7 @@ expires = 2027-09-02T19:00:00Z
 address = "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq"
 desc = "Publisher / identity / DID / merchant NFTs"
 network = "main"
-# did = "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq"  # intended; XLS-40 object not on ledger yet
+did = "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq"
 
 [[ACCOUNTS]]
 address = "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf"

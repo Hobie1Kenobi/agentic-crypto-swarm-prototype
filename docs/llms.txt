@@ -55,6 +55,22 @@ This repo ships a stdio MCP server that maps LLM tool calls to T54 HTTP operatio
 - XRPL T54 payTo (standalone receive): `rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf`
 - XRPL Xaman identity (Domain + NFT): `rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq`
 - Identity JSON: https://www.agentic-swarm-marketplace.com/identity/identity.json
+- Human XRPL page: https://www.agentic-swarm-marketplace.com/xrpl/
+
+## XRPL publisher verification
+
+One brand, two accounts. Do not treat ERC-8004 or Basename as an XRPL DID.
+
+1. **Domain (on-ledger, identity account):** `rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq` Account.Domain hex-decodes to `agentic-swarm-marketplace.com` (tx `D97C1C07C10BA42AF3E7C7C5ACD0A891B1CA4399C7EF9E3D3771D2393509B3F1`).
+2. **Bidirectional toml:** fetch https://www.agentic-swarm-marketplace.com/.well-known/xrp-ledger.toml and https://api.agentic-swarm-marketplace.com/.well-known/xrp-ledger.toml — bytes must match and list **both** r-addresses. Apex `https://agentic-swarm-marketplace.com` HTTPS is not live yet (no A/AAAA); do not require apex until DNS is fixed.
+3. **Merchant credential:** https://api.agentic-swarm-marketplace.com/.well-known/xrpl-merchant.json (same URI as taxon-8004 NFTs).
+4. **DID:** `did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq` — hosted https://www.agentic-swarm-marketplace.com/.well-known/did.json and XLS-40 ledger object on identity (DIDSet `26CF16E2C3D6C4D043C1BB7B8A527E3A24A74D9D62604DB5D24B13CA5060BB1E`). payTo is a service endpoint + Credential subject, not the DID subject.
+5. **Catalog seal:** unpaid https://api.agentic-swarm-marketplace.com/t54/catalog-snapshot (SHA3-512, separator `asm:sku-catalog:v1`). Verify with unpaid https://api.agentic-swarm-marketplace.com/t54/verify?hash=<hex> or MCP tool `xrpl_publisher_status`.
+6. **Commerce probe:** unpaid GET https://api.agentic-swarm-marketplace.com/t54/hello must return HTTP 402 with payTo `rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf`.
+7. **AI Hub / explorers:** https://xrpl-ai.org/join/service (submit `/t54` origin). https://xrpscan.com/account/rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq and https://xrpscan.com/account/rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf
+8. **Volume honesty:** rails are live. Recent inbound to payTo is operator ignition (identity → payTo). Third-party agent volume is not material and is not claimed.
+
+Host `/.well-known/x402.json` is a union index (`seller.rails[]` + `xrplCatalog` + `xrpl:0` resources). The T54-only catalog remains at `/t54/.well-known/x402.json`.
 
 ## Keywords
 

@@ -39,7 +39,7 @@
       <h2>Publisher vs treasury</h2>
       <p><strong>Identity / publisher</strong><br>
         <span class="mono">rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq</span><br>
-        Domain, merchant NFTs, future DID and catalog-anchor memos. Signed in Xaman only.</p>
+        Domain, merchant NFTs, XLS-40 DID, catalog-hash memo. Signed in Xaman only.</p>
       <p style="margin-top:12px;"><strong>T54 payTo / treasury</strong><br>
         <span class="mono">rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf</span><br>
         Receive-only settlement address in every x402 402. No signing keys on API servers. On-ledger master key is still live (P0 hygiene — see key-hygiene runbook).</p>
@@ -51,10 +51,10 @@
     <h2>How to verify</h2>
     <ul>
       <li>Account.Domain on the identity account hex-decodes to <code>agentic-swarm-marketplace.com</code>.</li>
-      <li>Identical <a href="../.well-known/xrp-ledger.toml">xrp-ledger.toml</a> on www and api lists both r-addresses.</li>
+      <li>Identical <a href="../.well-known/xrp-ledger.toml">xrp-ledger.toml</a> on www, api, and (once the apex cert is approved) apex lists both r-addresses.</li>
       <li><a href="https://api.agentic-swarm-marketplace.com/.well-known/xrpl-merchant.json">xrpl-merchant.json</a> (NFT URI).</li>
-      <li>Unpaid <a href="https://api.agentic-swarm-marketplace.com/t54/catalog-snapshot">catalog-snapshot</a> SHA3-512; check with <a href="https://api.agentic-swarm-marketplace.com/t54/verify">/t54/verify</a>.</li>
-      <li>Hosted DID document (intended <code>did:xrpl:1:rHTHa…Wq</code>) — ledger DID object is <strong>not</strong> created yet.</li>
+      <li>Unpaid <a href="https://api.agentic-swarm-marketplace.com/t54/catalog-snapshot">catalog-snapshot</a> SHA3-512; check with <a href="https://api.agentic-swarm-marketplace.com/t54/verify">/t54/verify</a>. On-ledger memo <a href="https://xrpscan.com/tx/AD0A8BE36A82F12AF9022DACFCBD6EEF3CB178057B04CC45648B26ACCB8056C3">AD0A8BE3…56C3</a>.</li>
+      <li>DID <code>did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq</code> — hosted <a href="../.well-known/did.json">did.json</a> and ledger object (DIDSet <a href="https://xrpscan.com/tx/26CF16E2C3D6C4D043C1BB7B8A527E3A24A74D9D62604DB5D24B13CA5060BB1E">26CF16E2…BB1E</a>). Credential <code>ASM-T54-PayTo</code> subject is payTo.</li>
     </ul>
 
     <h2>Volume — honest</h2>
