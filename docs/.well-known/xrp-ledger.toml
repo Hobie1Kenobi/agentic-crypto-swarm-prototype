@@ -1,0 +1,63 @@
+# Agentic Swarm Marketplace — xrp-ledger.toml
+# Serve identical bytes at apex, www, and api /.well-known/xrp-ledger.toml
+# Spec: https://xrpl.org/docs/references/xrp-ledger-toml
+
+[METADATA]
+name = "Agentic Swarm Marketplace"
+domain = "agentic-swarm-marketplace.com"
+modified = 2026-09-02T19:00:00Z
+expires = 2027-09-02T19:00:00Z
+
+# Legal / brand (not a validator)
+# org_legal_name = Liberty ChainGuard Consulting LLC
+
+[[ACCOUNTS]]
+address = "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq"
+desc = "Publisher / identity / DID / merchant NFTs"
+network = "main"
+# did = "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq"  # intended; XLS-40 object not on ledger yet
+
+[[ACCOUNTS]]
+address = "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf"
+desc = "T54 x402 receive-only payTo. No signing keys on API servers."
+network = "main"
+
+[[SERVERS]]
+url = "https://www.agentic-swarm-marketplace.com/"
+desc = "website"
+
+[[SERVERS]]
+url = "https://api.agentic-swarm-marketplace.com/mcp"
+desc = "mcp"
+
+[[SERVERS]]
+url = "https://www.agentic-swarm-marketplace.com/llms.txt"
+desc = "llms.txt"
+
+[[SERVERS]]
+url = "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json"
+desc = "T54 x402 catalog"
+
+[[SERVERS]]
+url = "https://api.agentic-swarm-marketplace.com/.well-known/xrpl-merchant.json"
+desc = "xrpl-merchant.json"
+
+[[SERVERS]]
+url = "https://api.agentic-swarm-marketplace.com/t54/verify"
+desc = "unpaid catalog verify"
+
+[[SERVERS]]
+url = "https://api.agentic-swarm-marketplace.com/t54/catalog-snapshot"
+desc = "unpaid catalog snapshot"
+
+[[SERVERS]]
+url = "https://www.agentic-swarm-marketplace.com/xrpl/"
+desc = "human XRPL presence page"
+
+[[SERVERS]]
+url = "https://xrpl-facilitator-mainnet.t54.ai"
+desc = "T54 facilitator (not operated by ASM)"
+
+[[PRINCIPALS]]
+name = "Liberty ChainGuard Consulting LLC"
+# email = UNKNOWN — do not invent a public mailbox

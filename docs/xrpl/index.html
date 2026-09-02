@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>XRPL — Agentic Swarm Marketplace</title>
+  <meta name="description" content="Agentic Swarm Marketplace on XRP Ledger: named publisher, identity vs T54 payTo, 15 SKUs, catalog hash verify. Rails live; third-party volume not yet material.">
+  <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/xrpl/">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root { --bg:#0a0b0f; --card:#12151c; --border:#1e2530; --text:#e8ecf4; --muted:#8b95a8; --cyan:#00d4aa; }
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:Outfit,system-ui,sans-serif; background:var(--bg); color:var(--text); line-height:1.65; padding:32px 20px 80px; }
+    .wrap { max-width:820px; margin:0 auto; }
+    a { color:var(--cyan); }
+    h1 { font-size:2rem; margin:12px 0 16px; }
+    h2 { margin:32px 0 10px; font-size:1.25rem; }
+    p, li { color:#c5cdd8; }
+    code, .mono { font-family:"JetBrains Mono",monospace; font-size:0.86rem; color:#a5b4fc; word-break:break-all; }
+    .card { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px 20px; margin:14px 0; }
+    .muted { color:var(--muted); font-size:0.92rem; }
+    ul { padding-left:1.2rem; }
+    li { margin:6px 0; }
+    nav a { margin-right:14px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="muted">
+      <a href="../">Home</a>
+      <a href="../llms.txt">llms.txt</a>
+      <a href="../proof/">Proof</a>
+      <a href="https://api.agentic-swarm-marketplace.com/t54/verify">Verify</a>
+    </nav>
+    <h1>Agentic Swarm Marketplace on XRP Ledger</h1>
+    <p>Named business. Two XRPL accounts, one brand. Agents buy 15 T54 SKUs in XRP. Verification is the public file plus one ledger lookup — not trust in our backend.</p>
+
+    <div class="card">
+      <h2>Publisher vs treasury</h2>
+      <p><strong>Identity / publisher</strong><br>
+        <span class="mono">rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq</span><br>
+        Domain, merchant NFTs, future DID and catalog-anchor memos. Signed in Xaman only.</p>
+      <p style="margin-top:12px;"><strong>T54 payTo / treasury</strong><br>
+        <span class="mono">rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf</span><br>
+        Receive-only settlement address in every x402 402. No signing keys on API servers. On-ledger master key is still live (P0 hygiene — see key-hygiene runbook).</p>
+    </div>
+
+    <h2>What agents can buy</h2>
+    <p>HTTP 402 on <code>xrpl:0</code> via <code>https://xrpl-facilitator-mainnet.t54.ai</code>. Catalog: <a href="https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json">/t54/.well-known/x402.json</a>. Unpaid <a href="https://api.agentic-swarm-marketplace.com/t54/hello">/t54/hello</a> must return 402 with that payTo.</p>
+
+    <h2>How to verify</h2>
+    <ul>
+      <li>Account.Domain on the identity account hex-decodes to <code>agentic-swarm-marketplace.com</code>.</li>
+      <li>Identical <a href="../.well-known/xrp-ledger.toml">xrp-ledger.toml</a> on www and api lists both r-addresses.</li>
+      <li><a href="https://api.agentic-swarm-marketplace.com/.well-known/xrpl-merchant.json">xrpl-merchant.json</a> (NFT URI).</li>
+      <li>Unpaid <a href="https://api.agentic-swarm-marketplace.com/t54/catalog-snapshot">catalog-snapshot</a> SHA3-512; check with <a href="https://api.agentic-swarm-marketplace.com/t54/verify">/t54/verify</a>.</li>
+      <li>Hosted DID document (intended <code>did:xrpl:1:rHTHa…Wq</code>) — ledger DID object is <strong>not</strong> created yet.</li>
+    </ul>
+
+    <h2>Volume — honest</h2>
+    <p>Rails are live. Third-party volume is not yet material. Recent inbound Payments to payTo are operator ignition (identity → payTo, T54 sourceTag 804681468). We do not claim organic agent volume.</p>
+
+    <p class="muted" style="margin-top:28px;">Operator: Liberty ChainGuard Consulting LLC. ERC-8004 Base 63737 / Celo 9775 are related EVM identity, not an XRPL DID substitute.</p>
+  </div>
+</body>
+</html>
