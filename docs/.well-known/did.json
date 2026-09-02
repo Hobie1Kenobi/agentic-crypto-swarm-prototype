@@ -1,0 +1,79 @@
+{
+  "@context": [
+    "https://www.w3.org/ns/did/v1"
+  ],
+  "id": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
+  "controller": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
+  "alsoKnownAs": [
+    "https://agentic-swarm-marketplace.com/",
+    "https://www.agentic-swarm-marketplace.com/"
+  ],
+  "verificationMethod": [
+    {
+      "id": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq#account-key",
+      "type": "EcdsaSecp256k1VerificationKey2019",
+      "controller": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
+      "publicKeyHex": "032B97245BB2145B1EFC0D2756555F533353B8D53A9E2B430EE44D025E49067999",
+      "blockchainAccountId": "xrpl:0:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
+      "sourceTx": "D97C1C07C10BA42AF3E7C7C5ACD0A891B1CA4399C7EF9E3D3771D2393509B3F1"
+    }
+  ],
+  "verificationMethodStatus": "present \u2014 identity secp256k1 from Domain AccountSet",
+  "service": [
+    {
+      "id": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq#web",
+      "type": "LinkedDomains",
+      "serviceEndpoint": "https://www.agentic-swarm-marketplace.com/"
+    },
+    {
+      "id": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq#toml",
+      "type": "xrp-ledger.toml",
+      "serviceEndpoint": "https://www.agentic-swarm-marketplace.com/.well-known/xrp-ledger.toml"
+    },
+    {
+      "id": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq#x402",
+      "type": "x402",
+      "serviceEndpoint": "https://api.agentic-swarm-marketplace.com/.well-known/x402.json"
+    },
+    {
+      "id": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq#x402-t54",
+      "type": "x402",
+      "serviceEndpoint": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json"
+    },
+    {
+      "id": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq#payTo",
+      "type": "XRPLReceiveAddress",
+      "serviceEndpoint": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf"
+    },
+    {
+      "id": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq#mcp",
+      "type": "MCP",
+      "serviceEndpoint": "https://api.agentic-swarm-marketplace.com/mcp"
+    },
+    {
+      "id": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq#llms",
+      "type": "llms.txt",
+      "serviceEndpoint": "https://www.agentic-swarm-marketplace.com/llms.txt"
+    },
+    {
+      "id": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq#merchant",
+      "type": "XRPLMerchantCredential",
+      "serviceEndpoint": "https://api.agentic-swarm-marketplace.com/.well-known/xrpl-merchant.json"
+    },
+    {
+      "id": "did:xrpl:1:rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq#verify",
+      "type": "AsmCatalogVerify",
+      "serviceEndpoint": "https://api.agentic-swarm-marketplace.com/t54/verify"
+    }
+  ],
+  "xrpl": {
+    "identityAccount": "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
+    "payTo": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+    "payToRole": "T54 receive address \u2014 not the DID subject",
+    "domain": "agentic-swarm-marketplace.com",
+    "ledgerObjectPresent": false,
+    "hostedDocument": "https://www.agentic-swarm-marketplace.com/.well-known/did.json",
+    "name": "Agentic Swarm Marketplace",
+    "operator": "Liberty ChainGuard Consulting LLC"
+  }
+}

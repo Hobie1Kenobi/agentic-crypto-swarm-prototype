@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ASM XRPL go-live — Xaman sign now</title>
+  <style>
+    :root { --bg:#07080c; --card:#12151c; --text:#e8ecf4; --muted:#8b95a8; --warn:#fbbf24; --go:#00d4aa; }
+    body { margin:0; font-family:Outfit,system-ui,sans-serif; background:var(--bg); color:var(--text); }
+    .wrap { max-width:880px; margin:0 auto; padding:28px 18px 80px; }
+    h1 { font-size:1.8rem; }
+    .shout { color:var(--warn); font-weight:800; letter-spacing:.04em; font-size:1.05rem; }
+    .addr { font-family:ui-monospace,monospace; word-break:break-all; color:#a5b4fc; font-size:1.05rem; }
+    .card { background:var(--card); border:1px solid #1e2530; border-radius:16px; padding:22px; margin:22px 0; }
+    .btn { display:inline-block; margin:10px 10px 10px 0; padding:16px 22px; background:var(--go); color:#04140f;
+      font-weight:800; text-decoration:none; border-radius:12px; font-size:1.15rem; }
+    .btn.secondary { background:#334155; color:#fff; }
+    .qr { display:block; width:240px; height:240px; margin:14px 0; background:#fff; border-radius:8px; }
+    .muted { color:var(--muted); }
+    .warn { color:var(--warn); }
+    code { color:#a5b4fc; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Agentic Swarm Marketplace — Xaman MAINNET</h1>
+    <p class="shout">No seed fields. Xaman is the only signer. force_network MAINNET. submit after sign.</p>
+    <p>Open the account named on the card, then tap the big button or scan the QR. If the wrong r-address is selected, reject and we recreate that step only.</p>
+    
+<section class="card" data-step="1" data-uuid="">
+  <h2>Step 1 — payTo Domain</h2>
+  <p class="shout">SELECT IN XAMAN BEFORE SCAN</p>
+  <p class="addr">rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf</p>
+  <p class="muted">payTo rHyL…1Lf · wrong account = reject and recreate</p>
+  <p class="warn">Payload not created yet. Run <code>python scripts/xrpl_xaman_golive.py --create 1</code></p>
+  
+  <p>Status: <strong class="status">not created</strong></p>
+  
+</section>
+
+<section class="card" data-step="2" data-uuid="">
+  <h2>Step 2 — DIDSet on identity</h2>
+  <p class="shout">SELECT IN XAMAN BEFORE SCAN</p>
+  <p class="addr">rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq</p>
+  <p class="muted">identity rHTH…Wq · wrong account = reject and recreate</p>
+  <p class="warn">Payload not created yet. Run <code>python scripts/xrpl_xaman_golive.py --create 1</code></p>
+  
+  <p>Status: <strong class="status">not created</strong></p>
+  
+</section>
+
+<section class="card" data-step="3a" data-uuid="">
+  <h2>Step 3a — CredentialCreate (identity issuer)</h2>
+  <p class="shout">SELECT IN XAMAN BEFORE SCAN</p>
+  <p class="addr">rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq</p>
+  <p class="muted">identity rHTH…Wq · wrong account = reject and recreate</p>
+  <p class="warn">Payload not created yet. Run <code>python scripts/xrpl_xaman_golive.py --create 1</code></p>
+  
+  <p>Status: <strong class="status">not created</strong></p>
+  
+</section>
+
+<section class="card" data-step="3b" data-uuid="">
+  <h2>Step 3b — CredentialAccept (payTo subject)</h2>
+  <p class="shout">SELECT IN XAMAN BEFORE SCAN</p>
+  <p class="addr">rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf</p>
+  <p class="muted">payTo rHyL…1Lf · wrong account = reject and recreate</p>
+  <p class="warn">Payload not created yet. Run <code>python scripts/xrpl_xaman_golive.py --create 1</code></p>
+  
+  <p>Status: <strong class="status">not created</strong></p>
+  
+</section>
+
+<section class="card" data-step="4" data-uuid="">
+  <h2>Step 4 — catalog-hash memo on identity</h2>
+  <p class="shout">SELECT IN XAMAN BEFORE SCAN</p>
+  <p class="addr">rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq</p>
+  <p class="muted">identity rHTH…Wq · wrong account = reject and recreate</p>
+  <p class="warn">Payload not created yet. Run <code>python scripts/xrpl_xaman_golive.py --create 1</code></p>
+  
+  <p>Status: <strong class="status">not created</strong></p>
+  
+</section>
+
+  </div>
+</body>
+</html>

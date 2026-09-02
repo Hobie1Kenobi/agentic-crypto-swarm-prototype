@@ -6,6 +6,7 @@
   <meta name="description" content="Agentic Swarm Marketplace: live x402 sellers on XRPL (T54), Base (USDC), and Celo (native CELO). EVM contract triage & deep audit, airdrop screening, Stripe MPP, x402 Strategy Dashboard bundle. Agent-to-agent machine commerce.">
   <meta name="keywords" content="x402, Base mainnet, USDC, XRPL, T54, EVM, smart contract security, Slither, airdrop screening, MCP, agent commerce, Coinbase Bazaar, passive discovery">
   <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/">
+  <meta name="msvalidate.01" content="21F009940E7438E8EC44865FC9E99B0F" />
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://www.agentic-swarm-marketplace.com/">
   <meta property="og:title" content="Agentic Swarm Marketplace">
@@ -406,6 +407,12 @@
         <a href="#stripe-mpp">Stripe MPP</a>
         <a href="#operator-bundle">Dashboard bundle</a>
         <a href="#live-endpoints">Live endpoints</a>
+        <a href="xrpl/">XRPL</a>
+        <a href="connect-agents/">Connect agents</a>
+        <a href="proof/">Settlement proof</a>
+        <a href="agentic-market/">Agentic.Market</a>
+        <a href="blog/">PoCon blog</a>
+        <a href="pulse-board/">Pulse board</a>
         <a href="https://api.agentic-swarm-marketplace.com/x402/v1/query" target="_blank" rel="noopener">Base x402 (402)</a>
         <a href="#mcp-agent">Agent MCP</a>
         <a href="#celo-x402">Celo x402</a>
@@ -425,6 +432,7 @@
     <div class="container">
       <div class="hero-badges">
         <span class="badge">Live: XRPL + Base + Celo x402 sellers</span>
+        <span class="badge" style="background: rgba(0,212,170,0.12); color: var(--accent-cyan); border: 1px solid rgba(0,212,170,0.35);">XRPL · 15 T54 SKUs · verify</span>
         <span class="badge" style="background: rgba(0,212,170,0.12); color: var(--accent-cyan); border: 1px solid rgba(0,212,170,0.35);">Base USDC · EVM triage &amp; deep audit SKUs</span>
         <span class="badge" style="background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.35);">Celo CELO · native fulfillQuery seller</span>
         <span class="badge" style="background: rgba(139,92,246,0.18); color: #c4b5fd; border: 1px solid rgba(139,92,246,0.35);">Stripe MPP · x402 Strategy Dashboard bundle</span>
@@ -442,6 +450,7 @@
         <a href="#stripe-mpp" class="btn btn-secondary">Stripe MPP</a>
         <a href="#live-endpoints" class="btn btn-secondary">Live endpoints</a>
         <a href="#celo-x402" class="btn btn-secondary">Celo x402 Seller</a>
+        <a href="xrpl/" class="btn btn-secondary">XRPL publisher</a>
         <a href="#t54-x402" class="btn btn-secondary">T54 x402 Seller</a>
         <a href="#proof" class="btn btn-secondary">R&amp;D Proof Reports</a>
       </div>
@@ -461,7 +470,7 @@
         <div class="card">
           <div class="card-icon">⚡</div>
           <h3>XRPL Rail (T54)</h3>
-          <p>Machine-native x402 on <code style="color: #a5b4fc;">xrpl:0</code>. Multi-SKU seller; XRP settles to your receive address — no signing keys on the server.</p>
+          <p>15 SKUs on <code style="color: #a5b4fc;">xrpl:0</code>. PayTo <code style="color: #a5b4fc;">rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf</code> — receive-only on the API host. Verify: <a href="xrpl/" style="color: var(--accent-cyan);">/xrpl</a> · <a href="https://api.agentic-swarm-marketplace.com/t54/verify" target="_blank" rel="noopener" style="color: var(--accent-cyan);">/t54/verify</a>.</p>
         </div>
         <div class="card">
           <div class="card-icon">🌿</div>
@@ -484,7 +493,7 @@
       <div class="grid-2">
         <div class="card">
           <h3>XRPL (T54)</h3>
-          <p>Per-request x402 on <code style="color: #a5b4fc;">xrpl:0</code>. Facilitator verifies XRP; multi-SKU catalog under <code style="color: #a5b4fc;">/t54/</code>.</p>
+          <p>Per-request x402 on <code style="color: #a5b4fc;">xrpl:0</code>. Facilitator verifies XRP; 15 SKUs under <code style="color: #a5b4fc;">/t54/</code>. Publisher identity is a separate Xaman account — see <a href="xrpl/" style="color: var(--accent-cyan);">XRPL presence</a>.</p>
         </div>
         <div class="card">
           <h3>Base (USDC)</h3>
@@ -602,7 +611,7 @@
   <section id="celo-x402">
     <div class="container">
       <h2 class="section-title">Celo native x402 seller — api_402</h2>
-      <p class="section-sub">Live on the unified API host at <a href="https://api.agentic-swarm-marketplace.com/celo/query?q=hello" target="_blank" rel="noopener" style="color: var(--accent-cyan);"><code>/celo/query</code></a> (<strong>Celo Sepolia</strong> today; mainnet contract deploy on roadmap). HTTP <strong>402</strong> with CELO payment terms; buyers submit <code style="color: #a5b4fc;">AgentRevenueService.fulfillQuery</code>, then retry with <code style="color: #a5b4fc;">X-Payment-Tx-Hash</code>.</p>
+      <p class="section-sub">Live on the unified API host at <a href="https://api.agentic-swarm-marketplace.com/celo/query?q=hello" target="_blank" rel="noopener" style="color: var(--accent-cyan);"><code>/celo/query</code></a> (<strong>Celo mainnet</strong> chain 42220). HTTP <strong>402</strong> with CELO payment terms; buyers submit <code style="color: #a5b4fc;">AgentRevenueService.fulfillQuery</code>, then retry with <code style="color: #a5b4fc;">X-Payment-Tx-Hash</code>. Identity: <a href="https://names.celo.org/" target="_blank" rel="noopener" style="color: var(--accent-cyan);"><code>agentic-swarm.celo.eth</code></a> → revenue contract; ERC-8004 agentId <a href="https://celoscan.io/nft/0x8004A169FB4a3325136EB29fA0ceB6D2e539a432/9775" target="_blank" rel="noopener" style="color: var(--accent-cyan);">9775</a>.</p>
 
       <div class="t54-spotlight">
         <h3>Service details</h3>
@@ -610,7 +619,7 @@
         <div class="t54-badges">
           <span class="t54-badge x402">HTTP 402</span>
           <span class="t54-badge xrpl" style="background: rgba(245,158,11,0.2); color: #fcd34d;">CELO</span>
-          <span class="t54-badge caip">CAIP-2 eip155:11142220</span>
+          <span class="t54-badge caip">CAIP-2 eip155:42220</span>
           <span class="t54-badge fac">fulfillQuery</span>
         </div>
         <div class="t54-grid">
@@ -634,6 +643,7 @@
         </table>
         <div class="t54-cta">
           <a href="https://api.agentic-swarm-marketplace.com/celo/query?q=hello" target="_blank" rel="noopener" class="btn btn-primary">Probe (expect 402)</a>
+          <a href="https://celoscan.io/address/0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4" target="_blank" rel="noopener" class="btn btn-secondary">AgentRevenueService</a>
           <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/documentation/operations/CELO_X402_SELLER.md" target="_blank" rel="noopener" class="btn btn-secondary">CELO_X402_SELLER.md</a>
           <a href="https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/blob/master/packages/agents/api_402.py" target="_blank" rel="noopener" class="btn btn-secondary">api_402.py</a>
         </div>
@@ -644,7 +654,7 @@
   <section id="t54-x402">
     <div class="container">
       <h2 class="section-title">T54 x402 seller — XRPL mainnet</h2>
-      <p class="section-sub">Completed in-repo: multi-SKU HTTP <strong>402</strong> + <a href="https://www.x402.org/" target="_blank" rel="noopener" style="color: #a5b4fc;">x402</a> payment flow; <strong>XRP</strong> on <code style="color: var(--accent-cyan);">xrpl:0</code> via <a href="https://xrpl-facilitator-mainnet.t54.ai" target="_blank" rel="noopener" style="color: #86efac;">T54 facilitator</a>. Receive-only seller (<code>r...</code>) — no signing keys on the server.</p>
+      <p class="section-sub">15 SKUs. HTTP <strong>402</strong> + <a href="https://www.x402.org/" target="_blank" rel="noopener" style="color: #a5b4fc;">x402</a>; <strong>XRP</strong> on <code style="color: var(--accent-cyan);">xrpl:0</code> via <a href="https://xrpl-facilitator-mainnet.t54.ai" target="_blank" rel="noopener" style="color: #86efac;">T54 facilitator</a>. PayTo <code>rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf</code> — no signing keys on the server. Publisher verify: <a href="xrpl/" style="color: var(--accent-cyan);">/xrpl</a> · <a href="https://api.agentic-swarm-marketplace.com/t54/verify" target="_blank" rel="noopener" style="color: var(--accent-cyan);">/t54/verify</a>.</p>
 
       <div class="t54-spotlight">
         <h3>Service details</h3>
@@ -695,7 +705,7 @@
   <section id="proof">
     <div class="container">
       <h2 class="section-title">R&amp;D Proof &amp; Milestones</h2>
-      <p class="section-sub">Historical testnet experiments (hybrid XRPL + ComputeMarketplace escrow). Production inbound sales use the three x402 sellers above — not private escrow. <a href="#t54-x402" style="color: var(--accent-cyan);">T54</a> · <a href="#celo-x402" style="color: var(--accent-cyan);">Celo api_402</a> · <a href="#evm-security" style="color: var(--accent-cyan);">Base USDC</a>.</p>
+      <p class="section-sub">Production inbound sales use the three x402 sellers above — not private escrow. Live Base USDC and XRPL receipts with explorer links: <a href="proof/" style="color: var(--accent-cyan);">Settlement proof</a>. Historical testnet experiments (hybrid XRPL + ComputeMarketplace escrow) are below. <a href="#t54-x402" style="color: var(--accent-cyan);">T54</a> · <a href="#celo-x402" style="color: var(--accent-cyan);">Celo api_402</a> · <a href="#evm-security" style="color: var(--accent-cyan);">Base USDC</a>.</p>
 
       <div class="metrics-row">
         <div class="metric"><span class="metric-value">96/96</span><span class="metric-label">24h cycles</span></div>
@@ -902,8 +912,12 @@
           <div><strong>Live public Olas adapter</strong> — Gnosis/Base intake → paid x402 SKUs (T54 / Base / Celo)</div>
         </li>
         <li>
-          <span class="roadmap-badge planned">Planned</span>
-          <div><strong>Celo mainnet AgentRevenueService</strong> — Deploy revenue contract on chain 42220 for production CELO sales</div>
+          <span class="roadmap-badge done">Done</span>
+          <div><strong>Celo mainnet AgentRevenueService</strong> — Revenue contract on chain 42220; public <code>/celo/query</code> 402 uses <code>0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4</code></div>
+        </li>
+        <li>
+          <span class="roadmap-badge done">Done</span>
+          <div><strong>Celo entity identity</strong> — <code>agentic-swarm.celo.eth</code> + ERC-8004 agentId 9775 on chain 42220; explorer tag pack at <a href="identity/celoscan-nametag.json" style="color: var(--accent-cyan);">identity/celoscan-nametag.json</a></div>
         </li>
       </ul>
     </div>

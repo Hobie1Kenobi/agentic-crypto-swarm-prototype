@@ -1,0 +1,49 @@
+{
+  "doNotSubmitFromServer": true,
+  "payToDomain": {
+    "TransactionType": "AccountSet",
+    "Account": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+    "Domain": "6167656E7469632D737761726D2D6D61726B6574706C6163652E636F6D"
+  },
+  "didSet": {
+    "TransactionType": "DIDSet",
+    "Account": "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
+    "URI": "68747470733A2F2F7777772E6167656E7469632D737761726D2D6D61726B6574706C6163652E636F6D2F2E77656C6C2D6B6E6F776E2F6469642E6A736F6E"
+  },
+  "credentialCreate": {
+    "TransactionType": "CredentialCreate",
+    "Account": "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
+    "Subject": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+    "CredentialType": "41534D2D5435342D506179546F",
+    "URI": "68747470733A2F2F6170692E6167656E7469632D737761726D2D6D61726B6574706C6163652E636F6D2F2E77656C6C2D6B6E6F776E2F7872706C2D6D65726368616E742E6A736F6E"
+  },
+  "credentialAccept": {
+    "TransactionType": "CredentialAccept",
+    "Account": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+    "Issuer": "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
+    "CredentialType": "41534D2D5435342D506179546F"
+  },
+  "setRegularKey": {
+    "TransactionType": "SetRegularKey",
+    "Account": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+    "RegularKey": "rREPLACE_WITH_XAMAN_REGULAR_KEY"
+  },
+  "disableMaster": {
+    "TransactionType": "AccountSet",
+    "Account": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+    "SetFlag": 4
+  },
+  "catalogHashMemo": {
+    "TransactionType": "AccountSet",
+    "Account": "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq",
+    "Memos": [
+      {
+        "Memo": {
+          "MemoType": "61736D3A736B752D636174616C6F673A7631",
+          "MemoData": "46A60A5FD7EEBE242EFCF3C34ED8BF9630C24362AEE2F0B337D3E98EDFEC0749004D3B1BF4E4ED95D81E1BF25223FBB66FAC44BEA41AE6DE25D24C3078E780F3",
+          "MemoFormat": "746578742F706C61696E"
+        }
+      }
+    ]
+  }
+}
