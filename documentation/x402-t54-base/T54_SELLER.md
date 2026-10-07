@@ -79,7 +79,7 @@ npm run t54:reload-discovery
 
 `sync_t54_env_from_ngrok.py` reads `http://127.0.0.1:4040/api/tunnels` and sets **`T54_SELLER_PUBLIC_BASE_URL`** (scheme + host only; discovery appends each SKU path).
 
-**GitHub Pages:** After syncing env, run **`npm run docs:sync-endpoints`** to refresh **`docs/endpoints.json`** (also picks up **`X402_SELLER_PUBLIC_URL`**). Commit and push so [the public portal](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/) “Live endpoints” matches discovery.
+**Public portal:** After syncing env, run **`npm run docs:sync-endpoints`** to refresh **`docs/endpoints.json`** (also picks up **`X402_SELLER_PUBLIC_URL`**). Commit and push so [the public portal](https://www.agentic-swarm-marketplace.com/) “Live endpoints” matches discovery. Production hosts: portal `https://www.agentic-swarm-marketplace.com/`, API `https://api.agentic-swarm-marketplace.com`.
 
 **T54 + Base x402 (Bazaar) on one ngrok agent:** with **`npm run t54:seller`** (8765) and **`npm run x402:seller`** (8043) both listening, run **`npm run stack:dual-ngrok`**. That merges your account authtoken config with `scripts/ngrok-dual-stack.yml`, starts two tunnels, and writes **`T54_SELLER_PUBLIC_BASE_URL`** and **`X402_SELLER_PUBLIC_URL`** to `.env` (and **`X402_SELLER_PUBLIC_URL`** to `.env.mainnet` when present). Use **`npm run sync:ngrok-all`** if ngrok is already running with both tunnels.
 

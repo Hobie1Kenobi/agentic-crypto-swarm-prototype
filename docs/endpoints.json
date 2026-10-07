@@ -1,7 +1,7 @@
 {
   "schema_note": "Canonical public URLs for agents and buyers. Regenerate: npm run docs:sync-endpoints (reads repo-root .env). Commit result for GitHub Pages. Stable HTTPS + mainnet alignment: documentation/PUBLIC_MAINNET_OPERATIONS.md",
-  "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
-  "updated_at": "2026-08-17T20:28:53Z",
+  "portal_url": "https://www.agentic-swarm-marketplace.com/",
+  "updated_at": "2026-10-07T05:10:09Z",
   "endpoints": [
     {
       "id": "t54_public_origin",
@@ -54,7 +54,7 @@
     {
       "id": "celo_native_query",
       "label": "Celo native x402 seller (api_402 / fulfillQuery)",
-      "description": "GET/POST /celo/query \u2014 HTTP 402 with CELO payment via AgentRevenueService.fulfillQuery (no facilitator). Set CELO_402_PUBLIC_URL or PUBLIC_API_ORIGIN.",
+      "description": "GET/POST /celo/query — HTTP 402 with CELO payment via AgentRevenueService.fulfillQuery (no facilitator). Set CELO_402_PUBLIC_URL or PUBLIC_API_ORIGIN.",
       "url": "https://api.agentic-swarm-marketplace.com/celo/query",
       "network": "eip155:42220",
       "health_url": "https://api.agentic-swarm-marketplace.com/celo/health"
@@ -62,7 +62,7 @@
     {
       "id": "marketplace_public_origin",
       "label": "Marketplace HTTP (Stripe MPP, buyer API, webhooks)",
-      "description": "Stripe MPP + buyer API + webhooks: unified Caddy maps /webhooks/stripe, /v1/*, /marketplace/* to marketplace:serve (8055). Same public HTTPS origin as x402/T54 when MARKETPLACE_PUBLIC_BASE_URL matches your tunnel.",
+      "description": "Stripe MPP + buyer API + webhooks: unified Caddy maps /webhooks/stripe, /v1/*, /marketplace/* to marketplace:serve (8055). Same public HTTPS origin as x402/T54 when MARKETPLACE_PUBLIC_BASE_URL is that origin.",
       "url": "https://api.agentic-swarm-marketplace.com",
       "network": "marketplace",
       "health_url": "https://api.agentic-swarm-marketplace.com/health"
@@ -70,7 +70,7 @@
     {
       "id": "mcp_t54_sse",
       "label": "MCP T54 x402 (SSE, remote clients)",
-      "description": "Streamable HTTP (Smithery): POST .../mcp (port 9052, mcp>=1.23). SSE: GET .../mcp/sse, POST .../mcp/messages/ (9051). Caddy: exact /mcp \u2192 9052; /mcp/* \u2192 9051. Set MCP_SSE_PUBLIC_URL to your public HTTPS origin + /mcp.",
+      "description": "Streamable HTTP (Smithery): POST .../mcp (port 9052, mcp>=1.23). SSE: GET .../mcp/sse, POST .../mcp/messages/ (9051). Caddy: exact /mcp → 9052; /mcp/* → 9051. Set MCP_SSE_PUBLIC_URL to your public HTTPS origin + /mcp.",
       "url": "https://api.agentic-swarm-marketplace.com/mcp",
       "sse_url": "https://api.agentic-swarm-marketplace.com/mcp/sse",
       "messages_url": "https://api.agentic-swarm-marketplace.com/mcp/messages/",

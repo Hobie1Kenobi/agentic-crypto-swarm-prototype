@@ -99,7 +99,7 @@ class AgentCommerceDataResponse(BaseModel):
     external_invocations: list[dict[str, Any]] = Field(default_factory=list)
     celo_sepolia: dict[str, Any] = Field(
         default_factory=dict,
-        description="Celo Sepolia testnet reports, soak metrics, site-data, cycle logs (when present on server)",
+        description="Public Celo task-market and soak report excerpts included when present on the server",
     )
     included_artifacts: list[str] = Field(
         default_factory=list,

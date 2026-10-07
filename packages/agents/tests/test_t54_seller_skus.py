@@ -70,7 +70,7 @@ def test_discovery_portal_metadata_on_swarm_providers():
     p = by_id.get("swarm-seller-facilitator")
     assert p is not None
     assert "portal_url" in (p.metadata or {})
-    assert "github.io" in (p.metadata or {}).get("portal_url", "")
+    assert "www.agentic-swarm-marketplace.com" in (p.metadata or {}).get("portal_url", "")
 
 
 def test_discovery_swarm_seller_celo_data_url(monkeypatch):

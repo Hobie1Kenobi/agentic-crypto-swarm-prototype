@@ -14,7 +14,7 @@
       "source_type": "config",
       "discovery_source": "internal",
       "protocol_type": "x402",
-      "network": "eip155:11142220",
+      "network": "eip155:42220",
       "facilitator_url": null,
       "resource_url": "http://127.0.0.1:8042/query",
       "supported_assets": [
@@ -30,7 +30,7 @@
       "health_status": "unknown",
       "last_seen_at": null,
       "metadata": {
-        "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+        "portal_url": "https://www.agentic-swarm-marketplace.com/",
         "note": "localhost:8042 is for local dev; public discovery overlays HTTPS URLs from env when configured (see documentation/PUBLIC_MAINNET_OPERATIONS.md).",
         "payment_flow": "celo_native"
       }
@@ -59,7 +59,7 @@
       "health_status": "unknown",
       "last_seen_at": null,
       "metadata": {
-        "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+        "portal_url": "https://www.agentic-swarm-marketplace.com/",
         "seller": true,
         "api_seller_x402": true,
         "settlement_chain": "base-mainnet",
@@ -69,7 +69,7 @@
     },
     {
       "provider_id": "swarm-seller-celo-data",
-      "provider_name": "Our Swarm (Base USDC) \u2014 Celo Sepolia + proof / soak data bundle (Bazaar x402)",
+      "provider_name": "Our Swarm (Base USDC) — Celo mainnet proof and commerce data bundle (Bazaar x402)",
       "source_type": "config",
       "discovery_source": "internal",
       "protocol_type": "x402",
@@ -94,7 +94,7 @@
       "health_status": "unknown",
       "last_seen_at": null,
       "metadata": {
-        "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+        "portal_url": "https://www.agentic-swarm-marketplace.com/",
         "seller": true,
         "api_seller_x402": true,
         "sku_id": "agent-commerce-data",
@@ -128,7 +128,7 @@
       "health_status": "unknown",
       "last_seen_at": null,
       "metadata": {
-        "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+        "portal_url": "https://www.agentic-swarm-marketplace.com/",
         "seller": true,
         "api_seller_x402": true,
         "sku_id": "intake-resale-pack",
@@ -159,7 +159,7 @@
       "health_status": "unknown",
       "last_seen_at": null,
       "metadata": {
-        "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+        "portal_url": "https://www.agentic-swarm-marketplace.com/",
         "t54_path": "/x402/v1/query",
         "sku_id": "structured-query",
         "note": "npm run t54:seller. Use T54_SELLER_PUBLIC_BASE_URL=https://host and optional per-SKU rows below, or set T54_SELLER_PUBLIC_URL to full query URL.",
@@ -189,7 +189,7 @@
       "health_status": "unknown",
       "last_seen_at": null,
       "metadata": {
-        "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+        "portal_url": "https://www.agentic-swarm-marketplace.com/",
         "t54_path": "/x402/v1/research-brief",
         "sku_id": "research-brief",
         "payment_flow": "t54_xrpl"
@@ -218,7 +218,7 @@
       "health_status": "unknown",
       "last_seen_at": null,
       "metadata": {
-        "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+        "portal_url": "https://www.agentic-swarm-marketplace.com/",
         "t54_path": "/x402/v1/constitution-audit",
         "sku_id": "constitution-audit-lite",
         "payment_flow": "t54_xrpl"
@@ -246,7 +246,7 @@
       "health_status": "unknown",
       "last_seen_at": null,
       "metadata": {
-        "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+        "portal_url": "https://www.agentic-swarm-marketplace.com/",
         "t54_path": "/hello",
         "sku_id": "hello",
         "payment_flow": "t54_xrpl"
@@ -276,7 +276,7 @@
       "health_status": "unknown",
       "last_seen_at": null,
       "metadata": {
-        "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+        "portal_url": "https://www.agentic-swarm-marketplace.com/",
         "t54_path": "/x402/v1/agent-commerce-data",
         "sku_id": "agent-commerce-data",
         "note": "Premium JSON bundle; use ?depth=full for larger evidence payloads",
@@ -306,7 +306,7 @@
       "health_status": "unknown",
       "last_seen_at": null,
       "metadata": {
-        "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+        "portal_url": "https://www.agentic-swarm-marketplace.com/",
         "t54_path": "/x402/v1/airdrop-intelligence",
         "sku_id": "airdrop-intelligence-report",
         "note": "LLM screening only; run scripts/run-airdrop-scout.py separately from sellers",
@@ -336,7 +336,7 @@
       "health_status": "unknown",
       "last_seen_at": null,
       "metadata": {
-        "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+        "portal_url": "https://www.agentic-swarm-marketplace.com/",
         "t54_path": "/x402/v1/intake-resale",
         "sku_id": "intake-resale-pack",
         "note": "GET with ?pack_id=<uuid>. Drops price in t54_seller_skus.json. Dual rail: Base USDC listing swarm-seller-intake-resale.",

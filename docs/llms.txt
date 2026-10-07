@@ -13,21 +13,21 @@ Purpose: help AI crawlers, autonomous agents, and MCP clients discover how to fi
 
 ## What this is
 
-- Hierarchical multi-agent system for autonomous testnet/mainnet-adjacent revenue via on-chain value creation (no trading/speculation).
+- Hierarchical multi-agent system for autonomous mainnet revenue via on-chain value creation (no trading/speculation). Public settlement rails: Base `eip155:8453`, Celo `eip155:42220`, XRPL `xrpl:0`.
 - Public seller APIs speak HTTP 402 + x402 payment challenges; buyers settle with XRPL (T54 facilitator) and/or Base USDC x402 routes, depending on SKU and deployment.
 - GitHub repo: https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype
 
 ## Stable links (use these in agent prompts and tools)
 
-- Portal (GitHub Pages): https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/
-- Live endpoint registry (current tunnel / public origins): https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/endpoints.json
+- Portal: https://www.agentic-swarm-marketplace.com/
+- Live endpoint registry: https://www.agentic-swarm-marketplace.com/endpoints.json
 - T54 OpenAPI 3 (SKU catalog, paths, schemas): https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/documentation/x402-t54-base/openapi/agentic-swarm-t54-skus.openapi.yaml
 - x402 provider / discovery catalog (repo): https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/packages/agents/config/x402_providers.json
 - T54 SKU table (repo): https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/packages/agents/config/t54_seller_skus.json
 
 ## Payment expectations
 
-- T54 routes: expect 402 with x402 payment requirements until a valid payment is attached; settlement uses XRPL per T54/x402 configuration (testnet vs mainnet depends on deployment — see repo docs).
+- T54 routes: expect 402 with x402 payment requirements until a valid payment is attached; production settlement is XRPL mainnet (`xrpl:0`). Base USDC production is `eip155:8453`. Celo native production is `eip155:42220`. Sepolia networks are local test recipes only.
 - Base USDC x402: separate endpoints (e.g. Bazaar-style query routes) documented in OpenAPI and `endpoints.json` when enabled.
 - **Primary Base x402 probe URL (unpaid GET must return HTTP 402):** `https://api.agentic-swarm-marketplace.com/x402/v1/query` — use the **api** host, not `www` (GitHub Pages is static and does not terminate x402).
 - Operators configure rails via environment variables (see repo `.env.example`): e.g. broker pay mode, XRPL seeds/caps, seller public base URLs.
@@ -44,7 +44,7 @@ Stable production API host example: **`https://api.agentic-swarm-marketplace.com
 
 This repo ships a stdio MCP server that maps LLM tool calls to T54 HTTP operations and uses the in-repo x402 broker client to pay 402 invoices when configured.
 
-- Integration guide (Cursor, Claude Desktop, env): https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/mcp-integration.md
+- Integration guide (Cursor, Claude Desktop, env): https://www.agentic-swarm-marketplace.com/mcp-integration.md
 - Source: `scripts/mcp_server.py` (FastMCP), `scripts/run-mcp-t54.ps1` (Windows launcher)
 
 ## On-chain identity

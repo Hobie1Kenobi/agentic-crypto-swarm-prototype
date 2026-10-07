@@ -1,18 +1,18 @@
 # x402 Marketplace Integration
 
-Our swarm can interact with testnet-focused x402 agent marketplaces. This doc covers setup and usage.
+Public sellers settle on mainnet: Base `eip155:8453`, Celo `eip155:42220`, XRPL `xrpl:0`. Sections below that name Sepolia are local test recipes for third-party test endpoints, not the live catalog.
 
 ## Provider Catalog (from config)
 
 | Provider | Network | Payment | Description |
 |----------|---------|---------|-------------|
-| **swarm-self** | Celo Sepolia | Celo native | Our api_402 (fulfillQuery) |
+| **swarm-self** | Celo mainnet (`eip155:42220`) | Celo native | Our api_402 (fulfillQuery) |
 | **x402-test-echo** | Base Sepolia | x402.org facilitator | Test endpoint, ~$0.01 USDC |
 | **arcana-x402** | Base Sepolia | x402.org facilitator | Crypto agents (Oracle, Chain Scout, News, etc.), ~$0.03/query |
 | **agoragentic** | Base | x402.org facilitator | 26+ endpoints, vault, agent-passport, commerce |
 | **x402-bazaar-discovery** | Base Sepolia | Free (read-only) | Coinbase Bazaar discovery catalog |
 | **x402-discovery-api** | Base | Free | 251+ indexed services, search by query/price |
-| **t54-xrpl-example** | XRPL | t54 facilitator | Placeholder for XRPL x402 |
+| **t54-xrpl-example** | XRPL mainnet (`xrpl:0`) | t54 facilitator | T54 XRPL x402 |
 
 ## Requirements by Marketplace Type
 
@@ -83,7 +83,7 @@ for p in providers:
 | Layer | What | Who pays |
 |-------|------|----------|
 | **Celo native** | `api_402` — `fulfillQuery` + CELO | Buyers with Celo wallet (your 1h soak path) |
-| **Facilitator (Bazaar / Base)** | `api_seller_x402` — ExactEvm + USDC on Base Sepolia via x402.org facilitator | Anyone using standard x402 clients |
+| **Facilitator (Bazaar / Base)** | `api_seller_x402` — ExactEvm + USDC on Base mainnet (`eip155:8453`) via x402.org facilitator | Anyone using standard x402 clients |
 
 Coinbase Bazaar indexes resources after the **facilitator verifies and settles** a payment to your URL. Celo-only `api_402` is not the same protocol path as facilitator USDC; use **`api_seller_x402`** for discovery on [Bazaar](https://docs.cdp.coinbase.com/x402/bazaar).
 
@@ -98,7 +98,7 @@ python scripts/run-x402-seller-smoke.py
 python scripts/run-x402-seller-smoke.py --auto-start
 ```
 
-**Env:** `X402_SELLER_PAY_TO` (optional; else derived from `ROOT_STRATEGIST_PRIVATE_KEY`), `X402_SELLER_PRICE` (default `$0.01`), `X402_SELLER_NETWORK` (default `eip155:84532`), `X402_SELLER_PORT` (default `8043`).
+**Env:** `X402_SELLER_PAY_TO` (optional; else derived from `ROOT_STRATEGIST_PRIVATE_KEY`), `X402_SELLER_PRICE` (default `$0.01`), `X402_SELLER_NETWORK` (production default `eip155:8453`; local Base Sepolia tests may set `eip155:84532`), `X402_SELLER_PORT` (default `8043`). Production `X402_ALLOWED_NETWORKS` is `eip155:8453` only.
 
 **Public URL:** Expose `https://<your-host>/x402/v1/query` (ngrok, VPS, GitHub Codespaces port forward) so third parties and Bazaar can reach you. Set **`X402_SELLER_PUBLIC_URL`** to that full URL so `x402_providers.json` entry `swarm-seller-facilitator` resolves correctly in discovery.
 

@@ -8,7 +8,7 @@ This guide shows how to attach **Cursor**, **Claude Desktop**, or any MCP-capabl
 
 - **Python 3.12+** on your PATH (avoid the Windows Store stub; use a real install or `py` launcher).
 - Dependencies (minimal): `pip install "mcp[cli]" pyyaml python-dotenv` plus whatever your checkout needs for `x402_broker_client` (see repo `packages/`).
-- **Seller URL**: set `T54_SELLER_PUBLIC_BASE_URL` in `.env` to the public origin that serves T54 routes (often ends with `/t54`). Current values for tunnels are also listed in [endpoints.json](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/endpoints.json) after you run `npm run docs:sync-endpoints` from a configured machine.
+- **Seller URL**: set `T54_SELLER_PUBLIC_BASE_URL` in `.env` to the public origin that serves T54 routes (production: `https://api.agentic-swarm-marketplace.com/t54`). Current public values are listed in [endpoints.json](https://www.agentic-swarm-marketplace.com/endpoints.json) after you run `npm run docs:sync-endpoints` from a configured machine.
 
 Preflight (no stdio):
 
@@ -140,12 +140,12 @@ Run it **alongside** `npm run mcp:t54:sse` when using the unified proxy. Public 
 
 ## 7. Public “one-line install” (future)
 
-A small **`npx`** or **`uvx`**-style wrapper that downloads nothing secret but points at **your** public seller URL is **not** published in this repo yet. Until then, third parties should clone the repo, set `.env`, and use the JSON above. When a packaged client exists, it will be linked from [llms.txt](https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/llms.txt) and this page.
+A small **`npx`** or **`uvx`**-style wrapper that downloads nothing secret but points at **your** public seller URL is **not** published in this repo yet. Until then, third parties should clone the repo, set `.env`, and use the JSON above. When a packaged client exists, it will be linked from [llms.txt](https://www.agentic-swarm-marketplace.com/llms.txt) and this page.
 
 ## 8. Related discovery files
 
 | File | URL |
 |------|-----|
-| Machine-readable site overview | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/llms.txt |
-| Live tunnel / seller origins | https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/endpoints.json |
+| Machine-readable site overview | https://www.agentic-swarm-marketplace.com/llms.txt |
+| Live seller origins | https://www.agentic-swarm-marketplace.com/endpoints.json |
 | T54 OpenAPI (raw) | https://raw.githubusercontent.com/Hobie1Kenobi/agentic-crypto-swarm-prototype/master/documentation/x402-t54-base/openapi/agentic-swarm-t54-skus.openapi.yaml |

@@ -1,6 +1,6 @@
 """
-Shared JSON bundle: proof_bundle + external commerce + Celo Sepolia testnet reports.
-Used by T54 seller (XRP) and api_seller_x402 (Base USDC / Bazaar).
+Shared JSON bundle: proof_bundle + external commerce + public Celo report excerpts.
+Used by T54 seller (XRP, xrpl:0) and api_seller_x402 (Base USDC / eip155:8453).
 """
 from __future__ import annotations
 
@@ -288,7 +288,7 @@ def build_public_data_bundle_dict(depth: str = "standard") -> dict[str, Any]:
         "celo_sepolia": celo,
         "included_artifacts": sorted(set(included)),
         "disclaimer": (
-            "Public operational artifacts and Celo Sepolia testnet reports only — no private keys or .env. "
-            "Includes summarized cycle logs when large. Verify hashes on Blockscout / XRPL explorers."
+            "Public operational artifacts only — no private keys or .env. "
+            "Includes summarized cycle logs when large. Verify hashes on public explorers."
         ),
     }

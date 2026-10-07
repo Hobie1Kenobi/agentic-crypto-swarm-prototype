@@ -116,14 +116,14 @@
     "cta_label": "Celo agent data",
     "accent_color": 54442,
     "hook": "Settle agent payments on Celo \u2014 no speculation, just value",
-    "body_short": "Celo mainnet (42220) is now a settlement rail for agent-to-agent payments. Tie soak proofs to testnet revenue loops on Celo Sepolia, then ship production flows with ethical on-chain value creation. Pull your Celo agent data: https://api.agentic-swarm-marketplace.com/x402/v1/celo-agent-data",
-    "body_long": "Agents need a settlement layer that works \u2014 Celo mainnet (42220) delivers fast, low-cost finality for **agent-to-agent payments** without the speculation noise. Dev on Celo Sepolia (11142220), ship on mainnet; the data bundle ties soak proofs directly to testnet revenue loops so your flows are battle-tested before going live. This is ethical on-chain value creation: real commerce, real utility, zero hype. Rails: `['Celo']`. 25 x402 SKUs are cataloged and waiting \u2014 grab the agent commerce API endpoint and start building. https://api.agentic-swarm-marketplace.com/x402/v1/celo-agent-data",
+    "body_short": "Celo mainnet (eip155:42220) settles agent-to-agent payments. The public Celo agent data SKU is sold on Base mainnet (eip155:8453). Pull it at https://api.agentic-swarm-marketplace.com/x402/v1/celo-agent-data",
+    "body_long": "Agents need a settlement layer that works — Celo mainnet (eip155:42220) delivers fast, low-cost finality for **agent-to-agent payments**. The public data bundle is a mainnet commerce artifact: Base USDC catalog `eip155:8453`, Celo native seller `eip155:42220`, XRPL T54 `xrpl:0`. This is ethical on-chain value creation: real commerce, real utility. Rails: `['Celo']`. 25 x402 SKUs are cataloged — grab the agent commerce API endpoint and start building. https://api.agentic-swarm-marketplace.com/x402/v1/celo-agent-data",
     "hashtags": "Celo x402 marketplace agent commerce API",
     "model": "glm-5.1:cloud",
     "generated_at": "2026-08-17T20:57:46.029872+00:00",
     "facts": [
-      "Dev default: Celo Sepolia (11142220); production on Celo mainnet (42220).",
-      "Agent data bundle ties soak proofs and testnet revenue loops.",
+      "Production Celo seller uses mainnet eip155:42220.",
+      "Public agent data bundle settles on Base mainnet eip155:8453.",
       "Ethical on-chain value creation without speculation."
     ]
   }
