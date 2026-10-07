@@ -302,7 +302,7 @@ def create_app():
     routes["GET /x402/v1/celo-agent-data"] = {
         "accepts": {"scheme": "exact", "payTo": pay_to, "price": data_price, "network": network},
         "description": (
-            "Celo Sepolia + proof / soak / x402 commerce JSON bundle (public artifacts) "
+            "Celo mainnet proof and x402 commerce JSON bundle (public artifacts) "
             f"({network})"
         ),
     }

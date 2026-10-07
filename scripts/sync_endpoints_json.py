@@ -55,6 +55,49 @@ def _health_url_from_origin(origin: str) -> str:
     return f"{origin}/health" if origin else ""
 
 
+def _portal_url() -> str:
+    raw = (
+        os.getenv("PUBLIC_PORTAL_URL")
+        or os.getenv("SWARM_PORTAL_URL")
+        or os.getenv("PUBLIC_SITE_ORIGIN")
+        or "https://www.agentic-swarm-marketplace.com"
+    ).strip()
+    return raw.rstrip("/") + "/"
+
+
+def _t54_catalog_endpoints(t54_base: str) -> list[dict]:
+    if not t54_base:
+        return []
+    base = t54_base.rstrip("/")
+    health = _health_url_from_origin(base)
+    return [
+        {
+            "id": "t54_well_known_x402",
+            "label": "T54 XRPL well-known catalog",
+            "description": "Machine-readable XRPL SKU catalog for agent discovery (paths, drops, payTo, facilitator).",
+            "url": f"{base}/.well-known/x402.json",
+            "network": "xrpl:0",
+            "health_url": health,
+        },
+        {
+            "id": "t54_agent_card",
+            "label": "T54 XRPL agent card",
+            "description": "Agent capability card listing T54/LCG XRPL skills and endpoints.",
+            "url": f"{base}/.well-known/agent-card.json",
+            "network": "xrpl:0",
+            "health_url": health,
+        },
+        {
+            "id": "t54_lcg_procurement_readiness",
+            "label": "T54 XRPL — LCG Procurement Readiness Scan",
+            "description": "Entry SKU for LCG procurement intelligence on XRPL (POST JSON; GET ?payload= also supported).",
+            "url": f"{base}/x402/v1/procurement-readiness",
+            "network": "xrpl:0",
+            "health_url": health,
+        },
+    ]
+
+
 def _sync_docs_openapi_mpp_amount() -> None:
     """Keep docs/openapi.json MPP x-payment-info.amount in sync with bundle price env."""
     raw = (os.getenv("MARKETPLACE_DASHBOARD_BUNDLE_PRICE_USD") or "49.00").strip()
@@ -77,7 +120,7 @@ def _sync_docs_openapi_mpp_amount() -> None:
     if xpi.get("amount") == cents:
         return
     xpi["amount"] = cents
-    openapi_path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    openapi_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Updated docs/openapi.json x-payment-info.amount -> {cents}")
 
 
@@ -163,7 +206,7 @@ def main() -> int:
             {
                 "id": "marketplace_public_origin",
                 "label": "Marketplace HTTP (Stripe MPP, buyer API, webhooks)",
-                "description": "Stripe MPP + buyer API + webhooks: unified Caddy maps /webhooks/stripe, /v1/*, /marketplace/* to marketplace:serve (8055). Same public HTTPS origin as x402/T54 when MARKETPLACE_PUBLIC_BASE_URL matches your tunnel.",
+                "description": "Stripe MPP + buyer API + webhooks: unified Caddy maps /webhooks/stripe, /v1/*, /marketplace/* to marketplace:serve (8055). Same public HTTPS origin as x402/T54 when MARKETPLACE_PUBLIC_BASE_URL is that origin.",
                 "url": mp_base,
                 "network": "marketplace",
                 "health_url": mp_health,
@@ -185,15 +228,20 @@ def main() -> int:
             }
         )
 
+    t54_origin = next((e for e in endpoints if e.get("id") == "t54_public_origin"), None)
+    if t54_origin is not None:
+        idx = endpoints.index(t54_origin) + 1
+        endpoints[idx:idx] = _t54_catalog_endpoints(t54_base)
+
     data = {
         "schema_note": "Canonical public URLs for agents and buyers. Regenerate: npm run docs:sync-endpoints (reads repo-root .env). Commit result for GitHub Pages. Stable HTTPS + mainnet alignment: documentation/PUBLIC_MAINNET_OPERATIONS.md",
-        "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+        "portal_url": _portal_url(),
         "updated_at": ts,
         "endpoints": endpoints,
     }
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
-    out_path.write_text(json.dumps(data, indent=2) + "\n", encoding="utf-8")
+    out_path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     print(f"Wrote {out_path}")
     print(f"  T54_SELLER_PUBLIC_BASE_URL -> {t54_base or '(empty)'}")
     print(f"  X402_SELLER_PUBLIC_URL -> {x402_full or '(empty)'}")

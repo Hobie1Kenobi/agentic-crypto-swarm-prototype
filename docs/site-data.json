@@ -1,6 +1,6 @@
 {
   "site": {
-    "canonical_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+    "canonical_url": "https://www.agentic-swarm-marketplace.com/",
     "github_pages_repo": "https://github.com/Hobie1Kenobi/agentic-crypto-swarm-prototype"
   },
   "project": {
@@ -75,7 +75,7 @@
     "operator_bundle_product_id": "x402_strategy_dashboard_bundle",
     "operator_bundle_name": "x402 Strategy Dashboard (operator bundle)",
     "pack_command": "npm run marketplace:pack",
-    "dashboard_snapshot_screenshot": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/x402-earning-strategy-dashboard-overview.png"
+    "dashboard_snapshot_screenshot": "https://www.agentic-swarm-marketplace.com/x402-earning-strategy-dashboard-overview.png"
   },
   "ecosystem": {
     "celo": "https://celo.org",

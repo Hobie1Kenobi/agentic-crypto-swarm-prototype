@@ -4,14 +4,14 @@
       "provider_id": "swarm-self",
       "provider_name": "Our Swarm (Celo)",
       "resource_url": "http://127.0.0.1:8042/query",
-      "network": "eip155:11142220",
+      "network": "eip155:42220",
       "source_type": "config"
     },
     {
       "provider_id": "t54-xrpl-example",
       "provider_name": "T54 XRPL (placeholder)",
       "resource_url": "",
-      "network": "xrpl:1",
+      "network": "xrpl:0",
       "source_type": "config"
     },
     {

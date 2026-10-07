@@ -13,7 +13,7 @@
     "categories": ["query", "llm", "self", "seller"],
     "payment_flow": "celo_native",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "seller": true,
       "api_402": true,
       "note": "Production: CHAIN_ID=42220, REVENUE_SERVICE_ADDRESS on Celo mainnet, CELO_402_PUBLIC_URL=https://YOUR_HOST/celo/query (unified Caddy). Dev: localhost:8042/query or Sepolia."
@@ -33,7 +33,7 @@
     "categories": ["query", "llm", "self", "seller", "bazaar"],
     "payment_flow": "facilitator",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "seller": true,
       "api_seller_x402": true,
       "settlement_chain": "base-mainnet",
@@ -42,7 +42,7 @@
   },
   {
     "provider_id": "swarm-seller-celo-data",
-    "provider_name": "Our Swarm (Base USDC) — Celo Sepolia + proof / soak data bundle (Bazaar x402)",
+    "provider_name": "Our Swarm (Base USDC) — Celo mainnet proof and commerce data bundle (Bazaar x402)",
     "source_type": "config",
     "discovery_source": "internal",
     "protocol_type": "x402",
@@ -54,7 +54,7 @@
     "categories": ["query", "llm", "self", "seller", "bazaar", "data", "proof", "celo"],
     "payment_flow": "facilitator",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "seller": true,
       "api_seller_x402": true,
       "sku_id": "agent-commerce-data",
@@ -76,7 +76,7 @@
     "categories": ["t54", "xrpl", "data", "resale", "seller", "bazaar"],
     "payment_flow": "facilitator",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "seller": true,
       "api_seller_x402": true,
       "sku_id": "intake-resale-pack",
@@ -98,7 +98,7 @@
     "categories": ["data", "oracle", "seller", "bazaar", "pocon"],
     "payment_flow": "facilitator",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "seller": true,
       "api_seller_x402": true,
       "sku_id": "ecosystem-pulse",
@@ -120,7 +120,7 @@
     "categories": ["t54", "xrpl", "llm"],
     "payment_flow": "t54_xrpl",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "t54_path": "/x402/v1/query",
       "sku_id": "structured-query",
       "note": "npm run t54:seller. Use T54_SELLER_PUBLIC_BASE_URL=https://host and optional per-SKU rows below, or set T54_SELLER_PUBLIC_URL to full query URL."
@@ -140,7 +140,7 @@
     "categories": ["t54", "xrpl", "research", "llm"],
     "payment_flow": "t54_xrpl",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "t54_path": "/x402/v1/research-brief",
       "sku_id": "research-brief"
     }
@@ -159,7 +159,7 @@
     "categories": ["t54", "xrpl", "data", "oracle", "pocon"],
     "payment_flow": "t54_xrpl",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "t54_path": "/x402/v1/ecosystem-pulse",
       "sku_id": "ecosystem-pulse"
     }
@@ -178,7 +178,7 @@
     "categories": ["t54", "xrpl", "safety", "llm"],
     "payment_flow": "t54_xrpl",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "t54_path": "/x402/v1/constitution-audit",
       "sku_id": "constitution-audit-lite"
     }
@@ -197,7 +197,7 @@
     "categories": ["t54", "xrpl", "health"],
     "payment_flow": "t54_xrpl",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "t54_path": "/hello",
       "sku_id": "hello"
     }
@@ -216,7 +216,7 @@
     "categories": ["t54", "xrpl", "data", "proof", "agents"],
     "payment_flow": "t54_xrpl",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "t54_path": "/x402/v1/agent-commerce-data",
       "sku_id": "agent-commerce-data",
       "note": "Premium JSON bundle; use ?depth=full for larger evidence payloads"
@@ -236,7 +236,7 @@
     "categories": ["t54", "xrpl", "research", "airdrop"],
     "payment_flow": "t54_xrpl",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "t54_path": "/x402/v1/airdrop-intelligence",
       "sku_id": "airdrop-intelligence-report",
       "note": "LLM screening only; run scripts/run-airdrop-scout.py separately from sellers"
@@ -256,7 +256,7 @@
     "categories": ["t54", "xrpl", "data", "resale"],
     "payment_flow": "t54_xrpl",
     "metadata": {
-      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "portal_url": "https://www.agentic-swarm-marketplace.com/",
       "t54_path": "/x402/v1/intake-resale",
       "sku_id": "intake-resale-pack",
       "note": "GET with ?pack_id=<uuid>. Drops price in t54_seller_skus.json. Dual rail: Base USDC listing swarm-seller-intake-resale."
