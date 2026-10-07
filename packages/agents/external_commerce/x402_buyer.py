@@ -31,17 +31,22 @@ class X402Buyer:
         facilitator_url: str | None = None,
         network: str | None = None,
         private_key_env: str | None = None,
-        dry_run: bool = False,
+        dry_run: bool | None = None,
     ):
         self.facilitator_url = facilitator_url or _env("X402_TEST_FACILITATOR_URL", "https://x402.org/facilitator")
         self.network = network or _env("X402_ALLOWED_NETWORKS", "eip155:84532").split(",")[0].strip()
         self.private_key_env = private_key_env or "X402_BUYER_BASE_SEPOLIA_PRIVATE_KEY"
         self._key_envs = [
             self.private_key_env,
+            "AGENT_EVM_PRIVATE_KEY",
+            "X402_BUYER_BASE_MAINNET_PRIVATE_KEY",
             "X402_BUYER_PRIVATE_KEY",
             "ROOT_STRATEGIST_PRIVATE_KEY",
         ]
-        self.dry_run = dry_run or _truthy(_env("X402_DRY_RUN"))
+        if dry_run is None:
+            self.dry_run = _truthy(_env("X402_DRY_RUN"))
+        else:
+            self.dry_run = bool(dry_run)
         self._session: requests.Session | None = None
         self._plain_session = requests.Session()
 
@@ -81,10 +86,17 @@ class X402Buyer:
         """
         try:
             session = self._get_session()
+            headers = {
+                "Accept": "application/json",
+                "User-Agent": _env(
+                    "X402_BUYER_USER_AGENT",
+                    "ASM-Verifier/1.0 (+https://agentic-swarm-marketplace.com)",
+                ),
+            }
             if method.upper() == "GET":
-                r = session.get(resource_url, params=params or {}, timeout=timeout)
+                r = session.get(resource_url, params=params or {}, timeout=timeout, headers=headers)
             else:
-                r = session.post(resource_url, json=json_body or {}, timeout=timeout)
+                r = session.post(resource_url, json=json_body or {}, timeout=timeout, headers=headers)
             ct = r.headers.get("content-type") or ""
             if "application/json" in ct:
                 try:

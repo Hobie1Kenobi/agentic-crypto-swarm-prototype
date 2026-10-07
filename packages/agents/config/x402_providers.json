@@ -8,50 +8,98 @@
     "network": "eip155:42220",
     "facilitator_url": null,
     "resource_url": "http://127.0.0.1:8042/query",
-    "supported_assets": ["CELO"],
+    "supported_assets": [
+      "CELO"
+    ],
     "pricing_model": "per_request",
-    "categories": ["query", "llm", "self", "seller"],
+    "categories": [
+      "query",
+      "llm",
+      "self",
+      "seller"
+    ],
     "payment_flow": "celo_native",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
       "seller": true,
       "api_402": true,
-      "note": "Production: CHAIN_ID=42220, REVENUE_SERVICE_ADDRESS on Celo mainnet, CELO_402_PUBLIC_URL=https://YOUR_HOST/celo/query (unified Caddy). Dev: localhost:8042/query or Sepolia."
+      "note": "Production: CHAIN_ID=42220, REVENUE_SERVICE_ADDRESS=0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4 on Celo mainnet, CELO_402_PUBLIC_URL=https://api.agentic-swarm-marketplace.com/celo/query. Dev: localhost:8042/query or Sepolia."
     }
   },
   {
+    "provider_id": "swarm-seller-celo-usdc-facilitator",
+    "provider_name": "Our Swarm (Celo mainnet USDC \u2014 Celo hosted x402 facilitator)",
+    "enabled": true,
+    "network": "eip155:42220",
+    "facilitator_url": "https://api.x402.celo.org",
+    "resource_url": "https://api.agentic-swarm-marketplace.com/celo/x402/v1/query",
+    "asset": "0xcebA9300f2b948710d2653dD7B07f33A8B32118C",
+    "asset_symbol": "USDC",
+    "accepted_assets": [
+      "USDC"
+    ],
+    "payment_flow": "facilitator",
+    "notes": {
+      "cdp_payai": "Neither CDP nor PayAI support eip155:42220 as of 2026-10-07",
+      "auth": "CELO_X402_API_KEY required for /settle \u2014 create at https://x402.celo.org",
+      "seller": "packages/agents/api_seller_celo_x402.py on port 8044",
+      "discovery": "Celo facilitator + agent402/8004/Buy \u2014 not CDP/PayAI Bazaar"
+    },
+    "listed": true,
+    "url": "https://api.agentic-swarm-marketplace.com/celo/x402/v1/query"
+  },
+  {
     "provider_id": "swarm-seller-facilitator",
-    "provider_name": "Our Swarm (Base mainnet USDC — Coinbase Bazaar / x402 facilitator)",
+    "provider_name": "Our Swarm (Base mainnet USDC \u2014 Coinbase Bazaar / x402 facilitator)",
     "source_type": "config",
     "discovery_source": "internal",
     "protocol_type": "x402",
     "network": "eip155:8453",
     "facilitator_url": "https://x402.org/facilitator",
     "resource_url": "http://127.0.0.1:8043/x402/v1/query",
-    "supported_assets": ["USDC"],
+    "supported_assets": [
+      "USDC"
+    ],
     "pricing_model": "per_request",
-    "categories": ["query", "llm", "self", "seller", "bazaar"],
+    "categories": [
+      "query",
+      "llm",
+      "self",
+      "seller",
+      "bazaar"
+    ],
     "payment_flow": "facilitator",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
       "seller": true,
       "api_seller_x402": true,
       "settlement_chain": "base-mainnet",
-      "note": "Production inbound sales: X402_SELLER_NETWORK=eip155:8453 (Base mainnet USDC). Use eip155:84532 only for Sepolia dev. Override resource_url with X402_SELLER_PUBLIC_URL (HTTPS). See documentation/PUBLIC_MAINNET_OPERATIONS.md."
+      "note": "Production inbound sales: api_seller_x402 is locked to eip155:8453 (Base mainnet USDC) + CDP facilitator. Override resource_url with X402_SELLER_PUBLIC_URL (HTTPS). See documentation/PUBLIC_MAINNET_OPERATIONS.md."
     }
   },
   {
     "provider_id": "swarm-seller-celo-data",
-    "provider_name": "Our Swarm (Base USDC) — Celo Sepolia + proof / soak data bundle (Bazaar x402)",
+    "provider_name": "Our Swarm (Base USDC) \u2014 Celo Sepolia + proof / soak data bundle (Bazaar x402)",
     "source_type": "config",
     "discovery_source": "internal",
     "protocol_type": "x402",
     "network": "eip155:8453",
     "facilitator_url": "https://x402.org/facilitator",
     "resource_url": "http://127.0.0.1:8043/x402/v1/celo-agent-data",
-    "supported_assets": ["USDC"],
+    "supported_assets": [
+      "USDC"
+    ],
     "pricing_model": "per_request",
-    "categories": ["query", "llm", "self", "seller", "bazaar", "data", "proof", "celo"],
+    "categories": [
+      "query",
+      "llm",
+      "self",
+      "seller",
+      "bazaar",
+      "data",
+      "proof",
+      "celo"
+    ],
     "payment_flow": "facilitator",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
@@ -64,16 +112,25 @@
   },
   {
     "provider_id": "swarm-seller-intake-resale",
-    "provider_name": "Our Swarm (Base USDC) — Olas intake resale pack (same UUID files as T54)",
+    "provider_name": "Our Swarm (Base USDC) \u2014 Olas intake resale pack (same UUID files as T54)",
     "source_type": "config",
     "discovery_source": "internal",
     "protocol_type": "x402",
     "network": "eip155:8453",
     "facilitator_url": "https://x402.org/facilitator",
     "resource_url": "http://127.0.0.1:8043/x402/v1/intake-resale",
-    "supported_assets": ["USDC"],
+    "supported_assets": [
+      "USDC"
+    ],
     "pricing_model": "per_request",
-    "categories": ["t54", "xrpl", "data", "resale", "seller", "bazaar"],
+    "categories": [
+      "t54",
+      "xrpl",
+      "data",
+      "resale",
+      "seller",
+      "bazaar"
+    ],
     "payment_flow": "facilitator",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
@@ -86,16 +143,24 @@
   },
   {
     "provider_id": "swarm-seller-ecosystem-pulse",
-    "provider_name": "Our Swarm (Base USDC) — PoCon ecosystem pulse (oracle + worker + bazaar signals)",
+    "provider_name": "Our Swarm (Base USDC) \u2014 PoCon ecosystem pulse (oracle + worker + bazaar signals)",
     "source_type": "config",
     "discovery_source": "internal",
     "protocol_type": "x402",
     "network": "eip155:8453",
     "facilitator_url": "https://x402.org/facilitator",
     "resource_url": "http://127.0.0.1:8043/x402/v1/ecosystem-pulse",
-    "supported_assets": ["USDC"],
+    "supported_assets": [
+      "USDC"
+    ],
     "pricing_model": "per_request",
-    "categories": ["data", "oracle", "seller", "bazaar", "pocon"],
+    "categories": [
+      "data",
+      "oracle",
+      "seller",
+      "bazaar",
+      "pocon"
+    ],
     "payment_flow": "facilitator",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
@@ -108,16 +173,22 @@
   },
   {
     "provider_id": "t54-xrpl-example",
-    "provider_name": "T54 XRPL — structured query (set T54_SELLER_PUBLIC_URL or T54_SELLER_PUBLIC_BASE_URL+t54_path)",
+    "provider_name": "T54 XRPL \u2014 structured query (set T54_SELLER_PUBLIC_URL or T54_SELLER_PUBLIC_BASE_URL+t54_path)",
     "source_type": "config",
     "discovery_source": "t54",
     "protocol_type": "x402",
     "network": "xrpl:0",
     "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
-    "resource_url": "",
-    "supported_assets": ["XRP"],
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/query",
+    "supported_assets": [
+      "XRP"
+    ],
     "pricing_model": "per_request",
-    "categories": ["t54", "xrpl", "llm"],
+    "categories": [
+      "t54",
+      "xrpl",
+      "llm"
+    ],
     "payment_flow": "t54_xrpl",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
@@ -128,16 +199,23 @@
   },
   {
     "provider_id": "t54-xrpl-research-brief",
-    "provider_name": "T54 XRPL — research brief (multi-section LLM)",
+    "provider_name": "T54 XRPL \u2014 research brief (multi-section LLM)",
     "source_type": "config",
     "discovery_source": "t54",
     "protocol_type": "x402",
     "network": "xrpl:0",
     "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
-    "resource_url": "",
-    "supported_assets": ["XRP"],
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/research-brief",
+    "supported_assets": [
+      "XRP"
+    ],
     "pricing_model": "per_request",
-    "categories": ["t54", "xrpl", "research", "llm"],
+    "categories": [
+      "t54",
+      "xrpl",
+      "research",
+      "llm"
+    ],
     "payment_flow": "t54_xrpl",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
@@ -147,16 +225,24 @@
   },
   {
     "provider_id": "t54-xrpl-ecosystem-pulse",
-    "provider_name": "T54 XRPL — PoCon ecosystem pulse (oracle + worker signals)",
+    "provider_name": "T54 XRPL \u2014 PoCon ecosystem pulse (oracle + worker signals)",
     "source_type": "config",
     "discovery_source": "t54",
     "protocol_type": "x402",
     "network": "xrpl:0",
     "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
-    "resource_url": "",
-    "supported_assets": ["XRP"],
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/ecosystem-pulse",
+    "supported_assets": [
+      "XRP"
+    ],
     "pricing_model": "per_request",
-    "categories": ["t54", "xrpl", "data", "oracle", "pocon"],
+    "categories": [
+      "t54",
+      "xrpl",
+      "data",
+      "oracle",
+      "pocon"
+    ],
     "payment_flow": "t54_xrpl",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
@@ -166,16 +252,23 @@
   },
   {
     "provider_id": "t54-xrpl-constitution-audit",
-    "provider_name": "T54 XRPL — constitution / ethics audit (prompt excerpt)",
+    "provider_name": "T54 XRPL \u2014 constitution / ethics audit (prompt excerpt)",
     "source_type": "config",
     "discovery_source": "t54",
     "protocol_type": "x402",
     "network": "xrpl:0",
     "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
-    "resource_url": "",
-    "supported_assets": ["XRP"],
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/constitution-audit",
+    "supported_assets": [
+      "XRP"
+    ],
     "pricing_model": "per_request",
-    "categories": ["t54", "xrpl", "safety", "llm"],
+    "categories": [
+      "t54",
+      "xrpl",
+      "safety",
+      "llm"
+    ],
     "payment_flow": "t54_xrpl",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
@@ -184,17 +277,50 @@
     }
   },
   {
-    "provider_id": "t54-xrpl-hello",
-    "provider_name": "T54 XRPL — micropayment ping (/hello)",
+    "provider_id": "t54-xrpl-peer-origin-verify",
+    "provider_name": "T54 XRPL \u2014 peer x402 origin audit (Domain + DID + Credential + catalog hash)",
     "source_type": "config",
     "discovery_source": "t54",
     "protocol_type": "x402",
     "network": "xrpl:0",
     "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
-    "resource_url": "",
-    "supported_assets": ["XRP"],
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/peer-origin-verify",
+    "supported_assets": [
+      "XRP"
+    ],
     "pricing_model": "per_request",
-    "categories": ["t54", "xrpl", "health"],
+    "categories": [
+      "t54",
+      "xrpl",
+      "verify",
+      "reputation"
+    ],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "t54_path": "/x402/v1/peer-origin-verify",
+      "sku_id": "peer-origin-verify",
+      "note": "GET ?url=https://other-merchant.example. Peer inbound to ASM payTo; not ignition."
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-hello",
+    "provider_name": "T54 XRPL \u2014 micropayment ping (/hello)",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/hello",
+    "supported_assets": [
+      "XRP"
+    ],
+    "pricing_model": "per_request",
+    "categories": [
+      "t54",
+      "xrpl",
+      "health"
+    ],
     "payment_flow": "t54_xrpl",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
@@ -204,16 +330,24 @@
   },
   {
     "provider_id": "t54-xrpl-agent-commerce-data",
-    "provider_name": "T54 XRPL — agent commerce data bundle (proof + federation + discovery)",
+    "provider_name": "T54 XRPL \u2014 agent commerce data bundle (proof + federation + discovery)",
     "source_type": "config",
     "discovery_source": "t54",
     "protocol_type": "x402",
     "network": "xrpl:0",
     "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
-    "resource_url": "",
-    "supported_assets": ["XRP"],
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/agent-commerce-data",
+    "supported_assets": [
+      "XRP"
+    ],
     "pricing_model": "per_request",
-    "categories": ["t54", "xrpl", "data", "proof", "agents"],
+    "categories": [
+      "t54",
+      "xrpl",
+      "data",
+      "proof",
+      "agents"
+    ],
     "payment_flow": "t54_xrpl",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
@@ -224,16 +358,23 @@
   },
   {
     "provider_id": "t54-xrpl-airdrop-intelligence",
-    "provider_name": "T54 XRPL — airdrop intelligence report (constitution-first, no execution)",
+    "provider_name": "T54 XRPL \u2014 airdrop intelligence report (constitution-first, no execution)",
     "source_type": "config",
     "discovery_source": "t54",
     "protocol_type": "x402",
     "network": "xrpl:0",
     "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
-    "resource_url": "",
-    "supported_assets": ["XRP"],
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/airdrop-intelligence",
+    "supported_assets": [
+      "XRP"
+    ],
     "pricing_model": "per_request",
-    "categories": ["t54", "xrpl", "research", "airdrop"],
+    "categories": [
+      "t54",
+      "xrpl",
+      "research",
+      "airdrop"
+    ],
     "payment_flow": "t54_xrpl",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
@@ -244,16 +385,23 @@
   },
   {
     "provider_id": "t54-xrpl-intake-resale-pack",
-    "provider_name": "T54 XRPL — intake resale pack (UUID inventory from artifacts/intake_resale/)",
+    "provider_name": "T54 XRPL \u2014 intake resale pack (UUID inventory from artifacts/intake_resale/)",
     "source_type": "config",
     "discovery_source": "t54",
     "protocol_type": "x402",
     "network": "xrpl:0",
     "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
-    "resource_url": "",
-    "supported_assets": ["XRP"],
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/intake-resale",
+    "supported_assets": [
+      "XRP"
+    ],
     "pricing_model": "per_request",
-    "categories": ["t54", "xrpl", "data", "resale"],
+    "categories": [
+      "t54",
+      "xrpl",
+      "data",
+      "resale"
+    ],
     "payment_flow": "t54_xrpl",
     "metadata": {
       "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
@@ -263,17 +411,132 @@
     }
   },
   {
+    "provider_id": "t54-xrpl-procurement-readiness",
+    "provider_name": "T54 XRPL \u2014 LCG Procurement Readiness Scan",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/procurement-readiness",
+    "supported_assets": [
+      "XRP"
+    ],
+    "pricing_model": "per_request",
+    "categories": [
+      "t54",
+      "xrpl",
+      "lcg",
+      "procurement"
+    ],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "portal_url": "https://hobie1kenobi.github.io/agentic-crypto-swarm-prototype/",
+      "t54_path": "/x402/v1/procurement-readiness",
+      "sku_id": "procurement-readiness",
+      "http_method": "POST",
+      "note": "Entry SKU for LCG procurement intelligence on XRPL. Dual rail with Base USDC."
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-quote-completeness-audit",
+    "provider_name": "T54 XRPL \u2014 LCG Quote Completeness Audit",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/quote-completeness-audit",
+    "supported_assets": [
+      "XRP"
+    ],
+    "pricing_model": "per_request",
+    "categories": [
+      "t54",
+      "xrpl",
+      "lcg",
+      "procurement",
+      "quote"
+    ],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/x402/v1/quote-completeness-audit",
+      "sku_id": "quote-completeness-audit",
+      "http_method": "POST"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-bid-fit-score",
+    "provider_name": "T54 XRPL \u2014 LCG Bid Fit Score",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/bid-fit-score",
+    "supported_assets": [
+      "XRP"
+    ],
+    "pricing_model": "per_request",
+    "categories": [
+      "t54",
+      "xrpl",
+      "lcg",
+      "bid"
+    ],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/x402/v1/bid-fit-score",
+      "sku_id": "bid-fit-score",
+      "http_method": "POST"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-purchase-readiness-package",
+    "provider_name": "T54 XRPL \u2014 LCG Purchase Readiness Package",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/purchase-readiness-package",
+    "supported_assets": [
+      "XRP"
+    ],
+    "pricing_model": "per_request",
+    "categories": [
+      "t54",
+      "xrpl",
+      "lcg",
+      "procurement"
+    ],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/x402/v1/purchase-readiness-package",
+      "sku_id": "purchase-readiness-package",
+      "http_method": "POST"
+    }
+  },
+  {
     "provider_id": "swarm-seller-contract-triage",
-    "provider_name": "Our Swarm (Base USDC) — smart contract triage (Slither + brand heuristics)",
+    "provider_name": "Our Swarm (Base USDC) \u2014 smart contract triage (Slither + brand heuristics)",
     "source_type": "config",
     "discovery_source": "internal",
     "protocol_type": "x402",
     "network": "eip155:8453",
     "facilitator_url": "https://x402.org/facilitator",
     "resource_url": "http://127.0.0.1:8043/x402/v1/contract-triage",
-    "supported_assets": ["USDC"],
+    "supported_assets": [
+      "USDC"
+    ],
     "pricing_model": "per_request",
-    "categories": ["security", "audit", "evm", "seller", "bazaar"],
+    "categories": [
+      "security",
+      "audit",
+      "evm",
+      "seller",
+      "bazaar"
+    ],
     "payment_flow": "facilitator",
     "metadata": {
       "seller": true,
@@ -284,16 +547,24 @@
   },
   {
     "provider_id": "swarm-seller-contract-audit",
-    "provider_name": "Our Swarm (Base USDC) — full contract audit (5-phase intelligence)",
+    "provider_name": "Our Swarm (Base USDC) \u2014 full contract audit (5-phase intelligence)",
     "source_type": "config",
     "discovery_source": "internal",
     "protocol_type": "x402",
     "network": "eip155:8453",
     "facilitator_url": "https://x402.org/facilitator",
     "resource_url": "http://127.0.0.1:8043/x402/v1/contract-audit",
-    "supported_assets": ["USDC"],
+    "supported_assets": [
+      "USDC"
+    ],
     "pricing_model": "per_request",
-    "categories": ["security", "audit", "evm", "seller", "bazaar"],
+    "categories": [
+      "security",
+      "audit",
+      "evm",
+      "seller",
+      "bazaar"
+    ],
     "payment_flow": "facilitator",
     "metadata": {
       "seller": true,
@@ -304,16 +575,24 @@
   },
   {
     "provider_id": "swarm-seller-contract-monitor",
-    "provider_name": "Our Swarm (Base USDC) — contract monitoring subscription (webhook)",
+    "provider_name": "Our Swarm (Base USDC) \u2014 contract monitoring subscription (webhook)",
     "source_type": "config",
     "discovery_source": "internal",
     "protocol_type": "x402",
     "network": "eip155:8453",
     "facilitator_url": "https://x402.org/facilitator",
     "resource_url": "http://127.0.0.1:8043/x402/v1/contract-monitor",
-    "supported_assets": ["USDC"],
+    "supported_assets": [
+      "USDC"
+    ],
     "pricing_model": "per_request",
-    "categories": ["security", "monitoring", "webhook", "seller", "bazaar"],
+    "categories": [
+      "security",
+      "monitoring",
+      "webhook",
+      "seller",
+      "bazaar"
+    ],
     "payment_flow": "facilitator",
     "metadata": {
       "seller": true,
@@ -321,60 +600,6 @@
       "sku_id": "contract-monitor",
       "http_method": "POST",
       "description": "30-day continuous monitoring subscription for EVM smart contract threat intelligence. Monitors up to 10 addresses for: admin key movement, claim condition changes, liquidity threshold breaches (configurable %), new Slither critical findings on any code update. Fires webhook on alert. Ideal for DeFi agents and wallet providers managing live positions. Input POST body: {addresses[], webhookUrl, thresholds{}, durationDays}. Output: {subscriptionId, expiresAt, status}."
-    }
-  },
-  {
-    "provider_id": "t54-xrpl-contract-triage",
-    "provider_name": "T54 XRPL — smart contract triage (same handler as Base; XRP pricing)",
-    "source_type": "config",
-    "discovery_source": "t54",
-    "protocol_type": "x402",
-    "network": "xrpl:0",
-    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
-    "resource_url": "",
-    "supported_assets": ["XRP"],
-    "pricing_model": "per_request",
-    "categories": ["t54", "xrpl", "security", "audit"],
-    "payment_flow": "t54_xrpl",
-    "metadata": {
-      "t54_path": "/x402/v1/contract-triage",
-      "sku_id": "contract-triage"
-    }
-  },
-  {
-    "provider_id": "t54-xrpl-contract-audit",
-    "provider_name": "T54 XRPL — full contract audit (same handler as Base; XRP pricing)",
-    "source_type": "config",
-    "discovery_source": "t54",
-    "protocol_type": "x402",
-    "network": "xrpl:0",
-    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
-    "resource_url": "",
-    "supported_assets": ["XRP"],
-    "pricing_model": "per_request",
-    "categories": ["t54", "xrpl", "security", "audit"],
-    "payment_flow": "t54_xrpl",
-    "metadata": {
-      "t54_path": "/x402/v1/contract-audit",
-      "sku_id": "contract-audit"
-    }
-  },
-  {
-    "provider_id": "t54-xrpl-contract-monitor",
-    "provider_name": "T54 XRPL — contract monitor subscription (GET query params; XRP pricing)",
-    "source_type": "config",
-    "discovery_source": "t54",
-    "protocol_type": "x402",
-    "network": "xrpl:0",
-    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
-    "resource_url": "",
-    "supported_assets": ["XRP"],
-    "pricing_model": "per_request",
-    "categories": ["t54", "xrpl", "security", "monitoring"],
-    "payment_flow": "t54_xrpl",
-    "metadata": {
-      "t54_path": "/x402/v1/contract-monitor",
-      "sku_id": "contract-monitor"
     }
   },
   {
@@ -386,10 +611,18 @@
     "network": "eip155:84532",
     "facilitator_url": "https://x402.org/facilitator",
     "resource_url": "https://402payment-test.com/api/x402",
-    "metadata": {"settlement_chain": "base", "facilitator": "x402.org"},
-    "supported_assets": ["USDC"],
+    "metadata": {
+      "settlement_chain": "base",
+      "facilitator": "x402.org"
+    },
+    "supported_assets": [
+      "USDC"
+    ],
     "pricing_model": "per_request",
-    "categories": ["echo", "test"],
+    "categories": [
+      "echo",
+      "test"
+    ],
     "payment_flow": "facilitator"
   },
   {
@@ -401,15 +634,30 @@
     "network": "eip155:84532",
     "facilitator_url": "https://x402.org/facilitator",
     "resource_url": "https://api.arcana.markets/api/x402/oracle/price",
-    "supported_assets": ["USDC"],
+    "supported_assets": [
+      "USDC"
+    ],
     "pricing_model": "per_request",
-    "categories": ["crypto", "oracle", "chain-scout", "news", "yield", "tokenomics", "nft", "perp"],
+    "categories": [
+      "crypto",
+      "oracle",
+      "chain-scout",
+      "news",
+      "yield",
+      "tokenomics",
+      "nft",
+      "perp"
+    ],
     "payment_flow": "facilitator",
     "metadata": {
-      "agents": ["Price Oracle"],
+      "agents": [
+        "Price Oracle"
+      ],
       "price_usd": "0.01",
       "request_method": "GET",
-      "request_params": ["symbol"],
+      "request_params": [
+        "symbol"
+      ],
       "settlement_chain": "base",
       "facilitator": "x402.org",
       "celo_native": true
@@ -424,9 +672,16 @@
     "network": "eip155:8453",
     "facilitator_url": "https://x402.org/facilitator",
     "resource_url": "https://agoragentic.com/api/x402/listings",
-    "supported_assets": ["USDC"],
+    "supported_assets": [
+      "USDC"
+    ],
     "pricing_model": "per_request",
-    "categories": ["vault", "agent-passport", "commerce", "a2a"],
+    "categories": [
+      "vault",
+      "agent-passport",
+      "commerce",
+      "a2a"
+    ],
     "payment_flow": "none",
     "metadata": {
       "listings_endpoint": true,
@@ -444,11 +699,19 @@
     "network": "eip155:84532",
     "facilitator_url": "https://x402.org/facilitator",
     "resource_url": "https://api.cdp.coinbase.com/platform/v2/x402/discovery/resources",
-    "supported_assets": ["USDC"],
+    "supported_assets": [
+      "USDC"
+    ],
     "pricing_model": "free",
-    "categories": ["discovery", "catalog"],
+    "categories": [
+      "discovery",
+      "catalog"
+    ],
     "payment_flow": "none",
-    "metadata": {"read_only": true, "list_endpoint": true}
+    "metadata": {
+      "read_only": true,
+      "list_endpoint": true
+    }
   },
   {
     "provider_id": "x402-discovery-api",
@@ -461,8 +724,93 @@
     "resource_url": "https://x402-discovery-api.onrender.com/discover",
     "supported_assets": [],
     "pricing_model": "free",
-    "categories": ["discovery", "search", "catalog"],
+    "categories": [
+      "discovery",
+      "search",
+      "catalog"
+    ],
     "payment_flow": "none",
-    "metadata": {"read_only": true, "indexed_services": 251}
+    "metadata": {
+      "read_only": true,
+      "indexed_services": 251
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-specification-normalizer",
+    "provider_name": "T54 XRPL \u2014 specification-normalizer",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/specification-normalizer",
+    "supported_assets": [
+      "XRP"
+    ],
+    "pricing_model": "per_request",
+    "categories": [
+      "t54",
+      "xrpl",
+      "lcg",
+      "procurement"
+    ],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/x402/v1/specification-normalizer",
+      "sku_id": "specification-normalizer",
+      "http_method": "POST"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-rfp-requirement-extractor",
+    "provider_name": "T54 XRPL \u2014 rfp-requirement-extractor",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/rfp-requirement-extractor",
+    "supported_assets": [
+      "XRP"
+    ],
+    "pricing_model": "per_request",
+    "categories": [
+      "t54",
+      "xrpl",
+      "lcg",
+      "rfp"
+    ],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/x402/v1/rfp-requirement-extractor",
+      "sku_id": "rfp-requirement-extractor",
+      "http_method": "POST"
+    }
+  },
+  {
+    "provider_id": "t54-xrpl-bom-risk-audit",
+    "provider_name": "T54 XRPL \u2014 bom-risk-audit",
+    "source_type": "config",
+    "discovery_source": "t54",
+    "protocol_type": "x402",
+    "network": "xrpl:0",
+    "facilitator_url": "https://xrpl-facilitator-mainnet.t54.ai",
+    "resource_url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/bom-risk-audit",
+    "supported_assets": [
+      "XRP"
+    ],
+    "pricing_model": "per_request",
+    "categories": [
+      "t54",
+      "xrpl",
+      "lcg",
+      "bom"
+    ],
+    "payment_flow": "t54_xrpl",
+    "metadata": {
+      "t54_path": "/x402/v1/bom-risk-audit",
+      "sku_id": "bom-risk-audit",
+      "http_method": "POST"
+    }
   }
 ]

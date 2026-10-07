@@ -5,7 +5,7 @@ param(
 )
 $Root = Split-Path $PSScriptRoot -Parent
 if (-not $LogPath) {
-    $LogPath = Join-Path $Root "seller_access.log"
+    $LogPath = Join-Path $Root "logs\seller-access.jsonl"
 }
 if (-not (Test-Path $LogPath)) {
     Write-Host "No log file at: $LogPath"

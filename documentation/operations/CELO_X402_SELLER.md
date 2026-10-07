@@ -22,6 +22,28 @@ REVENUE_SERVICE_ADDRESS=0x...
 
 `npm run env:mainnet` / `apply_public_api_origin.py` writes `CELO_402_PUBLIC_URL` when `PUBLIC_API_ORIGIN` is set.
 
+## Celo mainnet AgentRevenueService (chain 42220)
+
+HTTP `/celo/query` is live on **Celo mainnet** (`eip155:42220`). Contract: [`0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4`](https://celoscan.io/address/0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4).
+
+```powershell
+# Simulation against mainnet RPC (no tx). Never loads .env.local.
+npm run deploy:celo-mainnet:revenue
+
+# After funding the deployer with >= 0.35 CELO (forge estimate ~0.30 at current gas):
+npm run deploy:celo-mainnet:revenue:broadcast
+```
+
+The broadcast writes `artifacts/celo/mainnet-agent-revenue.json` and fills `REVENUE_SERVICE_ADDRESS` in `.env.mainnet`. Then on the API host:
+
+```powershell
+npm run env:mainnet
+# restart api_402 / unified stack
+npm run docs:sync-endpoints
+```
+
+Treasury and finance come from `TREASURY_ADDRESS` / `FINANCE_DISTRIBUTOR_ADDRESS` (same operator wallets as Sepolia unless you override them in `.env.mainnet`). Deployer key is `DEPLOYER_PRIVATE_KEY` in `.env.mainnet.secure`.
+
 ## Run locally
 
 ```powershell

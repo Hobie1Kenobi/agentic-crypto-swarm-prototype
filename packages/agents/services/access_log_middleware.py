@@ -1,5 +1,8 @@
 """
-Optional JSONL access log for seller APIs. Enable with SELLER_ACCESS_LOG=/path/to/file.log
+JSONL access log for seller APIs.
+
+Writes logs/seller-access.jsonl unless SELLER_ACCESS_LOG is set.
+Set SELLER_ACCESS_LOG=0 to disable.
 """
 from __future__ import annotations
 
@@ -9,11 +12,26 @@ import time
 from pathlib import Path
 
 
+def _repo_root() -> Path:
+    return Path(__file__).resolve().parents[3]
+
+
+def access_log_path() -> Path | None:
+    raw = (os.getenv("SELLER_ACCESS_LOG") or "").strip()
+    if raw.lower() in {"0", "off", "false", "no"}:
+        return None
+    if not raw or raw.lower() in {"1", "true", "yes"}:
+        return _repo_root() / "logs" / "seller-access.jsonl"
+    path = Path(raw)
+    if not path.is_absolute():
+        path = _repo_root() / path
+    return path
+
+
 def attach_access_log(app, service_name: str) -> None:
-    path = (os.getenv("SELLER_ACCESS_LOG") or "").strip()
-    if not path:
+    log_file = access_log_path()
+    if log_file is None:
         return
-    log_file = Path(path)
 
     @app.middleware("http")
     async def _access_log(request, call_next):

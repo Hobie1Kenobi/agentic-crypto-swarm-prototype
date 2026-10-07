@@ -11,8 +11,8 @@ Use this when you want **one HTTPS hostname** (one ngrok URL) for:
 | `/x402/*` | Base x402 seller (`api_seller_x402`) | 8043 |
 
 **Do not** point MCP clients (Agent.ai, etc.) at the **x402 seller** (8043) or **T54** (8765) tunnel — those return **404** with `wrong_service` for `/mcp/*`. Use the **unified** tunnel (→ **9080**).
-| `/t54/*` | T54 XRPL seller (`t54_seller_app`); **full path forwarded** (e.g. `/t54/hello`) | 8765 |
-| `/webhooks/*`, `/v1/*`, `/marketplace/*`, `/docs*`, `/openapi.json`, `/redoc*` | Marketplace (`marketplace_api`) | 8055 |
+| `/t54/*` | T54 XRPL seller (`t54_seller_app`); **strip `/t54`** → `/hello`, `/x402/v1/...` (public URLs still use `/t54/...`) | 8765 |
+| `/webhooks/*`, `/v1/*`, `/marketplace/*`, `/agenttrust/*`, `/docs*`, `/openapi.json`, `/redoc*` | Marketplace (`marketplace_api`) | 8055 |
 | everything else (e.g. `/health`) | Defaults to Base x402 (8043) | 8043 |
 
 **Why `/t54`?** Both T54 and Base expose routes under `/x402/v1/...`. Routing Base at `/x402/` and T54 at `/t54/` avoids collisions.

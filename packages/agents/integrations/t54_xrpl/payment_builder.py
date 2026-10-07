@@ -81,7 +81,12 @@ def build_presigned_xrpl_payment(
         signed = sign(payment, wallet)
     except Exception as e:
         return None, f"sign_failed:{e}"
-    blob = getattr(signed, "blob", None)
+    blob_attr = getattr(signed, "blob", None)
+    # xrpl-py: Transaction.blob is a method in recent versions; older exposed a str property.
+    if callable(blob_attr):
+        blob = blob_attr()
+    else:
+        blob = blob_attr
     if not blob:
         return None, "signed_blob_unavailable"
     return str(blob), None

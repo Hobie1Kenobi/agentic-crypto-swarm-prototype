@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
-Smoke test: facilitator x402 seller (api_seller_x402) — external-style buyer pays Base Sepolia USDC.
+Smoke test: facilitator x402 seller (api_seller_x402) — buyer pays Base mainnet USDC (eip155:8453).
 
 Prereqs:
   - pip install x402[requests] (already in packages/agents/requirements.txt)
-  - Fund ROOT_STRATEGIST on Celo Sepolia; bridge auto-funds Base Sepolia USDC (see bridge_utils), OR fund Base Sepolia USDC directly
+  - Fund buyer wallet with Base mainnet USDC (X402_BUYER_BASE_MAINNET_PRIVATE_KEY or ROOT_STRATEGIST on 8453)
   - Ollama running if you want real LLM answers (else may error inside generate_response_for_query)
 
 Usage:
@@ -38,7 +38,12 @@ sys.path.insert(0, str(root / "packages" / "agents"))
 
 from dotenv import load_dotenv
 
+# Load .env for mainnet configuration
 load_dotenv(root / ".env", override=True)
+
+# WARNING: Do NOT load .env.local for mainnet operations - it has PUBLIC test keys!
+# .env.local is ONLY for local Anvil testing (chain ID 31337)
+# For mainnet x402 ignition, use scripts/run-x402-cdp-ignition.py instead
 
 DEFAULT_URL = os.getenv("X402_SELLER_SMOKE_URL", "http://127.0.0.1:8043/x402/v1/query")
 
@@ -63,8 +68,9 @@ def main() -> int:
     parser.add_argument("--url", default=DEFAULT_URL, help="Full query URL (default local seller)")
     args = parser.parse_args()
 
-    os.environ.setdefault("X402_ALLOWED_NETWORKS", "eip155:84532")
-    os.environ.setdefault("X402_TEST_FACILITATOR_URL", "https://x402.org/facilitator")
+    os.environ.setdefault("X402_ALLOWED_NETWORKS", "eip155:8453")
+    os.environ.setdefault("X402_TEST_FACILITATOR_URL", "https://api.cdp.coinbase.com/platform/v2/x402")
+    os.environ.pop("X402_SELLER_NETWORK", None)
 
     proc = None
     if args.auto_start:
@@ -99,7 +105,7 @@ def main() -> int:
     dry = os.getenv("X402_DRY_RUN", "0").strip().lower() in {"1", "true", "yes"}
     print(f"X402_DRY_RUN={dry} | URL={args.url}")
     if not dry:
-        print("Paid mode: ensure Base Sepolia USDC (bridge from Celo or CDP faucet).")
+        print("Paid mode: ensure Base mainnet USDC on the buyer key (8453).")
 
     buyer = X402Buyer(dry_run=dry)
     start = time.time()

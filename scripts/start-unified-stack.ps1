@@ -1,4 +1,4 @@
-# Start full unified stack on Windows: T54 seller :8765, x402 seller :8043, marketplace :8055,
+# Start full unified stack on Windows: T54 seller :8765, x402 seller :8043, Celo x402 seller :8044, marketplace :8055,
 # Caddy :9080, ngrok dual config (t54 + x402 + unified). Uses cmd.exe + npm.cmd (reliable; Start-Process npm is not).
 # After ngrok is up: sync_t54 + sync_x402 write public URLs to .env, then sellers restart so uvicorn loads them
 # (full start always restarts sellers; -Ensure restarts only if T54/X402 URL lines changed - avoids watchdog flapping).
@@ -45,7 +45,7 @@ function Start-NpmRunDetached {
 }
 
 function Stop-UnifiedSellersOnly {
-    foreach ($port in @(8765, 8042, 8043, 8055)) {
+    foreach ($port in @(8765, 8042, 8043, 8044, 8055)) {
         $conn = Get-NetTCPConnection -LocalPort $port -State Listen -ErrorAction SilentlyContinue
         foreach ($c in $conn) {
             if (-not $c.OwningProcess) { continue }
@@ -69,6 +69,9 @@ function Start-UnifiedSellers {
     Start-Sleep -Seconds 2
     Write-Host "[unified-stack] starting x402:seller -> logs/unified-stack-x402-seller.log"
     Start-NpmRunDetached -NpmCmd $NpmCmd -ScriptName "x402:seller" -LogBaseName "unified-stack-x402-seller"
+    Start-Sleep -Seconds 2
+    Write-Host "[unified-stack] starting x402:seller:celo -> logs/unified-stack-celo-x402-seller.log"
+    Start-NpmRunDetached -NpmCmd $NpmCmd -ScriptName "x402:seller:celo" -LogBaseName "unified-stack-celo-x402-seller"
     Start-Sleep -Seconds 2
     Write-Host "[unified-stack] starting marketplace:serve -> logs/unified-stack-marketplace.log"
     Start-NpmRunDetached -NpmCmd $NpmCmd -ScriptName "marketplace:serve" -LogBaseName "unified-stack-marketplace"
@@ -94,6 +97,12 @@ function Get-EnvPublicUrlFingerprint {
     if ($raw -match '(?m)^T54_SELLER_PUBLIC_BASE_URL=(.*)$') { $t54 = $matches[1].Trim() }
     if ($raw -match '(?m)^X402_SELLER_PUBLIC_URL=(.*)$') { $x402 = $matches[1].Trim() }
     return "${t54}|${x402}"
+}
+
+$watchdogOff = Join-Path $logDir "unified-watchdog.off"
+if ($Ensure -and (Test-Path -LiteralPath $watchdogOff)) {
+    Write-Host "[unified-stack] ensure skipped (logs/unified-watchdog.off present). Stack left running."
+    exit 0
 }
 
 $npm = Get-NpmCmdPath
@@ -143,6 +152,11 @@ if ($Ensure) {
     if (-not (Test-PortListen 8043)) {
         Write-Host "[unified-stack] ensure: starting x402:seller -> logs/unified-stack-x402-seller.log"
         Start-NpmRunDetached -NpmCmd $npm -ScriptName "x402:seller" -LogBaseName "unified-stack-x402-seller"
+        Start-Sleep -Seconds 2
+    }
+    if (-not (Test-PortListen 8044)) {
+        Write-Host "[unified-stack] ensure: starting x402:seller:celo -> logs/unified-stack-celo-x402-seller.log"
+        Start-NpmRunDetached -NpmCmd $npm -ScriptName "x402:seller:celo" -LogBaseName "unified-stack-celo-x402-seller"
         Start-Sleep -Seconds 2
     }
     if (-not (Test-PortListen 8055)) {
@@ -225,7 +239,7 @@ if (-not $NoSync) {
         if ($Ensure -and $urlsChanged) {
             Write-Host "[unified-stack] public URLs in .env changed - restarting sellers to load new T54/X402 origins"
         } else {
-            Write-Host "[unified-stack] restarting sellers (8765/8042/8043/8055) so uvicorn loads synced public URLs from .env"
+            Write-Host "[unified-stack] restarting sellers (8765/8042/8043/8044/8055) so uvicorn loads synced public URLs from .env"
         }
         Stop-UnifiedSellersOnly
         Start-Sleep -Seconds 2
@@ -235,7 +249,7 @@ if (-not $NoSync) {
     }
 }
 
-foreach ($port in @(8765, 8042, 8043, 8055, 9051, 9052, 9080, 4040)) {
+foreach ($port in @(8765, 8042, 8043, 8044, 8055, 9051, 9052, 9080, 4040)) {
     if (Test-PortListen $port) {
         Write-Host ('[unified-stack] OK listen :' + $port)
     } else {

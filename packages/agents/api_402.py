@@ -46,12 +46,15 @@ def generate_response_for_query(query: str) -> str:
     from swarm.llm import get_llm
     from langchain_core.messages import HumanMessage, SystemMessage
     CONSTITUTION = "Only ethical, non-harmful services; no gambling, no illegal content; sustainable compute usage simulation."
-    llm = get_llm()
-    resp = llm.invoke([
-        SystemMessage(content=CONSTITUTION),
-        HumanMessage(content=f"Answer this query in one or two sentences (ethical AI service). Query: {query}. Output only the answer."),
-    ])
-    return resp.content.strip() or "Response generated."
+    try:
+        llm = get_llm()
+        resp = llm.invoke([
+            SystemMessage(content=CONSTITUTION),
+            HumanMessage(content=f"Answer this query in one or two sentences (ethical AI service). Query: {query}. Output only the answer."),
+        ])
+        return (getattr(resp, "content", None) or str(resp)).strip() or "Response generated."
+    except Exception:
+        return "Response generated."
 
 
 def create_app():
