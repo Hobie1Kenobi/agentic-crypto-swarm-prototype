@@ -1,9 +1,10 @@
 # Start full unified stack on Windows: T54 seller :8765, x402 seller :8043, Celo x402 seller :8044, marketplace :8055,
 # Caddy :9080, ngrok dual config (t54 + x402 + unified). Uses cmd.exe + npm.cmd (reliable; Start-Process npm is not).
 # After ngrok is up: sync_t54 + sync_x402 write public URLs to .env, then sellers restart so uvicorn loads them
-# (full start always restarts sellers; -Ensure restarts only if T54/X402 URL lines changed - avoids watchdog flapping).
+# (full start always restarts sellers; -Ensure restarts only if T54/X402 URL lines changed).
 #
-# -Ensure: only start services whose listen port is down (for logon/watchdog; does not stop running processes).
+# -Ensure: idempotent full start used by the logon task - starts every component whose port is down, skips ones
+# already listening (safe to run twice; never stops running processes). Logs to logs/unified-autostart.log.
 param(
     [switch]$NoStop,
     [switch]$NoSync,
@@ -99,11 +100,13 @@ function Get-EnvPublicUrlFingerprint {
     return "${t54}|${x402}"
 }
 
-$watchdogOff = Join-Path $logDir "unified-watchdog.off"
-if ($Ensure -and (Test-Path -LiteralPath $watchdogOff)) {
-    Write-Host "[unified-stack] ensure skipped (logs/unified-watchdog.off present). Stack left running."
-    exit 0
+$autoLog = Join-Path $logDir "unified-autostart.log"
+function Write-AutoLog([string]$msg) {
+    $line = "$(Get-Date -Format 'yyyy-MM-dd HH:mm:ss') [$(if ($Ensure) {'ensure'} else {'full'})] $msg"
+    Add-Content -LiteralPath $autoLog -Value $line
+    Write-Host "[unified-stack] $msg"
 }
+Write-AutoLog "run begin (pid $PID)"
 
 $npm = Get-NpmCmdPath
 
@@ -133,55 +136,37 @@ function Add-CaddyToPathIfNeeded {
 Add-CaddyToPathIfNeeded
 $caddy = Get-Command caddy -ErrorAction SilentlyContinue
 if (-not $caddy) {
+    Write-AutoLog "FAILED: caddy not found on PATH"
     Write-Host "Caddy not found on PATH. Install: winget install CaddyServer.Caddy" -ForegroundColor Yellow
     Write-Host "Then sign out/in or add the Caddy folder to your user PATH, or re-run this script (it also searches WinGet package dirs)." -ForegroundColor Yellow
     exit 1
 }
 
 if ($Ensure) {
-    if (-not (Test-PortListen 8765)) {
-        Write-Host "[unified-stack] ensure: starting t54:seller -> logs/unified-stack-t54-seller.log"
-        Start-NpmRunDetached -NpmCmd $npm -ScriptName "t54:seller" -LogBaseName "unified-stack-t54-seller"
-        Start-Sleep -Seconds 2
-    }
-    if (-not (Test-PortListen 8042)) {
-        Write-Host "[unified-stack] ensure: starting api:402 -> logs/unified-stack-celo-402.log"
-        Start-NpmRunDetached -NpmCmd $npm -ScriptName "api:402" -LogBaseName "unified-stack-celo-402"
-        Start-Sleep -Seconds 2
-    }
-    if (-not (Test-PortListen 8043)) {
-        Write-Host "[unified-stack] ensure: starting x402:seller -> logs/unified-stack-x402-seller.log"
-        Start-NpmRunDetached -NpmCmd $npm -ScriptName "x402:seller" -LogBaseName "unified-stack-x402-seller"
-        Start-Sleep -Seconds 2
-    }
-    if (-not (Test-PortListen 8044)) {
-        Write-Host "[unified-stack] ensure: starting x402:seller:celo -> logs/unified-stack-celo-x402-seller.log"
-        Start-NpmRunDetached -NpmCmd $npm -ScriptName "x402:seller:celo" -LogBaseName "unified-stack-celo-x402-seller"
-        Start-Sleep -Seconds 2
-    }
-    if (-not (Test-PortListen 8055)) {
-        Write-Host "[unified-stack] ensure: starting marketplace:serve -> logs/unified-stack-marketplace.log"
-        Start-NpmRunDetached -NpmCmd $npm -ScriptName "marketplace:serve" -LogBaseName "unified-stack-marketplace"
-        Start-Sleep -Seconds 6
-    }
-    if (-not (Test-PortListen 9051)) {
-        Write-Host "[unified-stack] ensure: starting mcp:t54:sse -> logs/unified-stack-mcp-sse.log"
-        Start-NpmRunDetached -NpmCmd $npm -ScriptName "mcp:t54:sse" -LogBaseName "unified-stack-mcp-sse"
-        Start-Sleep -Seconds 1
-    }
-    if (-not (Test-PortListen 9052)) {
-        Write-Host "[unified-stack] ensure: starting mcp:t54:streamable-http -> logs/unified-stack-mcp-streamable.log"
-        Start-NpmRunDetached -NpmCmd $npm -ScriptName "mcp:t54:streamable-http" -LogBaseName "unified-stack-mcp-streamable"
-        Start-Sleep -Seconds 1
-    }
-    if (-not (Test-PortListen 9080)) {
-        Write-Host "[unified-stack] ensure: starting proxy:unified (Caddy) -> logs/unified-stack-caddy.log"
-        Start-NpmRunDetached -NpmCmd $npm -ScriptName "proxy:unified" -LogBaseName "unified-stack-caddy"
-        Start-Sleep -Seconds 3
-    }
-    if (-not (Test-PortListen 4040)) {
-        Write-Host "[unified-stack] ensure: starting ngrok:dual -> logs/unified-stack-ngrok.log"
-        Start-NpmRunDetached -NpmCmd $npm -ScriptName "ngrok:dual" -LogBaseName "unified-stack-ngrok"
+    # Idempotent full start: launch every component whose port is not already listening.
+    $components = @(
+        @{ Port = 8765; Script = "t54:seller";              Log = "unified-stack-t54-seller";        Wait = 2 },
+        @{ Port = 8042; Script = "api:402";                 Log = "unified-stack-celo-402";          Wait = 2 },
+        @{ Port = 8043; Script = "x402:seller";             Log = "unified-stack-x402-seller";       Wait = 2 },
+        @{ Port = 8044; Script = "x402:seller:celo";        Log = "unified-stack-celo-x402-seller";  Wait = 2 },
+        @{ Port = 8055; Script = "marketplace:serve";       Log = "unified-stack-marketplace";       Wait = 6 },
+        @{ Port = 9051; Script = "mcp:t54:sse";             Log = "unified-stack-mcp-sse";           Wait = 1 },
+        @{ Port = 9052; Script = "mcp:t54:streamable-http"; Log = "unified-stack-mcp-streamable";    Wait = 1 },
+        @{ Port = 9080; Script = "proxy:unified";           Log = "unified-stack-caddy";             Wait = 3 },
+        @{ Port = 4040; Script = "ngrok:dual";              Log = "unified-stack-ngrok";             Wait = 0 }
+    )
+    foreach ($c in $components) {
+        if (Test-PortListen $c.Port) {
+            Write-AutoLog ("skipped " + $c.Script + " (:" + $c.Port + " already listening)")
+            continue
+        }
+        try {
+            Start-NpmRunDetached -NpmCmd $npm -ScriptName $c.Script -LogBaseName $c.Log
+            Write-AutoLog ("started " + $c.Script + " (:" + $c.Port + ") -> logs/" + $c.Log + ".log")
+        } catch {
+            Write-AutoLog ("FAILED to start " + $c.Script + " (:" + $c.Port + "): " + $_)
+        }
+        if ($c.Wait -gt 0) { Start-Sleep -Seconds $c.Wait }
     }
 } else {
     if (-not $NoStop) {
@@ -251,9 +236,9 @@ if (-not $NoSync) {
 
 foreach ($port in @(8765, 8042, 8043, 8044, 8055, 9051, 9052, 9080, 4040)) {
     if (Test-PortListen $port) {
-        Write-Host ('[unified-stack] OK listen :' + $port)
+        Write-AutoLog ('OK listen :' + $port)
     } else {
-        Write-Host ('[unified-stack] MISSING listener :' + $port + ' (see logs under ' + $logDir + ')')
+        Write-AutoLog ('FAILED: MISSING listener :' + $port + ' (see logs under ' + $logDir + ')')
     }
 }
 
