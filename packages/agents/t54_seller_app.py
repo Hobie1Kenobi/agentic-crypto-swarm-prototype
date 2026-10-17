@@ -19,6 +19,23 @@ def _env(key: str, default: str = "") -> str:
     return (os.getenv(key, default) or "").strip()
 
 
+DEFAULT_T54_PUBLIC_BASE_URL = "https://api.agentic-swarm-marketplace.com/t54"
+
+
+def t54_public_base_url() -> str:
+    """Public origin + prefix clients use to reach this seller (Caddy strips /t54 before the app)."""
+    return (_env("T54_SELLER_PUBLIC_BASE_URL") or DEFAULT_T54_PUBLIC_BASE_URL).rstrip("/")
+
+
+def t54_resource_url(path: str) -> str:
+    """Public resource URL for a SKU path, e.g. /hello -> https://api.../t54/hello.
+
+    x402_xrpl defaults the 402 resource to request.url, which behind the reverse proxy
+    loses the /t54 prefix and advertises a path that 404s publicly.
+    """
+    return f"{t54_public_base_url()}/{path.lstrip('/')}"
+
+
 def create_t54_seller_app() -> Any:
     from fastapi import FastAPI, Query
 
@@ -83,6 +100,7 @@ def create_t54_seller_app() -> Any:
                 network=network,
                 asset="XRP",
                 description=sku["description"],
+                resource=t54_resource_url(sku["path"]),
                 output_schema=model_cls.model_json_schema(),
             )
         )
