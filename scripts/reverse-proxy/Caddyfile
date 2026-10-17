@@ -88,6 +88,14 @@
 		}
 	}
 
+	# Alias: bare /hello -> same T54 hello SKU as /t54/hello (402 resource URL stays /t54/hello)
+	handle /hello {
+		reverse_proxy 127.0.0.1:8765 {
+			header_up X-Forwarded-Proto https
+			header_up X-Forwarded-Host {host}
+		}
+	}
+
 	# MCP Streamable HTTP (Smithery, Glama URL) — full path /mcp on backend (no strip)
 	# Start: python scripts/mcp_server.py --transport streamable-http --host 127.0.0.1 --port 9052
 	@mcpstream {
