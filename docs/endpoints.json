@@ -1,7 +1,7 @@
 {
   "schema_note": "Canonical public URLs for agents and buyers. Regenerate: npm run docs:sync-endpoints (reads repo-root .env). Commit result for GitHub Pages. Stable HTTPS + mainnet alignment: documentation/PUBLIC_MAINNET_OPERATIONS.md",
   "portal_url": "https://www.agentic-swarm-marketplace.com/",
-  "updated_at": "2026-10-07T05:10:09Z",
+  "updated_at": "2026-11-16T20:50:15Z",
   "endpoints": [
     {
       "id": "t54_public_origin",
@@ -38,26 +38,170 @@
     {
       "id": "base_x402_query",
       "label": "Base USDC x402 seller (facilitator / Bazaar)",
-      "description": "Full GET /x402/v1/query URL for Coinbase Bazaar / x402 clients.",
+      "description": "GET /x402/v1/query — constitution-safe structured Q&A with source attribution. Listed on CDP Bazaar.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/query",
       "network": "eip155:8453",
-      "health_url": "https://api.agentic-swarm-marketplace.com/health"
+      "health_url": "https://api.agentic-swarm-marketplace.com/health",
+      "method": "GET",
+      "price": "0.012 USDC",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "id": "base_x402_constitution_audit",
+      "label": "Base USDC — constitution audit",
+      "description": "GET /x402/v1/constitution-audit — heuristic ethics and constitution-style review of a prompt excerpt.",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/constitution-audit",
+      "network": "eip155:8453",
+      "health_url": "https://api.agentic-swarm-marketplace.com/health",
+      "method": "GET",
+      "price": "0.03 USDC",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "id": "base_x402_agent_commerce_data",
+      "label": "Base USDC — agent commerce data",
+      "description": "GET /x402/v1/agent-commerce-data — premium x402 commerce intelligence bundle.",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/agent-commerce-data",
+      "network": "eip155:8453",
+      "health_url": "https://api.agentic-swarm-marketplace.com/health",
+      "method": "GET",
+      "price": "0.07 USDC",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "id": "base_x402_supplier_trust",
+      "label": "Base USDC — commerce supplier trust",
+      "description": "GET /x402/v1/commerce/supplier-trust — supplier trust pack for agent commerce.",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/supplier-trust",
+      "network": "eip155:8453",
+      "health_url": "https://api.agentic-swarm-marketplace.com/health",
+      "method": "GET",
+      "price": "0.26 USDC",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "id": "base_x402_product_evidence",
+      "label": "Base USDC — commerce product evidence",
+      "description": "GET /x402/v1/commerce/product-evidence — product evidence pack for agent commerce.",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/product-evidence",
+      "network": "eip155:8453",
+      "health_url": "https://api.agentic-swarm-marketplace.com/health",
+      "method": "GET",
+      "price": "0.16 USDC",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "id": "base_x402_product_search",
+      "label": "Base USDC — commerce product search",
+      "description": "GET /x402/v1/commerce/product-search — product search pack for agent commerce.",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/product-search",
+      "network": "eip155:8453",
+      "health_url": "https://api.agentic-swarm-marketplace.com/health",
+      "method": "GET",
+      "price": "0.11 USDC",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "id": "base_x402_airdrop_intelligence",
+      "label": "Base USDC — airdrop intelligence",
+      "description": "GET /x402/v1/airdrop-intelligence — airdrop scam screening with Farm Score and EIP-7702 detection.",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence",
+      "network": "eip155:8453",
+      "health_url": "https://api.agentic-swarm-marketplace.com/health",
+      "method": "GET",
+      "price": "0.09 USDC",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "id": "base_x402_celo_agent_data",
+      "label": "Base USDC — Celo agent data",
+      "description": "GET /x402/v1/celo-agent-data — Celo-rail evidence packed for buyers, settled in Base USDC.",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/celo-agent-data",
+      "network": "eip155:8453",
+      "health_url": "https://api.agentic-swarm-marketplace.com/health",
+      "method": "GET",
+      "price": "0.08 USDC",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "id": "base_x402_research_brief",
+      "label": "Base USDC — research brief",
+      "description": "GET /x402/v1/research-brief — short research brief for agent buyers.",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/research-brief",
+      "network": "eip155:8453",
+      "health_url": "https://api.agentic-swarm-marketplace.com/health",
+      "method": "GET",
+      "price": "0.06 USDC",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
     },
     {
       "id": "base_x402_intake_resale",
       "label": "Base USDC intake resale (same packs as T54 XRPL)",
-      "description": "GET /x402/v1/intake-resale?pack_id=<uuid>. USDC settles to X402_SELLER_PAY_TO. Override URL with X402_INTAKE_RESALE_PUBLIC_URL.",
+      "description": "GET /x402/v1/intake-resale?pack_id=<uuid>. USDC settles to the Base seller payTo.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
       "network": "eip155:8453",
-      "health_url": "https://api.agentic-swarm-marketplace.com/health"
+      "health_url": "https://api.agentic-swarm-marketplace.com/health",
+      "method": "GET",
+      "price": "0.05 USDC",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "id": "base_x402_ecosystem_pulse",
+      "label": "Base USDC — ecosystem pulse",
+      "description": "GET /x402/v1/ecosystem-pulse — PoCon ecosystem pulse: oracle snapshot, worker activity, bazaar readiness.",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
+      "network": "eip155:8453",
+      "health_url": "https://api.agentic-swarm-marketplace.com/health",
+      "method": "GET",
+      "price": "0.04 USDC",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "id": "base_x402_contract_triage",
+      "label": "Base USDC — contract triage",
+      "description": "GET /x402/v1/contract-triage — fast smart contract malicious pattern triage.",
+      "url": "https://api.agentic-swarm-marketplace.com/x402/v1/contract-triage",
+      "network": "eip155:8453",
+      "health_url": "https://api.agentic-swarm-marketplace.com/health",
+      "method": "GET",
+      "price": "0.02 USDC",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
+    },
+    {
+      "id": "celo_usdc_x402_query",
+      "label": "Celo USDC x402 query",
+      "description": "GET /celo/x402/v1/query — constitution-safe Q&A settled in Celo USDC (eip155:42220). Not the native fulfillQuery rail.",
+      "url": "https://api.agentic-swarm-marketplace.com/celo/x402/v1/query",
+      "network": "eip155:42220",
+      "health_url": "https://api.agentic-swarm-marketplace.com/celo/health",
+      "method": "GET",
+      "price": "0.01 USDC",
+      "asset": "0xcebA9300f2b948710d2653dD7B07f33A8B32118C",
+      "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658"
     },
     {
       "id": "celo_native_query",
       "label": "Celo native x402 seller (api_402 / fulfillQuery)",
-      "description": "GET/POST /celo/query — HTTP 402 with CELO payment via AgentRevenueService.fulfillQuery (no facilitator). Set CELO_402_PUBLIC_URL or PUBLIC_API_ORIGIN.",
+      "description": "GET/POST /celo/query — HTTP 402 with 0.001 CELO via AgentRevenueService.fulfillQuery (no facilitator).",
       "url": "https://api.agentic-swarm-marketplace.com/celo/query",
       "network": "eip155:42220",
-      "health_url": "https://api.agentic-swarm-marketplace.com/celo/health"
+      "health_url": "https://api.agentic-swarm-marketplace.com/celo/health",
+      "method": "GET",
+      "price": "0.001 CELO",
+      "asset": "CELO",
+      "payTo": "0xf00ebb2f7704e35593ce5bf9349921c8567c5fe4"
     },
     {
       "id": "marketplace_public_origin",
