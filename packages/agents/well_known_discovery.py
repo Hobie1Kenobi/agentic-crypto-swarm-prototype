@@ -124,12 +124,12 @@ def get_seller_pay_to() -> str:
 
 
 
-# Mainnet AgentRevenueService (fulfillQuery). Override with REVENUE_SERVICE_ADDRESS.
+# Mainnet AgentRevenueService (fulfillQuery). Override with CELO_402_REVENUE_ADDRESS.
 _CELO_MAINNET_REVENUE_SERVICE = "0xf00ebb2f7704e35593ce5bf9349921c8567c5fe4"
 
 
 def get_celo_revenue_pay_to() -> str:
-    explicit = (os.getenv("REVENUE_SERVICE_ADDRESS") or "").strip()
+    explicit = (os.getenv("CELO_402_REVENUE_ADDRESS") or "").strip()
     if explicit.startswith("0x") and len(explicit) == 42:
         return explicit
     return _CELO_MAINNET_REVENUE_SERVICE
