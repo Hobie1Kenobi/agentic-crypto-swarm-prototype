@@ -431,6 +431,19 @@ def main() -> int:
 
     api_origin = pub or x402_origin or mp_base
     endpoints = _extend_live_priced_skus(endpoints, api_origin, celo_origin)
+    portal = _portal_url().rstrip("/") + "/"
+    endpoints.insert(
+        0,
+        {
+            "id": "settlement_proof",
+            "label": "Settlement proof (house vs external)",
+            "description": "On-chain payments to ASM payTo addresses, classified as house (self-funded test and catalog-refresh payments) or external. Never blended into customer counts. Snapshot JSON refreshes every 6 hours; the page keeps the last snapshot if a refresh fails.",
+            "url": f"{portal}proof/",
+            "json_url": f"{portal}proof/proof.json",
+            "network": "multi-rail",
+            "health_url": "",
+        },
+    )
 
     data = {
         "schema_note": "Canonical public URLs for agents and buyers. Regenerate: npm run docs:sync-endpoints (reads repo-root .env). Commit result for GitHub Pages. Stable HTTPS + mainnet alignment: documentation/PUBLIC_MAINNET_OPERATIONS.md",

@@ -1,0 +1,185 @@
+"""Unit tests for marketplace.proof_snapshot — no network."""
+from __future__ import annotations
+
+import sys
+import unittest
+from datetime import datetime, timezone, timedelta
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[3]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from marketplace.proof_snapshot import (  # noqa: E402
+    HOUSE_BASE,
+    HOUSE_CELO,
+    HOUSE_XRPL,
+    OPERATOR_XRPL_IDENTITY,
+    PAYTO_BASE,
+    attach_skus,
+    build_amount_catalog,
+    build_snapshot,
+    classify_payer,
+    merge_payments,
+    per_sku,
+    summarize,
+)
+
+
+class ClassifyTests(unittest.TestCase):
+    def test_house_wallets(self):
+        self.assertEqual(classify_payer("base", HOUSE_BASE), "house")
+        self.assertEqual(classify_payer("base", HOUSE_BASE.lower()), "house")
+        self.assertEqual(classify_payer("celo", HOUSE_CELO), "house")
+        self.assertEqual(classify_payer("xrpl", HOUSE_XRPL), "house")
+
+    def test_operator_identity_not_external(self):
+        self.assertEqual(classify_payer("xrpl", OPERATOR_XRPL_IDENTITY), "operator_identity")
+
+    def test_external_and_unknown(self):
+        self.assertEqual(classify_payer("base", "0x1111111111111111111111111111111111111111"), "external")
+        self.assertEqual(classify_payer("xrpl", "rSomeOtherAccountXXXXXXXXXXXXXXXXX"), "external")
+        self.assertEqual(classify_payer("base", None), "unknown")
+        self.assertEqual(classify_payer("base", ""), "unknown")
+
+    def test_house_not_confused_across_rails(self):
+        self.assertEqual(classify_payer("xrpl", HOUSE_BASE), "external")
+        self.assertEqual(classify_payer("base", HOUSE_XRPL), "external")
+
+
+class CatalogAndSkuTests(unittest.TestCase):
+    def test_unique_and_ambiguous_amounts(self):
+        cat = build_amount_catalog(
+            [
+                {"sku_id": "hello", "price_drops": 1000},
+                {"sku_id": "preflight", "price_drops": 4000},
+                {"sku_id": "twin-a", "price_drops": 20000},
+                {"sku_id": "twin-b", "price_drops": 20000},
+            ],
+            "xrpl",
+        )
+        self.assertEqual(cat["1000"], ["hello"])
+        self.assertEqual(sorted(cat["20000"]), ["twin-a", "twin-b"])
+
+        payments = [
+            {"rail": "xrpl", "tx": "A", "amount_atomic": "1000"},
+            {"rail": "xrpl", "tx": "B", "amount_atomic": "20000"},
+            {"rail": "xrpl", "tx": "C", "amount_atomic": "99"},
+        ]
+        attach_skus(payments, {"xrpl": cat, "base": {}, "celo": {}})
+        self.assertEqual(payments[0]["sku_id"], "hello")
+        self.assertEqual(payments[0]["sku_id_source"], "unique_amount")
+        self.assertIsNone(payments[1]["sku_id"])
+        self.assertEqual(payments[1]["sku_id_source"], "ambiguous")
+        self.assertIsNone(payments[2]["sku_id"])
+        self.assertEqual(payments[2]["sku_id_source"], "unmapped")
+
+    def test_usdc_price_strings(self):
+        cat = build_amount_catalog(
+            [{"sku_id": "agent-preflight-check", "price": "0.01 USDC"}],
+            "base",
+        )
+        self.assertEqual(cat["10000"], ["agent-preflight-check"])
+
+    def test_prior_sku_wins(self):
+        cat = {"1000": ["hello"]}
+        payments = [{"rail": "xrpl", "tx": "AA", "amount_atomic": "1000"}]
+        attach_skus(payments, {"xrpl": cat, "base": {}, "celo": {}}, {("xrpl", "aa"): "custom-label"})
+        self.assertEqual(payments[0]["sku_id"], "custom-label")
+        self.assertEqual(payments[0]["sku_id_source"], "prior_snapshot")
+
+
+class SummaryTests(unittest.TestCase):
+    def test_house_not_blended_into_external(self):
+        now = datetime(2026, 11, 16, 18, 0, tzinfo=timezone.utc)
+        payments = [
+            {"rail": "base", "tx": "1", "payer": HOUSE_BASE, "payer_class": "house",
+             "time": "2026-11-16T17:00:00Z", "sku_id": "agent-preflight-check"},
+            {"rail": "xrpl", "tx": "2", "payer": "rExternalBuyer1111111111111111111", "payer_class": "external",
+             "time": "2026-11-16T16:00:00Z", "sku_id": "hello"},
+            {"rail": "xrpl", "tx": "3", "payer": "rExternalBuyer1111111111111111111", "payer_class": "external",
+             "time": "2026-10-01T16:00:00Z", "sku_id": "hello"},
+            {"rail": "xrpl", "tx": "4", "payer": OPERATOR_XRPL_IDENTITY, "payer_class": "operator_identity",
+             "time": "2026-11-10T16:00:00Z", "sku_id": "hello"},
+        ]
+        # Recompute classes as the builder would.
+        for p in payments:
+            p["payer_class"] = classify_payer(p["rail"], p["payer"])
+        summary = summarize(payments, now=now)
+        self.assertEqual(summary["external"]["payments"], 2)
+        self.assertEqual(summary["external"]["unique_payers"], 1)
+        self.assertEqual(summary["external"]["last_7d"], 1)
+        self.assertEqual(summary["external"]["last_30d"], 1)
+        self.assertEqual(summary["house"]["payments"], 1)
+        self.assertEqual(summary["house"]["unique_payers"], 1)
+        self.assertEqual(summary["operator_identity"]["payments"], 1)
+        self.assertNotEqual(summary["external"]["payments"] + summary["house"]["payments"], summary["total_payments"])
+        self.assertEqual(summary["total_payments"], 4)
+        # External last-call is the recent external one, not the house payment.
+        self.assertTrue(summary["external"]["last_call_at"].startswith("2026-11-16T16:00"))
+        sku = per_sku(payments)
+        hello = next(r for r in sku if r["sku_id"] == "hello")
+        self.assertEqual(hello["external_calls"], 2)
+        self.assertEqual(hello["house_calls"], 0)
+        self.assertEqual(hello["operator_identity_calls"], 1)
+        self.assertEqual(hello["unique_external_payers"], 1)
+
+    def test_merge_prefers_payer_and_dedupes(self):
+        a = [{"rail": "base", "tx": "0xAbC", "payer": None, "amount_atomic": "10000"}]
+        b = [{"rail": "base", "tx": "0xabc", "payer": HOUSE_BASE, "sku_id": "agent-preflight-check"}]
+        merged = merge_payments(a, b)
+        self.assertEqual(len(merged), 1)
+        self.assertEqual(merged[0]["payer"], HOUSE_BASE)
+        self.assertEqual(merged[0]["sku_id"], "agent-preflight-check")
+        self.assertEqual(merged[0]["amount_atomic"], "10000")
+
+
+class SnapshotOfflineTests(unittest.TestCase):
+    def test_offline_snapshot_keeps_classes_separate(self):
+        settlements = {
+            "receipts": [
+                {
+                    "rail": "base",
+                    "sku_id": "structured-query",
+                    "amount_atomic": 12000,
+                    "tx": "0xaaa",
+                    "payer": HOUSE_BASE,
+                    "receiver": PAYTO_BASE,
+                    "block": 1,
+                    "time": "2026-08-17T21:00:00Z",
+                },
+                {
+                    "rail": "base",
+                    "sku_id": "structured-query",
+                    "amount_atomic": 12000,
+                    "tx": "0xbbb",
+                    "payer": "0x2222222222222222222222222222222222222222",
+                    "receiver": PAYTO_BASE,
+                    "block": 2,
+                    "time": "2026-08-18T21:00:00Z",
+                },
+            ]
+        }
+        snap = build_snapshot(
+            repo_root=ROOT,
+            live=False,
+            settlements=settlements,
+            include_health=False,
+            include_preflight=False,
+            now=datetime(2026, 8, 20, tzinfo=timezone.utc),
+        )
+        self.assertEqual(snap["schema"], "asm.proof.v1")
+        self.assertEqual(snap["summary"]["house"]["payments"], 1)
+        self.assertEqual(snap["summary"]["external"]["payments"], 1)
+        self.assertEqual(snap["summary"]["external"]["unique_payers"], 1)
+        self.assertIn("house_note", snap["honesty"])
+        self.assertTrue(snap["honesty"]["house_note"].lower().startswith("house payments are self-funded"))
+        # No private IPs or obvious secret keys in the payload.
+        blob = str(snap).lower()
+        self.assertNotIn("127.0.0.1", blob)
+        self.assertNotIn("private_key", blob)
+        self.assertNotIn("secret", blob)
+
+
+if __name__ == "__main__":
+    unittest.main()
