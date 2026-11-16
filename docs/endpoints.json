@@ -1,7 +1,7 @@
 {
   "schema_note": "Canonical public URLs for agents and buyers. Regenerate: npm run docs:sync-endpoints (reads repo-root .env). Commit result for GitHub Pages. Stable HTTPS + mainnet alignment: documentation/PUBLIC_MAINNET_OPERATIONS.md",
   "portal_url": "https://www.agentic-swarm-marketplace.com/",
-  "updated_at": "2026-11-16T20:50:15Z",
+  "updated_at": "2026-11-16T21:28:26Z",
   "endpoints": [
     {
       "id": "t54_public_origin",
@@ -146,7 +146,7 @@
     {
       "id": "base_x402_intake_resale",
       "label": "Base USDC intake resale (same packs as T54 XRPL)",
-      "description": "GET /x402/v1/intake-resale?pack_id=<uuid>. USDC settles to the Base seller payTo.",
+      "description": "GET /x402/v1/intake-resale?pack_id=<id> (required). Missing/unknown pack_id returns a free 400. Public demo: ?pack_id=demo.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/intake-resale",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -170,7 +170,7 @@
     {
       "id": "base_x402_contract_triage",
       "label": "Base USDC — contract triage",
-      "description": "GET /x402/v1/contract-triage — fast smart contract malicious pattern triage.",
+      "description": "GET /x402/v1/contract-triage?contractAddress=0x… (required, alias: address). Missing/invalid address returns a free 400. Example: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/contract-triage",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",

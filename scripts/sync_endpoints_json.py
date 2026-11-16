@@ -174,7 +174,7 @@ BASE_USDC_SKUS = [
         "id": "base_x402_intake_resale",
         "path": "/x402/v1/intake-resale",
         "label": "Base USDC intake resale (same packs as T54 XRPL)",
-        "description": "GET /x402/v1/intake-resale?pack_id=<uuid>. USDC settles to the Base seller payTo.",
+        "description": "GET /x402/v1/intake-resale?pack_id=<id> (required). Missing/unknown pack_id returns a free 400. Public demo: ?pack_id=demo.",
         "price_usd": "0.05",
     },
     {
@@ -188,7 +188,7 @@ BASE_USDC_SKUS = [
         "id": "base_x402_contract_triage",
         "path": "/x402/v1/contract-triage",
         "label": "Base USDC — contract triage",
-        "description": "GET /x402/v1/contract-triage — fast smart contract malicious pattern triage.",
+        "description": "GET /x402/v1/contract-triage?contractAddress=0x… (required, alias: address). Missing/invalid address returns a free 400. Example: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913.",
         "price_usd": "0.02",
     },
 ]

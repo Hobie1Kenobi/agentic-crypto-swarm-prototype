@@ -81,6 +81,7 @@ def create_app():
 
     from facilitator_health import FacilitatorMonitor
     from intake_resale_sell_guard import create_intake_resale_probe_middleware
+    from x402_prepay_validate import evm_address_from_params, prepay_validate_x402
     from mcp_routing_hint import is_mcp_path, mcp_wrong_port_response
     from t54_seller_handlers import (
         run_agent_commerce_data,
@@ -372,6 +373,9 @@ def create_app():
 
     @app.middleware("http")
     async def x402_gate(request, call_next):
+        pre = prepay_validate_x402(request)
+        if pre is not None:
+            return pre
         return await _mw(request, call_next)
 
     @app.get("/")
@@ -426,10 +430,31 @@ def create_app():
         return base
 
     @app.get("/x402/v1/contract-triage")
-    async def paid_triage(contractAddress: str, chainId: str = "eip155:8453"):
-        from marketplace.skus.smart_contract_audit import triage_contract
-
-        return triage_contract(contractAddress, chainId)
+    async def paid_triage(contractAddress: str = "", address: str = "", chainId: str = "eip155:8453"):
+        addr = evm_address_from_params({"contractAddress": contractAddress, "address": address})
+        if not addr:
+            return JSONResponse(
+                status_code=400,
+                content={
+                    "error": "missing_or_invalid_contractAddress",
+                    "message": "Missing or invalid contract address. This request was not charged.",
+                    "hint": "Pass ?contractAddress=0x…&chainId=eip155:8453 (alias: address)",
+                    "example": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+                },
+            )
+        try:
+            from marketplace.skus.smart_contract_audit import triage_contract
+            return triage_contract(addr, chainId)
+        except Exception as exc:
+            return JSONResponse(
+                status_code=503,
+                content={
+                    "error": "triage_engine_unavailable",
+                    "contractAddress": addr,
+                    "chainId": chainId,
+                    "detail": str(exc)[:200],
+                },
+            )
 
     @app.get("/x402/v1/contract-audit")
     async def paid_audit(addresses: str, chainId: str = "eip155:8453"):
@@ -468,9 +493,18 @@ def create_app():
         return data
 
     @app.get("/x402/v1/intake-resale")
-    async def paid_intake_resale(pack_id: str):
+    async def paid_intake_resale(pack_id: str = ""):
         m = run_intake_resale_pack(pack_id, revenue_usd=resale_price, rail="Base")
-        return m.model_dump()
+        payload = m.model_dump() if hasattr(m, "model_dump") else dict(m)
+        if isinstance(payload, dict) and payload.get("error") in {"pack_id_required", "pack_not_found", "pack_read_failed"}:
+            return JSONResponse(
+                status_code=400 if payload.get("error") != "pack_read_failed" else 503,
+                content={
+                    **payload,
+                    "message": "Intake pack could not be served. Input is validated before payment.",
+                },
+            )
+        return payload
 
     @app.get("/.well-known/ucp")
     async def well_known_ucp():
