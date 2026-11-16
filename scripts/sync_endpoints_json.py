@@ -98,6 +98,190 @@ def _t54_catalog_endpoints(t54_base: str) -> list[dict]:
     ]
 
 
+
+# Public mainnet settlement details and live 402 prices (2026-11-16 probes). No secrets.
+BASE_USDC_ASSET = "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+CELO_USDC_ASSET = "0xcebA9300f2b948710d2653dD7B07f33A8B32118C"
+EVM_USDC_PAY_TO = "0x408f39B19266022FeC03076091e59D1f4f163658"
+CELO_REVENUE_PAY_TO = "0xf00ebb2f7704e35593ce5bf9349921c8567c5fe4"
+
+# CDP-listed Base USDC SKUs plus Celo USDC query. Prices from live HTTP 402 / well-known.
+BASE_USDC_SKUS = [
+    {
+        "id": "base_x402_query",
+        "path": "/x402/v1/query",
+        "label": "Base USDC x402 seller (facilitator / Bazaar)",
+        "description": "GET /x402/v1/query — constitution-safe structured Q&A with source attribution. Listed on CDP Bazaar.",
+        "price_usd": "0.012",
+    },
+    {
+        "id": "base_x402_constitution_audit",
+        "path": "/x402/v1/constitution-audit",
+        "label": "Base USDC — constitution audit",
+        "description": "GET /x402/v1/constitution-audit — heuristic ethics and constitution-style review of a prompt excerpt.",
+        "price_usd": "0.03",
+    },
+    {
+        "id": "base_x402_agent_commerce_data",
+        "path": "/x402/v1/agent-commerce-data",
+        "label": "Base USDC — agent commerce data",
+        "description": "GET /x402/v1/agent-commerce-data — premium x402 commerce intelligence bundle.",
+        "price_usd": "0.07",
+    },
+    {
+        "id": "base_x402_supplier_trust",
+        "path": "/x402/v1/commerce/supplier-trust",
+        "label": "Base USDC — commerce supplier trust",
+        "description": "GET /x402/v1/commerce/supplier-trust — supplier trust pack for agent commerce.",
+        "price_usd": "0.26",
+    },
+    {
+        "id": "base_x402_product_evidence",
+        "path": "/x402/v1/commerce/product-evidence",
+        "label": "Base USDC — commerce product evidence",
+        "description": "GET /x402/v1/commerce/product-evidence — product evidence pack for agent commerce.",
+        "price_usd": "0.16",
+    },
+    {
+        "id": "base_x402_product_search",
+        "path": "/x402/v1/commerce/product-search",
+        "label": "Base USDC — commerce product search",
+        "description": "GET /x402/v1/commerce/product-search — product search pack for agent commerce.",
+        "price_usd": "0.11",
+    },
+    {
+        "id": "base_x402_airdrop_intelligence",
+        "path": "/x402/v1/airdrop-intelligence",
+        "label": "Base USDC — airdrop intelligence",
+        "description": "GET /x402/v1/airdrop-intelligence — airdrop scam screening with Farm Score and EIP-7702 detection.",
+        "price_usd": "0.09",
+    },
+    {
+        "id": "base_x402_celo_agent_data",
+        "path": "/x402/v1/celo-agent-data",
+        "label": "Base USDC — Celo agent data",
+        "description": "GET /x402/v1/celo-agent-data — Celo-rail evidence packed for buyers, settled in Base USDC.",
+        "price_usd": "0.08",
+    },
+    {
+        "id": "base_x402_research_brief",
+        "path": "/x402/v1/research-brief",
+        "label": "Base USDC — research brief",
+        "description": "GET /x402/v1/research-brief — short research brief for agent buyers.",
+        "price_usd": "0.06",
+    },
+    {
+        "id": "base_x402_intake_resale",
+        "path": "/x402/v1/intake-resale",
+        "label": "Base USDC intake resale (same packs as T54 XRPL)",
+        "description": "GET /x402/v1/intake-resale?pack_id=<uuid>. USDC settles to the Base seller payTo.",
+        "price_usd": "0.05",
+    },
+    {
+        "id": "base_x402_ecosystem_pulse",
+        "path": "/x402/v1/ecosystem-pulse",
+        "label": "Base USDC — ecosystem pulse",
+        "description": "GET /x402/v1/ecosystem-pulse — PoCon ecosystem pulse: oracle snapshot, worker activity, bazaar readiness.",
+        "price_usd": "0.04",
+    },
+    {
+        "id": "base_x402_contract_triage",
+        "path": "/x402/v1/contract-triage",
+        "label": "Base USDC — contract triage",
+        "description": "GET /x402/v1/contract-triage — fast smart contract malicious pattern triage.",
+        "price_usd": "0.02",
+    },
+]
+
+
+def _sku_entry(*, sku_id: str, label: str, description: str, url: str, network: str, health_url: str, price: str, asset: str, pay_to: str, method: str = "GET") -> dict:
+    return {
+        "id": sku_id,
+        "label": label,
+        "description": description,
+        "url": url,
+        "network": network,
+        "health_url": health_url,
+        "method": method,
+        "price": price,
+        "asset": asset,
+        "payTo": pay_to,
+    }
+
+
+def _extend_live_priced_skus(endpoints: list[dict], api_origin: str, celo_origin: str) -> list[dict]:
+    """Replace/append live priced routes so Pages matches current 402 probes."""
+    api = (api_origin or "").rstrip("/")
+    if not api:
+        return endpoints
+    health = _health_url_from_origin(api)
+    by_id = {e.get("id"): i for i, e in enumerate(endpoints)}
+    priced: list[dict] = []
+    for sku in BASE_USDC_SKUS:
+        priced.append(
+            _sku_entry(
+                sku_id=sku["id"],
+                label=sku["label"],
+                description=sku["description"],
+                url=f"{api}{sku['path']}",
+                network="eip155:8453",
+                health_url=health,
+                price=f"{sku['price_usd']} USDC",
+                asset=BASE_USDC_ASSET,
+                pay_to=EVM_USDC_PAY_TO,
+            )
+        )
+    celo_health = f"{celo_origin}/celo/health" if celo_origin else f"{api}/celo/health"
+    priced.append(
+        _sku_entry(
+            sku_id="celo_usdc_x402_query",
+            label="Celo USDC x402 query",
+            description="GET /celo/x402/v1/query — constitution-safe Q&A settled in Celo USDC (eip155:42220). Not the native fulfillQuery rail.",
+            url=f"{api}/celo/x402/v1/query",
+            network="eip155:42220",
+            health_url=celo_health,
+            price="0.01 USDC",
+            asset=CELO_USDC_ASSET,
+            pay_to=EVM_USDC_PAY_TO,
+        )
+    )
+    priced.append(
+        _sku_entry(
+            sku_id="celo_native_query",
+            label="Celo native x402 seller (api_402 / fulfillQuery)",
+            description="GET/POST /celo/query — HTTP 402 with 0.001 CELO via AgentRevenueService.fulfillQuery (no facilitator).",
+            url=f"{api}/celo/query",
+            network="eip155:42220",
+            health_url=celo_health,
+            price="0.001 CELO",
+            asset="CELO",
+            pay_to=CELO_REVENUE_PAY_TO,
+        )
+    )
+    # Drop unpriced stubs that the priced rows replace, then insert priced SKUs
+    # after the last T54 catalog row (or at the original query position).
+    replace_ids = {s["id"] for s in BASE_USDC_SKUS} | {"celo_native_query", "celo_usdc_x402_query"}
+    insert_at = None
+    for i, e in enumerate(endpoints):
+        if e.get("id") in replace_ids and insert_at is None:
+            insert_at = i
+    kept = [e for e in endpoints if e.get("id") not in replace_ids]
+    if insert_at is None:
+        # after t54 catalog if present, else before marketplace
+        for i, e in enumerate(kept):
+            if e.get("id") == "marketplace_public_origin":
+                insert_at = i
+                break
+        else:
+            insert_at = len(kept)
+    else:
+        # insert_at was an index into the original list; map to kept
+        # Recompute: place after last kept row that originally preceded the first replaced id.
+        prefix_ids = [e.get("id") for e in endpoints[:insert_at]]
+        insert_at = len([e for e in kept if e.get("id") in prefix_ids])
+    return kept[:insert_at] + priced + kept[insert_at:]
+
+
 def _sync_docs_openapi_mpp_amount() -> None:
     """Keep docs/openapi.json MPP x-payment-info.amount in sync with bundle price env."""
     raw = (os.getenv("MARKETPLACE_DASHBOARD_BUNDLE_PRICE_USD") or "49.00").strip()
@@ -232,6 +416,9 @@ def main() -> int:
     if t54_origin is not None:
         idx = endpoints.index(t54_origin) + 1
         endpoints[idx:idx] = _t54_catalog_endpoints(t54_base)
+
+    api_origin = pub or x402_origin or mp_base
+    endpoints = _extend_live_priced_skus(endpoints, api_origin, celo_origin)
 
     data = {
         "schema_note": "Canonical public URLs for agents and buyers. Regenerate: npm run docs:sync-endpoints (reads repo-root .env). Commit result for GitHub Pages. Stable HTTPS + mainnet alignment: documentation/PUBLIC_MAINNET_OPERATIONS.md",

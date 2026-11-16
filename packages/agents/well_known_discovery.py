@@ -123,6 +123,18 @@ def get_seller_pay_to() -> str:
     return ""
 
 
+
+# Mainnet AgentRevenueService (fulfillQuery). Override with REVENUE_SERVICE_ADDRESS.
+_CELO_MAINNET_REVENUE_SERVICE = "0xf00ebb2f7704e35593ce5bf9349921c8567c5fe4"
+
+
+def get_celo_revenue_pay_to() -> str:
+    explicit = (os.getenv("REVENUE_SERVICE_ADDRESS") or "").strip()
+    if explicit.startswith("0x") and len(explicit) == 42:
+        return explicit
+    return _CELO_MAINNET_REVENUE_SERVICE
+
+
 def build_x402_manifest(pay_to: str) -> dict:
     return {
         "version": "2",
@@ -189,9 +201,13 @@ def build_x402_manifest(pay_to: str) -> dict:
             {
                 "path": "/celo/query",
                 "method": "GET",
-                "price": "CELO (fulfillQuery)",
+                "price": "0.001 CELO",
                 "network": "eip155:42220",
                 "description": "Celo-native x402 Q&A: HTTP 402 → pay CELO on AgentRevenueService → constitution-safe LLM answer.",
+                "sku_id": "celo-native-query",
+                "asset": "CELO",
+                "payTo": get_celo_revenue_pay_to(),
+                "resource": f"{get_public_api_base_url()}/celo/query",
             },
         ],
     }
