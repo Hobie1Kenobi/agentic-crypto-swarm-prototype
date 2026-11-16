@@ -20,7 +20,7 @@ def _env(key: str, default: str = "") -> str:
 
 
 def create_t54_seller_app() -> Any:
-    from fastapi import FastAPI, Query
+    from fastapi import FastAPI, Query, Request
 
     try:
         from x402_xrpl.server.fastapi import require_payment
@@ -36,6 +36,7 @@ def create_t54_seller_app() -> Any:
         run_constitution_audit_lite,
         run_hello,
         run_research_brief,
+        run_preflight_check,
         run_structured_query,
     )
     from t54_seller_models import (
@@ -43,6 +44,7 @@ def create_t54_seller_app() -> Any:
         AirdropIntelligenceReportResponse,
         ConstitutionAuditLiteResponse,
         HelloResponse,
+        PreflightCheckResponse,
         ResearchBriefResponse,
         StructuredQueryResponse,
     )
@@ -65,6 +67,7 @@ def create_t54_seller_app() -> Any:
         "constitution_audit_lite": ConstitutionAuditLiteResponse,
         "agent_commerce_data": AgentCommerceDataResponse,
         "airdrop_intelligence_report": AirdropIntelligenceReportResponse,
+        "preflight_check": PreflightCheckResponse,
     }
 
     app = FastAPI(title="T54 XRPL x402 Seller", version="1.1.0")
@@ -88,6 +91,16 @@ def create_t54_seller_app() -> Any:
         )
 
     from fastapi.responses import JSONResponse
+
+    @app.middleware("http")
+    async def preflight_prepay_validate(request, call_next):
+        if request.url.path == "/x402/v1/preflight":
+            from marketplace.skus.preflight_check import parse_preflight_request
+
+            _target, err = parse_preflight_request(request.query_params)
+            if err:
+                return JSONResponse(status_code=400, content=err)
+        return await call_next(request)
 
     def _dump(model: Any) -> dict[str, Any]:
         if isinstance(model, dict):
@@ -183,6 +196,20 @@ def create_t54_seller_app() -> Any:
         _route.__name__ = f"t54_route_{sku_id.replace('-', '_')}"
         return _route
 
+
+    def _mk_preflight(sku_id: str) -> Any:
+        async def _route(request: Request) -> Any:
+            try:
+                raw = run_preflight_check(dict(request.query_params))
+                return _dump(PreflightCheckResponse.model_validate(raw))
+            except ValidationError as e:
+                return _err_val(e)
+            except Exception as exc:
+                return _err_exc(exc)
+
+        _route.__name__ = f"t54_route_{sku_id.replace('-', '_')}"
+        return _route
+
     for sku in skus:
         hid = sku["handler"]
         p = sku["path"]
@@ -200,6 +227,8 @@ def create_t54_seller_app() -> Any:
             app.add_api_route(p, _mk_agent_data(sid), methods=["GET"])
         elif hid == "airdrop_intelligence_report":
             app.add_api_route(p, _mk_airdrop(sid), methods=["GET"])
+        elif hid == "preflight_check":
+            app.add_api_route(p, _mk_preflight(sid), methods=["GET"])
         else:
             raise RuntimeError(f"Unhandled handler {hid}")
 

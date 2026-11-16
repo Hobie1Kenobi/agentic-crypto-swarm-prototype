@@ -1,12 +1,19 @@
 {
-  "version": 4,
+  "version": 5,
   "skus": [
     {
       "sku_id": "hello",
       "path": "/hello",
       "price_drops": 1000,
-      "description": "XRPL mainnet micropayment ping — confirms HTTP 402 + T54 facilitator path",
+      "description": "XRPL mainnet micropayment ping \u2014 confirms HTTP 402 + T54 facilitator path",
       "handler": "hello"
+    },
+    {
+      "sku_id": "agent-preflight-check",
+      "path": "/x402/v1/preflight",
+      "price_drops": 4000,
+      "description": "Headline agent pre-flight check. Screen a Base contract, a seller/payTo (Base 0x\u2026 or XRPL classic r\u2026), and an optional resource URL. Returns SAFE, RISKY, or INCONCLUSIVE (lookup failures are never RISKY). GET ?contractAddress=&payTo=&resource=&network=",
+      "handler": "preflight_check"
     },
     {
       "sku_id": "structured-query",
@@ -40,7 +47,7 @@
       "sku_id": "airdrop-intelligence-report",
       "path": "/x402/v1/airdrop-intelligence",
       "price_drops": 22000,
-      "description": "Constitution-first airdrop/incentive screening: Farm Score 0–100, risk flags, no on-chain execution (GET ?topic=&context=)",
+      "description": "Constitution-first airdrop/incentive screening: Farm Score 0\u2013100, risk flags, no on-chain execution (GET ?topic=&context=)",
       "handler": "airdrop_intelligence_report"
     }
   ]

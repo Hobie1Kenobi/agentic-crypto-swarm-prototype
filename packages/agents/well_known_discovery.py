@@ -141,14 +141,43 @@ def build_x402_manifest(pay_to: str) -> dict:
         "seller": {
             "name": "Agentic Swarm Marketplace",
             "description": (
-                "Multi-rail agent commerce platform. Smart contract security audits, x402 commerce "
-                "intelligence, airdrop threat screening, research briefs, and compliance reviews. "
-                "Pays via USDC on Base, CELO on Celo (native fulfillQuery), or XRP on XRPL."
+                "Multi-rail agent commerce platform. Headline SKU: agent pre-flight check "
+                "($0.01, with a small free daily quota) screens a contract, seller/payTo, and "
+                "optional resource URL on Base or XRPL before you pay. Also: smart contract "
+                "security audits, x402 commerce intelligence, airdrop threat screening, research "
+                "briefs, and compliance reviews. Pays via USDC on Base, CELO on Celo (native "
+                "fulfillQuery), or XRP on XRPL."
             ),
             "url": "https://agentic-swarm-marketplace.com",
             "payTo": pay_to,
         },
         "resources": [
+            {
+                "path": "/x402/v1/preflight",
+                "method": "GET",
+                "price": "0.01 USDC",
+                "network": "eip155:8453",
+                "sku_id": "agent-preflight-check",
+                "description": (
+                    "Headline agent pre-flight check. Screen a Base contract, a seller/payTo "
+                    "(Base or XRPL), and an optional resource URL. Returns SAFE, RISKY, or "
+                    "INCONCLUSIVE with score, reasons, evidence, and sources. Lookup failures "
+                    "are INCONCLUSIVE, never RISKY. First 5 calls per caller per UTC day are free."
+                ),
+                "input_schema": {
+                    "type": "object",
+                    "properties": {
+                        "contractAddress": {"type": "string"},
+                        "payTo": {"type": "string"},
+                        "resource": {"type": "string"},
+                        "network": {"type": "string", "enum": ["eip155:8453", "xrpl:mainnet", "xrpl:0"]},
+                    },
+                },
+                "example_request": {
+                    "contractAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+                    "payTo": "0x408f39B19266022FeC03076091e59D1f4f163658",
+                },
+            },
             {
                 "path": "/x402/v1/contract-triage",
                 "method": "GET",
@@ -229,6 +258,15 @@ def build_agent_card_manifest() -> dict:
         },
         "capabilities": {"streaming": False, "pushNotifications": True},
         "skills": [
+            {
+                "id": "agent-preflight-check",
+                "name": "Agent Pre-flight Check",
+                "description": (
+                    "Headline tool: screen a contract, seller/payTo, and optional resource URL "
+                    "on Base or XRPL before paying. Returns SAFE, RISKY, or INCONCLUSIVE."
+                ),
+                "tags": ["preflight", "security", "trust", "x402", "xrpl", "base", "headline"],
+            },
             {
                 "id": "smart-contract-audit",
                 "name": "Smart Contract Security Audit",

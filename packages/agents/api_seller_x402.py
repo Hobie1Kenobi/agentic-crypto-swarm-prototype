@@ -76,7 +76,7 @@ def _usd(name: str, default: str) -> str:
 def create_app():
     from contextlib import asynccontextmanager
 
-    from fastapi import Body, FastAPI
+    from fastapi import Body, FastAPI, Request
     from fastapi.responses import JSONResponse, Response
 
     from facilitator_health import FacilitatorMonitor
@@ -144,6 +144,7 @@ def create_app():
     px_triage = _usd("X402_SELLER_PRICE_TRIAGE", "$0.01")
     px_audit = _usd("X402_SELLER_PRICE_DEEP_AUDIT", "$0.50")
     px_monitor = _usd("X402_SELLER_PRICE_MONITOR", "$5.00")
+    px_preflight = _usd("X402_SELLER_PRICE_PREFLIGHT", "$0.01")
     deep_audit_max_timeout = int((_env("X402_SELLER_DEEP_AUDIT_MAX_TIMEOUT_SECONDS", "180") or "180").strip() or "180")
     monitor_max_timeout = int((_env("X402_SELLER_MONITOR_MAX_TIMEOUT_SECONDS", "300") or "300").strip() or "300")
 
@@ -154,6 +155,28 @@ def create_app():
             d["extensions"] = b
 
     routes: dict = {}
+
+    try:
+        from marketplace.skus.preflight_check import bazaar_discovery_extension as bazaar_preflight
+    except Exception:
+        bazaar_preflight = lambda: None  # noqa: E731
+
+    r_pre = {
+        "accepts": {"scheme": "exact", "payTo": pay_to, "price": px_preflight, "network": network},
+        "description": (
+            "Headline agent pre-flight check. Screen a Base EVM contract, a seller/payTo "
+            "(Base USDC address or XRPL classic address), and an optional resource URL before "
+            "you pay anyone. Combines contract-triage (including proxy implementation resolution) "
+            "with seller-trust checks: known catalogs, explorer metadata, XRPL account age/flags, "
+            "domain TOML, and catalog listings. Returns SAFE, RISKY, or INCONCLUSIVE with score, "
+            "reasons, evidence sources, and a timestamp. Lookup failures are INCONCLUSIVE, never RISKY. "
+            "First 5 calls per caller per UTC day are free; further calls cost $0.01 USDC. "
+            "Input: contractAddress and/or payTo (required), resource (optional), network "
+            "(eip155:8453 or xrpl:mainnet). Output: asm.preflight.v1 JSON."
+        ),
+    }
+    _merge_ext(r_pre, bazaar_preflight())
+    routes["GET /x402/v1/preflight"] = r_pre
 
     q = {
         "accepts": {"scheme": "exact", "payTo": pay_to, "price": price, "network": network},
@@ -371,12 +394,46 @@ def create_app():
 
     app.middleware("http")(create_intake_resale_probe_middleware())
 
+    def _no_store(response) -> None:
+        try:
+            response.headers["Cache-Control"] = "no-store, no-cache, private, max-age=0"
+            response.headers["Pragma"] = "no-cache"
+        except Exception:
+            pass
+
+    def _attach_quota_headers(response, quota: dict, used: str) -> None:
+        _no_store(response)
+
+        try:
+            response.headers["Cache-Control"] = "no-store, no-cache, private, max-age=0"
+            response.headers["Pragma"] = "no-cache"
+            response.headers["X-ASM-Quota-Policy"] = f"{quota.get('limit', 5)}/day"
+            response.headers["X-ASM-Quota-Remaining"] = str(quota.get("remaining", 0))
+            response.headers["X-ASM-Quota-Used"] = used
+        except Exception:
+            pass
+
     @app.middleware("http")
     async def x402_gate(request, call_next):
         pre = prepay_validate_x402(request)
         if pre is not None:
             return pre
-        return await _mw(request, call_next)
+        if request.url.path == "/x402/v1/preflight":
+            from preflight_quota import caller_ip_from_request, current_quota, try_consume
+
+            quota = try_consume(caller_ip_from_request(request))
+            current_quota.set(quota)
+            if quota.get("allowed"):
+                request.state.preflight_quota = quota
+                response = await call_next(request)
+                _attach_quota_headers(response, quota, "free")
+                return response
+            request.state.preflight_quota = quota
+        response = await _mw(request, call_next)
+        quota = getattr(request.state, "preflight_quota", None)
+        if quota and request.url.path == "/x402/v1/preflight":
+            _attach_quota_headers(response, quota, "paid" if response.status_code == 200 else "payment_required")
+        return response
 
     @app.get("/")
     async def root():
@@ -389,6 +446,53 @@ def create_app():
             "paid_routes": list(routes.keys()),
             "note": "Bazaar indexes after facilitator-settled payments (not direct wallet transfers).",
         }
+
+    @app.get("/x402/v1/preflight")
+    async def paid_preflight(
+        contractAddress: str = "",
+        address: str = "",
+        contract: str = "",
+        payTo: str = "",
+        seller: str = "",
+        sellerAddress: str = "",
+        resource: str = "",
+        url: str = "",
+        resourceUrl: str = "",
+        network: str = "",
+        chainId: str = "",
+        target: str = "",
+    ):
+        from marketplace.skus.preflight_check import parse_preflight_request, run_preflight
+        from preflight_quota import current_quota
+
+        params = {
+            "contractAddress": contractAddress,
+            "address": address,
+            "contract": contract,
+            "payTo": payTo,
+            "seller": seller,
+            "sellerAddress": sellerAddress,
+            "resource": resource,
+            "url": url,
+            "resourceUrl": resourceUrl,
+            "network": network,
+            "chainId": chainId,
+            "target": target,
+        }
+        _target, err = parse_preflight_request(params)
+        if err:
+            return JSONResponse(status_code=400, content=err)
+        body = run_preflight(params)
+        quota = current_quota.get()
+        if isinstance(body, dict) and isinstance(quota, dict) and quota.get("allowed"):
+            body["quota"] = {
+                "free": True,
+                "remaining": quota.get("remaining"),
+                "limit": quota.get("limit"),
+                "day": quota.get("day"),
+            }
+        return body
+
 
     @app.get("/x402/v1/query")
     async def paid_query(q: str = "", depth: str = "brief"):

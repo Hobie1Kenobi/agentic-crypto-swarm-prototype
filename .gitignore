@@ -86,3 +86,6 @@ logs/
 # OS
 .DS_Store
 Thumbs.db
+
+# Preflight free-tier counters (hashed caller buckets)
+artifacts/preflight_quota/

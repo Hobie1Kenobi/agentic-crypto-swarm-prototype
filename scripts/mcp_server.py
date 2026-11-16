@@ -448,9 +448,12 @@ def _build_fastmcp(**settings: Any):
     mcp = FastMCP(
         "Swarm T54 x402",
         instructions=(
-            "Tools call the Agentic Swarm T54 seller HTTP API. Paid routes return HTTP 402 until "
+            "Headline tool: preflight_check — screen a contract, seller/payTo, and optional "
+            "resource URL on Base or XRPL before you pay. First 5 calls per caller per UTC day "
+            "are free; after that pay $0.01 USDC at /x402/v1/preflight (the tool will not auto-pay). "
+            "Other tools call the Agentic Swarm T54 seller HTTP API. Paid routes return HTTP 402 until "
             "x402_broker_client pays the XRPL (or configured rail) invoice and retries. "
-            "Use t54_list_operations before invoking. Set T54_SELLER_PUBLIC_BASE_URL and broker env."
+            "Use t54_list_operations before invoking T54 SKUs. Set T54_SELLER_PUBLIC_BASE_URL and broker env."
         ),
         **settings,
     )
@@ -527,6 +530,104 @@ def _build_fastmcp(**settings: Any):
     ) -> str:
         """Execute one T54 HTTP operation by operationId. On 402, pays via x402_broker_client then retries."""
         return await _run_t54_operation(registry, operation_id, query, context)
+
+    @mcp.tool(
+        name="preflight_check",
+        title="Agent pre-flight check (headline)",
+        description=(
+            "HEADLINE TOOL — start here. Pre-flight a counterparty before you pay: a Base EVM "
+            "contract address, a seller/payTo (Base 0x… or XRPL classic r…), and an optional "
+            "resource URL. Combines contract-triage (proxy-aware source verification) with "
+            "seller-trust checks (catalogs, explorer metadata, XRPL account age/flags/domain TOML). "
+            "Returns stable asm.preflight.v1 JSON: verdict SAFE, RISKY, or INCONCLUSIVE, plus "
+            "riskScore, reasons, evidence, sources, and a timestamp. Lookup failures are "
+            "INCONCLUSIVE, never RISKY. First 5 calls per caller per UTC day are free; further "
+            "calls require a $0.01 USDC x402 payment at /x402/v1/preflight. This tool does not "
+            "auto-pay when the free quota is exhausted."
+        ),
+        annotations=_annotations_t54_network(),
+    )
+    async def preflight_check(
+        contract_address: Annotated[
+            str | None,
+            Field(default=None, description="Base EVM contract to screen (0x + 40 hex). Alias of contractAddress."),
+        ] = None,
+        pay_to: Annotated[
+            str | None,
+            Field(default=None, description="Seller settlement address: Base 0x… or XRPL classic r…."),
+        ] = None,
+        resource: Annotated[
+            str | None,
+            Field(default=None, description="Optional x402 resource URL claimed by the seller."),
+        ] = None,
+        network: Annotated[
+            str | None,
+            Field(default=None, description="Optional CAIP-2 network: eip155:8453 or xrpl:mainnet (alias xrpl:0)."),
+        ] = None,
+        context: Context | None = None,
+    ) -> str:
+        import sys
+        from pathlib import Path
+
+        root = Path(__file__).resolve().parents[1]
+        if str(root) not in sys.path:
+            sys.path.insert(0, str(root))
+        agents = root / "packages" / "agents"
+        if str(agents) not in sys.path:
+            sys.path.insert(0, str(agents))
+        from marketplace.skus.preflight_check import parse_preflight_request, run_preflight
+        from preflight_quota import caller_ip_from_mcp_context, try_consume
+
+        params = {}
+        if contract_address:
+            params["contractAddress"] = contract_address
+        if pay_to:
+            params["payTo"] = pay_to
+        if resource:
+            params["resource"] = resource
+        if network:
+            params["network"] = network
+        _target, err = parse_preflight_request(params)
+        if err:
+            if context:
+                await context.info("preflight_check invalid input")
+            return json.dumps({"http_status": 400, **err}, indent=2)
+        quota = try_consume(caller_ip_from_mcp_context(context))
+        if not quota.get("allowed"):
+            origin = (os.getenv("MARKETPLACE_PUBLIC_BASE_URL") or os.getenv("X402_SELLER_PUBLIC_URL") or "https://api.agentic-swarm-marketplace.com").strip().rstrip("/").split("/x402")[0]
+            from urllib.parse import urlencode
+
+            url = origin.rstrip("/") + "/x402/v1/preflight"
+            if params:
+                url = url + "?" + urlencode(params)
+            if context:
+                await context.info("preflight_check quota exhausted")
+            return json.dumps(
+                {
+                    "error": "payment_required",
+                    "http_status": 402,
+                    "price": "$0.01",
+                    "network": "eip155:8453",
+                    "resource": url,
+                    "message": (
+                        "Free daily preflight quota exhausted. Pay $0.01 USDC via x402 at the "
+                        "resource URL; this tool does not auto-pay."
+                    ),
+                    "quota": {"free": False, "remaining": 0, "limit": quota.get("limit"), "day": quota.get("day")},
+                },
+                indent=2,
+            )
+        if context:
+            await context.info("preflight_check free tier")
+        body = run_preflight(params)
+        if isinstance(body, dict):
+            body["quota"] = {
+                "free": True,
+                "remaining": quota.get("remaining"),
+                "limit": quota.get("limit"),
+                "day": quota.get("day"),
+            }
+        return json.dumps(body, indent=2, default=str)
 
     _register_per_op_tools(mcp, registry, _run_t54_operation)
 

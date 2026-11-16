@@ -162,3 +162,21 @@ def run_agent_commerce_data(depth: str = "standard") -> AgentCommerceDataRespons
     data = build_public_data_bundle_dict(depth)
     data["seller"] = "t54_xrpl"
     return AgentCommerceDataResponse.model_validate(data)
+
+
+def run_preflight_check(params: dict[str, Any] | None = None) -> dict[str, Any]:
+    """Same engine as the Base /x402/v1/preflight SKU."""
+    import sys
+    from pathlib import Path
+
+    root = Path(__file__).resolve().parents[2]
+    if str(root) not in sys.path:
+        sys.path.insert(0, str(root))
+    from marketplace.skus.preflight_check import run_preflight
+
+    body = run_preflight(params or {})
+    if isinstance(body, dict):
+        body.setdefault("seller", "t54_xrpl")
+        body.setdefault("rail", "xrpl_t54")
+    return body
+
