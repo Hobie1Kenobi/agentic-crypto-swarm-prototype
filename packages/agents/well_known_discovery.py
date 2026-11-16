@@ -149,6 +149,7 @@ def build_x402_manifest(pay_to: str) -> dict:
                 "fulfillQuery), or XRP on XRPL."
             ),
             "url": "https://agentic-swarm-marketplace.com",
+            "proof": "https://www.agentic-swarm-marketplace.com/proof/",
             "payTo": pay_to,
         },
         "resources": [
@@ -255,6 +256,7 @@ def build_agent_card_manifest() -> dict:
         "provider": {
             "name": "Agentic Swarm Marketplace",
             "url": "https://agentic-swarm-marketplace.com",
+            "proof": "https://www.agentic-swarm-marketplace.com/proof/",
         },
         "capabilities": {"streaming": False, "pushNotifications": True},
         "skills": [

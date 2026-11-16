@@ -1,8 +1,17 @@
 {
   "schema_note": "Canonical public URLs for agents and buyers. Regenerate: npm run docs:sync-endpoints (reads repo-root .env). Commit result for GitHub Pages. Stable HTTPS + mainnet alignment: documentation/PUBLIC_MAINNET_OPERATIONS.md",
   "portal_url": "https://www.agentic-swarm-marketplace.com/",
-  "updated_at": "2026-11-16T23:01:24Z",
+  "updated_at": "2026-11-16T23:30:35Z",
   "endpoints": [
+    {
+      "id": "settlement_proof",
+      "label": "Settlement proof (house vs external)",
+      "description": "On-chain payments to ASM payTo addresses, classified as house (self-funded test and catalog-refresh payments) or external. Never blended into customer counts. Snapshot JSON refreshes every 6 hours; the page keeps the last snapshot if a refresh fails.",
+      "url": "https://www.agentic-swarm-marketplace.com/proof/",
+      "json_url": "https://www.agentic-swarm-marketplace.com/proof/proof.json",
+      "network": "multi-rail",
+      "health_url": ""
+    },
     {
       "id": "t54_public_origin",
       "label": "T54 XRPL x402 seller (discovery origin)",
@@ -29,7 +38,7 @@
     },
     {
       "id": "t54_lcg_procurement_readiness",
-      "label": "T54 XRPL \u2014 LCG Procurement Readiness Scan",
+      "label": "T54 XRPL — LCG Procurement Readiness Scan",
       "description": "Entry SKU for LCG procurement intelligence on XRPL (POST JSON; GET ?payload= also supported).",
       "url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/procurement-readiness",
       "network": "xrpl:0",
@@ -37,8 +46,8 @@
     },
     {
       "id": "t54_preflight",
-      "label": "T54 XRPL \u2014 agent pre-flight check",
-      "description": "GET /t54/x402/v1/preflight \u2014 same asm.preflight.v1 engine as the Base headline SKU, settled in XRP via T54 (4000 drops). Invalid input returns a free 400.",
+      "label": "T54 XRPL — agent pre-flight check",
+      "description": "GET /t54/x402/v1/preflight — same asm.preflight.v1 engine as the Base headline SKU, settled in XRP via T54 (4000 drops). Invalid input returns a free 400.",
       "url": "https://api.agentic-swarm-marketplace.com/t54/x402/v1/preflight",
       "network": "xrpl:0",
       "health_url": "https://api.agentic-swarm-marketplace.com/t54/health",
@@ -48,8 +57,8 @@
     },
     {
       "id": "base_x402_preflight",
-      "label": "Base USDC \u2014 agent pre-flight check (headline)",
-      "description": "GET /x402/v1/preflight?contractAddress=0x\u2026 and/or payTo=0x\u2026|r\u2026 (required), optional resource. Invalid input returns a free 400. First 5 calls per caller per UTC day are free; then $0.01 USDC. Verdicts: SAFE, RISKY, or INCONCLUSIVE (lookup failures are never RISKY). Example: contractAddress=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913.",
+      "label": "Base USDC — agent pre-flight check (headline)",
+      "description": "GET /x402/v1/preflight?contractAddress=0x… and/or payTo=0x…|r… (required), optional resource. Invalid input returns a free 400. First 5 calls per caller per UTC day are free; then $0.01 USDC. Verdicts: SAFE, RISKY, or INCONCLUSIVE (lookup failures are never RISKY). Example: contractAddress=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/preflight",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -61,7 +70,7 @@
     {
       "id": "base_x402_query",
       "label": "Base USDC x402 seller (facilitator / Bazaar)",
-      "description": "GET /x402/v1/query \u2014 constitution-safe structured Q&A with source attribution. Listed on CDP Bazaar.",
+      "description": "GET /x402/v1/query — constitution-safe structured Q&A with source attribution. Listed on CDP Bazaar.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/query",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -72,8 +81,8 @@
     },
     {
       "id": "base_x402_constitution_audit",
-      "label": "Base USDC \u2014 constitution audit",
-      "description": "GET /x402/v1/constitution-audit \u2014 heuristic ethics and constitution-style review of a prompt excerpt.",
+      "label": "Base USDC — constitution audit",
+      "description": "GET /x402/v1/constitution-audit — heuristic ethics and constitution-style review of a prompt excerpt.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/constitution-audit",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -84,8 +93,8 @@
     },
     {
       "id": "base_x402_agent_commerce_data",
-      "label": "Base USDC \u2014 agent commerce data",
-      "description": "GET /x402/v1/agent-commerce-data \u2014 premium x402 commerce intelligence bundle.",
+      "label": "Base USDC — agent commerce data",
+      "description": "GET /x402/v1/agent-commerce-data — premium x402 commerce intelligence bundle.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/agent-commerce-data",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -96,8 +105,8 @@
     },
     {
       "id": "base_x402_supplier_trust",
-      "label": "Base USDC \u2014 commerce supplier trust",
-      "description": "GET /x402/v1/commerce/supplier-trust \u2014 supplier trust pack for agent commerce.",
+      "label": "Base USDC — commerce supplier trust",
+      "description": "GET /x402/v1/commerce/supplier-trust — supplier trust pack for agent commerce.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/supplier-trust",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -108,8 +117,8 @@
     },
     {
       "id": "base_x402_product_evidence",
-      "label": "Base USDC \u2014 commerce product evidence",
-      "description": "GET /x402/v1/commerce/product-evidence \u2014 product evidence pack for agent commerce.",
+      "label": "Base USDC — commerce product evidence",
+      "description": "GET /x402/v1/commerce/product-evidence — product evidence pack for agent commerce.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/product-evidence",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -120,8 +129,8 @@
     },
     {
       "id": "base_x402_product_search",
-      "label": "Base USDC \u2014 commerce product search",
-      "description": "GET /x402/v1/commerce/product-search \u2014 product search pack for agent commerce.",
+      "label": "Base USDC — commerce product search",
+      "description": "GET /x402/v1/commerce/product-search — product search pack for agent commerce.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/commerce/product-search",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -132,8 +141,8 @@
     },
     {
       "id": "base_x402_airdrop_intelligence",
-      "label": "Base USDC \u2014 airdrop intelligence",
-      "description": "GET /x402/v1/airdrop-intelligence \u2014 airdrop scam screening with Farm Score and EIP-7702 detection.",
+      "label": "Base USDC — airdrop intelligence",
+      "description": "GET /x402/v1/airdrop-intelligence — airdrop scam screening with Farm Score and EIP-7702 detection.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/airdrop-intelligence",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -144,8 +153,8 @@
     },
     {
       "id": "base_x402_celo_agent_data",
-      "label": "Base USDC \u2014 Celo agent data",
-      "description": "GET /x402/v1/celo-agent-data \u2014 Celo-rail evidence packed for buyers, settled in Base USDC.",
+      "label": "Base USDC — Celo agent data",
+      "description": "GET /x402/v1/celo-agent-data — Celo-rail evidence packed for buyers, settled in Base USDC.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/celo-agent-data",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -156,8 +165,8 @@
     },
     {
       "id": "base_x402_research_brief",
-      "label": "Base USDC \u2014 research brief",
-      "description": "GET /x402/v1/research-brief \u2014 short research brief for agent buyers.",
+      "label": "Base USDC — research brief",
+      "description": "GET /x402/v1/research-brief — short research brief for agent buyers.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/research-brief",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -180,8 +189,8 @@
     },
     {
       "id": "base_x402_ecosystem_pulse",
-      "label": "Base USDC \u2014 ecosystem pulse",
-      "description": "GET /x402/v1/ecosystem-pulse \u2014 PoCon ecosystem pulse: oracle snapshot, worker activity, bazaar readiness.",
+      "label": "Base USDC — ecosystem pulse",
+      "description": "GET /x402/v1/ecosystem-pulse — PoCon ecosystem pulse: oracle snapshot, worker activity, bazaar readiness.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/ecosystem-pulse",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -192,8 +201,8 @@
     },
     {
       "id": "base_x402_contract_triage",
-      "label": "Base USDC \u2014 contract triage",
-      "description": "GET /x402/v1/contract-triage?contractAddress=0x\u2026 (required, alias: address). Missing/invalid address returns a free 400. Example: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913.",
+      "label": "Base USDC — contract triage",
+      "description": "GET /x402/v1/contract-triage?contractAddress=0x… (required, alias: address). Missing/invalid address returns a free 400. Example: 0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913.",
       "url": "https://api.agentic-swarm-marketplace.com/x402/v1/contract-triage",
       "network": "eip155:8453",
       "health_url": "https://api.agentic-swarm-marketplace.com/health",
@@ -205,7 +214,7 @@
     {
       "id": "celo_usdc_x402_query",
       "label": "Celo USDC x402 query",
-      "description": "GET /celo/x402/v1/query \u2014 constitution-safe Q&A settled in Celo USDC (eip155:42220). Not the native fulfillQuery rail.",
+      "description": "GET /celo/x402/v1/query — constitution-safe Q&A settled in Celo USDC (eip155:42220). Not the native fulfillQuery rail.",
       "url": "https://api.agentic-swarm-marketplace.com/celo/x402/v1/query",
       "network": "eip155:42220",
       "health_url": "https://api.agentic-swarm-marketplace.com/celo/health",
@@ -217,7 +226,7 @@
     {
       "id": "celo_native_query",
       "label": "Celo native x402 seller (api_402 / fulfillQuery)",
-      "description": "GET/POST /celo/query \u2014 HTTP 402 with 0.001 CELO via AgentRevenueService.fulfillQuery (no facilitator).",
+      "description": "GET/POST /celo/query — HTTP 402 with 0.001 CELO via AgentRevenueService.fulfillQuery (no facilitator).",
       "url": "https://api.agentic-swarm-marketplace.com/celo/query",
       "network": "eip155:42220",
       "health_url": "https://api.agentic-swarm-marketplace.com/celo/health",
@@ -237,7 +246,7 @@
     {
       "id": "mcp_t54_sse",
       "label": "MCP T54 x402 (SSE, remote clients)",
-      "description": "Streamable HTTP (Smithery): POST .../mcp (port 9052, mcp>=1.23). SSE: GET .../mcp/sse, POST .../mcp/messages/ (9051). Caddy: exact /mcp \u2192 9052; /mcp/* \u2192 9051. Set MCP_SSE_PUBLIC_URL to your public HTTPS origin + /mcp.",
+      "description": "Streamable HTTP (Smithery): POST .../mcp (port 9052, mcp>=1.23). SSE: GET .../mcp/sse, POST .../mcp/messages/ (9051). Caddy: exact /mcp → 9052; /mcp/* → 9051. Set MCP_SSE_PUBLIC_URL to your public HTTPS origin + /mcp.",
       "url": "https://api.agentic-swarm-marketplace.com/mcp",
       "sse_url": "https://api.agentic-swarm-marketplace.com/mcp/sse",
       "messages_url": "https://api.agentic-swarm-marketplace.com/mcp/messages/",

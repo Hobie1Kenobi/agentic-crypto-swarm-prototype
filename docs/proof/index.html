@@ -4,107 +4,212 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Settlement proof — Agentic Swarm Marketplace</title>
-  <meta name="description" content="Auditable Base USDC and XRPL x402 settlement receipts for Agentic Swarm Marketplace." />
+  <meta name="description" content="On-chain payments to Agentic Swarm Marketplace payTo addresses, classified as house (self-funded tests) or external. No blended customer counts." />
   <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/proof/" />
   <style>
-    :root { --bg:#07080c; --card:#11141c; --border:#1f2937; --text:#f1f5f9; --muted:#94a3b8; --accent:#00d4aa; }
+    :root { --bg:#07080c; --card:#11141c; --border:#1f2937; --text:#f1f5f9; --muted:#94a3b8; --accent:#00d4aa; --warn:#fbbf24; --bad:#f87171; --ok:#34d399; }
     * { box-sizing: border-box; }
     body { margin:0; font-family: system-ui, sans-serif; background:var(--bg); color:var(--text); line-height:1.6; }
-    header, main { max-width: 1080px; margin: 0 auto; padding: 2rem 1.25rem; }
+    header, main { max-width: 1120px; margin: 0 auto; padding: 2rem 1.25rem; }
     a { color: var(--accent); }
     .muted { color: var(--muted); }
     .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 1.25rem; margin: 1rem 0; }
+    h1 { margin: .2rem 0 .6rem; font-size: 2rem; }
+    h2 { margin: 0 0 .75rem; font-size: 1.2rem; }
     code { background: #1a2030; padding: .15rem .4rem; border-radius: 4px; font-size: .85em; word-break: break-all; }
     table { width:100%; border-collapse: collapse; font-size: .9rem; }
     th, td { text-align:left; padding:.45rem .35rem; border-bottom:1px solid var(--border); vertical-align:top; }
     .links a { text-decoration:none; border:1px solid var(--border); border-radius:999px; padding:.35rem .85rem; font-size:.85rem; margin:0 .35rem .35rem 0; display:inline-block; }
+    .grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .75rem; }
+    .metric { background:#0c1018; border:1px solid var(--border); border-radius:10px; padding:.85rem 1rem; }
+    .metric .n { font-size: 1.6rem; font-weight: 650; }
+    .metric .l { color: var(--muted); font-size: .85rem; }
+    .note { border-left: 3px solid var(--warn); padding-left: .85rem; }
+    .ok { color: var(--ok); }
+    .bad { color: var(--bad); }
+    .tag { display:inline-block; font-size:.75rem; border:1px solid var(--border); border-radius:999px; padding:.05rem .5rem; color:var(--muted); }
+    .tag.house { border-color:#854d0e; color:#fbbf24; }
+    .tag.external { border-color:#115e59; color:#5eead4; }
+    .tag.operator { border-color:#1e3a8a; color:#93c5fd; }
+    .tag.unknown { border-color:#3f3f46; }
+    .scroll { overflow-x:auto; }
+    noscript .card { border-color: var(--warn); }
   </style>
 </head>
 <body>
   <header>
     <p class="muted"><a href="/">← Marketplace home</a></p>
     <h1>Settlement proof</h1>
-    <p class="muted">Live x402 receipts. Table 1 is the quote (unpaid GET must 402). Table 2 is who authorized pay. No wash volume.</p>
-    <p class="muted">Updated 2026-08-17T21:33:58Z · 28 receipts · 12 with payer · 12 explorer links</p>
+    <p class="muted">On-chain payments to the published Agentic Swarm Marketplace payTo addresses. House (self-funded test and catalog-refresh) payments are shown separately from external payers and are never counted as customers.</p>
+    <p class="muted" id="updated">Loading snapshot…</p>
     <div class="links">
-      <a href="settlements.json">settlements.json</a>
-      <a href="/identity/identity.json">identity.json</a>
-      <a href="https://api.agentic-swarm-marketplace.com/.well-known/agent-registration.json">ERC-8004 registration</a>
+      <a href="proof.json">proof.json</a>
+      <a href="identity.json">identity.json</a>
+      <a href="/endpoints.json">endpoints.json</a>
+      <a href="https://api.agentic-swarm-marketplace.com/.well-known/x402.json">/.well-known/x402.json</a>
       <a href="/connect-agents/">Connect agents</a>
     </div>
   </header>
   <main>
+    <noscript>
+      <section class="card note">
+        <p>This page renders <a href="proof.json">proof.json</a>. Open that file directly if scripting is disabled.</p>
+      </section>
+    </noscript>
+    <p id="error" class="card note" hidden></p>
     <section class="card">
-      <h2>Merchant identity</h2>
-      <p><strong>Base USDC receiver</strong><br /><code>0x408f39B19266022FeC03076091e59D1f4f163658</code><br />
-      <a href="https://basescan.org/address/0x408f39B19266022FeC03076091e59D1f4f163658">Basescan</a>
-      · basename <a href="https://www.base.org/name/agentic-swarm"><code>agentic-swarm.base.eth</code></a>
-      · ERC-8004 agentId <code>63737</code>
-      · EAS <code>0x9ca928f307db1edf</code></p>
-      <p><strong>Celo native seller</strong><br /><code>0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4</code><br />
-      <a href="https://celoscan.io/address/0xF00Ebb2F7704E35593cE5Bf9349921C8567c5fE4">Celoscan</a>
-      · celoname <a href="https://names.celo.org/"><code>agentic-swarm.celo.eth</code></a>
-      · ERC-8004 agentId <code>9775</code></p>
-      <p><strong>XRPL receive (T54 payTo)</strong><br /><code>rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf</code><br />
-      <a href="https://xrpscan.com/account/rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf">XRPScan</a></p>
-      <p><strong>XRPL Xaman identity</strong><br /><code>rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq</code><br />
-      <a href="https://xrpscan.com/account/rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq">XRPScan</a>
-      · Domain <code>agentic-swarm-marketplace.com</code>
-      · NFT <code>00080000B47A42E9BA2B66</code></p>
+      <h2>How to read these numbers</h2>
+      <p class="note" id="house-note">House payments are self-funded test and catalog-refresh payments by the operator. They are not third-party customers.</p>
+      <p class="muted" id="refresh-note"></p>
     </section>
     <section class="card">
-      <h2>Who authorized pay</h2>
-      <p class="muted">Unpaid GET 402 proves a quote. A USDC/XRP transfer proves settlement. This table names who signed that pay when the payer is known. It does not invent third-party agent buyers or bind a buyer ERC-8004 id.</p>
-      <p><strong>Operator ignition EOA</strong><br /><code>0xEBd956F5c8C4b32752d87D62314F9431Dc0449e9</code>
-      · role <code>human_operator_eoa</code>
-      · Liberty ChainGuard Consulting LLC</p>
-      <p><strong>Seller payTo / ERC-8004</strong><br /><code>0x408f39B19266022FeC03076091e59D1f4f163658</code>
-      · agentId <code>63737</code>
-      · merchant_not_buyer</p>
-      <p class="muted">Counts: operator_ignition 12 · third_party_wallet 0 · unverified 16. Not yet bound: buyer ERC-8004, session policy.</p>
+      <h2>External payers</h2>
+      <div class="grid" id="ext-metrics"></div>
     </section>
     <section class="card">
-      <h2>Copy-paste buyer</h2>
-      <p>SKU <code>structured-query</code> at $0.012 USDC.</p>
-      <p><code>curl -i "https://api.agentic-swarm-marketplace.com/x402/v1/query?q=What%20is%20x402"</code></p>
-      <p class="muted">Unpaid GET must return HTTP 402. Settle ExactEvm through the CDP facilitator, then retry.</p>
+      <h2>House (self-funded tests)</h2>
+      <div class="grid" id="house-metrics"></div>
+    </section>
+    <section class="card" id="operator-card" hidden>
+      <h2>Operator identity account</h2>
+      <p class="muted" id="operator-note"></p>
+      <div class="grid" id="operator-metrics"></div>
     </section>
     <section class="card">
-      <h2>Receipts</h2>
-      <table>
-        <thead><tr><th>Rail</th><th>SKU</th><th>Amount</th><th>Payer</th><th>Authorization</th><th>Transaction</th></tr></thead>
-        <tbody>
-        <tr><td>base</td><td><code>structured-query</code></td><td>$0.012</td><td><code>0xebd956f5…49e9</code></td><td>operator_ignition</td><td><a href="https://basescan.org/tx/0x58c40b9444209fedb839f22bcb5634b5d0d2fbbe11c1d8a772e3f0f392dfdf28">0x58c40b9444209fed…</a></td></tr>
-<tr><td>base</td><td><code>structured-query</code></td><td>$0.012</td><td><code>0xebd956f5…49e9</code></td><td>operator_ignition</td><td><a href="https://basescan.org/tx/0x5a7596ca2a2cbd20dd8dd5f06723131e95d7d6d52191dee7969ec6c3d33e76ce">0x5a7596ca2a2cbd20…</a></td></tr>
-<tr><td>base</td><td><code>research-brief</code></td><td>$0.06</td><td><code>0xebd956f5…49e9</code></td><td>operator_ignition</td><td><a href="https://basescan.org/tx/0xf51c6d303eb5c03a63e020c98c4689716275a868091deed02348f3181d6a85a5">0xf51c6d303eb5c03a…</a></td></tr>
-<tr><td>base</td><td><code>constitution-audit-lite</code></td><td>$0.03</td><td><code>0xebd956f5…49e9</code></td><td>operator_ignition</td><td><a href="https://basescan.org/tx/0xf121993a48860670d7e8126cb110a282bc516705a5209a2b5a29c0526e8ccffa">0xf121993a48860670…</a></td></tr>
-<tr><td>base</td><td><code>airdrop-intelligence-report</code></td><td>$0.09</td><td><code>0xebd956f5…49e9</code></td><td>operator_ignition</td><td><a href="https://basescan.org/tx/0xc120a0a61784875a6da97f1434d126120dcb284705ea32d1d03266c77c52059a">0xc120a0a61784875a…</a></td></tr>
-<tr><td>base</td><td><code>intake-resale-pack</code></td><td>$0.05</td><td><code>0xebd956f5…49e9</code></td><td>operator_ignition</td><td><a href="https://basescan.org/tx/0x74beb785b39ba585d85429b74f42ee73ad58e16a02cbcb946b6ff3c09547741a">0x74beb785b39ba585…</a></td></tr>
-<tr><td>base</td><td><code>contract-triage</code></td><td>$0.02</td><td><code>0xebd956f5…49e9</code></td><td>operator_ignition</td><td><a href="https://basescan.org/tx/0x8321339ea1ccbac64e279cb8baa72d4e96b1e0207d4a63d5ef1284b4b2e5cb73">0x8321339ea1ccbac6…</a></td></tr>
-<tr><td>base</td><td><code>commerce-product-search</code></td><td>$0.11</td><td><code>0xebd956f5…49e9</code></td><td>operator_ignition</td><td><a href="https://basescan.org/tx/0x65f7fb181ed7f7cfd6061e9650b8106d28fe1d92158ea55a4b1291d8018da017">0x65f7fb181ed7f7cf…</a></td></tr>
-<tr><td>base</td><td><code>procurement-readiness</code></td><td>$0.1</td><td><code>0xebd956f5…49e9</code></td><td>operator_ignition</td><td><a href="https://basescan.org/tx/0x391a9a6d50ec6c9825bbc135e50dfe2a31ee99e05f7c07ccdd1cd0b386bfc3bb">0x391a9a6d50ec6c98…</a></td></tr>
-<tr><td>base</td><td><code>celo-agent-data</code></td><td>$0.08</td><td><code>0xebd956f5…49e9</code></td><td>operator_ignition</td><td><a href="https://basescan.org/tx/0x26807ed059176dcc3a6de1c460b931b7042adf94af28c3d092299018c214222e">0x26807ed059176dcc…</a></td></tr>
-<tr><td>base</td><td><code>ecosystem-pulse</code></td><td>$0.04</td><td><code>0xebd956f5…49e9</code></td><td>operator_ignition</td><td><a href="https://basescan.org/tx/0x56e4ec1f14d861a7c171f2a0413616b4d883c5256663538ae389cf9f7626ae88">0x56e4ec1f14d861a7…</a></td></tr>
-<tr><td>base</td><td><code>agent-commerce-data</code></td><td>$0.07</td><td><code>0xebd956f5…49e9</code></td><td>operator_ignition</td><td><a href="https://basescan.org/tx/0xbb32651f31f661ce2b899c8346cd2b8fae63d2e503dee71583f60b416059bebd">0xbb32651f31f661ce…</a></td></tr>
-<tr><td>base</td><td><code>structured-query</code></td><td>$0.012</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>structured-query</code></td><td>$0.012</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>research-brief</code></td><td>$0.06</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>constitution-audit-lite</code></td><td>$0.03</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>airdrop-intelligence-report</code></td><td>$0.09</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>intake-resale-pack</code></td><td>$0.05</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>contract-triage</code></td><td>$0.02</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>commerce-product-search</code></td><td>$0.11</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>procurement-readiness</code></td><td>$0.1</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>celo-agent-data</code></td><td>$0.08</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>ecosystem-pulse</code></td><td>$0.04</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>agent-commerce-data</code></td><td>$0.07</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>agent-commerce-data</code></td><td>$0.05</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>agent-commerce-data</code></td><td>$0.05</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>agent-commerce-data</code></td><td>$0.05</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-<tr><td>base</td><td><code>agent-commerce-data</code></td><td>$0.05</td><td><code>—</code></td><td>unverified</td><td>pending hash</td></tr>
-        </tbody>
-      </table>
+      <h2>PayTo addresses</h2>
+      <div id="payto"></div>
+    </section>
+    <section class="card">
+      <h2>Public endpoint health</h2>
+      <p class="muted" id="health-probed"></p>
+      <div class="scroll"><table id="health-table"><thead><tr><th>Endpoint</th><th>Status</th><th>Latency</th></tr></thead><tbody></tbody></table></div>
+    </section>
+    <section class="card">
+      <h2>Latest pre-flight sample</h2>
+      <div id="preflight" class="muted">Not in this snapshot.</div>
+    </section>
+    <section class="card">
+      <h2>Per-SKU calls</h2>
+      <p class="muted">House and external counts are listed side by side. Unmapped amounts are payments whose value did not uniquely match a catalog price.</p>
+      <div class="scroll"><table id="sku-table"><thead><tr><th>SKU</th><th>Rail</th><th>External</th><th>Unique external payers</th><th>House</th><th>Operator identity</th><th>Last external</th></tr></thead><tbody></tbody></table></div>
+    </section>
+    <section class="card">
+      <h2>Recent external payments</h2>
+      <div class="scroll"><table id="ext-table"><thead><tr><th>Time (UTC)</th><th>Rail</th><th>SKU</th><th>Payer</th><th>Transaction</th></tr></thead><tbody></tbody></table></div>
+    </section>
+    <section class="card">
+      <h2>Recent house payments</h2>
+      <p class="muted">Self-funded tests only. Not customers.</p>
+      <div class="scroll"><table id="house-table"><thead><tr><th>Time (UTC)</th><th>Rail</th><th>SKU</th><th>Payer</th><th>Transaction</th></tr></thead><tbody></tbody></table></div>
+    </section>
+    <section class="card">
+      <h2>Coverage</h2>
+      <div id="coverage" class="muted"></div>
     </section>
   </main>
+  <script>
+    const shortAddr = (v) => {
+      if (!v) return "—";
+      if (v.startsWith("0x") && v.length > 12) return v.slice(0, 6) + "…" + v.slice(-4);
+      if (v.startsWith("r") && v.length > 12) return v.slice(0, 8) + "…";
+      return v;
+    };
+    const fmtTime = (v) => v ? String(v).replace("T", " ").replace("Z", " UTC") : "—";
+    const metric = (n, label) => `<div class="metric"><div class="n">${n ?? "—"}</div><div class="l">${label}</div></div>`;
+    const classTag = (c) => `<span class="tag ${c || "unknown"}">${c || "unknown"}</span>`;
+
+    function fillMetrics(el, stats, uniqueLabel) {
+      if (!el || !stats) return;
+      el.innerHTML = [
+        metric(stats.payments ?? 0, "Payments"),
+        metric(stats.unique_payers ?? "—", uniqueLabel),
+        metric(stats.last_7d ?? 0, "Last 7 days"),
+        metric(stats.last_30d ?? 0, "Last 30 days"),
+        metric(fmtTime(stats.last_call_at), "Last payment"),
+      ].join("");
+    }
+
+    function rowsFor(payments, cls, limit) {
+      return (payments || []).filter(p => p.payer_class === cls).slice(0, limit).map(p => {
+        const payer = p.payer ? `<code title="${p.payer}">${shortAddr(p.payer)}</code>` : "—";
+        const tx = p.explorer ? `<a href="${p.explorer}" rel="noopener" target="_blank"><code>${shortAddr(p.tx)}</code></a>` : `<code>${shortAddr(p.tx)}</code>`;
+        return `<tr><td>${fmtTime(p.time)}</td><td>${p.rail || ""}</td><td>${p.sku_id || "unmapped"}</td><td>${payer}</td><td>${tx}</td></tr>`;
+      }).join("") || `<tr><td colspan="5" class="muted">None in this snapshot.</td></tr>`;
+    }
+
+    function render(data) {
+      document.getElementById("updated").textContent =
+        "Snapshot " + (data.updated_at || "unknown") +
+        " · schema " + (data.schema || "") +
+        " · " + ((data.summary && data.summary.total_payments) || 0) + " payments";
+      if (data.honesty && data.honesty.house_note) {
+        document.getElementById("house-note").textContent = data.honesty.house_note;
+      }
+      const refresh = data.refresh || {};
+      document.getElementById("refresh-note").textContent =
+        (refresh.schedule || "") + (refresh.note ? " " + refresh.note : "");
+
+      const summary = data.summary || {};
+      fillMetrics(document.getElementById("ext-metrics"), summary.external || {}, "Unique external payers");
+      fillMetrics(document.getElementById("house-metrics"), summary.house || {}, "House wallets seen");
+
+      const op = summary.operator_identity || {};
+      if ((op.payments || 0) > 0) {
+        document.getElementById("operator-card").hidden = false;
+        document.getElementById("operator-note").textContent = (data.honesty && data.honesty.operator_identity_note) || "";
+        fillMetrics(document.getElementById("operator-metrics"), op, "Identity accounts");
+      }
+
+      const payTo = data.pay_to || {};
+      document.getElementById("payto").innerHTML = Object.entries(payTo).map(([k, v]) => {
+        const href = v.explorer || "#";
+        return `<p><strong>${k.replaceAll("_", " ")}</strong><br /><code>${v.address || ""}</code><br /><a href="${href}" rel="noopener" target="_blank">Explorer</a> · ${v.asset || ""} · ${v.chain || v.network || ""}</p>`;
+      }).join("") || "<p class='muted'>No payTo addresses in this snapshot.</p>";
+
+      const health = data.health || {};
+      document.getElementById("health-probed").textContent = health.probed_at ? ("Probed " + health.probed_at) : "No health probe in this snapshot.";
+      const ht = document.querySelector("#health-table tbody");
+      ht.innerHTML = (health.endpoints || []).map(e => {
+        const st = e.ok ? `<span class="ok">${e.http_status}</span>` : `<span class="bad">${e.http_status ?? e.error ?? "fail"}</span>`;
+        return `<tr><td><code>${e.id}</code><br /><span class="muted">${e.url}</span></td><td>${st}</td><td>${e.latency_ms != null ? e.latency_ms + " ms" : "—"}</td></tr>`;
+      }).join("") || `<tr><td colspan="3" class="muted">No probes.</td></tr>`;
+
+      const pf = data.preflight_sample;
+      const pfEl = document.getElementById("preflight");
+      if (pf && pf.result && pf.result.verdict) {
+        pfEl.innerHTML = `<p><strong>Verdict: ${pf.result.verdict}</strong> ${classTag("")}</p>
+          <p class="muted">${pf.note || ""}</p>
+          <p>Request <code>${(pf.request && pf.request.contractAddress) || ""}</code> · ${fmtTime(pf.checked_at)}</p>
+          <p>riskScore ${pf.result.riskScore ?? "—"} · verified ${pf.result.verified ?? "—"} · isProxy ${pf.result.isProxy ?? "—"} · source ${pf.result.sourceProvider || "—"}</p>
+          <p class="muted">${Array.isArray(pf.result.reasons) ? pf.result.reasons.join("; ") : (pf.result.reasons || "")}</p>`;
+      } else if (pf && pf.error) {
+        pfEl.textContent = "Engine sample unavailable (" + pf.error + "). " + (pf.note || "");
+      }
+
+      const skuBody = document.querySelector("#sku-table tbody");
+      skuBody.innerHTML = (data.per_sku || []).map(r =>
+        `<tr><td><code>${r.sku_id}</code></td><td>${r.rail}</td><td>${r.external_calls}</td><td>${r.unique_external_payers}</td><td>${r.house_calls}</td><td>${r.operator_identity_calls}</td><td>${fmtTime(r.last_external_at)}</td></tr>`
+      ).join("") || `<tr><td colspan="7" class="muted">None.</td></tr>`;
+
+      document.querySelector("#ext-table tbody").innerHTML = rowsFor(data.payments, "external", 40);
+      document.querySelector("#house-table tbody").innerHTML = rowsFor(data.payments, "house", 40);
+
+      const cov = data.coverage || {};
+      const failed = (cov.sources_failed || []).map(s => typeof s === "string" ? s : ((s.source || "") + ": " + (s.error || ""))).join("; ");
+      document.getElementById("coverage").innerHTML =
+        "<p>Sources used: " + ((cov.sources_ok || []).join(", ") || "—") + "</p>" +
+        (failed ? "<p>Sources that failed or were incomplete: " + failed + "</p>" : "") +
+        ((cov.notes || []).length ? "<p>" + cov.notes.join(" ") + "</p>" : "");
+    }
+
+    fetch("proof.json", { cache: "no-store" })
+      .then(r => { if (!r.ok) throw new Error("proof.json HTTP " + r.status); return r.json(); })
+      .then(render)
+      .catch(err => {
+        const el = document.getElementById("error");
+        el.hidden = false;
+        el.textContent = "Could not load proof.json (" + err.message + "). The last snapshot is the source of truth when a refresh fails.";
+      });
+  </script>
 </body>
 </html>
