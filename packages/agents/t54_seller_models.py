@@ -109,3 +109,21 @@ class AgentCommerceDataResponse(BaseModel):
         default="Public operational and proof artifacts only — no private keys or .env contents. "
         "On-chain addresses appear as in public explorers."
     )
+
+
+
+class PreflightCheckResponse(BaseModel):
+    """asm.preflight.v1 body; extra fields (checks, quota, network) are allowed."""
+
+    model_config = {"extra": "allow", "populate_by_name": True}
+
+    schema_id: str = Field(default="asm.preflight.v1", alias="schema")
+    sku: str = Field(default="agent-preflight-check")
+    verdict: str
+    riskScore: int = 0
+    reasons: list[str] = Field(default_factory=list)
+    evidence: list[dict[str, Any]] = Field(default_factory=list)
+    sources: list[str] = Field(default_factory=list)
+    timestamp: str
+    target: dict[str, Any] | None = None
+    lookupFailed: bool = False

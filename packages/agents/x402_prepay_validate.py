@@ -66,6 +66,23 @@ def prepay_validate_x402(request) -> JSONResponse | None:
             )
         return None
 
+    if path == "/x402/v1/preflight":
+        try:
+            from marketplace.skus.preflight_check import parse_preflight_request
+        except Exception as exc:
+            return JSONResponse(
+                status_code=503,
+                content={
+                    "error": "preflight_engine_unavailable",
+                    "message": "Preflight engine is unavailable. This request was not charged.",
+                    "detail": str(exc)[:200],
+                },
+            )
+        _target, err = parse_preflight_request(q)
+        if err:
+            return JSONResponse(status_code=400, content=err)
+        return None
+
     if path == "/x402/v1/contract-triage":
         addr = evm_address_from_params(q)
         if not addr:

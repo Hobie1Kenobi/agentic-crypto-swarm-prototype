@@ -108,6 +108,18 @@ CELO_REVENUE_PAY_TO = "0xf00ebb2f7704e35593ce5bf9349921c8567c5fe4"
 # CDP-listed Base USDC SKUs plus Celo USDC query. Prices from live HTTP 402 / well-known.
 BASE_USDC_SKUS = [
     {
+        "id": "base_x402_preflight",
+        "path": "/x402/v1/preflight",
+        "label": "Base USDC — agent pre-flight check (headline)",
+        "description": (
+            "GET /x402/v1/preflight?contractAddress=0x… and/or payTo=0x…|r… (required), optional resource. "
+            "Invalid input returns a free 400. First 5 calls per caller per UTC day are free; then $0.01 USDC. "
+            "Verdicts: SAFE, RISKY, or INCONCLUSIVE (lookup failures are never RISKY). Example: "
+            "contractAddress=0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913."
+        ),
+        "price_usd": "0.01",
+    },
+    {
         "id": "base_x402_query",
         "path": "/x402/v1/query",
         "label": "Base USDC x402 seller (facilitator / Bazaar)",
