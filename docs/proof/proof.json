@@ -1,7 +1,7 @@
 {
   "schema": "asm.proof.v1",
   "name": "Agentic Swarm Marketplace",
-  "updated_at": "2026-11-17T00:01:46Z",
+  "updated_at": "2026-11-17T00:50:44Z",
   "site": "https://www.agentic-swarm-marketplace.com",
   "api": "https://api.agentic-swarm-marketplace.com",
   "page": "https://www.agentic-swarm-marketplace.com/proof/",
@@ -3966,48 +3966,48 @@
     }
   ],
   "health": {
-    "probed_at": "2026-11-17T00:06:34Z",
+    "probed_at": "2026-11-17T00:52:51Z",
     "endpoints": [
       {
         "url": "https://api.agentic-swarm-marketplace.com/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 66,
+        "latency_ms": 359,
         "id": "base_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/.well-known/x402.json",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 281,
+        "latency_ms": 319,
         "id": "base_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 87,
+        "latency_ms": 81,
         "id": "t54_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 267,
+        "latency_ms": 293,
         "id": "t54_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/celo/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 73,
+        "latency_ms": 261,
         "id": "celo_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/mcp",
         "http_status": 406,
         "ok": true,
-        "latency_ms": 237,
+        "latency_ms": 153,
         "id": "mcp_origin"
       }
     ]
@@ -4015,13 +4015,13 @@
   "preflight_sample": {
     "source": "engine_snapshot",
     "note": "Produced by the preflight engine in this snapshot job. Not a paid buyer call.",
-    "checked_at": "2026-11-17T00:06:44Z",
+    "checked_at": "2026-11-17T00:52:52Z",
     "request": {
       "contractAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
       "network": "eip155:8453"
     },
     "result": {
-      "verdict": "SAFE",
+      "verdict": "INCONCLUSIVE",
       "riskScore": 0,
       "contractName": null,
       "verified": null,
@@ -4029,7 +4029,7 @@
       "implementation": null,
       "sourceProvider": null,
       "reasons": [
-        "Verified Base contract Circle USDC (Base) is SAFE",
+        "Contract triage is INCONCLUSIVE (triage_engine_error)",
         "Listed as Circle USDC (Base)"
       ]
     }
@@ -4055,6 +4055,7 @@
       }
     ],
     "notes": [
+      "base catalog fetch failed (502)",
       "Roundhouse public index: 29 settlement days, 120 Base USDC transfers, 120 receipts enriched.",
       "Base RPC scanned a short recent window only. The Roundhouse public index already supplied the full Base USDC history to the payTo address."
     ]
