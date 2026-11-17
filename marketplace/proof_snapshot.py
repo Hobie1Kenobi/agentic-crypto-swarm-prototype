@@ -6,6 +6,7 @@ payers. Operator identity accounts are a third class. No secrets are collected.
 from __future__ import annotations
 
 import json
+import re
 import os
 import time
 import urllib.error
@@ -32,6 +33,19 @@ HOUSE_BASE = "0xEBd956F5c8C4b32752d87D62314F9431Dc0449e9"
 HOUSE_CELO = "0x3430C51aD9476029a03bE8Da64c09b8BC930eBa6"
 HOUSE_XRPL = "r4n6M6QLWoFQVGXJ5PeESJjwUARVT91MYJ"
 OPERATOR_XRPL_IDENTITY = "rHTHaQ9EtuKkSSAoh9R1ViGt69J2ZMHQWq"
+
+# Known automated directory/probe payers. These are real settled external calls,
+# but they must not be presented as customers.
+PROBE_PAYERS = {
+    "xrpl": {
+        "rM8kmmnz5qPMg7V3r7SHYXgDGvm8PhzLvM": {
+            "name": "Lumi",
+            "note": "Automated directory/probe calls, including a daily 1000-drop payment for /t54/hello (0.001 XRP).",
+        }
+    }
+}
+ROUNDHOUSE_MERCHANT_URL = f"https://roundhouseai.io/merchant/{PAYTO_BASE}"
+ROUNDHOUSE_TX_URL = "https://roundhouseai.io/transactions"
 
 TRANSFER_TOPIC = "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef"
 XRPL_EPOCH_OFFSET = 946684800
@@ -99,14 +113,74 @@ def is_operator_identity(rail: str, payer: str | None) -> bool:
     return False
 
 
+def is_probe(rail: str, payer: str | None) -> bool:
+    if not payer:
+        return False
+    family = "base" if rail.startswith("base") else "celo" if rail.startswith("celo") else rail
+    table = PROBE_PAYERS.get(family) or {}
+    if family in ("base", "celo"):
+        return norm_evm(payer) in {norm_evm(k) for k in table}
+    return payer in table
+
+
+def probe_meta(rail: str, payer: str | None) -> dict[str, str] | None:
+    if not is_probe(rail, payer):
+        return None
+    family = "base" if rail.startswith("base") else "celo" if rail.startswith("celo") else rail
+    table = PROBE_PAYERS.get(family) or {}
+    if family in ("base", "celo"):
+        for key, meta in table.items():
+            if norm_evm(key) == norm_evm(payer):
+                return meta
+        return None
+    return table.get(payer or "")
+
+
+def sku_is_priced(payment: dict[str, Any] | None, sku_id: str | None = None, sku_id_source: str | None = None) -> bool:
+    """True when the payment matches a unique catalog SKU price."""
+    if payment is not None:
+        sku_id = payment.get("sku_id") if sku_id is None else sku_id
+        sku_id_source = payment.get("sku_id_source") if sku_id_source is None else sku_id_source
+    if not sku_id or sku_id == "unmapped":
+        return False
+    if sku_id_source in ("unmapped", "ambiguous"):
+        return False
+    return True
+
+
 def classify_payer(rail: str, payer: str | None) -> str:
-    """Return house | operator_identity | external | unknown."""
+    """Wallet-only class: house | operator_identity | probe | external | unknown.
+
+    Dust vs SKU-priced external is decided later by classify_payment once the
+    amount has been mapped to a catalog price.
+    """
     if not payer:
         return "unknown"
     if is_house(rail, payer):
         return "house"
     if is_operator_identity(rail, payer):
         return "operator_identity"
+    if is_probe(rail, payer):
+        return "automated_probe"
+    return "external"
+
+
+def classify_payment(rail: str, payer: str | None, sku_id: str | None = None, sku_id_source: str | None = None) -> str:
+    """Final class used on the page and in headline counts.
+
+    House and operator identity stay in their buckets even when the amount is
+    unlabeled. Remaining payments that do not match a real SKU price are dust.
+    Known automated directory/probe payers that *do* match a SKU price are
+    labeled automated_probe, not customers. Headline external is SKU-priced
+    external purchases only.
+    """
+    base = classify_payer(rail, payer)
+    if base in ("house", "operator_identity", "unknown"):
+        return base
+    if not sku_is_priced(None, sku_id, sku_id_source):
+        return "dust"
+    if base == "automated_probe":
+        return "automated_probe"
     return "external"
 
 
@@ -144,6 +218,30 @@ def http_json(url: str, data: bytes | None = None, timeout: int = 30, headers: d
         return exc.code, body
     except Exception as exc:
         return None, f"{type(exc).__name__}: {exc}"
+
+
+def http_text(url: str, timeout: int = 40) -> tuple[int | None, str | None, str | None]:
+    """GET a public HTML page. Returns (status, text, error)."""
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": USER_AGENT,
+            "Accept": "text/html,application/xhtml+xml;q=0.9,*/*;q=0.8",
+        },
+    )
+    try:
+        with urllib.request.urlopen(req, timeout=timeout) as resp:
+            raw = resp.read()
+            charset = resp.headers.get_content_charset() or "utf-8"
+            return resp.status, raw.decode(charset, errors="replace"), None
+    except urllib.error.HTTPError as exc:
+        try:
+            body = exc.read().decode("utf-8", errors="replace")
+        except Exception:
+            body = ""
+        return exc.code, body or None, f"HTTP {exc.code}"
+    except Exception as exc:
+        return None, None, f"{type(exc).__name__}: {exc}"
 
 
 def http_status(url: str, timeout: int = 15) -> dict[str, Any]:
@@ -238,7 +336,7 @@ def summarize(payments: list[dict[str, Any]], now: datetime | None = None) -> di
     now = now or utcnow()
     cut7 = now - timedelta(days=7)
     cut30 = now - timedelta(days=30)
-    buckets = {"external": [], "house": [], "operator_identity": [], "unknown": []}
+    buckets = {"external": [], "house": [], "operator_identity": [], "automated_probe": [], "dust": [], "unknown": []}
     for p in payments:
         buckets.setdefault(p.get("payer_class") or "unknown", []).append(p)
 
@@ -267,10 +365,20 @@ def summarize(payments: list[dict[str, Any]], now: datetime | None = None) -> di
         }
         if track_unique:
             out["unique_payers"] = len(unique)
+            by_rail_unique: dict[str, set[str]] = defaultdict(set)
+            for r in rows:
+                if r.get("payer"):
+                    ident = str(r["payer"]).lower() if str(r["payer"]).startswith("0x") else str(r["payer"])
+                    by_rail_unique[r.get("rail") or "unknown"].add(ident)
+            out["unique_payers_by_rail"] = {k: len(v) for k, v in by_rail_unique.items()}
         return out
 
+    external = _stats(buckets["external"], True)
     return {
-        "external": _stats(buckets["external"], True),
+        "external": external,
+        "external_sku_purchases": external,  # alias: headline count is SKU-priced external only
+        "automated_probe": _stats(buckets.get("automated_probe") or [], True),
+        "dust": _stats(buckets.get("dust") or [], True),
         "house": _stats(buckets["house"], True),
         "operator_identity": _stats(buckets.get("operator_identity") or [], True),
         "unknown": _stats(buckets.get("unknown") or [], False),
@@ -292,6 +400,8 @@ def per_sku(payments: list[dict[str, Any]]) -> list[dict[str, Any]]:
         ext = [i for i in items if i.get("payer_class") == "external"]
         house = [i for i in items if i.get("payer_class") == "house"]
         op = [i for i in items if i.get("payer_class") == "operator_identity"]
+        probes = [i for i in items if i.get("payer_class") == "automated_probe"]
+        dust = [i for i in items if i.get("payer_class") == "dust"]
         ext_payers = {str(i.get("payer")) for i in ext if i.get("payer")}
         times = [parse_iso(i.get("time")) for i in items]
         times_ok = [t for t in times if t is not None]
@@ -303,6 +413,8 @@ def per_sku(payments: list[dict[str, Any]]) -> list[dict[str, Any]]:
             "external_calls": len(ext),
             "house_calls": len(house),
             "operator_identity_calls": len(op),
+            "automated_probe_calls": len(probes),
+            "dust_calls": len(dust),
             "unique_external_payers": len(ext_payers),
             "last_external_at": iso(max(ext_ok) if ext_ok else None),
             "last_any_at": iso(max(times_ok) if times_ok else None),
@@ -387,7 +499,177 @@ def _decode_uint(data: str | None) -> str | None:
     return str(int(hexdata, 16))
 
 
+def _roundhouse_settlement_days(merchant_html: str) -> list[str]:
+    """Parse calendar aria-labels like '6 settlements · $0.28 on 2026-06-02'."""
+    days: list[str] = []
+    for label in re.findall(r'aria-label="([^"]*)"', merchant_html):
+        if re.search(r"no settlements on", label, re.I):
+            continue
+        m = re.search(r"(\d+)\s+settlements?.*?on\s+(\d{4}-\d{2}-\d{2})", label, re.I)
+        if m and int(m.group(1)) > 0:
+            days.append(m.group(2))
+    return sorted(set(days))
+
+
+def _parse_roundhouse_day_html(html: str, day: str) -> list[dict[str, Any]]:
+    """Extract Base settlements from a Roundhouse day (or paginated day) table."""
+    rows: list[dict[str, Any]] = []
+    seen: set[str] = set()
+    for m in re.finditer(
+        r'href="(https://(basescan\.org|celoscan\.io|xrpscan\.com)/tx/([0-9a-zA-Z]+))"',
+        html,
+    ):
+        host, tx = m.group(2), m.group(3)
+        if host != "basescan.org":
+            continue
+        key = tx.lower()
+        if not key.startswith("0x") or key in seen:
+            continue
+        start = html.rfind("<tr", 0, m.start())
+        end = html.find("</tr>", m.end())
+        row = html[start:end] if start >= 0 and end >= 0 else html[max(0, m.start() - 2500):m.end() + 200]
+        paid = re.search(
+            r'(?:aria-label|title)="(0x[a-fA-F0-9]{40})\s+paid\s+(0x[a-fA-F0-9]{40})"',
+            row,
+            re.I,
+        )
+        payer = paid.group(1) if paid else None
+        receiver = paid.group(2) if paid else PAYTO_BASE
+        if norm_evm(receiver) != norm_evm(PAYTO_BASE):
+            continue
+        time_m = re.search(r'title="(\d{4}-\d{2}-\d{2}T[^"]+)"', row)
+        usd_m = re.search(r">\$([0-9]+(?:\.[0-9]+)?)<", row)
+        ts = time_m.group(1) if time_m else None
+        parsed = parse_iso(ts)
+        rows.append({
+            "rail": "base",
+            "tx": tx if tx.startswith("0x") else "0x" + tx,
+            "explorer": explorer_tx("base", tx),
+            "payer": payer,
+            "payer_class": classify_payer("base", payer),
+            "receiver": PAYTO_BASE,
+            "asset": "USDC",
+            "amount_atomic": None,
+            "amount_usd_display": usd_m.group(1) if usd_m else None,
+            "block": None,
+            "time": iso(parsed) if parsed else ts,
+            "source": "base_roundhouse",
+            "day": day,
+        })
+        seen.add(key)
+    return rows
+
+
+def _usdc_transfer_to_payto(receipt: dict[str, Any]) -> tuple[str | None, str | None, int | None]:
+    """Return (payer, amount_atomic, block) for a USDC Transfer to PAYTO_BASE."""
+    block_hex = receipt.get("blockNumber")
+    block = int(block_hex, 16) if isinstance(block_hex, str) and block_hex.startswith("0x") else None
+    payto_topic = _topic_address(PAYTO_BASE).lower()
+    usdc = USDC_BASE.lower()
+    for lg in receipt.get("logs") or []:
+        if (lg.get("address") or "").lower() != usdc:
+            continue
+        topics = [str(t).lower() for t in (lg.get("topics") or [])]
+        if not topics or topics[0] != TRANSFER_TOPIC.lower():
+            continue
+        if len(topics) < 3 or topics[2] != payto_topic:
+            continue
+        payer = "0x" + topics[1][-40:] if len(topics) >= 2 else None
+        return payer, _decode_uint(lg.get("data")), block
+    return None, None, block
+
+
+def _enrich_base_receipts(rows: list[dict[str, Any]]) -> int:
+    """Fill amount_atomic, block, and payer from eth_getTransactionReceipt."""
+    needed = [r for r in rows if r.get("tx") and (not r.get("amount_atomic") or not r.get("block"))]
+    if not needed:
+        return 0
+    filled = 0
+    rpc_i = 0
+    for r in needed:
+        receipt = None
+        last_err = None
+        for attempt in range(len(BASE_RPCS)):
+            url = BASE_RPCS[(rpc_i + attempt) % len(BASE_RPCS)]
+            try:
+                body = _rpc(url, "eth_getTransactionReceipt", [r["tx"]], timeout=25)
+            except Exception as exc:
+                last_err = type(exc).__name__
+                continue
+            if isinstance(body, dict) and isinstance(body.get("result"), dict):
+                receipt = body["result"]
+                rpc_i = (rpc_i + attempt) % len(BASE_RPCS)
+                break
+            last_err = (body or {}).get("error") if isinstance(body, dict) else "no receipt"
+        if not receipt:
+            continue
+        payer, amount, block = _usdc_transfer_to_payto(receipt)
+        if payer and not r.get("payer"):
+            r["payer"] = payer
+            r["payer_class"] = classify_payer("base", payer)
+        if amount:
+            r["amount_atomic"] = amount
+        if block:
+            r["block"] = block
+        if amount or block:
+            filled += 1
+        time.sleep(0.04)
+    return filled
+
+
+def fetch_base_usdc_roundhouse() -> tuple[list[dict[str, Any]], str | None]:
+    """Full Base USDC history to PAYTO_BASE via public Roundhouse pages + receipt enrichment.
+
+    Keyless: merchant calendar and day tables are public HTML. Amounts come from
+    the USDC Transfer log on the transaction receipt (public Base RPC), not from
+    a paid Roundhouse API.
+    """
+    status, html, err = http_text(ROUNDHOUSE_MERCHANT_URL, timeout=45)
+    if not html or status != 200:
+        return [], err or f"Roundhouse merchant HTTP {status}"
+    days = _roundhouse_settlement_days(html)
+    if not days:
+        return [], "no settlement days parsed from Roundhouse merchant calendar"
+    rows: list[dict[str, Any]] = []
+    page_notes: list[str] = []
+    seen: set[str] = set()
+    for day in days:
+        page = 1
+        empty_pages = 0
+        while page <= 30:
+            qs = {"q": PAYTO_BASE, "day": day}
+            if page > 1:
+                qs["page"] = str(page)
+            url = ROUNDHOUSE_TX_URL + "?" + urllib.parse.urlencode(qs)
+            st, body, e = http_text(url, timeout=40)
+            if not body or st != 200:
+                page_notes.append(f"{day} page {page}: {e or st}")
+                break
+            found = _parse_roundhouse_day_html(body, day)
+            new = [r for r in found if r["tx"].lower() not in seen]
+            if not new:
+                empty_pages += 1
+                break
+            for r in new:
+                seen.add(r["tx"].lower())
+            rows.extend(new)
+            page += 1
+            time.sleep(0.12)
+        time.sleep(0.05)
+    filled = _enrich_base_receipts(rows)
+    missing_amt = sum(1 for r in rows if not r.get("amount_atomic"))
+    note = (
+        f"Roundhouse public index: {len(days)} settlement days, {len(rows)} Base USDC "
+        f"transfers, {filled} receipts enriched"
+        + (f"; {missing_amt} still missing amount_atomic" if missing_amt else "")
+        + (("; " + "; ".join(page_notes[:6])) if page_notes else "")
+        + "."
+    )
+    return rows, note
+
+
 def fetch_base_usdc_blockscout() -> tuple[list[dict[str, Any]], str | None]:
+
     url = (
         "https://base.blockscout.com/api"
         f"?module=account&action=tokentx&address={PAYTO_BASE}"
@@ -885,9 +1167,18 @@ def preflight_engine_sample() -> dict[str, Any]:
 
 def annotate_payments(payments: list[dict[str, Any]]) -> list[dict[str, Any]]:
     for p in payments:
-        p["payer_class"] = classify_payer(p.get("rail") or "", p.get("payer"))
+        p["payer_class"] = classify_payment(
+            p.get("rail") or "",
+            p.get("payer"),
+            p.get("sku_id"),
+            p.get("sku_id_source"),
+        )
         if p.get("tx") and not p.get("explorer"):
             p["explorer"] = explorer_tx(p.get("rail") or "", p["tx"])
+        meta = probe_meta(p.get("rail") or "", p.get("payer"))
+        if meta and p.get("payer_class") == "automated_probe":
+            p["probe_name"] = meta.get("name")
+            p["probe_note"] = meta.get("note")
     return payments
 
 
@@ -982,6 +1273,7 @@ def build_snapshot(
             ("xrpl_account_tx", fetch_xrpl_payments),
             ("celo_blockscout_txlist", fetch_celo_native),
             ("celo_blockscout_tokentx", fetch_celo_usdc),
+            ("base_roundhouse", fetch_base_usdc_roundhouse),
             ("base_blockscout", fetch_base_usdc_blockscout),
             ("base_etherscan_v2", fetch_base_usdc_etherscan),
         ):
@@ -997,10 +1289,18 @@ def build_snapshot(
                 coverage_ok.append(label)
                 if err:
                     notes.append(err)
-        # Scan a recent window from head first so 7/30-day counts are current,
-        # then backfill earlier history with any remaining chunk budget.
+        # When Roundhouse already supplied the full Base history, only scan a
+        # short recent RPC window for any transfers not yet indexed there.
+        # Otherwise walk a larger recent window as a fallback backfill.
+        roundhouse_ok = "base_roundhouse" in coverage_ok
+        rpc_recent = 200_000 if roundhouse_ok else 4_000_000
+        rpc_chunks = 40 if roundhouse_ok else 120
         try:
-            rows, err = fetch_base_usdc_rpc(from_block=FIRST_BASE_BLOCK, max_chunks=120, recent_blocks=4_000_000)
+            rows, err = fetch_base_usdc_rpc(
+                from_block=FIRST_BASE_BLOCK,
+                max_chunks=rpc_chunks,
+                recent_blocks=rpc_recent,
+            )
         except Exception as exc:
             coverage_failed.append({"source": "base_rpc_getLogs", "error": type(exc).__name__})
         else:
@@ -1008,9 +1308,15 @@ def build_snapshot(
                 groups.append(rows)
                 coverage_ok.append("base_rpc_getLogs")
             if err:
-                (coverage_failed if not rows else notes).append(
-                    {"source": "base_rpc_getLogs", "error": err[:240]} if not rows else err
-                )
+                if rows and roundhouse_ok and "mid-history" in err:
+                    notes.append(
+                        "Base RPC scanned a short recent window only. "
+                        "The Roundhouse public index already supplied the full Base USDC history to the payTo address."
+                    )
+                else:
+                    (coverage_failed if not rows else notes).append(
+                        {"source": "base_rpc_getLogs", "error": err[:240]} if not rows else err
+                    )
 
     payments = annotate_payments(merge_payments(*groups))
     if live:
@@ -1045,6 +1351,8 @@ def build_snapshot(
             "house_note": "House payments are self-funded test and catalog-refresh payments by the operator. They are not third-party customers.",
             "operator_identity_note": "The published XRPL merchant identity account is listed separately. It is not a house test buyer and is not counted as an external payer.",
             "sku_mapping_note": "sku_id is inferred when a settled amount uniquely matches a live catalog price, or taken from a prior annotated snapshot. Ambiguous or unknown amounts stay unlabeled.",
+            "probe_note": "Automated directory/probe calls are real settled external payments from known recurring probes (for example Lumi paying 0.001 XRP for /t54/hello daily). They are listed separately and are not counted as customers.",
+            "dust_note": "Unsolicited or dust transfers are incoming payments whose amount does not uniquely match a live SKU price (for example 1-drop or 10-drop XRPL transfers). They are excluded from the external SKU-purchase headline.",
             "unverified": "This page only reports on-chain payments to the published payTo addresses and the health of public HTTPS endpoints. No unverified volume or customer claims.",
         },
         "pay_to": {
@@ -1075,6 +1383,9 @@ def build_snapshot(
             },
             "operator_identity": {
                 "xrpl": [OPERATOR_XRPL_IDENTITY],
+            },
+            "automated_probe": {
+                rail: list(accounts.keys()) for rail, accounts in PROBE_PAYERS.items()
             },
         },
         "summary": summarize(payments, now=now),

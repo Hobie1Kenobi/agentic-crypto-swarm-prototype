@@ -40,11 +40,17 @@ def main() -> int:
     summary = snapshot.get("summary") or {}
     ext = summary.get("external") or {}
     house = summary.get("house") or {}
+    probe = summary.get("automated_probe") or {}
+    dust = summary.get("dust") or {}
     print(f"Wrote {output}")
     print(
-        "external_payments={0} unique_external_payers={1} house_payments={2} total={3}".format(
+        "external_sku_purchases={0} unique_external_payers={1} unique_by_rail={2} "
+        "automated_probe={3} dust={4} house={5} total={6}".format(
             ext.get("payments"),
             ext.get("unique_payers"),
+            ext.get("unique_payers_by_rail"),
+            probe.get("payments"),
+            dust.get("payments"),
             house.get("payments"),
             summary.get("total_payments"),
         )
