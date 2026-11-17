@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Settlement proof — Agentic Swarm Marketplace</title>
-  <meta name="description" content="On-chain payments to Agentic Swarm Marketplace payTo addresses, classified as house (self-funded tests) or external. No blended customer counts." />
+  <meta name="description" content="On-chain payments to Agentic Swarm Marketplace payTo addresses. The headline counts only SKU-priced external purchases. House tests, automated directory/probe calls, and unsolicited/dust transfers are listed separately." />
   <link rel="canonical" href="https://www.agentic-swarm-marketplace.com/proof/" />
   <style>
     :root { --bg:#07080c; --card:#11141c; --border:#1f2937; --text:#f1f5f9; --muted:#94a3b8; --accent:#00d4aa; --warn:#fbbf24; --bad:#f87171; --ok:#34d399; }
@@ -31,6 +31,8 @@
     .tag.house { border-color:#854d0e; color:#fbbf24; }
     .tag.external { border-color:#115e59; color:#5eead4; }
     .tag.operator { border-color:#1e3a8a; color:#93c5fd; }
+    .tag.automated_probe { border-color:#6d28d9; color:#c4b5fd; }
+    .tag.dust { border-color:#57534e; color:#d6d3d1; }
     .tag.unknown { border-color:#3f3f46; }
     .scroll { overflow-x:auto; }
     noscript .card { border-color: var(--warn); }
@@ -40,7 +42,7 @@
   <header>
     <p class="muted"><a href="/">← Marketplace home</a></p>
     <h1>Settlement proof</h1>
-    <p class="muted">On-chain payments to the published Agentic Swarm Marketplace payTo addresses. House (self-funded test and catalog-refresh) payments are shown separately from external payers and are never counted as customers.</p>
+    <p class="muted">On-chain payments to the published Agentic Swarm Marketplace payTo addresses. The headline number counts only SKU-priced external purchases. House (self-funded test and catalog-refresh) payments, automated directory/probe calls, and unsolicited/dust transfers are shown separately and are never counted as customers.</p>
     <p class="muted" id="updated">Loading snapshot…</p>
     <div class="links">
       <a href="proof.json">proof.json</a>
@@ -63,12 +65,24 @@
       <p class="muted" id="refresh-note"></p>
     </section>
     <section class="card">
-      <h2>External payers</h2>
+      <h2>External SKU purchases</h2>
+      <p class="muted">Settled payments that match a live catalog price, excluding house tests, operator identity, automated directory/probe calls, and unsolicited/dust transfers.</p>
       <div class="grid" id="ext-metrics"></div>
+      <p class="muted" id="ext-by-rail"></p>
     </section>
     <section class="card">
       <h2>House (self-funded tests)</h2>
       <div class="grid" id="house-metrics"></div>
+    </section>
+    <section class="card" id="probe-card" hidden>
+      <h2>Automated directory/probe calls</h2>
+      <p class="muted" id="probe-note">Real settled external payments from known recurring probes. They are not presented as customers.</p>
+      <div class="grid" id="probe-metrics"></div>
+    </section>
+    <section class="card" id="dust-card" hidden>
+      <h2>Unsolicited / dust transfers</h2>
+      <p class="muted" id="dust-note">Incoming payments whose amount does not uniquely match a live SKU price, such as 1-drop or 10-drop XRPL transfers. Excluded from the external SKU-purchase headline.</p>
+      <div class="grid" id="dust-metrics"></div>
     </section>
     <section class="card" id="operator-card" hidden>
       <h2>Operator identity account</h2>
@@ -90,12 +104,22 @@
     </section>
     <section class="card">
       <h2>Per-SKU calls</h2>
-      <p class="muted">House and external counts are listed side by side. Unmapped amounts are payments whose value did not uniquely match a catalog price.</p>
-      <div class="scroll"><table id="sku-table"><thead><tr><th>SKU</th><th>Rail</th><th>External</th><th>Unique external payers</th><th>House</th><th>Operator identity</th><th>Last external</th></tr></thead><tbody></tbody></table></div>
+      <p class="muted">External SKU purchases and unique external payers are listed beside house, operator identity, and automated probe counts. Unmapped or dust amounts are payments whose value did not uniquely match a catalog price.</p>
+      <div class="scroll"><table id="sku-table"><thead><tr><th>SKU</th><th>Rail</th><th>External</th><th>Unique external payers</th><th>House</th><th>Operator identity</th><th>Automated probes</th><th>Dust</th><th>Last external</th></tr></thead><tbody></tbody></table></div>
     </section>
     <section class="card">
       <h2>Recent external payments</h2>
       <div class="scroll"><table id="ext-table"><thead><tr><th>Time (UTC)</th><th>Rail</th><th>SKU</th><th>Payer</th><th>Transaction</th></tr></thead><tbody></tbody></table></div>
+    </section>
+    <section class="card" id="probe-table-card" hidden>
+      <h2>Recent automated directory/probe calls</h2>
+      <p class="muted">Real paid calls from known probes. Not customers.</p>
+      <div class="scroll"><table id="probe-table"><thead><tr><th>Time (UTC)</th><th>Rail</th><th>SKU</th><th>Payer</th><th>Transaction</th></tr></thead><tbody></tbody></table></div>
+    </section>
+    <section class="card" id="dust-table-card" hidden>
+      <h2>Recent unsolicited / dust transfers</h2>
+      <p class="muted">Amounts that do not uniquely match a SKU price. Excluded from the headline.</p>
+      <div class="scroll"><table id="dust-table"><thead><tr><th>Time (UTC)</th><th>Rail</th><th>SKU</th><th>Payer</th><th>Transaction</th></tr></thead><tbody></tbody></table></div>
     </section>
     <section class="card">
       <h2>Recent house payments</h2>
@@ -151,7 +175,32 @@
 
       const summary = data.summary || {};
       fillMetrics(document.getElementById("ext-metrics"), summary.external || {}, "Unique external payers");
+      const byRail = (summary.external && summary.external.unique_payers_by_rail) || {};
+      const extBy = (summary.external && summary.external.by_rail) || {};
+      const railBits = Object.keys({...extBy, ...byRail}).sort().map(k => {
+        const n = extBy[k] || 0;
+        const u = byRail[k];
+        return k + ": " + n + " purchase" + (n === 1 ? "" : "s") + (u != null ? " / " + u + " unique payer" + (u === 1 ? "" : "s") : "");
+      });
+      document.getElementById("ext-by-rail").textContent = railBits.length ? ("By chain — " + railBits.join(" · ")) : "";
       fillMetrics(document.getElementById("house-metrics"), summary.house || {}, "House wallets seen");
+
+      const probes = summary.automated_probe || {};
+      if ((probes.payments || 0) > 0) {
+        document.getElementById("probe-card").hidden = false;
+        if (data.honesty && data.honesty.probe_note) {
+          document.getElementById("probe-note").textContent = data.honesty.probe_note;
+        }
+        fillMetrics(document.getElementById("probe-metrics"), probes, "Unique probe payers");
+      }
+      const dust = summary.dust || {};
+      if ((dust.payments || 0) > 0) {
+        document.getElementById("dust-card").hidden = false;
+        if (data.honesty && data.honesty.dust_note) {
+          document.getElementById("dust-note").textContent = data.honesty.dust_note;
+        }
+        fillMetrics(document.getElementById("dust-metrics"), dust, "Unique dust senders");
+      }
 
       const op = summary.operator_identity || {};
       if ((op.payments || 0) > 0) {
@@ -188,11 +237,21 @@
 
       const skuBody = document.querySelector("#sku-table tbody");
       skuBody.innerHTML = (data.per_sku || []).map(r =>
-        `<tr><td><code>${r.sku_id}</code></td><td>${r.rail}</td><td>${r.external_calls}</td><td>${r.unique_external_payers}</td><td>${r.house_calls}</td><td>${r.operator_identity_calls}</td><td>${fmtTime(r.last_external_at)}</td></tr>`
-      ).join("") || `<tr><td colspan="7" class="muted">None.</td></tr>`;
+        `<tr><td><code>${r.sku_id}</code></td><td>${r.rail}</td><td>${r.external_calls}</td><td>${r.unique_external_payers}</td><td>${r.house_calls}</td><td>${r.operator_identity_calls}</td><td>${r.automated_probe_calls || 0}</td><td>${r.dust_calls || 0}</td><td>${fmtTime(r.last_external_at)}</td></tr>`
+      ).join("") || `<tr><td colspan="9" class="muted">None.</td></tr>`;
 
       document.querySelector("#ext-table tbody").innerHTML = rowsFor(data.payments, "external", 40);
       document.querySelector("#house-table tbody").innerHTML = rowsFor(data.payments, "house", 40);
+      const probeRows = rowsFor(data.payments, "automated_probe", 40);
+      if ((probes.payments || 0) > 0) {
+        document.getElementById("probe-table-card").hidden = false;
+        document.querySelector("#probe-table tbody").innerHTML = probeRows;
+      }
+      const dustRows = rowsFor(data.payments, "dust", 40);
+      if ((dust.payments || 0) > 0) {
+        document.getElementById("dust-table-card").hidden = false;
+        document.querySelector("#dust-table tbody").innerHTML = dustRows;
+      }
 
       const cov = data.coverage || {};
       const failed = (cov.sources_failed || []).map(s => typeof s === "string" ? s : ((s.source || "") + ": " + (s.error || ""))).join("; ");
