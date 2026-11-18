@@ -1,7 +1,7 @@
 {
   "schema": "asm.proof.v1",
   "name": "Agentic Swarm Marketplace",
-  "updated_at": "2026-11-18T00:48:52Z",
+  "updated_at": "2026-11-18T15:25:39Z",
   "site": "https://www.agentic-swarm-marketplace.com",
   "api": "https://api.agentic-swarm-marketplace.com",
   "page": "https://www.agentic-swarm-marketplace.com/proof/",
@@ -89,12 +89,12 @@
       }
     },
     "automated_probe": {
-      "payments": 25,
+      "payments": 26,
       "last_7d": 7,
-      "last_30d": 25,
-      "last_call_at": "2026-11-17T10:00:50Z",
+      "last_30d": 26,
+      "last_call_at": "2026-11-18T10:01:01Z",
       "by_rail": {
-        "xrpl": 25
+        "xrpl": 26
       },
       "unique_payers": 1,
       "unique_payers_by_rail": {
@@ -151,7 +151,7 @@
       "last_call_at": null,
       "by_rail": {}
     },
-    "total_payments": 213
+    "total_payments": 214
   },
   "per_sku": [
     {
@@ -172,11 +172,11 @@
       "external_calls": 0,
       "house_calls": 2,
       "operator_identity_calls": 6,
-      "automated_probe_calls": 25,
+      "automated_probe_calls": 26,
       "dust_calls": 0,
       "unique_external_payers": 0,
       "last_external_at": null,
-      "last_any_at": "2026-11-17T10:00:50Z"
+      "last_any_at": "2026-11-18T10:01:01Z"
     },
     {
       "sku_id": "contract-triage",
@@ -540,6 +540,23 @@
     }
   ],
   "payments": [
+    {
+      "rail": "xrpl",
+      "tx": "EC274D9469E53A1CF148C20015F3B2CD638F06F8855C5896450385026FAF6242",
+      "explorer": "https://xrpscan.com/tx/EC274D9469E53A1CF148C20015F3B2CD638F06F8855C5896450385026FAF6242",
+      "payer": "rM8kmmnz5qPMg7V3r7SHYXgDGvm8PhzLvM",
+      "payer_class": "automated_probe",
+      "receiver": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+      "asset": "XRP",
+      "amount_atomic": "1000",
+      "block": 108408425,
+      "time": "2026-11-18T10:01:01Z",
+      "source": "xrpl_account_tx",
+      "sku_id": "hello",
+      "sku_id_source": "unique_amount",
+      "probe_name": "Lumi",
+      "probe_note": "Automated directory/probe calls, including a daily 1000-drop payment for /t54/hello (0.001 XRP)."
+    },
     {
       "rail": "xrpl",
       "tx": "0CFDFD2418C030447E011911E1BF3D96AC10E5D2AC05B9118FC02EAE73065236",
@@ -3983,48 +4000,48 @@
     }
   ],
   "health": {
-    "probed_at": "2026-11-18T00:50:55Z",
+    "probed_at": "2026-11-18T15:27:37Z",
     "endpoints": [
       {
         "url": "https://api.agentic-swarm-marketplace.com/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 230,
+        "latency_ms": 203,
         "id": "base_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/.well-known/x402.json",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 218,
+        "latency_ms": 311,
         "id": "base_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 216,
+        "latency_ms": 84,
         "id": "t54_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 236,
+        "latency_ms": 262,
         "id": "t54_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/celo/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 372,
+        "latency_ms": 281,
         "id": "celo_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/mcp",
         "http_status": 406,
         "ok": true,
-        "latency_ms": 265,
+        "latency_ms": 359,
         "id": "mcp_origin"
       }
     ]
@@ -4032,7 +4049,7 @@
   "preflight_sample": {
     "source": "engine_snapshot",
     "note": "Produced by the preflight engine in this snapshot job. Not a paid buyer call.",
-    "checked_at": "2026-11-18T00:50:55Z",
+    "checked_at": "2026-11-18T15:27:37Z",
     "request": {
       "contractAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
       "network": "eip155:8453"
@@ -4071,7 +4088,7 @@
       },
       {
         "source": "base_rpc_getLogs",
-        "error": "Recent Base USDC transfers near chain head were scanned. Historical backfill last completed block 50086999 of 58863194; some mid-history Base payments may be missing until a later refresh."
+        "error": "Recent Base USDC transfers near chain head were scanned. Historical backfill last completed block 50086999 of 59126212; some mid-history Base payments may be missing until a later refresh."
       }
     ],
     "notes": [
