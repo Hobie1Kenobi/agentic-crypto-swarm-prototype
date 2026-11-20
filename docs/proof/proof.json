@@ -1,7 +1,7 @@
 {
   "schema": "asm.proof.v1",
   "name": "Agentic Swarm Marketplace",
-  "updated_at": "2026-11-19T15:31:45Z",
+  "updated_at": "2026-11-20T00:28:31Z",
   "site": "https://www.agentic-swarm-marketplace.com",
   "api": "https://api.agentic-swarm-marketplace.com",
   "page": "https://www.agentic-swarm-marketplace.com/proof/",
@@ -4051,48 +4051,48 @@
     }
   ],
   "health": {
-    "probed_at": "2026-11-19T15:33:54Z",
+    "probed_at": "2026-11-20T00:31:14Z",
     "endpoints": [
       {
         "url": "https://api.agentic-swarm-marketplace.com/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 226,
+        "latency_ms": 212,
         "id": "base_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/.well-known/x402.json",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 270,
+        "latency_ms": 217,
         "id": "base_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 304,
+        "latency_ms": 75,
         "id": "t54_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 232,
+        "latency_ms": 225,
         "id": "t54_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/celo/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 224,
+        "latency_ms": 236,
         "id": "celo_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/mcp",
         "http_status": 406,
         "ok": true,
-        "latency_ms": 296,
+        "latency_ms": 213,
         "id": "mcp_origin"
       }
     ]
@@ -4100,7 +4100,7 @@
   "preflight_sample": {
     "source": "engine_snapshot",
     "note": "Produced by the preflight engine in this snapshot job. Not a paid buyer call.",
-    "checked_at": "2026-11-19T15:33:55Z",
+    "checked_at": "2026-11-20T00:31:14Z",
     "request": {
       "contractAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
       "network": "eip155:8453"
@@ -4126,8 +4126,7 @@
       "xrpl_account_tx",
       "celo_blockscout_txlist",
       "celo_blockscout_tokentx",
-      "base_roundhouse",
-      "base_rpc_getLogs"
+      "base_roundhouse"
     ],
     "sources_failed": [
       {
@@ -4137,11 +4136,14 @@
       {
         "source": "base_etherscan_v2",
         "error": "no etherscan key in env (optional)"
+      },
+      {
+        "source": "base_rpc_getLogs",
+        "error": "Recent Base USDC transfers near chain head were scanned. Historical backfill last completed block 50086999 of 59721098; some mid-history Base payments may be missing until a later refresh."
       }
     ],
     "notes": [
-      "Roundhouse public index: 31 settlement days, 122 Base USDC transfers, 122 receipts enriched.",
-      "Base RPC scanned a short recent window only. The Roundhouse public index already supplied the full Base USDC history to the payTo address."
+      "Roundhouse public index: 31 settlement days, 122 Base USDC transfers, 122 receipts enriched."
     ]
   }
 }
