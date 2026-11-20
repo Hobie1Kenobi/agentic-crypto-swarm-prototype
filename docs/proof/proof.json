@@ -1,7 +1,7 @@
 {
   "schema": "asm.proof.v1",
   "name": "Agentic Swarm Marketplace",
-  "updated_at": "2026-11-20T15:10:16Z",
+  "updated_at": "2026-11-20T23:51:42Z",
   "site": "https://www.agentic-swarm-marketplace.com",
   "api": "https://api.agentic-swarm-marketplace.com",
   "page": "https://www.agentic-swarm-marketplace.com/proof/",
@@ -4051,48 +4051,50 @@
     }
   ],
   "health": {
-    "probed_at": "2026-11-20T15:12:15Z",
+    "probed_at": "2026-11-20T23:54:04Z",
     "endpoints": [
       {
         "url": "https://api.agentic-swarm-marketplace.com/health",
-        "http_status": 200,
-        "ok": true,
-        "latency_ms": 533,
+        "http_status": null,
+        "ok": false,
+        "error": "TimeoutError",
+        "latency_ms": 15026,
         "id": "base_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/.well-known/x402.json",
-        "http_status": 502,
+        "http_status": null,
         "ok": false,
-        "latency_ms": 176,
+        "error": "TimeoutError",
+        "latency_ms": 15026,
         "id": "base_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 77,
+        "latency_ms": 29,
         "id": "t54_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json",
-        "http_status": 502,
-        "ok": false,
-        "latency_ms": 225,
+        "http_status": 200,
+        "ok": true,
+        "latency_ms": 285,
         "id": "t54_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/celo/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 52,
+        "latency_ms": 9822,
         "id": "celo_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/mcp",
-        "http_status": 502,
-        "ok": false,
-        "latency_ms": 192,
+        "http_status": 406,
+        "ok": true,
+        "latency_ms": 151,
         "id": "mcp_origin"
       }
     ]
@@ -4100,7 +4102,7 @@
   "preflight_sample": {
     "source": "engine_snapshot",
     "note": "Produced by the preflight engine in this snapshot job. Not a paid buyer call.",
-    "checked_at": "2026-11-20T15:12:15Z",
+    "checked_at": "2026-11-20T23:54:04Z",
     "request": {
       "contractAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
       "network": "eip155:8453"
@@ -4139,11 +4141,10 @@
       },
       {
         "source": "base_rpc_getLogs",
-        "error": "Recent Base USDC transfers near chain head were scanned. Historical backfill last completed block 50086999 of 59985631; some mid-history Base payments may be missing until a later refresh."
+        "error": "Recent Base USDC transfers near chain head were scanned. Historical backfill last completed block 50086999 of 60142037; some mid-history Base payments may be missing until a later refresh."
       }
     ],
     "notes": [
-      "base catalog fetch failed (502)",
       "Roundhouse public index: 31 settlement days, 122 Base USDC transfers, 122 receipts enriched."
     ]
   }
