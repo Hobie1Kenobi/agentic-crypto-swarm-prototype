@@ -1,7 +1,7 @@
 {
   "schema": "asm.proof.v1",
   "name": "Agentic Swarm Marketplace",
-  "updated_at": "2026-11-21T18:56:15Z",
+  "updated_at": "2026-11-22T05:59:08Z",
   "site": "https://www.agentic-swarm-marketplace.com",
   "api": "https://api.agentic-swarm-marketplace.com",
   "page": "https://www.agentic-swarm-marketplace.com/proof/",
@@ -4051,48 +4051,48 @@
     }
   ],
   "health": {
-    "probed_at": "2026-11-21T18:57:34Z",
+    "probed_at": "2026-11-22T06:00:33Z",
     "endpoints": [
       {
         "url": "https://api.agentic-swarm-marketplace.com/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 247,
+        "latency_ms": 158,
         "id": "base_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/.well-known/x402.json",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 190,
+        "latency_ms": 133,
         "id": "base_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 25,
+        "latency_ms": 41,
         "id": "t54_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 198,
+        "latency_ms": 104,
         "id": "t54_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/celo/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 303,
+        "latency_ms": 345,
         "id": "celo_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/mcp",
         "http_status": 406,
         "ok": true,
-        "latency_ms": 277,
+        "latency_ms": 175,
         "id": "mcp_origin"
       }
     ]
@@ -4100,7 +4100,7 @@
   "preflight_sample": {
     "source": "engine_snapshot",
     "note": "Produced by the preflight engine in this snapshot job. Not a paid buyer call.",
-    "checked_at": "2026-11-21T18:57:34Z",
+    "checked_at": "2026-11-22T06:00:33Z",
     "request": {
       "contractAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
       "network": "eip155:8453"
@@ -4139,7 +4139,7 @@
       },
       {
         "source": "base_rpc_getLogs",
-        "error": "Recent Base USDC transfers near chain head were scanned. Historical backfill last completed block 50086999 of 60485320; some mid-history Base payments may be missing until a later refresh."
+        "error": "Recent Base USDC transfers near chain head were scanned. Historical backfill last completed block 50086999 of 60684203; some mid-history Base payments may be missing until a later refresh."
       }
     ],
     "notes": [
