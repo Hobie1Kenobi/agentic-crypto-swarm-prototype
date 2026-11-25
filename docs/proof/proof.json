@@ -1,7 +1,7 @@
 {
   "schema": "asm.proof.v1",
   "name": "Agentic Swarm Marketplace",
-  "updated_at": "2026-11-24T22:10:43Z",
+  "updated_at": "2026-11-25T07:52:34Z",
   "site": "https://www.agentic-swarm-marketplace.com",
   "api": "https://api.agentic-swarm-marketplace.com",
   "page": "https://www.agentic-swarm-marketplace.com/proof/",
@@ -63,29 +63,29 @@
   },
   "summary": {
     "external": {
-      "payments": 66,
-      "last_7d": 4,
-      "last_30d": 5,
-      "last_call_at": "2026-11-23T08:02:22Z",
+      "payments": 67,
+      "last_7d": 5,
+      "last_30d": 6,
+      "last_call_at": "2026-11-25T03:58:15Z",
       "by_rail": {
-        "base": 66
+        "base": 67
       },
-      "unique_payers": 14,
+      "unique_payers": 15,
       "unique_payers_by_rail": {
-        "base": 14
+        "base": 15
       }
     },
     "external_sku_purchases": {
-      "payments": 66,
-      "last_7d": 4,
-      "last_30d": 5,
-      "last_call_at": "2026-11-23T08:02:22Z",
+      "payments": 67,
+      "last_7d": 5,
+      "last_30d": 6,
+      "last_call_at": "2026-11-25T03:58:15Z",
       "by_rail": {
-        "base": 66
+        "base": 67
       },
-      "unique_payers": 14,
+      "unique_payers": 15,
       "unique_payers_by_rail": {
-        "base": 14
+        "base": 15
       }
     },
     "automated_probe": {
@@ -151,7 +151,7 @@
       "last_call_at": null,
       "by_rail": {}
     },
-    "total_payments": 219
+    "total_payments": 220
   },
   "per_sku": [
     {
@@ -205,14 +205,14 @@
     {
       "sku_id": "structured-query",
       "rail": "base",
-      "external_calls": 11,
+      "external_calls": 12,
       "house_calls": 7,
       "operator_identity_calls": 0,
       "automated_probe_calls": 0,
       "dust_calls": 0,
-      "unique_external_payers": 9,
-      "last_external_at": "2026-11-23T08:02:22Z",
-      "last_any_at": "2026-11-23T08:02:22Z"
+      "unique_external_payers": 10,
+      "last_external_at": "2026-11-25T03:58:15Z",
+      "last_any_at": "2026-11-25T03:58:15Z"
     },
     {
       "sku_id": "unmapped",
@@ -540,6 +540,23 @@
     }
   ],
   "payments": [
+    {
+      "rail": "base",
+      "tx": "0xc6f55001f570e4998b9c0aff8119b6bfa93f32ae56344d687d71abf0b1965eee",
+      "explorer": "https://basescan.org/tx/0xc6f55001f570e4998b9c0aff8119b6bfa93f32ae56344d687d71abf0b1965eee",
+      "payer": "0x6c57df777d63df392dd8c5f49441d5085ed940f3",
+      "payer_class": "external",
+      "receiver": "0x408f39B19266022FeC03076091e59D1f4f163658",
+      "asset": "USDC",
+      "amount_atomic": "12000",
+      "amount_usd_display": "0.01",
+      "block": 61943597,
+      "time": "2026-11-25T03:58:15Z",
+      "source": "base_roundhouse",
+      "day": "2026-11-25",
+      "sku_id": "structured-query",
+      "sku_id_source": "unique_amount"
+    },
     {
       "rail": "base",
       "tx": "0x5e9658b04c24c509610391749e8c6e68d514cefffbf8e8f2d05608d8494a0e4c",
@@ -4085,48 +4102,48 @@
     }
   ],
   "health": {
-    "probed_at": "2026-11-24T22:12:30Z",
+    "probed_at": "2026-11-25T07:54:30Z",
     "endpoints": [
       {
         "url": "https://api.agentic-swarm-marketplace.com/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 239,
+        "latency_ms": 264,
         "id": "base_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/.well-known/x402.json",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 231,
+        "latency_ms": 292,
         "id": "base_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 44,
+        "latency_ms": 41,
         "id": "t54_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 276,
+        "latency_ms": 157,
         "id": "t54_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/celo/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 431,
+        "latency_ms": 251,
         "id": "celo_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/mcp",
         "http_status": 406,
         "ok": true,
-        "latency_ms": 123,
+        "latency_ms": 141,
         "id": "mcp_origin"
       }
     ]
@@ -4134,7 +4151,7 @@
   "preflight_sample": {
     "source": "engine_snapshot",
     "note": "Produced by the preflight engine in this snapshot job. Not a paid buyer call.",
-    "checked_at": "2026-11-24T22:12:30Z",
+    "checked_at": "2026-11-25T07:54:30Z",
     "request": {
       "contractAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
       "network": "eip155:8453"
@@ -4160,7 +4177,8 @@
       "xrpl_account_tx",
       "celo_blockscout_txlist",
       "celo_blockscout_tokentx",
-      "base_roundhouse"
+      "base_roundhouse",
+      "base_rpc_getLogs"
     ],
     "sources_failed": [
       {
@@ -4170,14 +4188,11 @@
       {
         "source": "base_etherscan_v2",
         "error": "no etherscan key in env (optional)"
-      },
-      {
-        "source": "base_rpc_getLogs",
-        "error": "Recent Base USDC transfers near chain head were scanned. Historical backfill last completed block 50086999 of 61839750; some mid-history Base payments may be missing until a later refresh."
       }
     ],
     "notes": [
-      "Roundhouse public index: 33 settlement days, 124 Base USDC transfers, 124 receipts enriched."
+      "Roundhouse public index: 34 settlement days, 125 Base USDC transfers, 125 receipts enriched.",
+      "Base RPC scanned a short recent window only. The Roundhouse public index already supplied the full Base USDC history to the payTo address."
     ]
   }
 }
