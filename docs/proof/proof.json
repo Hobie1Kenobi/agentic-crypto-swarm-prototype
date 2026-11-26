@@ -1,7 +1,7 @@
 {
   "schema": "asm.proof.v1",
   "name": "Agentic Swarm Marketplace",
-  "updated_at": "2026-11-26T07:43:20Z",
+  "updated_at": "2026-11-26T21:13:39Z",
   "site": "https://www.agentic-swarm-marketplace.com",
   "api": "https://api.agentic-swarm-marketplace.com",
   "page": "https://www.agentic-swarm-marketplace.com/proof/",
@@ -64,7 +64,7 @@
   "summary": {
     "external": {
       "payments": 67,
-      "last_7d": 4,
+      "last_7d": 3,
       "last_30d": 6,
       "last_call_at": "2026-11-25T03:58:15Z",
       "by_rail": {
@@ -77,7 +77,7 @@
     },
     "external_sku_purchases": {
       "payments": 67,
-      "last_7d": 4,
+      "last_7d": 3,
       "last_30d": 6,
       "last_call_at": "2026-11-25T03:58:15Z",
       "by_rail": {
@@ -89,12 +89,12 @@
       }
     },
     "automated_probe": {
-      "payments": 27,
+      "payments": 28,
       "last_7d": 1,
       "last_30d": 22,
-      "last_call_at": "2026-11-19T10:00:22Z",
+      "last_call_at": "2026-11-26T10:26:50Z",
       "by_rail": {
-        "xrpl": 27
+        "xrpl": 28
       },
       "unique_payers": 1,
       "unique_payers_by_rail": {
@@ -151,7 +151,7 @@
       "last_call_at": null,
       "by_rail": {}
     },
-    "total_payments": 220
+    "total_payments": 221
   },
   "per_sku": [
     {
@@ -172,11 +172,11 @@
       "external_calls": 0,
       "house_calls": 2,
       "operator_identity_calls": 6,
-      "automated_probe_calls": 27,
+      "automated_probe_calls": 28,
       "dust_calls": 0,
       "unique_external_payers": 0,
       "last_external_at": null,
-      "last_any_at": "2026-11-19T10:00:22Z"
+      "last_any_at": "2026-11-26T10:26:50Z"
     },
     {
       "sku_id": "contract-triage",
@@ -540,6 +540,23 @@
     }
   ],
   "payments": [
+    {
+      "rail": "xrpl",
+      "tx": "1EDEE89A5AA8338123A6AC14984489798A95A307115D3321FB6E7CEB78BC8EDE",
+      "explorer": "https://xrpscan.com/tx/1EDEE89A5AA8338123A6AC14984489798A95A307115D3321FB6E7CEB78BC8EDE",
+      "payer": "rM8kmmnz5qPMg7V3r7SHYXgDGvm8PhzLvM",
+      "payer_class": "automated_probe",
+      "receiver": "rHyLmYewCQABAx6MMRBBuYYUUYWve2E1Lf",
+      "asset": "XRP",
+      "amount_atomic": "1000",
+      "block": 108581869,
+      "time": "2026-11-26T10:26:50Z",
+      "source": "xrpl_account_tx",
+      "sku_id": "hello",
+      "sku_id_source": "unique_amount",
+      "probe_name": "Lumi",
+      "probe_note": "Automated directory/probe calls, including a daily 1000-drop payment for /t54/hello (0.001 XRP)."
+    },
     {
       "rail": "base",
       "tx": "0xc6f55001f570e4998b9c0aff8119b6bfa93f32ae56344d687d71abf0b1965eee",
@@ -4102,48 +4119,48 @@
     }
   ],
   "health": {
-    "probed_at": "2026-11-26T07:44:59Z",
+    "probed_at": "2026-11-26T21:15:08Z",
     "endpoints": [
       {
         "url": "https://api.agentic-swarm-marketplace.com/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 182,
+        "latency_ms": 189,
         "id": "base_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/.well-known/x402.json",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 196,
+        "latency_ms": 157,
         "id": "base_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 41,
+        "latency_ms": 33,
         "id": "t54_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/t54/.well-known/x402.json",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 134,
+        "latency_ms": 108,
         "id": "t54_well_known"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/celo/health",
         "http_status": 200,
         "ok": true,
-        "latency_ms": 189,
+        "latency_ms": 160,
         "id": "celo_seller"
       },
       {
         "url": "https://api.agentic-swarm-marketplace.com/mcp",
         "http_status": 406,
         "ok": true,
-        "latency_ms": 214,
+        "latency_ms": 146,
         "id": "mcp_origin"
       }
     ]
@@ -4151,7 +4168,7 @@
   "preflight_sample": {
     "source": "engine_snapshot",
     "note": "Produced by the preflight engine in this snapshot job. Not a paid buyer call.",
-    "checked_at": "2026-11-26T07:44:59Z",
+    "checked_at": "2026-11-26T21:15:08Z",
     "request": {
       "contractAddress": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
       "network": "eip155:8453"
@@ -4190,7 +4207,7 @@
       },
       {
         "source": "base_rpc_getLogs",
-        "error": "Recent Base USDC transfers near chain head were scanned. Historical backfill last completed block 62323497 of 62443498; some mid-history Base payments may be missing until a later refresh."
+        "error": "Recent Base USDC transfers near chain head were scanned. Historical backfill last completed block 50086999 of 62686583; some mid-history Base payments may be missing until a later refresh."
       }
     ],
     "notes": [
